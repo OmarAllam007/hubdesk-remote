@@ -459,15 +459,15 @@ class Ticket extends KModel
 
     public function hasOpenTask()
     {
-        return Ticket::where('type',2)->where('request_id',$this->id)->whereNotIn('status_id',[7,8,9])->exists();
+        return Ticket::where('type', 2)->where('request_id', $this->id)->whereNotIn('status_id', [7, 8, 9])->exists();
     }
 
     function shouldEscalate($escalation){
 
-        $previous_escalations = TicketLog::where('type',13)
-            ->where('ticket_id',$this->id)->count();
+        $previous_escalations = TicketLog::where('type', 13)
+            ->where('ticket_id', $this->id)->count();
 
-        if($escalation->level > $previous_escalations){
+        if ($escalation->level > $previous_escalations) {
 
             $startTime = Carbon::parse(config('worktime.start'));
             $endTime = Carbon::parse(config('worktime.end'));
@@ -477,7 +477,7 @@ class Ticket extends KModel
             $escalation_time = $this->due_date->addMinutes($escalate_time * $escalation->when_escalate);
 
             /** @var Carbon $escalation_time */
-            if(Carbon::now()->gte($escalation_time)){
+            if (Carbon::now()->gte($escalation_time)) {
                 return true;
             }
 
