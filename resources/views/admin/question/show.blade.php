@@ -36,7 +36,8 @@
                         <td>{{$answer->degree}}</td>
                         <td>
 
-                            <form>
+                            <form action="{{route('admin.answer.destroy', compact('answer','question'))}}" method="post"  class="inline-block">
+                                {{csrf_field()}} {{method_field('delete')}}
                                 <a class="btn btn-xs btn-primary"
                                    href="{{route('admin.answer.edit', compact('answer'))}}"><i class="fa fa-edit"></i> Edit</a>
                                 <button type="submit" class="btn btn-xs btn-warning"><i class="fa fa-trash"></i> Delete

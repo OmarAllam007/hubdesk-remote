@@ -26,7 +26,7 @@
                     <td class="col-md-3">
                         <a class="btn btn-sm btn-primary" href="{{route('admin.survey.edit', $survey)}}"><i
                                     class="fa fa-edit"></i> Edit</a>
-                        <form action="{{route('admin.survey.edit', $survey)}}" method="post" class="inline-block">
+                        <form action="{{route('admin.survey.destroy', $survey)}}" method="post" class="inline-block">
                             {{csrf_field()}} {{method_field('delete')}}
                             <button class="btn btn-sm btn-warning"><i class="fa fa-trash-o"></i> Delete</button>
                         </form>

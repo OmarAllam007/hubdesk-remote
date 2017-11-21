@@ -38,7 +38,8 @@
                         <td><a href="{{route('admin.question.show', compact('question'))}}">{{$question->description}}</a></td>
                         <td>
 
-                            <form>
+                            <form action="{{route('admin.question.destroy', compact('question','survey'))}}" method="post"  class="inline-block">
+                                {{csrf_field()}} {{method_field('delete')}}
                                 <a class="btn btn-xs btn-primary"
                                    href="{{route('admin.question.edit', compact('question'))}}"><i class="fa fa-edit"></i> Edit</a>
                                 <button type="submit" class="btn btn-xs btn-warning"><i class="fa fa-trash"></i> Delete

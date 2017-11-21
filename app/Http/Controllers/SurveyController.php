@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Survey;
+use App\SurveyLog;
 use App\Ticket;
 use Illuminate\Http\Request;
 
@@ -56,5 +57,12 @@ class SurveyController extends Controller
     public function show(Survey $survey)
     {
         return view('admin.survey.show', compact('survey'));
+    }
+
+    public function destroy(Survey $survey)
+    {
+        $survey->delete();
+
+        return \Redirect::route('admin.survey.index');
     }
 }

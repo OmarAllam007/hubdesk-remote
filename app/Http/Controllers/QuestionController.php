@@ -55,4 +55,11 @@ class QuestionController extends Controller
         $question = Question::find($question);
         return view('admin.question.show', compact('question'));
     }
+
+    public function destroy(Question $question,Survey $survey){
+
+        $question->delete();
+
+        return \Redirect::route('admin.survey.show',compact('survey'));
+    }
 }

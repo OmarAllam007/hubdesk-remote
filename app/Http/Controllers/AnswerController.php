@@ -54,4 +54,12 @@ class AnswerController extends Controller
     {
         return view('admin.answer.show', compact('answer', 'question'));
     }
+
+    public function destroy(Answer $answer )
+    {
+        $question = Question::find(\request()->get('question'));
+        $answer->delete();
+
+        return \Redirect::route('admin.question.show',compact('question'));
+    }
 }
