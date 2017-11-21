@@ -38,4 +38,8 @@ class Category extends KModel
     {
         return $this->morphMany(CustomField::class,'level', 'level');
     }
+
+    function survey(){
+        return $this->belongsToMany(Survey::class,'category_survey','survey_id','category_id');
+    }
 }

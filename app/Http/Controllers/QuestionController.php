@@ -12,35 +12,42 @@ class QuestionController extends Controller
     {
         $questions = $survey->questions;
 
-        return view('admin.question.index', compact('questions'));
+        return view('admin.survey.show', compact('survey','questions'));
     }
 
-    public function create()
+    public function create(Survey $survey)
     {
-        return view('admin.question.create');
+        return view('admin.question.create',compact('survey'));
     }
 
-    public function edit(Question $question,Survey $survey)
+    public function edit($question)
     {
-        return view('admin.question.edit', compact('question','survey'));
+        $question = Question::find($question);
+
+        return view('admin.question.edit', compact('question'));
     }
 
-    public function update(Question $question, Request $request)
+    public function update(Question $question,Request $request)
     {
         $this->validate($request, ['description' => 'required']);
-        $survey->update($request->all());
+
+        $question->update(['description'=>$request->description]);
 
         flash('Question has been saved', 'success');
-        return \Redirect::route('admin.question.index');
+
+        return \Redirect::route('admin.survey.index');
 
     }
 
-    public function store(Request $request)
+    public function store($survey,Request $request)
     {
+        $survey = Survey::find($survey);
         $this->validate($request, ['description' => 'required']);
-        Question::create(['description' => $request->description]);
 
-        return \Redirect::route('admin.question.index');
+        $q = Question::create(['description' => $request->description]);
+        $survey->questions()->syncWithoutDetaching($q->id);
+
+        return \Redirect::route('admin.survey.show',compact('survey'));
 
     }
 

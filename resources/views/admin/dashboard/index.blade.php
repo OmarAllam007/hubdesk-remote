@@ -87,6 +87,20 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{t('Survey')}}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="nav nav-pills">
+                            <li><a href="{{route('admin.survey.create')}}">{{t('Define Survey')}}</a></li>
+                            <li><a href="{{route('admin.sla.index')}}">{{t('Survey Log')}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

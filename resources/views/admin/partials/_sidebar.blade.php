@@ -27,6 +27,7 @@
         <a href="{{route('admin.urgency.index')}}" class="list-group-item"><i class="fa fa-fw fa-hourglass-half"></i> Urgency</a>
         <a href="{{route('admin.business-rule.index')}}" class="list-group-item"><i class="fa fa-fw fa-magic"></i> Business Rules</a>
         <a href="{{route('admin.sla.index')}}" class="list-group-item"><i class="fa fa-fw fa-clock-o"></i> Service level agreements</a>
+        <a href="{{route('admin.survey.index')}}" class="list-group-item"><i class="fa fa-fw fa-clock-o"></i> Survey</a>
     </nav>
 
 </section>
