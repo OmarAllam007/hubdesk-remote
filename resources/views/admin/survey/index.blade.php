@@ -23,7 +23,7 @@
             @foreach($surveys as $survey)
                 <tr>
                     <td class="col-md-6"><a href="{{route('admin.survey.show', $survey)}}">{{$survey->name}}</a></td>
-                    <td class="col-md-6">
+                    <td class="col-md-3">
                         <a class="btn btn-sm btn-primary" href="{{route('admin.survey.edit', $survey)}}"><i
                                     class="fa fa-edit"></i> Edit</a>
                         <form action="{{route('admin.survey.edit', $survey)}}" method="post" class="inline-block">

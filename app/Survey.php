@@ -8,7 +8,17 @@ class Survey extends Model
 {
     protected $fillable = ['name'];
 
-    function questions(){
-        return $this->belongsToMany(Question::class,'survey_question','survey_id','question_id');
+    function categories()
+    {
+        return $this->belongsToMany(Category::class, 'category_survey', 'survey_id', 'category_id');
+    }
+
+    function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
+
+    function submittedBefore($ticket){
+        return SurveyLog::where('ticket_id',$ticket->id)->where('survey_id',$this->id)->exists();
     }
 }

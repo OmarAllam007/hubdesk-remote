@@ -29,7 +29,7 @@ class QuestionController extends Controller
 
     public function update(Question $question,Request $request)
     {
-        $this->validate($request, ['description' => 'required']);
+        $this->validate($request, ['description' => 'required','degree'=>'numeric|min:1|max:5']);
 
         $question->update(['description'=>$request->description]);
 
@@ -41,18 +41,18 @@ class QuestionController extends Controller
 
     public function store($survey,Request $request)
     {
+        $this->validate($request, ['description' => 'required','degree'=>'numeric|min:1|max:5']);
         $survey = Survey::find($survey);
-        $this->validate($request, ['description' => 'required']);
 
-        $q = Question::create(['description' => $request->description]);
-        $survey->questions()->syncWithoutDetaching($q->id);
+        $q = Question::create(['description' => $request->description,'survey_id'=>$survey->id,'degree'=>$request->degree ?? null ]);
 
         return \Redirect::route('admin.survey.show',compact('survey'));
 
     }
 
-    public function show(Survey $survey , Question $question)
+    public function show($question)
     {
-        return view('admin.question.show', compact('question','survey'));
+        $question = Question::find($question);
+        return view('admin.question.show', compact('question'));
     }
 }

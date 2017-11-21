@@ -22,5 +22,6 @@ class SendSurveyEmail extends Mailable
     {
         return $this->view('emails.ticket.survey', ['ticket' => $this->ticket])
             ->to($this->ticket->requester->email)
-            ->subject('Please help us to improve our service by participating in this brief survey.');    }
+            ->subject('Please help us to improve our service by participating in this brief survey.');
+    }
 }

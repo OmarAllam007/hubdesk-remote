@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Jobs\TicketAutoClosedJob;
+use App\Mail\SendSurveyEmail;
 use App\Ticket;
 use App\TicketLog;
 use Carbon\Carbon;
@@ -29,8 +30,7 @@ class AutoCloseResolvedTickets extends Command
 
     public function handle()
     {
-        $tickets = Ticket::whereIn('status_id', [7, 9])->get();
-
+        $tickets = Ticket::whereIn('status_id', [7, 9])->whereNotIn('type',[2])->get();
         Ticket::flushEventListeners();
         /** @var Ticket $ticket */
         foreach ($tickets as $ticket) {
@@ -42,15 +42,19 @@ class AutoCloseResolvedTickets extends Command
 
                 TicketLog::addAutoClose($ticket);
                 dispatch(new TicketAutoClosedJob($ticket));
+
+                if($ticket->category->survey->first()){
+                    \Mail::send(new SendSurveyEmail($ticket));
+                }
             }
         }
     }
 
     private function shouldClose(Ticket $ticket)
     {
-        if (!$ticket->resolve_date && $ticket->status_id == 9) {
+        if ((!$ticket->resolve_date && $ticket->status_id == 9) || (!$ticket->resolve_date && $ticket->status_id == 7)) {
             $date = clone $ticket->updated_at; // for old not closed tickets
-        } else {
+        } else{
             $date = clone $ticket->resolve_date;
         }
 

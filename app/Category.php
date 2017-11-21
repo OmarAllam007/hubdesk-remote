@@ -40,6 +40,6 @@ class Category extends KModel
     }
 
     function survey(){
-        return $this->belongsToMany(Survey::class,'category_survey','survey_id','category_id');
+        return $this->belongsToMany(Survey::class,'category_survey','category_id','survey_id');
     }
 }

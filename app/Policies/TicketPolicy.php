@@ -67,4 +67,8 @@ class TicketPolicy
         return $user->id == $task->technician_id || $user->isTechnicainSupervisor($task);
     }
 
+    function show_survey(User $user , Ticket $ticket){
+        return $user->id == $ticket->requester_id;
+    }
+
 }

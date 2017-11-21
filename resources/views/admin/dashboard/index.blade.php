@@ -95,6 +95,7 @@
                     </div>
                     <div class="panel-body">
                         <ul class="nav nav-pills">
+                            <li><a href="{{route('admin.survey.index')}}">{{t('Surveys')}}</a></li>
                             <li><a href="{{route('admin.survey.create')}}">{{t('Define Survey')}}</a></li>
                             <li><a href="{{route('admin.sla.index')}}">{{t('Survey Log')}}</a></li>
                         </ul>

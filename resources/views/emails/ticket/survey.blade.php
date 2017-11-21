@@ -13,7 +13,7 @@
     </font>
 
     <br/><br/>
-    To view survey details please go to {{link_to_route('survey.show', null, $ticket->category->survey->id)}}
+    To view survey details please go to {{link_to_route('ticket.submitSurvey',null, [$ticket->id,$ticket->category->survey->first()->id])}}
 </div>
 </body>
 </html>

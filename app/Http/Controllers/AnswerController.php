@@ -12,47 +12,46 @@ class AnswerController extends Controller
     {
         $answers = $question->answers;
 
-        return view('admin.answer.show', compact('question','answers'));
+        return view('admin.answer.show', compact('question', 'answers'));
     }
 
     public function create(Question $question)
     {
-        return view('admin.answer.create',compact('question'));
+        return view('admin.answers.create', compact('question'));
     }
 
     public function edit($answer)
     {
         $answer = Answer::find($answer);
 
-        return view('admin.answer.edit', compact('answer'));
+        return view('admin.answers.edit', compact('answer'));
     }
 
-    public function update(Answer $answer,Request $request)
+    public function update(Answer $answer, Request $request)
     {
-        $this->validate($request, ['description' => 'required']);
+        $this->validate($request, ['description' => 'required', 'degree' => 'numeric|min:1|max:5']);
 
-        $answer->update(['description'=>$request->description]);
+        $answer->update(['description' => $request->description, 'degree' => $request->degree]);
 
         flash('Answer has been saved', 'success');
 
-        return \Redirect::route('admin.question.index');
+        return \Redirect::route('admin.question.show', $answer->question);
 
     }
 
-    public function store($question,Request $request)
+    public function store($question, Request $request)
     {
+        $this->validate($request, ['description' => 'required', 'degree' => 'numeric|min:1|max:5']);
+
         $question = Question::find($question);
-        $this->validate($request, ['description' => 'required']);
+        Answer::create(['description' => $request->description, 'question_id' => $question->id, 'degree' => $request->degree]);
 
-        $q = Answer::create(['description' => $request->description]);
-        $question->answers()->syncWithoutDetaching($q->id);
-
-        return \Redirect::route('admin.question.show',compact('question'));
+        return \Redirect::route('admin.question.show', compact('question'));
 
     }
 
-    public function show(Question $question , Answer $answer)
+    public function show(Question $question, Answer $answer)
     {
-        return view('admin.answer.show', compact('answer','question'));
+        return view('admin.answer.show', compact('answer', 'question'));
     }
 }

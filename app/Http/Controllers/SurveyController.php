@@ -15,6 +15,13 @@ class SurveyController extends Controller
         return view('admin.survey.index', compact('surveys'));
     }
 
+    public function displaySurvey(Ticket $ticket , Survey $survey)
+    {
+
+            return view('ticket.survey.show', compact('ticket', 'survey'));
+
+    }
+
     public function create()
     {
         return view('admin.survey.create');
@@ -29,6 +36,7 @@ class SurveyController extends Controller
     {
         $this->validate($request, ['name' => 'required']);
         $survey->update($request->all());
+        $survey->categories()->sync($request->category_id);
 
         flash('Survey has been saved', 'success');
         return \Redirect::route('admin.survey.index');
@@ -37,8 +45,9 @@ class SurveyController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, ['name' => 'required']);
-        Survey::create(['name' => $request->name]);
+        $this->validate($request, ['name' => 'required', 'category_id' => 'required']);
+        $survey = Survey::create($request->all());
+        $survey->categories()->sync($request->category_id);
 
         return \Redirect::route('admin.survey.index');
 

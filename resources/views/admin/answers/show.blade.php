@@ -32,7 +32,7 @@
                 <tbody>
                 @foreach($question->answers as $answer)
                     <tr>
-                        <td>{{$answer->description}}</td>
+                        <td><a href="{{route('admin.answer.show', compact('answer'))}}">{{$answer->description}}</a></td>
                         <td>{{$answer->degree}}</td>
                         <td>
 

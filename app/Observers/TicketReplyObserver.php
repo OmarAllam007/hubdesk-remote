@@ -9,10 +9,12 @@
 namespace App\Observers;
 
 use App\Attachment;
+use App\Category;
 use App\ExtractImages;
 use App\Helpers\ServiceDeskApi;
 use App\Jobs\TicketReplyJob;
 use App\Mail\AttachmentsReplyJob;
+use App\Mail\SendSurveyEmail;
 use App\Ticket;
 use App\TicketLog;
 use App\TicketReply;
@@ -28,6 +30,13 @@ class TicketReplyObserver
             } else {
                 $reply->status_id = 1;
                 $reply->ticket->status_id = 1;
+            }
+            if ($reply->status_id == 8) {
+                if ($reply->ticket->category->survey->first()) {
+                    $reply->ticket->close_date = Carbon::now();
+                    $reply->ticket->save();
+                    \Mail::send(new SendSurveyEmail($reply->ticket));
+                }
             }
         }
         if ($reply->user_id == $reply->ticket->technician_id) {
@@ -46,7 +55,8 @@ class TicketReplyObserver
         dispatch(new TicketReplyJob($reply));
     }
 
-    protected function handleTechnician(TicketReply $reply){
+    protected function handleTechnician(TicketReply $reply)
+    {
         if ($reply->ticket->sdp_id) {
 
             $sdp = new ServiceDeskApi();
@@ -58,7 +68,7 @@ class TicketReplyObserver
                 if ($reply->status_id == 7 || $reply->status_id == 9) {
                     $reply->ticket->resolve_date = Carbon::now();
                 }
-            }else{
+            } else {
                 $reply->status_id = $reply->ticket->status_id;
             }
 
@@ -67,8 +77,7 @@ class TicketReplyObserver
             }
 
             $reply->sdp_id = 0;
-        }
-        else {
+        } else {
 
             if ($reply->status_id) {
                 $reply->ticket->status_id = $reply->status_id;
@@ -76,7 +85,7 @@ class TicketReplyObserver
                 if ($reply->status_id == 7 || $reply->status_id == 9) {
                     $reply->ticket->resolve_date = Carbon::now();
                 }
-            }else{
+            } else {
                 $reply->status_id = $reply->ticket->status_id;
             }
 
