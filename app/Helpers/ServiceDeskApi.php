@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Mail\SendSurveyEmail;
 use App\Ticket;
 use App\TicketReply;
 use GuzzleHttp\Client;
@@ -45,7 +46,6 @@ class ServiceDeskApi
     function getRequest($id)
     {
         $response = $this->send("/sdpapi/request/{$id}", 'GET_REQUEST');
-
         $request = [];
         foreach ($response->response->operation->Details->parameter as $param) {
             $key = (string)$param->name;
@@ -119,6 +119,15 @@ class ServiceDeskApi
 
         return $reply_id;
     }
+
+    function closeTicket(TicketReply $reply)
+    {
+        $this->send('/sdpapi/request/' . $reply->ticket->sdp_id, 'CLOSE_REQUEST', [
+            ['parameter' => ['name' => 'closeAccepted', 'value' => 'Accepted']],
+            ['parameter' => ['name' => 'closeComment', 'value' => $reply->content]]
+        ]);
+    }
+
 
     function addCompletedWithoutSolution(TicketReply $reply)
     {
@@ -210,6 +219,18 @@ class ServiceDeskApi
     {
         if ($reply->status_id == 7) {
             $this->addResolution($reply);
+
+        } elseif ($reply->status_id == 8) {
+
+            if($reply->ticket->resolve_date){
+                $this->closeTicket($reply);
+                if ($reply->ticket->category->survey->first()) {
+                    \Mail::send(new SendSurveyEmail($reply->ticket));
+                }
+            }
+            else{
+                $this->addCompletedWithoutSolution( $reply);
+            }
 
         } elseif ($reply->status_id == 9) {
             $this->addCompletedWithoutSolution($reply);

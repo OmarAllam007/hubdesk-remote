@@ -24,71 +24,87 @@ class TicketReplyObserver
 {
     public function creating(TicketReply $reply)
     {
-        if ($reply->user_id == $reply->ticket->requester_id) {
-            if ($reply->status_id) {
-                $reply->ticket->status_id = $reply->status_id;
-            } else {
-                $reply->status_id = 1;
-                $reply->ticket->status_id = 1;
-            }
-            if ($reply->status_id == 8) {
-                if ($reply->ticket->category->survey->first()) {
-                    $reply->ticket->close_date = Carbon::now();
-                    $reply->ticket->save();
-                    \Mail::send(new SendSurveyEmail($reply->ticket));
-                }
-            }
-        }
-        if ($reply->user_id == $reply->ticket->technician_id) {
-            $this->handleTechnician($reply);
-        }
-
-        $extract_image = new ExtractImages($reply->content);
-        $reply->content = $extract_image->extract();
-        TicketLog::addReply($reply);
-        $reply->ticket->save();
-    }
-
-    public function created(TicketReply $reply)
-    {
-        Attachment::uploadFiles(Attachment::TICKET_REPLY_TYPE, $reply->id);
-        dispatch(new TicketReplyJob($reply));
-    }
-
-    protected function handleTechnician(TicketReply $reply)
-    {
-        if ($reply->ticket->sdp_id) {
-
             $sdp = new ServiceDeskApi();
-            $reply_id = $sdp->addReply($reply);
+            if ($reply->user_id == $reply->ticket->requester_id) {
+                if ($reply->status_id) {
+                    $reply->ticket->status_id = $reply->status_id;
+                    if ($reply->status_id == 8 && in_array($reply->ticket->status_id,[7,9])) {
+                        $reply->ticket->close_date = Carbon::now();
+                        $sdp->addReply($reply);
+                        /*
+                        if ($reply->ticket->category->survey->first()) {
+                            \Mail::send(new SendSurveyEmail($reply->ticket));
+                        }
+                        */
 
-            if ($reply->status_id) {
-                $reply->ticket->status_id = $reply->status_id;
+                    }elseif($reply->status_id==8 && !in_array($reply->ticket->status_id,[7,9])){
+                        $reply->ticket->status_id = 9;
+                        $reply->ticket->resolve_date = Carbon::now();
+                        $sdp->addReply($reply);
+                        /*  Without survey as it cancelled*/
+                    }
 
-                if ($reply->status_id == 7 || $reply->status_id == 9) {
-                    $reply->ticket->resolve_date = Carbon::now();
+                } else {
+                    $reply->status_id = 1;
+                    $reply->ticket->status_id = 1;
                 }
-            } else {
-                $reply->status_id = $reply->ticket->status_id;
-            }
 
-            if ($reply->attachments->count()) {
-                \Mail::send(new AttachmentsReplyJob($reply->attachments));
-            }
 
-            $reply->sdp_id = 0;
-        } else {
-
-            if ($reply->status_id) {
-                $reply->ticket->status_id = $reply->status_id;
-
-                if ($reply->status_id == 7 || $reply->status_id == 9) {
-                    $reply->ticket->resolve_date = Carbon::now();
+                if ($reply->user_id == $reply->ticket->technician_id) {
+                    $this->handleTechnician($reply);
                 }
-            } else {
-                $reply->status_id = $reply->ticket->status_id;
+
+                $extract_image = new ExtractImages($reply->content);
+                $reply->content = $extract_image->extract();
+                TicketLog::addReply($reply);
+                $reply->ticket->save();
             }
 
-        }
+
     }
+
+        public function created(TicketReply $reply)
+        {
+            Attachment::uploadFiles(Attachment::TICKET_REPLY_TYPE, $reply->id);
+            dispatch(new TicketReplyJob($reply));
+        }
+
+        protected
+        function handleTechnician(TicketReply $reply)
+        {
+            if ($reply->ticket->sdp_id) {
+
+                $sdp = new ServiceDeskApi();
+                $reply_id = $sdp->addReply($reply);
+
+                if ($reply->status_id) {
+                    $reply->ticket->status_id = $reply->status_id;
+
+                    if ($reply->status_id == 7 || $reply->status_id == 9) {
+                        $reply->ticket->resolve_date = Carbon::now();
+                    }
+                } else {
+                    $reply->status_id = $reply->ticket->status_id;
+                }
+
+                if ($reply->attachments->count()) {
+                    \Mail::send(new AttachmentsReplyJob($reply->attachments));
+                }
+
+                $reply->sdp_id = 0;
+            } else {
+
+                if ($reply->status_id) {
+                    $reply->ticket->status_id = $reply->status_id;
+
+                    if ($reply->status_id == 7 || $reply->status_id == 9) {
+                        $reply->ticket->resolve_date = Carbon::now();
+                    }
+                } else {
+                    $reply->status_id = $reply->ticket->status_id;
+                }
+
+            }
+        }
+
 }
