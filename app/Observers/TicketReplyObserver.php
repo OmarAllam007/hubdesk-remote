@@ -24,87 +24,89 @@ class TicketReplyObserver
 {
     public function creating(TicketReply $reply)
     {
-            $sdp = new ServiceDeskApi();
-            if ($reply->user_id == $reply->ticket->requester_id) {
-                if ($reply->status_id) {
-                    $reply->ticket->status_id = $reply->status_id;
-                    if ($reply->status_id == 8 && in_array($reply->ticket->status_id,[7,9])) {
-                        $reply->ticket->close_date = Carbon::now();
-                        $sdp->addReply($reply);
-                        /*
-                        if ($reply->ticket->category->survey->first()) {
-                            \Mail::send(new SendSurveyEmail($reply->ticket));
-                        }
-                        */
+        $sdp = new ServiceDeskApi();
+        $sdp_request = $sdp->getRequest($reply->ticket->sdp_id);
 
-                    }elseif($reply->status_id==8 && !in_array($reply->ticket->status_id,[7,9])){
-                        $reply->ticket->status_id = 9;
-                        $reply->ticket->resolve_date = Carbon::now();
-                        $sdp->addReply($reply);
-                        /*  Without survey as it cancelled*/
+        if ($reply->user_id == $reply->ticket->requester_id) {
+            if ($reply->status_id) {
+                $reply->ticket->status_id = $reply->status_id;
+                if ($reply->status_id == 8 && $sdp_request['resolvedtime'] != 0) {
+                    $reply->ticket->close_date = Carbon::now();
+                    $sdp->addReply($reply);
+                    /*
+                    if ($reply->ticket->category->survey->first()) {
+                        \Mail::send(new SendSurveyEmail($reply->ticket));
                     }
+                    */
 
-                } else {
-                    $reply->status_id = 1;
-                    $reply->ticket->status_id = 1;
+                } elseif ($reply->status_id == 8 && $sdp_request['resolvedtime'] == 0) {
+                    $reply->ticket->status_id = 9;
+                    $reply->ticket->resolve_date = Carbon::now();
+                    $sdp->addReply($reply);
+                    /*  Without survey as it cancelled*/
                 }
 
-
-                if ($reply->user_id == $reply->ticket->technician_id) {
-                    $this->handleTechnician($reply);
-                }
-
-                $extract_image = new ExtractImages($reply->content);
-                $reply->content = $extract_image->extract();
-                TicketLog::addReply($reply);
-                $reply->ticket->save();
+            } else {
+                $reply->status_id = 1;
+                $reply->ticket->status_id = 1;
             }
+
+
+            if ($reply->user_id == $reply->ticket->technician_id) {
+                $this->handleTechnician($reply);
+            }
+
+            $extract_image = new ExtractImages($reply->content);
+            $reply->content = $extract_image->extract();
+            TicketLog::addReply($reply);
+            $reply->ticket->save();
+        }
 
 
     }
 
-        public function created(TicketReply $reply)
-        {
-            Attachment::uploadFiles(Attachment::TICKET_REPLY_TYPE, $reply->id);
-            dispatch(new TicketReplyJob($reply));
-        }
+    public function created(TicketReply $reply)
+    {
+        Attachment::uploadFiles(Attachment::TICKET_REPLY_TYPE, $reply->id);
+        dispatch(new TicketReplyJob($reply));
+    }
 
-        protected
-        function handleTechnician(TicketReply $reply)
-        {
-            if ($reply->ticket->sdp_id) {
+    protected
+    function handleTechnician(TicketReply $reply)
+    {
+        if ($reply->ticket->sdp_id) {
 
-                $sdp = new ServiceDeskApi();
-                $reply_id = $sdp->addReply($reply);
+            $sdp = new ServiceDeskApi();
+            $reply_id = $sdp->addReply($reply);
 
-                if ($reply->status_id) {
-                    $reply->ticket->status_id = $reply->status_id;
+            if ($reply->status_id) {
+                $reply->ticket->status_id = $reply->status_id;
 
-                    if ($reply->status_id == 7 || $reply->status_id == 9) {
-                        $reply->ticket->resolve_date = Carbon::now();
-                    }
-                } else {
-                    $reply->status_id = $reply->ticket->status_id;
+                if ($reply->status_id == 7 || $reply->status_id == 9) {
+                    $reply->ticket->resolve_date = Carbon::now();
                 }
-
-                if ($reply->attachments->count()) {
-                    \Mail::send(new AttachmentsReplyJob($reply->attachments));
-                }
-
-                $reply->sdp_id = 0;
             } else {
-
-                if ($reply->status_id) {
-                    $reply->ticket->status_id = $reply->status_id;
-
-                    if ($reply->status_id == 7 || $reply->status_id == 9) {
-                        $reply->ticket->resolve_date = Carbon::now();
-                    }
-                } else {
-                    $reply->status_id = $reply->ticket->status_id;
-                }
-
+                $reply->status_id = $reply->ticket->status_id;
             }
+
+            if ($reply->attachments->count()) {
+                \Mail::send(new AttachmentsReplyJob($reply->attachments));
+            }
+
+            $reply->sdp_id = 0;
+        } else {
+
+            if ($reply->status_id) {
+                $reply->ticket->status_id = $reply->status_id;
+
+                if ($reply->status_id == 7 || $reply->status_id == 9) {
+                    $reply->ticket->resolve_date = Carbon::now();
+                }
+            } else {
+                $reply->status_id = $reply->ticket->status_id;
+            }
+
         }
+    }
 
 }

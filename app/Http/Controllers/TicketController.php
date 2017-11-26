@@ -95,24 +95,32 @@ class TicketController extends Controller
 
     public function reply(Ticket $ticket, TicketReplyRequest $request)
     {
-        if($ticket->hasOpenTask()){
+        if ($ticket->hasOpenTask()) {
             flash(t('Ticket has pending tasks'), 'danger');
             return \Redirect::route('ticket.show', compact('ticket'));
         }
-
         $reply = new TicketReply($request->get('reply'));
         $reply->user_id = $request->user()->id;
 
-        // Fires creating event in \App\Providers\TicketReplyEventProvider
-        $ticket->replies()->save($reply);
+        if ($ticket->status_id == 8 && $request->get('reply')['status_id'] != 8) {
+            if (can('reopen', $ticket)) {
+                $ticket->replies()->save($reply);
+            } else {
+                flash(t('Can\'t change closed ticket status'), 'danger');
+                return \Redirect::route('ticket.show', compact('ticket'));
+            }
+        } else {
+            // Fires creating event in \App\Providers\TicketReplyEventProvider
+            $ticket->replies()->save($reply);
 //
 //        //@todo: Calculate elapsed time
-        return $this->backSuccessResponse($request, 'Reply has been added');
+            return $this->backSuccessResponse($request, 'Reply has been added');
+        }
     }
 
     public function resolution(Ticket $ticket, TicketResolveRequest $request)
     {
-        if($ticket->hasOpenTask()){
+        if ($ticket->hasOpenTask()) {
             flash(t('Ticket has pending tasks'), 'danger');
             return \Redirect::route('ticket.show', compact('ticket'));
         }

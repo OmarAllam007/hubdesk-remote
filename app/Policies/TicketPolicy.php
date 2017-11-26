@@ -71,4 +71,8 @@ class TicketPolicy
         return $user->id == $ticket->requester_id;
     }
 
+    function reopen(User $user, Ticket $ticket){
+        return $user->isAdmin();
+    }
+
 }
