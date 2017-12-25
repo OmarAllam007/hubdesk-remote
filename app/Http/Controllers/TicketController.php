@@ -14,6 +14,7 @@ use App\Jobs\NewNoteJob;
 use App\Jobs\NewTicketJob;
 use App\Jobs\TicketAssigned;
 use App\Jobs\TicketReplyJob;
+use App\Mail\TicketForwardJob;
 use App\Ticket;
 use App\TicketApproval;
 use App\TicketField;
@@ -95,16 +96,18 @@ class TicketController extends Controller
 
     public function reply(Ticket $ticket, TicketReplyRequest $request)
     {
+        if(isset($request->get("reply")["cc"])){
+            $this->validate($request,['reply.cc.*'=>'email'],['email'=>'Please enter valid emails']);
+        }
         if (in_array($request->reply['status_id'], [7, 8, 9]) && $ticket->hasOpenTask()) {
             flash(t('Ticket has pending tasks'), 'danger');
             return \Redirect::route('ticket.show', compact('ticket'));
         }
 
-
         $reply = new TicketReply($request->get('reply'));
         $reply->user_id = $request->user()->id;
-
-        // Fires creating event in \App\Providers\TicketReplyEventProvider
+        $reply->cc = $request->get("reply")["cc"] ?? null;
+        // Fires creating event in \App\Providers\TicketReplyObserver
         $ticket->replies()->save($reply);
 //
 //        //@todo: Calculate elapsed time
@@ -352,5 +355,27 @@ class TicketController extends Controller
             }
         });
 
+    }
+
+    function forward(Ticket $ticket, Request $request){
+        if($request->get('to')){
+            $this->validate($request,['to.*'=>'email'],['email'=>'Please enter valid email.']);
+            TicketReply::flushEventListeners();
+
+            TicketReply::create([
+                'user_id'=>\Auth::id(),
+                'ticket_id'=>$ticket->id,
+                'content'=>$request["forward"]["description"] ?? $ticket->description,
+                'status_id'=>$ticket->status_id,
+                'cc'=>$request->cc ?? null,
+                'to'=>$request->to ?? null
+            ]);
+
+            \Mail::to($request->to)->cc($request->cc ?? [])->send(new TicketForwardJob($ticket));
+            flash('Forward the ticket has been sent', 'success');
+            return \Redirect::route('ticket.show', $ticket);
+        }
+        flash('Can\'t forward the ticket', 'danger');
+        return \Redirect::route('ticket.show', $ticket);
     }
 }
