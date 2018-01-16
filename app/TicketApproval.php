@@ -149,7 +149,7 @@ class TicketApproval extends KModel
         }elseif ($this->status == self::DENIED)  {
             return 'times';
         }
-        return 'spinner';
+        return '';
     }
                                                                                                                                                                                         
     function getApprovalColorAttribute(){
@@ -160,5 +160,4 @@ class TicketApproval extends KModel
         }
         return '';
     }
-
 }
