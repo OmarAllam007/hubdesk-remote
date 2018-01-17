@@ -153,7 +153,7 @@ class SyncSDPRequest implements ShouldQueue
 
     function getReplyAttachments(TicketReply $reply){
       $client = $this->webLogin();
-      $response = $client->get("/workorder/UpdateNotificationDetails.jsp?woID={$reply->ticket->sdp_id}&orgReqID={$reply->ticket->sdp_id}");
+      $response = $client->get("/workorder/UpdateNotificationDetails.jsp?woID={$reply->sdp_id}&orgReqID={$reply->ticket->sdp_id}");
 
       $parser = new Crawler();
       $parser->addHtmlContent($content = $response->getBody()->getContents());
