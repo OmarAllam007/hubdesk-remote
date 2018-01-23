@@ -3,12 +3,12 @@
 namespace App;
 
 use App\Behaviors\Listable;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * App\Location
  *
  * @property mixed id
- * @property integer $id
  * @property string $name
  * @property integer $city_id
  * @property string $deleted_at
@@ -33,5 +33,16 @@ class Location extends KModel
     public function city()
     {
         return $this->belongsTo(City::class, 'city_id', 'id');
+    }
+    public function scopeQuickSearch(Builder $query)
+    {
+        if (\Request::has('search')) {
+            $query->where(function (Builder $q) {
+                $term = '%' . \Request::get('search') . '%';
+                $q->where('name', 'LIKE', $term);
+            });
+        }
+
+        return $query;
     }
 }

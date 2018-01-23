@@ -79,6 +79,18 @@ class Group extends KModel
         return $types;
     }
 
+    public function scopeQuickSearch(Builder $query)
+    {
+        if (\Request::has('search')) {
+            $query->where(function (Builder $q) {
+                $term = '%' . \Request::get('search') . '%';
+                $q->where('name', 'LIKE', $term);
+            });
+        }
+
+        return $query;
+    }
+
     function isSupervisor()
     {
         $groups = $this->technician->groups;

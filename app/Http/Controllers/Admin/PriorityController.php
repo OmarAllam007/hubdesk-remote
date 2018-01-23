@@ -13,7 +13,7 @@ class PriorityController extends Controller
 
     public function index()
     {
-        $priorities = Priority::paginate();
+        $priorities = Priority::orderBy('name')->quickSearch()->paginate();
 
         return view('admin.priority.index', compact('priorities'));
     }

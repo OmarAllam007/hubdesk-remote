@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Behaviors\Listable;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * App\Category
@@ -37,5 +38,16 @@ class Category extends KModel
     function custom_fields()
     {
         return $this->morphMany(CustomField::class,'level', 'level');
+    }
+    public function scopeQuickSearch(Builder $query)
+    {
+        if (\Request::has('search')) {
+            $query->where(function (Builder $q) {
+                $term = '%' . \Request::get('search') . '%';
+                $q->where('name', 'LIKE', $term);
+            });
+        }
+
+        return $query;
     }
 }

@@ -13,7 +13,7 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $categories = Category::paginate();
+        $categories = Category::orderBy('name')->quickSearch()->paginate();;
 
         return view('admin.category.index', compact('categories'));
     }

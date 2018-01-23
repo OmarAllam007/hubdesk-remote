@@ -13,7 +13,7 @@ class UrgencyController extends Controller
 
     public function index()
     {
-        $urgencies = Urgency::paginate();
+        $urgencies = Urgency::orderBy('name')->quickSearch()->paginate();
 
         return view('admin.urgency.index', compact('urgencies'));
     }

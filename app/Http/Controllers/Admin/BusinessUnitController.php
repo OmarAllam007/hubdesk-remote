@@ -12,7 +12,7 @@ class BusinessUnitController extends Controller
 
     public function index()
     {
-        $businessUnits = BusinessUnit::paginate();
+        $businessUnits = BusinessUnit::orderBy('name')->quickSearch()->paginate();
 
         return view('admin.business-unit.index', compact('businessUnits'));
     }
@@ -82,4 +82,6 @@ class BusinessUnitController extends Controller
 
         return \Redirect::route('admin.business-unit.index');
     }
+
+
 }
