@@ -86,4 +86,8 @@ class TicketPolicy
             || $user->hasGroup($ticket->group) || $isApprover || $isTaskTechnicianOrCreator || $isTicketOwner;
     }
 
+    public function forward(User $user,Ticket $ticket){
+        return $user->id == $ticket->technician_id || $user->isTechnicainSupervisor($ticket);
+    }
+
 }

@@ -55,9 +55,13 @@ class TicketReplyJob extends Job //implements ShouldQueue
             if ($this->reply->ticket->sdp_id) {
                 $subject .= " [Request ##{$this->reply->ticket->sdp_id}##]";
             }
-
+            $cc = request()->get("reply")["cc"] ?? null;
             $msg->subject($subject);
             $msg->to($this->to);
+            
+            if ($cc){
+                $msg->cc($cc);
+            }
         });
     }
 
