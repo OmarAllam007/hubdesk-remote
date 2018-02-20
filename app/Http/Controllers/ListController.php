@@ -103,4 +103,5 @@ class ListController extends Controller
 
         return User::technicians()->whereIn('id', $user_ids)->orderBy('name')->get(['name', 'id']);
     }
+
 }

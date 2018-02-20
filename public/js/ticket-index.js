@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 12);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10711,6 +10711,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -10726,7 +10746,11 @@ var fields = {
     urgency_id: { type: 'select', list: 'urgency', name: 'Urgency' },
     impact_id: { type: 'select', list: 'impact', name: 'Impact' },
     technician_id: { type: 'select', list: 'technician', name: 'Technician' },
-    group_id: { type: 'select', list: 'group', name: 'Support Group' }
+    group_id: { type: 'select', list: 'group', name: 'Support Group' },
+    status_id: { type: 'select', list: 'status', name: 'Status' },
+    due_date: { type: 'date', name: 'Due Date' },
+    created_at: { type: 'date', name: 'Created Date' },
+    resolve_date: { type: 'date', name: 'Resolved Date' }
 };
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -10739,6 +10763,14 @@ var fields = {
                 return false;
             }
             return field.type == 'select' && (this.criterion.operator == 'is' || this.criterion.operator == 'isnot');
+        },
+        showDate: function showDate() {
+            var field = fields[this.criterion.field];
+            if (!field || field.type == 'text') {
+                return false;
+            } else if (field.type == 'date') {
+                return true;
+            }
         }
     },
 
@@ -10756,9 +10788,13 @@ var fields = {
             if (!field || field.type != 'select') {
                 return false;
             }
-
             jQuery.get('/list/' + field.list).done(function (response) {
-                __WEBPACK_IMPORTED_MODULE_0__Bus__["a" /* default */].$emit('openSelectModal', { options: response, key: _this.index, field: field.name, selected: _this.criterion.value.split(',') });
+                __WEBPACK_IMPORTED_MODULE_0__Bus__["a" /* default */].$emit('openSelectModal', {
+                    options: response,
+                    key: _this.index,
+                    field: field.name,
+                    selected: _this.criterion.value.split(',')
+                });
             });
         }
     },
@@ -10808,7 +10844,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "value": ""
     }
-  }, [_vm._v("Select Field")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2)])]), _vm._v(" "), _c('td', [_c('select', {
+  }, [_vm._v("Select Field")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3)])]), _vm._v(" "), _c('td', [_c('select', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -10834,27 +10870,35 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "value": "is"
     }
-  }, [_vm._v("is")]), _vm._v(" "), _c('option', {
+  }, [_vm._v("is")]), _vm._v(" "), (!_vm.showDate) ? _c('option', {
     attrs: {
       "value": "isnot"
     }
-  }, [_vm._v("is not")]), _vm._v(" "), _c('option', {
+  }, [_vm._v("is not")]) : _vm._e(), _vm._v(" "), (!_vm.showDate) ? _c('option', {
     attrs: {
       "value": "contains"
     }
-  }, [_vm._v("contains")]), _vm._v(" "), _c('option', {
+  }, [_vm._v("contains")]) : _vm._e(), _vm._v(" "), (!_vm.showDate) ? _c('option', {
     attrs: {
       "value": "notcontain"
     }
-  }, [_vm._v("does not contain")]), _vm._v(" "), _c('option', {
+  }, [_vm._v("does not contain")]) : _vm._e(), _vm._v(" "), (!_vm.showDate) ? _c('option', {
     attrs: {
       "value": "starts"
     }
-  }, [_vm._v("starts with")]), _vm._v(" "), _c('option', {
+  }, [_vm._v("starts with")]) : _vm._e(), _vm._v(" "), (!_vm.showDate) ? _c('option', {
     attrs: {
       "value": "ends"
     }
-  }, [_vm._v("ends with")])])]), _vm._v(" "), _c('td', [(_vm.showMenuIcon) ? _c('div', {
+  }, [_vm._v("ends with")]) : _vm._e(), _vm._v(" "), (_vm.showDate) ? _c('option', {
+    attrs: {
+      "value": "greater"
+    }
+  }, [_vm._v("Greater Than")]) : _vm._e(), _vm._v(" "), (_vm.showDate) ? _c('option', {
+    attrs: {
+      "value": "less"
+    }
+  }, [_vm._v("Less Than")]) : _vm._e()])]), _vm._v(" "), _c('td', [(_vm.showMenuIcon && !_vm.showDate) ? _c('div', {
     staticClass: "input-group"
   }, [_c('input', {
     directives: [{
@@ -10895,7 +10939,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('i', {
     staticClass: "fa fa-bars"
-  })])])]) : _c('input', {
+  })])])]) : (!_vm.showDate) ? _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -10917,7 +10961,28 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.criterion.label = $event.target.value
       }
     }
-  }), _vm._v(" "), _c('input', {
+  }) : _vm._e(), _vm._v(" "), (_vm.showDate) ? _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.criterion.label),
+      expression: "criterion.label"
+    }],
+    staticClass: "form-control input-sm",
+    attrs: {
+      "type": "date",
+      "name": ("criterions[" + _vm.index + "][value]")
+    },
+    domProps: {
+      "value": (_vm.criterion.label)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.criterion.label = $event.target.value
+      }
+    }
+  }) : _vm._e(), _vm._v(" "), (!_vm.showDate) ? _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -10937,7 +11002,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.criterion.value = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('td', [_c('button', {
+  }) : _vm._e()]), _vm._v(" "), _c('td', [_c('button', {
     staticClass: "btn btn-sm btn-warning pull-right",
     attrs: {
       "type": "button"
@@ -10987,7 +11052,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "value": "impact_id"
     }
-  }, [_vm._v("Impact")])])
+  }, [_vm._v("Impact")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "status_id"
+    }
+  }, [_vm._v("Status")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('optgroup', {
     attrs: {
@@ -11020,6 +11089,24 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": "group_id"
     }
   }, [_vm._v("Support Group")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('optgroup', {
+    attrs: {
+      "label": "Date"
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": "due_date"
+    }
+  }, [_vm._v("Due Date")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "created_at"
+    }
+  }, [_vm._v("Created Date")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "resolve_date"
+    }
+  }, [_vm._v("Resolved Date")])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -11181,16 +11268,14 @@ if (false) {
 }
 
 /***/ }),
-/* 10 */,
-/* 11 */,
-/* 12 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(13);
+module.exports = __webpack_require__(11);
 
 
 /***/ }),
-/* 13 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

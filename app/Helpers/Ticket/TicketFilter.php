@@ -21,6 +21,7 @@ class TicketFilter
 
     static protected $requesterFields = [];
     static protected $technicianFields = [];
+    protected $dates = ['created_at','due_date','resolve_date'];
 
     public function __construct(Builder $query, $criteria)
     {
@@ -54,7 +55,12 @@ class TicketFilter
     protected function is($criterion)
     {
         if ($criterion['value']) {
-            $this->query->whereIn($criterion['field'], explode(',', $criterion['value']));
+            if(in_array($criterion['field'],$this->dates)){
+                $this->query->whereDate($criterion['field'], $criterion['value']);
+
+            }else{
+                $this->query->whereIn($criterion['field'], explode(',', $criterion['value']));
+            }
         } else {
             $this->query->where(function ($q) use ($criterion) {
                 $q->where($criterion['field'], '')->orWhereNull($criterion['field']);
@@ -126,6 +132,25 @@ class TicketFilter
             } else {
                 $this->query->where($criterion['field'], 'like', "%{$criterion['value']}");
             }
+        }
+    }
+    protected function less($criterion){
+        if ($criterion['value']) {
+            $this->query->where($criterion['field'],'<', $criterion['value']);
+        } else {
+            $this->query->where(function ($q) use ($criterion) {
+                $q->where($criterion['field'], '')->orWhereNull($criterion['field']);
+            });
+        }
+    }
+
+    protected function greater($criterion){
+        if ($criterion['value']) {
+            $this->query->where($criterion['field'],'>', $criterion['value']);
+        } else {
+            $this->query->where(function ($q) use ($criterion) {
+                $q->where($criterion['field'], '')->orWhereNull($criterion['field']);
+            });
         }
     }
 
