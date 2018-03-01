@@ -1,4 +1,4 @@
-<ul class="list-group">
+<ul class="list-group panel-design">
     <li class="list-group-item">
         @if(!$ticket->isTask())
             <strong>{{t('Ticket created by')}}  {{$ticket->created_by->name}} at {{$ticket->created_at->format('d/m/Y H:i')}}</strong>

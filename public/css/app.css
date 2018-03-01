@@ -12296,7 +12296,7 @@ body {
 }
 
 .title-bar .title-container {
-  background: #f4f8fb;
+  background: rgba(27, 98, 143, 0.07);
   min-height: 40px;
   border-bottom: none;
   margin-bottom: 10px;
@@ -12311,6 +12311,8 @@ body {
           align-items: center;
   padding-top: 10px;
   padding-bottom: 10px;
+  -webkit-box-shadow: 1px 1px 2px 1px #194F7E;
+          box-shadow: 1px 1px 2px 1px #194F7E;
 }
 
 .title-bar .title-container h1,
@@ -12367,7 +12369,9 @@ body {
 
 footer {
   border-top: 2px solid #d3e0e9;
-  background: #fff;
+  background: rgba(27, 98, 143, 0.07);
+  -webkit-box-shadow: 1px 1px 3px 1px #194F7E;
+          box-shadow: 1px 1px 3px 1px #194F7E;
 }
 
 footer .footer-container {
@@ -12479,7 +12483,7 @@ footer p {
 
 .modal .modal-header,
 .modal .modal-footer {
-  background-color: #ecf4f9;
+  background-color: rgba(25, 92, 134, 0.07);
 }
 
 .modal .modal-footer {
@@ -12521,7 +12525,8 @@ hr.form-divider {
 .card {
   padding: 10px;
   margin-bottom: 0;
-  border-radius: 0;
+  border-radius: 5px;
+  border: 2px solid #194F7E;
 }
 
 .card ul {
@@ -12744,5 +12749,79 @@ img {
 option.empty {
   color: #c9c9c9;
   font-weight: 700;
+}
+
+.navbar-style {
+  background-color: #194F7E;
+}
+
+.navbar-style .nav li a {
+  color: white;
+  font-size: 15px;
+}
+
+.navbar-style .nav li a:hover {
+  color: white;
+}
+
+.navbar-style .nav li.dropdown a {
+  color: #636b6f;
+}
+
+.navbar-style ul.nav li.dropdown a {
+  color: white;
+}
+
+.navbar-style .nav ul.dropdown-menu li a {
+  color: #000;
+}
+
+.navbar-style .logo-image {
+  background-color: white;
+}
+
+.ticket-header {
+  background-color: #1B628F;
+}
+
+.nav-tabs {
+  border-bottom: 1px solid #194f7e !important;
+}
+
+.nav-tabs > li.active > a {
+  border-top: 1px solid #194f7e !important;
+  border-right: 1px solid #194f7e !important;
+  border-left: 1px solid #194f7e !important;
+}
+
+.nav-tabs > li > a:hover {
+  border-bottom: transparent;
+}
+
+.ticket-description {
+  border: 2px solid #194f7e !important;
+}
+
+table.details-tbl tbody tr:nth-child(odd) {
+  background-color: rgba(25, 79, 126, 0.09);
+}
+
+.panel-design {
+  border: 2px solid #194f7e !important;
+}
+
+#index-table thead {
+  border-bottom: 2px solid #1B628F !important;
+  background-color: rgba(25, 79, 126, 0.93);
+  color: white;
+}
+
+#index-table tbody tr:hover {
+  background-color: rgba(237, 233, 6, 0.14);
+  border-right: 2px solid #1B628F !important;
+}
+
+#index-table tbody tr td a {
+  text-decoration: none;
 }
 

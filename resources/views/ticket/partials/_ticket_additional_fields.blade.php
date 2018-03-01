@@ -1,5 +1,5 @@
 @if ($ticket->fields->count())
-<div class="panel panel-default">
+<div class="panel panel-default panel-design">
     <div class="panel-heading">
         <h4 class="panel-title"><i class="fa fa-asterisk"></i> {{t('Additional Information')}}</h4>
     </div>

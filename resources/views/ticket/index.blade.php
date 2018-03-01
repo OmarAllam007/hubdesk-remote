@@ -37,7 +37,7 @@
     <section class="col-sm-12" id="TicketList">
         @include('ticket._search_form')
         @if ($tickets->total())
-            <table class="listing-table">
+            <table class="table index-table" id="index-table">
                 <thead>
                 <tr>
                     <th>{{t('ID')}}</th>

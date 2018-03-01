@@ -11,24 +11,28 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700">
     {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css">--}}
 
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
     @yield('stylesheets')
 </head>
 <body>
 
 <header>
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav class="navbar navbar-default navbar-static-top navbar-style">
         <div class="container-fluid">
-            <div class="navbar-brand">
-                <a href="{{url('/')}}">
-                    <img src="{{asset('/images/logo.png')}}" class="logo-image">
-                </a>
-            </div>
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="{{url('/')}}">
+                        <img src="{{asset('/images/logo2.png')}}" style="filter: drop-shadow(1px 1px 1px #ffffff);">
+                    </a>
+                </li>
+
+            </ul>
+
             @if (!\Auth::guest())
                 <ul class="nav navbar-nav">
                     <li><a href="{{route('ticket.index')}}"><i class="fa fa-ticket"></i> {{t('Tickets')}}</a></li>
                     {{--<li><a href="{{route('ticket.create')}}"><i class="fa fa-plus"></i> {{t('New request')}}</a></li>--}}
-                    
+
                     @can('reports')
                         <li><a href="{{url('/reports')}}"><i class="fa fa-bar-chart"></i> {{t('Report')}}</a></li>
                     @endif
@@ -39,7 +43,8 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{Auth::user()->name}} <i class="caret"></i></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+                                    class="fa fa-user"></i> {{Auth::user()->name}} <i class="caret"></i></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{url('/logout')}}"><i class="fa fa-sign-out"></i> {{t('Logout')}}</a></li>
                         </ul>
@@ -83,13 +88,14 @@
         <div class="container-fluid">
             <div class="footer-container display-flex">
                 {{--@if(Session::has('flash-message'))--}}
-                    {{--@include('partials.alert', [--}}
-                        {{--'type' => Session::get('flash-type', 'danger'),--}}
-                        {{--'message' => Session::get('flash-message')--}}
-                    {{--])--}}
+                {{--@include('partials.alert', [--}}
+                {{--'type' => Session::get('flash-type', 'danger'),--}}
+                {{--'message' => Session::get('flash-message')--}}
+                {{--])--}}
                 {{--@endif--}}
 
-                <p class="text-mutedtext-right">{{t('Copyright')}} &copy; <a href="http://hubtech.sa">Hubtech</a> {{date('Y')}}</p>
+                <p class="text-mutedtext-right">{{t('Copyright')}} &copy; <a
+                            href="http://hubtech.sa">Hubtech</a> {{date('Y')}}</p>
             </div>
         </div>
     </footer>
@@ -102,8 +108,8 @@
         swal({
             title: "{!! alert()->message() !!}",
             text: "{!! alert()->option('text') !!}",
-            type: "{!! alert()->type() !!}" ,
-            timer:3000,
+            type: "{!! alert()->type() !!}",
+            timer: 3000,
             showConfirmButton: false,
         });
     </script>

@@ -34,7 +34,7 @@
 
                     @can('reassign',$ticket)
                     <button data-toggle="modal" data-target="#AssignForm" type="button"
-                            class="btn btn-sm btn-info btn-rounded btn-outlined" title="{{t('Re-assign')}}">
+                            class="btn btn-sm btn-primary btn-rounded btn-outlined" title="{{t('Re-assign')}}">
                         <i class="fa fa-mail-forward"></i> {{t('Re-assign')}}
                     </button>
                     @endcan

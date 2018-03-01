@@ -4,7 +4,7 @@
     </div>
 </div>
 
-<div class="panel panel-default">
+<div class="panel panel-default panel-design">
     <div class="panel-heading">
         <h4 class="panel-title"><i class="fa fa-ticket"></i>
             @if(!$ticket->isTask())
@@ -14,7 +14,7 @@
             @endif
         </h4>
     </div>
-    <table class="table table-striped table-condensed">
+    <table class="table table-striped table-condensed details-tbl">
         <tr>
             <th class="col-sm-3">{{t('Category')}}</th>
             <td class="col-sm-3">{{$ticket->category->name or 'Not Assigned'}}</td>
@@ -59,11 +59,11 @@
 @include('ticket.partials._requester_details',['ticket'=>$ticket])
 
 @if($ticket->notes->count())
-    <div class="panel panel-default">
+    <div class="panel panel-default panel-design">
         <div class="panel-heading">
             <h4 class="panel-title"><i class="fa fa-sticky-note-o"></i> {{t('Discussion Notes')}}</h4>
         </div>
-        <table class="table table-striped table-condensed">
+        <table class="table table-striped table-condensed details-tbl">
             <thead>
             <tr>
                 <th>{{t('Created By')}}</th>
