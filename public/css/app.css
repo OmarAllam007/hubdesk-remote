@@ -12271,7 +12271,6 @@ body {
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
   overflow-y: auto;
-  padding-top: 5px;
 }
 
 .navbar {
@@ -12293,6 +12292,10 @@ body {
   padding-bottom: 10px;
   font-weight: 700;
   height: 30px;
+}
+
+.title-bar {
+  padding-bottom: 17px;
 }
 
 .title-bar .title-container {
@@ -12800,6 +12803,7 @@ option.empty {
 
 .ticket-description {
   border: 2px solid #194f7e !important;
+  border-radius: 5px;
 }
 
 table.details-tbl tbody tr:nth-child(odd) {
@@ -12808,6 +12812,7 @@ table.details-tbl tbody tr:nth-child(odd) {
 
 .panel-design {
   border: 2px solid #194f7e !important;
+  border-radius: 5px;
 }
 
 #index-table thead {
@@ -12818,10 +12823,53 @@ table.details-tbl tbody tr:nth-child(odd) {
 
 #index-table tbody tr:hover {
   background-color: rgba(237, 233, 6, 0.14);
-  border-right: 2px solid #1B628F !important;
 }
 
 #index-table tbody tr td a {
   text-decoration: none;
+}
+
+.description-area {
+  border-radius: 1px;
+}
+
+.reply-log {
+  background-color: rgba(25, 79, 126, 0.06);
+}
+
+.update-log {
+  background-color: rgba(25, 79, 126, 0.12);
+}
+
+.created-log {
+  background-color: rgba(8, 126, 14, 0.1);
+}
+
+.resolved-log {
+  background-color: rgba(8, 126, 14, 0.1);
+}
+
+.resolution-area {
+  background-color: rgba(8, 126, 14, 0.05);
+  border: 2px solid #1B628F !important;
+  border-radius: 3px;
+}
+
+table.listing-table > thead.table-design {
+  background-color: rgba(25, 79, 126, 0.93);
+  color: #ffffff;
+}
+
+.logo {
+  line-height: 1.7;
+  font-size: 17px;
+}
+
+.dropdown-menu {
+  border-radius: 5px;
+}
+
+a.btn-info.searchbtn {
+  background-color: rgba(25, 79, 126, 0.93);
 }
 

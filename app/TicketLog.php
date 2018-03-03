@@ -178,4 +178,17 @@ class TicketLog extends KModel
         return $date;
     }
 
+    function getColorTypeAttribute(){
+        if (isset($this->new_data['status_id']) && in_array($this->new_data['status_id'],[7,8,9]) ){
+            return 'resolved-log';
+        }
+        if($this->type == self::REPLY_TYPE){
+            return 'reply-log';
+        }elseif ($this->type == self::UPDATED_TYPE){
+            return 'update-log';
+        }
+
+        return '';
+    }
+
 }

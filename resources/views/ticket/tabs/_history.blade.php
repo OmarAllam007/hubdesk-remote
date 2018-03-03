@@ -1,5 +1,5 @@
-<ul class="list-group panel-design">
-    <li class="list-group-item">
+<ul class="list-group panel-design ticket-description">
+    <li class="list-group-item created-log">
         @if(!$ticket->isTask())
             <strong>{{t('Ticket created by')}}  {{$ticket->created_by->name}} at {{$ticket->created_at->format('d/m/Y H:i')}}</strong>
         @else
@@ -7,8 +7,7 @@
         @endif
     </li>
     @foreach ($ticket->logs as $log)
-        <li class="list-group-item">
-
+        <li class="list-group-item {{$log->color_type}}">
             @if ($log->type == \App\TicketLog::AUTO_CLOSE)
                 <strong>Ticket has been closed by the system</strong>
             @elseif($log->type == \App\TicketLog::ESCALATION)

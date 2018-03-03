@@ -16,11 +16,9 @@
     </div>
 @stop
 
-@section('sidebar')
-    @include('admin.partials._sidebar')
-@stop
 
 @section('body')
+    @include('admin.partials._sidebar')
     <section class="col-sm-9">
         @if ($users->total())
             <table class="listing-table">

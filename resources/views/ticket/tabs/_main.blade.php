@@ -1,5 +1,5 @@
-<div class="panel panel-default">
-    <div class="panel-body ticket-description">
+<div class="panel panel-default ticket-description">
+    <div class="panel-body ">
         {!! tidy_repair_string($ticket->description, [], 'utf8') !!}
     </div>
 </div>
@@ -18,39 +18,44 @@
         <tr>
             <th class="col-sm-3">{{t('Category')}}</th>
             <td class="col-sm-3">{{$ticket->category->name or 'Not Assigned'}}</td>
+            <th>{{t('Technician')}}</th>
+            <td>{{$ticket->technician->name or 'Not Assigned'}}</td>
+
+        </tr>
+        <tr>
             <th class="col-sm-3">{{t('Subcategory')}}</th>
             <td class="col-sm-3">{{$ticket->subcategory->name or 'Not Assigned'}}</td>
-        </tr>
-        <tr>
-            <th>{{t('Item')}}</th>
-            <td>{{$ticket->Item->name or 'Not Assigned'}}</td>
-            <th>&nbsp;</th>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <th>{{t('Urgency')}}</th>
-            <td>{{$ticket->urgency->name or 'Not Assigned'}}</td>
             <th>{{t('SLA')}}</th>
             <td>{{$ticket->sla->name or 'Not Assigned'}}</td>
         </tr>
         <tr>
-            <th>{{t('Due Time')}}</th>
-            <td>{{$ticket->due_date or 'Not Assigned'}}</td>
+            <th>{{t('Item')}}</th>
+            <td>{{$ticket->Item->name or 'Not Assigned'}}</td>
             <th>{{t('First Response Due Time')}}</th>
             <td>{{$ticket->first_response_date or 'Not Assigned'}}</td>
+
+
+        </tr>
+        <tr>
+            <th>{{t('Due Time')}}</th>
+            <td>{{$ticket->due_date or 'Not Assigned'}}</td>
+
+            <th>{{t('Urgency')}}</th>
+            <td>{{$ticket->urgency->name or 'Not Assigned'}}</td>
         </tr>
         <tr>
             <th>{{t('Group')}}</th>
             <td>{{$ticket->group->name or 'Not Assigned'}}</td>
-            <th>{{t('Technician')}}</th>
-            <td>{{$ticket->technician->name or 'Not Assigned'}}</td>
+            <th></th>
+            <td></td>
+
         </tr>
-        <tr>
-            <th>{{t('Business Unit')}}</th>
-            <td>{{$ticket->business_unit->name or 'Not Assigned'}}</td>
-            <th>{{t('Location')}}</th>
-            <td>{{$ticket->location->name or 'Not Assigned'}}</td>
-        </tr>
+        {{--<tr>--}}
+            {{--<th>{{t('Business Unit')}}</th>--}}
+            {{--<td>{{$ticket->business_unit->name or 'Not Assigned'}}</td>--}}
+            {{--<th>{{t('Location')}}</th>--}}
+            {{--<td>{{$ticket->location->name or 'Not Assigned'}}</td>--}}
+        {{--</tr>--}}
     </table>
 </div>
 
