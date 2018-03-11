@@ -14,8 +14,7 @@ class GroupController extends Controller
 
     public function index()
     {
-        $groups = Group::paginate();
-
+        $groups = Group::orderBy('name')->quickSearch()->paginate();
         return view('admin.group.index', compact('groups'));
     }
 

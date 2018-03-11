@@ -2,7 +2,17 @@
 
 @section('header')
     <h4 class="pull-left">Service Level Agreements</h4>
-    <a href="{{ route('admin.sla.create') }} " class="btn btn-sm btn-primary pull-right"><i class="fa fa-plus"></i></a>
+    <form action="" class="form-inline" method="get">
+        <div class="input-group">
+            <input class="form-control input-sm" type="search" name="search" id="searchTerm" placeholder="Search"
+                   value="{{Request::query('search', '')}}">
+            <span class="input-group-btn">
+                    <button class="btn btn-default btn-sm"><i class="fa fa-search"></i></button>
+                </span>
+        </div>
+        <a href="{{ route('admin.sla.create') }} " class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></a>
+        {{--<a title="Import from active directory" href="#ImportModal" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-download"></i></a>--}}
+    </form>
 @stop
 
 @section('sidebar')

@@ -13,7 +13,7 @@ class SlaController extends Controller
 {
     public function index()
     {
-        $slas = Sla::paginate();
+        $slas = Sla::orderBy('name')->quickSearch()->paginate();
 
         return view('admin.sla.index', compact('slas'));
     }

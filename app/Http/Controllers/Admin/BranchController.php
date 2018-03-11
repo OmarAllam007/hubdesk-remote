@@ -12,7 +12,7 @@ class BranchController extends Controller
 
     public function index()
     {
-        $branches = Branch::paginate();
+        $branches = Branch::orderBy('name')->quickSearch()->paginate();;
 
         return view('admin.branch.index', compact('branches'));
     }

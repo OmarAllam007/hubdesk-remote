@@ -12,7 +12,7 @@ class DepartmentController extends Controller
 
     public function index()
     {
-        $departments = Department::paginate();
+        $departments = Department::orderBy('name')->quickSearch()->paginate();;
 
         return view('admin.department.index', compact('departments'));
     }

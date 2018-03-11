@@ -10,7 +10,7 @@ class BusinessRuleController extends Controller
 {
     public function index()
     {
-        $businessRules = BusinessRule::paginate();
+        $businessRules = BusinessRule::orderBy('name')->quickSearch()->paginate();
 
         return view('admin.business-rule.index', compact('businessRules'));
     }

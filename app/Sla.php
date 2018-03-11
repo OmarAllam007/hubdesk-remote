@@ -4,6 +4,7 @@ namespace App;
 
 use App\Behaviors\HasCriteria;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * App\Sla
@@ -76,5 +77,17 @@ class Sla extends KModel
         $minutesPerDay = $endTime->diffInMinutes($startTime);
 
         return ($this->due_days * $minutesPerDay) + ($this->due_hours * 60) + $this->due_minutes;
+    }
+
+    public function scopeQuickSearch(Builder $query)
+    {
+        if (\Request::has('search')) {
+            $query->where(function (Builder $q) {
+                $term = '%' . \Request::get('search') . '%';
+                $q->where('name', 'LIKE', $term);
+            });
+        }
+
+        return $query;
     }
 }

@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Behaviors\Listable;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * App\Impact
@@ -29,4 +30,16 @@ class Impact extends KModel
     protected $dates = ['created_at', 'updated_at'];
 
     use Listable;
+
+    public function scopeQuickSearch(Builder $query)
+    {
+        if (\Request::has('search')) {
+            $query->where(function (Builder $q) {
+                $term = '%' . \Request::get('search') . '%';
+                $q->where('name', 'LIKE', $term);
+            });
+        }
+
+        return $query;
+    }
 }

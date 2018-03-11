@@ -12,7 +12,7 @@ class RegionController extends Controller
 
     public function index()
     {
-        $regions = Region::paginate();
+        $regions = Region::orderBy('name')->quickSearch()->paginate();
 
         return view('admin.region.index', compact('regions'));
     }

@@ -13,7 +13,7 @@ class ImpactController extends Controller
 
     public function index()
     {
-        $impacts = Impact::paginate();
+        $impacts = Impact::orderBy('name')->quickSearch()->paginate();;
 
         return view('admin.impact.index', compact('impacts'));
     }
