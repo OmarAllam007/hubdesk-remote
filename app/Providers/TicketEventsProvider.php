@@ -9,6 +9,7 @@ use App\Jobs\ApplySLA;
 use App\Jobs\CalculateTicketTime;
 use App\Jobs\NewTaskJob;
 use App\Jobs\SendApproval;
+use App\Mail\SendNewApproval;
 use App\Ticket;
 use App\TicketApproval;
 use App\TicketLog;
@@ -50,7 +51,9 @@ class TicketEventsProvider extends ServiceProvider
             $approval->ticket->save();
             
             if ($approval->shouldSend()) {
-                dispatch(new SendApproval($approval));
+                \Mail::to($approval->approver->email)->send(new SendNewApproval($approval));
+
+//                dispatch(new SendApproval($approval));
             }
         });
 

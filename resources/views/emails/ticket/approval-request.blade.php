@@ -16,7 +16,7 @@
         </div>
 
         <br><br>
-        Approval link: {{link_to_route('approval.show', null, $approval->id)}}<br/>
+        Approval link: <button class="btn btn-primary" href="{{route('approval.show',$approval->id)}}"> Approval Link</button> <br/>
     </div>
 </body>
 </html>
