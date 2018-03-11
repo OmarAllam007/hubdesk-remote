@@ -33,7 +33,12 @@ class SendNewApproval extends Mailable
         $name = $this->approval->approver->name;
         $link = link_to_route('approval.show', null, $this->approval);
         $content = str_replace(['$approver', '$approvalLink'], [$name, $link], $this->approval->content);
-
-        return $this->markdown('emails.ticket.request-for-approval',['approval' => $this->approval, 'content' => $content]);
+        if(!$this->approval->ticket->sdp_id){
+            $subject = 'Approval required for request #' . $this->approval->ticket_id;
+        }
+        else{
+            $subject = "Approval required for [Request ##{$this->approval->ticket->sdp_id}##]";
+        }
+        return $this->markdown('emails.ticket.request-for-approval',['approval' => $this->approval, 'content' => $content])->subject($subject);
     }
 }
