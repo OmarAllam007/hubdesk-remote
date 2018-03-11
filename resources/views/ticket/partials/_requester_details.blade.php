@@ -1,8 +1,8 @@
-<div class="panel panel-default">
+<div class="panel panel-default panel-design">
     <div class="panel-heading">
         <h4 class="panel-title"><i class="fa fa-user"></i> {{t('Requester Details')}}</h4>
     </div>
-    <table class="table table-striped table-condensed">
+    <table class="table table-striped table-condensed details-tbl">
         <tr>
             <th class="col-sm-3">{{t('Name')}}</th>
             <td class="col-sm-3">{{$ticket->requester->name}}</td>

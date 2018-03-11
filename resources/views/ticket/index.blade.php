@@ -29,7 +29,7 @@
         </span>
     </div>
     {{--<a href="{{ route('ticket.create') }}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></a>--}}
-    <a href="#SearchForm" data-toggle="collapse" class="btn btn-info btn-sm"><i class="fa fa-search"></i></a>
+    <a href="#SearchForm" data-toggle="collapse" class="btn btn-info btn-sm searchbtn" ><i class="fa fa-search"></i></a>
     {{Form::close()}}
 @stop
 
@@ -37,7 +37,7 @@
     <section class="col-sm-12" id="TicketList">
         @include('ticket._search_form')
         @if ($tickets->total())
-            <table class="listing-table">
+            <table class="table table-striped index-table" id="index-table">
                 <thead>
                 <tr>
                     <th>{{t('ID')}}</th>

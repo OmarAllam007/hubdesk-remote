@@ -34,11 +34,11 @@
 
                     @can('reassign',$ticket)
                     <button data-toggle="modal" data-target="#AssignForm" type="button"
-                            class="btn btn-sm btn-info btn-rounded btn-outlined" title="{{t('Re-assign')}}">
+                            class="btn btn-sm btn-primary btn-rounded btn-outlined" title="{{t('Re-assign')}}">
                         <i class="fa fa-mail-forward"></i> {{t('Re-assign')}}
                     </button>
                     @endcan
-                    
+
                     @if(!$ticket->isTask())
                         <button data-toggle="modal" data-target="#DuplicateForm" type="button"
                                 class="btn btn-sm btn-primary btn-rounded btn-outlined" title="Duplicate">
@@ -55,7 +55,7 @@
                                {{--class="btn btn-sm btn-primary btn-rounded btn-outlined"><i--}}
                                         {{--class="fa fa-hand-lizard-o"></i> {{t('Pick Up')}}</a>--}}
                         {{--@endcan--}}
-                    
+
                         <a href="{{route('ticket.print',$ticket)}}" target="_blank"
                            class="btn btn-sm btn-primary btn-rounded btn-outlined" title="Print">
                             <i class="fa fa-print"></i> {{t('Print')}}
@@ -171,7 +171,7 @@
                 @include('ticket.tabs._conversation')
             </div>
 
-            <div role="tabpanel" class="tab-pane" id="resolution">
+            <div role="tabpanel"  class="tab-pane" id="resolution">
                 @include('ticket.tabs._resolution')
             </div>
 

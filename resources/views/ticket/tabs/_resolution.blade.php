@@ -1,19 +1,20 @@
 @if ($ticket->resolution)
-    <div class="row">
-        <div class="col-md-2"><p>Added by {{$ticket->resolution->user->name }}
-                at {{$ticket->resolution->created_at->format('d/m/Y H:i:s')}}
+    <div class="well well-sm well-white resolution-area">
+        <div class="row">
+            <div class="col-md-4"><p>Added by {{$ticket->resolution->user->name }}
+                    at {{$ticket->resolution->created_at->format('d/m/Y H:i:s')}}
 
-            </p></div>
-        <div class="col-md-2">
-            @if(Auth::user()->id == $ticket->resolution->user_id)
-                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#editResolution">
-                    Edit
-                </button>
-            @endif
+                </p></div>
+            <div class="col-md-2">
+                @if(Auth::user()->id == $ticket->resolution->user_id)
+                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#editResolution">
+                        Edit
+                    </button>
+                @endif
+            </div>
         </div>
-    </div>
+        <hr style="background-color:black; height: 1px; border: 0; margin:0 0 5px 0px">
 
-    <div class="well well-sm well-white">
         {!! tidy_repair_string($ticket->resolution->content,[],'utf8') !!}
     </div>
 @elseif (can('resolve', $ticket))

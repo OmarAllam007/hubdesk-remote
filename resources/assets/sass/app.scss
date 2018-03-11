@@ -18,7 +18,6 @@ html, body {
     width: 100%;
     flex: 1 1 auto;
     overflow-y: auto;
-    padding-top: 5px;
   }
 }
 
@@ -45,6 +44,7 @@ html, body {
 }
 
 .title-bar {
+  padding-bottom: 17px;
   .title-container {
     background: $blend-color;
     min-height: 40px;
@@ -55,6 +55,7 @@ html, body {
     align-items: center;
     padding-top: 10px;
     padding-bottom: 10px;
+    box-shadow: 1px 1px 2px 1px #194F7E;
 
     h1, h2, h3, h4, h5 {
       font-size: 14px;
@@ -75,6 +76,7 @@ html, body {
     form {
       display: inline-block;
     }
+
   }
 }
 
@@ -100,7 +102,8 @@ body {
 
 footer {
   border-top: 2px solid $navbar-default-border;
-  background: #fff;
+  background: $blend-color;
+  box-shadow: 1px 1px 3px 1px #194F7E;
 
   .footer-container {
     min-height: 30px;
@@ -153,7 +156,7 @@ footer {
   &.btn-primary {
     color: $brand-primary;
 
-    &:hover,&:active,&:focus {
+    &:hover, &:active, &:focus {
       background-color: $btn-primary-bg;
       color: $btn-primary-color;
     }
@@ -161,7 +164,7 @@ footer {
 
   &.btn-info {
     color: $brand-info;
-    &:hover,&:active,&:focus {
+    &:hover, &:active, &:focus {
       background-color: $btn-info-bg;
       color: $btn-info-color;
     }
@@ -169,16 +172,15 @@ footer {
 
   &.btn-success {
     color: $brand-success;
-    &:hover,&:active,&:focus {
+    &:hover, &:active, &:focus {
       background-color: $btn-success-bg;
       color: $btn-success-color;
     }
   }
 
-
-&.btn-warning {
+  &.btn-warning {
     color: $brand-warning;
-    &:hover,&:active,&:focus {
+    &:hover, &:active, &:focus {
       background-color: $btn-warning-bg;
       color: $btn-warning-color;
     }
@@ -268,11 +270,13 @@ hr.form-divider {
   padding: 10px;
   margin-bottom: 0;
 
-  border-radius: 0;
+  border-radius: 5px;
+  border: 2px solid #194F7E;
 
   ul {
     margin-bottom: 0;
   }
+
 }
 
 .replies {
@@ -313,7 +317,8 @@ hr.form-divider {
   align-items: center;
   flex: 1;
 }
-.count{
+
+.count {
   display: inline-block;
   min-width: 10px;
   padding: 3px 7px;
@@ -324,9 +329,10 @@ hr.form-divider {
   vertical-align: middle;
   white-space: nowrap;
   text-align: center;
-  background-color:#0079b4;
+  background-color: #0079b4;
   border-radius: 10px;
 }
+
 .ticket-meta {
   margin-top: 5px;
   margin-bottom: 5px;
@@ -412,7 +418,7 @@ table.table > thead > tr > th {
       border-top: 0;
     }
 
-    > thead > tr > th:last-child,  > thead > tr > td:last-child,  > tbody > tr > th:last-child,  > tbody > tr > td:last-child,  > tfoot > tr > th:last-child,  > tfoot > tr > td:last-child{
+    > thead > tr > th:last-child, > thead > tr > td:last-child, > tbody > tr > th:last-child, > tbody > tr > td:last-child, > tfoot > tr > th:last-child, > tfoot > tr > td:last-child {
       border-right: 0;
     }
 
@@ -426,10 +432,10 @@ img {
   max-width: 100%;
 }
 
-.logo-image{
+.logo-image {
   padding-bottom: 5px;
-  height:25px;
-  width:auto;
+  height: 25px;
+  width: auto;
 }
 
 .multi-select {
@@ -454,4 +460,121 @@ img {
 option.empty {
   color: #c9c9c9;
   font-weight: 700;
+}
+
+.navbar-style {
+  background-color: #194F7E;
+  .nav li a {
+    color: white;
+    font-size: 15px;
+  }
+  .nav li a:hover {
+    color: white;
+  }
+
+  .nav li.dropdown a {
+    color: #636b6f
+  }
+
+  ul.nav li.dropdown a {
+    color: white;
+  }
+
+  .nav ul.dropdown-menu li a {
+    color: #000;
+  }
+
+  .logo-image {
+    background-color: white;
+
+  }
+}
+
+.ticket-header {
+  background-color: #1B628F;
+}
+
+.nav-tabs {
+  border-bottom: 1px solid #194f7e !important;
+}
+
+.nav-tabs > li.active > a {
+  border-top: 1px solid #194f7e !important;
+  border-right: 1px solid #194f7e !important;
+  border-left: 1px solid #194f7e !important;
+}
+
+.nav-tabs > li > a:hover {
+  border-bottom: transparent;
+}
+
+.ticket-description {
+  border: 2px solid rgba(25, 79, 126, 1) !important;
+  border-radius: 5px;
+}
+
+table.details-tbl tbody tr:nth-child(odd) {
+  background-color: rgba(25, 79, 126, 0.09)
+}
+
+.panel-design {
+  border: 2px solid rgba(25, 79, 126, 1) !important;
+  border-radius: 5px;
+}
+
+#index-table {
+  thead {
+    border-bottom: 2px solid #1B628F !important;
+    background-color: rgba(25, 79, 126, 0.93);
+    color:white;
+  }
+  tbody tr:hover {
+    background-color: rgba(237, 233, 6, 0.14);
+
+  }
+  tbody tr td a{
+    text-decoration: none;
+  }
+}
+
+.description-area{
+  border-radius: 1px;
+}
+
+.reply-log{
+  background-color: rgba(25, 79, 126, 0.06);
+}
+.update-log{
+  background-color: rgba(25, 79, 126, 0.12);
+}
+
+.created-log{
+  background-color: rgba(8, 126, 14, 0.1);
+}
+
+.resolved-log{
+  background-color: rgba(8, 126, 14, 0.1);
+}
+
+.resolution-area{
+  background-color: rgba(8, 126, 14, 0.05);
+  border: 2px solid #1B628F !important;
+  border-radius: 3px;
+}
+
+table.listing-table > thead.table-design {
+  background-color: rgba(25, 79, 126, 0.93);
+  color: #ffffff;
+}
+.logo{
+  line-height: 1.7;
+  font-size: 17px;
+}
+
+.dropdown-menu{
+  border-radius: 5px;
+}
+
+a.btn-info.searchbtn{
+  background-color: rgba(25, 79, 126, 0.93);
 }

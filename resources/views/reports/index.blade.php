@@ -1,16 +1,14 @@
 @extends('layouts.app')
 
-@section('title', t('Reports'))
 
 @section('header')
     <h2>Reports</h2>
 @endsection
 
-@section('sidebar')
-    @include('reports._sidebar')
-@endsection
+
 
 @section('body')
+    @include('reports._sidebar')
     <div class="col-sm-9">
         <table class="table table-striped table-hover">
             <thead>
