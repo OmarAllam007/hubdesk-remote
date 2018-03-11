@@ -95,27 +95,20 @@ class TicketController extends Controller
     public function reply(Ticket $ticket, TicketReplyRequest $request)
     {
         if (in_array($request->reply['status_id'], [7, 8, 9]) && $ticket->hasOpenTask()) {
-            
-            alert()->flash('Pending Tasks', 'error', [
-                'text' => 'Ticket has pending tasks',
-                'timer' => 3000
-            ]);
+
+            flash('Ticket has pending tasks', 'error');
             return \Redirect::route('ticket.show', compact('ticket'));
         }
 
         $reply = new TicketReply($request->get('reply'));
         $reply->user_id = $request->user()->id;
 
+
         // Fires creating event in \App\Providers\TicketReplyEventProvider
         $ticket->replies()->save($reply);
-//
-//        //@todo: Calculate elapsed time
-        alert()->flash('Reply Info', 'success', [
-            'text' => 'Reply has been added',
-            'timer' => 3000
-        ]);
+        flash('Reply has been added', 'success');
 
-        return $this->backSuccessResponse($request, null);
+        return \Redirect::route('ticket.show', compact('ticket'));
     }
 
     public function resolution(Ticket $ticket, TicketResolveRequest $request)
