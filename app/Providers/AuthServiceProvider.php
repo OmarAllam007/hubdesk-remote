@@ -39,7 +39,7 @@ class AuthServiceProvider extends ServiceProvider
 
         \Gate::define('reports', function ($user) {
             // TODO: make this check if the user have privilege and remove hard coded values.
-            return in_array($user->id, [665, 396, 34]);
+            return in_array($user->id, [665, 396, 34,6773]);
         });
 
         $this->registerPolicies();
