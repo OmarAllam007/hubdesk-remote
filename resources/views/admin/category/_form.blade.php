@@ -28,4 +28,12 @@
             <button class="btn btn-success"><i class="fa fa-check-circle"></i> Submit</button>
         </div>
     </div>
+
+    <div class="col-md-6">
+        <div class="form-group {{$errors->has('units')? 'has-error' : ''}}">
+            {{ Form::label('units', 'Business Units', ['class' => 'control-label']) }}
+            {{ Form::select('units[]', \App\BusinessUnit::selection(),$category->bus, ['class' => 'form-control', 'multiple' => true ,'size'=>12]) }}
+        </div>
+    </div>
+
 </div>
