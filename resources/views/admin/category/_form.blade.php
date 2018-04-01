@@ -35,5 +35,4 @@
             {{ Form::select('units[]', \App\BusinessUnit::selection(),$category->bus, ['class' => 'form-control', 'multiple' => true ,'size'=>12]) }}
         </div>
     </div>
-
 </div>
