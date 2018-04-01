@@ -12,4 +12,14 @@
         @include('ticket._form')
 
     {{ Form::close() }}
-@stop
+@endsection
+@section('javascript')
+    <script>
+        var category = '{{Form::getValueAttribute('category_id')}}';
+        var subcategory = '{{Form::getValueAttribute('subcategory_id')}}';
+        var item = '{{Form::getValueAttribute('item_id')}}';
+        var group = '{{Form::getValueAttribute('group_id')}}';
+    </script>
+    <script src="{{asset('/js/ticket-form.js')}}"></script>
+    <script src="{{asset('/js/tinymce/tinymce.min.js')}}"></script>
+@append

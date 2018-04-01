@@ -19,7 +19,6 @@ class TicketRequest extends Request
         $this->customRules();
 
         $rules = collect([
-            'subject' => 'required',
             'description' => 'required',
             'category_id' => 'required|exists:categories,id',
             'subcategory_id' => 'subcategory',

@@ -99,7 +99,6 @@ class ListController extends Controller
     function technicians($group = false)
     {
         $user_ids = \DB::table('group_user')->where('group_id', $group)->pluck('user_id');
-
         return User::technicians()->whereIn('id', $user_ids)->orderBy('name')->get(['name', 'id']);
     }
 
