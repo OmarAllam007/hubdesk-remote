@@ -1,6 +1,5 @@
 <?php
 Route::get('/', 'HomeController@home')->middleware('lang');
-
 Route::auth();
 Route::get('logout', 'Auth\LoginController@logout');
 Route::get('auth/google', 'Auth\AuthController@googleRedirect');
@@ -54,6 +53,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
 });
 
 Route::group(['middleware' => ['auth']], function () {
+    Route::get('/get-users','Admin\UserController@getusers');
     Route::group(['prefix' => 'ticket'], function (\Illuminate\Routing\Router $r) {
         $r->post('resolution/{ticket}', ['as' => 'ticket.resolution', 'uses' => 'TicketController@resolution']);
         $r->post('edit-resolution/{ticket}', ['as' => 'ticket.edit-resolution', 'uses' => 'TicketController@editResolution']);
@@ -74,6 +74,8 @@ Route::group(['middleware' => ['auth']], function () {
         $r->patch('tasks/{ticket}', ['as' => 'tasks.update', 'uses' => 'TaskController@update']);
         $r->delete('tasks/{ticket}/{task}', ['as' => 'tasks.delete', 'uses' => 'TaskController@destroy']);
         $r->get('print/{ticket}', ['as' => 'ticket.print', 'uses' => 'TicketPrintController@show']);
+        Route::post('forward/{ticket}',['as'=>'ticket.forward','uses'=>'TicketController@forward']);
+
     });
 
     Route::resource('ticket', 'TicketController');

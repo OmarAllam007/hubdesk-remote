@@ -19,12 +19,16 @@
                         </div>
                         <br>
                         <span class="label label-default">Status: {{t($reply->status->name)}}</span>
+                        @if($reply->to)<span class="label label-primary">To: {{implode(", ",$reply->to)}}</span>@endif
+                        @if($reply->cc)<span class="label label-primary">Cc: {{implode(", ",$reply->cc)}}</span>@endif
+
+
                         @if($reply->attachments->count())
                             <br><br>
                             <p><strong>Attachments</strong></p>
                             @foreach($reply->attachments as $attachment)
                                 <ul class="list-unstyled">
-                                    <li><a href="{{$attachment->url}}" target="_blank" >{{$attachment->display_name}}</a>
+                                    <li><a href="{{$attachment->url}}" target="_blank">{{$attachment->display_name}}</a>
                                     </li>
                                 </ul>
                             @endforeach
@@ -46,6 +50,22 @@
 <div id="ReplyForm">
     {{Form::open(['route' => ['ticket.reply', $ticket], 'files' => true])}}
     {{csrf_field()}}
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group form-group-sm {{$errors->has('cc')? 'has-error' : ''}}">
+                {{Form::label('reply[cc]', t('Cc'), ['class' => 'control-label'])}}
+                <select class="form-control usernames" name="reply[cc][]">
+                </select>
+                @if (count($errors->has('cc.*')))
+                    <div class="error-message">
+                        {{ $errors->first() }}
+
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
 
     <div class="form-group {{$errors->has('reply.content')? 'has-errors' : ''}}">
         {{Form::label('reply[content]', t('Description'), ['class' => 'control-label'])}}
