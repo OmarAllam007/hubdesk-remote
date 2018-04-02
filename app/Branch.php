@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
+
 /**
  * App\Branch
  *
@@ -35,5 +37,17 @@ class Branch extends KModel
     public function location()
     {
         return $this->belongsTo(Location::class);
+    }
+
+    public function scopeQuickSearch(Builder $query)
+    {
+        if (\Request::has('search')) {
+            $query->where(function (Builder $q) {
+                $term = '%' . \Request::get('search') . '%';
+                $q->where('name', 'LIKE', $term);
+            });
+        }
+
+        return $query;
     }
 }

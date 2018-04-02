@@ -99,11 +99,8 @@ class TicketController extends Controller
             $this->validate($request,['reply.cc.*'=>'email'],['email'=>'Please enter valid emails']);
         }
         if (in_array($request->reply['status_id'], [7, 8, 9]) && $ticket->hasOpenTask()) {
-            
-            alert()->flash('Pending Tasks', 'error', [
-                'text' => 'Ticket has pending tasks',
-                'timer' => 3000
-            ]);
+
+            flash('Ticket has pending tasks', 'error');
             return \Redirect::route('ticket.show', compact('ticket'));
         }
 
@@ -111,15 +108,13 @@ class TicketController extends Controller
         $reply->user_id = $request->user()->id;
         $reply->cc = $request->get("reply")["cc"] ?? null;
         // Fires creating event in \App\Providers\TicketReplyObserver
-        $ticket->replies()->save($reply);
-//
-//        //@todo: Calculate elapsed time
-        alert()->flash('Reply Info', 'success', [
-            'text' => 'Reply has been added',
-            'timer' => 3000
-        ]);
 
-        return $this->backSuccessResponse($request, null);
+
+        // Fires creating event in \App\Providers\TicketReplyEventProvider
+        $ticket->replies()->save($reply);
+        flash('Reply has been added', 'success');
+
+        return \Redirect::route('ticket.show', compact('ticket'));
     }
 
     public function resolution(Ticket $ticket, TicketResolveRequest $request)

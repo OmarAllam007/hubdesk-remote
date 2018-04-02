@@ -1,6 +1,6 @@
 @if ($ticket->approvals->count())
     <table class="listing-table">
-        <thead>
+        <thead class="table-design">
         <tr>
             <th>{{t('Sent to')}}</th>
             <th>{{t('By')}}</th>

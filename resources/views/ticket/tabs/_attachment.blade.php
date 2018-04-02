@@ -1,5 +1,5 @@
-<table class="listing-table">
-    <thead>
+<table class="listing-table" >
+    <thead class="table-design">
     <tr>
         <th>File</th>
         <th>Uploaded By</th>

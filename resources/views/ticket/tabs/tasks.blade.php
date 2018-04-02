@@ -11,8 +11,9 @@
         </div>
         <div class="clearfix"></div>
         <br>
-        <table class="table" v-if="tasks[0]">
-            <tr class="bg-primary">
+        <table class="listing-table" v-if="tasks[0]" >
+            <thead class="table-design">
+            <tr>
                 <th>{{t('ID')}}</th>
                 <th>{{t('Subject')}}</th>
                 <th>{{t('Status')}}</th>
@@ -21,6 +22,7 @@
                 <th>{{t('Assigned To')}}</th>
                 <th>{{t('Actions')}}</th>
             </tr>
+            </thead>
             <tbody>
             <tr v-for="task in tasks">
                 <td class="col-md-1"><a v-bind:href="'/ticket/'+ task.id">@{{ task.id }}</a></td>

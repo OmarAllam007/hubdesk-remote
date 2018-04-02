@@ -12,7 +12,7 @@ class CityController extends Controller
 
     public function index()
     {
-        $cities = City::paginate();
+        $cities = City::orderBy('name')->quickSearch()->paginate();
 
         return view('admin.city.index', compact('cities'));
     }

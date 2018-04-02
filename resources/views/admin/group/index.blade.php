@@ -2,7 +2,20 @@
 
 @section('header')
     <h4 class="pull-left">Group</h4>
-    <a href="{{ route('admin.group.create') }} " class="btn btn-sm btn-primary pull-right"><i class="fa fa-plus"></i></a>
+    <div class="heading-actions pull-right">
+        <form action="" class="form-inline" method="get">
+            <div class="input-group">
+                <input class="form-control input-sm" type="search" name="search" id="searchTerm" placeholder="Search"
+                       value="{{Request::query('search', '')}}">
+                <span class="input-group-btn">
+                    <button class="btn btn-default btn-sm"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+            <a href="{{ route('admin.group.create') }} " class="btn btn-sm btn-primary"><i
+                        class="fa fa-plus"></i></a>
+            {{--<a title="Import from active directory" href="#ImportModal" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-download"></i></a>--}}
+        </form>
+    </div>
 @stop
 
 @section('sidebar')
@@ -14,27 +27,29 @@
         @if ($groups->total())
             <table class="listing-table">
                 <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Actions</th>
-                    </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
                 </thead>
                 <tbody>
-                    @foreach($groups as $group)
+                @foreach($groups as $group)
                     <tr>
-                        <td class="col-md-5"><a href="{{ route('admin.group.edit', $group) }}">{{ $group->name }}</a></td>
+                        <td class="col-md-5"><a href="{{ route('admin.group.edit', $group) }}">{{ $group->name }}</a>
+                        </td>
                         <td class="col-md-3">
                             <form action="{{ route('admin.group.destroy', $group) }}" method="post">
                                 {{csrf_field()}} {{method_field('delete')}}
-                                <a class="btn btn-sm btn-primary" href="{{ route('admin.group.edit', $group) }} "><i class="fa fa-edit"></i> Edit</a>
+                                <a class="btn btn-sm btn-primary" href="{{ route('admin.group.edit', $group) }} "><i
+                                            class="fa fa-edit"></i> Edit</a>
                                 <button class="btn btn-sm btn-warning"><i class="fa fa-trash-o"></i> Delete</button>
                             </form>
                         </td>
                     </tr>
-                    @endforeach
+                @endforeach
                 </tbody>
             </table>
-        @include('partials._pagination', ['items' => $groups])
+            @include('partials._pagination', ['items' => $groups])
         @else
             <div class="alert alert-info"><i class="fa fa-exclamation-circle"></i> <strong>No group found</strong></div>
         @endif

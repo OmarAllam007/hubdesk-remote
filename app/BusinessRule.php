@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Behaviors\HasCriteria;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * App\BusinessRule
@@ -47,5 +48,17 @@ class BusinessRule extends KModel
     public function rules()
     {
         return $this->hasMany(BusinessRuleAction::class);
+    }
+
+    public function scopeQuickSearch(Builder $query)
+    {
+        if (\Request::has('search')) {
+            $query->where(function (Builder $q) {
+                $term = '%' . \Request::get('search') . '%';
+                $q->where('name', 'LIKE', $term);
+            });
+        }
+
+        return $query;
     }
 }

@@ -167,10 +167,15 @@
                 @endif
             </ul>
 
+
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="main">
                     @include('ticket.tabs._main')
+                </div>
 
+
+                <div role="tabpanel"  class="tab-pane" id="resolution">
+                    @include('ticket.tabs._resolution')
                 </div>
 
                 <div role="tabpanel" class="tab-pane" id="conversation">
