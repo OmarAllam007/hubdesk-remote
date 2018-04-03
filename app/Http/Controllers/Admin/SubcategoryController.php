@@ -36,7 +36,7 @@ class SubcategoryController extends Controller
         $data['service_request'] = $service_request;
         $subcategory = Subcategory::create($data);
 
-        flash('Subcategory has been saved', 'success');
+        flash(t('Subcategory has been saved'), 'success');
 
         return \Redirect::route('admin.category.show', $subcategory->category_id);
     }
@@ -59,7 +59,7 @@ class SubcategoryController extends Controller
         $data['service_request'] = $service_request;
         $subcategory->update($data);
 
-        flash('Subcategory has been saved', 'success');
+        flash(t('Subcategory has been saved'), 'success');
 
         return \Redirect::route('admin.category.show', $subcategory->category_id);
     }
@@ -68,7 +68,7 @@ class SubcategoryController extends Controller
     {
         $subcategory->delete();
 
-        flash('Subcategory has been deleted', 'success');
+        flash(t('Subcategory has been deleted'), 'success');
 
         return \Redirect::route('admin.category.show', $subcategory->category_id);
     }

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('header')
-    <h4 class="pull-left">Users</h4>
+    <h4 class="pull-left">{{t('Users')}}</h4>
     <div class="heading-actions pull-right">
         <form action="" class="form-inline" method="get">
             <div class="input-group">
@@ -24,11 +24,11 @@
             <table class="listing-table">
                 <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Login</th>
-                    <th>Business Unit</th>
-                    <th>Location</th>
-                    <th>Actions</th>
+                    <th>{{t('Name')}}</th>
+                    <th>{{t('Login')}}</th>
+                    <th>{{t('Business Unit')}}</th>
+                    <th>{{t('Location')}}</th>
+                    <th>{{t('Actions')}}</th>
                 </tr>
                 </thead>
                 <tbody>

@@ -28,7 +28,7 @@ class LocationController extends Controller
 
         Location::create($request->all());
 
-        flash('Location has been saved', 'success');
+        flash(t('Location has been saved'), 'success');
 
         return \Redirect::route('admin.location.index');
     }
@@ -50,7 +50,7 @@ class LocationController extends Controller
 
         $location->update($request->all());
 
-        flash('Location has been saved', 'success');
+        flash(t('Location has been saved'), 'success');
 
         return \Redirect::route('admin.location.index');
     }
@@ -59,7 +59,7 @@ class LocationController extends Controller
     {
         $location->delete();
 
-        flash('Location has been deleted', 'success');
+        flash(t('Location has been deleted'), 'success');
 
         return \Redirect::route('admin.location.index');
     }

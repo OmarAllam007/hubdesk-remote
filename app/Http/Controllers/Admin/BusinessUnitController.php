@@ -24,8 +24,8 @@ class BusinessUnitController extends Controller
 
     public function store(Request $request)
     {
-        alert()->flash('Business unit Info', 'error', [
-            'text' => 'Could not save business unit',
+        alert()->flash(t('Business unit Info'), 'error', [
+            'text' => t('Could not save business unit'),
             'timer' => 3000
         ]);
         
@@ -33,8 +33,8 @@ class BusinessUnitController extends Controller
 
         BusinessUnit::create($request->all());
 
-        alert()->flash('Business unit Info', 'success', [
-            'text' => 'Business unit has been saved',
+        alert()->flash(t('Business unit Info'), 'success', [
+            'text' => t('Business unit has been saved'),
             'timer' => 3000
         ]);
 
@@ -55,7 +55,7 @@ class BusinessUnitController extends Controller
     {
         $this->rules['name'] .= ',' . $business_unit->id;
 
-        alert()->flash('Business unit Info', 'error', [
+        alert()->flash(t('Business unit Info'), 'error', [
             'text' => 'Could not save business unit',
             'timer' => 3000
         ]);

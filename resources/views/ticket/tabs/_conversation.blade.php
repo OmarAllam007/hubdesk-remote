@@ -72,7 +72,7 @@
             <table class="listing-table table-condensed">
                 <thead>
                 <tr>
-                    <th>Attachments</th>
+                    <th>{{t('Attachments')}}</th>
                 </tr>
                 </thead>
                 <tbody>

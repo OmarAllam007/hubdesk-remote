@@ -28,7 +28,7 @@ class BranchController extends Controller
 
         Branch::create($request->all());
 
-        flash('Branch has been saved', 'success');
+        flash(t('Branch has been saved'), 'success');
 
         return \Redirect::route('admin.branch.index');
     }
@@ -49,7 +49,7 @@ class BranchController extends Controller
 
         $branch->update($request->all());
 
-        flash('Branch has been saved', 'success');
+        flash(t('Branch has been saved'), 'success');
 
         return \Redirect::route('admin.branch.index');
     }
@@ -58,7 +58,7 @@ class BranchController extends Controller
     {
         $branch->delete();
 
-        flash('Branch has been deleted', 'success');
+        flash(t('Branch has been deleted'), 'success');
 
         return \Redirect::route('admin.branch.index');
     }

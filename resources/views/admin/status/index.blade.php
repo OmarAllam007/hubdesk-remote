@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('header')
-    <h4 class="pull-left">Status</h4>
+    <h4 class="pull-left">{{t('Status')}}</h4>
     <a href="{{ route('admin.status.create') }} " class="btn btn-sm btn-primary pull-right"><i class="fa fa-plus"></i></a>
 @stop
 
@@ -15,8 +15,8 @@
         <table class="listing-table">
             <thead>
             <tr>
-                <th>Name</th>
-                <th>Actions</th>
+                <th>{{t('Name')}}</th>
+                <th>{{t('Actions')}}</th>
             </tr>
             </thead>
             <tbody>

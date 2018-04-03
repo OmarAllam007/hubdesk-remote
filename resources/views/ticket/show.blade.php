@@ -4,14 +4,11 @@
     @can('show',$ticket)
     <div class="display-flex ticket-meta">
         <div class="flex">
-            <h4>#{{$ticket->id}} - {{$ticket->subject}}</h4>
-
+            <h4>#{{$ticket->id}} - {{$ticket->subject}}
+            </h4>
             <h4>
-                @if ($ticket->sdp_id) Helpdesk : #{{$ticket->sdp_id ?? ''}} &mdash; @endif
-
                 <strong>{{t('By')}} :{{$ticket->requester->name}}</strong>
             </h4>
-
             @if($ticket->isDuplicated())
                 <h4>{{'Duplicated Request from'}}:
                     <a title="Show Original Request" href="{{route('ticket.show',$ticket->request_id)}}"
@@ -81,7 +78,7 @@
                         <i class="fa fa-flag text-danger" aria-hidden="true"
                            title="{{t('SLA violated')}}"></i>
                     @endif
-                    <small><strong>{{t('Status')}}:</strong> {{$ticket->status->name}}</small>
+                    <small><strong>{{t('Status')}}:</strong> {{t($ticket->status->name)}}</small>
                 </li>
                 <li>
                     <small><strong>{{t('Created at')}}:</strong> {{$ticket->created_at->format('d/m/Y H:i')}}</small>

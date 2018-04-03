@@ -37,7 +37,7 @@ class CategoryController extends Controller
             $category->businessunits()->sync($request['units']);
         }
 
-        flash('Category has been saved', 'success');
+        flash(t('Category has been saved'), 'success');
 
         return \Redirect::route('admin.category.index');
     }
@@ -62,7 +62,7 @@ class CategoryController extends Controller
         $data = $request->all();
         $data['service_request'] = $service_request;
         $category->update($data);
-        flash('Category has been saved', 'success');
+        flash(t('Category has been saved'), 'success');
         return \Redirect::route('admin.category.index');
     }
 
@@ -70,7 +70,7 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        flash('Category has been deleted', 'success');
+        flash(t('Category has been deleted'), 'success');
 
         return \Redirect::route('admin.category.index');
     }

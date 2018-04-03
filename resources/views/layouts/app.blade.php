@@ -12,8 +12,7 @@
     <link rel="stylesheet" href="{{asset('/css/app.css')}}">
 
     @if(\Session::get('personlized-language-ar' . \Auth::user()->id, \Config::get('app.locale'))=="ar")
-        <link rel="stylesheet" href="//cdn.rawgit.com/morteza/bootstrap-rtl/v3.3.4/dist/css/bootstrap-rtl.min.css">
-
+        <link rel="stylesheet" href="{{asset('/css/bootstrap-rtl.css')}}">
     @endif
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     @yield('stylesheets')
@@ -58,7 +57,8 @@
 
                 <ul class="nav navbar-nav
                     @if(\Session::get('personlized-language-ar' . \Auth::user()->id, \Config::get('app.locale'))=="ar")
-                        navbar-left @else navbar-right @endif">
+                        navbar-left @else navbar-right
+                    @endif">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
                                     class="fa fa-user"></i> {{Auth::user()->name}} <i class="caret"></i></a>

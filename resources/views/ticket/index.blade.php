@@ -25,7 +25,13 @@
     <div class="input-group input-group-sm">
         <input class="form-control" type="text" name="id" id="ticketID" placeholder="{{t('Ticket ID')}}"/>
         <span class="input-group-btn">
-            <button class="btn btn-default"><i class="fa fa-chevron-right"></i></button>
+            <button class="btn btn-default"><i class="fa
+                         @if(\Session::get('personlized-language-ar' . \Auth::user()->id, \Config::get('app.locale'))=="ar")
+                        fa-chevron-left
+                        @else
+                        fa-chevron-right
+                        @endif
+"></i></button>
         </span>
     </div>
     {{--<a href="{{ route('ticket.create') }}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></a>--}}

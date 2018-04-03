@@ -29,7 +29,7 @@ class PriorityController extends Controller
 
         Priority::create($request->all());
 
-        flash('Priority has been saved', 'success');
+        flash(t('Priority has been saved'), 'success');
 
         return \Redirect::route('admin.priority.index');
     }
@@ -50,7 +50,7 @@ class PriorityController extends Controller
 
         $priority->update($request->all());
 
-        flash('Priority has been saved', 'success');
+        flash(t('Priority has been saved'), 'success');
 
         return \Redirect::route('admin.priority.index');
     }
@@ -59,7 +59,7 @@ class PriorityController extends Controller
     {
         $priority->delete();
 
-        flash('Priority has been deleted', 'success');
+        flash(t('Priority has been deleted'), 'success');
 
         return \Redirect::route('admin.priority.index');
     }
