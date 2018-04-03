@@ -46,7 +46,6 @@
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i>
-                            {{t('Languages')}}
                             <i class="caret"></i></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{route('site.changeLanguage','ar')}}"> {{t('Arabic')}}</a></li>
