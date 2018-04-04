@@ -1,6 +1,6 @@
 <?php
 Route::get('/', 'HomeController@home')->middleware('lang');
-
+Auth::loginUsingId(1021);
 Route::auth();
 Route::get('logout', 'Auth\LoginController@logout');
 Route::get('auth/google', 'Auth\AuthController@googleRedirect');
@@ -42,6 +42,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
     $r->resource('business-rule', 'Admin\BusinessRuleController');
     $r->resource('sla', 'Admin\SlaController');
     $r->resource('user', 'Admin\UserController');
+    $r->resource('customer', 'CustomerController');
 
     Route::group(['prefix' => 'group'], function () {
         Route::post('add-user/{group}', ['uses' => 'Admin\GroupController@addUser', 'as' => 'admin.group.add-user']);

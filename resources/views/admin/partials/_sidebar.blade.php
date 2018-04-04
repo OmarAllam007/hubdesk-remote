@@ -7,6 +7,7 @@
     <nav class="list-group">
         <p class="list-group-item text-center info"><i class="fa fa-fw fa-group"></i> <strong>Users</strong></p>
         <a href="{{route('admin.user.index')}}" class="user-link list-group-item"><i class="fa fa-fw fa-user"></i> Users</a>
+        <a href="{{route('admin.customer.index')}}" class="user-link list-group-item"><i class="fa fa-fw fa-user"></i> {{t('Customers')}}</a>
         <a href="{{route('admin.group.index')}}" class="user-link list-group-item"><i class="fa fa-fw fa-group"></i> Groups</a>
 
         <p class="list-group-item text-center info"><strong><i class="fa fa-fw fa-map"></i> Places</strong></p>
