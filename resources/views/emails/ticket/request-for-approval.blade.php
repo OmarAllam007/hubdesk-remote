@@ -15,7 +15,7 @@
 </div>
 
 @component('mail::button', ['url' => route('approval.show',$approval->id)])
-    <b style="font-family: 'Fjalla One', sans-serif;">Click here to take action</b>
+    <b class="center-block">Click here to take action</b>
 @endcomponent
 
 @endcomponent
