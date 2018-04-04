@@ -16,6 +16,17 @@
                 </div>
                 <br>
                 <span class="label label-default">Status: {{t(\App\TicketApproval::$statuses[$approval->status])}}</span>
+
+                @if($approval->attachments->count())
+                    <br><br>
+                    <p><strong>Attachments</strong></p>
+                    @foreach($approval->attachments as $attachment)
+                        <ul class="list-unstyled">
+                            <li><a href="{{$attachment->url}}" target="_blank">{{$attachment->display_name}}</a>
+                            </li>
+                        </ul>
+                    @endforeach
+                @endif
             </div>
         </div>
     @endforeach

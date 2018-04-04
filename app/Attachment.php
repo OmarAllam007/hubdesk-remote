@@ -12,8 +12,9 @@ class Attachment extends KModel
 {
     const TICKET_TYPE = 1;
     const TICKET_REPLY_TYPE = 2;
+    const TICKET_APPROVAL_TYPE = 3;
 
-    protected $fillable = ['reference', 'type','path','created_at', 'updated_at'];
+    protected $fillable = ['reference', 'type', 'path', 'created_at', 'updated_at'];
 
     /**
      * @var UploadedFile
@@ -57,8 +58,12 @@ class Attachment extends KModel
         if ($this->type == self::TICKET_TYPE) {
             return $this->reference->id;
         }
-        if($this->type == self::TICKET_REPLY_TYPE){
+        if ($this->type == self::TICKET_REPLY_TYPE) {
             return TicketReply::find($this->reference)->ticket_id;
+        }
+
+        if ($this->type == self::TICKET_APPROVAL_TYPE) {
+            return TicketApproval::find($this->reference)->ticket_id;
         }
 
         return $this->reference->ticket_id;
@@ -68,6 +73,8 @@ class Attachment extends KModel
     {
         if ($this->type == self::TICKET_TYPE) {
             $user = Ticket::find($this->reference)->created_by;
+        } elseif ($this->type == self::TICKET_APPROVAL_TYPE) {
+            $user = TicketApproval::find($this->reference)->created_by;
         } else {
             $user = TicketReply::find($this->reference)->user;
         }
@@ -77,9 +84,9 @@ class Attachment extends KModel
 
     public function getUrlAttribute()
     {
-        $basename = str_replace('+',' ',urlencode(basename($this->path)));
+        $basename = str_replace('+', ' ', urlencode(basename($this->path)));
         $dirname = dirname($this->path);
-        $path = $dirname.'/'.$basename;
+        $path = $dirname . '/' . $basename;
         return url('/storage' . $path);
     }
 }
