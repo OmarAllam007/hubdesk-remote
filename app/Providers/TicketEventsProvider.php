@@ -23,7 +23,7 @@ class TicketEventsProvider extends ServiceProvider
         Ticket::created(function (Ticket $ticket) {
             dispatch(new ApplyBusinessRules($ticket));
             dispatch(new ApplySLA($ticket));
-            if($ticket->type == Ticket::TASK_TYPE){
+            if ($ticket->type == Ticket::TASK_TYPE) {
                 dispatch(new NewTaskJob($ticket));
             }
             Attachment::uploadFiles(Attachment::TICKET_TYPE, $ticket->id);
@@ -32,36 +32,39 @@ class TicketEventsProvider extends ServiceProvider
         Ticket::updated(function (Ticket $ticket) {
             dispatch(new ApplySLA($ticket));
         });
-        
+
         Ticket::updating(function (Ticket $ticket) {
             if (!$ticket->stopLog()) {
                 TicketLog::addUpdating($ticket);
             }
         });
 
-        Ticket::saving(function (Ticket $ticket){
+        Ticket::saving(function (Ticket $ticket) {
             $extract_image = new ExtractImages($ticket->description);
             $ticket->description = $extract_image->extract();
         });
 
-        TicketApproval::created(function (TicketApproval $approval){
+
+        TicketApproval::created(function (TicketApproval $approval) {
             $approval->ticket->status_id = 6;
             TicketLog::addApproval($approval);
             $approval->ticket->save();
-            
+
             if ($approval->shouldSend()) {
                 dispatch(new SendApproval($approval));
             }
+
+            Attachment::uploadFiles(Attachment::TICKET_APPROVAL_TYPE, $approval->id);
         });
 
-        TicketApproval::updated(function (TicketApproval $approval){
+        TicketApproval::updated(function (TicketApproval $approval) {
             if (!$approval->ticket->hasPendingApprovals()) {
                 TicketLog::addApprovalUpdate($approval, $approval->status == TicketApproval::APPROVED);
                 $approval->ticket->save();
             }
         });
 
-        TicketApproval::creating(function (TicketApproval $approval){
+        TicketApproval::creating(function (TicketApproval $approval) {
             $extract_image = new ExtractImages($approval->content);
             $approval->content = $extract_image->extract();
         });

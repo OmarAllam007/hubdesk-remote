@@ -63,7 +63,7 @@
 
 @if (Auth::user()->isSupport() && !$ticket->isClosed())
     <section id="approvalForm">
-        {{Form::open(['route' => ['approval.send', $ticket]])}}
+        {{Form::open(['route' => ['approval.send', $ticket],'files' => true])}}
 
         @if ($ticket->hasApprovalStages())
             <div class="row">
@@ -115,6 +115,24 @@
             </div>
         @endif
 
+        <div class="row">
+            <div class="col-md-4">
+                <table class="listing-table table-condensed">
+                    <thead>
+                    <tr>
+                        <th>{{t('Attachments')}}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="col-md-10">
+                            <input type="file" class="form-control input-xs" name="attachments[]" multiple>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
         <div class="form-group">
             <button type="submit" class="btn btn-success"><i class="fa fa-check-circle"></i> {{t('Send')}}</button>
         </div>
