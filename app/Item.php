@@ -41,16 +41,11 @@ class Item extends KModel
     {
         $items = $query->with('subcategory')
             ->with('subcategory.category')
-            ->get();
+            ->get()->map(function ($item){
+                $item->name = "{$item->subcategory->category->name} > {$item->subcategory->name} > {$item->name}";
+                return $item;
+            });
 
-        $list = [];
-
-        foreach ($items as $item) {
-            $list[$item->id] = "{$item->subcategory->category->name} > {$item->subcategory->name} > {$item->name}";
-        }
-
-        asort($list);
-
-        return collect($list);
+        return $items->sortBy('name');
     }
 }
