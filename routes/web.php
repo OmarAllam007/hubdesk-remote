@@ -1,7 +1,6 @@
 <?php
 Route::get('/', 'HomeController@home')->middleware('lang');
-Auth::loginUsingId(1021);
-Route::auth();
+ qRoute::auth();
 Route::get('logout', 'Auth\LoginController@logout');
 Route::get('auth/google', 'Auth\AuthController@googleRedirect');
 Route::get('auth/google/continue', 'Auth\AuthController@googleHandle');
