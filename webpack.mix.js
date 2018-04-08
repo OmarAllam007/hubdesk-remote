@@ -11,21 +11,18 @@ const { mix } = require('laravel-mix');
  |
  */
 
-<<<<<<< HEAD
  // mix.sass('resources/assets/sass/app.scss', 'public/css')
       mix.js('resources/assets/js/app.js', 'public/js')
 
-=======
-mix.sass('resources/assets/sass/app.scss', 'public/css')
+// mix.sass('resources/assets/sass/app.scss', 'public/css')
 //       .js('resources/assets/js/app.js', 'public/js')
 //       .js('resources/assets/js/Report/index.js', 'public/js/report.js')
 //       .js('resources/assets/js/ticket-index.js', 'public/js')
-//       .js('resources/assets/js/ticket-form.js', 'public/js')
-//       .js('resources/assets/js/ticket.js', 'public/js')
-//       .js('resources/assets/js/criteria.js', 'public/js')
-//       .js('resources/assets/js/business-rules.js', 'public/js')
+      .js('resources/assets/js/ticket-form.js', 'public/js')
+      .js('resources/assets/js/ticket.js', 'public/js')
+      .js('resources/assets/js/criteria.js', 'public/js')
+      .js('resources/assets/js/business-rules.js', 'public/js')
 //       .js('resources/assets/js/task.js', 'public/js')
 //       .js('resources/assets/js/escalation.js', 'public/js');
 // mix.js('resources/assets/js/ticket-note.js', 'public/js');
->>>>>>> 62b4b897ebe4b1dd886874a0333a7a4abf5595bb
 // mix.js('resources/assets/js/Task.vue', 'public/js/tasks.js');
