@@ -33,6 +33,7 @@ window.app = new Vue({
             if (this.subcategory) {
                 jQuery.get(`/list/item/${this.subcategory}`).then(response => {
                     this.items = response;
+                    console.log(this.items)
                 });
 
                 if (withFields) this.loadCustomFields();

@@ -1,7 +1,7 @@
 {
-<<<<<<< HEAD
+    "/js/business-rules.js": "/js/business-rules.js",
+    "/js/criteria.js": "/js/criteria.js",
+    "/js/ticket.js": "/js/ticket.js",
+    "/js/ticket-form.js": "/js/ticket-form.js",
     "/js/app.js": "/js/app.js"
-=======
-    "/css/app.css": "/css/app.css"
->>>>>>> 62b4b897ebe4b1dd886874a0333a7a4abf5595bb
 }
