@@ -333,6 +333,13 @@ class Ticket extends KModel
         });
     }
 
+    function scopeOpen(Builder $query)
+    {
+        $query->whereHas('status', function (Builder $q) {
+            $q->whereIn('type', [Status::OPEN]);
+        });
+    }
+
     function getStartTimeAttribute()
     {
         $critical = $this->sla->critical ?? false;
