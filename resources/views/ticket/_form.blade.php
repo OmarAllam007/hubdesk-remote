@@ -8,6 +8,14 @@
         </div>
     @endif
 
+    @if (!isset($ticket) && Auth::user()->isSupport())
+        <div class="form-group form-group-sm {{$errors->has('customer_id')? 'has-error' : ''}}">
+            {{ Form::label('customer_id', t('Customer'), ['class' => 'control-label']) }}
+            {{ Form::select('customer_id', App\Customer::selection('Select Customer'), null, ['class' => 'form-control select2']) }}
+            {!! $errors->first('customer_id', '<div class="error-message">:message</div>') !!}
+        </div>
+    @endif
+
     <div class="form-group form-group-sm {{$errors->has('subject')? 'has-error' : ''}}">
         {{ Form::label('subject', t('Subject'), ['class' => 'control-label']) }}
         {{ Form::text('subject', null, ['class' => 'form-control']) }}
@@ -46,7 +54,7 @@
 
                 <select class="form-control" name="subcategory_id" id="subcategory_id" v-model="subcategory">
                     <option value="">Select Subcategory</option>
-                    <option v-for="(name, id) in subcategories" :value="id">@{{name}}</option>
+                    <option v-for="(name, id) in subcategories" :value="name.id">@{{name.name}}</option>
                 </select>
                 @if ($errors->has('subcategory_id'))
                     <div class="error-message">{{$errors->first('subcategory_id')}}</div>

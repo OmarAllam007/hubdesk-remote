@@ -87,6 +87,19 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{t('Customers')}}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="nav nav-pills">
+                            <li><a href="{{route('admin.customer.index')}}">{{t('Customers')}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

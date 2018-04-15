@@ -41,6 +41,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
     $r->resource('business-rule', 'Admin\BusinessRuleController');
     $r->resource('sla', 'Admin\SlaController');
     $r->resource('user', 'Admin\UserController');
+    $r->resource('customer', 'CustomerController');
 
     Route::group(['prefix' => 'group'], function () {
         Route::post('add-user/{group}', ['uses' => 'Admin\GroupController@addUser', 'as' => 'admin.group.add-user']);
