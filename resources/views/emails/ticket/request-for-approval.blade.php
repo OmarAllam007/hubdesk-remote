@@ -13,9 +13,11 @@
 
     <br><br>
 </div>
+<div style="padding-left: 10px;">
+    @component('mail::button', ['url' => route('approval.show',$approval->id)])
+        <b class="center-block">Click here to take action</b>
+    @endcomponent
+</div>
 
-@component('mail::button', ['url' => route('approval.show',$approval->id)])
-    <b class="center-block">Click here to take action</b>
-@endcomponent
 
 @endcomponent
