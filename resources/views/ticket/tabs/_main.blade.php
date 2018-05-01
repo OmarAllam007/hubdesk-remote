@@ -61,7 +61,6 @@
 
 
 @include('ticket.partials._ticket_additional_fields',['ticket'=>$ticket])
-@include('ticket.partials._customer_details',['ticket'=>$ticket])
 @include('ticket.partials._requester_details',['ticket'=>$ticket])
 
 @if($ticket->notes->count())
