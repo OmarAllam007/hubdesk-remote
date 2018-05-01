@@ -5,6 +5,7 @@ namespace App\Console;
 use App\Console\Commands\EscalateTickets;
 use App\Console\Commands\LdapImportUser;
 use App\Console\Commands\SyncByRequest;
+use App\Jobs\CleanErrorLog;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Make\Console\Command\Module;
@@ -40,13 +41,13 @@ class Kernel extends ConsoleKernel
         $schedule->command('ticket:auto-close')
             ->sundays()->mondays()->tuesdays()->wednesdays()->thursdays()
             ->everyThirtyMinutes();
-
         // Calculate time of tickets every minute
         $schedule->command('tickets:calculate-time')->everyMinute();
 
         // Get requests from service desk plus
         $schedule->command('sdp:sync')->everyFiveMinutes();
 
+        $schedule->job(new CleanErrorLog())->daily();
         // Escalate approvals every hour
 //        $schedule->command('approvals:escalate')->hourly();
     }
