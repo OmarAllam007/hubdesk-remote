@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Behaviors\Listable;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -28,7 +27,6 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Branch extends KModel
 {
-    use Listable;
     protected $fillable = ['name', 'business_unit_id', 'location_id'];
 
     public function business_unit()
