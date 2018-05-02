@@ -41,7 +41,8 @@ class ApprovalController extends Controller
 
     public function resend(TicketApproval $ticketApproval, Request $request)
     {
-        $this->dispatch(new SendNewApproval($ticketApproval));
+        \Mail::to($ticketApproval->approver->email)->send(new SendNewApproval($ticketApproval));
+//        $this->dispatch(new SendNewApproval($ticketApproval));
         TicketLog::resendApproval($ticketApproval);
 
         alert()->flash('Approval Info', 'success', [
