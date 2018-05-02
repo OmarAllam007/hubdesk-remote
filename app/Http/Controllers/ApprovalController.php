@@ -7,6 +7,7 @@ use App\Http\Requests\ApprovalRequest;
 use App\Http\Requests\UpdateApprovalRequest;
 use App\Jobs\SendApproval;
 use App\Jobs\UpdateApprovalJob;
+use App\Mail\SendNewApproval;
 use App\Ticket;
 use App\TicketApproval;
 use App\TicketLog;
@@ -40,7 +41,7 @@ class ApprovalController extends Controller
 
     public function resend(TicketApproval $ticketApproval, Request $request)
     {
-        $this->dispatch(new SendApproval($ticketApproval));
+        $this->dispatch(new SendNewApproval($ticketApproval));
         TicketLog::resendApproval($ticketApproval);
 
         alert()->flash('Approval Info', 'success', [
