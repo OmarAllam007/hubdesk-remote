@@ -22,7 +22,8 @@
                 <td>{{$approval->created_at->format('d/m/Y H:i')}}</td>
                 <td>{{$approval->stage}}</td>
                 <td>
-                    <i class="fa fa-lg fa-{{$approval->approval_icon}} text-{{$approval->approval_color}}" aria-hidden="true"></i>
+                    <i class="fa fa-lg fa-{{$approval->approval_icon}} text-{{$approval->approval_color}}"
+                       aria-hidden="true"></i>
                     {{$approval->approval_status}}
                 </td>
                 <td><strong>{{$approval->comment}}</strong></td>
@@ -44,7 +45,7 @@
                 </td>
                 <td>
                     @if ($approval->pending)
-                        @if (Auth::user()->id == $approval->creator_id || Auth::user()->id == $ticket->technician->id)
+                        @if (can('delete',$approval))
                             {{Form::open(['route' => ['approval.destroy', $approval], 'method' => 'delete'])}}
                             <button type="submit" title="Remove approval" class="btn btn-xs btn-warning">
                                 <i class="fa fa-remove"></i>
@@ -90,7 +91,7 @@
                             </option>
                         @endforeach
                     </select>
-{{--                    {{Form::select('approver_id', App\User::orderBy('email')->pluck('email','id') , null, ['class' => 'form-control select2'])}}--}}
+                    {{--                    {{Form::select('approver_id', App\User::orderBy('email')->pluck('email','id') , null, ['class' => 'form-control select2'])}}--}}
                     @if ($errors->has('approver_id'))
                         <div class="error-message">{{$errors->first('approver_id')}}</div>
                     @endif

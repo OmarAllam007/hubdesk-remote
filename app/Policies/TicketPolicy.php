@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Ticket;
+use App\TicketApproval;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -63,6 +64,8 @@ class TicketPolicy
     {
         return $user->isSupport();
     }
+
+
 
     public function modify(User $user, Ticket $task)
     {

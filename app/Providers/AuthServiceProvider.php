@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Auth\KdeskUserProvider;
+use App\Policies\TicketApprovalPolicy;
 use App\Policies\TicketPolicy;
+use App\TicketApproval;
 use App\User;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Contracts\Hashing\Hasher;
@@ -18,6 +20,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'App\Ticket' => TicketPolicy::class,
+        TicketApproval::class => TicketApprovalPolicy::class,
     ];
 
     /**
