@@ -33,7 +33,7 @@ class SendApproval extends Job {
 
         $content = str_replace(['$approver', '$approvalLink'], [$name, $link], $this->approval->content);
 
-        \Mail::send('emails.ticket.approval-request', ['approval' => $this->approval, 'content' => $content], function(Message $msg) {
+        \Mail::send('emails.ticket.request-for-approval', ['approval' => $this->approval, 'content' => $content], function(Message $msg) {
             $msg->to($this->approval->approver->email);
             if(!$this->approval->ticket->sdp_id){
                 $msg->subject('Approval required for request #' . $this->approval->ticket_id);
