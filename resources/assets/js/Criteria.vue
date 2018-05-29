@@ -19,7 +19,7 @@
         </table>
 
 
-        <div class="modal fade selection-modal" tabindex="-1" role="dialog" id="CriteriaSelectionModal">
+        <div class="modal fade selection-modal" role="dialog" id="CriteriaSelectionModal">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -29,7 +29,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <input type="search" class="form-control" v-model="modal.search" placeholder="Filters">
+                            <input type="text"  class="form-control" v-model="modal.search" placeholder="Filters" autofocus>
                         </div>
                         <div class="form-group">
                             <select class="form-control" v-model="modal.selected" multiple="multiple">
@@ -86,10 +86,12 @@
                 this.modal.options = options.options;
                 this.modal.key = options.key;
                 this.modal.selected = [];
+                this.modal.search = ''
                 if (options.selected) {
                     this.modal.selected = options.selected;
                 }
                 jQuery('#CriteriaSelectionModal').modal('show');
+
             });
 
 
@@ -159,7 +161,9 @@
                 return filtered;
             }
         },
+        mounted(){
 
+        },
         components: {Criterion},
     };
 
