@@ -30,7 +30,7 @@ window.app = new Vue({
         },
 
         loadSubcategory(withFields) {
-            if (this.subcategory) {
+            if (this.subcategory && this.subcategory != 0) {
                 jQuery.get(`/list/item/${this.subcategory}`).then(response => {
                     this.items = response;
                     console.log(this.items)
