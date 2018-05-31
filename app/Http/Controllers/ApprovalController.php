@@ -85,7 +85,7 @@ class ApprovalController extends Controller
         if ($ticketApproval->status != -1 && $ticketApproval->hasNext()) {
             $approvals = $ticketApproval->getNextStageApprovals();
             foreach ($approvals as $approval) {
-                $this->dispatch(new SendApproval($approval));
+                \Mail::to($approval->approver->email)->send(new SendNewApproval($approval));
             }
         }
 
