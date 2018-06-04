@@ -31,7 +31,7 @@
                 <td>{{$approval->resend}}</td>
                 <td>
                     @if ($approval->pending && $approval->approver_id == \Auth::user()->id &&  !$ticket->isClosed())
-                        <a href="{{route('approval.show', $approval)}}" class="btn btn-xs btn-info"><i
+                        <a title="Take Action" href="{{route('approval.show', $approval)}}" class="btn btn-xs btn-info"><i
                                     class="fa fa-gavel"></i></a>
                     @endif
                 </td>

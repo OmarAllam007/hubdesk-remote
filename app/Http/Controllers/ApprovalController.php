@@ -99,7 +99,7 @@ class ApprovalController extends Controller
 
     public function destroy(TicketApproval $ticketApproval, Request $request)
     {
-        if ($ticketApproval->creator_id != $request->user()->id || $ticketApproval->status != TicketApproval::PENDING_APPROVAL) {
+        if (!can('delete',$ticketApproval) || $ticketApproval->status != TicketApproval::PENDING_APPROVAL) {
 
             alert()->flash('Approval Sent', 'error', [
                 'text' => 'Action not authorized',
