@@ -87,9 +87,9 @@ class SyncSDPRequest implements ShouldQueue
                 'creator_id' => $createdby->id ?? $requester->id,
                 'subject' => $request['subject'],
                 'description' => $request['description'],
-                'category_id' => $category->id ?? 0,
-                'subcategory_id' => $subcategory->id ?? 0,
-                'item_id' => $item->id ?? 0,
+                'category_id' => $category->id ?? config('services.sdp.default_category'),
+                'subcategory_id' => $subcategory->id ?? null,
+                'item_id' => $item->id ?? null,
                 'sdp_id' => $request['workorderid'],
                 'status_id' => $this->statusMap[$request['status']]
             ];

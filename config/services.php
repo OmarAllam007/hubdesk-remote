@@ -47,6 +47,7 @@ return [
         'admin' => [
             'user' => env('SDP_ADMIN_USER'), 'password' => env('SDP_ADMIN_PASSWORD'),
             'domain' => env('SDP_ADMIN_DOMAIN')
-        ]
+        ],
+        'default_category' => env('SDP_DEFAULT_CATEGORY')
     ]
 ];
