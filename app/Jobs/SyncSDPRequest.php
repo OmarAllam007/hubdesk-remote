@@ -24,7 +24,7 @@ class SyncSDPRequest implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    /** @var int*/
+    /** @var int */
     protected $sdp_id;
 
     /** @var ServiceDeskApi */
@@ -64,6 +64,9 @@ class SyncSDPRequest implements ShouldQueue
 
         $is_template = ($request['is_catalog_template'] ?? '') == "true";
         if (!$is_template) {
+            if (!isset($request['category'])) {
+                return;
+            }
             $category = Category::where('name', $request['category'])->first();
             $subcategory = Subcategory::where('name', $request['subcategory'] ?? '')->first();
             $item = Item::where('name', $request['item'] ?? '')->first();
@@ -106,7 +109,7 @@ class SyncSDPRequest implements ShouldQueue
             $this->syncConversations($ticket);
         } else {
             $ticket = $query->first();
-            if ($ticket->status->name != $request['status'] && in_array($ticket->status_id,[7,8,9])) {
+            if ($ticket->status->name != $request['status'] && in_array($ticket->status_id, [7, 8, 9])) {
                 $status = Status::find($this->statusMap[$request['status']]);
                 $query->update(['status_id' => $status->id]);
             }
@@ -151,12 +154,13 @@ class SyncSDPRequest implements ShouldQueue
         }
     }
 
-    function getReplyAttachments(TicketReply $reply){
-      $client = $this->webLogin();
-      $response = $client->get("/workorder/UpdateNotificationDetails.jsp?woID={$reply->sdp_id}&orgReqID={$reply->ticket->sdp_id}");
+    function getReplyAttachments(TicketReply $reply)
+    {
+        $client = $this->webLogin();
+        $response = $client->get("/workorder/UpdateNotificationDetails.jsp?woID={$reply->sdp_id}&orgReqID={$reply->ticket->sdp_id}");
 
-      $parser = new Crawler();
-      $parser->addHtmlContent($content = $response->getBody()->getContents());
+        $parser = new Crawler();
+        $parser->addHtmlContent($content = $response->getBody()->getContents());
 
         foreach ($parser->filter('.attachfileicon') as $icon) {
             $path = $icon->parentNode->attributes['href']->value;
@@ -168,7 +172,7 @@ class SyncSDPRequest implements ShouldQueue
             }
 
             $client->get($path, ['sink' => $storage_path]);
-            
+
             $attachment = new Attachment();
             $attachment->type = 2;
             $attachment->reference = $reply->id;
@@ -176,6 +180,7 @@ class SyncSDPRequest implements ShouldQueue
             $attachment->save();
         }
     }
+
     /**
      * @param $id
      * @return array
@@ -284,7 +289,7 @@ class SyncSDPRequest implements ShouldQueue
         if (!$businessUnit) {
             return false;
         }
-        $user = User::withTrashed()->where('email',$attributes['emailid'])->first();
+        $user = User::withTrashed()->where('email', $attributes['emailid'])->first();
 
         if (!$user) {
 
