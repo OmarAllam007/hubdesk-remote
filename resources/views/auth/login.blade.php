@@ -1,36 +1,20 @@
 @extends('layouts.app')
 
-@section('stylesheets')
-    <style>
-        .login-form{
-            padding: 50px;
-            border: 1px solid black;
-            margin: 30px;
-            border-radius: 5px;
-        }
-        .login-container{
-            width: 600px;
-            background: white;
-            border-radius: 10px;
-            border: #194F7E 1px solid;
-            overflow: hidden;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content:space-between ;
-            padding: 70px 70px 70px 70px;
-        }
-
-    </style>
-@endsection
-
 @section('header')
     <h4 class="panel-title">Login</h4>
 @endsection
 @section('body')
     <div style="width: 100%;display: flex;justify-content: center;align-items: center;padding: 1px">
-        <div class="login-container">
+        <div class="auth-form">
             <form style="width: 100%;align-content: center" class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                 {!! csrf_field() !!}
+                
+                <div class="form-group">
+                    <div class="col-sm-12 text-center">
+                        <img src="{{asset('images/hubdesk.png')}}" style="width:66.66666667%" alt="">
+                    </div>
+                </div>
+                <br>
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                     <div class="col-sm-12">
                         <input type="text" class="form-control" name="login" id="login" value="{{ old('login') }}" placeholder="Login"  style="width: 100%">
@@ -60,7 +44,7 @@
                 </div>
 
                 <div class="form-group">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 text-center">
                         <button type="submit" class="btn btn-primary">
                             <i class="fa fa-btn fa-sign-in"></i> Login
                         </button>
