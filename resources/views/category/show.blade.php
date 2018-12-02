@@ -1,44 +1,52 @@
 @extends('layouts.app')
 
 @section('header')
-    <h4 class="pull-left">{{t('Categories')}} - {{$category->name}}</h4>
+<h4 class="pull-left">{{t('Categories')}} - {{$category->name}}</h4>
 
-    <div class="pull-right">
-        <a href="{{route('category.index')}}" class="btn btn-sm btn-default"><i class="fa fa-chevron-left"></i></a>
+<form action="" class="form-inline" method="get">
+    <div class="input-group">
+        <input class="form-control input-sm" type="search" name="search" id="searchTerm" placeholder="Search"
+        value="{{Request::query('search', '')}}">
+        <span class="input-group-btn">
+            <button class="btn btn-default btn-sm"><i class="fa fa-search"></i></button>
+        </span>
     </div>
+    {{--<a title="Import from active directory" href="#ImportModal" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-download"></i></a>--}}
+</form>
+<div class="pull-right">
+    <a href="{{route('category.index')}}" class="btn btn-sm btn-default"><i class="fa fa-chevron-left"></i></a>
+</div>
 @endsection
 
 
 @section('body')
-    <section class="col-sm-9">
-        @if ($category->description)
-        @endif
+<section class="col-sm-12">
+    @if ($category->description)
+    @endif
 
-        <p class="clearfix">
-        </p>
+    <p class="clearfix">
+    </p>
 
-        @if ($category->subcategories->count())
-        <table class="listing-table">
-            <thead>
-       
-            </thead>
-            <tbody>
-            @foreach($category->subcategories as $subcategory)
-            <tr>
-                <td><a href="{{route('subcategory.show', $subcategory)}}">{{$subcategory->name}}</a></td>
-                <td>
-                    
-                </td>
-            </tr>
-            @endforeach
-            </tbody>
-        </table>
-        @else
-          {{ Form::open(['route' => 'ticket.store', 'files' => true, 'class' => 'col-sm-12']) }}
+    @if ($category->subcategories->count())
+    <div class="container">
+        <div class=form-group></div>
+        <h3 class=text-center>Subcategories</h3>
+        <hr />
+        @foreach($category->subcategories as $subcategory)
 
-        @include('ticket._form')
+        <p><a href="{{route('subcategory.show', $subcategory)}}" class="btn btn-outlined btn-block btn-primary">{{$subcategory->name}}</a></p>
 
-    {{ Form::close() }}
-        @endif
-    </section>
+        @endforeach
+        <hr />
+
+    </div>
+</div>
+@else
+{{ Form::open(['route' => 'ticket.store', 'files' => true, 'class' => 'col-sm-12']) }}
+
+@include('ticket._form')
+
+{{ Form::close() }}
+@endif
+</section>
 @endsection
