@@ -106,3 +106,15 @@ Route::get('inlineimages/{any?}', 'SdpImagesController@redirect')->where('any', 
 
 Route::resource('error-log', 'ErrorLogController');
 Route::resource('reports', 'ReportsController', ['parameters' => 'singular']);
+
+Route::get('/business-unit', 'BusinessUnitController@index')->name('business-unit.index');
+
+Route::get('/business-unit/{business_unit}', 'BusinessUnitController@show')->name('business-unit.show');
+
+Route::get('/category', 'CategoryController@index')->name('category.index');
+
+Route::get('/category/{category}', 'CategoryController@show')->name('category.show');
+
+Route::get('/subcategory', 'SubcategoryController@index')->name('subcategory.index');
+
+Route::get('/subcategory/{subcategory}', 'SubcategoryController@show')->name('subcategory.show');

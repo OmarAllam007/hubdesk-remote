@@ -29,7 +29,7 @@ class HomeController extends Controller
 
     public function home()
     {
-        $url = '/ticket';
+        $url = '/business-unit';
         if (\Auth::guest()) {
             $url = '/login';
         }

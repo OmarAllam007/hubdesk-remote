@@ -50,4 +50,28 @@ class Category extends KModel
 
         return $query;
     }
+
+    
+    public function businessunit()
+    {
+        return $this->belongsTo(BusinessUnit::class, 'business_unit_id', 'id');
+    }
+
+    public function scopeCanonicalList(Builder $query)
+    {
+        $categories = $query->with('business-unit')
+            ->orderBy('name')->get()
+            ->map(function($category) {
+                $category->name = $category->businessunit->name . ' > ' . $category->name;
+                return $category;
+            });
+        
+        return $categories->sortBy('name');
+    }
+
+    public function canonicalName()
+    {
+        return $this->businessunit->name . ' > ' . $this->name;
+    }
+
 }
