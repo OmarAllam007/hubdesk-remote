@@ -13,7 +13,7 @@ class AddBusinessUnitIdToCategories extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::table('categories', function (Blueprint $table) {
 
             $table->integer('business_unit_id')->unsigned();
 
