@@ -33,7 +33,7 @@
         <div class="container">
 
            <div class=form-group></div>
-           <h3 class=text-center>Categories</h3>
+           <h3 class=text-center>{{t('Categories') }}</h3>
            <hr />
            @foreach($business_unit->categories as $category)
 
@@ -41,11 +41,10 @@
 
            @endforeach
            <hr />
-
        </div>
    </div>
    @else
-   {{ Form::model(['route' => 'ticket.edit', 'files' => true, 'class' => 'col-sm-12']) }}
+{{ Form::open(['route' => 'ticket.store', 'files' => true, 'class' => 'col-sm-12']) }}
 
    @include('ticket._form')
 

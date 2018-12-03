@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('header')
-<h4 class="pull-left">{{t('Categories')}} - {{$category->name}}</h4>
+<h4 class="pull-left">{{t('Categories')}}</h4>
 
 <form action="" class="form-inline" method="get">
     <div class="input-group">
@@ -14,7 +14,6 @@
     {{--<a title="Import from active directory" href="#ImportModal" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-download"></i></a>--}}
 </form>
 <div class="pull-right">
-    <a href="{{route('category.index')}}" class="btn btn-sm btn-default"><i class="fa fa-chevron-left"></i></a>
 </div>
 @endsection
 
@@ -30,7 +29,7 @@
     @if ($category->subcategories->count())
     <div class="container">
         <div class=form-group></div>
-        <h3 class=text-center>Subcategories</h3>
+        <h3 class=text-center>{{t('Subcategories') }}</h3>
         <hr />
         @foreach($category->subcategories as $subcategory)
 
@@ -43,6 +42,7 @@
 </div>
 @else
 {{ Form::open(['route' => 'ticket.store', 'files' => true, 'class' => 'col-sm-12']) }}
+
 
 @include('ticket._form')
 

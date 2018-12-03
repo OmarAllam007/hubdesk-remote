@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('header')
-<h4 class="pull-left">{{t('Categories')}}</h4>
+<h4 class="pull-left">{{t('Categories')}} - {{$category->name}}</h4>
 <form action="" class="form-inline" method="get">
     <div class="input-group">
         <input class="form-control input-sm" type="search" name="search" id="searchTerm" placeholder="Search"
@@ -13,7 +13,7 @@
 </form>
 <div class="pull-right">
 
-    <a href="{{route('business-unit.index')}}" class="btn btn-sm btn-default"><i
+    <a href="{{route('business-unit.show', $category->business_unit_id)}}" class="btn btn-sm btn-default"><i
         class="fa fa-chevron-left"></i></a>
     </div>
     @stop
@@ -26,7 +26,7 @@
 
 
            <div class=form-group></div>
-           <h3 class=text-center>Categories</h3>
+           <h3 class=text-center>{{t('Categories') }}</h3>
            <hr />
 
            @foreach($categories as $category)
@@ -38,9 +38,14 @@
 
        </div>
    </div>
-   @include('partials._pagination', ['items' => $categories])
+   @include('partials._pagination', ['subcategories' => $categories])
    @else
-   <div class="alert alert-info"><i class="fa fa-exclamation-circle"></i> <strong>{{t('No categories found')}}</strong></div>
-   @endif
+ {{ Form::open(['route' => 'ticket.store', 'files' => true, 'class' => 'col-sm-12']) }}
+
+
+  @include('ticket._form')
+ 
+{{ Form::close() }}
+@endif
 </section>
 @stop

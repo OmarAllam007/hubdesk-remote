@@ -35,7 +35,7 @@
         <div class="col-sm-5">
             <div class="form-group form-group-sm {{$errors->has('category_id')? 'has-error' : ''}}">
                 {{ Form::label('category_id', t('Category'), ['class' => 'control-label']) }}
-                {{ Form::select('category_id', App\Category::selection('Select Category'), null, ['class' => 'form-control', 'v-model' => 'category']) }}
+                {{ Form::select('category_id', App\Category::selection('Select Category'), request('category_id'), ['class' => 'form-control', 'v-model' => 'category']) }}
                 @if ($errors->has('category_id'))
                     <div class="error-message">{{$errors->first('category_id')}}</div>
                 @endif
@@ -134,8 +134,8 @@
 @section('javascript')
     <script>
         var category = '{{Form::getValueAttribute('category_id')}}';
-        var subcategory = '{{Form::getValueAttribute('subcategory_id')}}';
-        var item = '{{Form::getValueAttribute('item_id')}}';
+        var subcategory = '{{Form::getValueAttribute('subcategory_id', request('subcategory_id'))}}';
+        var item = '{{Form::getValueAttribute('item_id',request('item_id'))}}';
     </script>
     <script src="{{asset('/js/ticket-form.js')}}"></script>
     <script src="{{asset('/js/tinymce/tinymce.min.js')}}"></script>

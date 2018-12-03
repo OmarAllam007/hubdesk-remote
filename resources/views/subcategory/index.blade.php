@@ -25,7 +25,7 @@
     <section class="col-sm-9">
         <div class="container">
             <div class=form-group></div>
-            <h3 class=text-center>Subcategories</h3>
+            <h3 class=text-center>{{t('Subcategories') }}</h3>
             <hr />
             @if ($subcategories->total())
 
@@ -40,7 +40,10 @@
 
     @include('partials._pagination', ['items' => $subcategories])
     @else
-    <div class="alert alert-info"><i class="fa fa-exclamation-circle"></i> <strong>{{t('No subcategories found')}}</strong></div>
-    @endif
+{{ Form::open(['route' => 'ticket.store', 'files' => true, 'class' => 'col-sm-12']) }}
+
+   @include('ticket._form')
+
+   {{ Form::close() }}    @endif
 </section>
 @stop

@@ -34,7 +34,7 @@
         <div class="container">
 
            <div class=form-group></div>
-           <h3 class=text-center>Items</h3>
+           <h3 class=text-center>{{t('Items') }}</h3>
            <hr />
 
            @foreach($subcategory->items as $item)
@@ -46,12 +46,7 @@
 
        </div>
    </section>
-   @else
-   {{ Form::open(['route' => 'ticket.store', 'files' => true, 'class' => 'col-sm-12']) }}
-
-   @include('ticket._form')
-
-   {{ Form::close() }}
+  
    @endif
 </section>
 @endsection

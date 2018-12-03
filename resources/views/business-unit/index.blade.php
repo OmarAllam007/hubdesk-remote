@@ -21,16 +21,15 @@
     @if ($businessUnits->total())
 
     <div class="container">
-
         <div class=form-group></div>
-        <h3 class=text-center>Choose a Business Unit for your Ticket</h3>
+        <h3 class=text-center>{{t('Business Unit') }}</h3>
         <hr />
 
         @foreach($businessUnits as $business_unit)
 
         <p><a href="{{route('business-unit.show', $business_unit)}}" class="btn btn-outlined btn-block btn-primary">{{$business_unit->name}}</a></p>
 
-
+        
         @endforeach
         <hr />
 
@@ -38,8 +37,11 @@
 </div>
 
 @else
-<div class="alert alert-info"><i class="fa fa-exclamation-circle"></i> <strong>{{t('No businessUnits found')}}</strong></div>
-@endif
+ {{ Form::model(['route' => 'ticket.edit', 'files' => true, 'class' => 'col-sm-12']) }}
+
+   @include('ticket._form')
+
+   {{ Form::close() }}@endif
 </section>
 @stop
 

@@ -47,7 +47,7 @@ class BusinessUnit extends KModel
         return $query;
     }
 
-        public function categories()
+    public function categories()
     {
         return $this->hasMany(Category::class, 'business_unit_id', 'id');
     }
