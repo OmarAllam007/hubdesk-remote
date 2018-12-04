@@ -9,7 +9,8 @@ use App\Http\Controllers\Controller;
 class CategoryController extends Controller
 {
 
-    protected $rules = ['name' => 'required', 'description' => 'max:500'];
+    protected $rules = ['name' => 'required', 'business_unit_id' => 'required|exists:business_units,id'];
+
 
     public function index()
     {
@@ -18,9 +19,14 @@ class CategoryController extends Controller
         return view('admin.category.index', compact('categories'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return view('admin.category.create');
+        $business_unit_id = 0;
+        if ($request->has('business-unit')) {
+            $business_unit_id = $request->get('business-unit');
+        }
+
+        return view('admin.category.create', compact('business_unit_id'));
     }
 
     public function store(Request $request)

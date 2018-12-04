@@ -2,6 +2,18 @@
     <div class="col-md-6">
         {{csrf_field()}}
 
+        @if (!empty($business_unit_id))
+            {{Form::hidden('business_unit_id', $business_unit_id)}}
+        @else
+            <div class="form-group {{$errors->has('business_unit_id')? 'has-error' : ''}}">
+                {{Form::label('business_unit_id', 'BusinessUnit', ['class' => 'control-label'])}}
+                {{Form::select('business_unit_id', App\BusinessUnit::selection('Select BusinessUnit'), null, ['class' => 'form-control'])}}
+                @if ($errors->has('business_unit_id'))
+                    <div class="error-message">{{$errors->first('business_unit_id')}}</div>
+                @endif
+            </div>
+        @endif
+
         <div class="form-group {{$errors->has('name')? 'has-error' : ''}}">
             {{Form::label('name', 'Name', ['class' => 'control-label'])}}
             {{Form::text('name', null, ['class' => 'form-control'])}}
@@ -17,6 +29,14 @@
                 <div class="error-message">{{$errors->first('description')}}</div>
             @endif
         </div>
+
+        <div class="form-group {{$errors->has('service_cost')? 'has-error' : ''}}">
+            {{Form::label('service_cost', 'Service Cost', ['class' => 'control-label'])}}
+            {{Form::text('service_cost', null, ['class' => 'form-control'])}}
+            @if ($errors->has('service_cost'))
+                <div class="error-message">{{$errors->first('service_cost')}}</div>
+            @endif
+        </div>        
 
         <div class="form-group">
             <input type="checkbox"

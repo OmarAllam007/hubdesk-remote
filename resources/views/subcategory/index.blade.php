@@ -44,6 +44,7 @@
 
    @include('ticket._form')
 
-   {{ Form::close() }}    @endif
+   {{ Form::close() }}   
+    @endif
 </section>
 @stop

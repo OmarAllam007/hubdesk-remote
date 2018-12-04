@@ -14,19 +14,23 @@
     {{--<a title="Import from active directory" href="#ImportModal" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-download"></i></a>--}}
 </form>
 <div class="pull-right">
+
+    <a href="{{route('business-unit.show', $category->business_unit_id)}}" class="btn btn-sm btn-default"><i
+        class="fa fa-chevron-left"></i></a>
+    </div>
+<div class="pull-right">
 </div>
 @endsection
 
 
 @section('body')
 <section class="col-sm-12">
-    @if ($category->description)
-    @endif
-
+ 
     <p class="clearfix">
     </p>
 
     @if ($category->subcategories->count())
+
     <div class="container">
         <div class=form-group></div>
         <h3 class=text-center>{{t('Subcategories') }}</h3>
@@ -35,18 +39,15 @@
 
         <p><a href="{{route('subcategory.show', $subcategory)}}" class="btn btn-outlined btn-block btn-primary">{{$subcategory->name}}</a></p>
 
-        @endforeach
-        <hr />
-
-    </div>
-</div>
-@else
+           @endforeach
+           <hr />
+       </div>
+   @else
 {{ Form::open(['route' => 'ticket.store', 'files' => true, 'class' => 'col-sm-12']) }}
 
+   @include('ticket._form')
 
-@include('ticket._form')
-
-{{ Form::close() }}
-@endif
+   {{ Form::close() }}
+   @endif
 </section>
 @endsection
