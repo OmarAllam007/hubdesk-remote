@@ -42,6 +42,10 @@
    @else
  {{ Form::open(['route' => 'ticket.store', 'files' => true, 'class' => 'col-sm-12']) }}
 
+@if (isset($category->service_cost))
+ <h4>{{t('Service Cost: ' . $category->service_cost . ' SR')}}</h4>
+   <hr />
+@endif
 
   @include('ticket._form')
  

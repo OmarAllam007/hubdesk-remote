@@ -37,7 +37,7 @@
 </div>
 
 @else
- {{ Form::model(['route' => 'ticket.edit', 'files' => true, 'class' => 'col-sm-12']) }}
+ {{ Form::open(['route' => 'ticket.store', 'files' => true, 'class' => 'col-sm-12']) }}
 
    @include('ticket._form')
 

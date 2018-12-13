@@ -12,7 +12,7 @@
                     <div class="form-group form-group-sm {{$errors->has('to')? 'has-error' : ''}}">
                         {{Form::label('to', t('To'), ['class' => 'control-label'])}}
                         <select class="form-control usernames" name="to[]"></select>
-                        @if (count($errors->has('to')))
+                        @if (count($errors)&&count($errors->has('to')))
                             <div class="error-message">
                                 {{ $errors->first() }}
 

@@ -1,3 +1,4 @@
+
 @if ($ticket->replies->count() || $ticket->approvals->count())
     <section class="replies">
 
@@ -50,14 +51,15 @@
 <div id="ReplyForm">
     {{Form::open(['route' => ['ticket.reply', $ticket], 'files' => true])}}
     {{csrf_field()}}
-
+ 
     <div class="row">
         <div class="col-md-6">
             <div class="form-group form-group-sm {{$errors->has('cc')? 'has-error' : ''}}">
                 {{Form::label('reply[cc]', t('Cc'), ['class' => 'control-label'])}}
                 <select class="form-control usernames" name="reply[cc][]">
                 </select>
-                @if (count($errors->has('cc.*')))
+
+                @if (count($errors) && $errors->has('cc.*'))
                     <div class="error-message">
                         {{ $errors->first() }}
 

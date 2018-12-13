@@ -35,16 +35,15 @@
             @endforeach
             <hr />
 
+            @else
+     <p><a href="{{ route('ticket.create') }}" class="btn btn-outlined btn-block btn-primary">{{$subcategory->name}}</a></p>
+
+    @endif
+
         </div>
     </div>
 
     @include('partials._pagination', ['items' => $subcategories])
-    @else
-{{ Form::open(['route' => 'ticket.store', 'files' => true, 'class' => 'col-sm-12']) }}
-
-   @include('ticket._form')
-
-   {{ Form::close() }}   
-    @endif
+    
 </section>
 @stop
