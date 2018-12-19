@@ -33,9 +33,7 @@ window.app = new Vue({
             if (this.subcategory && this.subcategory != 0) {
                 jQuery.get(`/list/item/${this.subcategory}`).then(response => {
                     this.items = response;
-                    console.log(this.items)
                 });
-
                 if (withFields) this.loadCustomFields();
             }
         },
@@ -68,7 +66,7 @@ window.app = new Vue({
 
             let url = `/custom-fields?category=${this.category}&subcategory=${this.subcategory}&item=${this.item}`;
             $.get(url).then(response => {
-                let newFields = $(response.data);
+                let newFields = $(response);
                 for (let id in fieldValues) {
                     const field = newFields.find('#' + id);
                     if (field.attr('type') == 'checkbox') {
@@ -84,11 +82,11 @@ window.app = new Vue({
 
     watch: {
         category() {
-            this.loadCategory(false);
+            this.loadCategory(true);
         },
 
         subcategory() {
-            this.loadSubcategory(false);
+            this.loadSubcategory(true);
         },
 
         item() {
