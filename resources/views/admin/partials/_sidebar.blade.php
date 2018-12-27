@@ -8,6 +8,7 @@
         <p class="list-group-item text-center info"><i class="fa fa-fw fa-group"></i> <strong>Users</strong></p>
         <a href="{{route('admin.user.index')}}" class="user-link list-group-item"><i class="fa fa-fw fa-user"></i> Users</a>
         <a href="{{route('admin.group.index')}}" class="user-link list-group-item"><i class="fa fa-fw fa-group"></i> Groups</a>
+        <a href="{{route('admin.role.index')}}" class="user-link list-group-item"><i class="fa fa-fw fa-group"></i> Roles</a>
 
         <p class="list-group-item text-center info"><strong><i class="fa fa-fw fa-map"></i> Places</strong></p>
         <a href="{{route('admin.region.index')}}" class="list-group-item"><i class="fa fa-fw fa-map"></i> Regions</a>

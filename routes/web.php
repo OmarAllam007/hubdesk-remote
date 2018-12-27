@@ -35,6 +35,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
     $r->resource('item', 'Admin\ItemController');
     $r->resource('status', 'Admin\StatusController');
     $r->resource('group', 'Admin\GroupController');
+    $r->resource('role', 'Admin\RoleController');
     $r->resource('priority', 'Admin\PriorityController');
     $r->resource('urgency', 'Admin\UrgencyController');
     $r->resource('impact', 'Admin\ImpactController');
@@ -45,6 +46,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
     Route::group(['prefix' => 'group'], function () {
         Route::post('add-user/{group}', ['uses' => 'Admin\GroupController@addUser', 'as' => 'admin.group.add-user']);
         Route::delete('remove-user/{group}/{user}', ['uses' => 'Admin\GroupController@removeUser', 'as' => 'admin.group.remove-user']);
+    });
+
+        Route::group(['prefix' => 'role'], function () {
+        Route::post('add-user/{role}', ['uses' => 'Admin\roleController@addUser', 'as' => 'admin.role.add-user']);
+        Route::delete('remove-user/{role}/{user}', ['uses' => 'Admin\roleController@removeUser', 'as' => 'admin.role.remove-user']);
     });
 
     Route::group(['prefix' => 'user'], function () {

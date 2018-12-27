@@ -52,4 +52,9 @@ class BusinessUnit extends KModel
         return $this->hasMany(Category::class, 'business_unit_id', 'id');
     }
 
+    public function roles()
+    {
+        return $this->hasMany(Role::class);
+    }
+
 }

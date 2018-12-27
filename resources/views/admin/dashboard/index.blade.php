@@ -16,6 +16,7 @@
                         <ul class="nav nav-pills">
                             <li><a href="{{route('admin.user.index')}}">{{t('Users')}}</a></li>
                             <li><a href="{{route('admin.group.index')}}">{{t('Groups')}}</a></li>
+                            <li><a href="{{route('admin.role.index')}}">{{t('Roles')}}</a></li>
                         </ul>
                     </div>
                 </div>

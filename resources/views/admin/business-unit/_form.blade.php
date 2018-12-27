@@ -18,6 +18,20 @@
             @endif
         </div>
 
+      <fieldset>
+            <div class="form-group">
+                {{Form::label('role_id', 'Roles', ['class' => 'control-label'])}}
+                {{Form::select('role_id', App\Role::selection(), null, ['class' => 'form-control multiple', 'multiple' => true, 'name' => 'role_id[]'])}}
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <div class="form-group">
+                {{Form::label('user_id', 'Users', ['class' => 'control-label'])}}
+                {{Form::select('user_id', App\User::selection(), null, ['class' => 'form-control multiple', 'multiple' => true, 'name' => 'user_id[]'])}}
+            </div>
+        </fieldset>
+
         <div class="form-group">
             <button class="btn btn-success"><i class="fa fa-check-circle"></i> Submit</button>
         </div>
