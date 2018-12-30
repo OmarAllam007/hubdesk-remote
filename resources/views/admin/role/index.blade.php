@@ -54,4 +54,4 @@
             <div class="alert alert-info"><i class="fa fa-exclamation-circle"></i> <strong>No role found</strong></div>
         @endif
     </section>
-@stop
+@stop 

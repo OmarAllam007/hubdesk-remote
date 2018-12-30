@@ -92,4 +92,4 @@ class RoleController extends Controller
 
         return \Redirect::route('admin.role.show', $role);
     }
-}
+} 

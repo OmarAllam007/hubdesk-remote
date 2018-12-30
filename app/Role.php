@@ -37,4 +37,4 @@ class Role extends Model
 
     use Listable;
 
- }
+ } 
