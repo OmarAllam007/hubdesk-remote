@@ -15,7 +15,7 @@ class AddTimestampsToRolesTable extends Migration
     {
         Schema::table('roles', function (Blueprint $table) {
 
-            $table->timestamps();
+           // $table->timestamps();
 
         });
     }
@@ -27,7 +27,7 @@ class AddTimestampsToRolesTable extends Migration
      */
     public function down()
     {
-         $table->dropColumn('timestamps');
+        // $table->dropColumn('timestamps');
 
     }
 }

@@ -1,5 +1,5 @@
 {{ csrf_field() }}
-<div class="row">
+<div class="row" >
     <div class="col-md-6">
         <div class="form-group {{$errors->has('name')? 'has-error' : ''}}">
             {{ Form::label('name', 'Name', ['class' => 'control-label']) }}
@@ -7,11 +7,6 @@
             @if ($errors->has('name'))
                 <div class="error-message">{{$errors->first('name')}}</div>
             @endif
-        </div>
-
-         <div class="form-group {{$errors->has('users')? 'has-error' : ''}}">
-            {{ Form::label('users', 'Users', ['class' => 'control-label']) }}
-            {{ Form::select('users[]', \App\User::selection(),null, ['class' => 'form-control', 'multiple' => true ,'size'=>12]) }}
         </div>
 
         <div class="form-group">

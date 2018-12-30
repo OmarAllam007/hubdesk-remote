@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\BusinessUnit;
+use App\BusinessUnitRole;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -53,6 +54,18 @@ class BusinessUnitController extends Controller
 
     public function update(BusinessUnit $business_unit, Request $request)
     {
+
+        if(count($request->roles)){
+            foreach ($request->roles as $key=>$role){
+                BusinessUnitRole::create([
+                    'business_unit_id' => $request->id,
+                    'role_id'=>$key,
+                    'user_id'=>$role,
+                ]);
+            }
+        }
+
+
         $this->rules['name'] .= ',' . $business_unit->id;
 
         alert()->flash('Business unit Info', 'error', [
