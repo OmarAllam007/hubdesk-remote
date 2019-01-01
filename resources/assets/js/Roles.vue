@@ -12,11 +12,10 @@
             </tr>
             </thead>
             <tbody>
-            <tr is="Role" v-for="(role, index) in levels" :index="index" :key="index"
-                :role="role"></tr>
+            <tr is="role" v-for="(row, index) in levels" :key="index" :index="index"
+                :role="row"></tr>
             </tbody>
         </table>
-
     </section>
 </template>
 
@@ -26,33 +25,42 @@
 
     export default {
         name: "roles",
-        props:['roles','users'],
+        props: ['roles', 'users', 'bu_id'],
 
-        data(){
-            return {
-                levels:[],
-            }
-        },
-        methods:{
-            addRole(){
+        data() {
+            let levels = [];
 
-
-
-               $('.select2').select2({width: '100%', allowClear: true});
-                this.levels.push({role_id:'',user_id:''});
-            }
-
-    },
-        created() {
-            //   this.levels.push({role_id:'',user_id:''});
-
-            EventBus.$on('removeRole', (index) => {
-                if (this.levels.length > 1) {
-                   this.levels.splice(index,1)
+                if (this.bu_id) {
+                    let roles = this.bu_id.bu_roles;
+                    $.each(roles, (key, role) => {
+                        levels.push({role_id: role.role_id, user_id: role.user_id})
+                    })
                 }
+
+            return { levels }
+
+        },
+        methods: {
+            addRole() {
+                this.levels.push({role_id: '', user_id: ''});
+            }
+
+        },
+        created() {
+
+
+            EventBus.$on('removeRole', (index,level) => {
+
+                    var idx = this.levels.indexOf(level);
+                    console.log(idx);
+
+                        this.levels.splice(idx, 1);
+
+
+
             });
         },
-        components:{Role}
+        components: {Role}
 
     }
 </script>

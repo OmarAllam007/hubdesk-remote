@@ -6,6 +6,7 @@ use App\Attachment;
 use App\ExtractImages;
 use App\Jobs\ApplyBusinessRules;
 use App\Jobs\ApplySLA;
+use App\Jobs\ApprovalLevels;
 use App\Jobs\CalculateTicketTime;
 use App\Jobs\NewTaskJob;
 use App\Jobs\SendApproval;
@@ -28,6 +29,7 @@ class TicketEventsProvider extends ServiceProvider
                 dispatch(new NewTaskJob($ticket));
             }
             Attachment::uploadFiles(Attachment::TICKET_TYPE, $ticket->id);
+            dispatch(new ApprovalLevels($ticket));
         });
 
         Ticket::updated(function (Ticket $ticket) {

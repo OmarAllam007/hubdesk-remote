@@ -27,7 +27,8 @@
         props:['role','index'],
         methods:{
             remove(){
-                EventBus.$emit('removeRole', this.index);
+                // this.$el.remove()
+                EventBus.$emit('removeRole', this.index,this.role);
             }
         }
     }

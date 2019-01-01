@@ -54,6 +54,7 @@ class BusinessUnitController extends Controller
 
     public function update(BusinessUnit $business_unit, Request $request)
     {
+        $business_unit->roles()->delete();
 
         if(count($request->roles)){
             foreach ($request->roles as $key=>$role){
@@ -65,13 +66,13 @@ class BusinessUnitController extends Controller
             }
         }
 
-
         $this->rules['name'] .= ',' . $business_unit->id;
 
         alert()->flash('Business unit Info', 'error', [
             'text' => 'Could not save business unit',
             'timer' => 3000
         ]);
+
         $this->validates($request, null);
 
         $business_unit->update($request->all());

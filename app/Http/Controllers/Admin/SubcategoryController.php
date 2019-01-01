@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\ApprovalLevels;
 use App\Subcategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -31,10 +32,13 @@ class SubcategoryController extends Controller
     public function store(Request $request)
     {
         $this->validates($request, 'Could not save category');
+
         $service_request = isset($request->service_request) ? 1 : 0;
         $data = $request->all();
         $data['service_request'] = $service_request;
         $subcategory = Subcategory::create($data);
+
+        $this->handleLevels($request, $subcategory);
 
         flash('Subcategory has been saved', 'success');
 
@@ -59,6 +63,8 @@ class SubcategoryController extends Controller
         $data['service_request'] = $service_request;
         $subcategory->update($data);
 
+        $this->handleLevels($request, $subcategory);
+
         flash('Subcategory has been saved', 'success');
 
         return \Redirect::route('admin.category.show', $subcategory->category_id);
@@ -71,5 +77,20 @@ class SubcategoryController extends Controller
         flash('Subcategory has been deleted', 'success');
 
         return \Redirect::route('admin.category.show', $subcategory->category_id);
+    }
+
+    private function handleLevels(Request $request, Subcategory $subcategory)
+    {
+        $subcategory->levels()->delete();
+
+        if (count($request->levels)) {
+            foreach ($request->levels as $key => $role) {
+                ApprovalLevels::create([
+                    'type' => 2,
+                    'level_id' => $subcategory->id,
+                    'role_id' => $role,
+                ]);
+            }
+        }
     }
 }

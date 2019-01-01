@@ -29,6 +29,7 @@ class BusinessUnit extends KModel
     use Listable;
 
     protected $fillable = ['name', 'location_id'];
+    protected $appends = ['bu_roles'];
 
     public function location()
     {
@@ -54,7 +55,12 @@ class BusinessUnit extends KModel
 
     public function roles()
     {
-        return $this->belongsToMany(Role::class,'business_unit_roles');
+        return $this->hasMany(BusinessUnitRole::class);
+    }
+
+    public function getBuRolesAttribute()
+    {
+        return $this->roles;
     }
 
 

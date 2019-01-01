@@ -39,6 +39,11 @@ class Category extends KModel
     {
         return $this->morphMany(CustomField::class,'level', 'level');
     }
+
+    function levels(){
+        return $this->hasMany(ApprovalLevels::class,'level_id')->where('type',1);
+    }
+
     public function scopeQuickSearch(Builder $query)
     {
         if (\Request::has('search')) {

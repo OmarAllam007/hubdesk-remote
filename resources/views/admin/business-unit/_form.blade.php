@@ -19,10 +19,11 @@
                     <div class="error-message">{{$errors->first('location_id')}}</div>
                 @endif
             </div>
-
-            <div>
-                <roles :users="{{\App\User::all()}}" :roles="{{\App\Role::all()}}"></roles>
-            </div>
+            <fieldset>
+                <legend>Roles</legend>
+                <roles :users="{{\App\User::orderBy('name')->get()}}" :roles="{{\App\Role::all()}}"
+                       :bu_id="{{isset($business_unit) ? $business_unit : 0}}"></roles>
+            </fieldset>
 
             <div class="form-group">
                 <button class="btn btn-success"><i class="fa fa-check-circle"></i> Submit</button>

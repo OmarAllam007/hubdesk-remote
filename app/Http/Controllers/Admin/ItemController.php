@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\ApprovalLevels;
 use App\Item;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -36,6 +37,7 @@ class ItemController extends Controller
         $data = $request->all();
         $data['service_request']=$service_request;
         $item = Item::create($data);
+        $this->handleLevels($request, $item);
 
         flash('Item has been saved', 'success');
 
@@ -58,7 +60,7 @@ class ItemController extends Controller
         $data = $request->all();
         $data['service_request']=$service_request;
         $item->update($data);
-
+        $this->handleLevels($request, $item);
         flash('Item has been saved', 'success');
 
         return \Redirect::route('admin.subcategory.show', $item->subcategory_id);
@@ -71,5 +73,20 @@ class ItemController extends Controller
         flash('Item has been deleted', 'success');
 
         return \Redirect::route('admin.subcategory.show', $item->subcategory_id);
+    }
+
+    private function handleLevels(Request $request,Item $item)
+    {
+        $item->levels()->delete();
+
+        if (count($request->levels)) {
+            foreach ($request->levels as $key => $role) {
+                ApprovalLevels::create([
+                    'type' => 3,
+                    'level_id' => $item->id,
+                    'role_id' => $role,
+                ]);
+            }
+        }
     }
 }

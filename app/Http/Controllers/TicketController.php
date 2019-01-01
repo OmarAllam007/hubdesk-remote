@@ -40,7 +40,7 @@ class TicketController extends Controller
         return view('ticket.create');
     }
 
-    public function store(TicketRequest $request)
+    public function store(Request $request)
     {
         $ticket = new Ticket($request->all());
 

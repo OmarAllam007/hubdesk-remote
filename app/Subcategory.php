@@ -43,6 +43,10 @@ class Subcategory extends KModel
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
+    function levels(){
+        return $this->hasMany(ApprovalLevels::class,'level_id')->where('type',2);
+    }
+
     public function scopeCanonicalList(Builder $query)
     {
         $subcategories = $query->with('category')

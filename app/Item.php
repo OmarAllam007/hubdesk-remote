@@ -29,19 +29,24 @@ use Illuminate\Database\Eloquent\Builder;
 class Item extends KModel
 {
     use Listable;
-    
-    protected $fillable = ['subcategory_id', 'name', 'description','service_request'];
+
+    protected $fillable = ['subcategory_id', 'name', 'description', 'service_request'];
 
     public function subcategory()
     {
         return $this->belongsTo(Subcategory::class, 'subcategory_id', 'id');
     }
 
+    function levels()
+    {
+        return $this->hasMany(ApprovalLevels::class, 'level_id')->where('type', 3);
+    }
+
     public function scopeCanonicalList(Builder $query)
     {
         $items = $query->with('subcategory')
             ->with('subcategory.category')
-            ->get()->map(function ($item){
+            ->get()->map(function ($item) {
                 $item->name = "{$item->subcategory->category->name} > {$item->subcategory->name} > {$item->name}";
                 return $item;
             });
