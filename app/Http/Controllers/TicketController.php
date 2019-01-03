@@ -38,7 +38,6 @@ class TicketController extends Controller
     public function create()
     {
         return view('ticket.create_ticket.index');
-        //return view('ticket.create');
     }
 
     public function store(Request $request)
