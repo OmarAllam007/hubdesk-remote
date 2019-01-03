@@ -62,6 +62,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/get-users','Admin\UserController@getusers');
     Route::group(['prefix' => 'ticket'], function (\Illuminate\Routing\Router $r) {
+        $r->get('create-new','TicketController@create')->name('ticket.create');
         $r->post('resolution/{ticket}', ['as' => 'ticket.resolution', 'uses' => 'TicketController@resolution']);
         $r->post('edit-resolution/{ticket}', ['as' => 'ticket.edit-resolution', 'uses' => 'TicketController@editResolution']);
         $r->post('note/{ticket}', ['as' => 'ticket.note', 'uses' => 'TicketController@addNote']);
