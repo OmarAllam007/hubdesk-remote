@@ -30,7 +30,7 @@ class TicketReplyObserver
                 $reply->ticket->status_id = 1;
             }
         }
-        if ($reply->user_id == $reply->ticket->technician_id) {
+        if (in_array($reply->user_id, [$reply->ticket->technician_id, $reply->user->isTechnicainSupervisor($reply->ticket)])) {
             $this->handleTechnician($reply);
         }
 
