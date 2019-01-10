@@ -44,7 +44,7 @@ class ApprovalLevels extends Job
 
             $bu->roles()->whereIn('role_id', $levels->toArray())->each(function ($role, $key) {
                 $this->ticket->approvals()->create([
-                    'creator_id' => $this->ticket->technician->id,
+                    'creator_id' => $this->ticket->creator_id,
                     'approver_id' => $role->user->id,
                     'status' => 0,
                     'stage' => $key + 1,

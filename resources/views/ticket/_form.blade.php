@@ -38,8 +38,8 @@
                 {{ Form::select('category_id', App\Category::selection('Select Category'), request('category_id'), ['class' => 'form-control', 'v-model' => 'category']) }}
                 @if ($errors->has('category_id'))
                     <div class="error-message">{{$errors->first('category_id')}}</div>
-                @endif
             </div>
+            @endif
 
             <div class="form-group form-group-sm {{$errors->has('subcategory')? 'has-error' : ''}}">
                 {{ Form::label('subcategory_id', t('Subcategory'), ['class' => 'control-label']) }}
@@ -77,7 +77,6 @@
 
     <hr class="form-divider">
 
-    <div class="row">
         {{--<div class="col-sm-6">
 
 
@@ -124,18 +123,22 @@
                 </div>
             </div>
         @endif
-    </div>
 
-    <div class="form-group">
-        <button class="btn btn-success"><i class="fa fa-check"></i> {{t('Submit')}}</button>
+
+
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group">
+            <button class="btn btn-success"><i class="fa fa-check"></i> {{t('Submit')}}</button>
+        </div>
     </div>
 </div>
-
 @section('javascript')
     <script>
-        var category = '{{Form::getValueAttribute('category_id')}}';
-        var subcategory = '{{Form::getValueAttribute('subcategory_id', request('subcategory_id'))}}';
-        var item = '{{Form::getValueAttribute('item_id',request('item_id'))}}';
+        var category = '{{Form::getValueAttribute('category_id') ? Form::getValueAttribute('category_id') : isset($category) ? $category->id : null}}';
+        var subcategory = '{{request('subcategory_id') ? Form::getValueAttribute('subcategory_id', request('subcategory_id')) :  isset($subcategory) ? $subcategory->id : null}}';
+        var item = '{{request('item_id') ? Form::getValueAttribute('item_id',request('item_id')) :  isset($item) ? $item->id : null}}';
     </script>
     <script src="{{asset('/js/ticket-form.js')}}"></script>
     <script src="{{asset('/js/tinymce/tinymce.min.js')}}"></script>

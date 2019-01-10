@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Http\Requests\ApprovalRequest;
 use App\Http\Requests\UpdateApprovalRequest;
+use App\Jobs\ApplyBusinessRules;
 use App\Jobs\SendApproval;
 use App\Jobs\UpdateApprovalJob;
 use App\Mail\SendNewApproval;
@@ -87,6 +88,10 @@ class ApprovalController extends Controller
             foreach ($approvals as $approval) {
                 \Mail::to($approval->approver->email)->send(new SendNewApproval($approval));
             }
+        }
+
+        if($ticketApproval->status == 1 && !$ticketApproval->hasNext()){
+            dispatch(new ApplyBusinessRules($ticketApproval->ticket));
         }
 
         alert()->flash('Approval Info', 'info', [

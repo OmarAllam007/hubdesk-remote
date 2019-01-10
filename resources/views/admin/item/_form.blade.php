@@ -30,11 +30,20 @@
                 @endif
             </div>
 
+            <div class="form-group {{$errors->has('service_cost')? 'has-error' : ''}}">
+                {{Form::label('service_cost', 'Service Cost', ['class' => 'control-label'])}}
+                {{Form::text('service_cost', 0, ['class' => 'form-control'])}}
+                @if ($errors->has('service_cost'))
+                    <div class="error-message">{{$errors->first('service_cost')}}</div>
+                @endif
+            </div>
+
             <div class="form-group">
                 <input type="checkbox" class="checkbox-tick"
                        id="service_request" name="service_request" @if($item->service_request) checked @endif>
                 <label for="service_request">Is a service request ?</label>
             </div>
+
 
             <div class="form-group">
                 <fieldset>

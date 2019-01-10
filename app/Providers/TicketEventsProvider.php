@@ -23,7 +23,7 @@ class TicketEventsProvider extends ServiceProvider
     public function boot()
     {
         Ticket::created(function (Ticket $ticket) {
-            dispatch(new ApplyBusinessRules($ticket));
+//            dispatch(new ApplyBusinessRules($ticket));
             dispatch(new ApplySLA($ticket));
             if ($ticket->type == Ticket::TASK_TYPE) {
                 dispatch(new NewTaskJob($ticket));

@@ -37,8 +37,10 @@
     <section class="col-sm-12" id="TicketList">
         @include('ticket._search_form')
         @if ($tickets->total())
-            <table class="table table-striped index-table" id="index-table">
-                <thead>
+            <table class="table table-striped index-table" id="index-table" style="  border-collapse: collapse;
+  border-radius: 1em;
+  overflow: hidden;box-shadow: 0 0 3px">
+                <thead style="  padding: 1em;">
                 <tr>
                     <th>{{t('ID')}}</th>
                     <th>{{t('Helpdesk ID')}}</th>

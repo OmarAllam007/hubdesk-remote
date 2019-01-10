@@ -13,6 +13,12 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     @yield('stylesheets')
+    <style>
+        ul.navbar > li:hover{
+            background: #20639c !important;
+            border-radius: 2px;
+        }
+    </style>
 </head>
 <body>
 
