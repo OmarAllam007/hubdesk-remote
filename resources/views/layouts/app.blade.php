@@ -27,7 +27,7 @@
         <div class="container-fluid">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="{{url('/')}}">
+                    <a href="{{route('ticket.create')}}">
                             <i class="fa fa-life-ring"></i> HUBDESK</a>
                 </li>
             </ul>

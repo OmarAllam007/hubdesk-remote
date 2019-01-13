@@ -32,7 +32,7 @@
 
             <div class="form-group {{$errors->has('service_cost')? 'has-error' : ''}}">
                 {{Form::label('service_cost', 'Service Cost', ['class' => 'control-label'])}}
-                {{Form::text('service_cost', 0, ['class' => 'form-control'])}}
+                {{Form::text('service_cost', isset($subcategory) ? $subcategory->service_cost ?: 0 : 0, ['class' => 'form-control'])}}
                 @if ($errors->has('service_cost'))
                     <div class="error-message">{{$errors->first('service_cost')}}</div>
                 @endif
