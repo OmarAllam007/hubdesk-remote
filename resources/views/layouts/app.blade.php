@@ -28,7 +28,7 @@
             @if (!\Auth::guest())
                 <ul class="nav navbar-nav">
                     <li><a href="{{route('ticket.index')}}"><i class="fa fa-ticket"></i> {{t('Tickets')}}</a></li>
-                    {{--<li><a href="{{route('ticket.create')}}"><i class="fa fa-plus"></i> {{t('New request')}}</a></li>--}}
+                    <li><a href="{{route('ticket.create')}}"><i class="fa fa-plus"></i> {{t('New request')}}</a></li>
 
                     @can('reports')
                         <li><a href="{{url('/reports')}}"><i class="fa fa-bar-chart"></i> {{t('Report')}}</a></li>
