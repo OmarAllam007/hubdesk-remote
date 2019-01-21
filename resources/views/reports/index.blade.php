@@ -13,9 +13,9 @@
         <table class="table table-striped table-hover">
             <thead>
             <tr>
-                <th>Report</th>
-                <th>Created By</th>
-                <th>Created at</th>
+                <th>{{t('Report')}}</th>
+                <th>{{t('Created By')}}</th>
+                <th>{{t('Created at')}}</th>
                 <th></th>
             </tr>
             </thead>
@@ -28,8 +28,8 @@
                     <td>{{$report->created_at->format('d/m/Y H:i')}}</td>
                     <td class="col-md-2 col-sm-3">
                         <article class="actions">
-                            <a href="{{route('reports.show', $report)}}"><i class="fa fa-eye"></i> View</a> |
-                            <a href="{{route('reports.edit', $report)}}"><i class="fa fa-edit"></i> Edit</a>
+                            <a href="{{route('reports.show', $report)}}"><i class="fa fa-eye"></i> {{t('View')}}</a> |
+                            <a href="{{route('reports.edit', $report)}}"><i class="fa fa-edit"></i> {{t('Edit')}}</a>
                         </article>
                     </td>
                 </tr>

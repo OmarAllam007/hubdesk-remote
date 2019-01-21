@@ -1,13 +1,13 @@
 <div class="col-sm-3">
     <div class="form-group">
         <a href="{{route('reports.create')}}" class="btn btn-success btn-block">
-            <i class="fa fa-plus"></i> Create Report
+            <i class="fa fa-plus"></i> {{t('Create Report')}}
         </a>
     </div>
 
     <div class="panel panel-info">
         <div class="panel-heading">
-            <h4 class="panel-title">Folders</h4>
+            <h4 class="panel-title">{{t('Folders')}}</h4>
         </div>
 
         <section class="list-group">

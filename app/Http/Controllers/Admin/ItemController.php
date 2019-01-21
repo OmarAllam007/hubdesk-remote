@@ -37,7 +37,7 @@ class ItemController extends Controller
         $data['service_request']=$service_request;
         $item = Item::create($data);
 
-        flash('Item has been saved', 'success');
+        flash(t('Item has been saved'), 'success');
 
         return \Redirect::route('admin.subcategory.show', $item->subcategory_id);
     }
@@ -59,7 +59,7 @@ class ItemController extends Controller
         $data['service_request']=$service_request;
         $item->update($data);
 
-        flash('Item has been saved', 'success');
+        flash(t('Item has been saved'), 'success');
 
         return \Redirect::route('admin.subcategory.show', $item->subcategory_id);
     }
@@ -68,7 +68,7 @@ class ItemController extends Controller
     {
         $item->delete();
 
-        flash('Item has been deleted', 'success');
+        flash(t('Item has been deleted'), 'success');
 
         return \Redirect::route('admin.subcategory.show', $item->subcategory_id);
     }

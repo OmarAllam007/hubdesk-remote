@@ -25,9 +25,9 @@
         <table class="listing-table">
             <thead>
             <tr>
-                <th>Name</th>
-                <th>Region</th>
-                <th>Actions</th>
+                <th>{{t('Name')}}</th>
+                <th>{{t('Region')}}</th>
+                <th>{{t('Actions')}}</th>
             </tr>
             </thead>
             <tbody>

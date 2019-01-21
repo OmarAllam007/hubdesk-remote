@@ -4,7 +4,7 @@
         <tr>
             <th>{{t('Sent to')}}</th>
             <th>{{t('By')}}</th>
-            <th>{{'Sent at'}}</th>
+            <th>{{t('Sent at')}}</th>
             <th>{{t('Stage')}}</th>
             <th>{{t('Status')}}</th>
             <th>{{t('Comment')}}</th>
@@ -111,7 +111,7 @@
         @if ($ticket->approvals->count())
             <div class="checkbox">
                 <label>
-                    {{Form::checkbox('add_stage')}} Add approval in a new stage
+                    {{Form::checkbox('add_stage')}} {{t('Add approval in a new stage')}}
                 </label>
             </div>
         @endif

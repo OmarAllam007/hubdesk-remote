@@ -1,17 +1,17 @@
 <ul class="list-group panel-design ticket-description">
     <li class="list-group-item created-log">
         @if(!$ticket->isTask())
-            <strong>{{t('Ticket created by')}}  {{$ticket->created_by->name}} at {{$ticket->created_at->format('d/m/Y H:i')}}</strong>
+            <strong>{{t('Ticket created by')}}  {{$ticket->created_by->name}} {{t('at')}} {{$ticket->created_at->format('d/m/Y H:i')}}</strong>
         @else
-            <strong>{{t('Task created by')}}  {{$ticket->created_by->name}} at {{$ticket->created_at->format('d/m/Y H:i')}}</strong>
+            <strong>{{t('Task created by')}}  {{$ticket->created_by->name}} {{t('at')}} {{$ticket->created_at->format('d/m/Y H:i')}}</strong>
         @endif
     </li>
     @foreach ($ticket->logs as $log)
         <li class="list-group-item {{$log->color_type}}">
             @if ($log->type == \App\TicketLog::AUTO_CLOSE)
-                <strong>Ticket has been closed by the system</strong>
+                <strong>{{t('Ticket has been closed by the system')}}</strong>
             @elseif($log->type == \App\TicketLog::ESCALATION)
-                <strong>Ticket has been Escalated to {{$log->user->name}}</strong>
+                <strong>{{T('Ticket has been Escalated to')}} {{$log->user->name}}</strong>
             @else
                 <strong>{{t($ticket->isTask() ? 'Task '.$log->type_action.' by' :'Ticket '.$log->type_action.' by')}}   {{$log->user->name}}
                     {{t('at')}} {{$log->created_at->format('d/m/Y H:i')}}</strong>

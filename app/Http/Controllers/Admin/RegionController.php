@@ -28,7 +28,7 @@ class RegionController extends Controller
 
         Region::create($request->all());
 
-        flash('Region has been saved', 'success');
+        flash(t('Region has been saved'), 'success');
 
         return \Redirect::route('admin.region.index');
     }
@@ -49,7 +49,7 @@ class RegionController extends Controller
 
         $region->update($request->all());
 
-        flash('Region has been saved', 'success');
+        flash(t('Region has been saved'), 'success');
 
         return \Redirect::route('admin.region.index');
     }
@@ -58,7 +58,7 @@ class RegionController extends Controller
     {
         $region->delete();
 
-        flash('Region has been deleted', 'success');
+        flash(t('Region has been deleted'), 'success');
 
         return \Redirect::route('admin.region.index');
     }

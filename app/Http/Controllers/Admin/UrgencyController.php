@@ -29,7 +29,7 @@ class UrgencyController extends Controller
 
         Urgency::create($request->all());
 
-        flash('Urgency has been saved', 'success');
+        flash(t('Urgency has been saved'), 'success');
 
         return \Redirect::route('admin.urgency.index');
     }
@@ -50,7 +50,7 @@ class UrgencyController extends Controller
 
         $urgency->update($request->all());
 
-        flash('Urgency has been saved', 'success');
+        flash(t('Urgency has been saved'), 'success');
 
         return \Redirect::route('admin.urgency.index');
     }
@@ -59,7 +59,7 @@ class UrgencyController extends Controller
     {
         $urgency->delete();
 
-        flash('Urgency has been deleted', 'success');
+        flash(t('Urgency has been deleted'), 'success');
 
         return \Redirect::route('admin.urgency.index');
     }

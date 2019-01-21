@@ -28,7 +28,7 @@ class DepartmentController extends Controller
 
         Department::create($request->all());
 
-        flash('Department has been saved', 'success');
+        flash(t('Department has been saved'), 'success');
 
         return \Redirect::route('admin.department.index');
     }
@@ -49,7 +49,7 @@ class DepartmentController extends Controller
 
         $department->update($request->all());
 
-        flash('Department has been saved', 'success');
+        flash(t('Department has been saved'), 'success');
 
         return \Redirect::route('admin.department.index');
     }
@@ -58,7 +58,7 @@ class DepartmentController extends Controller
     {
         $department->delete();
 
-        flash('Department has been deleted', 'success');
+        flash(t('Department has been deleted'), 'success');
 
         return \Redirect::route('admin.department.index');
     }

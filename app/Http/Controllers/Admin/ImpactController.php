@@ -29,7 +29,7 @@ class ImpactController extends Controller
 
         Impact::create($request->all());
 
-        flash('Impact has been saved', 'success');
+        flash(t('Impact has been saved'), 'success');
 
         return \Redirect::route('admin.impact.index');
     }
@@ -50,7 +50,7 @@ class ImpactController extends Controller
 
         $impact->update($request->all());
 
-        flash('Impact has been saved', 'success');
+        flash(t('Impact has been saved'), 'success');
 
         return \Redirect::route('admin.impact.index');
     }
@@ -59,7 +59,7 @@ class ImpactController extends Controller
     {
         $impact->delete();
 
-        flash('Impact has been deleted', 'success');
+        flash(t('Impact has been deleted'), 'success');
 
         return \Redirect::route('admin.impact.index');
     }

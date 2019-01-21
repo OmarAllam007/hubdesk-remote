@@ -21,7 +21,6 @@ class ListController extends Controller
     public function subcategory($cat_id = false)
     {
         $query = Subcategory::query();
-
         if ($cat_id) {
             return $query->orderBy('name')->where('category_id', $cat_id)->get(['name', 'id']);
         }
@@ -97,10 +96,9 @@ class ListController extends Controller
         return Status::orderBy('name')->get(['name', 'id']);
     }
 
-    function technicians($group=false)
+    function technicians($group = false)
     {
         $user_ids = \DB::table('group_user')->where('group_id', $group)->pluck('user_id');
-
         return User::technicians()->whereIn('id', $user_ids)->orderBy('name')->get(['name', 'id']);
     }
 

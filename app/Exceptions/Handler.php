@@ -38,8 +38,8 @@ class Handler extends ExceptionHandler
     {
         parent::report($exception);
 
-        if (!config('app.debug')) {
-            $this->log = ErrorLog::log($exception);
+        if (!config('app.debug') && $this->shouldntReport($exception)) {
+                $this->log = ErrorLog::log($exception);
         }
     }
 

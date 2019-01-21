@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('header')
-    <h4 class="pull-left">Branches</h4>
+    <h4 class="pull-left">{{t('Branches')}}</h4>
     <form action="" class="form-inline" method="get">
         <div class="input-group">
             <input class="form-control input-sm" type="search" name="search" id="searchTerm" placeholder="Search"
@@ -25,10 +25,10 @@
             <table class="listing-table">
                 <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Business Unit</th>
-                    <th>Location</th>
-                    <th>Actions</th>
+                    <th>{{t('Name')}}</th>
+                    <th>{{t('Business Unit')}}</th>
+                    <th>{{t('Location')}}</th>
+                    <th>{{t('Actions')}}</th>
                 </tr>
                 </thead>
                 <tbody>

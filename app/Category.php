@@ -50,4 +50,8 @@ class Category extends KModel
 
         return $query;
     }
+
+    function businessunits(){
+        return $this->belongsToMany(BusinessUnit::class,'category_business_units');
+    }
 }

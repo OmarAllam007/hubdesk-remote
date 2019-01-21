@@ -29,7 +29,7 @@ class StatusController extends Controller
 
         Status::create($request->all());
 
-        flash('Status has been saved', 'success');
+        flash(t('Status has been saved'), 'success');
 
         return \Redirect::route('admin.status.index');
     }
@@ -50,7 +50,7 @@ class StatusController extends Controller
 
         $status->update($request->all());
 
-        flash('Status has been saved', 'success');
+        flash(t('Status has been saved'), 'success');
 
         return \Redirect::route('admin.status.index');
     }
@@ -59,7 +59,7 @@ class StatusController extends Controller
     {
         $status->delete();
 
-        flash('Status has been deleted', 'success');
+        flash(t('Status has been deleted'), 'success');
 
         return \Redirect::route('admin.status.index');
     }

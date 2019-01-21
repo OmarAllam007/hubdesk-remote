@@ -6,11 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>HubDesk</title>
     <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
-    <link rel="stylesheet" href="{{asset('/css/app.css?hubdesk')}}">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mada:400,700">
     {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css">--}}
+    <link rel="stylesheet" href="{{asset('/css/app.css')}}">
 
+    @if(\Session::get('personlized-language-ar' . auth()->id(), config('app.locale')) == "ar")
+        <link rel="stylesheet" href="{{asset('/css/bootstrap-rtl.css')}}">
+    @endif
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     @yield('stylesheets')
 </head>
@@ -38,7 +41,23 @@
                         <li><a href="{{url('/admin')}}"><i class="fa fa-cogs"></i> {{t('Admin')}}</a></li>
                     @endif
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
+
+
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i>
+                            <i class="caret"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{route('site.changeLanguage','ar')}}"> {{t('Arabic')}}</a></li>
+                            <li><a href="{{route('site.changeLanguage','en')}}"> {{t('English')}}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav
+                    @if(\Session::get('personlized-language-ar' . \Auth::user()->id, \Config::get('app.locale'))=="ar")
+                        navbar-left @else navbar-right
+                    @endif">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
                                     class="fa fa-user"></i> {{Auth::user()->name}} <i class="caret"></i></a>
@@ -47,18 +66,6 @@
                         </ul>
                     </li>
                 </ul>
-
-                {{--<ul class="nav navbar-nav navbar-right">--}}
-                    {{--<li class="dropdown">--}}
-                        {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i>--}}
-                            {{--{{t('Languages')}}--}}
-                            {{--<i class="caret"></i></a>--}}
-                        {{--<ul class="dropdown-menu">--}}
-                            {{--<li><a href="{{route('site.changeLanguage','ar')}}"> Arabic</a></li>--}}
-                            {{--<li><a href="{{route('site.changeLanguage','en')}}"> English</a></li>--}}
-                        {{--</ul>--}}
-                    {{--</li>--}}
-                {{--</ul>--}}
             @endif
         </div>
     </nav>
@@ -67,11 +74,11 @@
 <div id="wrapper">
     <main class="container-fluid">
         <div class="row">
-                <div class="title-bar">
-                    <div class="container-fluid title-container">
-                        @yield('header')
-                    </div>
+            <div class="title-bar">
+                <div class="container-fluid title-container">
+                    @yield('header')
                 </div>
+            </div>
             @hasSection('sidebar')
                 @yield('sidebar')
             @endif

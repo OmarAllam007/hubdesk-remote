@@ -25,13 +25,19 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
+
         $this->validates($request, 'Could not save category');
+
         $service_request = isset($request->service_request) ? 1 : 0;
         $data = $request->all();
         $data['service_request'] = $service_request;
-        Category::create($data);
+        $category = Category::create($data);
 
-        flash('Category has been saved', 'success');
+        if ($request['units']) {
+            $category->businessunits()->sync($request['units']);
+        }
+
+        flash(t('Category has been saved'), 'success');
 
         return \Redirect::route('admin.category.index');
     }
@@ -49,11 +55,14 @@ class CategoryController extends Controller
     public function update(Category $category, Request $request)
     {
         $this->validates($request, 'Could not save category');
+        if ($request['units']) {
+            $category->businessunits()->sync($request['units']);
+        }
         $service_request = isset($request->service_request) ? 1 : 0;
         $data = $request->all();
         $data['service_request'] = $service_request;
         $category->update($data);
-        flash('Category has been saved', 'success');
+        flash(t('Category has been saved'), 'success');
         return \Redirect::route('admin.category.index');
     }
 
@@ -61,7 +70,7 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        flash('Category has been deleted', 'success');
+        flash(t('Category has been deleted'), 'success');
 
         return \Redirect::route('admin.category.index');
     }

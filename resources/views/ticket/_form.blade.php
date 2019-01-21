@@ -101,15 +101,18 @@
             <div class="col-sm-6">
                 <div class="form-group form-group-sm {{$errors->has('group_id')? 'has-error' : ''}}">
                     {{ Form::label('group_id', t('Group'), ['class' => 'control-label']) }}
-                    {{ Form::select('group_id', App\Group::support()->selection('Select Group'), null, ['class' => 'form-control']) }}
+                    {{ Form::select('group_id', App\Group::support()->selection('Select Group'), null, ['class' => 'form-control','v-model' => 'group']) }}
                     @if ($errors->has('group_id'))
-                        <div class="error-message">{{$errors->first('group')}}</div>
+                        <div class="error-message">{{$errors->first('group_id')}}</div>
                     @endif
                 </div>
 
                 <div class="form-group form-group-sm {{$errors->has('technician_id')? 'has-error' : ''}}">
                     {{ Form::label('technician_id', t('Technician'), ['class' => 'control-label']) }}
-                    {{ Form::select('technician_id', App\User::technicians()->selection('Select Technician'), null, ['class' => 'form-control']) }}
+                    <select class="form-control" name="technician_id" id="technician_id">
+                        <option value="">Select Technician</option>
+                        <option v-for="(technician , id) in technicians" :value="technician.id">@{{ technician.name }}</option>
+                    </select>
                     @if ($errors->has('technician_id'))
                         <div class="error-message">{{$errors->first('technician_id')}}</div>
                     @endif

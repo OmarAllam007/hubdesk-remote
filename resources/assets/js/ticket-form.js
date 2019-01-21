@@ -17,7 +17,7 @@ window.app = new Vue({
     created() {
         this.loadCategory(false);
         this.loadSubcategory(false)
-        this.loadTechnicians()
+        // this.loadTechnicians()
     },
     methods: {
         loadCategory(withFields) {
@@ -44,6 +44,7 @@ window.app = new Vue({
         loadTechnicians() {
             if (this.group) {
                 jQuery.get(`/list/group-technicians/${this.group}`).then(response => {
+                    console.log(response)
                     this.technicians = response
                 });
             }

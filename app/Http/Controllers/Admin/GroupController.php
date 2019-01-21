@@ -33,7 +33,7 @@ class GroupController extends Controller
             $group->supervisors()->sync($request->supervisors);
         }
 
-        flash('Group has been saved', 'success');
+        flash(t('Group has been saved'), 'success');
 
         return \Redirect::route('admin.group.index');
     }
@@ -58,7 +58,7 @@ class GroupController extends Controller
 
         $group->update($request->all());
 
-        flash('Group has been saved', 'success');
+        flash(t('Group has been saved'), 'success');
 
         return \Redirect::route('admin.group.index');
     }
@@ -67,7 +67,7 @@ class GroupController extends Controller
     {
         $group->delete();
 
-        flash('Group has been deleted', 'success');
+        flash(t('Group has been deleted'), 'success');
 
         return \Redirect::route('admin.group.index');
     }
@@ -78,7 +78,7 @@ class GroupController extends Controller
 
         $group->users()->attach($request->get('user_id'));
 
-        flash('User has been added to group', 'success');
+        flash(t('User has been added to group'), 'success');
 
         return \Redirect::route('admin.group.show', $group);
     }
@@ -87,7 +87,7 @@ class GroupController extends Controller
     {
         $group->users()->detach($user->id);
 
-        flash('User has been removed from group', 'success');
+        flash(t('User has been removed from group'), 'success');
 
         return \Redirect::route('admin.group.show', $group);
     }

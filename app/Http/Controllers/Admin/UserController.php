@@ -28,7 +28,7 @@ class UserController extends Controller
         $user->password = bcrypt($request->get('password'));
         $user->save();
 
-        flash('User has been saved', 'success');
+        flash(t('User has been saved'), 'success');
 
         return \Redirect::route('admin.user.index');
     }
@@ -55,7 +55,7 @@ class UserController extends Controller
 
         $user->update($data);
 
-        flash('User has been saved', 'success');
+        flash(t('User has been saved'), 'success');
 
         return \Redirect::route('admin.user.index');
     }
@@ -64,7 +64,7 @@ class UserController extends Controller
     {
         $user->delete();
 
-        flash('User has been deleted', 'success');
+        flash(t('User has been deleted'), 'success');
 
         return \Redirect::route('admin.user.index');
     }
