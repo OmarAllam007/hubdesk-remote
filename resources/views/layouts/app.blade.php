@@ -11,7 +11,7 @@
     {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css">--}}
     <link rel="stylesheet" href="{{asset('/css/app.css')}}">
 
-    @if(\Session::get('personlized-language-ar' . \Auth::user()->id, \Config::get('app.locale'))=="ar")
+    @if(\Session::get('personlized-language-ar' . auth()->id(), config('app.locale')) == "ar")
         <link rel="stylesheet" href="{{asset('/css/bootstrap-rtl.css')}}">
     @endif
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
