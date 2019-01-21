@@ -46,7 +46,7 @@
 
                 <select class="form-control" name="subcategory_id" id="subcategory_id" v-model="subcategory">
                     <option value="">Select Subcategory</option>
-                    <option v-for="(name, id) in subcategories" :value="id">@{{name}}</option>
+                    <option v-for="(subcategory, id) in subcategories" :value="subcategory.id">@{{subcategory.name}}</option>
                 </select>
                 @if ($errors->has('subcategory_id'))
                     <div class="error-message">{{$errors->first('subcategory_id')}}</div>
@@ -57,7 +57,7 @@
                 {{ Form::label('item_id', t('Item'), ['class' => 'control-label']) }}
                 <select class="form-control" name="item_id" id="item_id" v-model="item">
                     <option value="">Select Item</option>
-                    <option v-for="(name, id) in items" :value="id" v-text="name"></option>
+                    <option v-for="(item, id) in items" :value="item.id" v-text="item.name"></option>
                 </select>
                 @if ($errors->has('item_id'))
                     <div class="error-message">{{$errors->first('item_id')}}</div>
