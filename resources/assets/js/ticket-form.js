@@ -23,6 +23,8 @@ window.app = new Vue({
         loadCategory(withFields) {
             if (this.category) {
                 jQuery.get(`/list/subcategory/${this.category}`).then(response => {
+                    console.log(response)
+
                     this.subcategories = response;
                 });
                 if (withFields) this.loadCustomFields();
@@ -30,11 +32,12 @@ window.app = new Vue({
         },
 
         loadSubcategory(withFields) {
-            if (this.subcategory) {
+            if (this.subcategory && this.subcategory != 0) {
                 jQuery.get(`/list/item/${this.subcategory}`).then(response => {
+                    console.log(response)
                     this.items = response;
                 });
-
+                console.log(this.items)
                 if (withFields) this.loadCustomFields();
             }
         },

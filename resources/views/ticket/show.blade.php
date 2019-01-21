@@ -18,29 +18,35 @@
                 </h4>
             @endif
 
-            @if (Auth::user()->isSupport())
-                @if($ticket->isTask())
-                    <h4>{{t('Request')}}:
-                        <a title="{{ t('Show Original Request') }}" href="{{route('ticket.show',$ticket->request_id)}}"
-                           target="_blank">
-                            #{{ $ticket->request_id }}
-                        </a>
-                    </h4>
-                @endif
-                <div class="btn-toolbar">
+                @if (Auth::user()->isSupport())
+                    @if($ticket->isTask())
+                        <h4>{{t('Request')}}:
+                            <a title="{{ t('Show Original Request') }}"
+                               href="{{route('ticket.show',$ticket->request_id)}}"
+                               target="_blank">
+                                #{{ $ticket->request_id }}
+                            </a>
+                        </h4>
+                    @endif
+                    <div class="btn-toolbar">
 
-                    @can('reassign',$ticket)
-                    <button data-toggle="modal" data-target="#AssignForm" type="button"
-                            class="btn btn-sm btn-primary btn-rounded btn-outlined" title="{{t('Re-assign')}}">
-                        <i class="fa fa-mail-forward"></i> {{t('Re-assign')}}
-                    </button>
-                    @endcan
-
-                    @if(!$ticket->isTask())
-                        <button data-toggle="modal" data-target="#DuplicateForm" type="button"
-                                class="btn btn-sm btn-primary btn-rounded btn-outlined" title="Duplicate">
-                            <i class="fa fa-copy"></i> {{t('Duplicate')}}
-                        </button>
+                        @can('reassign',$ticket)
+                            <button data-toggle="modal" data-target="#AssignForm" type="button"
+                                    class="btn btn-sm btn-info btn-rounded btn-outlined" title="{{t('Re-assign')}}">
+                                <i class="fa fa-mail-forward"></i> {{t('Re-assign')}}
+                            </button>
+                        @endcan
+                        @can('forward',$ticket)
+                            <button data-toggle="modal" data-target="#ForwardForm" type="button"
+                                    class="btn btn-sm btn-primary btn-rounded btn-outlined" title="{{t('Forward')}}">
+                                <i class="fa fa-arrow-circle-right"></i> {{t('Forward')}}
+                            </button>
+                        @endcan
+                        @if(!$ticket->isTask())
+                            <button data-toggle="modal" data-target="#DuplicateForm" type="button"
+                                    class="btn btn-sm btn-primary btn-rounded btn-outlined" title="Duplicate">
+                                <i class="fa fa-copy"></i> {{t('Duplicate')}}
+                            </button>
 
                         <button type="button" class="btn btn-primary btn-sm btn-rounded btn-outlined addNote"
                                 data-toggle="modal" data-target="#ReplyModal" title="{{t('Add Note')}}">

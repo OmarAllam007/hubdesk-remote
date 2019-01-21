@@ -84,4 +84,10 @@ class UserController extends Controller
 
         return \Redirect::back();
     }
+
+    public function getusers()
+    {
+        $search = \request()->query('search');
+        return User::where('email','like','%'.$search.'%')->pluck("email");
+    }
 }

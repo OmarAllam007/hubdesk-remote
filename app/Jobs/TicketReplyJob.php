@@ -37,8 +37,8 @@ class TicketReplyJob extends Job //implements ShouldQueue
             } else {
                 $this->to = [$ticket->requester->email];
             }
-
-        }elseif($this->reply->user_id != $this->reply->ticket->technician_id && $this->reply->user->isTechnician()){
+//            $this->to = [$ticket->requester->email];
+        } elseif ($this->reply->user_id != $this->reply->ticket->technician_id && $this->reply->user->isTechnician()) {
 
             if ($this->reply->ticket->sdp_id) {
                 $this->to = [$ticket->technician->email];
@@ -48,16 +48,18 @@ class TicketReplyJob extends Job //implements ShouldQueue
 
         }
 
-
         \Mail::send('emails.ticket.reply', ['reply' => $this->reply], function (Message $msg) {
             $ticket = $this->reply->ticket;
             $subject = 'Re: Ticket #' . $ticket->id . ' ' . $this->reply->ticket->subject;
             if ($this->reply->ticket->sdp_id) {
                 $subject .= " [Request ##{$this->reply->ticket->sdp_id}##]";
             }
-
+            $cc = request()->get("reply")["cc"] ?? null;
             $msg->subject($subject);
             $msg->to($this->to);
+            if ($cc) {
+                $msg->cc($cc);
+            }
         });
     }
 

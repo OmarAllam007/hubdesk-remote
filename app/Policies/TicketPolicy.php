@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Ticket;
+use App\TicketApproval;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -64,6 +65,8 @@ class TicketPolicy
         return $user->isSupport();
     }
 
+
+
     public function modify(User $user, Ticket $task)
     {
         return in_array($user->id, [$task->technician_id, $task->creator_id, $task->requester_id]) || $user->isTechnicainSupervisor($task);
@@ -84,6 +87,10 @@ class TicketPolicy
 
         return in_array($user->id, [$ticket->technician_id, $ticket->requester_id, $ticket->creator_id])
             || $user->hasGroup($ticket->group) || $isApprover || $isTaskTechnicianOrCreator || $isTicketOwner;
+    }
+
+    public function forward(User $user,Ticket $ticket){
+        return $user->id == $ticket->technician_id || $user->isTechnicainSupervisor($ticket);
     }
 
 }

@@ -33,7 +33,7 @@ class TicketReplyRequest extends Request
 
         return [
             'reply.content' => 'required',
-            'reply.status' => 'check_status'
+            'reply.status' => 'check_status',
         ];
     }
 

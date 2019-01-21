@@ -25,7 +25,7 @@
             <ul class="nav navbar-nav">
                 <li>
                     <a href="{{url('/')}}">
-                        <i class="fa fa-life-ring"></i> HUBDESK-CRM</a>
+                            <i class="fa fa-life-ring"></i> HUBDESK</a>
                 </li>
             </ul>
             @if (!\Auth::guest())

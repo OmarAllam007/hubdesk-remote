@@ -9,7 +9,6 @@
         Ticket ID: #{{link_to_route('ticket.show', $approval->ticket->id, $approval->ticket->id)}}<br/>
         Requested by: {{$approval->created_by->name}}<br/>
         Requested at: {{$approval->created_at->format('d/m/Y H:i')}}<br/>
-        Approval link: {{link_to_route('approval.show', null, $approval->id)}}<br/>
         Content:<br/><br />
 
         <div>
@@ -17,7 +16,7 @@
         </div>
 
         <br><br>
-        To view ticket details please go to {{route('ticket.show', $approval->ticket_id)}}
+        Approval link: <button class="btn btn-primary" href="{{route('approval.show',$approval->id)}}"> Approval Link</button> <br/>
     </div>
 </body>
 </html>

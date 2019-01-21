@@ -160,4 +160,8 @@ class TicketApproval extends KModel
         }
         return '';
     }
+
+    function getAttachmentsAttribute(){
+        return Attachment::where('type',Attachment::TICKET_APPROVAL_TYPE)->where('reference',$this->id)->get();
+    }
 }

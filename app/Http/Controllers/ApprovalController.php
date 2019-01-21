@@ -7,6 +7,7 @@ use App\Http\Requests\ApprovalRequest;
 use App\Http\Requests\UpdateApprovalRequest;
 use App\Jobs\SendApproval;
 use App\Jobs\UpdateApprovalJob;
+use App\Mail\SendNewApproval;
 use App\Ticket;
 use App\TicketApproval;
 use App\TicketLog;
@@ -40,7 +41,8 @@ class ApprovalController extends Controller
 
     public function resend(TicketApproval $ticketApproval, Request $request)
     {
-        $this->dispatch(new SendApproval($ticketApproval));
+        \Mail::to($ticketApproval->approver->email)->send(new SendNewApproval($ticketApproval));
+//        $this->dispatch(new SendNewApproval($ticketApproval));
         TicketLog::resendApproval($ticketApproval);
 
         alert()->flash(t('Approval Info'), 'success', [
@@ -83,7 +85,7 @@ class ApprovalController extends Controller
         if ($ticketApproval->status != -1 && $ticketApproval->hasNext()) {
             $approvals = $ticketApproval->getNextStageApprovals();
             foreach ($approvals as $approval) {
-                $this->dispatch(new SendApproval($approval));
+                \Mail::to($approval->approver->email)->send(new SendNewApproval($approval));
             }
         }
 
@@ -97,7 +99,7 @@ class ApprovalController extends Controller
 
     public function destroy(TicketApproval $ticketApproval, Request $request)
     {
-        if ($ticketApproval->creator_id != $request->user()->id || $ticketApproval->status != TicketApproval::PENDING_APPROVAL) {
+        if (!can('delete',$ticketApproval) || $ticketApproval->status != TicketApproval::PENDING_APPROVAL) {
 
             alert()->flash(t('Approval Sent'), 'error', [
                 'text' => 'Action not authorized',

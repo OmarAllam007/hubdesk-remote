@@ -30,7 +30,7 @@ class TicketReplyObserver
                 $reply->ticket->status_id = 1;
             }
         }
-        if ($reply->user_id == $reply->ticket->technician_id) {
+        if (in_array($reply->user_id, [$reply->ticket->technician_id, $reply->user->isTechnicainSupervisor($reply->ticket)])) {
             $this->handleTechnician($reply);
         }
 
@@ -45,7 +45,6 @@ class TicketReplyObserver
         Attachment::uploadFiles(Attachment::TICKET_REPLY_TYPE, $reply->id);
         dispatch(new TicketReplyJob($reply));
         if ($reply->user_id == $reply->ticket->technician_id) {
-
             if ($reply->attachments->count()) {
                 \Mail::send(new AttachmentsReplyJob($reply->attachments));
             }
@@ -55,7 +54,6 @@ class TicketReplyObserver
     protected function handleTechnician(TicketReply $reply)
     {
         if ($reply->ticket->sdp_id) {
-
             $sdp = new ServiceDeskApi();
             $reply_id = $sdp->addReply($reply);
 

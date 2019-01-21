@@ -33,6 +33,8 @@
                     @endforeach
                 </tbody>
             </table>
+
+            @include('partials._pagination', ['items' => $errorLogs])
         @else
             <div class="alert alert-info">
                 Hoooooray, no errors found 🎉

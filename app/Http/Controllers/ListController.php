@@ -33,7 +33,7 @@ class ListController extends Controller
         $query = Item::query();
 
         if ($subcat_id) {
-            return $query->orderBy('name')->where('subcategory_id', $subcat_id)->selection();
+            return $query->orderBy('name')->where('subcategory_id', $subcat_id)->get(['name', 'id']);
         }
 
         return $query->canonicalList();

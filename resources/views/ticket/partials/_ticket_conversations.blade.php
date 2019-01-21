@@ -9,6 +9,16 @@
                 {!! tidy_repair_string($reply->content, [], 'utf8') !!}
             </div>
             <br>
+            @if($reply->attachments->count())
+                <br><br>
+                <p><strong>Attachments</strong></p>
+                @foreach($reply->attachments as $attachment)
+                    <ul class="list-unstyled">
+                        <li><a href="{{$attachment->url}}" target="_blank">{{$attachment->display_name}}</a>
+                        </li>
+                    </ul>
+                @endforeach
+            @endif
         </div>
     </div>
 @endforeach

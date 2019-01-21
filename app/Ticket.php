@@ -278,7 +278,12 @@ class Ticket extends KModel
                 ->whereIn('reference', $this->replies->pluck('id')->toArray())
                 ->get();
 
+            $approvalAttachments = Attachment::where('type', Attachment::TICKET_APPROVAL_TYPE)
+                ->whereIn('reference', $this->approvals->pluck('id')->toArray())
+                ->get();
+
             $this->attachments = $attachments->merge($replyAttachments);
+            $this->attachments = $attachments->merge($approvalAttachments);
         }
 
         return $this->attachments;
@@ -330,6 +335,13 @@ class Ticket extends KModel
     {
         $query->whereHas('status', function (Builder $q) {
             $q->whereIn('type', [Status::OPEN, Status::PENDING]);
+        });
+    }
+
+    function scopeOpen(Builder $query)
+    {
+        $query->whereHas('status', function (Builder $q) {
+            $q->whereIn('type', [Status::OPEN]);
         });
     }
 
