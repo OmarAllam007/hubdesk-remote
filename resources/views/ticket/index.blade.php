@@ -43,7 +43,7 @@
                 <thead style="  padding: 1em;">
                 <tr>
                     <th>{{t('ID')}}</th>
-                    <th>{{t('Helpdesk ID')}}</th>
+{{--                    <th>{{t('Helpdesk ID')}}</th>--}}
                     <th>{{t('Subject')}}</th>
                     <th>{{t('Requester')}}</th>
                     <th>{{t('Technician')}}</th>
@@ -57,7 +57,7 @@
                 @foreach($tickets as $ticket)
                     <tr>
                         <td><i class="fa fa-{{t($ticket->type_icon)}}" title="{{t($ticket->type_name)}}" aria-hidden="true"></i> <a href="{{ route('ticket.show', $ticket) }}">{{ $ticket->id }}</a></td>
-                        <td><a href="{{ route('ticket.show', $ticket) }}">{{ $ticket->sdp_id ?? ''}}</a></td>
+                        {{--<td><a href="{{ route('ticket.show', $ticket) }}">{{ $ticket->sdp_id ?? ''}}</a></td>--}}
                         <td>
                             @if($ticket->overdue)
                                 <i class="fa fa-flag text-danger" aria-hidden="true" title="SLA violated"></i>

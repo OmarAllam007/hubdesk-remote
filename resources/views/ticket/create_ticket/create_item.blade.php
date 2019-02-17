@@ -38,10 +38,14 @@
                     <a href="{{route('ticket.create-ticket',compact('business_unit','category','subcategory','item'))}}"
                        class="tile">
                         <div class="tile-container"
-                             style="display: flex;align-items: center;justify-content: center;">
-                            <div class="tile-body" style="display: flex;">
-                                <p class="text-center">
+                             style="display: flex;align-items: center;">
+                            <div class="tile-body" style="display: flex;flex-direction: column">
+                                <p class="text-center" style="min-height: 100px">
                                     {{$item->name}}
+                                </p>
+
+                                <p class="text-center">
+                                    ( {{$item->service_cost ?? ''}} )
                                 </p>
                             </div>
                         </div>
