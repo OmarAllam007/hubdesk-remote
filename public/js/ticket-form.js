@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 11);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -92,127 +92,6 @@ module.exports = g;
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(2);
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__AttachmentModal_vue__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__AttachmentModal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__AttachmentModal_vue__);
-
-
-
-window.app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
-    el: '#TicketForm',
-    data: {
-        category: window.category,
-        subcategory: window.subcategory,
-        item: window.item,
-        group: window.group,
-        subcategories: {},
-        items: {},
-        technicians: {},
-        technician_id: window.technician_id
-    },
-
-    created: function created() {
-        this.loadCategory(false);
-        this.loadSubcategory(false);
-        this.loadTechnicians();
-    },
-
-    methods: {
-        loadCategory: function loadCategory(withFields) {
-            var _this = this;
-
-            if (this.category) {
-                jQuery.get('/list/subcategory/' + this.category).then(function (response) {
-                    _this.subcategories = response;
-                });
-                if (withFields) this.loadCustomFields();
-            }
-        },
-        loadSubcategory: function loadSubcategory(withFields) {
-            var _this2 = this;
-
-            if (this.subcategory && this.subcategory != 0) {
-                jQuery.get('/list/item/' + this.subcategory).then(function (response) {
-                    _this2.items = response;
-                });
-                if (withFields) this.loadCustomFields();
-            }
-        },
-        loadTechnicians: function loadTechnicians() {
-            var _this3 = this;
-
-            if (this.group) {
-                jQuery.get('/list/group-technicians/' + this.group).then(function (response) {
-                    _this3.technicians = response;
-                });
-            }
-        },
-        loadItem: function loadItem() {
-            if (this.item) {}
-        },
-        loadCustomFields: function loadCustomFields() {
-            var $ = window.jQuery;
-            var customFieldsContainer = $('#CustomFields');
-            var fieldValues = {};
-
-            customFieldsContainer.find('.cf').each(function (idx, element) {
-                var id = element.id;
-                var type = element.type;
-                if (type == 'checkbox') {
-                    fieldValues[id] = element.checked;
-                } else {
-                    fieldValues[id] = $(element).val();
-                }
-            });
-
-            var url = '/custom-fields?category=' + this.category + '&subcategory=' + this.subcategory + '&item=' + this.item;
-            $.get(url).then(function (response) {
-                var newFields = $(response);
-                for (var id in fieldValues) {
-                    var field = newFields.find('#' + id);
-                    if (field.attr('type') == 'checkbox') {
-                        field.prop('checked', fieldValues[id]);
-                    } else {
-                        field.val(fieldValues[id]);
-                    }
-                }
-                customFieldsContainer.html('').append(newFields);
-            });
-        }
-    },
-
-    watch: {
-        category: function category() {
-            this.loadCategory(true);
-        },
-        subcategory: function subcategory() {
-            this.loadSubcategory(true);
-        },
-        item: function item() {
-            this.loadItem();
-        },
-        group: function group() {
-            this.loadTechnicians();
-        }
-    },
-
-    components: { Attachments: __WEBPACK_IMPORTED_MODULE_1__AttachmentModal_vue___default.a }
-});
-
-/***/ }),
-/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11175,10 +11054,107 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(4).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(3).setImmediate))
 
 /***/ }),
-/* 4 */
+/* 2 */
+/***/ (function(module, exports) {
+
+/* globals __VUE_SSR_CONTEXT__ */
+
+// this module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = injectStyles
+  }
+
+  if (hook) {
+    var functional = options.functional
+    var existing = functional
+      ? options.render
+      : options.beforeCreate
+    if (!functional) {
+      // inject component registration as beforeCreate hook
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    } else {
+      // register for functioal component in vue file
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return existing(h, context)
+      }
+    }
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -11234,7 +11210,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(5);
+__webpack_require__(4);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -11248,7 +11224,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -11438,10 +11414,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(5)))
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -11631,15 +11607,149 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 7 */
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */,
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(12);
+
+
+/***/ }),
+/* 12 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__AttachmentModal_vue__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__AttachmentModal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__AttachmentModal_vue__);
+
+
+
+window.app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
+    el: '#TicketForm',
+    data: {
+        category: window.category,
+        subcategory: window.subcategory,
+        item: window.item,
+        group: window.group,
+        subcategories: {},
+        items: {},
+        technicians: {},
+        technician_id: window.technician_id
+    },
+    mounted: function mounted() {
+        this.loadCategory(true);
+        this.loadSubcategory(true);
+        this.loadItem(true);
+    },
+    created: function created() {
+        this.loadTechnicians();
+    },
+
+    methods: {
+        loadCategory: function loadCategory(withFields) {
+            var _this = this;
+
+            if (this.category) {
+                jQuery.get('/list/subcategory/' + this.category).then(function (response) {
+                    _this.subcategories = response;
+                });
+                if (withFields) this.loadCustomFields();
+            }
+        },
+        loadSubcategory: function loadSubcategory(withFields) {
+            var _this2 = this;
+
+            if (this.subcategory && this.subcategory != 0) {
+                jQuery.get('/list/item/' + this.subcategory).then(function (response) {
+                    _this2.items = response;
+                });
+                if (withFields) this.loadCustomFields();
+            }
+        },
+        loadTechnicians: function loadTechnicians() {
+            var _this3 = this;
+
+            if (this.group) {
+                jQuery.get('/list/group-technicians/' + this.group).then(function (response) {
+                    _this3.technicians = response;
+                });
+            }
+        },
+        loadItem: function loadItem(withFields) {
+            if (this.item && this.item != 0) {
+                if (withFields) this.loadCustomFields();
+            }
+        },
+        loadCustomFields: function loadCustomFields() {
+            var $ = window.jQuery;
+            var customFieldsContainer = $('#CustomFields');
+            var fieldValues = {};
+
+            customFieldsContainer.find('.cf').each(function (idx, element) {
+                var id = element.id;
+                var type = element.type;
+                if (type == 'checkbox') {
+                    fieldValues[id] = element.checked;
+                } else {
+                    fieldValues[id] = $(element).val();
+                }
+            });
+
+            var url = '/custom-fields?category=' + this.category + '&subcategory=' + this.subcategory + '&item=' + this.item;
+            $.get(url).then(function (response) {
+                var newFields = $(response);
+                for (var id in fieldValues) {
+                    var field = newFields.find('#' + id);
+                    if (field.attr('type') == 'checkbox') {
+                        field.prop('checked', fieldValues[id]);
+                    } else {
+                        field.val(fieldValues[id]);
+                    }
+                }
+                // console.log(newFields)
+                customFieldsContainer.html('').append(newFields);
+            });
+        }
+    },
+
+    watch: {
+        category: function category() {
+            this.subcategory = "";
+            this.item = "";
+            this.loadCategory(true);
+        },
+        subcategory: function subcategory() {
+            this.item = "";
+            this.loadSubcategory(true);
+        },
+        item: function item() {
+            this.loadItem(true);
+        },
+        group: function group() {
+            this.loadTechnicians();
+        }
+    },
+
+    components: { Attachments: __WEBPACK_IMPORTED_MODULE_1__AttachmentModal_vue___default.a }
+});
+
+/***/ }),
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(8)(
+var Component = __webpack_require__(2)(
   /* script */
-  __webpack_require__(9),
+  __webpack_require__(14),
   /* template */
-  __webpack_require__(10),
+  __webpack_require__(15),
   /* styles */
   null,
   /* scopeId */
@@ -11671,104 +11781,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 8 */
-/***/ (function(module, exports) {
-
-/* globals __VUE_SSR_CONTEXT__ */
-
-// this module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle
-
-module.exports = function normalizeComponent (
-  rawScriptExports,
-  compiledTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier /* server only */
-) {
-  var esModule
-  var scriptExports = rawScriptExports = rawScriptExports || {}
-
-  // ES6 modules interop
-  var type = typeof rawScriptExports.default
-  if (type === 'object' || type === 'function') {
-    esModule = rawScriptExports
-    scriptExports = rawScriptExports.default
-  }
-
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (compiledTemplate) {
-    options.render = compiledTemplate.render
-    options.staticRenderFns = compiledTemplate.staticRenderFns
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = injectStyles
-  }
-
-  if (hook) {
-    var functional = options.functional
-    var existing = functional
-      ? options.render
-      : options.beforeCreate
-    if (!functional) {
-      // inject component registration as beforeCreate hook
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    } else {
-      // register for functioal component in vue file
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return existing(h, context)
-      }
-    }
-  }
-
-  return {
-    esModule: esModule,
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
-/* 9 */
+/* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11827,7 +11840,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 10 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;

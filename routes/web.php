@@ -1,5 +1,4 @@
 <?php
-Auth::loginUsingId(1021);
 Route::get('/', 'HomeController@home')->middleware('lang');
 Route::auth();
 Route::get('logout', 'Auth\LoginController@logout');
@@ -62,6 +61,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/get-users','Admin\UserController@getusers');
     Route::group(['prefix' => 'ticket'], function (\Illuminate\Routing\Router $r) {
+        $r->get('create-ticket/business-unit/{business_unit}/category/{category}/subcategory/{subcategory}/item/{item}','TicketController@createTicket')->name('ticket.create-ticket');
+        $r->get('create-new','TicketController@create')->name('ticket.create-wizard');
+        $r->get('create-new/business-unit/{business_unit}','TicketController@selectCategory')->name('ticket.create.select_category');
+        $r->get('create-new/business-unit/{business_unit}/category/{category}','TicketController@selectSubcategory')->name('ticket.create.select_subcategory');
+        $r->get('create-new/business-unit/{business_unit}/category/{category}/subcategory/{subcategory}','TicketController@selectItem')->name('ticket.create.select_item');
         $r->post('resolution/{ticket}', ['as' => 'ticket.resolution', 'uses' => 'TicketController@resolution']);
         $r->post('edit-resolution/{ticket}', ['as' => 'ticket.edit-resolution', 'uses' => 'TicketController@editResolution']);
         $r->post('note/{ticket}', ['as' => 'ticket.note', 'uses' => 'TicketController@addNote']);

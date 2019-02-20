@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Http\Requests\ApprovalRequest;
 use App\Http\Requests\UpdateApprovalRequest;
+use App\Jobs\ApplyBusinessRules;
+use App\Jobs\ApplySLA;
 use App\Jobs\SendApproval;
 use App\Jobs\UpdateApprovalJob;
 use App\Mail\SendNewApproval;
@@ -79,14 +81,21 @@ class ApprovalController extends Controller
             $ticketApproval->ticket->status_id = 3;
             $ticketApproval->ticket->save();
         }
-        
-        $this->dispatch(new UpdateApprovalJob($ticketApproval));
+
+        if($ticketApproval->ticket->technician_id){
+            $this->dispatch(new UpdateApprovalJob($ticketApproval));
+        }
 
         if ($ticketApproval->status != -1 && $ticketApproval->hasNext()) {
             $approvals = $ticketApproval->getNextStageApprovals();
             foreach ($approvals as $approval) {
                 \Mail::to($approval->approver->email)->send(new SendNewApproval($approval));
             }
+        }
+
+        if($ticketApproval->status == 1 && !$ticketApproval->hasNext()){
+            dispatch(new ApplyBusinessRules($ticketApproval->ticket));
+            dispatch(new ApplySLA($ticketApproval->ticket));
         }
 
         alert()->flash('Approval Info', 'info', [

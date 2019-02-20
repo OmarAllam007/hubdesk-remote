@@ -13,6 +13,12 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     @yield('stylesheets')
+    <style>
+        ul.navbar > li:hover{
+            background: #20639c !important;
+            border-radius: 2px;
+        }
+    </style>
 </head>
 <body>
 
@@ -21,14 +27,14 @@
         <div class="container-fluid">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="{{url('/')}}">
+                    <a href="{{route('ticket.index')}}">
                             <i class="fa fa-life-ring"></i> HUBDESK</a>
                 </li>
             </ul>
             @if (!\Auth::guest())
                 <ul class="nav navbar-nav">
+                    <li><a href="{{route('ticket.create')}}"><i class="fa fa-plus"></i> {{t('New Ticket')}}</a></li>
                     <li><a href="{{route('ticket.index')}}"><i class="fa fa-ticket"></i> {{t('Tickets')}}</a></li>
-                    {{--<li><a href="{{route('ticket.create')}}"><i class="fa fa-plus"></i> {{t('New request')}}</a></li>--}}
 
                     @can('reports')
                         <li><a href="{{url('/reports')}}"><i class="fa fa-bar-chart"></i> {{t('Report')}}</a></li>

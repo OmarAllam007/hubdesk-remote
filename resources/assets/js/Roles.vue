@@ -3,7 +3,7 @@
         <table class="listing-table table-bordered">
             <thead>
             <tr>
-                <th class="col-md-3">Role</th>
+                <th class="col-md-6">Role</th>
                 <th class="col-md-6">Assign to</th>
                 <th>
                     <button class="btn btn-sm btn-primary pull-right" @click="addRole" type="button"><i
@@ -59,6 +59,8 @@
 
 
             });
+        },
+        mounted(){
         },
         components: {Role}
 

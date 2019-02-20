@@ -13,10 +13,12 @@ window.app = new Vue({
         technicians: {},
         technician_id: window.technician_id,
     },
-
+    mounted() {
+        this.loadCategory(true);
+        this.loadSubcategory(true);
+        this.loadItem(true);
+    },
     created() {
-        this.loadCategory(false);
-        this.loadSubcategory(false)
         this.loadTechnicians()
     },
     methods: {
@@ -45,8 +47,9 @@ window.app = new Vue({
             }
 
         },
-        loadItem() {
-            if (this.item) {
+        loadItem(withFields) {
+            if (this.item && this.item != 0) {
+                if (withFields) this.loadCustomFields();
             }
         },
         loadCustomFields() {
@@ -75,6 +78,7 @@ window.app = new Vue({
                         field.val(fieldValues[id]);
                     }
                 }
+                // console.log(newFields)
                 customFieldsContainer.html('').append(newFields);
             });
         }
@@ -82,15 +86,18 @@ window.app = new Vue({
 
     watch: {
         category() {
+            this.subcategory  = ""
+            this.item = ""
             this.loadCategory(true);
         },
 
         subcategory() {
+            this.item = ""
             this.loadSubcategory(true);
         },
 
         item() {
-            this.loadItem();
+            this.loadItem(true);
         },
 
         group() {

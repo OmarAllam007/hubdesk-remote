@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddBusinessUnitIdToCategories extends Migration
+class UpdateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,8 @@ class AddBusinessUnitIdToCategories extends Migration
     public function up()
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->integer('business_unit_id')->unsigned();
-            $table->foreign('business_unit_id')->references('id')->on('business_units');
+            $table->double('service_cost')->nullabla();
         });
-
     }
 
     /**
@@ -27,6 +25,8 @@ class AddBusinessUnitIdToCategories extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('categories', function (Blueprint $table) {
+            $table->dropColumn('service_cost');
+        });
     }
 }

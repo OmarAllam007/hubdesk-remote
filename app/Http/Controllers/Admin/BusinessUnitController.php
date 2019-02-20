@@ -54,14 +54,15 @@ class BusinessUnitController extends Controller
 
     public function update(BusinessUnit $business_unit, Request $request)
     {
+
         $business_unit->roles()->delete();
 
         if(count($request->roles)){
             foreach ($request->roles as $key=>$role){
                 BusinessUnitRole::create([
                     'business_unit_id' => $request->id,
-                    'role_id'=>$key,
-                    'user_id'=>$role,
+                    'role_id'=>$role['role_id'],
+                    'user_id'=>$role['user_id'],
                 ]);
             }
         }

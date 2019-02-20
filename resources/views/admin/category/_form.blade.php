@@ -31,12 +31,13 @@
                 @endif
             </div>
 
-            <div class="form-group {{$errors->has('service_cost')? 'has-error' : ''}}">
+            <div class="form-group {{$errors->first('service_cost', 'has-error') }}">
                 {{Form::label('service_cost', 'Service Cost', ['class' => 'control-label'])}}
-                {{Form::text('service_cost', null, ['class' => 'form-control'])}}
-                @if ($errors->has('service_cost'))
-                    <div class="error-message">{{$errors->first('service_cost')}}</div>
-                @endif
+                <div class="input-group">
+                    {{Form::text('service_cost', null, ['class' => 'form-control'])}}
+                    <span class="input-group-addon">SAR</span>
+                </div>
+                {!! $errors->first('service_cost', '<div class="error-message">:message</div>') !!}
             </div>
 
             <div class="form-group">

@@ -1,13 +1,13 @@
 <template>
     <tr>
         <td>
-            <select  class="form-control input-sm select2" :name="`roles[${role.role_id}]`" v-model="role.role_id">
+            <select  class="form-control input-sm select2" :name="`roles[${index}][role_id]`" v-model="role.role_id">
                 <option value="">Select Role</option>
                 <option v-for="role in $parent.roles" :value="role.id">{{role.name}}</option>
             </select>
         </td>
         <td>
-            <select  class="form-control input-sm select2" :name="`roles[${role.role_id}]`" v-model="role.user_id">
+            <select  class="form-control input-sm select2" :name="`roles[${index}][user_id]`" v-model="role.user_id">
                 <option value="">Select User</option>
                 <option v-for="user in $parent.users" :value="user.id">{{user.name}}</option>
             </select>
@@ -30,6 +30,9 @@
                 // this.$el.remove()
                 EventBus.$emit('removeRole', this.index,this.role);
             }
+        },
+        mounted(){
+            $('.select2').select2({width: '100%', allowClear: true});
         }
     }
 </script>

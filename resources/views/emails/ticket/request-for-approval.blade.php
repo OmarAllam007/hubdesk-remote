@@ -8,7 +8,7 @@
     Content:<br/><br />
 
     <div>
-        {!! $content !!}
+        {!! $approval->ticket->description !!}
     </div>
 
     <br><br>

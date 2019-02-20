@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 23);
+/******/ 	return __webpack_require__(__webpack_require__.s = 16);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -22321,78 +22321,61 @@ return jQuery;
 
 
 /***/ }),
-/* 10 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-
-
-/* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_0_vue___default.a());
-
-/***/ }),
+/* 10 */,
 /* 11 */,
 /* 12 */,
 /* 13 */,
 /* 14 */,
 /* 15 */,
-/* 16 */,
-/* 17 */,
-/* 18 */,
-/* 19 */,
-/* 20 */,
-/* 21 */,
-/* 22 */,
-/* 23 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(24);
+module.exports = __webpack_require__(17);
 
 
 /***/ }),
-/* 24 */
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Roles_vue__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Roles_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Roles_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ApprovalLevel_vue__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ApprovalLevel_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__ApprovalLevel_vue__);
 
 
 window.jQuery = window.$ = __webpack_require__(9);
 
 window.app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
-    el: '#BusinessRoles',
-    components: { Roles: __WEBPACK_IMPORTED_MODULE_1__Roles_vue___default.a }
+    el: '#Levels',
+    components: { ApprovalLevels: __WEBPACK_IMPORTED_MODULE_1__ApprovalLevel_vue___default.a }
 });
 
 /***/ }),
-/* 25 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(26)
+  __webpack_require__(19)
 }
 var Component = __webpack_require__(2)(
   /* script */
-  __webpack_require__(28),
+  __webpack_require__(21),
   /* template */
-  __webpack_require__(34),
+  __webpack_require__(22),
   /* styles */
   injectStyle,
   /* scopeId */
-  "data-v-da3d7bcc",
+  "data-v-73a9935e",
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/omar/code/hubdesk/resources/assets/js/Roles.vue"
+Component.options.__file = "/Users/omar/code/hubdesk/resources/assets/js/ApprovalLevel.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Roles.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] ApprovalLevel.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -22401,9 +22384,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-da3d7bcc", Component.options)
+    hotAPI.createRecord("data-v-73a9935e", Component.options)
   } else {
-    hotAPI.reload("data-v-da3d7bcc", Component.options)
+    hotAPI.reload("data-v-73a9935e", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -22414,23 +22397,23 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 26 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(27);
+var content = __webpack_require__(20);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(7)("14558167", content, false, {});
+var update = __webpack_require__(7)("722cf5ca", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-da3d7bcc\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Roles.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-da3d7bcc\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Roles.vue");
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-73a9935e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ApprovalLevel.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-73a9935e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ApprovalLevel.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -22440,7 +22423,7 @@ if(false) {
 }
 
 /***/ }),
-/* 27 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(6)(false);
@@ -22448,20 +22431,17 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 28 */
+/* 21 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Role__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Role___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Role__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Bus__ = __webpack_require__(10);
 //
 //
 //
@@ -22483,271 +22463,50 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
-
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: "roles",
-    props: ['roles', 'users', 'bu_id'],
+    name: "approval-levels",
 
+    props: ['approvals', 'roles', 'category'],
     data: function data() {
-        var levels = [];
-
-        if (this.bu_id) {
-            var roles = this.bu_id.bu_roles;
-            $.each(roles, function (key, role) {
-                levels.push({ role_id: role.role_id, user_id: role.user_id });
-            });
-        }
-
-        return { levels: levels };
-    },
-
-    methods: {
-        addRole: function addRole() {
-            this.levels.push({ role_id: '', user_id: '' });
-        }
+        return {
+            levels: []
+        };
     },
     created: function created() {
-        var _this = this;
-
-        __WEBPACK_IMPORTED_MODULE_1__Bus__["a" /* default */].$on('removeRole', function (index, level) {
-
-            var idx = _this.levels.indexOf(level);
-            console.log(idx);
-
-            _this.levels.splice(idx, 1);
-        });
+        if (this.approvals.length) {
+            this.levels = this.approvals;
+        }
     },
     mounted: function mounted() {},
 
-    components: { Role: __WEBPACK_IMPORTED_MODULE_0__Role___default.a }
-
-});
-
-/***/ }),
-/* 29 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(30)
-}
-var Component = __webpack_require__(2)(
-  /* script */
-  __webpack_require__(32),
-  /* template */
-  __webpack_require__(33),
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  "data-v-25a6e429",
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "/Users/omar/code/hubdesk/resources/assets/js/Role.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Role.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-25a6e429", Component.options)
-  } else {
-    hotAPI.reload("data-v-25a6e429", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 30 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(31);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(7)("36865bf4", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-25a6e429\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Role.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-25a6e429\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Role.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 31 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(6)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 32 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Bus__ = __webpack_require__(10);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    name: "Role",
-    props: ['role', 'index'],
     methods: {
-        remove: function remove() {
-            // this.$el.remove()
-            __WEBPACK_IMPORTED_MODULE_0__Bus__["a" /* default */].$emit('removeRole', this.index, this.role);
+        addRole: function addRole() {
+            this.levels.push({ role_id: 0 });
+        },
+        deleteRow: function deleteRow(index, level) {
+            var idx = this.levels.indexOf(level);
+            console.log(idx);
+            if (idx > -1) {
+                this.levels.splice(idx, 1);
+            }
         }
-    },
-    mounted: function mounted() {
-        $('.select2').select2({ width: '100%', allowClear: true });
     }
+
 });
 
 /***/ }),
-/* 33 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_c('select', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.role.role_id),
-      expression: "role.role_id"
-    }],
-    staticClass: "form-control input-sm select2",
-    attrs: {
-      "name": ("roles[" + _vm.index + "][role_id]")
-    },
-    on: {
-      "change": function($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
-          return o.selected
-        }).map(function(o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val
-        });
-        _vm.$set(_vm.role, "role_id", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
-      }
-    }
-  }, [_c('option', {
-    attrs: {
-      "value": ""
-    }
-  }, [_vm._v("Select Role")]), _vm._v(" "), _vm._l((_vm.$parent.roles), function(role) {
-    return _c('option', {
-      domProps: {
-        "value": role.id
-      }
-    }, [_vm._v(_vm._s(role.name))])
-  })], 2)]), _vm._v(" "), _c('td', [_c('select', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.role.user_id),
-      expression: "role.user_id"
-    }],
-    staticClass: "form-control input-sm select2",
-    attrs: {
-      "name": ("roles[" + _vm.index + "][user_id]")
-    },
-    on: {
-      "change": function($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
-          return o.selected
-        }).map(function(o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val
-        });
-        _vm.$set(_vm.role, "user_id", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
-      }
-    }
-  }, [_c('option', {
-    attrs: {
-      "value": ""
-    }
-  }, [_vm._v("Select User")]), _vm._v(" "), _vm._l((_vm.$parent.users), function(user) {
-    return _c('option', {
-      domProps: {
-        "value": user.id
-      }
-    }, [_vm._v(_vm._s(user.name))])
-  })], 2)]), _vm._v(" "), _c('td', [_c('button', {
-    staticClass: "btn btn-sm btn-warning pull-right",
-    attrs: {
-      "type": "button"
-    },
-    on: {
-      "click": function($event) {
-        _vm.remove()
-      }
-    }
-  }, [_c('i', {
-    staticClass: "fa fa-remove"
-  })])])])
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-25a6e429", module.exports)
-  }
-}
-
-/***/ }),
-/* 34 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -22756,10 +22515,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('table', {
     staticClass: "listing-table table-bordered"
   }, [_c('thead', [_c('tr', [_c('th', {
-    staticClass: "col-md-6"
-  }, [_vm._v("Role")]), _vm._v(" "), _c('th', {
-    staticClass: "col-md-6"
-  }, [_vm._v("Assign to")]), _vm._v(" "), _c('th', [_c('button', {
+    staticClass: "col-md-11"
+  }, [_vm._v("Role")]), _vm._v(" "), _c('th', [_c('button', {
     staticClass: "btn btn-sm btn-primary pull-right",
     attrs: {
       "type": "button"
@@ -22769,22 +22526,65 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('i', {
     staticClass: "fa fa-plus-circle"
-  })])])])]), _vm._v(" "), _c('tbody', _vm._l((_vm.levels), function(row, index) {
-    return _c("role", {
+  })])])])]), _vm._v(" "), _c('tbody', _vm._l((_vm.levels), function(level, index) {
+    return _c('tr', {
       key: index,
-      tag: "tr",
       attrs: {
         "index": index,
-        "role": row
+        "level": level
       }
-    })
+    }, [_c('td', [_c('select', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.levels[index].role_id),
+        expression: "levels[index].role_id"
+      }],
+      staticClass: "form-control input-sm select2",
+      attrs: {
+        "name": ("levels[" + index + "]")
+      },
+      on: {
+        "change": function($event) {
+          var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+            return o.selected
+          }).map(function(o) {
+            var val = "_value" in o ? o._value : o.value;
+            return val
+          });
+          _vm.$set(_vm.levels[index], "role_id", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
+        }
+      }
+    }, [_c('option', {
+      attrs: {
+        "value": ""
+      }
+    }, [_vm._v("Select Role")]), _vm._v(" "), _vm._l((_vm.roles), function(role) {
+      return _c('option', {
+        domProps: {
+          "value": role.id
+        }
+      }, [_vm._v(_vm._s(role.name))])
+    })], 2)]), _vm._v(" "), _c('td', [_c('button', {
+      staticClass: "btn btn-sm btn-warning pull-right",
+      attrs: {
+        "type": "button"
+      },
+      on: {
+        "click": function($event) {
+          _vm.deleteRow(index, level)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-remove"
+    })])])])
   }))])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-da3d7bcc", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-73a9935e", module.exports)
   }
 }
 

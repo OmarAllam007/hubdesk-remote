@@ -30,11 +30,16 @@ class Item extends KModel
 {
     use Listable;
 
-    protected $fillable = ['subcategory_id', 'name', 'description', 'service_request'];
+    protected $fillable = ['subcategory_id', 'name', 'description', 'service_request','service_cost'];
 
     public function subcategory()
     {
         return $this->belongsTo(Subcategory::class, 'subcategory_id', 'id');
+    }
+
+    function custom_fields()
+    {
+        return $this->morphMany(CustomField::class,'level', 'level');
     }
 
     function levels()
