@@ -14,10 +14,11 @@ class ApprovalLevels extends Job
 {
 
     private $ticket;
-
+    private $levels;
     public function __construct(Ticket $ticket)
     {
         $this->ticket = $ticket;
+        $this->levels = collect();
     }
 
     /**
@@ -35,14 +36,18 @@ class ApprovalLevels extends Job
             $item = $this->ticket->item;
 
             if ($item && $item->levels->count()) {
-                $levels = $this->getLevels($item);
+                $this->levels = $this->getLevels($item);
             } else if ($subcategory && $subcategory->levels->count()) {
-                $levels = $this->getLevels($subcategory);
-            } else {
-                $levels = $this->getLevels($category);
+                $this->levels = $this->getLevels($subcategory);
+            } else if($category && $category->levels->count()){
+                $this->levels = $this->getLevels($category);
+            }else{
+                dispatch(new ApplySLA($this->ticket));
+                dispatch(new ApplyBusinessRules($this->ticket));
             }
 
-            $bu->roles()->whereIn('role_id', $levels->toArray())->each(function ($role, $key) {
+            
+            $bu->roles()->whereIn('role_id', $this->levels->toArray())->each(function ($role, $key) {
                 $this->ticket->approvals()->create([
                     'creator_id' => $this->ticket->creator_id,
                     'approver_id' => $role->user->id,
