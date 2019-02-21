@@ -46,7 +46,7 @@ class ApprovalLevels extends Job
                 dispatch(new ApplyBusinessRules($this->ticket));
             }
 
-            
+
             $bu->roles()->whereIn('role_id', $this->levels->toArray())->each(function ($role, $key) {
                 $this->ticket->approvals()->create([
                     'creator_id' => $this->ticket->creator_id,

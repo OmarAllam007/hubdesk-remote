@@ -4,6 +4,14 @@
             {{csrf_field()}}
 
             {{Form::hidden('id')}}
+            <div class="form-group {{$errors->has('code')? 'has-errors' : ''}}">
+                {{Form::label('code', 'Code', ['class' => 'control-label'])}}
+                {{Form::text('code', null, ['class' => 'form-control'])}}
+                @if ($errors->has('code'))
+                    <div class="error-message">{{$errors->first('code')}}</div>
+                @endif
+            </div>
+
             <div class="form-group {{$errors->has('name')? 'has-errors' : ''}}">
                 {{Form::label('name', 'Name', ['class' => 'control-label'])}}
                 {{Form::text('name', null, ['class' => 'form-control'])}}

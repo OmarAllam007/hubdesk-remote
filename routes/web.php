@@ -1,4 +1,5 @@
 <?php
+//Auth::loginUsingId(1021);
 Route::get('/', 'HomeController@home')->middleware('lang');
 Route::auth();
 Route::get('logout', 'Auth\LoginController@logout');
@@ -42,6 +43,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
     $r->resource('business-rule', 'Admin\BusinessRuleController');
     $r->resource('sla', 'Admin\SlaController');
     $r->resource('user', 'Admin\UserController');
+    $r->get('users/upload', 'Admin\UserController@showUploadForm')->name('user.upload');
+    $r->post('users/upload', 'Admin\UserController@submitUploadForm')->name('user.submit.upload');
 
     Route::group(['prefix' => 'group'], function () {
         Route::post('add-user/{group}', ['uses' => 'Admin\GroupController@addUser', 'as' => 'admin.group.add-user']);
