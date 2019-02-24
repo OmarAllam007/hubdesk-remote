@@ -1,4 +1,5 @@
 <?php
+//
 //Auth::loginUsingId(1021);
 Route::get('/', 'HomeController@home')->middleware('lang');
 Route::auth();

@@ -57,9 +57,10 @@ class User extends Authenticatable implements CanResetPassword
     protected $fillable = [
         'name', 'email', 'login', 'password', 'location_id', 'location_id', 'business_unit_id',
         'branch_id', 'department_id', 'manager_id', 'vip', 'is_ad', 'phone', 'mobile1', 'mobile2', 'job',
-        'manager_id', 'group_ids', 'role_ids'
+        'manager_id', 'group_ids', 'role_ids', 'employee_id', 'extra_fields'
     ];
 
+    protected $casts = ['extra_fields' => 'array'];
     protected $hidden = [
         'password', 'remember_token',
     ];
@@ -115,7 +116,7 @@ class User extends Authenticatable implements CanResetPassword
 
     public function isTechnicainSupervisor($ticket)
     {
-        if($ticket->technician){
+        if ($ticket->technician) {
             $groups = $ticket->technician->groups;
 
             foreach ($groups as $group) {

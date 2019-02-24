@@ -18,12 +18,17 @@
         <div class="tiles-container">
             @foreach(\App\BusinessUnit::whereHas('categories')->orderBy('name')->get() as $business_unit)
                 <a href="{{route('ticket.create.select_category', $business_unit)}}" class="tile">
-                    <div class="tile-container" style="display: flex;align-items: center;justify-content: center;">
+                    <div class="tile-container" style="display: flex; flex-direction:column;align-items: center;justify-content: center;">
                         {{--<div class="tile-icon" style="">--}}
 {{--                            <img src="{{asset('images/logo.png')}}">--}}
                         {{--</div>--}}
-                        <div class="tile-body">
-                            <p class="text-center">
+                        <div class="tile-body" style="width: 100%;height: 100%;display: flex; flex-direction:column;">
+                            {{--@if($business_unit->logo)--}}
+                            <p class="text-center" style="height: 100px">
+                                <img src="{{asset($business_unit->logo)}}" alt="{{asset($business_unit->logo)}}">
+                            </p>
+                            {{--@endif--}}
+                            <p class="text-center" style="margin-top: 40px">
                                 {{$business_unit->name}}
                             </p>
                         </div>

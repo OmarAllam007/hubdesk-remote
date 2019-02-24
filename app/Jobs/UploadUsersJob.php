@@ -54,24 +54,20 @@ class UploadUsersJob extends Job
                 continue;
             }
 
-            if ($data[19]) {
-                $user = User::where('email', $data[19])->first();
-                //->orWhereRaw("MATCH(name) AGAINST ('+Gohar +Afaq Qurshi' IN BOOLEAN MODE)")
-                if (!$user) {
-                    $username = explode(" ",$data[3]);
-                    $userByEmail = User::whereRaw("MATCH(name) AGAINST ('+$username[0] +$username[1]' IN BOOLEAN MODE)")->first();
+            $user = User::whereNotNull('email')->where('email', $data[19])->first();
 
-                    if($userByEmail){
-                        $this->updateUser($userByEmail, $data);
-                    }else{
-                        $this->createUser($data);
-                    }
-
+            if (!$user) {
+                $username = explode(" ", $data[3]);
+                $userByName = User::whereRaw("MATCH(name) AGAINST ('+$username[0] +$username[1]' IN BOOLEAN MODE)")->first();
+                if ($userByName) {
+                    $this->updateUser($userByName, $data);
                 } else {
-                    $this->updateUser($user, $data);
+                    $this->createUser($data);
                 }
-            }
 
+            } else {
+                $this->updateUser($user, $data);
+            }
         }
 
     }
@@ -93,7 +89,7 @@ class UploadUsersJob extends Job
 
         User::create([
             'name' => $data[3],
-            'email' => $data[19] ?? '',
+            'email' => $data[19] == "" ? null : $data[19],
             'password' => bcrypt('kifah1234'),
             'business_unit_id' => $businessUnitId,
             'job' => $data[13],
@@ -106,20 +102,30 @@ class UploadUsersJob extends Job
     private function updateUser($user, $data)
     {
         $businessUnitId = $this->businessUnits->get($data[18]);
-
-        $user->update([
+        $data = [
             'business_unit_id' => $businessUnitId,
             'job' => $data[13],
             'department_id' => $this->getDepartmentId($data[14], $businessUnitId),
             'employee_id' => $data[2],
-            'extra_fields' => $this->extraFields($data)
-        ]);
+            'email' => $data[19] == "" ? null : $data[19],
+            'extra_fields' => $this->extraFields($data),
+        ];
+
+        if ($user->password == "") {
+            $data['password'] = bcrypt('kifah1234');
+        }
+
+        $user->update($data);
     }
 
     private function getDepartmentId($departmentName, $businessUnitId)
     {
-        dd($departmentName);
-        $department = Department::firstOrCreate(['name' => $departmentName, 'business_unit_id' => $businessUnitId]);
+
+        $department = Department::where('name', $departmentName)->first();
+        if (!$department) {
+            $department = Department::create(['name' => $departmentName, 'business_unit_id' => $businessUnitId]);
+        }
+
         return $department->id;
     }
 

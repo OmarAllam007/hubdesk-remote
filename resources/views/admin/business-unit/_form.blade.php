@@ -27,13 +27,13 @@
                     <div class="error-message">{{$errors->first('location_id')}}</div>
                 @endif
             </div>
-            {{--<div class="form-group {{$errors->has('logo')? 'has-errors' : ''}}">--}}
-                {{--{{Form::label('logo', 'Logo', ['class' => 'control-label'])}}--}}
-                {{--{{Form::input('file','logo', null, ['class' => 'form-control'])}}--}}
-                {{--@if ($errors->has('logo'))--}}
-                    {{--<div class="error-message">{{$errors->first('logo')}}</div>--}}
-                {{--@endif--}}
-            {{--</div>--}}
+            <div class="form-group {{$errors->has('logo_img')? 'has-errors' : ''}}">
+                {{Form::label('logo_img', 'Logo', ['class' => 'control-label'])}}
+                {{Form::input('file','logo_img', null, ['class' => 'form-control'])}}
+                @if ($errors->has('logo_img'))
+                    <div class="error-message">{{$errors->first('logo_img')}}</div>
+                @endif
+            </div>
             <fieldset>
                 <legend>Roles</legend>
                 <roles :users="{{\App\User::orderBy('name')->get()}}" :roles="{{\App\Role::all()}}"
