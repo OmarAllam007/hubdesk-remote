@@ -13,11 +13,19 @@ window.app = new Vue({
         technicians: {},
         technician_id: window.technician_id,
     },
-
+    mounted() {
+        this.loadCategory(true);
+        this.loadSubcategory(true);
+        this.loadItem(true);
+    },
     created() {
-        this.loadCategory(false);
-        this.loadSubcategory(false)
+
+        // this.loadCategory(false);
+        // this.loadSubcategory(false)
+        // // this.loadTechnicians()
+        //
         // this.loadTechnicians()
+
     },
     methods: {
         loadCategory(withFields) {
@@ -37,7 +45,7 @@ window.app = new Vue({
                     console.log(response)
                     this.items = response;
                 });
-                console.log(this.items)
+
                 if (withFields) this.loadCustomFields();
             }
         },
@@ -50,8 +58,9 @@ window.app = new Vue({
             }
 
         },
-        loadItem() {
-            if (this.item) {
+        loadItem(withFields) {
+            if (this.item && this.item != 0) {
+                if (withFields) this.loadCustomFields();
             }
         },
         loadCustomFields() {
@@ -71,7 +80,7 @@ window.app = new Vue({
 
             let url = `/custom-fields?category=${this.category}&subcategory=${this.subcategory}&item=${this.item}`;
             $.get(url).then(response => {
-                let newFields = $(response.data);
+                let newFields = $(response);
                 for (let id in fieldValues) {
                     const field = newFields.find('#' + id);
                     if (field.attr('type') == 'checkbox') {
@@ -80,6 +89,7 @@ window.app = new Vue({
                         field.val(fieldValues[id]);
                     }
                 }
+                // console.log(newFields)
                 customFieldsContainer.html('').append(newFields);
             });
         }
@@ -87,15 +97,18 @@ window.app = new Vue({
 
     watch: {
         category() {
-            this.loadCategory(false);
+            this.subcategory  = ""
+            this.item = ""
+            this.loadCategory(true);
         },
 
         subcategory() {
-            this.loadSubcategory(false);
+            this.item = ""
+            this.loadSubcategory(true);
         },
 
         item() {
-            this.loadItem();
+            this.loadItem(true);
         },
 
         group() {

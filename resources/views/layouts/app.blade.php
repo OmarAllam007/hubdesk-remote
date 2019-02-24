@@ -16,6 +16,12 @@
     @endif
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     @yield('stylesheets')
+    <style>
+        ul.navbar > li:hover {
+            background: #20639c !important;
+            border-radius: 2px;
+        }
+    </style>
 </head>
 <body>
 
@@ -24,14 +30,16 @@
         <div class="container-fluid">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="{{url('/')}}">
-                            <i class="fa fa-life-ring"></i> HUBDESK</a>
+                    <a href="{{route('ticket.index')}}">
+                        <i class="fa fa-life-ring"></i> HUBDESK</a>
                 </li>
             </ul>
             @if (!\Auth::guest())
                 <ul class="nav navbar-nav">
+                    @if(Auth::user()->isAdmin())
+                        <li><a href="{{route('ticket.create')}}"><i class="fa fa-plus"></i> {{t('New Ticket')}}</a></li>
+                    @endif
                     <li><a href="{{route('ticket.index')}}"><i class="fa fa-ticket"></i> {{t('Tickets')}}</a></li>
-                    <li><a href="{{route('ticket.create')}}"><i class="fa fa-plus"></i> {{t('New request')}}</a></li>
 
                     @can('reports')
                         <li><a href="{{url('/reports')}}"><i class="fa fa-bar-chart"></i> {{t('Report')}}</a></li>
@@ -66,6 +74,21 @@
                         </ul>
                     </li>
                 </ul>
+<<<<<<< HEAD
+=======
+
+                {{--<ul class="nav navbar-nav navbar-right">--}}
+                {{--<li class="dropdown">--}}
+                {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i>--}}
+                {{--{{t('Languages')}}--}}
+                {{--<i class="caret"></i></a>--}}
+                {{--<ul class="dropdown-menu">--}}
+                {{--<li><a href="{{route('site.changeLanguage','ar')}}"> Arabic</a></li>--}}
+                {{--<li><a href="{{route('site.changeLanguage','en')}}"> English</a></li>--}}
+                {{--</ul>--}}
+                {{--</li>--}}
+                {{--</ul>--}}
+>>>>>>> quwa-branch
             @endif
         </div>
     </nav>

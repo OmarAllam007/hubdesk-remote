@@ -31,7 +31,7 @@ class Subcategory extends KModel
 {
     use Listable;
     
-    protected $fillable = ['category_id', 'name', 'description','service_request'];
+    protected $fillable = ['category_id', 'name', 'description','service_request','service_cost'];
 
     public function items()
     {
@@ -41,6 +41,10 @@ class Subcategory extends KModel
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
+
+    function levels(){
+        return $this->hasMany(ApprovalLevels::class,'level_id')->where('type',2);
     }
 
     public function scopeCanonicalList(Builder $query)

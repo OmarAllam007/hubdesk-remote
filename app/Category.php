@@ -28,7 +28,7 @@ class Category extends KModel
 {
     use Listable;
 
-    protected $fillable = ['name', 'description','service_request'];
+    protected $fillable = ['business_unit_id','name', 'description','service_request', 'service_cost'];
 
     public function subcategories()
     {
@@ -39,6 +39,11 @@ class Category extends KModel
     {
         return $this->morphMany(CustomField::class,'level', 'level');
     }
+
+    function levels(){
+        return $this->hasMany(ApprovalLevels::class,'level_id')->where('type',1);
+    }
+
     public function scopeQuickSearch(Builder $query)
     {
         if (\Request::has('search')) {
@@ -54,4 +59,28 @@ class Category extends KModel
     function businessunits(){
         return $this->belongsToMany(BusinessUnit::class,'category_business_units');
     }
+
+    
+    public function businessunit()
+    {
+        return $this->belongsTo(BusinessUnit::class, 'business_unit_id', 'id');
+    }
+
+    public function scopeCanonicalList(Builder $query)
+    {
+        $categories = $query->with('business-unit')
+            ->orderBy('name')->get()
+            ->map(function($category) {
+                $category->name = $category->businessunit->name . ' > ' . $category->name;
+                return $category;
+            });
+        
+        return $categories->sortBy('name');
+    }
+
+    public function canonicalName()
+    {
+        return $this->businessunit->name . ' > ' . $this->name;
+    }
+
 }

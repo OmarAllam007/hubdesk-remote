@@ -613,3 +613,62 @@ a.btn-info.searchbtn{
 .auth-form .form-control::-webkit-input-placeholder {
   font-size: larger;
 }
+
+a:hover{
+  text-decoration: none;
+}
+.tiles-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.tile-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #144e7f;
+  border-radius: 3px;
+  background: #ffffff;
+  align-items: baseline;
+  width: 200px;
+  height: 200px;
+}
+
+.tile-image {
+  border-radius: 9px;
+}
+
+.tile-body {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  align-self: center;
+  height: 50px;
+  color: #fff;
+}
+.tile-body p {
+  color:#144e7f ;
+  font-family: Verdana;
+  font-size: 15px;
+}
+.tile-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 130px;
+  height: 200px;
+  background: white;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.tile {
+  margin: 20px;
+  text-decoration: none
+}
+
+.tile:hover {
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px  #144e7f ;
+}

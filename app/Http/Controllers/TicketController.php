@@ -3,18 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Attachment;
+use App\BusinessUnit;
+use App\BusinessUnitRole;
+use App\Category;
 use App\Helpers\Ticket\TicketViewScope;
 use App\Http\Requests\NoteRequest;
 use App\Http\Requests\ReassignRequest;
 use App\Http\Requests\TicketReplyRequest;
 use App\Http\Requests\TicketRequest;
 use App\Http\Requests\TicketResolveRequest;
+use App\Item;
 use App\Jobs\ApplySLA;
 use App\Jobs\NewNoteJob;
 use App\Jobs\NewTicketJob;
 use App\Jobs\TicketAssigned;
 use App\Jobs\TicketReplyJob;
 use App\Mail\TicketForwardJob;
+use App\Subcategory;
 use App\Ticket;
 use App\TicketApproval;
 use App\TicketField;
@@ -37,11 +42,17 @@ class TicketController extends Controller
 
     public function create()
     {
-        return view('ticket.create');
+        return view('ticket.create_ticket.index');
     }
 
-    public function store(TicketRequest $request)
+    public function createTicket(BusinessUnit $business_unit , Category $category,Subcategory $subcategory,Item $item)
     {
+        return view('ticket.create',compact('business_unit','category','subcategory','item'));
+    }
+
+    public function store(Request $request)
+    {
+
         $ticket = new Ticket($request->all());
 
         $ticket->creator_id = $request->user()->id;
@@ -55,7 +66,11 @@ class TicketController extends Controller
         $ticket->status_id = 1;
 
         $ticket->save();
-        $ticket->syncFields($request->get('cf', []));
+        foreach ($request->get('cf', []) as $key=>$item){
+            $ticket->fields()->create(['name'=>$key,'value'=>$item]);
+        }
+
+//        $ticket->syncFields($request->get('cf', []));
 
         $this->dispatch(new NewTicketJob($ticket));
 
@@ -95,8 +110,8 @@ class TicketController extends Controller
 
     public function reply(Ticket $ticket, TicketReplyRequest $request)
     {
-        if(isset($request->get("reply")["cc"])){
-            $this->validate($request,['reply.cc.*'=>'email'],['email'=>'Please enter valid emails']);
+        if (isset($request->get("reply")["cc"])) {
+            $this->validate($request, ['reply.cc.*' => 'email'], ['email' => 'Please enter valid emails']);
         }
         if (in_array($request->reply['status_id'], [7, 8, 9]) && $ticket->hasOpenTask()) {
 
@@ -346,10 +361,10 @@ class TicketController extends Controller
         TicketNote::flushEventListeners();
 
         $ticket->replies->each(function ($reply) use ($newTicket) {
-            if(!in_array($reply->status_id,[7,8,9])){
+            if (!in_array($reply->status_id, [7, 8, 9])) {
                 $reply->ticket_id = $newTicket->id;
                 $reply['created_at'] = $reply->created_at;
-                $reply['updated_at']= $reply->updated_at;
+                $reply['updated_at'] = $reply->updated_at;
                 TicketReply::create($reply->toArray());
             }
         });
@@ -357,28 +372,28 @@ class TicketController extends Controller
         $ticket->approvals->each(function ($approval) use ($newTicket) {
             $approval->ticket_id = $newTicket->id;
             $approval['created_at'] = $approval->created_at;
-            $approval['updated_at']= $approval->updated_at;
+            $approval['updated_at'] = $approval->updated_at;
             TicketApproval::create($approval->toArray());
         });
 
         $ticket->notes->each(function ($note) use ($newTicket) {
             $note->ticket_id = $newTicket->id;
             $note['created_at'] = $note->created_at;
-            $note['updated_at']= $note->updated_at;
+            $note['updated_at'] = $note->updated_at;
             TicketNote::create($note->toArray());
         });
 
         $ticket->logs->each(function ($log) use ($newTicket) {
             $log->ticket_id = $newTicket->id;
             $log['created_at'] = $log->created_at;
-            $log['updated_at']= $log->updated_at;
+            $log['updated_at'] = $log->updated_at;
             TicketLog::create($log->toArray());
         });
 
         $ticket->fields->each(function ($field) use ($newTicket) {
             $field->ticket_id = $newTicket->id;
             $field['created_at'] = $field->created_at;
-            $field['updated_at']= $field->updated_at;
+            $field['updated_at'] = $field->updated_at;
             TicketField::create($field->toArray());
         });
 
@@ -386,25 +401,26 @@ class TicketController extends Controller
             if ($file->type == 1) {
                 $file->reference = $newTicket->id;
                 $file['created_at'] = $file->created_at;
-                $file['updated_at']= $file->updated_at;
+                $file['updated_at'] = $file->updated_at;
                 Attachment::create($file->toArray());
             }
         });
 
     }
 
-    function forward(Ticket $ticket, Request $request){
-        if($request->get('to')){
-            $this->validate($request,['to.*'=>'email'],['email'=>'Please enter valid email.']);
+    function forward(Ticket $ticket, Request $request)
+    {
+        if ($request->get('to')) {
+            $this->validate($request, ['to.*' => 'email'], ['email' => 'Please enter valid email.']);
             TicketReply::flushEventListeners();
 
             TicketReply::create([
-                'user_id'=>\Auth::id(),
-                'ticket_id'=>$ticket->id,
-                'content'=>$request["forward"]["description"] ?? $ticket->description,
-                'status_id'=>$ticket->status_id,
-                'cc'=>$request->cc ?? null,
-                'to'=>$request->to ?? null
+                'user_id' => \Auth::id(),
+                'ticket_id' => $ticket->id,
+                'content' => $request["forward"]["description"] ?? $ticket->description,
+                'status_id' => $ticket->status_id,
+                'cc' => $request->cc ?? null,
+                'to' => $request->to ?? null
             ]);
 
             \Mail::to($request->to)->cc($request->cc ?? [])->send(new TicketForwardJob($ticket));
@@ -414,4 +430,34 @@ class TicketController extends Controller
         flash('Can\'t forward the ticket', 'danger');
         return \Redirect::route('ticket.show', $ticket);
     }
+
+    function selectCategory(BusinessUnit $business_unit)
+    {
+        if ($business_unit->categories()->count()) {
+            return view('ticket.create_ticket.create_category', compact('business_unit'));
+        }
+        return view('ticket.create', compact('business_unit'));
+    }
+
+    function selectSubcategory(BusinessUnit $business_unit, Category $category)
+    {
+
+        if ($category->subcategories()->count()) {
+            return view('ticket.create_ticket.create_subcategory', compact('business_unit', 'category'));
+        }
+
+        return view('ticket.create', compact('business_unit', 'category'));
+    }
+
+    function selectItem(BusinessUnit $business_unit, Category $category, Subcategory $subcategory)
+    {
+
+        if($subcategory->items()->count()){
+            return view('ticket.create_ticket.create_item', compact('business_unit', 'category','subcategory'));
+        }
+
+        $item = null;
+        return view('ticket.create', compact('business_unit', 'category', 'subcategory','item'));
+    }
+
 }
