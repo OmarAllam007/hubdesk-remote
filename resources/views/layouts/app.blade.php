@@ -14,7 +14,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     @yield('stylesheets')
     <style>
-        ul.navbar > li:hover{
+        ul.navbar > li:hover {
             background: #20639c !important;
             border-radius: 2px;
         }
@@ -28,12 +28,14 @@
             <ul class="nav navbar-nav">
                 <li>
                     <a href="{{route('ticket.index')}}">
-                            <i class="fa fa-life-ring"></i> HUBDESK</a>
+                        <i class="fa fa-life-ring"></i> HUBDESK</a>
                 </li>
             </ul>
             @if (!\Auth::guest())
                 <ul class="nav navbar-nav">
-                    <li><a href="{{route('ticket.create')}}"><i class="fa fa-plus"></i> {{t('New Ticket')}}</a></li>
+                    @if(Auth::user()->isAdmin())
+                        <li><a href="{{route('ticket.create')}}"><i class="fa fa-plus"></i> {{t('New Ticket')}}</a></li>
+                    @endif
                     <li><a href="{{route('ticket.index')}}"><i class="fa fa-ticket"></i> {{t('Tickets')}}</a></li>
 
                     @can('reports')
@@ -55,15 +57,15 @@
                 </ul>
 
                 {{--<ul class="nav navbar-nav navbar-right">--}}
-                    {{--<li class="dropdown">--}}
-                        {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i>--}}
-                            {{--{{t('Languages')}}--}}
-                            {{--<i class="caret"></i></a>--}}
-                        {{--<ul class="dropdown-menu">--}}
-                            {{--<li><a href="{{route('site.changeLanguage','ar')}}"> Arabic</a></li>--}}
-                            {{--<li><a href="{{route('site.changeLanguage','en')}}"> English</a></li>--}}
-                        {{--</ul>--}}
-                    {{--</li>--}}
+                {{--<li class="dropdown">--}}
+                {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i>--}}
+                {{--{{t('Languages')}}--}}
+                {{--<i class="caret"></i></a>--}}
+                {{--<ul class="dropdown-menu">--}}
+                {{--<li><a href="{{route('site.changeLanguage','ar')}}"> Arabic</a></li>--}}
+                {{--<li><a href="{{route('site.changeLanguage','en')}}"> English</a></li>--}}
+                {{--</ul>--}}
+                {{--</li>--}}
                 {{--</ul>--}}
             @endif
         </div>
@@ -73,11 +75,11 @@
 <div id="wrapper">
     <main class="container-fluid">
         <div class="row">
-                <div class="title-bar">
-                    <div class="container-fluid title-container">
-                        @yield('header')
-                    </div>
+            <div class="title-bar">
+                <div class="container-fluid title-container">
+                    @yield('header')
                 </div>
+            </div>
             @hasSection('sidebar')
                 @yield('sidebar')
             @endif
