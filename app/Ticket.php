@@ -501,4 +501,14 @@ class Ticket extends KModel
     function isClosed(){
         return $this->status_id == 8;
     }
+
+    function getTotalServiceCostAttribute(){
+        if($this->item_id){
+            return $this->item->service_cost;
+        }
+        elseif($this->subcategory_id){
+            return $this->subcategory->service_cost;
+        }
+        return $this->category->service_cost;
+    }
 }

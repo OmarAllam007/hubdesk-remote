@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\BusinessUnit;
+use App\BusinessUnitRole;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -28,10 +29,18 @@ class BusinessUnitController extends Controller
             'text' => t('Could not save business unit'),
             'timer' => 3000
         ]);
-        
+
         $this->validates($request, null);
 
-        BusinessUnit::create($request->all());
+
+        $business_unit = BusinessUnit::create($request->all());
+
+
+
+        if ($request->hasFile('logo_img')) {
+            $path = BusinessUnit::uploadLogo($business_unit, $request->logo_img);
+            $business_unit->update(['logo' => $path]);
+        }
 
         alert()->flash(t('Business unit Info'), 'success', [
             'text' => t('Business unit has been saved'),
@@ -59,7 +68,29 @@ class BusinessUnitController extends Controller
             'text' => 'Could not save business unit',
             'timer' => 3000
         ]);
+
         $this->validates($request, null);
+
+        $path = $business_unit->logo;
+
+        if ($request->hasFile('logo_img')) {
+            $path = BusinessUnit::uploadLogo($business_unit, $request->logo_img);
+        }
+
+        $business_unit->roles()->delete();
+
+        if (count($request->roles)) {
+            foreach ($request->roles as $key => $role) {
+                BusinessUnitRole::create([
+                    'business_unit_id' => $request->id,
+                    'role_id' => $role['role_id'],
+                    'user_id' => $role['user_id'],
+                ]);
+            }
+        }
+
+
+        $request['logo'] = $path;
 
         $business_unit->update($request->all());
 

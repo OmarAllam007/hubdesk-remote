@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminUserRequest;
 use App\Jobs\LdapImportUsers;
+use App\Jobs\UploadUsersJob;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -89,5 +90,16 @@ class UserController extends Controller
     {
         $search = \request()->query('search');
         return User::where('email','like','%'.$search.'%')->pluck("email");
+    }
+
+    function showUploadForm(){
+        return view('admin.user.upload');
+    }
+
+    function submitUploadForm(Request $request){
+        if($request->hasFile('users')){
+            $this->dispatch(new UploadUsersJob($request->users));
+        }
+        return redirect()->back();
     }
 }

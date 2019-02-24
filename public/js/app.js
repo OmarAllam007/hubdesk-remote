@@ -10438,8 +10438,7 @@ return jQuery;
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(2);
-module.exports = __webpack_require__(6);
+module.exports = __webpack_require__(2);
 
 
 /***/ }),
@@ -22307,12 +22306,6 @@ S2.define('jquery.select2',[
   return select2;
 }));
 
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

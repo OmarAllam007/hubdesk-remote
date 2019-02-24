@@ -31,7 +31,6 @@ class ListController extends Controller
     public function item($subcat_id = false)
     {
         $query = Item::query();
-
         if ($subcat_id) {
             return $query->orderBy('name')->where('subcategory_id', $subcat_id)->get(['name', 'id']);
         }

@@ -4,6 +4,7 @@ namespace App;
 
 use App\Behaviors\Listable;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\UploadedFile;
 
 /**
  * App\BusinessUnit
@@ -28,7 +29,9 @@ class BusinessUnit extends KModel
 {
     use Listable;
 
-    protected $fillable = ['name', 'location_id'];
+    protected $fillable = ['code', 'name', 'location_id', 'logo'];
+    protected $appends = ['bu_roles'];
+
 
     public function location()
     {
@@ -46,4 +49,50 @@ class BusinessUnit extends KModel
 
         return $query;
     }
-}
+
+    public function categories()
+    {
+        return $this->hasMany(Category::class, 'business_unit_id', 'id');
+    }
+
+    public function roles()
+    {
+        return $this->hasMany(BusinessUnitRole::class);
+    }
+
+    public function getBuRolesAttribute()
+    {
+        return $this->roles;
+    }
+
+
+    public static function uploadLogo(BusinessUnit $businessUnit, UploadedFile $file)
+    {
+        $filename = $file->getClientOriginalName();
+
+        $folder = storage_path('app/public/attachments/business_unit/logo/' . $businessUnit->id . '/');
+        if (!is_dir($folder)) {
+            mkdir($folder, 0775, true);
+        }
+
+        $path = $folder . $filename;
+        if (is_file($path)) {
+            $filename = uniqid() . '_' . $filename;
+            $path = $folder . $filename;
+        }
+
+        $file->move($folder, $filename);
+
+        $final_path = '/attachments/business_unit/logo/' . $businessUnit->id . '/' . $filename;
+
+        return $final_path;
+    }
+
+    public function getUrlAttribute()
+    {
+        $basename = str_replace('+', ' ', urlencode(basename($this->logo)));
+        $dirname = dirname($this->logo);
+        $path = $dirname . '/' . $basename;
+        return url('/storage' . $path);
+    }
+} 

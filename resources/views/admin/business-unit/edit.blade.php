@@ -15,7 +15,7 @@
 @stop
 
 @section('body')
-    {{Form::model($business_unit, ['route' => ['admin.business-unit.update', $business_unit], 'class' => 'col-sm-9'])}}
+    {{Form::model($business_unit, ['route' => ['admin.business-unit.update', $business_unit], 'class' => 'col-sm-9','files'=>true])}}
 
     {{method_field('patch')}}
 

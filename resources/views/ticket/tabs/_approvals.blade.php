@@ -5,6 +5,8 @@
             <th>{{t('Sent to')}}</th>
             <th>{{t('By')}}</th>
             <th>{{t('Sent at')}}</th>
+{{--            <th>{{t('By')}}</th>--}}
+            <th>{{'Sent at'}}</th>
             <th>{{t('Stage')}}</th>
             <th>{{t('Status')}}</th>
             <th>{{t('Comment')}}</th>
@@ -18,7 +20,7 @@
             <tr class="{{$approval->approval_color}}">
 
                 <td>{{$approval->approver->name}}</td>
-                <td>{{$approval->created_by->name}}</td>
+{{--                <td>{{$approval->created_by->name}}</td>--}}
                 <td>{{$approval->created_at->format('d/m/Y H:i')}}</td>
                 <td>{{$approval->stage}}</td>
                 <td>

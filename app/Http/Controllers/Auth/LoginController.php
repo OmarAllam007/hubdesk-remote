@@ -19,7 +19,6 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
-
     /**
      * Where to redirect users after login.
      *
@@ -29,7 +28,7 @@ class LoginController extends Controller
 
     function username() 
     {
-        return 'login';
+        return 'employee_id';
     }
 
     /**

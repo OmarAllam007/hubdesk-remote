@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\ApprovalLevels;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -9,7 +10,8 @@ use App\Http\Controllers\Controller;
 class CategoryController extends Controller
 {
 
-    protected $rules = ['name' => 'required', 'description' => 'max:500'];
+    protected $rules = ['name' => 'required', 'business_unit_id' => 'required|exists:business_units,id'];
+
 
     public function index()
     {
@@ -18,9 +20,14 @@ class CategoryController extends Controller
         return view('admin.category.index', compact('categories'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return view('admin.category.create');
+        $business_unit_id = 0;
+        if ($request->has('business-unit')) {
+            $business_unit_id = $request->get('business-unit');
+        }
+
+        return view('admin.category.create', compact('business_unit_id'));
     }
 
     public function store(Request $request)
@@ -36,6 +43,8 @@ class CategoryController extends Controller
         if ($request['units']) {
             $category->businessunits()->sync($request['units']);
         }
+
+        $this->handleLevels($request,$category);
 
         flash(t('Category has been saved'), 'success');
 
@@ -58,6 +67,10 @@ class CategoryController extends Controller
         if ($request['units']) {
             $category->businessunits()->sync($request['units']);
         }
+
+
+        $this->handleLevels($request,$category);
+
         $service_request = isset($request->service_request) ? 1 : 0;
         $data = $request->all();
         $data['service_request'] = $service_request;
@@ -73,5 +86,20 @@ class CategoryController extends Controller
         flash(t('Category has been deleted'), 'success');
 
         return \Redirect::route('admin.category.index');
+    }
+
+    private function handleLevels(Request $request,Category $category)
+    {
+        $category->levels()->delete();
+
+        if (count($request->levels)) {
+            foreach ($request->levels as $key => $role) {
+                ApprovalLevels::create([
+                    'type' => 1,
+                    'level_id' => $category->id,
+                    'role_id' => $role,
+                ]);
+            }
+        }
     }
 }

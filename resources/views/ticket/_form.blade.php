@@ -35,11 +35,11 @@
         <div class="col-sm-5">
             <div class="form-group form-group-sm {{$errors->has('category_id')? 'has-error' : ''}}">
                 {{ Form::label('category_id', t('Category'), ['class' => 'control-label']) }}
-                {{ Form::select('category_id', App\Category::selection('Select Category'), null, ['class' => 'form-control', 'v-model' => 'category']) }}
+                {{ Form::select('category_id', App\Category::selection('Select Category'), request('category_id'), ['class' => 'form-control', 'v-model' => 'category']) }}
                 @if ($errors->has('category_id'))
                     <div class="error-message">{{$errors->first('category_id')}}</div>
-                @endif
             </div>
+            @endif
 
             <div class="form-group form-group-sm {{$errors->has('subcategory')? 'has-error' : ''}}">
                 {{ Form::label('subcategory_id', t('Subcategory'), ['class' => 'control-label']) }}
@@ -77,10 +77,7 @@
 
     <hr class="form-divider">
 
-    <div class="row">
         {{--<div class="col-sm-6">
-
-
             <div class="form-group form-group-sm {{$errors->has('impact_id')? 'has-error' : ''}}">
                 {{ Form::label('impact_id', 'Impact', ['class' => 'control-label']) }}
                 {{ Form::select('impact_id', App\Impact::selection('Select Impact'), null, ['class' => 'form-control']) }}
@@ -97,48 +94,48 @@
             </div>
         </div>--}}
 
-        @if (Auth::user()->isSupport())
-            <div class="col-sm-6">
-                <div class="form-group form-group-sm {{$errors->has('group_id')? 'has-error' : ''}}">
-                    {{ Form::label('group_id', t('Group'), ['class' => 'control-label']) }}
-                    {{ Form::select('group_id', App\Group::support()->selection('Select Group'), null, ['class' => 'form-control','v-model' => 'group']) }}
-                    @if ($errors->has('group_id'))
-                        <div class="error-message">{{$errors->first('group_id')}}</div>
-                    @endif
-                </div>
 
-                <div class="form-group form-group-sm {{$errors->has('technician_id')? 'has-error' : ''}}">
-                    {{ Form::label('technician_id', t('Technician'), ['class' => 'control-label']) }}
-                    <select class="form-control" name="technician_id" id="technician_id">
-                        <option value="">Select Technician</option>
-                        <option v-for="(technician , id) in technicians" :value="technician.id">@{{ technician.name }}</option>
-                    </select>
-                    @if ($errors->has('technician_id'))
-                        <div class="error-message">{{$errors->first('technician_id')}}</div>
-                    @endif
-                </div>
+        {{--@if (Auth::user()->isSupport())--}}
+            {{--<div class="col-sm-6">--}}
+                {{--<div class="form-group form-group-sm {{$errors->has('group_id')? 'has-error' : ''}}">--}}
+                    {{--{{ Form::label('group_id', t('Group'), ['class' => 'control-label']) }}--}}
+                    {{--{{ Form::select('group_id', App\Group::support()->selection('Select Group'), null, ['class' => 'form-control']) }}--}}
+                    {{--@if ($errors->has('group_id'))--}}
+                        {{--<div class="error-message">{{$errors->first('group')}}</div>--}}
+                    {{--@endif--}}
+                {{--</div>--}}
 
-                <div class="form-group form-group-sm {{$errors->has('urgency_id')? 'has-error' : ''}}">
-                    {{ Form::label('urgency_id', t('Urgency'), ['class' => 'control-label']) }}
-                    {{ Form::select('urgency_id', App\Urgency::selection('Select Urgency'), null, ['class' => 'form-control']) }}
-                    @if ($errors->has('urgency_id'))
-                        <div class="error-message">{{$errors->first('urgency_id')}}</div>
-                    @endif
-                </div>
-            </div>
-        @endif
-    </div>
+                {{--<div class="form-group form-group-sm {{$errors->has('technician_id')? 'has-error' : ''}}">--}}
+                    {{--{{ Form::label('technician_id', t('Technician'), ['class' => 'control-label']) }}--}}
+                    {{--{{ Form::select('technician_id', App\User::technicians()->selection('Select Technician'), null, ['class' => 'form-control']) }}--}}
+                    {{--@if ($errors->has('technician_id'))--}}
+                        {{--<div class="error-message">{{$errors->first('technician_id')}}</div>--}}
+                    {{--@endif--}}
+                {{--</div>--}}
 
-    <div class="form-group">
-        <button class="btn btn-success"><i class="fa fa-check"></i> {{t('Submit')}}</button>
+                {{--<div class="form-group form-group-sm {{$errors->has('urgency_id')? 'has-error' : ''}}">--}}
+                    {{--{{ Form::label('urgency_id', t('Urgency'), ['class' => 'control-label']) }}--}}
+                    {{--{{ Form::select('urgency_id', App\Urgency::selection('Select Urgency'), null, ['class' => 'form-control']) }}--}}
+                    {{--@if ($errors->has('urgency_id'))--}}
+                        {{--<div class="error-message">{{$errors->first('urgency_id')}}</div>--}}
+                    {{--@endif--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--@endif--}}
+
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group">
+            <button class="btn btn-success"><i class="fa fa-check"></i> {{t('Submit')}}</button>
+        </div>
     </div>
 </div>
-
 @section('javascript')
     <script>
-        var category = '{{Form::getValueAttribute('category_id')}}';
-        var subcategory = '{{Form::getValueAttribute('subcategory_id')}}';
-        var item = '{{Form::getValueAttribute('item_id')}}';
+        var category = '{{Form::getValueAttribute('category_id') ? Form::getValueAttribute('category_id') : isset($category) ? $category->id : null}}';
+        var subcategory = '{{request('subcategory_id') ? Form::getValueAttribute('subcategory_id', request('subcategory_id')) :  isset($subcategory) ? $subcategory->id : null}}';
+        var item = '{{request('item_id') ? Form::getValueAttribute('item_id',request('item_id')) :  isset($item) ? $item->id : null}}';
     </script>
     <script src="{{asset('/js/ticket-form.js')}}"></script>
     <script src="{{asset('/js/tinymce/tinymce.min.js')}}"></script>

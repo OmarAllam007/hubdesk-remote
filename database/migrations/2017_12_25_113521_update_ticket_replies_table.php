@@ -14,8 +14,8 @@ class UpdateTicketRepliesTable extends Migration
     public function up()
     {
         Schema::table('ticket_replies', function (Blueprint $table) {
-            $table->text('cc')->nullable();
-            $table->text('to')->nullable();
+            // $table->text('cc')->nullable();
+            // $table->text('to')->nullable();
         });
     }
 
@@ -27,8 +27,8 @@ class UpdateTicketRepliesTable extends Migration
     public function down()
     {
         Schema::table('ticket_replies', function (Blueprint $table) {
-            $table->removeColumn('cc');
-            $table->removeColumn('to');
+            // $table->removeColumn('cc');
+            // $table->removeColumn('to');
         });
     }
 }

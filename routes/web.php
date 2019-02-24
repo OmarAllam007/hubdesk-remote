@@ -1,4 +1,6 @@
 <?php
+//
+//Auth::loginUsingId(1021);
 Route::get('/', 'HomeController@home')->middleware('lang');
 Route::auth();
 Route::get('logout', 'Auth\LoginController@logout');
@@ -35,16 +37,24 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
     $r->resource('item', 'Admin\ItemController');
     $r->resource('status', 'Admin\StatusController');
     $r->resource('group', 'Admin\GroupController');
+    $r->resource('role', 'Admin\RoleController');
     $r->resource('priority', 'Admin\PriorityController');
     $r->resource('urgency', 'Admin\UrgencyController');
     $r->resource('impact', 'Admin\ImpactController');
     $r->resource('business-rule', 'Admin\BusinessRuleController');
     $r->resource('sla', 'Admin\SlaController');
     $r->resource('user', 'Admin\UserController');
+    $r->get('users/upload', 'Admin\UserController@showUploadForm')->name('user.upload');
+    $r->post('users/upload', 'Admin\UserController@submitUploadForm')->name('user.submit.upload');
 
     Route::group(['prefix' => 'group'], function () {
         Route::post('add-user/{group}', ['uses' => 'Admin\GroupController@addUser', 'as' => 'admin.group.add-user']);
         Route::delete('remove-user/{group}/{user}', ['uses' => 'Admin\GroupController@removeUser', 'as' => 'admin.group.remove-user']);
+    });
+
+        Route::group(['prefix' => 'role'], function () {
+        Route::post('add-user/{role}', ['uses' => 'Admin\roleController@addUser', 'as' => 'admin.role.add-user']);
+        Route::delete('remove-user/{role}/{user}', ['uses' => 'Admin\roleController@removeUser', 'as' => 'admin.role.remove-user']);
     });
 
     Route::group(['prefix' => 'user'], function () {
@@ -55,6 +65,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/get-users','Admin\UserController@getusers');
     Route::group(['prefix' => 'ticket'], function (\Illuminate\Routing\Router $r) {
+        $r->get('create-ticket/business-unit/{business_unit}/category/{category}/subcategory/{subcategory}/item/{item}','TicketController@createTicket')->name('ticket.create-ticket');
+        $r->get('create-new','TicketController@create')->name('ticket.create-wizard');
+        $r->get('create-new/business-unit/{business_unit}','TicketController@selectCategory')->name('ticket.create.select_category');
+        $r->get('create-new/business-unit/{business_unit}/category/{category}','TicketController@selectSubcategory')->name('ticket.create.select_subcategory');
+        $r->get('create-new/business-unit/{business_unit}/category/{category}/subcategory/{subcategory}','TicketController@selectItem')->name('ticket.create.select_item');
         $r->post('resolution/{ticket}', ['as' => 'ticket.resolution', 'uses' => 'TicketController@resolution']);
         $r->post('edit-resolution/{ticket}', ['as' => 'ticket.edit-resolution', 'uses' => 'TicketController@editResolution']);
         $r->post('note/{ticket}', ['as' => 'ticket.note', 'uses' => 'TicketController@addNote']);
@@ -106,3 +121,15 @@ Route::get('inlineimages/{any?}', 'SdpImagesController@redirect')->where('any', 
 
 Route::resource('error-log', 'ErrorLogController');
 Route::resource('reports', 'ReportsController', ['parameters' => 'singular']);
+
+Route::get('/business-unit', 'BusinessUnitController@index')->name('business-unit.index');
+
+Route::get('/business-unit/{business_unit}', 'BusinessUnitController@show')->name('business-unit.show');
+
+Route::get('/category', 'CategoryController@index')->name('category.index');
+
+Route::get('/category/{category}', 'CategoryController@show')->name('category.show');
+
+Route::get('/subcategory', 'SubcategoryController@index')->name('subcategory.index');
+
+Route::get('/subcategory/{subcategory}', 'SubcategoryController@show')->name('subcategory.show'); 

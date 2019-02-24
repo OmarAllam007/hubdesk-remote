@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Item;
 use App\Subcategory;
 use Illuminate\Http\Request;
 
