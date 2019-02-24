@@ -25,7 +25,7 @@
                         <div class="tile-body" style="width: 100%;height: 100%;display: flex; flex-direction:column;">
                             {{--@if($business_unit->logo)--}}
                             <p class="text-center" style="height: 100px">
-                                <img src="{{asset($business_unit->logo)}}" alt="{{asset($business_unit->logo)}}">
+                                <img src="{{$business_unit->url}}" alt="{{$business_unit->url}}">
                             </p>
                             {{--@endif--}}
                             <p class="text-center" style="margin-top: 40px">
