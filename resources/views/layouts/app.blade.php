@@ -74,21 +74,6 @@
                         </ul>
                     </li>
                 </ul>
-<<<<<<< HEAD
-=======
-
-                {{--<ul class="nav navbar-nav navbar-right">--}}
-                {{--<li class="dropdown">--}}
-                {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i>--}}
-                {{--{{t('Languages')}}--}}
-                {{--<i class="caret"></i></a>--}}
-                {{--<ul class="dropdown-menu">--}}
-                {{--<li><a href="{{route('site.changeLanguage','ar')}}"> Arabic</a></li>--}}
-                {{--<li><a href="{{route('site.changeLanguage','en')}}"> English</a></li>--}}
-                {{--</ul>--}}
-                {{--</li>--}}
-                {{--</ul>--}}
->>>>>>> quwa-branch
             @endif
         </div>
     </nav>
