@@ -59,11 +59,11 @@
         </div>
     </div>
 
-    <div class="col-md-6">
-        <div class="form-group {{$errors->has('units')? 'has-error' : ''}}">
-            {{ Form::label('units', 'Business Units', ['class' => 'control-label']) }}
-            {{ Form::select('units[]', \App\BusinessUnit::selection(),$category->businessunits ?? null , ['class' => 'form-control', 'multiple' => true ,'size'=>12]) }}
-        </div>
-    </div>
+    {{--<div class="col-md-6">--}}
+        {{--<div class="form-group {{$errors->has('units')? 'has-error' : ''}}">--}}
+            {{--{{ Form::label('units', 'Business Units', ['class' => 'control-label']) }}--}}
+            {{--{{ Form::select('units[]', \App\BusinessUnit::selection(),$category->businessunits ?? null , ['class' => 'form-control', 'multiple' => true ,'size'=>12]) }}--}}
+        {{--</div>--}}
+    {{--</div>--}}
 </div>
 <script type="text/javascript" src="{{asset('/js/approval-levels.js')}}"></script>
