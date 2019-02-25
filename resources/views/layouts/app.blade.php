@@ -70,6 +70,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
                                     class="fa fa-user"></i> {{Auth::user()->name}} <i class="caret"></i></a>
                         <ul class="dropdown-menu">
+                            <li><a href="{{route('user.reset')}}"><i class="fa fa-unlock "></i>  {{t('Reset Password')}}</a></li>
                             <li><a href="{{url('/logout')}}"><i class="fa fa-sign-out"></i> {{t('Logout')}}</a></li>
                         </ul>
                     </li>
