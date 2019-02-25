@@ -2,7 +2,6 @@
 
 @section('header')
     <h4 class="pull-left">{{t('Business Units')}}</h4>
-
 @stop
 @section('stylesheets')
     <style>
@@ -13,11 +12,11 @@
 @section('body')
     <section class="col-md-12 ">
         <div class=form-group></div>
-        <h3 class=text-center>{{t('Select Business Unit') }}</h3>
+        <h3 class="text-center exto-bold">{{t('Select Business Unit') }}</h3>
 
         <div class="tiles-container">
             @foreach(\App\BusinessUnit::whereHas('categories')->orderBy('name')->get() as $business_unit)
-                <a href="{{route('ticket.create.select_category', $business_unit)}}" class="tile">
+                <a href="{{route('ticket.create.select_category', $business_unit)}}" class="tile" >
                     <div class="tile-container" style="display: flex; flex-direction:column;align-items: center;justify-content: center;">
                         {{--<div class="tile-icon" style="">--}}
 {{--                            <img src="{{asset('images/logo.png')}}">--}}
@@ -28,7 +27,7 @@
                                 <img src="{{$business_unit->url}}" alt="{{$business_unit->url}}">
                             </p>
                             {{--@endif--}}
-                            <p class="text-center" style="margin-top: 40px">
+                            <p class="text-center " style="margin-top: 40px;font-family: 'Sans-Bold Font', Verdana, Tahoma">
                                 {{$business_unit->name}}
                             </p>
                         </div>
