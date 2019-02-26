@@ -18,11 +18,27 @@
             </ol>
         </nav>
     </div>
+
+    <style>
+        @keyframes slideInFromLeft {
+            0% {
+                transform: translateY(-20%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .card-section {
+            animation: .5s ease-out 0s 1 slideInFromLeft;
+            padding: 30px;
+        }
+    </style>
 @endsection
 
 
 @section('body')
-    <section class="col-sm-12">
+    <section class="col-sm-12 card-section">
         @if ($business_unit->name)
         @endif
 

@@ -13044,8 +13044,8 @@ a:hover {
 .nav-item:hover {
   border-radius: 10px;
   background-color: #598cb77a;
-  -webkit-transition: 1s;
-  transition: 1s;
+  -webkit-transition: .5s;
+  transition: .5s;
 }
 
 h3 {
