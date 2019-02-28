@@ -20,6 +20,16 @@
         </div>
     </div>
 
+    <div class="row">
+        <div id="CustomFields">
+            @include('custom-fields.render', [
+                'category' => App\Category::find(old('category_id')),
+                'subcategory' => App\Category::find(old('subcategory_id')),
+                'item' => App\Item::find(old('item_id'))
+            ])
+        </div>
+
+    </div>
 
     <div class="row">
         <div class="col-sm-7">
@@ -67,17 +77,6 @@
             </div>
 
         </div>
-    </div>
-
-    <div class="row">
-            <div id="CustomFields">
-                @include('custom-fields.render', [
-                    'category' => App\Category::find(old('category_id')),
-                    'subcategory' => App\Category::find(old('subcategory_id')),
-                    'item' => App\Item::find(old('item_id'))
-                ])
-            </div>
-
     </div>
 
 
