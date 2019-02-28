@@ -70,7 +70,6 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-4">
             <div id="CustomFields">
                 @include('custom-fields.render', [
                     'category' => App\Category::find(old('category_id')),
@@ -78,7 +77,7 @@
                     'item' => App\Item::find(old('item_id'))
                 ])
             </div>
-        </div>
+
     </div>
 
 
