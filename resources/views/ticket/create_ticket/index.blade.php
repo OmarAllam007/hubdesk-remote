@@ -39,7 +39,7 @@
                                 <img src="{{$business_unit->url}}" alt="{{$business_unit->url}}">
                             </p>
                             {{--@endif--}}
-                            <p class="text-center " style="margin-top: 40px;font-family: 'Sans-Bold Font', Verdana, Tahoma">
+                            <p class="text-center " style="margin-top: 40px;">
                                 {{$business_unit->name}}
                             </p>
                         </div>

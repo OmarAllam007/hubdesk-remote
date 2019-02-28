@@ -13064,3 +13064,7 @@ table thead {
   font-family: "Exo2-Bold Font", Verdana, Tahoma;
 }
 
+.tile-body p {
+  font-family: "Sans-Plain Font", Verdana, Tahoma;
+}
+

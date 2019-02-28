@@ -92,7 +92,7 @@
             @hasSection('sidebar')
                 @yield('sidebar')
             @endif
-            @yield('body')
+                @yield('body')
         </div>
     </main>
 

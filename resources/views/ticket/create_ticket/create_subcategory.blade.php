@@ -22,7 +22,7 @@
     <style>
         @keyframes slideInFromLeft {
             0% {
-                transform: translateY(-20%);
+                transform: translateY(-10%);
             }
             100% {
                 transform: translateX(0);
@@ -42,30 +42,33 @@
         @if ($business_unit->name)
         @endif
 
-        <div class="container">
-
             <div class=form-group></div>
             <h3 class=text-center>{{t('Subcategories') }}</h3>
-            <div class="tiles-container">
-                @foreach($category->subcategories as $subcategory)
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="tiles-container">
+                        @foreach($category->subcategories as $subcategory)
 
-                    <a href="{{route('ticket.create.select_item', compact('business_unit','category','subcategory'))}}" class="tile">
-                        <div class="tile-container"
-                             style="display: flex;align-items: center;justify-content: center;">
-                            {{--<div class="tile-icon" style="">--}}
-                            {{--<img src="{{asset('images/logo.png')}}">--}}
-                            {{--</div>--}}
-                            <div class="tile-body" style="display: flex;">
-                                <p class="text-center">
-                                    {{$subcategory->name}}
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-                    {{--<p><a href="{{route('category.show', $category)}}" class="btn btn-outlined btn-block btn-primary">{{$category->name}}</a></p>--}}
+                            <a href="{{route('ticket.create.select_item', compact('business_unit','category','subcategory'))}}" class="tile">
+                                <div class="tile-container"
+                                     style="display: flex;align-items: center;justify-content: center;">
+                                    {{--<div class="tile-icon" style="">--}}
+                                    {{--<img src="{{asset('images/logo.png')}}">--}}
+                                    {{--</div>--}}
+                                    <div class="tile-body" style="display: flex;">
+                                        <p class="text-center">
+                                            {{$subcategory->name}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                            {{--<p><a href="{{route('category.show', $category)}}" class="btn btn-outlined btn-block btn-primary">{{$category->name}}</a></p>--}}
 
-                @endforeach
+                        @endforeach
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
             </div>
-        </div>
     </section>
 @endsection
