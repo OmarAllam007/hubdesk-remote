@@ -94,7 +94,7 @@ class ApprovalController extends Controller
         }
 
 
-        if($ticketApproval->status == 1 && !$ticketApproval->hasNext()){
+        if($ticketApproval->status == 1 && !$ticketApproval->hasNext() && !$ticketApproval->ticket->technician_id){
             dispatch(new ApplyBusinessRules($ticketApproval->ticket));
             dispatch(new ApplySLA($ticketApproval->ticket));
         }

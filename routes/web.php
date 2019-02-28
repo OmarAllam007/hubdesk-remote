@@ -64,6 +64,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/get-users','Admin\UserController@getusers');
+    Route::get('/reset_password','UserController@getResetForm')->name('user.reset');
+    Route::post('/reset_password','UserController@resetForm')->name('user.reset');
+
     Route::group(['prefix' => 'ticket'], function (\Illuminate\Routing\Router $r) {
         $r->get('create-ticket/business-unit/{business_unit}/category/{category}/subcategory/{subcategory}/item/{item}','TicketController@createTicket')->name('ticket.create-ticket');
         $r->get('create-new','TicketController@create')->name('ticket.create-wizard');

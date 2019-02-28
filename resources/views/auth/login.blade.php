@@ -17,9 +17,9 @@
                 <br>
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                     <div class="col-sm-12">
-                        <input type="text" class="form-control" name="employee_id" id="employee_id" value="{{ old('employee_id') }}" placeholder="Login"  style="width: 100%">
-                        @if ($errors->has('employee_id'))
-                            <span class="error-message">{{ $errors->first('employee_id') }}</span>
+                        <input type="text" class="form-control" name="login" id="login" value="{{ old('login') }}" placeholder="Login"  style="width: 100%">
+                        @if ($errors->has('login'))
+                            <span class="error-message">{{ $errors->first('login') }}</span>
                         @endif
                     </div>
                 </div>

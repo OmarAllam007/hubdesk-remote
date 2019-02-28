@@ -29,30 +29,36 @@
 
 @section('body')
     <section class="col-sm-12">
-        <div class="container">
 
             <div class=form-group></div>
             <h3 class=text-center>{{t('Items') }}</h3>
-            <div class="tiles-container">
-                @foreach($subcategory->items as $item)
-                    <a href="{{route('ticket.create-ticket',compact('business_unit','category','subcategory','item'))}}"
-                       class="tile">
-                        <div class="tile-container"
-                             style="display: flex;align-items: center;">
-                            <div class="tile-body" style="display: flex;flex-direction: column">
-                                <p class="text-center" style="min-height: 100px">
-                                    {{$item->name}}
-                                </p>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="tiles-container">
+                    @foreach($subcategory->items as $item)
+                        <a href="{{route('ticket.create-ticket',compact('business_unit','category','subcategory','item'))}}"
+                           class="tile">
+                            <div class="tile-container"
+                                 style="display: flex;align-items: center;">
+                                <div class="tile-body" style="display: flex;flex-direction: column">
+                                    <p class="text-center" style="min-height: 100px">
+                                        {{$item->name}}
+                                    </p>
 
-                                <p class="text-center">
-                                    ( {{$item->service_cost ?? ''}} )
-                                </p>
+                                    <p class="text-center">
+                                        ( {{$item->service_cost ?? ''}} )
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
 
-                @endforeach
+                    @endforeach
+                </div>
             </div>
+            <div class="col-md-2"></div>
         </div>
+
+
     </section>
 @endsection

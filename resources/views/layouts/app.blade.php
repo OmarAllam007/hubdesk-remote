@@ -22,11 +22,12 @@
             border-radius: 2px;
         }
     </style>
+
 </head>
 <body>
 
 <header>
-    <nav class="navbar navbar-default navbar-static-top navbar-style">
+    <nav class="navbar navbar-default navbar-static-top navbar-style exto-bold" >
         <div class="container-fluid">
             <ul class="nav navbar-nav">
                 <li>
@@ -35,24 +36,24 @@
                 </li>
             </ul>
             @if (!\Auth::guest())
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav " >
                     @if(Auth::user()->isAdmin())
-                        <li><a href="{{route('ticket.create')}}"><i class="fa fa-plus"></i> {{t('New Ticket')}}</a></li>
+                        <li class="nav-item"><a href="{{route('ticket.create')}}"><i class="fa fa-plus"></i> {{t('New Ticket')}}</a></li>
                     @endif
-                    <li><a href="{{route('ticket.index')}}"><i class="fa fa-ticket"></i> {{t('Tickets')}}</a></li>
+                    <li class="nav-item"><a href="{{route('ticket.index')}}"><i class="fa fa-ticket"></i> {{t('Tickets')}}</a></li>
 
                     @can('reports')
-                        <li><a href="{{url('/reports')}}"><i class="fa fa-bar-chart"></i> {{t('Report')}}</a></li>
+                        <li class="nav-item"><a href="{{url('/reports')}}"><i class="fa fa-bar-chart"></i> {{t('Report')}}</a></li>
                     @endif
 
                     @if (Auth::user()->isAdmin())
-                        <li><a href="{{url('/admin')}}"><i class="fa fa-cogs"></i> {{t('Admin')}}</a></li>
+                        <li class="nav-item"><a href="{{url('/admin')}}"><i class="fa fa-cogs"></i> {{t('Admin')}}</a></li>
                     @endif
                 </ul>
 
 
                 <ul class="nav navbar-nav">
-                    <li class="dropdown">
+                    <li class="dropdown nav-item">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i>
                             <i class="caret"></i></a>
                         <ul class="dropdown-menu">
@@ -66,29 +67,15 @@
                     @if(\Session::get('personlized-language-ar' . \Auth::user()->id, \Config::get('app.locale'))=="ar")
                         navbar-left @else navbar-right
                     @endif">
-                    <li class="dropdown">
+                    <li class="dropdown nav-item">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
                                     class="fa fa-user"></i> {{Auth::user()->name}} <i class="caret"></i></a>
                         <ul class="dropdown-menu">
+                            <li><a href="{{route('user.reset')}}"><i class="fa fa-unlock "></i>  {{t('Reset Password')}}</a></li>
                             <li><a href="{{url('/logout')}}"><i class="fa fa-sign-out"></i> {{t('Logout')}}</a></li>
                         </ul>
                     </li>
                 </ul>
-<<<<<<< HEAD
-=======
-
-                {{--<ul class="nav navbar-nav navbar-right">--}}
-                {{--<li class="dropdown">--}}
-                {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i>--}}
-                {{--{{t('Languages')}}--}}
-                {{--<i class="caret"></i></a>--}}
-                {{--<ul class="dropdown-menu">--}}
-                {{--<li><a href="{{route('site.changeLanguage','ar')}}"> Arabic</a></li>--}}
-                {{--<li><a href="{{route('site.changeLanguage','en')}}"> English</a></li>--}}
-                {{--</ul>--}}
-                {{--</li>--}}
-                {{--</ul>--}}
->>>>>>> quwa-branch
             @endif
         </div>
     </nav>
@@ -105,7 +92,7 @@
             @hasSection('sidebar')
                 @yield('sidebar')
             @endif
-            @yield('body')
+                @yield('body')
         </div>
     </main>
 

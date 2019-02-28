@@ -665,10 +665,65 @@ a:hover{
 
 .tile {
   margin: 20px;
-  text-decoration: none
+  text-decoration: none;
+
 }
 
 .tile:hover {
   border-radius: 10px;
   box-shadow: 1px 1px 10px  #144e7f ;
+}
+.sans-plain{
+  font-family: "Sans-Plain Font", Verdana, Tahoma;
+}
+
+.sans-bold{
+  font-family: "Sans-Bold Font", Verdana, Tahoma;
+}
+
+.exto-bold{
+  font-family: "Exo2-Bold Font", Verdana, Tahoma;
+}
+.exto-plain{
+  font-family: "Exo2-Plain Font", Verdana, Tahoma;
+}
+
+@font-face {
+  font-family: "Sans-Plain Font";
+  src: url(/fonts/TheSans-Plain.otf) format("truetype");
+}
+@font-face {
+  font-family: "Sans-Bold Font";
+  src: url(/fonts/TheSans-Bold.otf) format("truetype");
+}
+@font-face {
+  font-family: "Exo2-Plain Font";
+  src: url(/fonts/Exo2-Regular.otf) format("truetype");
+}
+@font-face {
+  font-family: "Exo2-Bold Font";
+  src: url(/fonts/Exo2-Bold.otf) format("truetype");
+}
+
+.nav-item:hover {
+  border-radius: 10px;
+  //background-color: #477296;
+  background-color: #598cb77a;
+  transition: .5s;
+}
+
+h3{
+  font-family: "Exo2-Bold Font", Verdana, Tahoma;
+}
+.breadcrumb-item{
+  font-family: "Sans-Bold Font", Verdana, Tahoma;
+}
+.tile-body  p {
+  font-family: "Exo2-Plain Font", Verdana, Tahoma;
+}
+table thead{
+  font-family: "Exo2-Bold Font", Verdana, Tahoma;
+}
+.tile-body p{
+  font-family: "Sans-Plain Font", Verdana, Tahoma;
 }

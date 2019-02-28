@@ -2,22 +2,33 @@
 
 @section('header')
     <h4 class="pull-left">{{t('Business Units')}}</h4>
-
 @stop
 @section('stylesheets')
     <style>
+        @keyframes slideInFromLeft {
+            0% {
+                transform: translateY(-20%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
 
+        .card-section {
+            animation: .5s ease-out 0s 1 slideInFromLeft;
+            padding: 30px;
+        }
     </style>
 @endsection
 
 @section('body')
-    <section class="col-md-12 ">
+    <section class="col-md-12 card-section">
         <div class=form-group></div>
-        <h3 class=text-center>{{t('Select Business Unit') }}</h3>
+        <h3 class="text-center exto-bold">{{t('Select Business Unit') }}</h3>
 
         <div class="tiles-container">
             @foreach(\App\BusinessUnit::whereHas('categories')->orderBy('name')->get() as $business_unit)
-                <a href="{{route('ticket.create.select_category', $business_unit)}}" class="tile">
+                <a href="{{route('ticket.create.select_category', $business_unit)}}" class="tile" >
                     <div class="tile-container" style="display: flex; flex-direction:column;align-items: center;justify-content: center;">
                         {{--<div class="tile-icon" style="">--}}
 {{--                            <img src="{{asset('images/logo.png')}}">--}}
@@ -25,10 +36,10 @@
                         <div class="tile-body" style="width: 100%;height: 100%;display: flex; flex-direction:column;">
                             {{--@if($business_unit->logo)--}}
                             <p class="text-center" style="height: 100px">
-                                <img src="{{asset($business_unit->logo)}}" alt="{{asset($business_unit->logo)}}">
+                                <img src="{{$business_unit->url}}" alt="{{$business_unit->url}}">
                             </p>
                             {{--@endif--}}
-                            <p class="text-center" style="margin-top: 40px">
+                            <p class="text-center " style="margin-top: 40px;">
                                 {{$business_unit->name}}
                             </p>
                         </div>
