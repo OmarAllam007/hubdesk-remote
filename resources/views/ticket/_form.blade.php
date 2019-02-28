@@ -35,7 +35,7 @@
         <div class="col-sm-5">
             <div class="form-group form-group-sm {{$errors->has('category_id')? 'has-error' : ''}}">
                 {{ Form::label('category_id', t('Category'), ['class' => 'control-label']) }}
-                {{ Form::select('category_id', App\Category::selection('Select Category'), request('category_id'), ['class' => 'form-control', 'v-model' => 'category']) }}
+                {{ Form::select('category_id', App\Category::selection('Select Category'), request('category_id'), ['class' => 'form-control', 'v-model' => 'category','disabled'=>'disabled']) }}
                 @if ($errors->has('category_id'))
                     <div class="error-message">{{$errors->first('category_id')}}</div>
             </div>
@@ -44,7 +44,7 @@
             <div class="form-group form-group-sm {{$errors->has('subcategory')? 'has-error' : ''}}">
                 {{ Form::label('subcategory_id', t('Subcategory'), ['class' => 'control-label']) }}
 
-                <select class="form-control" name="subcategory_id" id="subcategory_id" v-model="subcategory">
+                <select class="form-control" name="subcategory_id" id="subcategory_id" v-model="subcategory" disabled="disabled">
                     <option value="">Select Subcategory</option>
                     <option v-for="(subcategory, id) in subcategories" :value="subcategory.id">@{{subcategory.name}}</option>
                 </select>
@@ -55,7 +55,7 @@
 
             <div class="form-group form-group-sm {{$errors->has('item_id')? 'has-error' : ''}}">
                 {{ Form::label('item_id', t('Item'), ['class' => 'control-label']) }}
-                <select class="form-control" name="item_id" id="item_id" v-model="item">
+                <select class="form-control" name="item_id" id="item_id" v-model="item" disabled="disabled">
                     <option value="">Select Item</option>
                     <option v-for="(item, id) in items" :value="item.id" v-text="item.name"></option>
                 </select>
