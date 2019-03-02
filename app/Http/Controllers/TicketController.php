@@ -6,6 +6,7 @@ use App\Attachment;
 use App\BusinessUnit;
 use App\BusinessUnitRole;
 use App\Category;
+use App\CustomField;
 use App\Helpers\Ticket\TicketViewScope;
 use App\Http\Requests\NoteRequest;
 use App\Http\Requests\ReassignRequest;
@@ -52,8 +53,24 @@ class TicketController extends Controller
 
     public function store(Request $request)
     {
+        $validation = ['subject'=>'required','description'=>'required'];
+
+        $messages = [];
+
+        foreach ($request->get('cf', []) as $key=>$item) {
+            $field = CustomField::find($key);
+//            dd($field->name);
+            if($field && $field->required){
+                 $validation['cf'.$key] = 'required';
+                 $messages['cf'.$key] = 'This field is required';
+            }
+        }
+
+
+        $this->validate($request,$validation,$messages);
 
         $ticket = new Ticket($request->all());
+
 
         $ticket->creator_id = $request->user()->id;
 
@@ -66,8 +83,11 @@ class TicketController extends Controller
         $ticket->status_id = 1;
 
         $ticket->save();
+
         foreach ($request->get('cf', []) as $key=>$item){
-            $ticket->fields()->create(['name'=>$key,'value'=>$item]);
+            $field = CustomField::find($key)->name ?? '';
+
+            $ticket->fields()->create(['name'=>$field,'value'=>$item]);
         }
 
 //        $ticket->syncFields($request->get('cf', []));
