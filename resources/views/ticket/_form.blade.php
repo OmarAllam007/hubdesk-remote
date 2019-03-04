@@ -1,10 +1,12 @@
 {{ csrf_field() }}
 <div id="TicketForm">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-6">
             @foreach($errors->all() as $error)
                 <div class="alert alert-danger">
-                    <p>{{$error}}</p>
+                    <ul>
+                        <li>{{$error}}</li>
+                    </ul>
                 </div>
             @endforeach
         </div>

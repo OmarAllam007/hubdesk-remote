@@ -58,7 +58,7 @@
                                     {{--</div>--}}
                                     <div class="tile-body" style="display: flex;">
                                         <p class="text-center">
-                                            {{$subcategory->name}}
+                                            {{t($subcategory->name)}}
                                         </p>
                                     </div>
                                 </div>
