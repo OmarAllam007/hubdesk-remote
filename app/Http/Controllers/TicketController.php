@@ -61,11 +61,10 @@ class TicketController extends Controller
             $field = CustomField::find($key);
 //            dd($field->name);
             if($field && $field->required){
-                 $validation['cf'.$key] = 'required';
-                 $messages['cf'.$key] = 'This field is required';
+                 $validation['cf.'.$key] = 'required';
+                 $messages['cf.'.$key.'.required'] = "The field ( {$field->name} ) is required";
             }
         }
-
 
         $this->validate($request,$validation,$messages);
 
@@ -465,13 +464,13 @@ class TicketController extends Controller
         if ($category->subcategories()->count()) {
             return view('ticket.create_ticket.create_subcategory', compact('business_unit', 'category'));
         }
+        $subcategory = new Subcategory();
 
-        return view('ticket.create', compact('business_unit', 'category'));
+        return view('ticket.create', compact('business_unit', 'category','subcategory'));
     }
 
     function selectItem(BusinessUnit $business_unit, Category $category, Subcategory $subcategory)
     {
-
         if($subcategory->items()->count()){
             return view('ticket.create_ticket.create_item', compact('business_unit', 'category','subcategory'));
         }

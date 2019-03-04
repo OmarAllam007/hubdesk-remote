@@ -120,55 +120,59 @@ window.app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         subcategories: {},
         items: {},
         technicians: {},
-        technician_id: window.technician_id
+        technician_id: window.technician_id,
+        requester: '',
+        loading: false
     },
     mounted: function mounted() {
+        var _this = this;
+
         this.loadCategory(true);
         this.loadSubcategory(true);
         this.loadItem(true);
+
+        $('#requester_id').on("change", function (e) {
+            _this.getRequesterInfo(e.target.value);
+        });
     },
     created: function created() {
+        this.getRequesterInfo($('#requester_id').val());
 
         // this.loadCategory(false);
         // this.loadSubcategory(false)
         // // this.loadTechnicians()
         //
-        // this.loadTechnicians()
-
+        this.loadTechnicians();
     },
 
     methods: {
         loadCategory: function loadCategory(withFields) {
-            var _this = this;
+            var _this2 = this;
 
             if (this.category) {
                 jQuery.get('/list/subcategory/' + this.category).then(function (response) {
-                    console.log(response);
-
-                    _this.subcategories = response;
+                    _this2.subcategories = response;
                 });
                 if (withFields) this.loadCustomFields();
             }
         },
         loadSubcategory: function loadSubcategory(withFields) {
-            var _this2 = this;
+            var _this3 = this;
 
             if (this.subcategory && this.subcategory != 0) {
                 jQuery.get('/list/item/' + this.subcategory).then(function (response) {
-                    console.log(response);
-                    _this2.items = response;
+                    _this3.items = response;
                 });
 
                 if (withFields) this.loadCustomFields();
             }
         },
         loadTechnicians: function loadTechnicians() {
-            var _this3 = this;
+            var _this4 = this;
 
             if (this.group) {
                 jQuery.get('/list/group-technicians/' + this.group).then(function (response) {
-                    console.log(response);
-                    _this3.technicians = response;
+                    _this4.technicians = response;
                 });
             }
         },
@@ -205,6 +209,15 @@ window.app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                 }
                 // console.log(newFields)
                 customFieldsContainer.html('').append(newFields);
+            });
+        },
+        getRequesterInfo: function getRequesterInfo(id) {
+            var _this5 = this;
+
+            this.loading = true;
+            $.get('/get-requester-info/' + id).then(function (response) {
+                _this5.requester = response;
+                _this5.loading = false;
             });
         }
     },
