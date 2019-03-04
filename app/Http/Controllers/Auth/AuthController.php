@@ -13,7 +13,7 @@ class AuthController extends Controller
 {
     
 
-    protected $username = 'login';
+    protected $username = 'employee_id';
 
     /**
      * Where to redirect users after login / registration.

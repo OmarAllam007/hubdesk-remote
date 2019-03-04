@@ -1,18 +1,67 @@
 {{ csrf_field() }}
 <div id="TicketForm">
     <div class="row">
+        <div class="col-md-3">
+            @foreach($errors->all() as $error)
+                <div class="alert alert-danger">
+                    <p>{{$error}}</p>
+                </div>
+            @endforeach
+        </div>
+    </div>
+    <div class="row">
+
         <div class="col-sm-6">
+
             @if (!isset($ticket) && Auth::user()->isSupport())
                 <div class="form-group form-group-sm {{$errors->has('requester_id')? 'has-error' : ''}}">
                     {{ Form::label('requester_id', t('Requester'), ['class' => 'control-label']) }}
-                    {{ Form::select('requester_id', App\User::requesterList()->prepend('Create for me', ''), null, ['class' => 'form-control select2']) }}
+                    <select name="requester_id" id="requester_id" class="form-control select2">
+                        <option value="{{Auth::user()->id}}">{{t('Create for me')}}</option>
+                        @foreach(App\User::orderBy('name')->where('employee_id','<>',0)->get() as $requester)
+                            <option value="{{$requester->id}}"> {{$requester->employee_id }}
+                                - {{$requester->name}}</option>
+                        @endforeach
+                    </select>
+                    <br>
+                    <div v-show="loading">
+                        <i class="fa fa-2x fa-spinner fa-spin"></i>
+                    </div>
+
+                    <div v-show="!loading">
+                            <span style="padding-right: 10px" v-if="requester.business_unit_name">
+                            <small><strong>{{t('Business Unit')}}</strong></small> : <small
+                                        v-text="requester.business_unit_name"> </small>
+                        </span>
+
+                        <span style="padding-right: 10px" v-if="requester.department_name">
+                            <small><strong>{{t('Department')}}</strong></small> : <small
+                                    v-text="requester.department_name"> </small>
+                        </span>
+
+                        <span style="padding-right: 10px" v-if="requester.job">
+                            <small><strong>{{t('Job Description')}}</strong></small> : <small
+                                    v-text="requester.job"> </small>
+                        </span>
+
+                        <span style="padding-right: 10px" v-if="requester.email">
+                            <small><strong>{{t('Email')}}</strong></small> : <small v-text="requester.email"> </small>
+                    </span>
+                    </div>
+                    {{--                    {{ Form::select('requester_id', App\User::requesterList()->prepend('Create for me', ''), null, ['class' => 'form-control select2']) }}--}}
                     {!! $errors->first('requester_id', '<div class="error-message">:message</div>') !!}
+
+
                 </div>
+
+
+
             @endif
+            <br>
 
             <div class="form-group form-group-sm {{$errors->has('subject')? 'has-error' : ''}}">
                 {{ Form::label('subject', t('Subject'), ['class' => 'control-label']) }}
-                {{ Form::text('subject', $category->name.'  -  '.$subcategory->name ?? '', ['class' => 'form-control']) }}
+                {{ Form::text('subject', $category->name.(isset($subcategory->name) ? '  -  '.  $subcategory->name:'') , ['class' => 'form-control']) }}
                 @if ($errors->has('subject'))
                     <div class="error-message">{{$errors->first('subject')}}</div>
                 @endif
@@ -20,22 +69,33 @@
         </div>
     </div>
 
+    <div class="row">
+        <div id="CustomFields">
+            @include('custom-fields.render', [
+                'category' => App\Category::find(old('category_id')),
+                'subcategory' => App\Category::find(old('subcategory_id')),
+                'item' => App\Item::find(old('item_id'))
+            ])
+        </div>
+
+    </div>
 
     <div class="row">
         <div class="col-sm-7">
             <div class="form-group form-group-sm {{$errors->has('description')? 'has-error' : ''}}">
-                {{ Form::label('description', t('Description'), ['class' => 'control-label']) }}
+                {{ Form::label('description', t('Description'), ['class' => 'control-label']) }}<strong
+                        class="text-danger">*</strong>
                 {{ Form::textarea('description', null, ['class' => 'form-control richeditor']) }}
+
                 @if ($errors->has('description'))
                     <div class="error-message">{{$errors->first('description')}}</div>
                 @endif
             </div>
-
         </div>
         <div class="col-sm-5">
             <div class="form-group form-group-sm {{$errors->has('category_id')? 'has-error' : ''}}">
                 {{ Form::label('category_id', t('Category'), ['class' => 'control-label']) }}
-                {{ Form::select('category_id', App\Category::selection('Select Category'), request('category_id'), ['class' => 'form-control', 'v-model' => 'category','disabled'=>'disabled']) }}
+                {{ Form::select('category_id', App\Category::selection('Select Category'), request('category_id'), ['class' => 'form-control', 'v-model' => 'category','readonly'=>'readonly']) }}
                 @if ($errors->has('category_id'))
                     <div class="error-message">{{$errors->first('category_id')}}</div>
                 @endif
@@ -45,7 +105,7 @@
                 {{ Form::label('subcategory_id', t('Subcategory'), ['class' => 'control-label']) }}
 
                 <select class="form-control" name="subcategory_id" id="subcategory_id" v-model="subcategory"
-                        disabled="disabled">
+                        readonly>
                     <option value="">Select Subcategory</option>
                     <option v-for="(subcategory, id) in subcategories" :value="subcategory.id">@{{subcategory.name}}
                     </option>
@@ -57,7 +117,7 @@
 
             <div class="form-group form-group-sm {{$errors->has('item_id')? 'has-error' : ''}}">
                 {{ Form::label('item_id', t('Item'), ['class' => 'control-label']) }}
-                <select class="form-control" name="item_id" id="item_id" v-model="item" disabled="disabled">
+                <select class="form-control" name="item_id" id="item_id" v-model="item" readonly>
                     <option value="">Select Item</option>
                     <option v-for="(item, id) in items" :value="item.id" v-text="item.name"></option>
                 </select>
@@ -66,18 +126,6 @@
                 @endif
             </div>
 
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-4">
-            <div id="CustomFields">
-                @include('custom-fields.render', [
-                    'category' => App\Category::find(old('category_id')),
-                    'subcategory' => App\Category::find(old('subcategory_id')),
-                    'item' => App\Item::find(old('item_id'))
-                ])
-            </div>
         </div>
     </div>
 
@@ -136,6 +184,10 @@
     {{--</div>--}}
     {{--@endif--}}
 
+
+    {{--<ul class="list-unstyled">--}}
+    {{--<li class="text-danger">{{$error}}</li>--}}
+    {{--</ul>--}}
 </div>
 <div class="row">
     <div class="col-sm-12">
@@ -144,3 +196,4 @@
         </div>
     </div>
 </div>
+
