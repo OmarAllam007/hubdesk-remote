@@ -2,13 +2,13 @@
 <div id="TicketForm">
     <div class="row">
         <div class="col-md-6">
-            @foreach($errors->all() as $error)
                 <div class="alert alert-danger">
                     <ul>
+                        @foreach($errors->all() as $error)
                         <li>{{$error}}</li>
+                        @endforeach
                     </ul>
                 </div>
-            @endforeach
         </div>
     </div>
     <div class="row">
