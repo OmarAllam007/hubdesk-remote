@@ -109,7 +109,7 @@
                 <p class="text-mutedtext-right">{{t('Copyright')}} &copy; <a
                             href="http://hubtech.sa">Hubtech</a> {{date('Y')}}</p>
 
-                <p class="text-mutedtext-left">  للإطلاع على طريقة استخدام الاصدار الجديد من الهب ديسك    <a>اضغط هنا</a>   </p>
+                {{--<p class="text-mutedtext-left">  للإطلاع على طريقة استخدام الاصدار الجديد من الهب ديسك    <a>اضغط هنا</a>   </p>--}}
 
             </div>
         </div>

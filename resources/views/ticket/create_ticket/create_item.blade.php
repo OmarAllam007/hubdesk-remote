@@ -43,7 +43,7 @@
                                  style="display: flex;align-items: center;">
                                 <div class="tile-body" style="display: flex;flex-direction: column">
                                     <p class="text-center" style="min-height: 100px">
-                                        {{$item->name}}
+                                        {{t($item->name)}}
                                     </p>
 
                                     <p class="text-center">

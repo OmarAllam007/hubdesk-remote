@@ -53,7 +53,7 @@
                                 <div class="tile-body"
                                      style="display: flex;flex-direction: column;justify-content: center">
                                     <p class="text-center">
-                                        {{$category->name}}
+                                        {{t($category->name)}}
                                     </p>
                                     <p>
                                         {{$category->service_cost ? $category->service_cost : ''}}

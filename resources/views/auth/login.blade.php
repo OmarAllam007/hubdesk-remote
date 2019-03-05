@@ -15,11 +15,11 @@
                     </div>
                 </div>
                 <br>
-                <div class="form-group{{ $errors->has('employee_id') ? ' has-error' : '' }}">
+                <div class="form-group{{ $errors->has('login') ? ' has-error' : '' }}">
                     <div class="col-sm-12">
-                        <input type="text" class="form-control" name="employee_id" id="employee_id" value="{{ old('login') }}" placeholder="Login"  style="width: 100%">
+                        <input type="text" class="form-control" name="login" id="login" value="{{ old('login') }}" placeholder="Login"  style="width: 100%">
                         @if ($errors->has('login'))
-                            <span class="error-message">{{ $errors->first('employee_id') }}</span>
+                            <span class="error-message">{{ $errors->first('login') }}</span>
                         @endif
                     </div>
                 </div>

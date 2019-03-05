@@ -5,7 +5,7 @@
             <th>{{t('Sent to')}}</th>
             <th>{{t('By')}}</th>
             <th>{{t('Sent at')}}</th>
-{{--            <th>{{t('By')}}</th>--}}
+            <th>{{t('By')}}</th>
             <th>{{'Sent at'}}</th>
             <th>{{t('Stage')}}</th>
             <th>{{t('Status')}}</th>
@@ -20,7 +20,7 @@
             <tr class="{{$approval->approval_color}}">
 
                 <td>{{$approval->approver->name}}</td>
-{{--                <td>{{$approval->created_by->name}}</td>--}}
+                <td>{{$approval->created_by->name}}</td>
                 <td>{{$approval->created_at->format('d/m/Y H:i')}}</td>
                 <td>{{$approval->stage}}</td>
                 <td>
@@ -87,7 +87,7 @@
                     {{Form::label('approver_id', t('Send approval to'), ['class' => 'control-label'])}}
                     <select class="form-control select2" name="approver_id" id="approver_id">
                         <option value="">{{t('Select Approver')}}</option>
-                        @foreach(App\User::orderBy('name')->get() as $user)
+                        @foreach(App\User::where('email','<>',null)->orderBy('name')->get() as $user)
                             <option value="{{$user->id}}">
                                 {{$user->name}} ( {{$user->email}} )
                             </option>
