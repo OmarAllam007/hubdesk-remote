@@ -60,13 +60,13 @@
                         @endif
                     </div>
 
-                    <div id="CustomFields">
-                        @include('custom-fields.render', [
-                            'category' => App\Category::find(old('category_id')),
-                            'subcategory' => App\Category::find(old('subcategory_id')),
-                            'item' => App\Item::find(old('item_id'))
-                        ])
-                    </div>
+                    {{--<div id="CustomFields">--}}
+                        {{--@include('custom-fields.render', [--}}
+                            {{--'category' => App\Category::find(old('category_id')),--}}
+                            {{--'subcategory' => App\Category::find(old('subcategory_id')),--}}
+                            {{--'item' => App\Item::find(old('item_id'))--}}
+                        {{--])--}}
+                    {{--</div>--}}
 
                 </div>
             </div>
