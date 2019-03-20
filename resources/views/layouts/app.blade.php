@@ -40,7 +40,7 @@
                     @can('reports')
                         <li><a href="{{url('/reports')}}"><i class="fa fa-bar-chart"></i> {{t('Report')}}</a></li>
                     @endif
-
+                    <li><a href="{{route('kgs.business_document')}}"><i class="fa fa-book"></i> {{t('Business Document')}}</a></li>
                     @if (Auth::user()->isAdmin())
                         <li><a href="{{url('/admin')}}"><i class="fa fa-cogs"></i> {{t('Admin')}}</a></li>
                     @endif

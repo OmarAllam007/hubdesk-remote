@@ -54,7 +54,8 @@ class KGSProvider extends ServiceProvider
         $this->app->make('router')->group([
             'middleware' => 'web',
             'namespace' => 'KGS\Http\Controllers',
-            'prefix' => 'kgs'
+            'prefix' => 'kgs',
+            'as' => 'kgs.',
         ], function ($router) {
             require $this->basePath('routes/web.php');
         });
