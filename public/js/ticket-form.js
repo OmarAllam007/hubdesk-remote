@@ -11884,7 +11884,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "form-control input-xs",
       attrs: {
         "type": "file",
-        "name": ("attachments[" + index + "]")
+        "name": ("attachments[" + attach + "]")
       }
     })]), _vm._v(" "), _c('td', {
       staticClass: "col-md-2 text-right"

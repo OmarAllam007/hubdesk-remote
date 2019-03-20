@@ -56,7 +56,7 @@ class Attachment extends KModel
     public function getTicketIdAttribute()
     {
         if ($this->type == self::TICKET_TYPE) {
-            return $this->reference->id;
+            return $this->reference;
         }
         if ($this->type == self::TICKET_REPLY_TYPE) {
             return TicketReply::find($this->reference)->ticket_id;
