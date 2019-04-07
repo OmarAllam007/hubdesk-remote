@@ -11,7 +11,7 @@ const { mix } = require('laravel-mix');
  |
  */
 
-mix.sass('resources/assets/sass/app.scss', 'public/css')
+// mix.sass('resources/assets/sass/app.scss', 'public/css')
 //       mix.js('resources/assets/js/app.js', 'public/js')
 
 // mix.sass('resources/assets/sass/app.scss', 'public/css')
@@ -22,7 +22,7 @@ mix.sass('resources/assets/sass/app.scss', 'public/css')
 //       .js('resources/assets/js/ticket.js', 'public/js')
 //       .js('resources/assets/js/criteria.js', 'public/js')
 //       mix.js('resources/assets/js/approval-levels.js', 'public/js')
-//       mix.js('resources/assets/js/roles.js', 'public/js')
+      mix.js('resources/assets/js/approval-levels.js', 'public/js')
 //       .js('resources/assets/js/task.js', 'public/js')
 //       .js('resources/assets/js/escalation.js', 'public/js');
 // mix.js('resources/assets/js/ticket-note.js', 'public/js');

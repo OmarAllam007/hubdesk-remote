@@ -5,7 +5,8 @@
 
     <form action="{{route('admin.category.destroy', $category)}}" class="pull-right" method="post">
         {{csrf_field()}} {{method_field('delete')}}
-        <a href="{{route('admin.category.index')}}" class="btn btn-sm btn-default"><i class="fa fa-chevron-left"></i></a>
+        <a href="{{route('admin.category.index')}}" class="btn btn-sm btn-default"><i
+                    class="fa fa-chevron-left"></i></a>
         <button class="btn btn-sm btn-warning" type="submit"><i class="fa fa-trash-o"></i></button>
     </form>
 @stop
@@ -22,4 +23,8 @@
     @include('admin.category._form')
 
     {{Form::close()}}
-@stop
+@endsection
+
+@section('javascript')
+    <script type="text/javascript" src="{{asset('/js/approval-levels.js')}}"></script>
+@endsection

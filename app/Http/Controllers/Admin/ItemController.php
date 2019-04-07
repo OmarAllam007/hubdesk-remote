@@ -38,6 +38,7 @@ class ItemController extends Controller
         $data['service_request']=$service_request;
         $item = Item::create($data);
         $this->handleLevels($request, $item);
+        $this->handleRequirements($request,$item);
 
         flash('Item has been saved', 'success');
 
@@ -61,6 +62,8 @@ class ItemController extends Controller
         $data['service_request']=$service_request;
         $item->update($data);
         $this->handleLevels($request, $item);
+        $this->handleRequirements($request,$item);
+
         flash('Item has been saved', 'success');
 
         return \Redirect::route('admin.subcategory.show', $item->subcategory_id);
@@ -88,5 +91,26 @@ class ItemController extends Controller
                 ]);
             }
         }
+    }
+
+    private function handleRequirements(Request $request, Item $item)
+    {
+        if(!count($request->requirements)){
+            return;
+        }
+
+        $item->requirements()->delete();
+
+        foreach ($request->requirements as $requirement){
+            $item->requirements()->create([
+                'reference_type'=> 3,
+                'reference_id'=> $item->id,
+                'field'=>$requirement['field'],
+                'operator'=>'is',
+                'label'=>$requirement['label'],
+                'value'=>$requirement['value'],
+            ]);
+        }
+
     }
 }

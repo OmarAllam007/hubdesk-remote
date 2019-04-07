@@ -56,6 +56,13 @@
                 <button class="btn btn-success"><i class="fa fa-check-circle"></i> Submit</button>
             </div>
         </div>
+
+        <div class="col-md-6">
+            <fieldset>
+                <legend>Requirements</legend>
+                <service-requirements :requirements_data="{{json_encode(isset($subcategory) ? $subcategory->requirements: [] )}}"></service-requirements>
+            </fieldset>
+        </div>
     </div>
 </div>
 <script type="text/javascript" src="{{asset('/js/approval-levels.js')}}"></script>

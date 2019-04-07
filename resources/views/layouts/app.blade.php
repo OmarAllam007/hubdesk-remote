@@ -103,7 +103,6 @@
     </footer>
 </div>
 
-<script src="{{asset('/js/app.js')}}"></script>
 
 @if (alert()->ready())
     <script>
@@ -117,5 +116,7 @@
     </script>
 @endif
 @yield('javascript')
+<script src="{{asset('/js/app.js')}}"></script>
+
 </body>
 </html>
