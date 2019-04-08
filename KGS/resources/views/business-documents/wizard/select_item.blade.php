@@ -17,7 +17,7 @@
 
         <div class="tiles-container">
             @foreach($subcategory->items as $item)
-                <a  class="tile">
+                <a href="{{route('kgs.document.check-requirements',compact('business_unit','category','subcategory','item'))}}" class="tile">
                     <div class="tile-container" >
                         {{--<div class="tile-icon" style="">--}}
                         {{--                            <img src="{{asset('images/logo.png')}}">--}}
