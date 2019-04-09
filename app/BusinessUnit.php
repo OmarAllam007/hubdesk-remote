@@ -5,6 +5,7 @@ namespace App;
 use App\Behaviors\Listable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\UploadedFile;
+use KGS\Document;
 
 /**
  * App\BusinessUnit
@@ -94,5 +95,9 @@ class BusinessUnit extends KModel
         $dirname = dirname($this->logo);
         $path = $dirname . '/' . $basename;
         return url('/storage' . $path);
+    }
+
+    function documents(){
+        return $this->hasMany(Document::class);
     }
 } 

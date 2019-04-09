@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('header')
-    <h4 class="pull-left">{{t('Business Units')}}</h4>
-
+    <h4 class="pull-left"> {{$business_unit->name}} > {{t('Select Category')}}</h4>
+    <a class="btn btn-success" href="{{route('kgs.document.index',compact('business_unit'))}}"><i class="fa fa-file" ></i> {{t('Documents')}}</a>
 @stop
 @section('stylesheets')
     <style>
@@ -12,8 +12,7 @@
 
 @section('body')
     <section class="col-md-12 ">
-        <div class=form-group></div>
-        <h3 class=text-center>{{t('Select Category') }}</h3>
+
         <div class="tiles-container">
             @foreach(\App\BusinessUnit::find(env('GS_ID'))->categories as $category)
                 <a href="{{route('kgs.document.select_subcategory',compact('business_unit','category'))}}" class="tile">

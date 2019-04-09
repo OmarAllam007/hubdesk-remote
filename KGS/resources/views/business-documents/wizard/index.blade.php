@@ -3,7 +3,8 @@
 @section('header')
     <h4 class="pull-left">{{t('Business Units')}}</h4>
 
-@stop
+
+@endsection
 @section('stylesheets')
     <style>
 
@@ -12,7 +13,6 @@
 
 @section('body')
     <section class="col-md-12 ">
-        <div class=form-group></div>
         <h3 class=text-center>{{t('Select Business Unit') }}</h3>
 
         <div class="tiles-container">
