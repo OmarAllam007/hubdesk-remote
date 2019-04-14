@@ -10,6 +10,9 @@
             <a class="btn  btn-info" href="{{route('kgs.document.roles.show',compact('business_unit'))}}"><i
                         class="fa fa-users"></i> {{t('Roles')}}</a>
         @endif
+
+        <a class="btn  btn-default" href="{{route('kgs.business_document',compact('business_unit'))}}"><i
+                    class="fa fa-1x fa-arrow-right"></i></a>
     </div>
 @stop
 @section('stylesheets')

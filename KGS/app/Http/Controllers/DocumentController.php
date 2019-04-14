@@ -60,7 +60,7 @@ class DocumentController extends Controller
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'path' => $request['document_path'] ? $request['document_path'] : $document->path,
-            'last_updated_by' => \Auth::id(),
+//            'last_updated_by' => \Auth::id(),
         ]);
         return redirect()->route('kgs.document.index', compact('business_unit'));
     }
