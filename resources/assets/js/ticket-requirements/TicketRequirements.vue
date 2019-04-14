@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="col-md-6">
+        <div class="col-md-8">
             <ticket-requirement v-for="(require,index) in requirements" :requirement="require" :index="index"
                                 :key="index"></ticket-requirement>
             <div class="form-group">

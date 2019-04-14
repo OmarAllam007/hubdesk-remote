@@ -58,7 +58,9 @@ class BusinessDocumentController
     {
 
         $requirements = $category->requirements->merge($subcategory->requirements);
-        $requirements = $requirements->merge($item->requirements);
+        $requirements = $requirements->merge($item->requirements)->each(function ($requirement) {
+            $requirement['cost'] = $requirement->service_cost;
+        });
 
         if ($requirements->count()) {
             return view('kgs::business-documents.wizard.requirements', compact('business_unit', 'category', 'subcategory', 'item', 'requirements'));
@@ -97,14 +99,16 @@ class BusinessDocumentController
             foreach ($tasks as $index => $task) {
                 $levels = $this->getServiceLevels($task);
 
-                if(isset($tasks_files['requirements'][$index]['file']) && isset($task['checked'])){
+                if (isset($tasks_files['requirements'][$index]['file']) && isset($task['checked'])) {
                     $this->uploadTicketAttachments($ticket, [$tasks_files['requirements'][$index]['file']]);
-                }else{
-                     Ticket::create([
+                } else {
+                    $task_label =  $this->getServicesLabels($levels['category'],  $levels['subcategory'], $levels['item']);
+
+                    Ticket::create([
                         'requester_id' => \Auth::id(),
                         'creator_id' => \Auth::id(),
-                        'subject' => $label,
-                        'description' => $label,
+                        'subject' => $task_label,
+                        'description' => $task_label,
                         'category_id' => $levels['category']->id,
                         'subcategory_id' => $levels['subcategory']->id ?? null,
                         'item_id' => $levels['item']->id ?? null,
@@ -115,7 +119,7 @@ class BusinessDocumentController
                 }
             }
         }
-        return redirect()->route('ticket.show', $ticket);
+        return redirect()->route('ticket.show', $ticket->id);
     }
 
     private function getServiceLevels($task)

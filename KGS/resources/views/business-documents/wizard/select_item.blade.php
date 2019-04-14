@@ -17,8 +17,9 @@
 
         <div class="tiles-container">
             @foreach($subcategory->items as $item)
-                <a href="{{route('kgs.document.check-requirements',compact('business_unit','category','subcategory','item'))}}" class="tile">
-                    <div class="tile-container" >
+                <a href="{{route('kgs.document.check-requirements',compact('business_unit','category','subcategory','item'))}}"
+                   class="tile">
+                    <div class="tile-container">
                         {{--<div class="tile-icon" style="">--}}
                         {{--                            <img src="{{asset('images/logo.png')}}">--}}
                         {{--</div>--}}
@@ -33,6 +34,11 @@
                             <p class="text-center" style="margin-top: 40px">
                                 {{$item->name}}
                             </p>
+                            @if($item->service_cost)
+                                <p>
+                                    <span>{{$item->service_cost}} SAR</span>
+                                </p>
+                            @endif
                         </div>
                     </div>
                 </a>

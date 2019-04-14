@@ -2,6 +2,9 @@
 
 namespace KGS;
 
+use App\Category;
+use App\Item;
+use App\Subcategory;
 use Illuminate\Database\Eloquent\Model;
 
 class Requirement extends Model
@@ -14,8 +17,23 @@ class Requirement extends Model
     static $types = ['Category' => 1, 'Subcategory' => 2, 'Item' => 3];
 
 
+
+
     protected $fillable = [
         'reference_type', 'reference_id', 'field', 'operator', 'label', 'value'
     ];
 
+    function getServiceCostAttribute()
+    {
+        if($this->reference_type == self::CATEGORY_TYPE){
+            return Category::find($this->value)->service_cost;
+        }else if($this->reference_type == self::SUBCATEGORY_TYPE){
+            return Subcategory::find($this->value)->service_cost;
+        }
+        else if($this->reference_type == self::ITEM_TYPE){
+            return Item::find($this->value)->service_cost;
+        }
+
+        return 0;
+    }
 }

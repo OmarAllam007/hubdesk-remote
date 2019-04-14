@@ -11972,7 +11972,7 @@ var Component = __webpack_require__(1)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/omarkhaled/code/hubdesk/resources/assets/js/ticket-requirements/TicketRequirements.vue"
+Component.options.__file = "/Users/omar/code/hubdesk/resources/assets/js/ticket-requirements/TicketRequirements.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] TicketRequirements.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -12179,7 +12179,7 @@ var Component = __webpack_require__(1)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/omarkhaled/code/hubdesk/resources/assets/js/ticket-requirements/TicketRequirement.vue"
+Component.options.__file = "/Users/omar/code/hubdesk/resources/assets/js/ticket-requirements/TicketRequirement.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] TicketRequirement.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -12318,7 +12318,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": ("requirement-checkbox[" + _vm.index + "]")
     }
-  }, [_vm._v(_vm._s(_vm.requirement.label))])]), _vm._v(" "), _c('div', {
+  }, [_vm._v(_vm._s(_vm.requirement.label) + " - " + _vm._s(_vm.requirement.cost) + " SAR")])]), _vm._v(" "), _c('div', {
     staticClass: "requirement-actions"
   }, [(_vm.checked) ? _c('input', {
     staticClass: "requirement-attachment",
@@ -12337,7 +12337,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "name": ("requirements[" + _vm.index + "][reference]")
     },
     domProps: {
-      "value": _vm.requirement.reference_id
+      "value": _vm.requirement.value
     }
   }), _vm._v(" "), _c('input', {
     attrs: {
@@ -12374,7 +12374,7 @@ var Component = __webpack_require__(1)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/omarkhaled/code/hubdesk/resources/assets/js/AttachmentModal.vue"
+Component.options.__file = "/Users/omar/code/hubdesk/resources/assets/js/AttachmentModal.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] AttachmentModal.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -12515,7 +12515,7 @@ if (false) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [_c('div', {
-    staticClass: "col-md-6"
+    staticClass: "col-md-8"
   }, [_vm._l((_vm.requirements), function(require, index) {
     return _c('ticket-requirement', {
       key: index,
