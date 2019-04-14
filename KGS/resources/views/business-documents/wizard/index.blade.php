@@ -17,6 +17,7 @@
 
         <div class="tiles-container">
             @foreach(\App\BusinessUnit::orderBy('name')->get() as $business_unit)
+                @can('show_business_unit',$business_unit)
                 <a href="{{route('kgs.document.select_category', compact('business_unit'))}}" class="tile">
                     <div class="tile-container" >
                         {{--<div class="tile-icon" style="">--}}
@@ -36,6 +37,7 @@
                         </div>
                     </div>
                 </a>
+                @endcan
             @endforeach
         </div>
 

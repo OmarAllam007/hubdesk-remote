@@ -11,7 +11,8 @@
                 {{--</span>--}}
         {{--</div>--}}
         <a href="{{route('kgs.document.create',compact('business_unit'))}}" class="btn btn-sm btn-outlined btn-primary"><i class="fa fa-plus"></i>  {{t('Create')}}</a>
-        {{--<a title="Import from active directory" href="#ImportModal" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-download"></i></a>--}}
+    <a class="btn  btn-default" href="{{route('kgs.document.select_category',compact('business_unit'))}}"><i class="fa fa-1x fa-arrow-right" ></i></a>
+
     {{--</form>--}}
 @stop
 

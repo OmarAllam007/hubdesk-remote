@@ -18,3 +18,6 @@ Route::get('business-document/{business_unit}/category/{category}/select_subcate
 Route::get('business-document/{business_unit}/category/{category}/select_subcategory/{subcategory}/select_item','BusinessDocumentController@selectItem')->name('document.select_item');
 Route::get('business-document/{business_unit}/category/{category}/select_subcategory/{subcategory}/select_item/{item}/requirements','BusinessDocumentController@checkForRequirements')->name('document.check-requirements');
 Route::resource('business_unit/{business_unit}/document','DocumentController');
+Route::post('business-document/{business_unit}/category/{category}/select_subcategory/{subcategory}/select_item/{item?}/create_ticket','BusinessDocumentController@createTicket')->name('document.create-ticket');
+Route::get('business-document/{business_unit}/roles','BusinessDocumentRolesController@show')->name('document.roles.show');
+Route::post('business-document/{business_unit}/roles','BusinessDocumentRolesController@update')->name('document.roles.submit');

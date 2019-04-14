@@ -97,7 +97,13 @@ class BusinessUnit extends KModel
         return url('/storage' . $path);
     }
 
-    function documents(){
+    function documents()
+    {
         return $this->hasMany(Document::class);
+    }
+
+    function document_roles()
+    {
+        return $this->belongsToMany(User::class, 'bu_documents_roles');
     }
 } 

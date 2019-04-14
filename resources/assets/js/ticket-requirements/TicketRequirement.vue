@@ -3,12 +3,14 @@
         <div class="form-group">
             <div class="requirement-container">
                 <div class="requirement-check">
-                    <input type="checkbox" :id="`requirement-checkbox[${index}]`" :name="`requirement[${index}]`"  class="requirement-checkbox" @change="updateChecked()">
+                    <input type="checkbox" :id="`requirement-checkbox[${index}]`" :name="`requirements[${index}][checked]`"   class="requirement-checkbox" @change="updateChecked()">
                     <label :for="`requirement-checkbox[${index}]`">{{requirement.label}}</label>
                 </div>
                 <div class="requirement-actions">
-                    <input type="file" class="requirement-attachment" v-if="checked" @change="attachFile()">
-                    <button class="btn btn-sm btn-primary" v-else>Create Ticket</button>
+                    <input type="file" :name="`requirements[${index}][file]`" class="requirement-attachment" v-if="checked" @change="attachFile()">
+                    <input type="hidden" :name="`requirements[${index}][reference]`" :value="requirement.reference_id">
+                    <input type="hidden" :name="`requirements[${index}][reference_type]`" :value="requirement.reference_type">
+                    <!--<button class="btn btn-sm btn-primary" v-else>Create Ticket</button>-->
                 </div>
             </div>
         </div>

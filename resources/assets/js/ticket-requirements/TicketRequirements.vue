@@ -1,18 +1,15 @@
 <template>
     <div>
         <div class="col-md-6">
-            <form action="" class="form-group-lg">
-
-                <ticket-requirement v-for="(require,index) in requirements" :requirement="require" :index="index"
-                                    :key="index"></ticket-requirement>
-                <div class="form-group">
-                    <label>
-                        Attachments
-                    </label>
-                    <input type="file" class="form-control-file" name="attachments">
-                </div>
-                <button class="btn btn-sm btn-success" :disabled="!allHaveChecked">Submit</button>
-            </form>
+            <ticket-requirement v-for="(require,index) in requirements" :requirement="require" :index="index"
+                                :key="index"></ticket-requirement>
+            <div class="form-group">
+                <label>
+                    Attachments
+                </label>
+                <input type="file" class="form-control-file" name="ticket-attachments[]" multiple>
+            </div>
+            <button class="btn btn-sm btn-success" :disabled="!allHaveChecked">Submit</button>
         </div>
     </div>
 </template>
@@ -28,8 +25,8 @@
         data() {
             return {
                 items: [],
-                attachments:[],
-                ticket_id:''
+                attachments: [],
+                ticket_id: ''
             }
         },
         created() {
@@ -66,14 +63,15 @@
         computed: {
             allHaveChecked() {
                 for (var i = 0; i < this.items.length; i++) {
-                    if (!this.items[i].checked || !this.items[i].attached) {
+                    // console.log(this.items[i].checked, this.items[i].attached)
+                    if (this.items[i].checked && !this.items[i].attached) {
                         return false;
                     }
                 }
                 return true
             }
         },
-        components: {TicketRequirement,Attachments}
+        components: {TicketRequirement, Attachments}
     }
 </script>
 
