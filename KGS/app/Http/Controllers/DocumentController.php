@@ -29,6 +29,8 @@ class DocumentController extends Controller
 
     function store(BusinessUnit $business_unit, Request $request)
     {
+        $this->validate($request,['name'=>'required','end_date'=>'required','document'=>'required']);
+
         if ($request->hasFile('document')) {
             $request['document_path'] = $this->uploadDocument($business_unit, $request);
         }
@@ -46,6 +48,9 @@ class DocumentController extends Controller
 
     function update(BusinessUnit $business_unit, Document $document, Request $request)
     {
+        $this->validate($request,['name'=>'required','end_date'=>'required']);
+
+
         if ($request->hasFile('document')) {
             $request['document_path'] = $this->uploadDocument($business_unit, $request);
         }
