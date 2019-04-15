@@ -6,12 +6,45 @@
 @stop
 @section('stylesheets')
     <style>
+        @keyframes slideInFromUp {
+            0% {
+                transform: translateY(-20%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
 
+        @keyframes slideInFromRight {
+            0% {
+                transform: translateX(5%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .card-section {
+            animation: .5s ease-out 0s 1 slideInFromUp;
+            padding: 30px;
+        }
+        .logo-animation {
+            animation: 1.5s ease-out 0s 1 slideInFromRight;
+        }
+
+        .quot-animation{
+            animation: 1.5s ease-out 0s 1 slideInFromLeft;
+        }
+        p.quot-animation{
+            margin-top: 80px;
+            font-size: 18pt;
+            font-weight: 800;
+        }
     </style>
 @endsection
 
 @section('body')
-    <section class="col-md-12 ">
+    <section class="col-md-12 card-section">
         <div class=form-group></div>
         <h3 class=text-center>{{t('Select Subcategory') }}</h3>
 

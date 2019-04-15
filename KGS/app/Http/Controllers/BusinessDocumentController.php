@@ -75,8 +75,12 @@ class BusinessDocumentController
     {
         Ticket::flushEventListeners();
 
-//        dd(\request()->all());
         $label = $this->getServicesLabels($category, $subcategory, $item);
+
+        $tasks = \request()->get('requirements');
+        $tasks_files = \request()->allFiles();
+
+        $all_checked = count($tasks) == count($tasks_files['requirements']);
 
         $ticket = Ticket::create([
             'requester_id' => \Auth::id(),
@@ -86,14 +90,14 @@ class BusinessDocumentController
             'category_id' => $category->id,
             'subcategory_id' => $subcategory->id ?? null,
             'item_id' => $item->id ?? null,
-            'status_id' => 4,
+            'status_id' => $this->checkForStatus(),
             'business_unit_id' => $business_unit->id
         ]);
 
         $this->uploadTicketAttachments($ticket, \request('ticket-attachments'));
 
-        $tasks_files = \request()->allFiles();
-        $tasks = \request()->get('requirements');
+
+
 
         if (count($tasks)) {
             foreach ($tasks as $index => $task) {
@@ -102,7 +106,7 @@ class BusinessDocumentController
                 if (isset($tasks_files['requirements'][$index]['file']) && isset($task['checked'])) {
                     $this->uploadTicketAttachments($ticket, [$tasks_files['requirements'][$index]['file']]);
                 } else {
-                    $task_label =  $this->getServicesLabels($levels['category'],  $levels['subcategory'], $levels['item']);
+                    $task_label = $this->getServicesLabels($levels['category'], $levels['subcategory'], $levels['item']);
 
                     Ticket::create([
                         'requester_id' => \Auth::id(),
@@ -141,10 +145,10 @@ class BusinessDocumentController
 
     private function getServicesLabels(Category $category, Subcategory $subcategory, Item $item)
     {
-        if ($subcategory && $item) {
+        if ($subcategory && $item->id) {
             return $category->name . ' > ' . $subcategory->name . ' > ' . $item->name;
         }
-        if ($subcategory && !$item) {
+        if ($subcategory && !$item->id) {
             return $category->name . ' > ' . $subcategory->name;
         }
         return $category->name;
@@ -179,4 +183,18 @@ class BusinessDocumentController
             }
         }
     }
+
+    private function checkForStatus()
+    {
+        $tasks = \request()->get('requirements');
+        $tasks_files = \request()->allFiles();
+        $all_checked = count($tasks) == count($tasks_files['requirements']);
+
+        if($all_checked){
+            return 1;
+        }else{
+            return 4;
+        }
+    }
+
 }

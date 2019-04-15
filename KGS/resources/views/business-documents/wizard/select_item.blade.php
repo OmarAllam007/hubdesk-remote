@@ -6,12 +6,34 @@
 @stop
 @section('stylesheets')
     <style>
+        @keyframes slideInFromUp {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInFromRight {
+            0% {
+                transform: translateX(5%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .card-section {
+            animation: .5s ease-out 0s 1 slideInFromUp;
+            padding: 30px;
+        }
 
     </style>
 @endsection
 
 @section('body')
-    <section class="col-md-12 ">
+    <section class="col-md-12 card-section">
         <div class=form-group></div>
         <h3 class=text-center>{{t('Select Item') }}</h3>
 

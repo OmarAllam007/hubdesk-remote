@@ -5,9 +5,28 @@
         - {{t('Check for Requirements')}} </h4>
 @endsection
 
+@section('stylesheets')
+    <style>
+        @keyframes slideInFromUp {
+            0% {
+                transform: translateX(-20%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
 
+
+
+        .card-section {
+            animation: .5s ease-out 0s 1 slideInFromUp;
+            /*padding: 30px;*/
+        }
+
+    </style>
+@endsection
 @section('body')
-    <div id="TicketRequirements">
+    <div id="TicketRequirements" class="card-section">
         @php
             $data = [];
             $data['category_id'] = $category->id;
