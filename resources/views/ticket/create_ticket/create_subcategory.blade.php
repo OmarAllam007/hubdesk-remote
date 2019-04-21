@@ -5,16 +5,16 @@
     <div class="display-flex">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Create Ticket</a></li>
-                <li class="breadcrumb-item"><a href="#">{{$business_unit->name}}
+                <li class="breadcrumb-item"><a href="#">{{t('Home')}}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{t($business_unit->name)}}
                     </a>
                 </li>
-                <li class="breadcrumb-item"><a href="{{route('ticket.create.select_category',compact('business_unit','category'))}}"> {{$category->name}}
+                <li class="breadcrumb-item"><a href="{{route('ticket.create.select_category',compact('business_unit','category'))}}"> {{t($category->name)}}
                     </a></li>
 
-                <li class="breadcrumb-item"> {{t('Select Subcategory')}}
+                {{--<li class="breadcrumb-item"> {{t('Select Subcategory')}}--}}
 
-                </li>
+                {{--</li>--}}
             </ol>
         </nav>
     </div>
@@ -43,7 +43,7 @@
         @endif
 
             <div class=form-group></div>
-            <h3 class=text-center>{{t('Subcategories') }}</h3>
+{{--            <h3 class=text-center>{{t('Subcategories') }}</h3>--}}
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">

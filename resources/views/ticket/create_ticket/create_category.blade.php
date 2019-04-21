@@ -5,14 +5,14 @@
     <div class="display-flex">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">{{t('Create Ticket')}}</li>
+                <li class="breadcrumb-item">{{t('Home')}}</li>
                 <li class="breadcrumb-item">
-                    <a href="{{route('ticket.create-wizard')}}">{{$business_unit->name}}
+                    <a href="{{route('ticket.create-wizard')}}">{{t($business_unit->name)}}
                     </a>
                 </li>
-                <li class="breadcrumb-item">
-                    {{t('Select Category')}}
-                </li>
+                {{--<li class="breadcrumb-item">--}}
+                    {{--{{t('Select Category')}}--}}
+                {{--</li>--}}
 
             </ol>
         </nav>
@@ -40,7 +40,7 @@
     <section class="col-sm-12 card-section">
 
         <div class=form-group></div>
-        <h3 class=text-center>{{t('Categories') }}</h3>
+{{--        <h3 class=text-center>{{t('Categories') }}</h3>--}}
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">

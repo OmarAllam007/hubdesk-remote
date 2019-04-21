@@ -48,7 +48,7 @@
 @section('body')
     <section class="col-md-12 card-section">
         <div class=form-group></div>
-        <h3 class="text-center exto-bold">{{t('Select Business Unit') }}</h3>
+{{--        <h3 class="text-center exto-bold">{{t('Select Business Unit') }}</h3>--}}
 
         <div class="tiles-container">
             @foreach(\App\BusinessUnit::whereHas('categories')->orderBy('name')->get() as $business_unit)

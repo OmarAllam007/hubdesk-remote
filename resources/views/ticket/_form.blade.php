@@ -44,7 +44,7 @@
                         </span>
 
                         <span style="padding-right: 10px" v-if="requester.job">
-                            <small><strong>{{t('Job Description')}}</strong></small> : <small
+                            <small><strong>{{t('Position')}}</strong></small> : <small
                                     v-text="requester.job"> </small>
                         </span>
 
