@@ -45,6 +45,26 @@
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <div class="tiles-container">
+                    @if(str_contains(strtolower($business_unit->name),'quwa'))
+                        <a target="_blank"
+                           href="https://fiori.alkifah.com:5447/sap/bc/ui5_ui5/ui2/ushell/shells/abap/FioriLaunchpad.html?sap-sec_session_created=X&sap-sec_session_created=X"
+                           class="tile">
+                            <div class="tile-container"
+                                 style="display: flex;align-items: center;justify-content: center;">
+                                <div class="tile-body"
+                                     style="display: flex;flex-direction: column;justify-content: center">
+                                    <img src="{{asset('images/fiori-logo.jpeg')}}">
+                                    {{--<p class="text-center">--}}
+                                    {{--{{t($category->name)}}--}}
+                                    {{--</p>--}}
+                                    {{--<p>--}}
+                                    {{--{{$category->service_cost ? $category->service_cost : ''}}--}}
+                                    {{--</p>--}}
+                                </div>
+                            </div>
+                        </a>
+                    @endif
+
                     @foreach($business_unit->categories as $category)
                         <a href="{{route('ticket.create.select_subcategory', compact('business_unit','category'))}}"
                            class="tile">
