@@ -50,7 +50,7 @@
                         @endif
                         <div class="col-md-12">
                             <a class="btn btn-outlined btn-rounded btn-primary" id="printTicket" target="_parent">
-                                <i class="fa fa-print"></i>{{t('Print')}}
+                                <i class="fa fa-print"></i> {{t('Print')}}
                             </a>
                         </div>
                     </div>
