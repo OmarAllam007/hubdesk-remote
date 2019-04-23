@@ -9,10 +9,13 @@
 namespace App\Observers;
 
 use App\Attachment;
+use App\Category;
 use App\ExtractImages;
 use App\Helpers\ServiceDeskApi;
 use App\Jobs\TicketReplyJob;
 use App\Mail\AttachmentsReplyJob;
+use App\Mail\SendSurveyEmail;
+use App\UserSurvey;
 use App\Ticket;
 use App\TicketLog;
 use App\TicketReply;
@@ -22,22 +25,43 @@ class TicketReplyObserver
 {
     public function creating(TicketReply $reply)
     {
+        $sdp = new ServiceDeskApi();
+        $sdp_request = $sdp->getRequest($reply->ticket->sdp_id);
+
+//        if ($reply->status_id == 8 && $survey = $reply->ticket->category->survey->first()) {
+//            $this->sendSurvey($reply->ticket, $survey);
+//        }
+
         if ($reply->user_id == $reply->ticket->requester_id) {
             if ($reply->status_id) {
                 $reply->ticket->status_id = $reply->status_id;
+                if ($reply->status_id == 8 && $sdp_request['resolvedtime'] != 0) {
+                    $reply->ticket->close_date = Carbon::now();
+                    $sdp->addReply($reply);
+
+                } elseif ($reply->status_id == 8 && $sdp_request['resolvedtime'] == 0) {
+                    $reply->ticket->status_id = 9;
+                    $reply->ticket->resolve_date = Carbon::now();
+                    $sdp->addReply($reply);
+                    /*  Without survey as it cancelled*/
+                }
+
             } else {
                 $reply->status_id = 1;
                 $reply->ticket->status_id = 1;
             }
-        }
-        if (in_array($reply->user_id, [$reply->ticket->technician_id, $reply->user->isTechnicainSupervisor($reply->ticket)])) {
-            $this->handleTechnician($reply);
-        }
 
-        $extract_image = new ExtractImages($reply->content);
-        $reply->content = $extract_image->extract();
-        TicketLog::addReply($reply);
-        $reply->ticket->save();
+            if (in_array($reply->user_id, [$reply->ticket->technician_id, $reply->user->isTechnicainSupervisor($reply->ticket)])) {
+                $this->handleTechnician($reply);
+
+                $extract_image = new ExtractImages($reply->content);
+                $reply->content = $extract_image->extract();
+                TicketLog::addReply($reply);
+                $reply->ticket->save();
+            }
+
+
+        }
     }
 
     public function created(TicketReply $reply)
@@ -51,7 +75,8 @@ class TicketReplyObserver
         }
     }
 
-    protected function handleTechnician(TicketReply $reply)
+
+    function handleTechnician(TicketReply $reply)
     {
         if ($reply->ticket->sdp_id) {
             $sdp = new ServiceDeskApi();
@@ -81,4 +106,17 @@ class TicketReplyObserver
 
         }
     }
+
+    private function sendSurvey($ticket, $survey)
+    {
+        UserSurvey::create([
+            'ticket_id' => $ticket->id,
+            'survey_id' => $survey->id,
+            'comment' => '',
+            'is_submitted' => 0,
+            'notified' => 1
+        ]);
+        \Mail::send(new SendSurveyEmail($ticket));
+    }
+
 }

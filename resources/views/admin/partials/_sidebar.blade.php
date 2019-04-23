@@ -21,14 +21,15 @@
         <a href="{{route('admin.branch.index')}}" class="list-group-item"><i class="fa fa-fw fa-sitemap"></i> {{t('Branches')}}</a>
         <a href="{{route('admin.department.index')}}" class="list-group-item"><i class="fa fa-fw fa-leaf"></i> {{t('Departments')}}</a>
 
-        <p class="list-group-item text-center info"><strong><i class="fa fa-fw fa-cogs"></i> {{t('Settings')}}</strong></p>
-        <a href="{{route('admin.category.index')}}" class="list-group-item"><i class="fa fa-fw fa-cubes"></i> {{t('Categories')}}</a>
-        <a href="{{route('admin.status.index')}}" class="list-group-item"><i class="fa fa-fw fa-bars"></i> {{t('Status')}}</a>
-        <a href="{{route('admin.impact.index')}}" class="list-group-item"><i class="fa fa-fw fa-bullseye"></i> {{t('Impact')}}</a>
-        <a href="{{route('admin.priority.index')}}" class="list-group-item"><i class="fa fa-fw fa-star"></i> {{t('Priority')}}</a>
-        <a href="{{route('admin.urgency.index')}}" class="list-group-item"><i class="fa fa-fw fa-hourglass-half"></i> {{t('Urgency')}}</a>
-        <a href="{{route('admin.business-rule.index')}}" class="list-group-item"><i class="fa fa-fw fa-magic"></i> {{t('Business Rules')}}</a>
-        <a href="{{route('admin.sla.index')}}" class="list-group-item"><i class="fa fa-fw fa-clock-o"></i> {{t('Service level agreements')}}</a>
+        <p class="list-group-item text-center info"><strong><i class="fa fa-fw fa-cogs"></i> Settings</strong></p>
+        <a href="{{route('admin.category.index')}}" class="list-group-item"><i class="fa fa-fw fa-cubes"></i> Categories</a>
+        <a href="{{route('admin.status.index')}}" class="list-group-item">Status</a>
+        <a href="{{route('admin.impact.index')}}" class="list-group-item"><i class="fa fa-fw fa-bullseye"></i> Impact</a>
+        <a href="{{route('admin.priority.index')}}" class="list-group-item"><i class="fa fa-fw fa-star"></i> Priority</a>
+        <a href="{{route('admin.urgency.index')}}" class="list-group-item"><i class="fa fa-fw fa-hourglass-half"></i> Urgency</a>
+        <a href="{{route('admin.business-rule.index')}}" class="list-group-item"><i class="fa fa-fw fa-magic"></i> Business Rules</a>
+        <a href="{{route('admin.sla.index')}}" class="list-group-item"><i class="fa fa-fw fa-clock-o"></i> Service level agreements</a>
+        <a href="{{route('admin.survey.index')}}" class="list-group-item"><i class="fa fa-fw fa-clock-o"></i> Survey</a>
     </nav>
 
 </section>

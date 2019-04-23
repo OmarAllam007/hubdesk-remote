@@ -2,6 +2,8 @@
 
 namespace App\Helpers;
 
+use App\Mail\SendSurveyEmail;
+use App\UserSurvey;
 use App\Ticket;
 use App\TicketReply;
 use GuzzleHttp\Client;
@@ -45,8 +47,10 @@ class ServiceDeskApi
     function getRequest($id)
     {
         $response = $this->send("/sdpapi/request/{$id}", 'GET_REQUEST');
-
         $request = [];
+        if(!$response->response->operation->Details->parameter){
+            return;
+        }
         foreach ($response->response->operation->Details->parameter as $param) {
             $key = (string)$param->name;
             $request[$key] = ((string)$param->value);
@@ -119,6 +123,15 @@ class ServiceDeskApi
 
         return $reply_id;
     }
+
+    function closeTicket(TicketReply $reply)
+    {
+        $this->send('/sdpapi/request/' . $reply->ticket->sdp_id, 'CLOSE_REQUEST', [
+            ['parameter' => ['name' => 'closeAccepted', 'value' => 'Accepted']],
+            ['parameter' => ['name' => 'closeComment', 'value' => $reply->content]]
+        ]);
+    }
+
 
     function addCompletedWithoutSolution(TicketReply $reply)
     {
@@ -211,6 +224,18 @@ class ServiceDeskApi
         if ($reply->status_id == 7) {
             $this->addResolution($reply);
 
+        } elseif ($reply->status_id == 8) {
+
+            if($reply->ticket->resolve_date){
+                $this->closeTicket($reply);
+                if ($survey = $reply->ticket->category->survey->first()) {
+                    $this->sendSurvey($reply,$survey);
+                }
+            }
+            else{
+                $this->addCompletedWithoutSolution( $reply);
+            }
+
         } elseif ($reply->status_id == 9) {
             $this->addCompletedWithoutSolution($reply);
 
@@ -225,6 +250,18 @@ class ServiceDeskApi
             ]);
 
         }
+    }
+
+    private function sendSurvey($reply,$survey)
+    {
+        UserSurvey::create([
+            'ticket_id'=>$reply->ticket->id,
+            'survey_id'=>$survey->id,
+            'comment'=>'',
+            'is_submitted'=>0,
+            'notified'=>1
+        ]);
+        \Mail::send(new SendSurveyEmail($reply->ticket));
     }
 
 

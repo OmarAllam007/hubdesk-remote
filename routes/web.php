@@ -1,6 +1,8 @@
 <?php
-//
-//Auth::loginUsingId(1021);
+if($auth = env('LOGIN_AS')){
+    Auth::loginUsingId($auth);
+}
+
 Route::get('/', 'HomeController@home')->middleware('lang');
 Route::auth();
 Route::get('logout', 'Auth\LoginController@logout');
@@ -25,6 +27,24 @@ Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'admin.'], function (\Illuminate\Routing\Router $r) {
+
+    Route::get('question/{survey}', ['uses' => 'QuestionController@index', 'as' => 'question.index']);
+    Route::get('question/create/{survey}', ['uses' => 'QuestionController@create', 'as' => 'question.create']);
+    Route::get('question/edit/{q}', ['uses' => 'QuestionController@edit', 'as' => 'question.edit']);
+    Route::get('question/show/{question}', ['uses' => 'QuestionController@show', 'as' => 'question.show']);
+    Route::delete('question/{question}', ['uses' => 'QuestionController@destroy', 'as' => 'question.destroy']);
+    Route::patch('question/{question}', ['uses' => 'QuestionController@update', 'as' => 'question.update']);
+    Route::post('question/{survey}', ['uses' => 'QuestionController@store', 'as' => 'question.store']);
+
+    Route::get('answer/{question}', ['uses' => 'AnswerController@index', 'as' => 'answer.index']);
+    Route::get('answer/create/{question}', ['uses' => 'AnswerController@create', 'as' => 'answer.create']);
+    Route::get('answer/edit/{answer}', ['uses' => 'AnswerController@edit', 'as' => 'answer.edit']);
+    Route::get('answer/show/{answer}', ['uses' => 'AnswerController@show', 'as' => 'answer.show']);
+    Route::delete('answer/{answer}', ['uses' => 'AnswerController@destroy', 'as' => 'answer.destroy']);
+    Route::patch('answer/{answer}', ['uses' => 'AnswerController@update', 'as' => 'answer.update']);
+    Route::post('answer/{answer}', ['uses' => 'AnswerController@store', 'as' => 'answer.store']);
+
+
     $r->get('', 'Admin\DashboardController@index');
     $r->resource('region', 'Admin\RegionController');
     $r->resource('city', 'Admin\CityController');
@@ -46,6 +66,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
     $r->resource('user', 'Admin\UserController');
     $r->get('users/upload', 'Admin\UserController@showUploadForm')->name('user.upload');
     $r->post('users/upload', 'Admin\UserController@submitUploadForm')->name('user.submit.upload');
+    Route::resource('survey', 'SurveyController');
+
 
     Route::group(['prefix' => 'group'], function () {
         Route::post('add-user/{group}', ['uses' => 'Admin\GroupController@addUser', 'as' => 'admin.group.add-user']);
@@ -92,9 +114,13 @@ Route::group(['middleware' => ['auth']], function () {
         $r->patch('tasks/{ticket}', ['as' => 'tasks.update', 'uses' => 'TaskController@update']);
         $r->delete('tasks/{ticket}/{task}', ['as' => 'tasks.delete', 'uses' => 'TaskController@destroy']);
         $r->get('print/{ticket}', ['as' => 'ticket.print', 'uses' => 'TicketPrintController@show']);
+
         Route::post('forward/{ticket}',['as'=>'ticket.forward','uses'=>'TicketController@forward']);
+        $r->post('survey_log/{ticket}/{survey}', ['as' => 'ticket.survey', 'uses' => 'SurveyLogController@update']);
 
     });
+
+    Route::get('submit-survey/{ticket}/{survey}', ['as' => 'ticket.submitSurvey', 'uses' => 'SurveyController@displaySurvey']);
 
     Route::resource('ticket', 'TicketController');
 

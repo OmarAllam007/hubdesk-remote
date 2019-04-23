@@ -83,4 +83,7 @@ class Category extends KModel
         return $this->businessunit->name . ' > ' . $this->name;
     }
 
+    function survey(){
+        return $this->belongsToMany(Survey::class,'category_survey','category_id','survey_id');
+    }
 }

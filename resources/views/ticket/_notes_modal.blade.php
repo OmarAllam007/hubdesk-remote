@@ -17,7 +17,7 @@
                             @endif
                         </div>
                         <div class="checkbox">
-                            <label><input type="checkbox" name="display_to_requester" id="display_to_requester">{{t('Show this note to Requester)'}} </label>
+                            <label><input type="checkbox" name="display_to_requester" id="display_to_requester">{{t('Show this note to Requester')}} </label>
                         </div>
                         <div class="checkbox">
                             <label><input type="checkbox" name="email_to_technician" id="email_to_technician">
