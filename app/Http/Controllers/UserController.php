@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -26,5 +27,14 @@ class UserController extends Controller
 
         flash(t('Password has not been Reset'), 'error');
         return redirect()->back();
+    }
+
+    function getUserInfo($requester)
+    {
+        $requester = User::find($requester);
+        $requester['business_unit_name'] = $requester->business_unit->name;
+        $requester['department_name'] = $requester->department->name;
+
+        return $requester;
     }
 }

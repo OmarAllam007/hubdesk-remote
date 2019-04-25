@@ -504,11 +504,11 @@ class Ticket extends KModel
 
     function getTotalServiceCostAttribute(){
         if($this->item_id){
-            return $this->item->service_cost;
+            return $this->item->service_cost ?? 0;
         }
         elseif($this->subcategory_id){
-            return $this->subcategory->service_cost;
+            return $this->subcategory->service_cost ?? 0;
         }
-        return $this->category->service_cost;
+        return $this->category->service_cost ?? 0;
     }
 }

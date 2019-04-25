@@ -87,6 +87,11 @@ class User extends Authenticatable implements CanResetPassword
         return $this->belongsTo(Location::class);
     }
 
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
+
     public function manager()
     {
         return $this->belongsTo(User::class, 'manager_id');
