@@ -9,6 +9,9 @@
         @if(Auth::user()->isAdmin())
             <a class="btn  btn-info" href="{{route('kgs.document.roles.show',compact('business_unit'))}}"><i
                         class="fa fa-users"></i> {{t('Roles')}}</a>
+
+            <a class="btn  btn-danger" href="{{route('kgs.document.manage_notifications',compact('business_unit'))}}"><i
+                        class="fa fa-bell"></i> {{t('Notifications')}}</a>
         @endif
 
         <a class="btn  btn-default" href="{{route('kgs.business_document',compact('business_unit'))}}"><i

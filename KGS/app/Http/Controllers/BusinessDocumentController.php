@@ -12,15 +12,19 @@ namespace KGS\Http\Controllers;
 use App\Attachment;
 use App\BusinessUnit;
 use App\Category;
-use App\Http\Requests\Request;
+use App\Http\Controllers\Controller;
 use App\Item;
 use App\Subcategory;
 use App\Task;
 use App\Ticket;
+use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Bus;
+use KGS\DocumentNotification;
 use KGS\Requirement;
 use Predis\Response\Status;
 
-class BusinessDocumentController
+class BusinessDocumentController extends Controller
 {
     function index()
     {
@@ -95,8 +99,6 @@ class BusinessDocumentController
         ]);
 
         $this->uploadTicketAttachments($ticket, \request('ticket-attachments'));
-
-
 
 
         if (count($tasks)) {
@@ -190,11 +192,43 @@ class BusinessDocumentController
         $tasks_files = \request()->allFiles();
         $all_checked = count($tasks) == count($tasks_files['requirements']);
 
-        if($all_checked){
+        if ($all_checked) {
             return 1;
-        }else{
+        } else {
             return 4;
         }
     }
 
+    function manageNotification(BusinessUnit $business_unit)
+    {
+        $users = User::whereNotNull('email')->get();
+        return view('kgs::business-documents.notifications.show', compact('business_unit', 'users'));
+    }
+
+    function saveNotification(BusinessUnit $business_unit, Request $request)
+    {
+        $this->validate($request,['notifications.*.users'=>['required']]);
+
+        if (count($request->notifications)) {
+            foreach ($request->notifications as $key=>$notification) {
+                $document = DocumentNotification::where('business_unit_id',$business_unit->id)
+                    ->where('level',$key)->first();
+                if($document){
+                    $document->update([
+                        'days'=>$notification['period'],
+                       'users'=>$notification['users']
+                    ]);
+                }
+                else{
+                    DocumentNotification::create([
+                        'business_unit_id'=>$business_unit->id,
+                        'level'=>$key,
+                        'users'=>$notification['users']
+                    ]);
+                }
+
+            }
+        }
+        return redirect()->route('kgs.document.select_category',compact('business_unit'));
+    }
 }

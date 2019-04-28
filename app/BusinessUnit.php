@@ -6,6 +6,7 @@ use App\Behaviors\Listable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\UploadedFile;
 use KGS\Document;
+use KGS\DocumentNotification;
 
 /**
  * App\BusinessUnit
@@ -105,5 +106,9 @@ class BusinessUnit extends KModel
     function document_roles()
     {
         return $this->belongsToMany(User::class, 'bu_documents_roles');
+    }
+
+    function document_notifications(){
+        return $this->hasMany(DocumentNotification::class);
     }
 } 

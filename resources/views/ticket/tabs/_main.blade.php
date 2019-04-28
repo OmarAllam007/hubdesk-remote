@@ -19,7 +19,7 @@
             <th class="col-sm-3">{{t('Category')}}</th>
             <td class="col-sm-3">{{$ticket->category->name or 'Not Assigned'}}</td>
             <th class="col-sm-3">{{t('Service Cost: ')}}</th>
-            <td class="col-sm-3">{{t($ticket->total_service_cost . ' SAR')}}</td>
+            <td class="col-sm-3">{{t($ticket->total_ticket_cost . ' SAR')}}</td>
         </tr> 
         <tr>
             <th class="col-sm-3">{{t('Subcategory')}}</th>

@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\BusinessUnit;
+use App\Ticket;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -20,5 +21,6 @@ class BusinessUnitDocumentRoles
     {
         return in_array($user->id, $business_unit->document_roles->pluck('id')->toArray());
     }
+
 
 }

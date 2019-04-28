@@ -75,8 +75,17 @@
                                 </a>
                             @endcan
                         @endif
+
+                        @can('send_to_finance',$ticket)
+                            <button type="button" class="btn btn-primary btn-sm btn-rounded btn-outlined"
+                                    data-toggle="modal" data-target="#FinanceForm" title="{{t('Send to Finance')}}">
+                                <i class="fa fa-money"></i> {{t('Send to Finance')}}
+                            </button>
+                        @endif
+
                     </div>
                 @endif
+
             </div>
 
 
@@ -90,17 +99,20 @@
                         <small><strong>{{t('Status')}}:</strong> {{$ticket->status->name}}</small>
                     </li>
                     <li>
-                        <small><strong>{{t('Created at')}}:</strong> {{$ticket->created_at->format('d/m/Y H:i')}}</small>
+                        <small><strong>{{t('Created at')}}:</strong> {{$ticket->created_at->format('d/m/Y H:i')}}
+                        </small>
                     </li>
                     @if ($ticket->due_date)
                         <li>
-                            <small><strong>{{t('Due Date')}} :</strong> {{$ticket->due_date->format('d/m/Y H:i')}}</small>
+                            <small><strong>{{t('Due Date')}} :</strong> {{$ticket->due_date->format('d/m/Y H:i')}}
+                            </small>
                         </li>
                     @endif
 
                     @if($ticket->resolve_date)
                         <li>
-                            <small><strong>{{t('Resolve Date')}}:</strong> {{$ticket->resolve_date->format('d/m/Y H:i')}}
+                            <small><strong>{{t('Resolve Date')}}
+                                    :</strong> {{$ticket->resolve_date->format('d/m/Y H:i')}}
                             </small>
                         </li>
                     @endif
@@ -108,7 +120,8 @@
                         <li>
                             <small>
                                 <strong>{{t('Approval Status')}}:</strong>
-                                <i class="fa fa-lg fa-{{$ticket->last_updated_approval->approval_icon}} text-{{$ticket->last_updated_approval->approval_color}}" aria-hidden="true"></i> {{\App\TicketApproval::$statuses[$ticket->last_updated_approval->status]}}
+                                <i class="fa fa-lg fa-{{$ticket->last_updated_approval->approval_icon}} text-{{$ticket->last_updated_approval->approval_color}}"
+                                   aria-hidden="true"></i> {{\App\TicketApproval::$statuses[$ticket->last_updated_approval->status]}}
                             </small>
                         </li>
                     @endif
@@ -174,7 +187,7 @@
                 </div>
 
 
-                <div role="tabpanel"  class="tab-pane" id="resolution">
+                <div role="tabpanel" class="tab-pane" id="resolution">
                     @include('ticket.tabs._resolution')
                 </div>
 
@@ -211,6 +224,7 @@
                     var group = '{{Form::getValueAttribute('group_id') ?? $ticket->group_id}}';
                 </script>
                 @include('ticket._assign_modal')
+                @include('ticket.partials._send_to_finance')
                 @include('ticket._forward_modal')
                 @include('ticket._notes_modal')
                 @include('ticket._remove_note_modal')
