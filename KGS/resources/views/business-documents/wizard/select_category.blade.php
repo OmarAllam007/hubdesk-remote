@@ -3,10 +3,11 @@
 @section('header')
     <h4 class="pull-left"> {{$business_unit->name}} > {{t('Select Category')}}</h4>
     <div class="btn-group">
+        @if(Auth::user()->isAdmin())
         <a class="btn  btn-success" href="{{route('kgs.document.index',compact('business_unit'))}}"><i
                     class="fa fa-file"></i> {{t('Documents')}}</a>
 
-        @if(Auth::user()->isAdmin())
+
             <a class="btn  btn-info" href="{{route('kgs.document.roles.show',compact('business_unit'))}}"><i
                         class="fa fa-users"></i> {{t('Roles')}}</a>
 

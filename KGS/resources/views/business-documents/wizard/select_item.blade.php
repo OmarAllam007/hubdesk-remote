@@ -56,7 +56,7 @@
                             <p class="text-center" style="margin-top: 40px">
                                 {{$item->name}}
                             </p>
-                            @if($item->service_cost)
+                            @if($item->service_cost > 0)
                                 <p>
                                     <span>{{$item->service_cost}} SAR</span>
                                 </p>

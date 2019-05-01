@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Console\Commands\EscalateTickets;
+use App\Console\Commands\KGSPendingApprovalsNotifications;
 use App\Console\Commands\LdapImportUser;
 use App\Console\Commands\RenewDocument;
 use App\Console\Commands\SyncByRequest;
@@ -28,7 +29,8 @@ class Kernel extends ConsoleKernel
         Commands\SyncServiceDeskPlus::class,
         Commands\SyncByRequest::class,
         EscalateTickets::class,
-        RenewDocument::class
+        RenewDocument::class,
+        KGSPendingApprovalsNotifications::class
     ];
 
     /**

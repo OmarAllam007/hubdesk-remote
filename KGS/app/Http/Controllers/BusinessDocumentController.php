@@ -84,7 +84,7 @@ class BusinessDocumentController extends Controller
         $tasks = \request()->get('requirements');
         $tasks_files = \request()->allFiles();
 
-        $all_checked = count($tasks) == count($tasks_files['requirements']);
+//        $all_checked = count($tasks) == count($tasks_files['requirements']);
 
         $ticket = Ticket::create([
             'requester_id' => \Auth::id(),
@@ -190,7 +190,8 @@ class BusinessDocumentController extends Controller
     {
         $tasks = \request()->get('requirements');
         $tasks_files = \request()->allFiles();
-        $all_checked = count($tasks) == count($tasks_files['requirements']);
+
+        $all_checked = count($tasks) == count($tasks_files['requirements'] ?? []);
 
         if ($all_checked) {
             return 1;
