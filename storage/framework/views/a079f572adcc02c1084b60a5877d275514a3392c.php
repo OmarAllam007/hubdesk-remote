@@ -1,36 +1,35 @@
-@extends('layouts.app')
-
-@section('header')
+<?php $__env->startSection('header'); ?>
     <h4 class="panel-title">Login</h4>
-@endsection
-@section('body')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('body'); ?>
     <div style="width: 100%;display: flex;justify-content: center;align-items: center;padding: 1px">
         <div class="auth-form">
-            <form style="width: 100%;align-content: center" class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                {!! csrf_field() !!}
+            <form style="width: 100%;align-content: center" class="form-horizontal" role="form" method="POST" action="<?php echo e(url('/login')); ?>">
+                <?php echo csrf_field(); ?>
+
                 
                 <div class="form-group">
                     <div class="col-sm-12 text-center">
-                        <img src="{{asset('images/hubdesk.png')}}" style="width:66.66666667%" alt="">
+                        <img src="<?php echo e(asset('images/hubdesk.png')); ?>" style="width:66.66666667%" alt="">
                     </div>
                 </div>
                 <br>
-
-                <div class="form-group{{ $errors->has('login') ? ' has-error' : '' }}">
+                
+                <div class="form-group<?php echo e($errors->has('login') ? ' has-error' : ''); ?>">
                     <div class="col-sm-12">
-                        <input type="text" class="form-control" name="login" id="login" value="{{ old('login') }}" placeholder="{{t('SAP ID')}}"  style="width: 100%">
-                        @if ($errors->has('login'))
-                            <span class="error-message">{{ $errors->first('login') }}</span>
-                        @endif
+                        <input type="text" class="form-control" name="login" id="login" value="<?php echo e(old('login')); ?>" placeholder="<?php echo e(t('SAP ID')); ?>"  style="width: 100%">
+                        <?php if($errors->has('login')): ?>
+                            <span class="error-message"><?php echo e($errors->first('login')); ?></span>
+                        <?php endif; ?>
                     </div>
                 </div>
 
-                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                <div class="form-group<?php echo e($errors->has('password') ? ' has-error' : ''); ?>">
                     <div class="col-sm-12">
                         <input type="password" class="form-control" name="password" id="password" placeholder="Password">
-                        @if ($errors->has('password'))
-                            <span class="error-message">{{ $errors->first('password') }}</span>
-                        @endif
+                        <?php if($errors->has('password')): ?>
+                            <span class="error-message"><?php echo e($errors->first('password')); ?></span>
+                        <?php endif; ?>
                     </div>
                 </div>
 
@@ -54,7 +53,7 @@
                             <i class="fa fa-btn fa-google-plus"></i> Login using Google
                         </a>
 
-                        <a href="{{route('password.request')}}" class="btn btn-success">
+                        <a href="<?php echo e(route('password.request')); ?>" class="btn btn-success">
                             <i class="fa fa-btn fa-unlock"></i> Reset Password
                         </a>
                     </div>
@@ -63,4 +62,6 @@
         </div>
     </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

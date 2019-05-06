@@ -66,6 +66,6 @@ function t($word, $language = '')
 //        $newWord->save();
 //        return $newWord->word;
     }
-
+    return $word;
 
 }
