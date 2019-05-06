@@ -4,14 +4,14 @@
     <h4 class="pull-left"> {{$business_unit->name}} > {{t('Select Category')}}</h4>
     <div class="btn-group">
         @if(Auth::user()->isAdmin())
-        <a class="btn  btn-success" href="{{route('kgs.document.index',compact('business_unit'))}}"><i
+        <a class="btn btn-outlined  btn-success" href="{{route('kgs.document.index',compact('business_unit'))}}"><i
                     class="fa fa-file"></i> {{t('Documents')}}</a>
 
 
-            <a class="btn  btn-info" href="{{route('kgs.document.roles.show',compact('business_unit'))}}"><i
+            <a class="btn btn-outlined  btn-primary" href="{{route('kgs.document.roles.show',compact('business_unit'))}}"><i
                         class="fa fa-users"></i> {{t('Roles')}}</a>
 
-            <a class="btn  btn-danger" href="{{route('kgs.document.manage_notifications',compact('business_unit'))}}"><i
+            <a class="btn btn-danger" href="{{route('kgs.document.manage_notifications',compact('business_unit'))}}"><i
                         class="fa fa-bell"></i> {{t('Notifications')}}</a>
         @endif
 

@@ -42,7 +42,7 @@
                     @endif
 
                     @can('show_business_document')
-                    <li><a href="{{route('kgs.business_document')}}"><i class="fa fa-book"></i> {{t('Business Document')}}</a></li>
+                    <li><a href="{{route('kgs.business_document')}}"><i class="fa fa-book"></i> {{t('Business Documents')}}</a></li>
                     @endcan
 
                     @if (Auth::user()->isAdmin())
