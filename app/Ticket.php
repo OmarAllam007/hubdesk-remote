@@ -471,15 +471,16 @@ class Ticket extends KModel
 
     public function hasOpenTask()
     {
-        return Ticket::where('type',2)->where('request_id',$this->id)->whereNotIn('status_id',[7,8,9])->exists();
+        return Ticket::where('type', 2)->where('request_id', $this->id)->whereNotIn('status_id', [7, 8, 9])->exists();
     }
 
-    function shouldEscalate($escalation){
+    function shouldEscalate($escalation)
+    {
 
-        $previous_escalations = TicketLog::where('type',13)
-            ->where('ticket_id',$this->id)->count();
+        $previous_escalations = TicketLog::where('type', 13)
+            ->where('ticket_id', $this->id)->count();
 
-        if($escalation->level > $previous_escalations){
+        if ($escalation->level > $previous_escalations) {
 
             $startTime = Carbon::parse(config('worktime.start'));
             $endTime = Carbon::parse(config('worktime.end'));
@@ -489,7 +490,7 @@ class Ticket extends KModel
             $escalation_time = $this->due_date->addMinutes($escalate_time * $escalation->when_escalate);
 
             /** @var Carbon $escalation_time */
-            if(Carbon::now()->gte($escalation_time)){
+            if (Carbon::now()->gte($escalation_time)) {
                 return true;
             }
 
@@ -498,17 +499,41 @@ class Ticket extends KModel
 
     }
 
-    function isClosed(){
+    function isClosed()
+    {
         return $this->status_id == 8;
     }
 
-    function getTotalServiceCostAttribute(){
-        if($this->item_id){
-            return $this->item->service_cost ?? 0;
+
+    function getTotalTicketCostAttribute()
+    {
+        $total_cost = 0;
+        $total_cost += $this->total_service_cost;
+        foreach ($this->tasks as $task) {
+            $total_cost += $task->total_service_cost;
         }
-        elseif($this->subcategory_id){
-            return $this->subcategory->service_cost ?? 0;
+
+        return $total_cost;
+    }
+
+    function getTotalServiceCostAttribute()
+    {
+        if ($this->item_id) {
+            return $this->item->service_cost;
+        } elseif ($this->subcategory_id) {
+            return $this->subcategory->service_cost;
         }
         return $this->category->service_cost ?? 0;
+    }
+
+    function getSubjectLabelAttribute(){
+        $label = $this->category->name;
+        if($this->subcategory){
+            $label .= ' >'.$this->subcategory->name;
+        }
+        if($this->item){
+            $label .= ' >'.$this->item->name;
+        }
+        return $label;
     }
 }

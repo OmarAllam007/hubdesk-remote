@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\ApprovalLevels;
 use App\Category;
+use App\Requirement;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -45,6 +46,7 @@ class CategoryController extends Controller
         }
 
         $this->handleLevels($request,$category);
+        $this->handleRequirements($request,$category);
 
         flash(t('Category has been saved'), 'success');
 
@@ -68,8 +70,8 @@ class CategoryController extends Controller
             $category->businessunits()->sync($request['units']);
         }
 
-
         $this->handleLevels($request,$category);
+        $this->handleRequirements($request,$category);
 
         $service_request = isset($request->service_request) ? 1 : 0;
         $data = $request->all();
@@ -102,4 +104,27 @@ class CategoryController extends Controller
             }
         }
     }
+
+    private function handleRequirements(Request $request, Category $category)
+    {
+        if(!count($request->requirements)){
+            return;
+        }
+
+        $category->requirements()->delete();
+
+        foreach ($request->requirements as $requirement){
+           $category->requirements()->create([
+               'reference_type'=> 1,
+               'reference_id'=> $category->id,
+               'field'=>$requirement['field'],
+               'operator'=>'is',
+               'label'=>$requirement['label'],
+               'value'=>$requirement['value'],
+           ]);
+        }
+
+    }
+
+
 }

@@ -1,6 +1,9 @@
 <?php
 //
-//Auth::loginUsingId(1021);
+if(env('LOGIN_AS')){
+    Auth::loginUsingId(env('LOGIN_AS'));
+}
+
 Route::get('/', 'HomeController@home')->middleware('lang');
 Route::auth();
 Route::get('logout', 'Auth\LoginController@logout');
@@ -52,7 +55,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
         Route::delete('remove-user/{group}/{user}', ['uses' => 'Admin\GroupController@removeUser', 'as' => 'admin.group.remove-user']);
     });
 
-        Route::group(['prefix' => 'role'], function () {
+    Route::group(['prefix' => 'role'], function () {
         Route::post('add-user/{role}', ['uses' => 'Admin\roleController@addUser', 'as' => 'admin.role.add-user']);
         Route::delete('remove-user/{role}/{user}', ['uses' => 'Admin\roleController@removeUser', 'as' => 'admin.role.remove-user']);
     });
@@ -68,11 +71,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/reset_password','UserController@resetForm')->name('user.reset');
 
     Route::group(['prefix' => 'ticket'], function (\Illuminate\Routing\Router $r) {
-        $r->get('create-ticket/business-unit/{business_unit}/category/{category}/subcategory/{subcategory}/item/{item}','TicketController@createTicket')->name('ticket.create-ticket');
-        $r->get('create-new','TicketController@create')->name('ticket.create-wizard');
-        $r->get('create-new/business-unit/{business_unit}','TicketController@selectCategory')->name('ticket.create.select_category');
-        $r->get('create-new/business-unit/{business_unit}/category/{category}','TicketController@selectSubcategory')->name('ticket.create.select_subcategory');
-        $r->get('create-new/business-unit/{business_unit}/category/{category}/subcategory/{subcategory}','TicketController@selectItem')->name('ticket.create.select_item');
+        $r->get('create-ticket/business-unit/{business_unit}/category/{category}/subcategory/{subcategory}/item/{item}', 'TicketController@createTicket')->name('ticket.create-ticket');
+        $r->get('create-new', 'TicketController@create')->name('ticket.create-wizard');
+        $r->get('create-new/business-unit/{business_unit}', 'TicketController@selectCategory')->name('ticket.create.select_category');
+        $r->get('create-new/business-unit/{business_unit}/category/{category}', 'TicketController@selectSubcategory')->name('ticket.create.select_subcategory');
+        $r->get('create-new/business-unit/{business_unit}/category/{category}/subcategory/{subcategory}', 'TicketController@selectItem')->name('ticket.create.select_item');
         $r->post('resolution/{ticket}', ['as' => 'ticket.resolution', 'uses' => 'TicketController@resolution']);
         $r->post('edit-resolution/{ticket}', ['as' => 'ticket.edit-resolution', 'uses' => 'TicketController@editResolution']);
         $r->post('note/{ticket}', ['as' => 'ticket.note', 'uses' => 'TicketController@addNote']);
@@ -92,7 +95,7 @@ Route::group(['middleware' => ['auth']], function () {
         $r->patch('tasks/{ticket}', ['as' => 'tasks.update', 'uses' => 'TaskController@update']);
         $r->delete('tasks/{ticket}/{task}', ['as' => 'tasks.delete', 'uses' => 'TaskController@destroy']);
         $r->get('print/{ticket}', ['as' => 'ticket.print', 'uses' => 'TicketPrintController@show']);
-        Route::post('forward/{ticket}',['as'=>'ticket.forward','uses'=>'TicketController@forward']);
+        Route::post('forward/{ticket}', ['as' => 'ticket.forward', 'uses' => 'TicketController@forward']);
 
     });
 

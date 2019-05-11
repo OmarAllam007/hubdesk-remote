@@ -39,6 +39,7 @@ class TicketLog extends KModel
     const NOTE_TYPE = 11;
     const RESEND_APPROVAL = 12;
     const ESCALATION = 13;
+    const SENT_TO_FINANCE = 14;
 //    const REOPENED_TYPE = 8;
 
     protected $casts = ['old_data' => 'array', 'new_data' => 'array'];
@@ -130,6 +131,7 @@ class TicketLog extends KModel
             self::DENIED => 'denied',
             self::NOTE_TYPE => 'Updated by a note',
             self::RESEND_APPROVAL => 'Updated by resend an approval ',
+            self::SENT_TO_FINANCE => 'Updated by sent to finance ',
         ];
 
         if (isset($actions[$this->type])) {

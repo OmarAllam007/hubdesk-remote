@@ -53,9 +53,19 @@
                        :category="{{isset($category) ? $category: 0}}" :approvals="{{isset($category) ? $category->levels: 0}}"></approval-levels>
             </fieldset>
 
+
+
+
             <div class="form-group">
                 <button class="btn btn-success"><i class="fa fa-check-circle"></i> Submit</button>
             </div>
+        </div>
+
+        <div class="col-md-6">
+            <fieldset>
+                <legend>Requirements</legend>
+                <service-requirements :requirements_data="{{json_encode(isset($category) ? $category->requirements: [] )}}"></service-requirements>
+            </fieldset>
         </div>
     </div>
 
@@ -66,4 +76,4 @@
         {{--</div>--}}
     {{--</div>--}}
 </div>
-<script type="text/javascript" src="{{asset('/js/approval-levels.js')}}"></script>
+
