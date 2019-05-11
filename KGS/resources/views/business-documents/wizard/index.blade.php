@@ -46,7 +46,7 @@
 
 @section('body')
     <section class="col-md-12 card-section">
-        <h3 class=text-center>{{t('Select Business Unit') }}</h3>
+{{--        <h3 class=text-center>{{t('Select Business Unit') }}</h3>--}}
 
         <div class="tiles-container">
             @foreach(\App\BusinessUnit::orderBy('name')->get() as $business_unit)
@@ -60,7 +60,7 @@
                             {{--@if($business_unit->logo)--}}
                             <p class="text-center" @if($business_unit->logo) style="height: 100px" @else style="height: 25px" @endif>
                                 @if($business_unit->logo)
-                                <img src="{{asset($business_unit->logo)}}" alt="{{asset($business_unit->logo)}}">
+                                <img src="{{asset($business_unit->url)}}" alt="{{asset($business_unit->url)}}">
                                 @else
                                 @endif
                             </p>

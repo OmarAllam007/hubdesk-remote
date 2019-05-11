@@ -46,7 +46,7 @@
 @section('body')
     <section class="col-md-12 card-section">
         <div class=form-group></div>
-        <h3 class=text-center>{{t('Select Subcategory') }}</h3>
+{{--        <h3 class=text-center>{{t('Select Subcategory') }}</h3>--}}
 
         <div class="tiles-container">
             @foreach($category->subcategories as $subcategory)
@@ -63,7 +63,7 @@
                                 {{--@else--}}
                                 {{--@endif--}}
                             </p>
-                            <p class="text-center" style="margin-top: 40px">
+                            <p class="text-center" style="margin-top: 20px">
                                 {{$subcategory->name}}
                             </p>
                         </div>
