@@ -8,6 +8,14 @@
             @endif
         </div>
 
+        <div class="form-group {{$errors->has('employee_id')? 'has-error' : ''}}">
+            {{ Form::label('employee_id', 'Employee ID', ['class' => 'control-label']) }}
+            {{ Form::text('employee_id', null, ['class' => 'form-control']) }}
+            @if ($errors->has('employee_id'))
+                <div class="error-message">{{$errors->first('employee_id')}}</div>
+            @endif
+        </div>
+
         <div class="form-group {{$errors->has('email')? 'has-error' : ''}}">
             {{ Form::label('email', 'Email', ['class' => 'control-label']) }}
             {{ Form::email('email', null, ['class' => 'form-control', 'rows' => 3]) }}

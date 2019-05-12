@@ -18,7 +18,7 @@
         {{ Form::open(['route' => 'user.reset', 'class' => 'col-sm-6 auth-form']) }}
 
         <div class="form-group col-md-12 {{$errors->has('old_password')? 'has-error' : ''}}">
-            {{ Form::label('old_password', 'Old Password', ['class' => 'control-label']) }}
+            {{ Form::label('old_password', t('Old Password'), ['class' => 'control-label']) }}
             {{ Form::password('old_password', ['class' => 'form-control']) }}
             @if ($errors->has('old_password'))
                 <div class="error-message">{{$errors->first('old_password')}}</div>
@@ -26,7 +26,7 @@
         </div>
 
         <div class="form-group col-md-12 {{$errors->has('password')? 'has-error' : ''}}">
-            {{ Form::label('password', 'Password', ['class' => 'control-label']) }}
+            {{ Form::label('password', t('New Password'), ['class' => 'control-label']) }}
             {{ Form::password('password', ['class' => 'form-control']) }}
             @if ($errors->has('password'))
                 <div class="error-message">{{$errors->first('password')}}</div>
@@ -34,7 +34,7 @@
         </div>
 
         <div class="form-group col-md-12 {{$errors->has('password')? 'has-error' : ''}}">
-            {{ Form::label('password_confirmation', 'Confirm Password', ['class' => 'control-label']) }}
+            {{ Form::label('password_confirmation', t('Confirm Password'), ['class' => 'control-label']) }}
             {{ Form::password('password_confirmation', ['class' => 'form-control']) }}
             @if ($errors->has('password_confirmation'))
                 <div class="error-message">{{$errors->first('password_confirmation')}}</div>

@@ -12,12 +12,12 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
-                        Are you sure to duplicate Ticket #{{$ticket->id}}?
+                        {{t('Are you sure to duplicate Ticket')}} #{{$ticket->id}}?
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <label for="tickets_count">Number of duplicated tickets :</label>
+                <label for="tickets_count">{{t('Number of duplicated tickets')}} :</label>
                 <input name="tickets_count" id="tickets_count" type="text" class="form-control" value="1">
             </div>
 
@@ -25,7 +25,7 @@
 
         <div class="modal-footer">
             <button type="submit" class="btn btn-success"><i class="fa fa-copy"></i> {{t('Duplicate')}}</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">{{t('Close')}}</button>
         </div>
     </div>
 </div>
