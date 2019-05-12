@@ -56,7 +56,6 @@
                 <div class="col-md-8">
                     <div class="tiles-container">
                         @foreach($category->subcategories as $subcategory)
-
                             <a href="{{route('ticket.create.select_item', compact('business_unit','category','subcategory'))}}" class="tile">
                                 <div class="tile-container"
                                      style="display: flex;align-items: center;justify-content: center;">

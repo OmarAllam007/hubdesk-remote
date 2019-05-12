@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Behaviors\Listable;
+use App\Behaviors\ServiceConfiguration;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -28,7 +29,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Item extends KModel
 {
-    use Listable;
+    use Listable, ServiceConfiguration;
 
     protected $fillable = ['subcategory_id', 'name', 'description', 'service_request','service_cost'];
 

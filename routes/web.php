@@ -1,6 +1,6 @@
 <?php
 //
-//Auth::loginUsingId(1021);
+//Auth::loginUsingId(6783);
 Route::get('/', 'HomeController@home')->middleware('lang');
 Route::auth();
 Route::get('logout', 'Auth\LoginController@logout');
@@ -37,6 +37,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
     $r->resource('item', 'Admin\ItemController');
     $r->resource('status', 'Admin\StatusController');
     $r->resource('group', 'Admin\GroupController');
+    $r->get('user-group','Admin\GroupController@userGroups')->name('group.user_groups');
     $r->resource('role', 'Admin\RoleController');
     $r->resource('priority', 'Admin\PriorityController');
     $r->resource('urgency', 'Admin\UrgencyController');

@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Behaviors\Listable;
+use App\Behaviors\ServiceConfiguration;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -26,7 +27,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Category extends KModel
 {
-    use Listable;
+    use Listable, ServiceConfiguration;
 
     protected $fillable = ['business_unit_id','name', 'description','service_request', 'service_cost'];
 
@@ -56,6 +57,11 @@ class Category extends KModel
         return $query;
     }
 
+
+    public function service_user_groups(){
+        return $this->hasMany(ServiceUserGroup::class,'level_id')->where('level',ServiceUserGroup::$CATEGORY);
+    }
+
     function businessunits(){
         return $this->belongsToMany(BusinessUnit::class,'category_business_units');
     }
@@ -82,5 +88,4 @@ class Category extends KModel
     {
         return $this->businessunit->name . ' > ' . $this->name;
     }
-
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\ApprovalLevels;
 use App\Category;
+use App\ServiceUserGroup;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -44,7 +45,8 @@ class CategoryController extends Controller
             $category->businessunits()->sync($request['units']);
         }
 
-        $this->handleLevels($request,$category);
+        $this->handleLevels($request, $category);
+        $this->createUserGroups($request, $category);
 
         flash(t('Category has been saved'), 'success');
 
@@ -68,8 +70,9 @@ class CategoryController extends Controller
             $category->businessunits()->sync($request['units']);
         }
 
+        $this->handleLevels($request, $category);
 
-        $this->handleLevels($request,$category);
+        $this->createUserGroups($request, $category);
 
         $service_request = isset($request->service_request) ? 1 : 0;
         $data = $request->all();
@@ -88,7 +91,21 @@ class CategoryController extends Controller
         return \Redirect::route('admin.category.index');
     }
 
-    private function handleLevels(Request $request,Category $category)
+
+    private function createUserGroups(Request $request,Category $category)
+    {
+        if (count($request['user_groups'])) {
+            $category->service_user_groups()->delete();
+            foreach ($request['user_groups'] as $group) {
+                $category->service_user_groups()->create([
+                    'level' => ServiceUserGroup::$CATEGORY,
+                    'group_id' => $group
+                ]);
+            }
+        }
+    }
+
+    private function handleLevels(Request $request, Category $category)
     {
         $category->levels()->delete();
 
