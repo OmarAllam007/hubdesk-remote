@@ -57,6 +57,12 @@
                 {!! $errors->first('service_cost', '<div class="error-message">:message</div>') !!}
             </div>
 
+                <fieldset>
+                    <legend>Additional Fees</legend>
+                    <additional-fee
+                            :fees="{{ isset($item) && $item->fees ? $item->fees : 0 }}"></additional-fee>
+                </fieldset>
+
             <div class="form-group">
                 <input type="checkbox" class="checkbox-tick"
                        id="service_request" name="service_request" @if($item->service_request) checked @endif>

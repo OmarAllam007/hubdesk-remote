@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\AdditionalFee;
 use App\ApprovalLevels;
 use App\ServiceUserGroup;
 use App\Subcategory;
@@ -42,6 +43,7 @@ class SubcategoryController extends Controller
         $this->handleLevels($request, $subcategory);
         $this->createUserGroups($request, $subcategory);
         $this->handleRequirements($request,$subcategory);
+        $this->createFees($request,$subcategory);
 
         flash('Subcategory has been saved', 'success');
 
@@ -70,6 +72,7 @@ class SubcategoryController extends Controller
         $this->createUserGroups($request, $subcategory);
 
         $this->handleRequirements($request,$subcategory);
+        $this->createFees($request,$subcategory);
 
         flash('Subcategory has been saved', 'success');
         return \Redirect::route('admin.category.show', $subcategory->category_id);
@@ -131,5 +134,22 @@ class SubcategoryController extends Controller
             ]);
         }
 
+    }
+
+    private function createFees(Request $request, Subcategory $subcategory)
+    {
+        if (!count($request->fees)) {
+            return;
+        }
+        $subcategory->fees()->delete();
+
+        foreach ($request->fees as $fee) {
+            $subcategory->fees()->create([
+                'name' => $fee['name'],
+                'cost' => $fee['cost'],
+                'level'=> AdditionalFee::SUBCATEGORY,
+                'level_id'=> $subcategory->id,
+            ]);
+        }
     }
 }

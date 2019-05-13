@@ -109,7 +109,7 @@
 
                     @if($ticket->resolve_date)
                         <li>
-                            <<<<<<< HEAD
+
                             <small><strong>{{t('Resolve Date')}}
                                     :</strong> {{$ticket->resolve_date->format('d/m/Y H:i')}}
                             </small>
@@ -125,36 +125,6 @@
                         </li>
                     @endif
                 </ul>
-                =======
-                <small><strong>{{t('Created at')}}:</strong> {{$ticket->created_at->format('d/m/Y H:i')}}
-                </small>
-                </li>
-                @if ($ticket->due_date)
-                    <li>
-                        <small><strong>{{t('Due Date')}} :</strong> {{$ticket->due_date->format('d/m/Y H:i')}}
-                        </small>
-                    </li>
-                @endif
-
-                @if($ticket->resolve_date)
-                    <li>
-                        <small><strong>{{t('Resolve Date')}}
-                                :</strong> {{$ticket->resolve_date->format('d/m/Y H:i')}}
-                        </small>
-                    </li>
-                @endif
-                @if($ticket->last_updated_approval)
-                    <li>
-                        <small>
-                            <strong>{{t('Approval Status')}}:</strong>
-                            <i class="fa fa-lg fa-{{$ticket->last_updated_approval->approval_icon}} text-{{$ticket->last_updated_approval->approval_color}}"
-                               aria-hidden="true"></i> {{\App\TicketApproval::$statuses[$ticket->last_updated_approval->status]}}
-                        </small>
-                    </li>
-                    @endif
-                    </ul>
-                    >>>>>>> kgs-branch
-
             </div>
         </div>
     @endcan
@@ -211,10 +181,8 @@
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="main">
                     @include('ticket.tabs._main')
-
-                    <<<<<<< HEAD
                 </div>
-                =======
+
                 <div role="tabpanel" class="tab-pane" id="resolution">
                     @include('ticket.tabs._resolution')
                 </div>
@@ -222,11 +190,7 @@
                 <div role="tabpanel" class="tab-pane" id="conversation">
                     @include('ticket.tabs._conversation')
                 </div>
-                >>>>>>> kgs-branch
 
-                <div role="tabpanel" class="tab-pane" id="conversation">
-                    @include('ticket.tabs._conversation')
-                </div>
 
                 <div role="tabpanel" class="tab-pane" id="resolution">
                     @include('ticket.tabs._resolution')
@@ -247,23 +211,17 @@
                     </div>
                 @endif
 
-                <<<<<<< HEAD
+
                 <div role="tabpanel" class="tab-pane" id="tasks">
                     @include('ticket.tabs.tasks')
-                    =======
-                    <script>
-                        var category = '{{Form::getValueAttribute('category_id') ?? $ticket->category_id}}';
-                        var subcategory = '{{Form::getValueAttribute('subcategory_id') ?? $ticket->subcategory_id}}';
-                        var group = '{{Form::getValueAttribute('group_id') ?? $ticket->group_id}}';
-                    </script>
-                    @include('ticket._assign_modal')
-                    @include('ticket.partials._send_to_finance')
-                    @include('ticket._forward_modal')
-                    @include('ticket._notes_modal')
-                    @include('ticket._remove_note_modal')
-                    @include('ticket._duplicate_modal')
-                    >>>>>>> kgs-branch
                 </div>
+
+                @include('ticket._assign_modal')
+                @include('ticket.partials._send_to_finance')
+                @include('ticket._forward_modal')
+                @include('ticket._notes_modal')
+                @include('ticket._remove_note_modal')
+                @include('ticket._duplicate_modal')
 
                 <script>
                     var category = '{{Form::getValueAttribute('category_id') ?? $ticket->category_id}}';
@@ -271,10 +229,6 @@
                     var group = '{{Form::getValueAttribute('group_id') ?? $ticket->group_id}}';
                 </script>
                 <script src="{{asset('/js/tasks.js')}}"></script>
-                @include('ticket._assign_modal')
-                @include('ticket._notes_modal')
-                @include('ticket._remove_note_modal')
-                @include('ticket._duplicate_modal')
             </div>
         </section>
     @else
