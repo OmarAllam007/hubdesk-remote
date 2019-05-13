@@ -3,7 +3,9 @@
 namespace App\Console;
 
 use App\Console\Commands\EscalateTickets;
+use App\Console\Commands\KGSPendingApprovalsNotifications;
 use App\Console\Commands\LdapImportUser;
+use App\Console\Commands\RenewDocument;
 use App\Console\Commands\SyncByRequest;
 use App\Jobs\CleanErrorLog;
 use Illuminate\Console\Scheduling\Schedule;
@@ -26,7 +28,9 @@ class Kernel extends ConsoleKernel
         Commands\CalculateOpenRequestsTime::class,
         Commands\SyncServiceDeskPlus::class,
         Commands\SyncByRequest::class,
-        EscalateTickets::class
+        EscalateTickets::class,
+        RenewDocument::class,
+        KGSPendingApprovalsNotifications::class
     ];
 
     /**

@@ -5,6 +5,7 @@ namespace App;
 use App\Behaviors\Listable;
 use App\Behaviors\ServiceConfiguration;
 use Illuminate\Database\Eloquent\Builder;
+use KGS\Requirement;
 
 /**
  * App\Item
@@ -62,5 +63,9 @@ class Item extends KModel
             });
 
         return $items->sortBy('name');
+    }
+    public function requirements()
+    {
+        return $this->hasMany(Requirement::class,'reference_id')->where('reference_type', Requirement::$types['Item']);
     }
 }

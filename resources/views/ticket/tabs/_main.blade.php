@@ -20,12 +20,12 @@
             <td class="col-sm-3">{{$ticket->category->name or 'Not Assigned'}}</td>
             @if($ticket->total_service_cost)
             <th class="col-sm-3">{{t('Service Cost: ')}}</th>
-
             <td class="col-sm-3">{{t($ticket->total_service_cost . ' SAR')}}</td>
             @else
                 <th></th>
                 <td></td>
             @endif
+
         </tr> 
         <tr>
             <th class="col-sm-3">{{t('Subcategory')}}</th>

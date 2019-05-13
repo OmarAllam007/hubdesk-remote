@@ -5,6 +5,7 @@ namespace App;
 use App\Behaviors\Listable;
 use App\Behaviors\ServiceConfiguration;
 use Illuminate\Database\Eloquent\Builder;
+use KGS\Requirement;
 
 /**
  * App\Subcategory
@@ -72,5 +73,10 @@ class Subcategory extends KModel
     function custom_fields()
     {
         return $this->morphMany(CustomField::class, 'level', 'level');
+    }
+
+    public function requirements()
+    {
+        return $this->hasMany(Requirement::class,'reference_id')->where('reference_type', Requirement::$types['Subcategory']);
     }
 }
