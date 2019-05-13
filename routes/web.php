@@ -1,6 +1,6 @@
 <?php
 //
-//Auth::loginUsingId(6783);
+//Auth::loginUsingId(1021);
 Route::get('/', 'HomeController@home')->middleware('lang');
 Route::auth();
 Route::get('logout', 'Auth\LoginController@logout');

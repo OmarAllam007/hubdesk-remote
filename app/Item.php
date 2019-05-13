@@ -48,6 +48,10 @@ class Item extends KModel
         return $this->hasMany(ApprovalLevels::class, 'level_id')->where('type', 3);
     }
 
+    public function service_user_groups(){
+        return $this->hasMany(ServiceUserGroup::class,'level_id')->where('level',ServiceUserGroup::$ITEM);
+    }
+
     public function scopeCanonicalList(Builder $query)
     {
         $items = $query->with('subcategory')

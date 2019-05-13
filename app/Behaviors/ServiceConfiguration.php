@@ -22,15 +22,17 @@ trait ServiceConfiguration
             return true;
         }
 
-        $service_groups = Group::whereType(Group::REQUESTER)->whereIn('id',ServiceUserGroup::where('level_id', $this->id)->where('level', $type)
-            ->pluck('level_id')->toArray())->get();
+        $service_groups = ServiceUserGroup::where('level_id', $this->id)->where('level', $type)
+            ->pluck('group_id');
 
-        if (!$service_groups) {
+
+        if (!$service_groups->count()) {
             return true;
         }
 
         if ($service_groups->count()) {
-            foreach ($service_groups as $group) {
+            $groups = Group::whereType(Group::REQUESTER)->whereIn('id',$service_groups->toArray())->get();
+            foreach ($groups as $group) {
                 if ($group->users && in_array($user->id, $group->users->pluck('id')->toArray())) {
                     return true;
                 }

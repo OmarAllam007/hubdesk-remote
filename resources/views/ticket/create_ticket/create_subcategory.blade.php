@@ -56,6 +56,7 @@
                 <div class="col-md-8">
                     <div class="tiles-container">
                         @foreach($category->subcategories as $subcategory)
+                            @if($subcategory->canDisplay(\App\ServiceUserGroup::$SUBCATEGORY))
                             <a href="{{route('ticket.create.select_item', compact('business_unit','category','subcategory'))}}" class="tile">
                                 <div class="tile-container"
                                      style="display: flex;align-items: center;justify-content: center;">
@@ -69,6 +70,7 @@
                                     </div>
                                 </div>
                             </a>
+                            @endif
                             {{--<p><a href="{{route('category.show', $category)}}" class="btn btn-outlined btn-block btn-primary">{{$category->name}}</a></p>--}}
 
                         @endforeach

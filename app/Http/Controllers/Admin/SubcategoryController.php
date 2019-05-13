@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\ApprovalLevels;
+use App\ServiceUserGroup;
 use App\Subcategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -39,6 +40,7 @@ class SubcategoryController extends Controller
         $subcategory = Subcategory::create($data);
 
         $this->handleLevels($request, $subcategory);
+        $this->createUserGroups($request, $subcategory);
 
         flash('Subcategory has been saved', 'success');
 
@@ -64,6 +66,7 @@ class SubcategoryController extends Controller
         $subcategory->update($data);
 
         $this->handleLevels($request, $subcategory);
+        $this->createUserGroups($request, $subcategory);
 
         flash('Subcategory has been saved', 'success');
         return \Redirect::route('admin.category.show', $subcategory->category_id);
@@ -88,6 +91,19 @@ class SubcategoryController extends Controller
                     'type' => 2,
                     'level_id' => $subcategory->id,
                     'role_id' => $role,
+                ]);
+            }
+        }
+    }
+
+    private function createUserGroups(Request $request,Subcategory $subcategory)
+    {
+        if (count($request['user_groups'])) {
+            $subcategory->service_user_groups()->delete();
+            foreach ($request['user_groups'] as $group) {
+                $subcategory->service_user_groups()->create([
+                    'level' => ServiceUserGroup::$SUBCATEGORY,
+                    'group_id' => $group
                 ]);
             }
         }
