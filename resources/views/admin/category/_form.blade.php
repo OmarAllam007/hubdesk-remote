@@ -67,6 +67,11 @@
             </div>
 
             <fieldset>
+                <legend>Additional Fees</legend>
+                <additional-fee :fees="{{ isset($category) && $category->fees ? $category->fees : 0 }}"></additional-fee>
+            </fieldset>
+
+            <fieldset>
                 <legend>Roles</legend>
                 <approval-levels :roles="{{\App\Role::orderBy('name')->get()}}"
                                  :category="{{isset($category) ? $category: 0}}"

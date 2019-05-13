@@ -508,32 +508,46 @@ class Ticket extends KModel
     function getTotalTicketCostAttribute()
     {
         $total_cost = 0;
-        $total_cost += $this->total_service_cost;
+        $total_cost += $this->total_service_cost ?? 0;
         foreach ($this->tasks as $task) {
             $total_cost += $task->total_service_cost;
         }
 
+        $total_cost += $this->fees ? $this->fees->sum('cost') : 0;
         return $total_cost;
     }
 
     function getTotalServiceCostAttribute()
     {
         if ($this->item_id) {
-            return $this->item->service_cost;
+            return $this->item->service_cost ?? 0;
         } elseif ($this->subcategory_id) {
-            return $this->subcategory->service_cost;
+            return $this->subcategory->service_cost ?? 0;
         }
         return $this->category->service_cost ?? 0;
     }
 
-    function getSubjectLabelAttribute(){
+    function getSubjectLabelAttribute()
+    {
         $label = $this->category->name;
-        if($this->subcategory){
-            $label .= ' >'.$this->subcategory->name;
+        if ($this->subcategory) {
+            $label .= ' >' . $this->subcategory->name;
         }
-        if($this->item){
-            $label .= ' >'.$this->item->name;
+        if ($this->item) {
+            $label .= ' >' . $this->item->name;
         }
         return $label;
+    }
+
+
+    function getFeesAttribute()
+    {
+        $fees_arr = [];
+        $fees_arr[] = $this->category->fees ?? collect();
+        $fees_arr[] = $this->subcategory->fees ?? collect();
+        $fees_arr[] = $this->item->fees ?? collect();
+
+        $fees = collect($fees_arr)->flatten();
+        return $fees?? collect();
     }
 }

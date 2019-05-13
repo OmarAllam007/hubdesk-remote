@@ -49,6 +49,10 @@ class Category extends KModel
         return $this->hasMany(ApprovalLevels::class, 'level_id')->where('type', 1);
     }
 
+    function fees(){
+        return $this->hasMany(AdditionalFee::class, 'level_id')->where('level', AdditionalFee::CATEGORY);
+    }
+
     public function scopeQuickSearch(Builder $query)
     {
         if (\Request::has('search')) {

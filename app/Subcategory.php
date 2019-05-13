@@ -53,6 +53,10 @@ class Subcategory extends KModel
         return $this->hasMany(ServiceUserGroup::class,'level_id')->where('level',ServiceUserGroup::$SUBCATEGORY);
     }
 
+    function fees(){
+        return $this->hasMany(AdditionalFee::class, 'level_id')->where('level', AdditionalFee::SUBCATEGORY);
+    }
+
     public function scopeCanonicalList(Builder $query)
     {
         $subcategories = $query->with('category')

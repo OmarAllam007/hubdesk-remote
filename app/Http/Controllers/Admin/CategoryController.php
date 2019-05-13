@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\AdditionalFee;
 use App\ApprovalLevels;
 use App\Category;
 use App\ServiceUserGroup;
@@ -34,7 +35,6 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-
         $this->validates($request, 'Could not save category');
 
         $service_request = isset($request->service_request) ? 1 : 0;
@@ -48,7 +48,8 @@ class CategoryController extends Controller
 
         $this->handleLevels($request, $category);
         $this->createUserGroups($request, $category);
-        $this->handleRequirements($request,$category);
+        $this->handleRequirements($request, $category);
+        $this->createFees($request, $category);
 
         flash(t('Category has been saved'), 'success');
 
@@ -74,7 +75,8 @@ class CategoryController extends Controller
 
         $this->handleLevels($request, $category);
         $this->createUserGroups($request, $category);
-        $this->handleRequirements($request,$category);
+        $this->handleRequirements($request, $category);
+        $this->createFees($request, $category);
 
         $service_request = isset($request->service_request) ? 1 : 0;
         $data = $request->all();
@@ -94,7 +96,7 @@ class CategoryController extends Controller
     }
 
 
-    private function createUserGroups(Request $request,Category $category)
+    private function createUserGroups(Request $request, Category $category)
     {
         if (count($request['user_groups'])) {
             $category->service_user_groups()->delete();
@@ -124,24 +126,40 @@ class CategoryController extends Controller
 
     private function handleRequirements(Request $request, Category $category)
     {
-        if(!count($request->requirements)){
+        if (!count($request->requirements)) {
             return;
         }
 
         $category->requirements()->delete();
 
-        foreach ($request->requirements as $requirement){
-           $category->requirements()->create([
-               'reference_type'=> 1,
-               'reference_id'=> $category->id,
-               'field'=>$requirement['field'],
-               'operator'=>'is',
-               'label'=>$requirement['label'],
-               'value'=>$requirement['value'],
-           ]);
+        foreach ($request->requirements as $requirement) {
+            $category->requirements()->create([
+                'reference_type' => 1,
+                'reference_id' => $category->id,
+                'field' => $requirement['field'],
+                'operator' => 'is',
+                'label' => $requirement['label'],
+                'value' => $requirement['value'],
+            ]);
         }
 
     }
 
 
+    private function createFees(Request $request, Category $category)
+    {
+        if (!count($request->fees)) {
+            return;
+        }
+        $category->fees()->delete();
+
+        foreach ($request->fees as $fee) {
+            $category->fees()->create([
+                'name' => $fee['name'],
+                'cost' => $fee['cost'],
+                'level'=> AdditionalFee::CATEGORY,
+                'level_id'=> $category->id,
+            ]);
+        }
+    }
 }
