@@ -20,7 +20,7 @@
             @if (!isset($ticket) && Auth::user()->isSupport())
                 <div class="form-group form-group-sm {{$errors->has('requester_id')? 'has-error' : ''}}">
                     {{ Form::label('requester_id', t('Requester'), ['class' => 'control-label']) }}
-                    <select name="requester_id" id="requester_id" class="form-control select2">
+                    <select name="requester_id" id="requester_id" class="form-control select2" >
                         <option value="{{Auth::user()->id}}">{{t('Create for me')}}</option>
                         @foreach(App\User::orderBy('name')->where('employee_id','<>',0)->get() as $requester)
                             <option value="{{$requester->id}}"> {{$requester->employee_id }}

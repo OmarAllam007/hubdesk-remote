@@ -10,10 +10,16 @@
             <td class="col-sm-3">{{$ticket->requester->business_unit->name or 'Not Assigned'}}</td>
         </tr>
         <tr>
+            <th>{{t('Department')}}</th>
+            <td>{{$ticket->requester->department->name or 'Not Assigned'}}</td>
+            <th>{{t('Job Title')}}</th>
+            <td>{{$ticket->requester->job or 'Not Assigned'}}</td>
+        </tr>
+        <tr>
             <th>{{t('Email')}}</th>
             <td>{{$ticket->requester->email or 'Not Assigned'}}</td>
-            <th>{{t('Location')}}</th>
-            <td>{{$ticket->requester->location->name or 'Not Assigned'}}</td>
+            <th>{{t('Employee ID')}}</th>
+            <td>{{$ticket->requester->employee_id or 'Not Assigned'}}</td>
         </tr>
         <tr>
             <th>{{t('Phone')}}</th>
@@ -21,5 +27,7 @@
             <th>{{t('Mobile')}}</th>
             <td>{{$ticket->requester->mobile or 'Not Assigned'}}</td>
         </tr>
+
+
     </table>
 </div>
