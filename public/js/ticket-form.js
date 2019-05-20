@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -91,21 +91,27 @@ module.exports = g;
 
 
 /***/ }),
-/* 1 */
+/* 1 */,
+/* 2 */,
+/* 3 */,
+/* 4 */,
+/* 5 */,
+/* 6 */,
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(2);
+module.exports = __webpack_require__(8);
 
 
 /***/ }),
-/* 2 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__AttachmentModal_vue__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__AttachmentModal_vue__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__AttachmentModal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__AttachmentModal_vue__);
 
 
@@ -122,7 +128,9 @@ window.app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         technicians: {},
         technician_id: window.technician_id,
         requester: '',
-        loading: false
+        loading: false,
+        requester_id: '',
+        selected: 0
     },
     mounted: function mounted() {
         var _this = this;
@@ -130,10 +138,23 @@ window.app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         this.loadCategory(true);
         this.loadSubcategory(true);
         this.loadItem(true);
+        var self = this;
 
-        $('#requester_id').on("change", function (e) {
+        $("#requester_id").change(function (e) {
             _this.getRequesterInfo(e.target.value);
         });
+        // var selectDropDown = $("#requester_id").select2();
+        //
+        // selectDropDown.on('select2:select', function (e) {
+        //     var event = new Event('change');
+        //     e.target.dispatchEvent(event);
+        //     console.log('fired')
+        // });
+        //
+        // jQuery("#requester_id").select((e) => {
+        //     console.log(e.target.value)
+        //     this.getRequesterInfo(e.target.value)
+        // });
     },
     created: function created() {
         this.getRequesterInfo($('#requester_id').val());
@@ -244,7 +265,7 @@ window.app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 });
 
 /***/ }),
-/* 3 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11207,10 +11228,10 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(4).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(10).setImmediate))
 
 /***/ }),
-/* 4 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -11266,7 +11287,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(5);
+__webpack_require__(11);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -11280,7 +11301,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 5 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -11470,10 +11491,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(12)))
 
 /***/ }),
-/* 6 */
+/* 12 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -11663,15 +11684,15 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 7 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(8)(
+var Component = __webpack_require__(14)(
   /* script */
-  __webpack_require__(9),
+  __webpack_require__(15),
   /* template */
-  __webpack_require__(10),
+  __webpack_require__(16),
   /* styles */
   null,
   /* scopeId */
@@ -11679,7 +11700,7 @@ var Component = __webpack_require__(8)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/omarkhaled/code/hubdesk/resources/assets/js/AttachmentModal.vue"
+Component.options.__file = "/Users/omarkhaled/code/hdesk/resources/assets/js/AttachmentModal.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] AttachmentModal.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -11690,9 +11711,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-075c01e7", Component.options)
+    hotAPI.createRecord("data-v-46edd14c", Component.options)
   } else {
-    hotAPI.reload("data-v-075c01e7", Component.options)
+    hotAPI.reload("data-v-46edd14c", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -11703,7 +11724,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 8 */
+/* 14 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -11800,7 +11821,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 9 */
+/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11859,7 +11880,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 10 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -11907,7 +11928,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-075c01e7", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-46edd14c", module.exports)
   }
 }
 
