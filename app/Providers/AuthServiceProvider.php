@@ -34,9 +34,9 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \Auth::provider('hubdesk', function ($app) {
-            return new KdeskUserProvider(app(Hasher::class), config('auth.providers.users.model'));
-        });
+//        \Auth::provider('hubdesk', function ($app) {
+//            return new KdeskUserProvider(app(Hasher::class), config('auth.providers.users.model'));
+//        });
 
         \Gate::before(function (User $user) {
             if ($user->isAdmin()) {
