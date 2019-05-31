@@ -20,7 +20,7 @@
             @if (!isset($ticket) && Auth::user()->isSupport())
                 <div class="form-group form-group-sm {{$errors->has('requester_id')? 'has-error' : ''}}">
                     {{ Form::label('requester_id', t('Requester'), ['class' => 'control-label']) }}
-                    <select name="requester_id" id="requester_id" class="form-control select2" >
+                    <select name="requester_id" id="requester_id" class="form-control select2">
                         <option value="{{Auth::user()->id}}">{{t('Create for me')}}</option>
                         @foreach(App\User::orderBy('name')->where('employee_id','<>',0)->get() as $requester)
                             <option value="{{$requester->id}}"> {{$requester->employee_id }}
@@ -84,6 +84,15 @@
 
     </div>
 
+    @if($category->notes || (isset($subcategory) && $subcategory->notes) || (isset($item) && $item->notes) )
+    <fieldset>
+        <legend>{{t('Notes')}}</legend>
+        {!! $category->notes ?? '' !!}
+        {!! $subcategory->notes ?? '' !!}
+        {!! $item->notes ?? '' !!}
+    </fieldset>
+        <br>
+    @endif
     <div class="row">
         <div class="col-sm-7">
             <div class="form-group form-group-sm {{$errors->has('description')? 'has-error' : ''}}">
@@ -101,36 +110,36 @@
             {{Form::hidden('subcategory_id',$subcategory->id ?? null)}}
             {{Form::hidden('item_id',$item->id ?? null)}}
             {{--<div class="form-group form-group-sm {{$errors->has('category_id')? 'has-error' : ''}}">--}}
-                {{--{{ Form::label('category_id', t('Category'), ['class' => 'control-label']) }}--}}
-                {{--{{ Form::select('category_id', App\Category::selection('Select Category'), request('category_id'), ['class' => 'form-control', 'v-model' => 'category','readonly'=>'readonly']) }}--}}
-                {{--@if ($errors->has('category_id'))--}}
-                    {{--<div class="error-message">{{$errors->first('category_id')}}</div>--}}
-                {{--@endif--}}
+            {{--{{ Form::label('category_id', t('Category'), ['class' => 'control-label']) }}--}}
+            {{--{{ Form::select('category_id', App\Category::selection('Select Category'), request('category_id'), ['class' => 'form-control', 'v-model' => 'category','readonly'=>'readonly']) }}--}}
+            {{--@if ($errors->has('category_id'))--}}
+            {{--<div class="error-message">{{$errors->first('category_id')}}</div>--}}
+            {{--@endif--}}
             {{--</div>--}}
 
             {{--<div class="form-group form-group-sm {{$errors->has('subcategory')? 'has-error' : ''}}">--}}
-                {{--{{ Form::label('subcategory_id', t('Subcategory'), ['class' => 'control-label']) }}--}}
+            {{--{{ Form::label('subcategory_id', t('Subcategory'), ['class' => 'control-label']) }}--}}
 
-                {{--<select class="form-control" name="subcategory_id" id="subcategory_id" v-model="subcategory"--}}
-                        {{--readonly>--}}
-                    {{--<option value="">Select Subcategory</option>--}}
-                    {{--<option v-for="(subcategory, id) in subcategories" :value="subcategory.id">@{{subcategory.name}}--}}
-                    {{--</option>--}}
-                {{--</select>--}}
-                {{--@if ($errors->has('subcategory_id'))--}}
-                    {{--<div class="error-message">{{$errors->first('subcategory_id')}}</div>--}}
-                {{--@endif--}}
+            {{--<select class="form-control" name="subcategory_id" id="subcategory_id" v-model="subcategory"--}}
+            {{--readonly>--}}
+            {{--<option value="">Select Subcategory</option>--}}
+            {{--<option v-for="(subcategory, id) in subcategories" :value="subcategory.id">@{{subcategory.name}}--}}
+            {{--</option>--}}
+            {{--</select>--}}
+            {{--@if ($errors->has('subcategory_id'))--}}
+            {{--<div class="error-message">{{$errors->first('subcategory_id')}}</div>--}}
+            {{--@endif--}}
             {{--</div>--}}
 
             {{--<div class="form-group form-group-sm {{$errors->has('item_id')? 'has-error' : ''}}">--}}
-                {{--{{ Form::label('item_id', t('Item'), ['class' => 'control-label']) }}--}}
-                {{--<select class="form-control" name="item_id" id="item_id" v-model="item" readonly>--}}
-                    {{--<option value="">Select Item</option>--}}
-                    {{--<option v-for="(item, id) in items" :value="item.id" v-text="item.name"></option>--}}
-                {{--</select>--}}
-                {{--@if ($errors->has('item_id'))--}}
-                    {{--<div class="error-message">{{$errors->first('item_id')}}</div>--}}
-                {{--@endif--}}
+            {{--{{ Form::label('item_id', t('Item'), ['class' => 'control-label']) }}--}}
+            {{--<select class="form-control" name="item_id" id="item_id" v-model="item" readonly>--}}
+            {{--<option value="">Select Item</option>--}}
+            {{--<option v-for="(item, id) in items" :value="item.id" v-text="item.name"></option>--}}
+            {{--</select>--}}
+            {{--@if ($errors->has('item_id'))--}}
+            {{--<div class="error-message">{{$errors->first('item_id')}}</div>--}}
+            {{--@endif--}}
             {{--</div>--}}
 
         </div>

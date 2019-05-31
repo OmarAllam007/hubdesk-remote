@@ -30,6 +30,14 @@
                 @endif
             </div>
 
+            <div class="form-group {{$errors->has('notes')? 'has-error' : ''}}">
+                {{Form::label('notes', 'Notes', ['class' => 'control-label'])}}
+                {{Form::textarea('notes', null, ['class' => 'form-control richeditor', 'rows' => 5])}}
+                @if ($errors->has('notes'))
+                    <div class="error-message">{{$errors->first('notes')}}</div>
+                @endif
+            </div>
+
             <div class="form-group {{$errors->has('user_groups')? 'has-error' : ''}}">
                 {{Form::label('user_groups', 'User Group', ['class' => 'control-label'])}}
                 {{--                {{Form::select('user_groups[]',\App\Group::requesters()->get()->pluck('name','id'),isset($category) ? $category->service_user_groups()->pluck('id')->toArray() : null,['class'=>'form-control select2','multiple'=>'true'])}}--}}
@@ -57,11 +65,11 @@
                 {!! $errors->first('service_cost', '<div class="error-message">:message</div>') !!}
             </div>
 
-                <fieldset>
-                    <legend>Additional Fees</legend>
-                    <additional-fee
-                            :fees="{{ isset($item) && $item->fees ? $item->fees : 0 }}"></additional-fee>
-                </fieldset>
+            <fieldset>
+                <legend>Additional Fees</legend>
+                <additional-fee
+                        :fees="{{ isset($item) && $item->fees ? $item->fees : 0 }}"></additional-fee>
+            </fieldset>
 
             <div class="form-group">
                 <input type="checkbox" class="checkbox-tick"
@@ -86,7 +94,8 @@
         <div class="col-md-6">
             <fieldset>
                 <legend>Requirements</legend>
-                <service-requirements :requirements_data="{{json_encode(isset($item) ? $item->requirements: [] )}}"></service-requirements>
+                <service-requirements
+                        :requirements_data="{{json_encode(isset($item) ? $item->requirements: [] )}}"></service-requirements>
             </fieldset>
         </div>
     </div>
