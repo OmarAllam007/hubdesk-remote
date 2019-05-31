@@ -34,6 +34,15 @@
                     <div class="error-message">{{$errors->first('logo_img')}}</div>
                 @endif
             </div>
+
+            <div class="form-group {{$errors->has('business_unit_bgd_img')? 'has-errors' : ''}}">
+                {{Form::label('business_unit_bgd_img', 'Background', ['class' => 'control-label'])}}
+                {{Form::input('file','business_unit_bgd_img', null, ['class' => 'form-control'])}}
+                @if ($errors->has('business_unit_bgd_img'))
+                    <div class="error-message">{{$errors->first('business_unit_bgd_img')}}</div>
+                @endif
+            </div>
+
             <fieldset>
                 <legend>Roles</legend>
                 <roles :users="{{\App\User::orderBy('name')->get()}}" :roles="{{\App\Role::all()}}"

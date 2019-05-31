@@ -65,15 +65,15 @@ return [
     */
 
     'providers' => [
-        'users' => [
-            'driver' => 'hubdesk',
-            'model' => App\User::class,
-        ],
+//        'users' => [
+//            'driver' => 'hubdesk',
+//            'model' => App\User::class,
+//        ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+         'users' => [
+             'driver' => 'eloquent',
+             'model' =>  App\User::class,
+         ],
     ],
 
     /*

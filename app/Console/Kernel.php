@@ -49,7 +49,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('tickets:calculate-time')->everyMinute();
 
         // Get requests from service desk plus
-        $schedule->command('sdp:sync')->everyFiveMinutes();
+//        $schedule->command('sdp:sync')->everyFiveMinutes();
 
         $schedule->job(new CleanErrorLog())->daily();
         // Escalate approvals every hour
