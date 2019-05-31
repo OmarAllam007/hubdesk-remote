@@ -31,7 +31,7 @@ class BusinessUnit extends KModel
 {
     use Listable;
 
-    protected $fillable = ['code', 'name', 'location_id', 'logo'];
+    protected $fillable = ['code', 'name', 'location_id', 'logo','business_unit_bgd'];
     protected $appends = ['bu_roles'];
 
 
@@ -68,11 +68,11 @@ class BusinessUnit extends KModel
     }
 
 
-    public static function uploadLogo(BusinessUnit $businessUnit, UploadedFile $file)
+    public static function uploadAttachment(BusinessUnit $businessUnit, UploadedFile $file)
     {
         $filename = $file->getClientOriginalName();
 
-        $folder = storage_path('app/public/attachments/business_unit/logo/' . $businessUnit->id . '/');
+        $folder = storage_path('app/public/attachments/business_unit/' . $businessUnit->id . '/');
         if (!is_dir($folder)) {
             mkdir($folder, 0775, true);
         }
@@ -85,7 +85,7 @@ class BusinessUnit extends KModel
 
         $file->move($folder, $filename);
 
-        $final_path = '/attachments/business_unit/logo/' . $businessUnit->id . '/' . $filename;
+        $final_path = '/attachments/business_unit/' . $businessUnit->id . '/' . $filename;
 
         return $final_path;
     }

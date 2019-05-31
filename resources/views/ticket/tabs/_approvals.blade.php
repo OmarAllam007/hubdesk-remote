@@ -5,8 +5,6 @@
             <th>{{t('Sent to')}}</th>
             <th>{{t('By')}}</th>
             <th>{{t('Sent at')}}</th>
-            <th>{{t('By')}}</th>
-            <th>{{'Sent at'}}</th>
             <th>{{t('Stage')}}</th>
             <th>{{t('Status')}}</th>
             <th>{{t('Comment')}}</th>

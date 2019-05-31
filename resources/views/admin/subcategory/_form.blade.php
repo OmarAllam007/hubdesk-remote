@@ -30,6 +30,13 @@
                 @endif
             </div>
 
+            <div class="form-group {{$errors->has('notes')? 'has-error' : ''}}">
+                {{Form::label('notes', 'Notes', ['class' => 'control-label'])}}
+                {{Form::textarea('notes', null, ['class' => 'form-control richeditor', 'rows' => 5])}}
+                @if ($errors->has('notes'))
+                    <div class="error-message">{{$errors->first('notes')}}</div>
+                @endif
+            </div>
 
             <div class="form-group {{$errors->has('user_groups')? 'has-error' : ''}}">
                 {{Form::label('user_groups', 'User Group', ['class' => 'control-label'])}}

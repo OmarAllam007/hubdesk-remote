@@ -25,9 +25,17 @@
 
             <div class="form-group {{$errors->has('description')? 'has-error' : ''}}">
                 {{Form::label('description', 'Description', ['class' => 'control-label'])}}
-                {{Form::textarea('description', null, ['class' => 'form-control', 'rows' => 5])}}
+                {{Form::textarea('description', null, ['class' => 'form-control', 'rows' => 2])}}
                 @if ($errors->has('description'))
                     <div class="error-message">{{$errors->first('description')}}</div>
+                @endif
+            </div>
+
+            <div class="form-group {{$errors->has('notes')? 'has-error' : ''}}">
+                {{Form::label('notes', 'Notes', ['class' => 'control-label'])}}
+                {{Form::textarea('notes', null, ['class' => 'form-control richeditor', 'rows' => 5])}}
+                @if ($errors->has('notes'))
+                    <div class="error-message">{{$errors->first('notes')}}</div>
                 @endif
             </div>
 

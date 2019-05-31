@@ -46,9 +46,9 @@
                         <li class="nav-item"><a href="{{url('/reports')}}"><i class="fa fa-bar-chart"></i> {{t('Report')}}</a></li>
                     @endif
 
-                    @can('show_business_document')
-                    <li><a href="{{route('kgs.business_document')}}"><i class="fa fa-book"></i> {{t('Business Documents')}}</a></li>
-                    @endcan
+                    {{--@can('show_business_document')--}}
+                    {{--<li><a href="{{route('kgs.business_document')}}"><i class="fa fa-book"></i> {{t('Business Documents')}}</a></li>--}}
+                    {{--@endcan--}}
 
                     @if (Auth::user()->isAdmin())
                         <li class="nav-item"><a href="{{url('/admin')}}"><i class="fa fa-cogs"></i> {{t('Admin')}}</a></li>
@@ -134,6 +134,7 @@
 @endif
 
 <script src="{{asset('/js/app.js')}}"></script>
+<script src="{{asset('/js/tinymce/tinymce.min.js')}}"></script>
 @yield('javascript')
 </body>
 </html>
