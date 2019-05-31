@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\AdditionalFee;
 use App\ApprovalLevels;
 use App\Item;
+use App\ServiceUserGroup;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -37,8 +39,12 @@ class ItemController extends Controller
         $data = $request->all();
         $data['service_request']=$service_request;
         $item = Item::create($data);
-        $this->handleLevels($request, $item);
 
+        $this->handleLevels($request, $item);
+        $this->createUserGroups($request, $item);
+        $this->handleRequirements($request,$item);
+
+        $this->createFees($request,$item);
         flash(t('Item has been saved'), 'success');
 
         return \Redirect::route('admin.subcategory.show', $item->subcategory_id);
@@ -62,6 +68,10 @@ class ItemController extends Controller
         $item->update($data);
 
         $this->handleLevels($request, $item);
+        $this->createUserGroups($request, $item);
+        $this->handleRequirements($request,$item);
+
+        $this->createFees($request,$item);
         flash('Item has been saved', 'success');
 
         return \Redirect::route('admin.subcategory.show', $item->subcategory_id);
@@ -88,6 +98,56 @@ class ItemController extends Controller
                     'role_id' => $role,
                 ]);
             }
+        }
+    }
+
+    private function createUserGroups(Request $request,Item $item)
+    {
+        if (count($request['user_groups'])) {
+            $item->service_user_groups()->delete();
+            foreach ($request['user_groups'] as $group) {
+                $item->service_user_groups()->create([
+                    'level' => ServiceUserGroup::$ITEM,
+                    'group_id' => $group
+                ]);
+            }
+        }
+    }
+    private function handleRequirements(Request $request, Item $item)
+    {
+        if(!count($request->requirements)){
+            return;
+        }
+
+        $item->requirements()->delete();
+
+        foreach ($request->requirements as $requirement){
+            $item->requirements()->create([
+                'reference_type'=> 3,
+                'reference_id'=> $item->id,
+                'field'=>$requirement['field'],
+                'operator'=>'is',
+                'label'=>$requirement['label'],
+                'value'=>$requirement['value'],
+            ]);
+        }
+
+    }
+
+    private function createFees(Request $request, Item $item)
+    {
+        if (!count($request->fees)) {
+            return;
+        }
+        $item->fees()->delete();
+
+        foreach ($request->fees as $fee) {
+            $item->fees()->create([
+                'name' => $fee['name'],
+                'cost' => $fee['cost'],
+                'level'=> AdditionalFee::ITEM,
+                'level_id'=> $item->id,
+            ]);
         }
     }
 }

@@ -14,21 +14,34 @@ window.app = new Vue({
         technician_id: window.technician_id,
         requester: '',
         loading: false,
+        requester_id:'',
+        selected:0
     },
     mounted: function () {
         this.loadCategory(true);
         this.loadSubcategory(true);
         this.loadItem(true);
+        const self = this;
 
-
-        $('#requester_id').on("change", (e) => {
-            this.getRequesterInfo(e.target.value)
+        $("#requester_id").change((e)=> {
+             this.getRequesterInfo(e.target.value)
         });
-
-
+        // var selectDropDown = $("#requester_id").select2();
+        //
+        // selectDropDown.on('select2:select', function (e) {
+        //     var event = new Event('change');
+        //     e.target.dispatchEvent(event);
+        //     console.log('fired')
+        // });
+        //
+        // jQuery("#requester_id").select((e) => {
+        //     console.log(e.target.value)
+        //     this.getRequesterInfo(e.target.value)
+        // });
     },
     created() {
         this.getRequesterInfo($('#requester_id').val())
+
 
         // this.loadCategory(false);
         // this.loadSubcategory(false)

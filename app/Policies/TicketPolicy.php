@@ -93,4 +93,11 @@ class TicketPolicy
         return $user->id == $ticket->technician_id || $user->isTechnicainSupervisor($ticket);
     }
 
+    public function send_to_finance(User $user,Ticket $ticket){
+        $is_ticket_technician = $user->id == $ticket->technician_id;
+        $is_valid_status = in_array($ticket->status_id,[7,8,9]);
+
+        return $is_ticket_technician && $is_valid_status;
+    }
+
 }

@@ -18,14 +18,9 @@
         <tr>
             <th class="col-sm-3">{{t('Category')}}</th>
             <td class="col-sm-3">{{$ticket->category->name or 'Not Assigned'}}</td>
-            @if($ticket->total_service_cost)
-            <th class="col-sm-3">{{t('Service Cost: ')}}</th>
 
-            <td class="col-sm-3">{{t($ticket->total_service_cost . ' SAR')}}</td>
-            @else
-                <th></th>
-                <td></td>
-            @endif
+            <th class="col-sm-3">{{t('Service Cost: ')}}</th>
+            <td class="col-sm-3">{{ $ticket->total_ticket_cost ? t($ticket->total_ticket_cost . ' SAR') : 'Not Assigned'}}</td>
         </tr> 
         <tr>
             <th class="col-sm-3">{{t('Subcategory')}}</th>
@@ -53,8 +48,6 @@
             <td class="col-sm-3">{{$ticket->sla->name or 'Not Assigned'}}</td>
             <th class="col-sm-3">{{t('Group')}}</th>
             <td class="col-sm-3">{{$ticket->group->name or 'Not Assigned'}}</td>
-           
-
         </tr>
         {{--<tr>--}}
             {{--<th>{{t('Business Unit')}}</th>--}}
@@ -65,6 +58,27 @@
     </table>
 </div>
 
+{{--{{dd($ticket->fees)}}--}}
+@if ($ticket->fees->count())
+    <div class="panel panel-default panel-design">
+        <div class="panel-heading">
+            <h4 class="panel-title"><i class="fa fa-asterisk"></i> {{t('Additional Fees')}}</h4>
+        </div>
+
+        <table class="table table-bordered table-condensed table-striped details-tbl">
+            <tbody>
+            @foreach($ticket->fees as $fee)
+                <tr>
+                    <td class="col-sm-4 text-right"><strong>{{$fee->name}}</strong></td>
+                    <td>
+                        {{$fee->cost}}
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
+@endif
 
 @include('ticket.partials._ticket_additional_fields',['ticket'=>$ticket])
 @include('ticket.partials._requester_details',['ticket'=>$ticket])

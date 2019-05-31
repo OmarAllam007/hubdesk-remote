@@ -37,6 +37,7 @@
             <div class="col-md-8">
                 <div class="tiles-container">
                     @foreach($subcategory->items as $item)
+                        @if($item->canDisplay(\App\ServiceUserGroup::$ITEM))
                         <a href="{{route('ticket.create-ticket',compact('business_unit','category','subcategory','item'))}}"
                            class="tile">
                             <div class="tile-container"
@@ -52,6 +53,7 @@
                                 </div>
                             </div>
                         </a>
+                        @endif
 
                     @endforeach
                 </div>

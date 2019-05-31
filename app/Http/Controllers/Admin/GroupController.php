@@ -18,6 +18,11 @@ class GroupController extends Controller
         return view('admin.group.index', compact('groups'));
     }
 
+    public function userGroups()
+    {
+        $groups = Group::whereType(1)->orderBy('name')->quickSearch()->paginate();
+        return view('admin.group.user_group_index', compact('groups'));
+    }
     public function create()
     {
         return view('admin.group.create');
@@ -31,6 +36,10 @@ class GroupController extends Controller
 
         if ($request->supervisors) {
             $group->supervisors()->sync($request->supervisors);
+        }
+
+        if($request->users){
+            $group->users()->sync($request->users);
         }
 
         flash(t('Group has been saved'), 'success');
@@ -55,7 +64,9 @@ class GroupController extends Controller
         if ($request->supervisors) {
             $group->supervisors()->sync($request->supervisors);
         }
-
+        if($request->users){
+            $group->users()->sync($request->users);
+        }
         $group->update($request->all());
 
         flash(t('Group has been saved'), 'success');

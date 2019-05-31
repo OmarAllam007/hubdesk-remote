@@ -7,7 +7,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
                     <a href="{{route('ticket.create-wizard')}}">
-                    {{t('Select Company')}}
+                        {{t('Select Company')}}
                     </a>
                 </li>
 
@@ -15,7 +15,7 @@
                     {{t($business_unit->name)}}
                 </li>
                 {{--<li class="breadcrumb-item">--}}
-                    {{--{{t('Select Category')}}--}}
+                {{--{{t('Select Category')}}--}}
                 {{--</li>--}}
 
             </ol>
@@ -44,7 +44,7 @@
     <section class="col-sm-12 card-section">
 
         <div class=form-group></div>
-{{--        <h3 class=text-center>{{t('Categories') }}</h3>--}}
+        {{--        <h3 class=text-center>{{t('Categories') }}</h3>--}}
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
@@ -70,21 +70,23 @@
                     @endif
 
                     @foreach($business_unit->categories as $category)
-                        <a href="{{route('ticket.create.select_subcategory', compact('business_unit','category'))}}"
-                           class="tile">
-                            <div class="tile-container"
-                                 style="display: flex;align-items: center;justify-content: center;">
-                                <div class="tile-body"
-                                     style="display: flex;flex-direction: column;justify-content: center">
-                                    <p class="text-center">
-                                        {{t($category->name)}}
-                                    </p>
-                                    <p>
-                                        {{$category->service_cost ? $category->service_cost : ''}}
-                                    </p>
+                        @if($category->canDisplay(\App\ServiceUserGroup::$CATEGORY))
+                            <a href="{{route('ticket.create.select_subcategory', compact('business_unit','category'))}}"
+                               class="tile">
+                                <div class="tile-container"
+                                     style="display: flex;align-items: center;justify-content: center;">
+                                    <div class="tile-body"
+                                         style="display: flex;flex-direction: column;justify-content: center">
+                                        <p class="text-center">
+                                            {{t($category->name)}}
+                                        </p>
+                                        <p>
+                                            {{$category->service_cost ? $category->service_cost : ''}}
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        @endif
                     @endforeach
                 </div>
             </div>

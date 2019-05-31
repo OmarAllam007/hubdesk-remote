@@ -48,7 +48,6 @@
         },
         created() {
 
-
             EventBus.$on('removeRole', (index,level) => {
 
                     var idx = this.levels.indexOf(level);

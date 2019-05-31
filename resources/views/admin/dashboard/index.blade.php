@@ -10,12 +10,13 @@
             <div class="col-md-4">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{{t('Users')}}</h3>
+                        <h3 class="panel-title"><i class="fa fa-user"></i> {{t('Users')}}</h3>
                     </div>
                     <div class="panel-body">
                         <ul class="nav nav-pills">
                             <li><a href="{{route('admin.user.index')}}">{{t('Users')}}</a></li>
                             <li><a href="{{route('admin.group.index')}}">{{t('Groups')}}</a></li>
+                            <li><a href="{{route('admin.group.user_groups')}}">{{t('User Groups')}}</a></li>
                             <li><a href="{{route('admin.role.index')}}">{{t('Roles')}}</a></li>
                         </ul>
                     </div>
@@ -26,7 +27,7 @@
             <div class="col-md-4">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{{t('Categories')}}</h3>
+                        <h3 class="panel-title"><i class="fa fa-cubes"></i> {{t('Categories')}}</h3>
                     </div>
                     <div class="panel-body">
                         <ul class="nav nav-pills">
@@ -41,7 +42,7 @@
             <div class="col-md-4">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{{t('Locations')}}</h3>
+                        <h3 class="panel-title"><i class="fa fa-map-marker"></i> {{t('Locations')}}</h3>
                     </div>
                     <div class="panel-body">
                         <ul class="nav nav-pills">
@@ -60,7 +61,7 @@
             <div class="col-md-4">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{{t('Business Units')}}</h3>
+                        <h3 class="panel-title"><i class="fa fa-building"></i>  {{t('Business Units')}}</h3>
                     </div>
                     <div class="panel-body">
                         <ul class="nav nav-pills">
@@ -75,7 +76,7 @@
             <div class="col-md-4">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{{t('Configuration')}}</h3>
+                        <h3 class="panel-title"><i class="fa fa-cogs"></i> {{t('Configuration')}}</h3>
                     </div>
                     <div class="panel-body">
                         <ul class="nav nav-pills">
