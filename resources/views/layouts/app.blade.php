@@ -37,9 +37,9 @@
             </ul>
             @if (!\Auth::guest())
                 <ul class="nav navbar-nav " >
-                    @if(Auth::user()->isAdmin())
+                    {{--@if(Auth::user()->isAdmin())--}}
                         <li class="nav-item"><a href="{{route('ticket.create')}}"><i class="fa fa-plus"></i> {{t('New Ticket')}}</a></li>
-                    @endif
+                    {{--@endif--}}
                     <li class="nav-item"><a href="{{route('ticket.index')}}"><i class="fa fa-ticket"></i> {{t('Tickets')}}</a></li>
 
                     @can('reports')
