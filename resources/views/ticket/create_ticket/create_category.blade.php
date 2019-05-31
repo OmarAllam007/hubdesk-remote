@@ -46,7 +46,7 @@
 
         }
         .back-animation{
-            background-image: url({{url($business_unit->business_unit_bgd)}});
+            background-image: url({{url($business_unit->business_unit_bgd ?? '')}});
             background-repeat: no-repeat;background-size: cover;
             animation: .7s ease-in 0s 1 displaySlowly;
         }
