@@ -29,22 +29,25 @@ class TicketReplyJob extends Job //implements ShouldQueue
         $ticket = $this->reply->ticket;
 
         if ($this->reply->user_id == $this->reply->ticket->requester_id) {
+            if(!$ticket->technician->email){
+                return false;
+            }
             $this->to = [$ticket->technician->email];
 
         } elseif ($this->reply->user_id == $this->reply->ticket->technician_id) {
-            if ($this->reply->ticket->sdp_id) {
-                return false;
-            } else {
-                $this->to = [$ticket->requester->email];
-            }
-//            $this->to = [$ticket->requester->email];
-        } elseif ($this->reply->user_id != $this->reply->ticket->technician_id && $this->reply->user->isTechnician()) {
 
-            if ($this->reply->ticket->sdp_id) {
-                $this->to = [$ticket->technician->email];
-            } else {
-                $this->to = [$ticket->technician->email, $ticket->requester->email];
+            if(!$ticket->requester->email){
+               return false;
             }
+            $this->to = [$ticket->requester->email];
+
+        } elseif ($this->reply->user_id != $this->reply->ticket->technician_id && $this->reply->user->isTechnician()) {
+            if(!$ticket->requester->email || !$ticket->technician->email){
+                return false;
+            }
+
+            $this->to = [$ticket->technician->email, $ticket->requester->email];
+
 
         }
 
