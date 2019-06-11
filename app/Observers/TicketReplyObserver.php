@@ -53,9 +53,9 @@ class TicketReplyObserver
 
     protected function handleTechnician(TicketReply $reply)
     {
-        if ($reply->ticket->sdp_id) {
-            $sdp = new ServiceDeskApi();
-            $reply_id = $sdp->addReply($reply);
+//        if ($reply->ticket->sdp_id) {
+//            $sdp = new ServiceDeskApi();
+//            $reply_id = $sdp->addReply($reply);
 
             if ($reply->status_id) {
                 $reply->ticket->status_id = $reply->status_id;
@@ -66,19 +66,19 @@ class TicketReplyObserver
             } else {
                 $reply->status_id = $reply->ticket->status_id;
             }
-            $reply->sdp_id = 0;
-        } else {
-
-            if ($reply->status_id) {
-                $reply->ticket->status_id = $reply->status_id;
-
-                if ($reply->status_id == 7 || $reply->status_id == 9) {
-                    $reply->ticket->resolve_date = Carbon::now();
-                }
-            } else {
-                $reply->status_id = $reply->ticket->status_id;
-            }
-
-        }
+//            $reply->sdp_id = 0;
+//        } else {
+//
+//            if ($reply->status_id) {
+//                $reply->ticket->status_id = $reply->status_id;
+//
+//                if ($reply->status_id == 7 || $reply->status_id == 9) {
+//                    $reply->ticket->resolve_date = Carbon::now();
+//                }
+//            } else {
+//                $reply->status_id = $reply->ticket->status_id;
+//            }
+//
+//        }
     }
 }
