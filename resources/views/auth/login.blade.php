@@ -45,17 +45,17 @@
 
                 <div class="form-group">
                     <div class="col-sm-12 text-center">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary" style="width: 100%;font-size: 14pt;font-weight: bold">
                             <i class="fa fa-btn fa-sign-in"></i> Login
                         </button>
 
-                        <a href="/auth/google" class="btn btn-danger">
-                            <i class="fa fa-btn fa-google-plus"></i> Login using Google
-                        </a>
+                        {{--<a href="/auth/google" class="btn btn-danger">--}}
+                            {{--<i class="fa fa-btn fa-google-plus"></i> Login using Google--}}
+                        {{--</a>--}}
 
-                        <a href="{{route('password.request')}}" class="btn btn-success">
-                            <i class="fa fa-btn fa-unlock"></i> Reset Password
-                        </a>
+                        {{--<a href="{{route('password.request')}}" class="btn btn-success">--}}
+                            {{--<i class="fa fa-btn fa-unlock"></i> Reset Password--}}
+                        {{--</a>--}}
                     </div>
                 </div>
             </form>

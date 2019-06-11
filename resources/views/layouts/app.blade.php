@@ -113,7 +113,7 @@
                 <p class="text-mutedtext-right">{{t('Copyright')}} &copy; <a
                             href="http://hubtech.sa">Hubtech</a> {{date('Y')}}</p>
 
-                <p class="text-mutedtext-left" style="font-weight: bold">  {{t('To see how to use the new version of Hubdesk')}}    <a href="{{asset('attachments/hubdesk-user-guide.pdf')}}" target="_blank">{{t('Click Here')}}</a>   </p>
+                <p class="text-mutedtext-left" style="font-weight: bold;">  <a href="{{asset('attachments/hubdesk-user-guide.pdf')}}" target="_blank"><i class="fa fa-info-circle"></i> {{t('Hubdesk User Guideline')}}</a>   </p>
 
             </div>
         </div>
