@@ -67,7 +67,7 @@
                     <div class="tiles-container">
                         @if(str_contains(strtolower($business_unit->name),'quwa'))
                             <a target="_blank"
-                               href="https://fiori.alkifah.com:5447/sap/bc/ui5_ui5/ui2/ushell/shells/abap/FioriLaunchpad.html?sap-sec_session_created=X&sap-sec_session_created=X"
+                               href="https://fiori.alkifah.com:5447/sap/bc/ui5_ui5/ui2/ushell/shells/abap/FioriLaunchpad.html?sap-client=900&sap-language=EN&sap-sec_session_created=X"
                                class="tile">
                                 <div class="tile-container"
                                      style="display: flex;align-items: center;justify-content: center;">

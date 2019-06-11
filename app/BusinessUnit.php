@@ -111,4 +111,14 @@ class BusinessUnit extends KModel
     function document_notifications(){
         return $this->hasMany(DocumentNotification::class);
     }
+
+    function canDisplay(){
+        /** @var Category $category */
+        foreach ($this->categories as $category){
+            if ($category->canDisplay(\App\ServiceUserGroup::$CATEGORY)){
+                return true;
+            }
+        }
+        return false;
+    }
 } 

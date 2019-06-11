@@ -550,4 +550,20 @@ class Ticket extends KModel
         $fees = collect($fees_arr)->flatten();
         return $fees?? collect();
     }
+
+    function getSla($category,$subcategory = null, $item = null){
+        $this->category_id = $category->id;
+
+        if ($subcategory && $subcategory->sla){
+            $this->subcategory_id = $subcategory->id;
+        }
+
+        if ($item && $item->sla){
+            $this->item_id = $item->id;
+        }
+        $sla = new \App\Jobs\ApplySLA($this);
+        $data = $sla->fetchSLA();
+
+        return $data;
+    }
 }

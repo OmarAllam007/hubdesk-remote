@@ -12378,7 +12378,8 @@ footer {
 }
 
 footer .footer-container {
-  min-height: 30px;
+  min-height: 40px;
+  font-size: 12pt;
 }
 
 footer p {

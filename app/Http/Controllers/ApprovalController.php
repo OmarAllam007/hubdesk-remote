@@ -77,7 +77,7 @@ class ApprovalController extends Controller
         $ticketApproval->approval_date = Carbon::now();
         $ticketApproval->update($request->all());
 
-        if(!$ticketApproval->ticket->isClosed()){
+        if(!$ticketApproval->ticket->isClosed() && !$ticketApproval->ticket->hasPendingApprovals()){
             $ticketApproval->ticket->status_id = 3;
             $ticketApproval->ticket->save();
         }
