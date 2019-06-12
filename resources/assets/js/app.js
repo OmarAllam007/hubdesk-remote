@@ -1,6 +1,7 @@
-import swal from 'sweetalert2'
+// import swal from 'sweetalert2'
 window.jQuery = window.$ = require('jquery');
-window.swal = swal;
+window.swal = require('sweetalert2')
+// window.swal = swal;
 require('bootstrap-sass');
 require('select2');
 

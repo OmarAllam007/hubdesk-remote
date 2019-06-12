@@ -131,6 +131,10 @@
 @endsection
 
 @section('body')
+    @php
+    $users = \App\User::whereNotNull('email')->orderBy('name')->get();
+    @endphp
+
     @if(can('show',$ticket))
         <section class="col-sm-12" id="ticketArea">
             <ul class="nav nav-tabs" role="tablist">

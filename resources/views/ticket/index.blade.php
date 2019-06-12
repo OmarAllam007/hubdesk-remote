@@ -77,6 +77,7 @@
                     {{--<th>{{t('Helpdesk ID')}}</th>--}}
                     <th>{{t('Subject')}}</th>
                     <th>{{t('Requester')}}</th>
+                    <th>{{t('SAP ID')}}</th>
                     <th>{{t('Technician')}}</th>
                     <th>{{t('Created At')}}</th>
                     <th>{{t('Due Date')}}</th>
@@ -98,6 +99,7 @@
                             <a href="{{ route('ticket.show', $ticket) }}">{{ $ticket->subject }}</a>
                         </td>
                         <td>{{ $ticket->requester->name }}</td>
+                        <td>{{ $ticket->requester->employee_id ?? t('Not Assigned') }}</td>
                         <td>{{ $ticket->technician? $ticket->technician->name : 'Not Assigned' }}</td>
                         <td>{{ $ticket->created_at->format('d/m/Y h:i a') }}</td>
                         <td>{{ $ticket->due_date? $ticket->due_date->format('d/m/Y h:i a') : t('Not Assigned') }}</td>

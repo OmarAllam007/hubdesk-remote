@@ -120,6 +120,9 @@
     </footer>
 </div>
 
+<script src="{{asset('/js/app.js')}}"></script>
+<script src="{{asset('/js/tinymce/tinymce.min.js')}}"></script>
+
 
 @if (alert()->ready())
     <script>
@@ -133,8 +136,7 @@
     </script>
 @endif
 
-<script src="{{asset('/js/app.js')}}"></script>
-<script src="{{asset('/js/tinymce/tinymce.min.js')}}"></script>
 @yield('javascript')
+
 </body>
 </html>
