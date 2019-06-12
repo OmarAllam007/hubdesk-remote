@@ -77,7 +77,7 @@
                     {{--<th>{{t('Helpdesk ID')}}</th>--}}
                     <th>{{t('Subject')}}</th>
                     <th>{{t('Requester')}}</th>
-                    <th>{{t('Requester ID')}}</th>
+                    <th>{{t('SAP ID')}}</th>
                     <th>{{t('Technician')}}</th>
                     <th>{{t('Created At')}}</th>
                     <th>{{t('Due Date')}}</th>
