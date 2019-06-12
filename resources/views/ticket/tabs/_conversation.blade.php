@@ -56,7 +56,11 @@
         <div class="col-md-6">
             <div class="form-group form-group-sm {{$errors->has('cc')? 'has-error' : ''}}">
                 {{Form::label('reply[cc]', t('Cc'), ['class' => 'control-label'])}}
-                <select class="form-control usernames" name="reply[cc][]">
+                <select class="form-control select2" name="reply[cc][]" multiple>
+                    <option value="" disabled="disabled">{{t('Select')}}</option>
+                    @foreach($users as $user)
+                        <option value="{{$user->email}}">{{$user->name}} - {{$user->email}}</option>
+                    @endforeach
                 </select>
 
                 @if (count($errors) && $errors->has('cc.*'))

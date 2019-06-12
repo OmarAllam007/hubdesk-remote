@@ -1,7 +1,7 @@
 @php
     /** @var \App\Sla $sla */
-$ticket = new \App\Ticket();
-$sla = $ticket->getSla($category,$subcategory ?? null ,$item ?? null);
+$ticketObj = new \App\Ticket();
+$sla = $ticketObj->getSla($category,$subcategory ?? null ,$item ?? null);
 @endphp
 
 @if($sla)
@@ -28,7 +28,6 @@ $sla = $ticket->getSla($category,$subcategory ?? null ,$item ?? null);
     <div class="row">
 
         <div class="col-sm-6">
-
             @if (!isset($ticket) && Auth::user()->isSupport())
                 <div class="form-group form-group-sm {{$errors->has('requester_id')? 'has-error' : ''}}">
                     {{ Form::label('requester_id', t('Requester'), ['class' => 'control-label']) }}
