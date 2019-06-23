@@ -29,9 +29,9 @@ class QuestionController extends Controller
 
     public function update(Question $question,Request $request)
     {
-        $this->validate($request, ['description' => 'required','degree'=>'numeric|min:1|max:5']);
+        $this->validate($request, ['description' => 'required','degree'=>'numeric']);
 
-        $question->update(['description'=>$request->description]);
+        $question->update($request->all());
 
         flash('Question has been saved', 'success');
 
@@ -41,7 +41,7 @@ class QuestionController extends Controller
 
     public function store($survey,Request $request)
     {
-        $this->validate($request, ['description' => 'required','degree'=>'numeric|min:1|max:5']);
+        $this->validate($request, ['description' => 'required','degree'=>'numeric']);
         $survey = Survey::find($survey);
 
         $q = Question::create(['description' => $request->description,'survey_id'=>$survey->id,'degree'=>$request->degree ?? null ]);
