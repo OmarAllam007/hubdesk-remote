@@ -3,15 +3,22 @@
     <div class="display-flex">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#"><?php echo e(t('Home')); ?></a></li>
-                <li class="breadcrumb-item"><a href="#"><?php echo e(t($business_unit->name)); ?>
+                <li class="breadcrumb-item">
+                    <a href="<?php echo e(route('ticket.create-wizard')); ?>">
+                        <?php echo e(t('Select Company')); ?>
 
                     </a>
                 </li>
-                <li class="breadcrumb-item"><a href="<?php echo e(route('ticket.create.select_category',compact('business_unit','category'))); ?>"> <?php echo e(t($category->name)); ?>
+                
+                <li class="breadcrumb-item">
+                        <a href="<?php echo e(route('ticket.create.select_category',compact('business_unit','category'))); ?>">
+                        <?php echo e(t($business_unit->name)); ?>
 
-                    </a></li>
+                    </a>
+                </li>
+                <li class="breadcrumb-item"> <?php echo e(t($category->name)); ?>
 
+                   </li>
                 
 
                 
@@ -49,6 +56,7 @@
                 <div class="col-md-8">
                     <div class="tiles-container">
                         <?php $__currentLoopData = $category->subcategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subcategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php if($subcategory->canDisplay(\App\ServiceUserGroup::$SUBCATEGORY)): ?>
 
                             <a href="<?php echo e(route('ticket.create.select_item', compact('business_unit','category','subcategory'))); ?>" class="tile">
                                 <div class="tile-container"
@@ -64,6 +72,7 @@
                                     </div>
                                 </div>
                             </a>
+                            <?php endif; ?>
                             
 
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

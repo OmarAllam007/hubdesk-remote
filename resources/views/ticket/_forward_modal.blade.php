@@ -11,7 +11,11 @@
                 <div class="col-md-12">
                     <div class="form-group form-group-sm {{$errors->has('to')? 'has-error' : ''}}">
                         {{Form::label('to', t('To'), ['class' => 'control-label'])}}
-                        <select class="form-control usernames" name="to[]"></select>
+                        <select class="form-control select2" name="to[]" multiple>
+                            @foreach($users as $user)
+                                <option value="{{$user->email}}">{{$user->name}} - {{$user->email}}</option>
+                            @endforeach
+                        </select>
                         @if (count($errors)&&count($errors->has('to')))
                             <div class="error-message">
                                 {{ $errors->first() }}
@@ -22,7 +26,12 @@
 
                     <div class="form-group form-group-sm">
                         {{Form::label('cc', t('Cc'), ['class' => 'control-label'])}}
-                        <select class="form-control usernames" name="cc[]"></select>
+                        <select class="form-control select2" name="cc[]" multiple>
+                            <option value="">{{t('Select')}}</option>
+                            @foreach($users as $user)
+                                <option value="{{$user->email}}">{{$user->name}} - {{$user->email}}</option>
+                            @endforeach
+                        </select>
                     </div>
 
 

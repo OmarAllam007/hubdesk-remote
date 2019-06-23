@@ -49,6 +49,12 @@ class Group extends KModel
         return $this->belongsToMany('App\User','group_supervisor','group_id','user_id');
     }
 
+
+
+    public function scopeRequesters(Builder $query)
+    {
+        return $query->where('type',  self::REQUESTER);
+    }
     public function scopeSupport(Builder $query)
     {
         return $query->where('type', '!=', self::REQUESTER);

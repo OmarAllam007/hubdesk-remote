@@ -3,7 +3,7 @@
         <label>
             {{ Form::hidden($name, 0) }}
             {{ Form::checkbox($name, 1, null, ['class' => 'cf', 'id' => "cf-{$field['id']}"]) }}
-            {{ $field['name'] }}
+            {{ t($field['name']) }}
         </label>
     </div>
     {!! $errors->first($name, '<div class="help-block">:message</div>') !!}

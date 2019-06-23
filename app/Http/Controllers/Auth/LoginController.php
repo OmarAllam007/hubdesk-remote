@@ -28,7 +28,7 @@ class LoginController extends Controller
 
     function username() 
     {
-        return 'login';
+        return 'employee_id';
     }
 
     /**

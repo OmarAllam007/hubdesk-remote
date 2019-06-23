@@ -5,7 +5,7 @@
     <div class="display-flex">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Create Ticket</a></li>
+                <li class="breadcrumb-item"><a href="#">{{t('Create Ticket')}}</a></li>
                 <li class="breadcrumb-item"><a href="#">{{$business_unit->name}}
                     </a>
                 </li>
@@ -37,6 +37,7 @@
             <div class="col-md-8">
                 <div class="tiles-container">
                     @foreach($subcategory->items as $item)
+                        @if($item->canDisplay(\App\ServiceUserGroup::$ITEM))
                         <a href="{{route('ticket.create-ticket',compact('business_unit','category','subcategory','item'))}}"
                            class="tile">
                             <div class="tile-container"
@@ -52,7 +53,7 @@
                                 </div>
                             </div>
                         </a>
-
+                        @endif
                     @endforeach
                 </div>
             </div>

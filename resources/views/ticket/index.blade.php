@@ -38,7 +38,7 @@
     <a href="#SearchForm" data-toggle="collapse" class="btn btn-info btn-sm searchbtn"><i class="fa fa-search"></i></a>
     {{Form::close()}}
     <style>
-        .ticket-card{
+        .ticket-card {
             display: flex;
             margin: 5px;
             background-color: white;
@@ -50,14 +50,16 @@
             border-left: 2px solid #636b6f;
             /*border-radius: 5px;*/
         }
-        .ticket-container{
+
+        .ticket-container {
             display: flex;
             flex-direction: column;
             /*justify-content: center;*/
             /*align-content: center;*/
             align-items: center;
         }
-        .subject{
+
+        .subject {
             font-size: 12pt;
             font-weight: bold;
         }
@@ -66,40 +68,40 @@
 
 @section('body')
     {{--<div class="ticket-container" style="background-color: #ecf1f4">--}}
-        {{--@foreach($tickets as $ticket)--}}
+    {{--@foreach($tickets as $ticket)--}}
 
-        {{--<div class="ticket-card">--}}
-            {{--<div class="ticket-details">--}}
-                {{--<p style="border: 1px solid dodgerblue;color:dodgerblue;text-align: center;height: 20px;padding: 0 5px 0 5px">Waiting Customer Response</p>--}}
-                {{--<p class="subject">#1234 </p>--}}
-                {{--<p class="subject">Access to System </p>--}}
-                {{--<p>Requester: Omar</p>--}}
-                {{--<p>Technician: Ahmed</p>--}}
-            {{--</div>--}}
-            {{--<div class="ticket-details2">--}}
-                {{--<p style="height: 20px"></p>--}}
-                {{--<p class="subject">Helpdesk Issues</p>--}}
-                {{--<p>Created At: 25-06-2019</p>--}}
-                {{--<p>Due At: 25-08-2019</p>--}}
-            {{--</div>--}}
-        {{--</div>--}}
+    {{--<div class="ticket-card">--}}
+    {{--<div class="ticket-details">--}}
+    {{--<p style="border: 1px solid dodgerblue;color:dodgerblue;text-align: center;height: 20px;padding: 0 5px 0 5px">Waiting Customer Response</p>--}}
+    {{--<p class="subject">#1234 </p>--}}
+    {{--<p class="subject">Access to System </p>--}}
+    {{--<p>Requester: Omar</p>--}}
+    {{--<p>Technician: Ahmed</p>--}}
+    {{--</div>--}}
+    {{--<div class="ticket-details2">--}}
+    {{--<p style="height: 20px"></p>--}}
+    {{--<p class="subject">Helpdesk Issues</p>--}}
+    {{--<p>Created At: 25-06-2019</p>--}}
+    {{--<p>Due At: 25-08-2019</p>--}}
+    {{--</div>--}}
+    {{--</div>--}}
 
-        {{--<div class="ticket-card">--}}
-            {{--<div class="ticket-details">--}}
-                {{--<p style="border: 1px solid green;color:green;text-align: center;height: 20px;padding: 0 5px 0 5px">New</p>--}}
-                {{--<p class="subject">#1234 </p>--}}
-                {{--<p class="subject">Access to System </p>--}}
-                {{--<p>Requester: Omar</p>--}}
-                {{--<p>Technician: Ahmed</p>--}}
-            {{--</div>--}}
-            {{--<div class="ticket-details2">--}}
-                {{--<p style="height: 20px"><i class="fa fa-warning" style="color: darkred;font-size: 12pt"></i></p>--}}
-                {{--<p class="subject">Helpdesk Issues</p>--}}
-                {{--<p>Created At: 25-06-2019</p>--}}
-                {{--<p>Due At: 25-08-2019</p>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-            {{--@endforeach--}}
+    {{--<div class="ticket-card">--}}
+    {{--<div class="ticket-details">--}}
+    {{--<p style="border: 1px solid green;color:green;text-align: center;height: 20px;padding: 0 5px 0 5px">New</p>--}}
+    {{--<p class="subject">#1234 </p>--}}
+    {{--<p class="subject">Access to System </p>--}}
+    {{--<p>Requester: Omar</p>--}}
+    {{--<p>Technician: Ahmed</p>--}}
+    {{--</div>--}}
+    {{--<div class="ticket-details2">--}}
+    {{--<p style="height: 20px"><i class="fa fa-warning" style="color: darkred;font-size: 12pt"></i></p>--}}
+    {{--<p class="subject">Helpdesk Issues</p>--}}
+    {{--<p>Created At: 25-06-2019</p>--}}
+    {{--<p>Due At: 25-08-2019</p>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--@endforeach--}}
     {{--</div>--}}
 
 
@@ -112,10 +114,10 @@
                 <thead style="  padding: 1em;">
                 <tr>
                     <th>{{t('ID')}}</th>
-                                        <th>{{t('Helpdesk ID')}}</th>
-
+                    {{--<th>{{t('Helpdesk ID')}}</th>--}}
                     <th>{{t('Subject')}}</th>
                     <th>{{t('Requester')}}</th>
+                    <th>{{t('SAP ID')}}</th>
                     <th>{{t('Technician')}}</th>
                     <th>{{t('Created At')}}</th>
                     <th>{{t('Due Date')}}</th>
@@ -129,7 +131,7 @@
                         <td><i class="fa fa-{{t($ticket->type_icon)}}" title="{{t($ticket->type_name)}}"
                                aria-hidden="true"></i> <a
                                     href="{{ route('ticket.show', $ticket) }}">{{ $ticket->id }}</a></td>
-                        <td><a href="{{ route('ticket.show', $ticket) }}">{{ $ticket->sdp_id ?? ''}}</a></td>
+                        {{--                        <td><a href="{{ route('ticket.show', $ticket) }}">{{ $ticket->sdp_id ?? ''}}</a></td>--}}
                         <td>
                             @if($ticket->overdue)
                                 <i class="fa fa-flag text-danger" aria-hidden="true" title="SLA violated"></i>
@@ -137,6 +139,7 @@
                             <a href="{{ route('ticket.show', $ticket) }}">{{ $ticket->subject }}</a>
                         </td>
                         <td>{{ $ticket->requester->name }}</td>
+                        <td>{{ $ticket->requester->employee_id ?? t('Not Assigned') }}</td>
                         <td>{{ $ticket->technician? $ticket->technician->name : 'Not Assigned' }}</td>
                         <td>{{ $ticket->created_at->format('d/m/Y h:i a') }}</td>
                         <td>{{ $ticket->due_date? $ticket->due_date->format('d/m/Y h:i a') : t('Not Assigned') }}</td>

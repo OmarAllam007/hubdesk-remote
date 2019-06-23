@@ -9,7 +9,7 @@
                 </div>
             </div>
         <?php else: ?>
-            <form action="<?php echo e(route('ticket.survey',[$ticket,$survey])); ?>" method="post">
+            <form action="<?php echo e(route('ticket.survey',[$ticket,$survey])); ?>" style="margin-bottom: 20px" method="post">
                 <?php echo e(csrf_field()); ?>
 
                 <div class="container">

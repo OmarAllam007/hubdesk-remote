@@ -11,7 +11,7 @@
                 </div>
             </div>
         @else
-            <form action="{{route('ticket.survey',[$ticket,$survey])}}" method="post">
+            <form action="{{route('ticket.survey',[$ticket,$survey])}}" style="margin-bottom: 20px" method="post">
                 {{csrf_field()}}
                 <div class="container">
                     <h4><b>{{t('Welcome')}} {{$ticket->requester->name}}</b>,</h4>

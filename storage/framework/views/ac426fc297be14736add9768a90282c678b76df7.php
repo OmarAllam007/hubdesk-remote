@@ -40,7 +40,7 @@
     <?php echo e(Form::close()); ?>
 
     <style>
-        .ticket-card{
+        .ticket-card {
             display: flex;
             margin: 5px;
             background-color: white;
@@ -52,14 +52,16 @@
             border-left: 2px solid #636b6f;
             /*border-radius: 5px;*/
         }
-        .ticket-container{
+
+        .ticket-container {
             display: flex;
             flex-direction: column;
             /*justify-content: center;*/
             /*align-content: center;*/
             align-items: center;
         }
-        .subject{
+
+        .subject {
             font-size: 12pt;
             font-weight: bold;
         }
@@ -68,40 +70,40 @@
 
 <?php $__env->startSection('body'); ?>
     
-        
+    
 
-        
-            
-                
-                
-                
-                
-                
-            
-            
-                
-                
-                
-                
-            
-        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
-        
-            
-                
-                
-                
-                
-                
-            
-            
-                
-                
-                
-                
-            
-        
-            
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 
 
@@ -114,10 +116,10 @@
                 <thead style="  padding: 1em;">
                 <tr>
                     <th><?php echo e(t('ID')); ?></th>
-                                        <th><?php echo e(t('Helpdesk ID')); ?></th>
-
+                    
                     <th><?php echo e(t('Subject')); ?></th>
                     <th><?php echo e(t('Requester')); ?></th>
+                    <th><?php echo e(t('SAP ID')); ?></th>
                     <th><?php echo e(t('Technician')); ?></th>
                     <th><?php echo e(t('Created At')); ?></th>
                     <th><?php echo e(t('Due Date')); ?></th>
@@ -131,7 +133,7 @@
                         <td><i class="fa fa-<?php echo e(t($ticket->type_icon)); ?>" title="<?php echo e(t($ticket->type_name)); ?>"
                                aria-hidden="true"></i> <a
                                     href="<?php echo e(route('ticket.show', $ticket)); ?>"><?php echo e($ticket->id); ?></a></td>
-                        <td><a href="<?php echo e(route('ticket.show', $ticket)); ?>"><?php echo e($ticket->sdp_id ?? ''); ?></a></td>
+                        
                         <td>
                             <?php if($ticket->overdue): ?>
                                 <i class="fa fa-flag text-danger" aria-hidden="true" title="SLA violated"></i>
@@ -139,6 +141,7 @@
                             <a href="<?php echo e(route('ticket.show', $ticket)); ?>"><?php echo e($ticket->subject); ?></a>
                         </td>
                         <td><?php echo e($ticket->requester->name); ?></td>
+                        <td><?php echo e($ticket->requester->employee_id ?? t('Not Assigned')); ?></td>
                         <td><?php echo e($ticket->technician? $ticket->technician->name : 'Not Assigned'); ?></td>
                         <td><?php echo e($ticket->created_at->format('d/m/Y h:i a')); ?></td>
                         <td><?php echo e($ticket->due_date? $ticket->due_date->format('d/m/Y h:i a') : t('Not Assigned')); ?></td>

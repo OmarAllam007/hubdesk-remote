@@ -106,7 +106,8 @@ footer {
   box-shadow: 1px 1px 3px 1px #194F7E;
 
   .footer-container {
-    min-height: 30px;
+    min-height: 40px;
+    font-size: 12pt;
   }
 
   p {
@@ -631,8 +632,8 @@ a:hover{
   border-radius: 3px;
   background: #ffffff;
   align-items: baseline;
-  width: 200px;
-  height: 200px;
+  width: 220px;
+  height: 220px;
 }
 
 .tile-image {

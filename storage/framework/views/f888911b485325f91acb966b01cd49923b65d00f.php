@@ -37,14 +37,18 @@
             </ul>
             <?php if(!\Auth::guest()): ?>
                 <ul class="nav navbar-nav " >
-                    <?php if(Auth::user()->isAdmin()): ?>
+                    
                         <li class="nav-item"><a href="<?php echo e(route('ticket.create')); ?>"><i class="fa fa-plus"></i> <?php echo e(t('New Ticket')); ?></a></li>
-                    <?php endif; ?>
+                    
                     <li class="nav-item"><a href="<?php echo e(route('ticket.index')); ?>"><i class="fa fa-ticket"></i> <?php echo e(t('Tickets')); ?></a></li>
 
                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('reports')): ?>
                         <li class="nav-item"><a href="<?php echo e(url('/reports')); ?>"><i class="fa fa-bar-chart"></i> <?php echo e(t('Report')); ?></a></li>
                     <?php endif; ?>
+
+                    
+                    
+                    
 
                     <?php if(Auth::user()->isAdmin()): ?>
                         <li class="nav-item"><a href="<?php echo e(url('/admin')); ?>"><i class="fa fa-cogs"></i> <?php echo e(t('Admin')); ?></a></li>
@@ -109,14 +113,15 @@
                 <p class="text-mutedtext-right"><?php echo e(t('Copyright')); ?> &copy; <a
                             href="http://hubtech.sa">Hubtech</a> <?php echo e(date('Y')); ?></p>
 
-                
-
+                <p class="text-mutedtext-left" style="font-weight: bold;">  <a href="<?php echo e(asset('attachments/hubdesk-user-guide.pdf')); ?>" target="_blank"><i class="fa fa-info-circle"></i> <?php echo e(t('Hubdesk User Guideline')); ?></a>   </p>
             </div>
         </div>
     </footer>
 </div>
 
 <script src="<?php echo e(asset('/js/app.js')); ?>"></script>
+<script src="<?php echo e(asset('/js/tinymce/tinymce.min.js')); ?>"></script>
+
 
 <?php if(alert()->ready()): ?>
     <script>
@@ -129,6 +134,8 @@
         });
     </script>
 <?php endif; ?>
+
 <?php echo $__env->yieldContent('javascript'); ?>
+
 </body>
 </html>

@@ -12378,7 +12378,8 @@ footer {
 }
 
 footer .footer-container {
-  min-height: 30px;
+  min-height: 40px;
+  font-size: 12pt;
 }
 
 footer p {
@@ -12949,8 +12950,8 @@ a:hover {
   -webkit-box-align: baseline;
       -ms-flex-align: baseline;
           align-items: baseline;
-  width: 200px;
-  height: 200px;
+  width: 220px;
+  height: 220px;
 }
 
 .tile-image {

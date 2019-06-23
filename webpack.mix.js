@@ -12,8 +12,10 @@ const { mix } = require('laravel-mix');
  */
 
     // mix.sass('resources/assets/sass/bootstrap-rtl.scss', 'public/bootstrap-rtl.css')
-    // mix.sass('resources/assets/sass/app.scss', 'public/css')
-    // mix.js('resources/assets/js/app.js', 'public/js')
+
+    mix.sass('resources/assets/sass/app.scss', 'public/css')
+    mix.js('resources/assets/js/app.js', 'public/js')
+
 // mix.sass('resources/assets/sass/app.scss', 'public/css')
 //       mix.js('resources/assets/js/app.js', 'public/js')
 
@@ -25,7 +27,9 @@ const { mix } = require('laravel-mix');
 //       .js('resources/assets/js/ticket.js', 'public/js')
 //       .js('resources/assets/js/criteria.js', 'public/js')
 //       mix.js('resources/assets/js/approval-levels.js', 'public/js')
-//       mix.js('resources/assets/js/roles.js', 'public/js')
+//       mix.js('resources/assets/js/approval-levels.js', 'public/js')
+// mix.js('resources/assets/js/ticket-requirements/ticket-requirements.js', 'public/js/ticket-requirements.js')
+
 //       .js('resources/assets/js/task.js', 'public/js')
 //       .js('resources/assets/js/escalation.js', 'public/js');
 // mix.js('resources/assets/js/ticket-note.js', 'public/js');

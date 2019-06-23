@@ -48,6 +48,7 @@ class TicketViewScope
             $scopes["open_in_my_groups"] = 'All Open Tickets';
             $scopes["on_hold_in_my_groups"] = "All On-Hold Tickets";
             $scopes["pending_in_my_groups"] = 'All Pending Tickets';
+            $scopes["sent_to_finance_in_my_groups"] = 'All Sent to Finance Tickets';
             $scopes["completed_in_my_groups"] = 'All Completed Tickets';
             $scopes["open_assigned_to_me"] = 'All My Open Assigned Tickets';
             $scopes["on_hold_assigned_to_me"] = 'All My On-Hold Assigned Tickets';
@@ -156,6 +157,10 @@ class TicketViewScope
         });
     }
 
+    public function sent_to_finance_in_my_groups(){
+        $this->in_my_groups();
+        $this->sent_to_finance();
+    }
     public function pending_in_my_groups()
     {
         $this->in_my_groups();
@@ -187,6 +192,9 @@ class TicketViewScope
         }
     }
 
+    public function sent_to_finance(){
+        $this->query->whereIn('status_id', [10]);
+    }
     public function pending()
     {
         $this->query->pending();

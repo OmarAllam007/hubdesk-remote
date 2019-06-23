@@ -17,6 +17,14 @@
             @endif
         </div>
 
+        <div class="form-group {{$errors->has('is_default')? 'has-error' : ''}}">
+            {{Form::label('is_default', 'Is Default?', ['class' => 'control-label'])}}
+            {{Form::checkbox("is_default",1,null, ['class' => 'form-control'])}}
+            @if ($errors->has('is_default'))
+                <div class="error-message">{{$errors->first('is_default')}}</div>
+            @endif
+        </div>
+
         <div class="form-group">
             <button class="btn btn-success"><i class="fa fa-check-circle"></i> Submit</button>
         </div>

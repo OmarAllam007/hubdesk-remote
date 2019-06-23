@@ -28,8 +28,7 @@ class AddBusinessUnitIdToCategories extends Migration
     public function down()
     {
         Schema::table('categories', function (Blueprint $table) {
-//            $table->dropColumn('business_unit_id');
-//            $table->foreign('business_unit_id')->references('id')->on('business_units');
+  //          $table->dropColumn('business_unit_id');
         });
     }
 }

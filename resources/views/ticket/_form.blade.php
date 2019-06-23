@@ -1,3 +1,15 @@
+@php
+    /** @var \App\Sla $sla */
+$ticketObj = new \App\Ticket();
+$sla = $ticketObj->getSla($category,$subcategory ?? null ,$item ?? null);
+@endphp
+
+@if($sla)
+<p style="font-size: 14pt;background-color: rgb(24, 79, 126); border-radius: 10px;text-align: center;padding: 10px;color: #fff;box-shadow: 2px 5px 2px lightgray">
+    {{t('Your Request will Delivered within')}} {{$sla->due_days}} {{t('Days')}} {{$sla->due_hours}} {{t('Hours')}} {{$sla->due_minutes}} {{t('Minutes')}}
+</p>
+@endif
+
 {{ csrf_field() }}
 <div id="TicketForm">
     <div class="row">
@@ -16,7 +28,6 @@
     <div class="row">
 
         <div class="col-sm-6">
-
             @if (!isset($ticket) && Auth::user()->isSupport())
                 <div class="form-group form-group-sm {{$errors->has('requester_id')? 'has-error' : ''}}">
                     {{ Form::label('requester_id', t('Requester'), ['class' => 'control-label']) }}
@@ -84,6 +95,15 @@
 
     </div>
 
+    @if($category->notes || (isset($subcategory) && $subcategory->notes) || (isset($item) && $item->notes) )
+    <fieldset>
+        <legend>{{t('Notes')}}</legend>
+        {!! $category->notes ?? '' !!}
+        {!! $subcategory->notes ?? '' !!}
+        {!! $item->notes ?? '' !!}
+    </fieldset>
+        <br>
+    @endif
     <div class="row">
         <div class="col-sm-7">
             <div class="form-group form-group-sm {{$errors->has('description')? 'has-error' : ''}}">
@@ -97,39 +117,39 @@
             </div>
         </div>
         <div class="col-sm-5">
-            <div class="form-group form-group-sm {{$errors->has('category_id')? 'has-error' : ''}}">
-                {{ Form::label('category_id', t('Category'), ['class' => 'control-label']) }}
-                {{ Form::select('category_id', App\Category::selection('Select Category'), request('category_id'), ['class' => 'form-control', 'v-model' => 'category','readonly'=>'readonly']) }}
-                @if ($errors->has('category_id'))
-                    <div class="error-message">{{$errors->first('category_id')}}</div>
-                @endif
-            </div>
+            {{Form::hidden('category_id',$category->id)}}
+            {{Form::hidden('subcategory_id',$subcategory->id ?? null)}}
+            {{Form::hidden('item_id',$item->id ?? null)}}
+            {{--<div class="form-group form-group-sm {{$errors->has('category_id')? 'has-error' : ''}}">--}}
+            {{--{{ Form::label('category_id', t('Category'), ['class' => 'control-label']) }}--}}
+            {{--{{ Form::select('category_id', App\Category::selection('Select Category'), request('category_id'), ['class' => 'form-control', 'v-model' => 'category','readonly'=>'readonly']) }}--}}
+            {{--@if ($errors->has('category_id'))--}}
+            {{--<div class="error-message">{{$errors->first('category_id')}}</div>--}}
+            {{--@endif--}}
+            {{--</div>--}}
 
-            <div class="form-group form-group-sm {{$errors->has('subcategory')? 'has-error' : ''}}">
-                {{ Form::label('subcategory_id', t('Subcategory'), ['class' => 'control-label']) }}
 
-                <select class="form-control" name="subcategory_id" id="subcategory_id" v-model="subcategory"
-                        readonly>
-                    <option value="">Select Subcategory</option>
-                    <option v-for="(subcategory, id) in subcategories" :value="subcategory.id">@{{subcategory.name}}
-                    </option>
-                </select>
-                @if ($errors->has('subcategory_id'))
-                    <div class="error-message">{{$errors->first('subcategory_id')}}</div>
-                @endif
-            </div>
+            {{--<select class="form-control" name="subcategory_id" id="subcategory_id" v-model="subcategory"--}}
+            {{--readonly>--}}
+            {{--<option value="">Select Subcategory</option>--}}
+            {{--<option v-for="(subcategory, id) in subcategories" :value="subcategory.id">@{{subcategory.name}}--}}
+            {{--</option>--}}
+            {{--</select>--}}
+            {{--@if ($errors->has('subcategory_id'))--}}
+            {{--<div class="error-message">{{$errors->first('subcategory_id')}}</div>--}}
+            {{--@endif--}}
+            {{--</div>--}}
 
-            <div class="form-group form-group-sm {{$errors->has('item_id')? 'has-error' : ''}}">
-                {{ Form::label('item_id', t('Item'), ['class' => 'control-label']) }}
-                <select class="form-control" name="item_id" id="item_id" v-model="item" readonly>
-                    <option value="">Select Item</option>
-                    <option v-for="(item, id) in items" :value="item.id" v-text="item.name"></option>
-                </select>
-                @if ($errors->has('item_id'))
-                    <div class="error-message">{{$errors->first('item_id')}}</div>
-                @endif
-            </div>
-
+            {{--<div class="form-group form-group-sm {{$errors->has('item_id')? 'has-error' : ''}}">--}}
+            {{--{{ Form::label('item_id', t('Item'), ['class' => 'control-label']) }}--}}
+            {{--<select class="form-control" name="item_id" id="item_id" v-model="item" readonly>--}}
+            {{--<option value="">Select Item</option>--}}
+            {{--<option v-for="(item, id) in items" :value="item.id" v-text="item.name"></option>--}}
+            {{--</select>--}}
+            {{--@if ($errors->has('item_id'))--}}
+            {{--<div class="error-message">{{$errors->first('item_id')}}</div>--}}
+            {{--@endif--}}
+            {{--</div>--}}
         </div>
     </div>
 
@@ -158,7 +178,6 @@
             @endif
         </div>
     </div>--}}
-
 
     {{--@if (Auth::user()->isSupport())--}}
     {{--<div class="col-sm-6">--}}

@@ -62,7 +62,11 @@
             <div class="form-group form-group-sm <?php echo e($errors->has('cc')? 'has-error' : ''); ?>">
                 <?php echo e(Form::label('reply[cc]', t('Cc'), ['class' => 'control-label'])); ?>
 
-                <select class="form-control usernames" name="reply[cc][]">
+                <select class="form-control select2" name="reply[cc][]" multiple>
+                    <option value="" disabled="disabled"><?php echo e(t('Select')); ?></option>
+                    <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <option value="<?php echo e($user->email); ?>"><?php echo e($user->name); ?> - <?php echo e($user->email); ?></option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
 
                 <?php if(count($errors) && $errors->has('cc.*')): ?>

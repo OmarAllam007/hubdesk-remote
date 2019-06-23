@@ -166,7 +166,8 @@ class User extends Authenticatable implements CanResetPassword
                 $term = '%' . \Request::get('search') . '%';
                 $q->where('login', 'LIKE', $term)
                     ->orWhere('name', 'LIKE', $term)
-                    ->orWhere('email', 'LIKE', $term);
+                    ->orWhere('email', 'LIKE', $term)
+                    ->orWhere('employee_id', 'LIKE', $term);
             });
         }
 

@@ -13,13 +13,13 @@ class SurveyLogController extends Controller
     {
         $log = UserSurvey::notSubmitted()->where('ticket_id', $ticket->id)->where('survey_id', $survey->id)->first();
 
-        if ($log) {
 
+        if ($log) {
             $log->update([
                 'comment' => $request->comment,
                 'is_submitted' => 1,
             ]);
-//            dd($request->questions);
+
             if (count($request->questions)) {
                 foreach ($request->questions as $key => $answer) {
                     $log->survey_answers()->create([

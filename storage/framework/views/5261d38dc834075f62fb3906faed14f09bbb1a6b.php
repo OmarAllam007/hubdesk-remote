@@ -8,12 +8,13 @@
             <div class="col-md-4">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><?php echo e(t('Users')); ?></h3>
+                        <h3 class="panel-title"><i class="fa fa-user"></i> <?php echo e(t('Users')); ?></h3>
                     </div>
                     <div class="panel-body">
                         <ul class="nav nav-pills">
                             <li><a href="<?php echo e(route('admin.user.index')); ?>"><?php echo e(t('Users')); ?></a></li>
                             <li><a href="<?php echo e(route('admin.group.index')); ?>"><?php echo e(t('Groups')); ?></a></li>
+                            <li><a href="<?php echo e(route('admin.group.user_groups')); ?>"><?php echo e(t('User Groups')); ?></a></li>
                             <li><a href="<?php echo e(route('admin.role.index')); ?>"><?php echo e(t('Roles')); ?></a></li>
                         </ul>
                     </div>
@@ -24,7 +25,7 @@
             <div class="col-md-4">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><?php echo e(t('Categories')); ?></h3>
+                        <h3 class="panel-title"><i class="fa fa-cubes"></i> <?php echo e(t('Categories')); ?></h3>
                     </div>
                     <div class="panel-body">
                         <ul class="nav nav-pills">
@@ -39,7 +40,7 @@
             <div class="col-md-4">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><?php echo e(t('Locations')); ?></h3>
+                        <h3 class="panel-title"><i class="fa fa-map-marker"></i> <?php echo e(t('Locations')); ?></h3>
                     </div>
                     <div class="panel-body">
                         <ul class="nav nav-pills">
@@ -58,7 +59,7 @@
             <div class="col-md-4">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><?php echo e(t('Business Units')); ?></h3>
+                        <h3 class="panel-title"><i class="fa fa-building"></i>  <?php echo e(t('Business Units')); ?></h3>
                     </div>
                     <div class="panel-body">
                         <ul class="nav nav-pills">
@@ -73,7 +74,7 @@
             <div class="col-md-4">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><?php echo e(t('Configuration')); ?></h3>
+                        <h3 class="panel-title"><i class="fa fa-cogs"></i> <?php echo e(t('Configuration')); ?></h3>
                     </div>
                     <div class="panel-body">
                         <ul class="nav nav-pills">

@@ -15,10 +15,9 @@
                     </div>
                 </div>
                 <br>
-
                 <div class="form-group{{ $errors->has('login') ? ' has-error' : '' }}">
                     <div class="col-sm-12">
-                        <input type="text" class="form-control" name="login" id="login" value="{{ old('login') }}" placeholder="{{t('SAP ID')}}"  style="width: 100%">
+                        <input type="text" class="form-control" name="employee_id" id="employee_id" value="{{ old('login') }}" placeholder="Employee ID ( 90xxxxxx )"  style="width: 100%">
                         @if ($errors->has('login'))
                             <span class="error-message">{{ $errors->first('login') }}</span>
                         @endif
@@ -46,17 +45,17 @@
 
                 <div class="form-group">
                     <div class="col-sm-12 text-center">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary" style="width: 100%;font-size: 14pt;font-weight: bold">
                             <i class="fa fa-btn fa-sign-in"></i> Login
                         </button>
 
-                        <a href="/auth/google" class="btn btn-danger">
-                            <i class="fa fa-btn fa-google-plus"></i> Login using Google
-                        </a>
+                        {{--<a href="/auth/google" class="btn btn-danger">--}}
+                            {{--<i class="fa fa-btn fa-google-plus"></i> Login using Google--}}
+                        {{--</a>--}}
 
-                        <a href="{{route('password.request')}}" class="btn btn-success">
-                            <i class="fa fa-btn fa-unlock"></i> Reset Password
-                        </a>
+                        {{--<a href="{{route('password.request')}}" class="btn btn-success">--}}
+                            {{--<i class="fa fa-btn fa-unlock"></i> Reset Password--}}
+                        {{--</a>--}}
                     </div>
                 </div>
             </form>

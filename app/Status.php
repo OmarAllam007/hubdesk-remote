@@ -44,7 +44,7 @@ class Status extends KModel
 
     public function scopeReply(Builder $q, Ticket $ticket)
     {
-        $not = [6, $ticket->status_id];
+        $not = [6, $ticket->status_id,10];
 
         if (\Auth::user()->isTechnician() && $ticket->requester_id != \Auth::id()) {
             $not[] = 8;

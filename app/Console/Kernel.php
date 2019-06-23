@@ -2,8 +2,11 @@
 
 namespace App\Console;
 
+use App\Console\Commands\CheckForNotSubmittedSurveys;
 use App\Console\Commands\EscalateTickets;
+use App\Console\Commands\KGSPendingApprovalsNotifications;
 use App\Console\Commands\LdapImportUser;
+use App\Console\Commands\RenewDocument;
 use App\Console\Commands\SyncByRequest;
 use App\Jobs\CleanErrorLog;
 use Illuminate\Console\Scheduling\Schedule;
@@ -26,7 +29,10 @@ class Kernel extends ConsoleKernel
         Commands\CalculateOpenRequestsTime::class,
         Commands\SyncServiceDeskPlus::class,
         Commands\SyncByRequest::class,
-        EscalateTickets::class
+        EscalateTickets::class,
+        RenewDocument::class,
+        KGSPendingApprovalsNotifications::class,
+        CheckForNotSubmittedSurveys::class,
     ];
 
     /**
@@ -45,7 +51,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('tickets:calculate-time')->everyMinute();
 
         // Get requests from service desk plus
-        $schedule->command('sdp:sync')->everyFiveMinutes();
+//        $schedule->command('sdp:sync')->everyFiveMinutes();
 
         $schedule->job(new CleanErrorLog())->daily();
         // Escalate approvals every hour

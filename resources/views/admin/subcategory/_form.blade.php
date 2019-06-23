@@ -30,6 +30,32 @@
                 @endif
             </div>
 
+            <div class="form-group {{$errors->has('notes')? 'has-error' : ''}}">
+                {{Form::label('notes', 'Notes', ['class' => 'control-label'])}}
+                {{Form::textarea('notes', null, ['class' => 'form-control richeditor', 'rows' => 5])}}
+                @if ($errors->has('notes'))
+                    <div class="error-message">{{$errors->first('notes')}}</div>
+                @endif
+            </div>
+
+            <div class="form-group {{$errors->has('user_groups')? 'has-error' : ''}}">
+                {{Form::label('user_groups', 'User Group', ['class' => 'control-label'])}}
+                {{--                {{Form::select('user_groups[]',\App\Group::requesters()->get()->pluck('name','id'),isset($category) ? $category->service_user_groups()->pluck('id')->toArray() : null,['class'=>'form-control select2','multiple'=>'true'])}}--}}
+                <select class="form-control" name="user_groups[]" id="user_groups" multiple>
+                    <option value="">{{t('Select Group')}}</option>
+                    @foreach(\App\Group::requesters()->get() as $group)
+                        <option value="{{$group->id}}"
+                                @if(isset($subcategory) && in_array($group->id,$subcategory->service_user_groups()->pluck('group_id')->toArray()))
+                                selected
+                                @endif>{{$group->name}}</option>
+                    @endforeach
+                </select>
+
+                @if ($errors->has('user_groups'))
+                    <div class="error-message">{{$errors->first('user_groups')}}</div>
+                @endif
+            </div>
+
             <div class="form-group {{$errors->first('service_cost', 'has-error') }}">
                 {{Form::label('service_cost', 'Service Cost', ['class' => 'control-label'])}}
                 <div class="input-group">
@@ -38,6 +64,12 @@
                 </div>
                 {!! $errors->first('service_cost', '<div class="error-message">:message</div>') !!}
             </div>
+
+                <fieldset>
+                    <legend>Additional Fees</legend>
+                    <additional-fee
+                            :fees="{{ isset($subcategory) && $subcategory->fees ? $subcategory->fees : 0 }}"></additional-fee>
+                </fieldset>
 
             <div class="form-group">
                 <input type="checkbox" class="checkbox-tick"
@@ -55,6 +87,13 @@
             <div class="form-group">
                 <button class="btn btn-success"><i class="fa fa-check-circle"></i> Submit</button>
             </div>
+        </div>
+
+        <div class="col-md-6">
+            <fieldset>
+                <legend>Requirements</legend>
+                <service-requirements :requirements_data="{{json_encode(isset($subcategory) ? $subcategory->requirements: [] )}}"></service-requirements>
+            </fieldset>
         </div>
     </div>
 </div>

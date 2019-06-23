@@ -48,14 +48,14 @@ class ServiceDeskApi
     {
         $response = $this->send("/sdpapi/request/{$id}", 'GET_REQUEST');
         $request = [];
-        if(!$response->response->operation->Details->parameter){
-            return;
+        if(count($response->response->operation->Details->parameter)){
+            foreach ($response->response->operation->Details->parameter as $param) {
+                $key = (string)$param->name;
+                $request[$key] = ((string)$param->value);
+            }
+            return $request;
         }
-        foreach ($response->response->operation->Details->parameter as $param) {
-            $key = (string)$param->name;
-            $request[$key] = ((string)$param->value);
-        }
-        return $request;
+
     }
 
     function addReply(TicketReply $reply)

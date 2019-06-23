@@ -5,6 +5,8 @@ namespace App;
 use App\Behaviors\Listable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\UploadedFile;
+use KGS\Document;
+use KGS\DocumentNotification;
 
 /**
  * App\BusinessUnit
@@ -29,7 +31,7 @@ class BusinessUnit extends KModel
 {
     use Listable;
 
-    protected $fillable = ['code', 'name', 'location_id', 'logo'];
+    protected $fillable = ['code', 'name', 'location_id', 'logo','business_unit_bgd'];
     protected $appends = ['bu_roles'];
 
 
@@ -66,11 +68,11 @@ class BusinessUnit extends KModel
     }
 
 
-    public static function uploadLogo(BusinessUnit $businessUnit, UploadedFile $file)
+    public static function uploadAttachment(BusinessUnit $businessUnit, UploadedFile $file)
     {
         $filename = $file->getClientOriginalName();
 
-        $folder = storage_path('app/public/attachments/business_unit/logo/' . $businessUnit->id . '/');
+        $folder = storage_path('app/public/attachments/business_unit/' . $businessUnit->id . '/');
         if (!is_dir($folder)) {
             mkdir($folder, 0775, true);
         }
@@ -83,7 +85,7 @@ class BusinessUnit extends KModel
 
         $file->move($folder, $filename);
 
-        $final_path = '/attachments/business_unit/logo/' . $businessUnit->id . '/' . $filename;
+        $final_path = '/attachments/business_unit/' . $businessUnit->id . '/' . $filename;
 
         return $final_path;
     }
@@ -94,5 +96,29 @@ class BusinessUnit extends KModel
         $dirname = dirname($this->logo);
         $path = $dirname . '/' . $basename;
         return url('/storage' . $path);
+    }
+
+    function documents()
+    {
+        return $this->hasMany(Document::class);
+    }
+
+    function document_roles()
+    {
+        return $this->belongsToMany(User::class, 'bu_documents_roles');
+    }
+
+    function document_notifications(){
+        return $this->hasMany(DocumentNotification::class);
+    }
+
+    function canDisplay(){
+        /** @var Category $category */
+        foreach ($this->categories as $category){
+            if ($category->canDisplay(\App\ServiceUserGroup::$CATEGORY)){
+                return true;
+            }
+        }
+        return false;
     }
 } 

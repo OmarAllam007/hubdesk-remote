@@ -38,8 +38,13 @@ class BusinessUnitController extends Controller
 
 
         if ($request->hasFile('logo_img')) {
-            $path = BusinessUnit::uploadLogo($business_unit, $request->logo_img);
-            $business_unit->update(['logo' => $path]);
+            $logo_path = BusinessUnit::uploadAttachment($business_unit, $request->logo_img);
+            $business_unit->update(['logo' => $logo_path]);
+        }
+
+        if ($request->hasFile('business_unit_bgd')) {
+            $bgd_path = BusinessUnit::uploadAttachment($business_unit, $request->business_unit_bgd);
+            $business_unit->update(['business_unit_bgd' => $bgd_path]);
         }
 
         alert()->flash(t('Business unit Info'), 'success', [
@@ -72,9 +77,16 @@ class BusinessUnitController extends Controller
         $this->validates($request, null);
 
         $path = $business_unit->logo;
+        $bgd_path = $business_unit->business_unit_bgd_img;
 
         if ($request->hasFile('logo_img')) {
-            $path = BusinessUnit::uploadLogo($business_unit, $request->logo_img);
+            $path = BusinessUnit::uploadAttachment($business_unit, $request->logo_img);
+            $request['logo'] = $path;
+        }
+
+        if ($request->hasFile('business_unit_bgd_img')) {
+            $bgd_path = BusinessUnit::uploadAttachment($business_unit, $request->business_unit_bgd_img);
+            $request['business_unit_bgd'] = $bgd_path;
         }
 
         $business_unit->roles()->delete();
@@ -88,9 +100,6 @@ class BusinessUnitController extends Controller
                 ]);
             }
         }
-
-
-        $request['logo'] = $path;
 
         $business_unit->update($request->all());
 

@@ -73,8 +73,11 @@ class SyncSDPRequest implements ShouldQueue
             $additionalFields = [];
         } else {
             $attributes = $this->fetchRequestFromWeb($this->sdp_id);
-            $category = Category::where('name','like', '%'.$attributes['category'] ?? '')->first();
-            $subcategory = Subcategory::where('name','like', '%'. $request['requesttemplate'] ?? '')->first();
+            // @todo : to be removed when go live
+            $category_str = trim(preg_replace('/[^\00-\255]+/u', '', $attributes['category']));
+            $subcategory_str = trim(preg_replace('/[^\00-\255]+/u', '', $request['requesttemplate']));
+            $category = Category::where('name', 'like', '%' . $category_str.'%')->first();
+            $subcategory = Subcategory::where('name', 'like', '%' . $subcategory_str.'%')->first();
             $additionalFields = $attributes['additionalFields'];
         }
 

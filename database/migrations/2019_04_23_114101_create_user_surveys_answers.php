@@ -13,13 +13,13 @@ class CreateUserSurveysAnswers extends Migration
      */
     public function up()
     {
-        Schema::create('user_surveys_answers', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_survey_id');
-            $table->integer('question_id');
-            $table->integer('answer_id');
-            $table->timestamps();
-        });
+//        Schema::create('user_surveys_answers', function (Blueprint $table) {
+//            $table->increments('id');
+//            $table->integer('user_survey_id');
+//            $table->integer('question_id');
+//            $table->integer('answer_id');
+//            $table->timestamps();
+//        });
     }
 
     /**
@@ -29,6 +29,6 @@ class CreateUserSurveysAnswers extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_surveys_answers');
+//        Schema::dropIfExists('user_surveys_answers');
     }
 }

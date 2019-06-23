@@ -3,7 +3,11 @@
 namespace App;
 
 use App\Behaviors\Listable;
+use App\Behaviors\ServiceConfiguration;
+use App\Http\Requests\Request;
 use Illuminate\Database\Eloquent\Builder;
+use KGS\Requirement;
+
 
 /**
  * App\Category
@@ -26,9 +30,9 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Category extends KModel
 {
-    use Listable;
+    use Listable, ServiceConfiguration;
 
-    protected $fillable = ['business_unit_id','name', 'description','service_request', 'service_cost'];
+    protected $fillable = ['business_unit_id', 'name', 'description', 'service_request', 'service_cost','notes'];
 
     public function subcategories()
     {
@@ -37,11 +41,16 @@ class Category extends KModel
 
     function custom_fields()
     {
-        return $this->morphMany(CustomField::class,'level', 'level');
+        return $this->morphMany(CustomField::class, 'level', 'level');
     }
 
-    function levels(){
-        return $this->hasMany(ApprovalLevels::class,'level_id')->where('type',1);
+    function levels()
+    {
+        return $this->hasMany(ApprovalLevels::class, 'level_id')->where('type', 1);
+    }
+
+    function fees(){
+        return $this->hasMany(AdditionalFee::class, 'level_id')->where('level', AdditionalFee::CATEGORY);
     }
 
     public function scopeQuickSearch(Builder $query)
@@ -56,25 +65,30 @@ class Category extends KModel
         return $query;
     }
 
+
+    public function service_user_groups(){
+        return $this->hasMany(ServiceUserGroup::class,'level_id')->where('level',ServiceUserGroup::$CATEGORY);
+    }
+
     function businessunits(){
         return $this->belongsToMany(BusinessUnit::class,'category_business_units');
     }
 
-    
-    public function businessunit()
-    {
-        return $this->belongsTo(BusinessUnit::class, 'business_unit_id', 'id');
-    }
+
+//    public function businessunit()
+//    {
+//        return $this->belongsTo(BusinessUnit::class, 'business_unit_id', 'id');
+//    }
 
     public function scopeCanonicalList(Builder $query)
     {
         $categories = $query->with('business-unit')
             ->orderBy('name')->get()
-            ->map(function($category) {
+            ->map(function ($category) {
                 $category->name = $category->businessunit->name . ' > ' . $category->name;
                 return $category;
             });
-        
+
         return $categories->sortBy('name');
     }
 
@@ -83,7 +97,13 @@ class Category extends KModel
         return $this->businessunit->name . ' > ' . $this->name;
     }
 
+
     function survey(){
         return $this->belongsToMany(Survey::class,'category_survey','category_id','survey_id');
+    }
+
+    public function requirements()
+    {
+        return $this->hasMany(Requirement::class,'reference_id')->where('reference_type', Requirement::$types['Category']);
     }
 }

@@ -39,6 +39,8 @@ class TicketLog extends KModel
     const NOTE_TYPE = 11;
     const RESEND_APPROVAL = 12;
     const ESCALATION = 13;
+    const SENT_TO_FINANCE = 14;
+    const REMINDER_ON_SURVEY = 15;
 //    const REOPENED_TYPE = 8;
 
     protected $casts = ['old_data' => 'array', 'new_data' => 'array'];
@@ -94,6 +96,10 @@ class TicketLog extends KModel
         return self::makeLog($ticket, static::AUTO_CLOSE, $ticket->requester_id);
     }
 
+    public static function addReminderOnSurvey(Ticket $ticket){
+        return self::makeLog($ticket, static::REMINDER_ON_SURVEY, $ticket->requester_id);
+    }
+
     public static function makeLog(Ticket $ticket, $type, $user_id = null)
     {
         $user_id = $user_id ?: \Auth::user()->id ?? $ticket->technician_id;
@@ -130,6 +136,8 @@ class TicketLog extends KModel
             self::DENIED => 'denied',
             self::NOTE_TYPE => 'Updated by a note',
             self::RESEND_APPROVAL => 'Updated by resend an approval ',
+            self::SENT_TO_FINANCE => 'Updated by sent to finance ',
+            self::REMINDER_ON_SURVEY => "Updated by Send Reminder On Pending Survey "
         ];
 
         if (isset($actions[$this->type])) {

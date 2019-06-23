@@ -29,9 +29,9 @@ class AnswerController extends Controller
 
     public function update(Answer $answer, Request $request)
     {
-        $this->validate($request, ['description' => 'required', 'degree' => 'numeric|min:0|max:5']);
+        $this->validate($request, ['description' => 'required', 'degree' => 'numeric']);
 
-        $answer->update(['description' => $request->description, 'degree' => $request->degree]);
+        $answer->update($request->all());
 
         flash('Answer has been saved', 'success');
 
@@ -41,7 +41,7 @@ class AnswerController extends Controller
 
     public function store($question, Request $request)
     {
-        $this->validate($request, ['description' => 'required', 'degree' => 'numeric|min:0|max:5']);
+        $this->validate($request, ['description' => 'required', 'degree' => 'numeric']);
 
         $question = Question::find($question);
         Answer::create(['description' => $request->description, 'question_id' => $question->id, 'degree' => $request->degree]);

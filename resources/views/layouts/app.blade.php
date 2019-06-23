@@ -37,14 +37,18 @@
             </ul>
             @if (!\Auth::guest())
                 <ul class="nav navbar-nav " >
-                    @if(Auth::user()->isAdmin())
+                    {{--@if(Auth::user()->isAdmin())--}}
                         <li class="nav-item"><a href="{{route('ticket.create')}}"><i class="fa fa-plus"></i> {{t('New Ticket')}}</a></li>
-                    @endif
+                    {{--@endif--}}
                     <li class="nav-item"><a href="{{route('ticket.index')}}"><i class="fa fa-ticket"></i> {{t('Tickets')}}</a></li>
 
                     @can('reports')
                         <li class="nav-item"><a href="{{url('/reports')}}"><i class="fa fa-bar-chart"></i> {{t('Report')}}</a></li>
                     @endif
+
+                    {{--@can('show_business_document')--}}
+                    {{--<li><a href="{{route('kgs.business_document')}}"><i class="fa fa-book"></i> {{t('Business Documents')}}</a></li>--}}
+                    {{--@endcan--}}
 
                     @if (Auth::user()->isAdmin())
                         <li class="nav-item"><a href="{{url('/admin')}}"><i class="fa fa-cogs"></i> {{t('Admin')}}</a></li>
@@ -109,14 +113,15 @@
                 <p class="text-mutedtext-right">{{t('Copyright')}} &copy; <a
                             href="http://hubtech.sa">Hubtech</a> {{date('Y')}}</p>
 
-                {{--<p class="text-mutedtext-left">  للإطلاع على طريقة استخدام الاصدار الجديد من الهب ديسك    <a>اضغط هنا</a>   </p>--}}
-
+                <p class="text-mutedtext-left" style="font-weight: bold;">  <a href="{{asset('attachments/hubdesk-user-guide.pdf')}}" target="_blank"><i class="fa fa-info-circle"></i> {{t('Hubdesk User Guideline')}}</a>   </p>
             </div>
         </div>
     </footer>
 </div>
 
 <script src="{{asset('/js/app.js')}}"></script>
+<script src="{{asset('/js/tinymce/tinymce.min.js')}}"></script>
+
 
 @if (alert()->ready())
     <script>
@@ -129,6 +134,8 @@
         });
     </script>
 @endif
+
 @yield('javascript')
+
 </body>
 </html>

@@ -34,11 +34,19 @@
             animation: .5s ease-out 0s 1 slideInFromUp;
             padding: 30px;
         }
+
         .logo-animation {
             animation: 1.5s ease-out 0s 1 slideInFromRight;
         }
-        .quot-animation{
+
+        .quot-animation {
             animation: 1.5s ease-out 0s 1 slideInFromLeft;
+        }
+
+        p.quot-animation {
+            margin-top: 80px;
+            font-size: 18pt;
+            font-weight: 800;
         }
     </style>
 <?php $__env->stopSection(); ?>
@@ -46,36 +54,42 @@
 <?php $__env->startSection('body'); ?>
     <section class="col-md-12 card-section">
         <div class=form-group></div>
-
-
         <div class="tiles-container">
             <?php $__currentLoopData = \App\BusinessUnit::whereHas('categories')->orderBy('name')->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $business_unit): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <a href="<?php echo e(route('ticket.create.select_category', $business_unit)); ?>" class="tile" >
-                    <div class="tile-container" style="display: flex; flex-direction:column;align-items: center;justify-content: center;">
-                        
+                <?php if($business_unit->canDisplay()): ?>
+                    <a href="<?php echo e(route('ticket.create.select_category', $business_unit)); ?>" class="tile">
+                        <div class="tile-container" style="display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 250px;
+    width: 250px;">
+                            
+                            
+                            
+                            <div class="tile-body"
+                                 style="width: 100%;height: 100%;display: flex; flex-direction:column;">
+                                
+                                <p class="text-center logo-animation" style="height: 100px">
+                                    <img src="<?php echo e($business_unit->url); ?>" alt="<?php echo e($business_unit->url); ?>">
+                                </p>
+                                
+                                <?php if(!$business_unit->logo): ?>
+                                    <p class="text-center " style="margin-top: 20px;">
+                                        <?php echo e($business_unit->name); ?>
 
-                        
-                        <div class="tile-body" style="width: 100%;height: 100%;display: flex; flex-direction:column;">
-                            
-                            <p class="text-center logo-animation" style="height: 100px">
-                                <img src="<?php echo e($business_unit->url); ?>" alt="<?php echo e($business_unit->url); ?>">
-                            </p>
-                            
-                            <?php if(!$business_unit->logo): ?>
-                            <p class="text-center " style="margin-top: 20px;">
-                                <?php echo e($business_unit->name); ?>
-
-                            </p>
-                            <?php endif; ?>
-                            
-                            <?php if(str_contains(strtolower($business_unit->name),'quwa')): ?>
-                            <p class="text-center quot-animation" style="margin-top: 10px;">
-                                نعين ونعاون
-                            </p>
+                                    </p>
                                 <?php endif; ?>
+                                
+                                <?php if(str_contains(strtolower($business_unit->name),'quwa')): ?>
+                                    <p class="text-center quot-animation">
+                                        نعين ونعاون
+                                    </p>
+                                <?php endif; ?>
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                <?php endif; ?>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
 

@@ -107,7 +107,7 @@ class UploadUsersJob extends Job
             'job' => $data[13],
             'department_id' => $this->getDepartmentId($data[14], $businessUnitId),
             'employee_id' => $data[2],
-            'email' => $data[19] == "" ? null : $data[19],
+            'email' => $user->email ? $user->email : $data[19] == "" ? null : $data[19] ,
             'extra_fields' => $this->extraFields($data),
         ];
 

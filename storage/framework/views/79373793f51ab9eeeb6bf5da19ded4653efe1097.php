@@ -10,10 +10,16 @@
             <td class="col-sm-3"><?php echo e(isset($ticket->requester->business_unit->name) ? $ticket->requester->business_unit->name : 'Not Assigned'); ?></td>
         </tr>
         <tr>
+            <th><?php echo e(t('Department')); ?></th>
+            <td><?php echo e(isset($ticket->requester->department->name) ? $ticket->requester->department->name : 'Not Assigned'); ?></td>
+            <th><?php echo e(t('Job Title')); ?></th>
+            <td><?php echo e(isset($ticket->requester->job) ? $ticket->requester->job : 'Not Assigned'); ?></td>
+        </tr>
+        <tr>
             <th><?php echo e(t('Email')); ?></th>
             <td><?php echo e(isset($ticket->requester->email) ? $ticket->requester->email : 'Not Assigned'); ?></td>
-            <th><?php echo e(t('Location')); ?></th>
-            <td><?php echo e(isset($ticket->requester->location->name) ? $ticket->requester->location->name : 'Not Assigned'); ?></td>
+            <th><?php echo e(t('Employee ID')); ?></th>
+            <td><?php echo e(isset($ticket->requester->employee_id) ? $ticket->requester->employee_id : 'Not Assigned'); ?></td>
         </tr>
         <tr>
             <th><?php echo e(t('Phone')); ?></th>
@@ -21,5 +27,7 @@
             <th><?php echo e(t('Mobile')); ?></th>
             <td><?php echo e(isset($ticket->requester->mobile) ? $ticket->requester->mobile : 'Not Assigned'); ?></td>
         </tr>
+
+
     </table>
 </div>

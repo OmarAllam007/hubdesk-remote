@@ -5,13 +5,19 @@
     <div class="display-flex">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">{{t('Home')}}</a></li>
-                <li class="breadcrumb-item"><a href="#">{{t($business_unit->name)}}
+                <li class="breadcrumb-item">
+                    <a href="{{route('ticket.create-wizard')}}">
+                        {{t('Select Company')}}
                     </a>
                 </li>
-                <li class="breadcrumb-item"><a href="{{route('ticket.create.select_category',compact('business_unit','category'))}}"> {{t($category->name)}}
-                    </a></li>
-
+                {{--<li class="breadcrumb-item"><a href="#">{{t('Home')}}</a></li>--}}
+                <li class="breadcrumb-item">
+                        <a href="{{route('ticket.create.select_category',compact('business_unit','category'))}}">
+                        {{t($business_unit->name)}}
+                    </a>
+                </li>
+                <li class="breadcrumb-item"> {{t($category->name)}}
+                   </li>
                 {{--<li class="breadcrumb-item"> {{t('Select Subcategory')}}--}}
 
                 {{--</li>--}}
@@ -49,6 +55,7 @@
                 <div class="col-md-8">
                     <div class="tiles-container">
                         @foreach($category->subcategories as $subcategory)
+                            @if($subcategory->canDisplay(\App\ServiceUserGroup::$SUBCATEGORY))
 
                             <a href="{{route('ticket.create.select_item', compact('business_unit','category','subcategory'))}}" class="tile">
                                 <div class="tile-container"
@@ -63,6 +70,7 @@
                                     </div>
                                 </div>
                             </a>
+                            @endif
                             {{--<p><a href="{{route('category.show', $category)}}" class="btn btn-outlined btn-block btn-primary">{{$category->name}}</a></p>--}}
 
                         @endforeach

@@ -20,22 +20,25 @@
                             <?php endif; ?>
                         </div>
                         <div class="checkbox">
-                            <label><input type="checkbox" name="display_to_requester" id="display_to_requester"><?php echo e(t('Show this note to Requester')); ?> </label>
+                            <label><input type="checkbox" name="display_to_requester"
+                                          id="display_to_requester"><?php echo e(t('Show this note to Requester')); ?> </label>
                         </div>
                         <div class="checkbox">
                             <label><input type="checkbox" name="email_to_technician" id="email_to_technician">
                                 <?php echo e(t('E-mail this note to the technician')); ?></label>
                         </div>
                         
-                            
-                                
+                        
+                        
                         
 
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-success" class="submitNote"><i class="fa fa-check-circle"></i> Add Note
+                <button type="submit" class="btn btn-success" class="submitNote"><i class="fa fa-check-circle"></i>
+                    <?php echo e(t('Add Note')); ?>
+
                 </button>
                 <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo e(t('Close')); ?></button>
             </div>

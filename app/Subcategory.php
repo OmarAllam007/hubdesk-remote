@@ -3,7 +3,9 @@
 namespace App;
 
 use App\Behaviors\Listable;
+use App\Behaviors\ServiceConfiguration;
 use Illuminate\Database\Eloquent\Builder;
+use KGS\Requirement;
 
 /**
  * App\Subcategory
@@ -29,9 +31,9 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Subcategory extends KModel
 {
-    use Listable;
+    use Listable, ServiceConfiguration;
     
-    protected $fillable = ['category_id', 'name', 'description','service_request','service_cost'];
+    protected $fillable = ['category_id', 'name', 'description','service_request','service_cost','notes'];
 
     public function items()
     {
@@ -45,6 +47,14 @@ class Subcategory extends KModel
 
     function levels(){
         return $this->hasMany(ApprovalLevels::class,'level_id')->where('type',2);
+    }
+
+    public function service_user_groups(){
+        return $this->hasMany(ServiceUserGroup::class,'level_id')->where('level',ServiceUserGroup::$SUBCATEGORY);
+    }
+
+    function fees(){
+        return $this->hasMany(AdditionalFee::class, 'level_id')->where('level', AdditionalFee::SUBCATEGORY);
     }
 
     public function scopeCanonicalList(Builder $query)
@@ -67,5 +77,10 @@ class Subcategory extends KModel
     function custom_fields()
     {
         return $this->morphMany(CustomField::class, 'level', 'level');
+    }
+
+    public function requirements()
+    {
+        return $this->hasMany(Requirement::class,'reference_id')->where('reference_type', Requirement::$types['Subcategory']);
     }
 }

@@ -21,14 +21,9 @@
         <tr>
             <th class="col-sm-3"><?php echo e(t('Category')); ?></th>
             <td class="col-sm-3"><?php echo e(isset($ticket->category->name) ? $ticket->category->name : 'Not Assigned'); ?></td>
-            <?php if($ticket->total_service_cost): ?>
             <th class="col-sm-3"><?php echo e(t('Service Cost: ')); ?></th>
+            <td class="col-sm-3"><?php echo e($ticket->total_ticket_cost ? t($ticket->total_ticket_cost . ' SAR') : 'Not Assigned'); ?></td>
 
-            <td class="col-sm-3"><?php echo e(t($ticket->total_service_cost . ' SAR')); ?></td>
-            <?php else: ?>
-                <th></th>
-                <td></td>
-            <?php endif; ?>
         </tr> 
         <tr>
             <th class="col-sm-3"><?php echo e(t('Subcategory')); ?></th>
@@ -56,8 +51,6 @@
             <td class="col-sm-3"><?php echo e(isset($ticket->sla->name) ? $ticket->sla->name : 'Not Assigned'); ?></td>
             <th class="col-sm-3"><?php echo e(t('Group')); ?></th>
             <td class="col-sm-3"><?php echo e(isset($ticket->group->name) ? $ticket->group->name : 'Not Assigned'); ?></td>
-           
-
         </tr>
         
             
@@ -68,6 +61,28 @@
     </table>
 </div>
 
+
+<?php if($ticket->fees->count()): ?>
+    <div class="panel panel-default panel-design">
+        <div class="panel-heading">
+            <h4 class="panel-title"><i class="fa fa-asterisk"></i> <?php echo e(t('Additional Fees')); ?></h4>
+        </div>
+
+        <table class="table table-bordered table-condensed table-striped details-tbl">
+            <tbody>
+            <?php $__currentLoopData = $ticket->fees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $fee): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <tr>
+                    <td class="col-sm-4 text-right"><strong><?php echo e($fee->name); ?></strong></td>
+                    <td>
+                        <?php echo e($fee->cost); ?>
+
+                    </td>
+                </tr>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </tbody>
+        </table>
+    </div>
+<?php endif; ?>
 
 <?php echo $__env->make('ticket.partials._ticket_additional_fields',['ticket'=>$ticket], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 <?php echo $__env->make('ticket.partials._requester_details',['ticket'=>$ticket], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

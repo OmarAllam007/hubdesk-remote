@@ -46,7 +46,7 @@ class ApplySLA extends MatchCriteria
         $this->ticket->save();
     }
 
-    protected function fetchSLA()
+    public function fetchSLA()
     {
         $agreements = Sla::with('criterions')->get();
 

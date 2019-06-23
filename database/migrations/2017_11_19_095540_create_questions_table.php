@@ -13,13 +13,13 @@ class CreateQuestionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('questions', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('description');
-            $table->integer('survey_id');
-            $table->float('degree');
-            $table->timestamps();
-        });
+//        Schema::create('questions', function (Blueprint $table) {
+//            $table->increments('id');
+//            $table->string('description');
+//            $table->integer('survey_id');
+//            $table->float('degree');
+//            $table->timestamps();
+//        });
 
     }
 
@@ -30,6 +30,6 @@ class CreateQuestionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('questions');
+//        Schema::dropIfExists('questions');
     }
 }

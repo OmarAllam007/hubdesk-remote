@@ -5,8 +5,6 @@
             <th><?php echo e(t('Sent to')); ?></th>
             <th><?php echo e(t('By')); ?></th>
             <th><?php echo e(t('Sent at')); ?></th>
-            <th><?php echo e(t('By')); ?></th>
-            <th><?php echo e('Sent at'); ?></th>
             <th><?php echo e(t('Stage')); ?></th>
             <th><?php echo e(t('Status')); ?></th>
             <th><?php echo e(t('Comment')); ?></th>
