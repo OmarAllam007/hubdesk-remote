@@ -11,4 +11,8 @@ class Question extends Model
     function answers(){
         return $this->hasMany(Answer::class);
     }
+
+    function getDefaultAnswerAttribute(){
+        return $this->answers()->where('is_default',1)->first();
+    }
 }

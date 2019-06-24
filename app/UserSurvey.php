@@ -11,7 +11,12 @@ class UserSurvey extends Model
 
     function survey()
     {
-        return $this->belongsTo(Survey::class,'survey_id');
+        return $this->belongsTo(Survey::class, 'survey_id');
+    }
+
+    function ticket()
+    {
+        return $this->belongsTo(Ticket::class);
     }
 
     function survey_answers()
