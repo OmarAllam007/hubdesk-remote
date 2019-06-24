@@ -1,5 +1,5 @@
 @component('mail::message')
-    # This is a warning notification for a request getting non-satisfied survey.
+    # This is an escalation notification for a request getting non-satisfied survey.
     Requester : {{$survey->ticket->requester->name}}
     Category : {{$survey->ticket->category->name}}
     Title : {{$survey->ticket->subject}}
