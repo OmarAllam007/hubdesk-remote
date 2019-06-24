@@ -67,7 +67,7 @@ class TicketReplyJob extends Job //implements ShouldQueue
         });
 
         if ($this->reply->status_id == 8 && $ticket->requester->email){
-            UserSurvey::create([
+            $survey = UserSurvey::create([
                 'ticket_id' => $ticket->id,
                 'survey_id' => $ticket->category->survey->first()->id,
                 'comment' => '',
@@ -75,7 +75,7 @@ class TicketReplyJob extends Job //implements ShouldQueue
                 'notified' => 1
             ]);
 
-            \Mail::send(new SendSurveyEmail($ticket));
+            \Mail::send(new SendSurveyEmail($survey));
             TicketLog::addReminderOnSurvey($ticket);
         }
     }

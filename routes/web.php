@@ -119,10 +119,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('forward/{ticket}',['as'=>'ticket.forward','uses'=>'TicketController@forward']);
         $r->post('survey_log/{ticket}/{survey}', ['as' => 'ticket.survey', 'uses' => 'SurveyLogController@update']);
 
-
+        $r->get('survey/display/{user_survey}', ['as' => 'survey.display', 'uses' => 'SurveyController@displaySurvey']);
+        $r->get('user_survey/display/{user_survey}', ['as' => 'user_survey.show', 'uses' => 'SurveyController@displayUserSurvey']);
     });
 
-    Route::get('submit-survey/{ticket}/{survey}', ['as' => 'ticket.submitSurvey', 'uses' => 'SurveyController@displaySurvey']);
+
 
     Route::resource('ticket', 'TicketController');
 

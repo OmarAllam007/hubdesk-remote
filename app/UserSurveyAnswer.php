@@ -13,4 +13,8 @@ class UserSurveyAnswer extends Model
     function survey(){
         return $this->belongsTo(UserSurvey::class,"user_survey_id");
     }
+
+    function answer(){
+        return $this->belongsTo(Answer::class);
+    }
 }

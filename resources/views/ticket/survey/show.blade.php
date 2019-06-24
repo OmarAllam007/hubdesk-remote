@@ -3,7 +3,8 @@
 @section('body')
 
     @if(can('show_survey',$ticket))
-        @if($survey->submittedBefore($ticket))
+
+        @if($survey->is_submitted)
             <div class="container text-center">
                 <div class="alert alert-info alert-dismissible text-center" role="alert">
                     <h4><strong>{{t('Your survey information for this request has already been received for consideration')}}.

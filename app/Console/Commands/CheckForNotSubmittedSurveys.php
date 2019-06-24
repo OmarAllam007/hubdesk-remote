@@ -36,7 +36,7 @@ class CheckForNotSubmittedSurveys extends Command
 
             foreach ($notSubmittedSurveys as $survey) {
                 if ($survey->notified == 1) {
-                    \Mail::send(new SendSurveyEmail($survey->ticket));
+                    \Mail::send(new SendSurveyEmail($survey));
 
                     $survey->update([
                         'notified' => 2

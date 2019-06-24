@@ -16,8 +16,10 @@ class SurveyController extends Controller
         return view('admin.survey.index', compact('surveys'));
     }
 
-    public function displaySurvey(Ticket $ticket , Survey $survey)
+    public function displaySurvey(UserSurvey $user_survey)
     {
+        $survey = $user_survey;
+        $ticket = $user_survey->ticket;
         return view('ticket.survey.show', compact('ticket', 'survey'));
     }
 
@@ -62,5 +64,10 @@ class SurveyController extends Controller
         $survey->delete();
 
         return \Redirect::route('admin.survey.index');
+    }
+
+    function displayUserSurvey(UserSurvey $user_survey)
+    {
+        return view('user_survey.show', compact('user_survey'));
     }
 }

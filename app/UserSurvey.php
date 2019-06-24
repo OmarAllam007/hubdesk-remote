@@ -19,6 +19,7 @@ class UserSurvey extends Model
         return $this->belongsTo(Ticket::class);
     }
 
+
     function survey_answers()
     {
         return $this->hasMany(UserSurveyAnswer::class, 'user_survey_id');
@@ -28,4 +29,5 @@ class UserSurvey extends Model
     {
         return $query->whereNotNull('is_submitted')->orWhere('is_submitted', 0);
     }
+
 }
