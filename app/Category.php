@@ -41,7 +41,7 @@ class Category extends KModel
 
     function custom_fields()
     {
-        return $this->morphMany(CustomField::class, 'level', 'level');
+        return $this->morphMany(CustomField::class, 'level', 'level')->orderBy('order');
     }
 
     function levels()
