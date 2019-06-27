@@ -85,7 +85,7 @@
                             </a>
                         @endif
 
-                        @foreach($business_unit->categories as $category)
+                        @foreach($business_unit->categories()->orderBy('order')->get() as $category)
                             @if($category->canDisplay(\App\ServiceUserGroup::$CATEGORY))
                                 <a href="{{route('ticket.create.select_subcategory', compact('business_unit','category'))}}"
                                    class="tile">
