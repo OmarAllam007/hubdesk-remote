@@ -129,6 +129,17 @@
                     <div class="error-message">{{$errors->first('password_confirmation')}}</div>
                 @endif
             </div>
+
+            <div class="form-group {{$errors->has('password')? 'has-error' : ''}}">
+                <label for="default_password">
+                    <input type="checkbox" id="default_password" name="default_password"> {{t('Default Password')}}
+                </label>
+                {{--{{ Form::label('default_password', 'Default Password', ['class' => 'control-label']) }}--}}
+                {{--{{ Form::checkbox('default_password',0,null, ['class' => 'form-control']) }}--}}
+                {{--@if ($errors->has('default_password'))--}}
+                    {{--<div class="error-message">{{$errors->first('default_password')}}</div>--}}
+                {{--@endif--}}
+            </div>
         </fieldset>
 
         <fieldset>

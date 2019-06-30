@@ -23,7 +23,7 @@ class TicketAssigned extends Job
 
     public function handle()
     {
-        if ($this->ticket->technician) {
+        if ($this->ticket->technician->email) {
             \Mail::send('emails.ticket.assigned', ['ticket' => $this->ticket], function(Message $msg) {
                 $ticket = $this->ticket;
                 $msg->subject('Ticket #' . $ticket->id . ' has been assigned to you');
