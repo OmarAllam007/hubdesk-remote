@@ -15,6 +15,10 @@ class AdminUserRequest extends Request
 
         $validatePassword = !empty($user) && !empty($this->get('password'));
 
+        if($this->get('default_password')){
+            $validatePassword = false;
+        }
+
         $rules = [
             'name' => 'required',
 //            'email' => 'required_if:email,email',
