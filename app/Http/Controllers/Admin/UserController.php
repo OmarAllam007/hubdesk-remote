@@ -26,7 +26,8 @@ class UserController extends Controller
     public function store(AdminUserRequest $request)
     {
         $user = new User($request->all());
-        $user->password = bcrypt($request->get('password'));
+        $user->password = bcrypt($request->get('password') ?? env('DEFAULT_PASS'));
+
         $user->save();
 
         flash(t('User has been saved'), 'success');
@@ -48,8 +49,8 @@ class UserController extends Controller
     {
         $data = $request->all();
 
-        if ($request->get('password')) {
-            $data['password'] = bcrypt($data['password']);
+        if ($request->get('password') || $request->get('default_password')) {
+            $data['password'] = bcrypt($data['password'] ?? env('DEFAULT_PASS'));
         } else {
             unset($data['password'], $data['password_confirmation']);
         }
