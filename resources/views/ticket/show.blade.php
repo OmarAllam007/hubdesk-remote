@@ -249,7 +249,7 @@
 @endsection
 
 @section('javascript')
-    <script src="{{asset('/js/ticket.js')}}"></script>
+    <script src="{{asset('/js/ticket-form.js')}}"></script>
     <script src="{{asset('/js/tinymce/tinymcebasic.min.js')}}"></script>
 
 @endsection

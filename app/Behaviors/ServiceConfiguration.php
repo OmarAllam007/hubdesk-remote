@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 trait ServiceConfiguration
 {
+
     public function canDisplay($type)
     {
         $user = \Auth::user();

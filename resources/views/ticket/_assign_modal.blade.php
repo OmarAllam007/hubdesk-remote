@@ -88,5 +88,5 @@
         var technician_id = '{{Form::getValueAttribute('technician_id') ?? $ticket->technician_id}}'
     </script>
     <script src="{{asset('/js/ticket-form.js')}}"></script>
-    <script src="{{asset('/js/tinymce/tinymce.min.js')}}"></script>
+
 @append

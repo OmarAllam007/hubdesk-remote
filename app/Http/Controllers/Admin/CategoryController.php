@@ -37,9 +37,10 @@ class CategoryController extends Controller
     {
         $this->validates($request, 'Could not save category');
 
-        $service_request = isset($request->service_request) ? 1 : 0;
         $data = $request->all();
-        $data['service_request'] = $service_request;
+        $data['service_request'] = isset($request->service_request) ? 1 : 0;
+        $data['is_disabled'] = isset($request->is_disabled) ? 1 : 0;
+
         $category = Category::create($data);
 
         if ($request['units']) {
@@ -78,9 +79,9 @@ class CategoryController extends Controller
         $this->handleRequirements($request, $category);
         $this->createFees($request, $category);
 
-        $service_request = isset($request->service_request) ? 1 : 0;
         $data = $request->all();
-        $data['service_request'] = $service_request;
+        $data['service_request'] = isset($request->service_request) ? 1 : 0;
+        $data['is_disabled'] = isset($request->is_disabled) ? 1 : 0;
         $category->update($data);
         flash(t('Category has been saved'), 'success');
         return \Redirect::route('admin.category.index');

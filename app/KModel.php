@@ -12,4 +12,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class KModel extends EloquentModel
 {
     use SoftDeletes;
+
+    static $types = [1 => 'Ticket', 2 => 'Task', 3 => 'Both'];
 }

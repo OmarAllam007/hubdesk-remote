@@ -33,7 +33,7 @@ class Subcategory extends KModel
 {
     use Listable, ServiceConfiguration;
     
-    protected $fillable = ['category_id', 'name', 'description','service_request','service_cost','notes'];
+    protected $fillable = ['category_id', 'name', 'description','service_request','service_cost','notes','service_type','is_disabled'];
 
     public function items()
     {

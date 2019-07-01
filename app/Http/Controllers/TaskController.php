@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CustomField;
 use App\Jobs\ApplySLA;
 use App\Jobs\NewTaskJob;
 use App\Mail\NewTaskMail;
@@ -46,6 +47,7 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+        dump($request->all());
         $this->validate($request, ['subject' => 'required', 'category' => 'required']);
         if ($request['technician']) {
             Ticket::flushEventListeners();
@@ -65,6 +67,21 @@ class TaskController extends Controller
             'group_id' => $request['group'],
             'technician_id' => $request['technician'],
         ]);
+
+        foreach ($request->get('cf', []) as $key=>$item) {
+            $field = CustomField::find($key);
+//            dd($field->name);
+            if($field && $field->required){
+                $validation['cf.'.$key] = 'required';
+                $messages['cf.'.$key.'.required'] = "The field ( {$field->name} ) is required";
+            }
+        }
+
+        foreach ($request->get('cf', []) as $key=>$item){
+            $field = CustomField::find($key)->name ?? '';
+
+            $task->fields()->create(['name'=>$field,'value'=>$item]);
+        }
 
         if ($request['technician']) {
             dispatch(new NewTaskJob($task));

@@ -23,6 +23,7 @@
                 edit: false,
                 task_id: null,
                 saving:false,
+                fields:[]
             }
         },
         methods: {
@@ -44,7 +45,15 @@
                 }
             },
             createTask() {
+                $('#CustomFields').find('.cf').each((idx, element) => {
+                    if($(element).val().length){
+                        this.fields[element.id.substr(3,8)] = $(element).val()
+                    }
+                });
+
+
                 this.saving = true;
+                var cs = [];
                 jQuery.ajax({
                     method: 'POST',
                     url: '/ticket/tasks/' + this.ticket_id,
@@ -61,20 +70,28 @@
                         group: this.group,
                         technician: this.technician,
                         ticket_id: this.ticket_id,
-
+                        cf: this.fields,
                     },
                     success: function (response) {
-                        this.loadTasks();
-                        this.errors = response;
-                        jQuery("#TaskForm").modal('hide');
-                        this.saving=false;
-                        this.resetAll();
+                        // this.loadTasks();
+                        // this.errors = response;
+                        // jQuery("#TaskForm").modal('hide');
+                        // this.saving=false;
+                        // this.resetAll();
                     }.bind(this),
                     error: function (response) {
                         this.errors = response.responseJSON;
                         this.saving =false;
                     }.bind(this)
 
+                });
+            },
+            getCustomFields(){
+                this.fields = [];
+                $('#CustomFields').find('.cf').each((idx, element) => {
+                    if($(element).val()){
+                        this.fields[element.id.substr(3,8)] = $(element).val()
+                    }
                 });
             },
             editTask(task) {
@@ -143,20 +160,21 @@
 
                 });
             },
-            loadSubcategory() {
+            loadSubcategory(withFields) {
                 if (this.category) {
                     $.get(`/list/subcategory/${this.category}`).then(response => {
                         this.subcategories = response;
                     });
                 }
-
+                if (withFields) this.loadCustomFields();
             },
-            loadItems() {
+            loadItems(withFields) {
                 if (this.subcategory) {
                     $.get(`/list/item/${this.subcategory}`).then(response => {
                         this.items = response;
                     });
                 }
+                if (withFields) this.loadCustomFields();
             },
             resetAll() {
                 this.edit = false;
@@ -174,6 +192,35 @@
                 this.group = '';
                 this.technician ='';
             },
+            loadCustomFields() {
+                const customFieldsContainer = $('#CustomFields');
+                const fieldValues = {};
+
+                customFieldsContainer.find('.cf').each((idx, element) => {
+                    let id = element.id;
+                    let type = element.type;
+                    if (type == 'checkbox') {
+                        fieldValues[id] = element.checked;
+                    } else {
+                        fieldValues[id] = $(element).val();
+                    }
+                });
+
+                let url = `/custom-fields?category=${this.category}&subcategory=${this.subcategory}&item=${this.item}`;
+                $.get(url).then(response => {
+                    this.cf = []
+                    let newFields = $(response);
+                    for (let id in fieldValues) {
+                        const field = newFields.find('#' + id);
+                        if (field.attr('type') == 'checkbox') {
+                            field.prop('checked', fieldValues[id]);
+                        } else {
+                            field.val(fieldValues[id]);
+                        }
+                    }
+                    customFieldsContainer.html('').append(newFields);
+                });
+            },
             loadTechnicians() {
                 if (this.group) {
                     $.get(`/list/group-technicians/${this.group}`).then(response => {
@@ -183,22 +230,24 @@
             }
         }, watch: {
             category() {
-                this.loadSubcategory();
+                this.loadSubcategory(true);
             },
 
             subcategory() {
-                this.loadItems();
+                this.loadItems(true);
             },
             group() {
                 this.loadTechnicians();
             }
 
         },
-
+        mounted(){
+            // this.loadSubcategory(true);
+        },
         created() {
             this.loadTasks();
-            this.loadSubcategory();
-            this.loadItems();
+            // this.loadSubcategory(true);
+            // this.loadItems(true);
             this.loadTechnicians();
         }
     });
