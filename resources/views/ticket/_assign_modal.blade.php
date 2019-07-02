@@ -27,10 +27,16 @@
                         @endif
                     </div>
                 </div>
+
+                @php
+                    $categories = App\Category::active()->ticketType()->selection('Select Category');
+
+                @endphp
+
                 <div class="col-md-6">
                     <div class="form-group {{$errors->has('category_id')? 'has-error' : ''}}">
                         {{ Form::label('category_id', t('Category'), ['class' => 'control-label']) }}
-                        {{ Form::select('category_id', App\Category::selection('Select Category'),null, ['class' => 'form-control',  'v-model' => 'category']) }}
+                        {{ Form::select('category_id', $categories ,null, ['class' => 'form-control',  'v-model' => 'category']) }}
                         @if ($errors->has('category_id'))
                             <div class="error-message">{{$errors->first('category_id')}}</div>
                         @endif
@@ -88,5 +94,5 @@
         var technician_id = '{{Form::getValueAttribute('technician_id') ?? $ticket->technician_id}}'
     </script>
     <script src="{{asset('/js/ticket-form.js')}}"></script>
-    <script src="{{asset('/js/tinymce/tinymce.min.js')}}"></script>
+
 @append

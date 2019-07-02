@@ -23,6 +23,7 @@
                 edit: false,
                 task_id: null,
                 saving:false,
+                fields:[]
             }
         },
         methods: {
@@ -44,7 +45,11 @@
                 }
             },
             createTask() {
+                this.getCustomFields()
+
+
                 this.saving = true;
+                var cs = [];
                 jQuery.ajax({
                     method: 'POST',
                     url: '/ticket/tasks/' + this.ticket_id,
@@ -61,7 +66,7 @@
                         group: this.group,
                         technician: this.technician,
                         ticket_id: this.ticket_id,
-
+                        cf: this.fields,
                     },
                     success: function (response) {
                         this.loadTasks();
@@ -76,6 +81,13 @@
                     }.bind(this)
 
                 });
+            },
+            getCustomFields(){
+                this.fields = [];
+                $('#CustomFields').find('.cf').each((idx, element) => {
+                        this.fields[element.id.substr(3,8)] = $(element).val()
+                });
+                console.log(this.fields)
             },
             editTask(task) {
                 let modal = jQuery('#TaskForm');
@@ -143,20 +155,21 @@
 
                 });
             },
-            loadSubcategory() {
+            loadSubcategory(withFields) {
                 if (this.category) {
                     $.get(`/list/subcategory/${this.category}`).then(response => {
                         this.subcategories = response;
                     });
                 }
-
+                if (withFields) this.loadCustomFields();
             },
-            loadItems() {
+            loadItems(withFields) {
                 if (this.subcategory) {
                     $.get(`/list/item/${this.subcategory}`).then(response => {
                         this.items = response;
                     });
                 }
+                if (withFields) this.loadCustomFields();
             },
             resetAll() {
                 this.edit = false;
@@ -173,6 +186,35 @@
                 this.technicians = [];
                 this.group = '';
                 this.technician ='';
+                this.fields = [];
+            },
+            loadCustomFields() {
+                const customFieldsContainer = $('#CustomFields');
+                const fieldValues = {};
+
+                customFieldsContainer.find('.cf').each((idx, element) => {
+                    let id = element.id;
+                    let type = element.type;
+                    if (type == 'checkbox') {
+                        fieldValues[id] = element.checked;
+                    } else {
+                        fieldValues[id] = $(element).val();
+                    }
+                });
+
+                let url = `/custom-fields?category=${this.category}&subcategory=${this.subcategory}&item=${this.item}`;
+                $.get(url).then(response => {
+                    let newFields = $(response);
+                    for (let id in fieldValues) {
+                        const field = newFields.find('#' + id);
+                        if (field.attr('type') == 'checkbox') {
+                            field.prop('checked', fieldValues[id]);
+                        } else {
+                            field.val(fieldValues[id]);
+                        }
+                    }
+                    customFieldsContainer.html('').append(newFields);
+                });
             },
             loadTechnicians() {
                 if (this.group) {
@@ -183,22 +225,24 @@
             }
         }, watch: {
             category() {
-                this.loadSubcategory();
+                this.loadSubcategory(true);
             },
 
             subcategory() {
-                this.loadItems();
+                this.loadItems(true);
             },
             group() {
                 this.loadTechnicians();
             }
 
         },
-
+        mounted(){
+            // this.loadSubcategory(true);
+        },
         created() {
             this.loadTasks();
-            this.loadSubcategory();
-            this.loadItems();
+            // this.loadSubcategory(true);
+            // this.loadItems(true);
             this.loadTechnicians();
         }
     });

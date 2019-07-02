@@ -59,7 +59,6 @@ class TicketController extends Controller
 
         foreach ($request->get('cf', []) as $key=>$item) {
             $field = CustomField::find($key);
-//            dd($field->name);
             if($field && $field->required){
                  $validation['cf.'.$key] = 'required';
                  $messages['cf.'.$key.'.required'] = "The field ( {$field->name} ) is required";
@@ -69,7 +68,6 @@ class TicketController extends Controller
         $this->validate($request,$validation,$messages);
 
         $ticket = new Ticket($request->all());
-
 
         $ticket->creator_id = $request->user()->id;
 
@@ -84,9 +82,11 @@ class TicketController extends Controller
         $ticket->save();
 
         foreach ($request->get('cf', []) as $key=>$item){
-            $field = CustomField::find($key)->name ?? '';
-
-            $ticket->fields()->create(['name'=>$field,'value'=>$item]);
+            dump($item,$key);
+            if($item) {
+                $field = CustomField::find($key)->name ?? '';
+                $ticket->fields()->create(['name' => $field, 'value' => $item]);
+            }
         }
 //        $ticket->syncFields($request->get('cf', []));
 

@@ -32,7 +32,7 @@ class Category extends KModel
 {
     use Listable, ServiceConfiguration;
 
-    protected $fillable = ['business_unit_id', 'name', 'description', 'service_request', 'service_cost','notes'];
+    protected $fillable = ['business_unit_id', 'name', 'description', 'service_request', 'service_cost', 'notes', 'service_type', 'is_disabled'];
 
     public function subcategories()
     {
@@ -49,7 +49,8 @@ class Category extends KModel
         return $this->hasMany(ApprovalLevels::class, 'level_id')->where('type', 1);
     }
 
-    function fees(){
+    function fees()
+    {
         return $this->hasMany(AdditionalFee::class, 'level_id')->where('level', AdditionalFee::CATEGORY);
     }
 
@@ -66,14 +67,35 @@ class Category extends KModel
     }
 
 
-    public function service_user_groups(){
-        return $this->hasMany(ServiceUserGroup::class,'level_id')->where('level',ServiceUserGroup::$CATEGORY);
+    public function service_user_groups()
+    {
+        return $this->hasMany(ServiceUserGroup::class, 'level_id')->where('level', ServiceUserGroup::$CATEGORY);
     }
 
-    function businessunits(){
-        return $this->belongsToMany(BusinessUnit::class,'category_business_units');
+    function businessunits()
+    {
+        return $this->belongsToMany(BusinessUnit::class, 'category_business_units');
     }
 
+    function scopeActive($query)
+    {
+        return $query->where('is_disabled', 0);
+    }
+
+    function scopeTicketType($query)
+    {
+        return $query->where('service_type', 1);
+    }
+
+    function scopeTaskType($query)
+    {
+        return $query->where('service_type', 2);
+    }
+
+    function scopeBoth($query)
+    {
+        return $query->where('service_type', 3);
+    }
 
 //    public function businessunit()
 //    {
@@ -100,6 +122,6 @@ class Category extends KModel
 
     public function requirements()
     {
-        return $this->hasMany(Requirement::class,'reference_id')->where('reference_type', Requirement::$types['Category']);
+        return $this->hasMany(Requirement::class, 'reference_id')->where('reference_type', Requirement::$types['Category']);
     }
 }

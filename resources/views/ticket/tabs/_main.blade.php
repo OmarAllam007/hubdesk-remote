@@ -124,8 +124,5 @@
 @endif
 
 @section('javascript')
-    <script>
-        let ticket = {!! json_encode($ticket) !!}
-    </script>
-    <script src="{{asset('/js/ticket-note.js')}}"></script>
+
 @append

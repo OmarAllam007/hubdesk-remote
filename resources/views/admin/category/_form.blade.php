@@ -31,6 +31,25 @@
                 @endif
             </div>
 
+            <div class="form-group {{$errors->has('service_type')? 'has-error' : ''}}">
+                {{Form::label('service_type', 'Service Type', ['class' => 'control-label'])}}
+                {{--                {{Form::select('service_type[]',\App\Group::requesters()->get()->pluck('name','id'),isset($category) ? $category->service_service_type()->pluck('id')->toArray() : null,['class'=>'form-control select2','multiple'=>'true'])}}--}}
+                <select class="form-control" name="service_type" id="service_type">
+                    <option value="">{{t('Select Type')}}</option>
+                    @foreach(\App\Category::$types as $key=>$type)
+                        <option value="{{$key}}"
+                                @if(isset($category) && $key == $category->service_type)
+                                selected
+                                @endif>{{$type}}</option>
+                    @endforeach
+                </select>
+
+                @if ($errors->has('service_type'))
+                    <div class="error-message">{{$errors->first('service_type')}}</div>
+                @endif
+            </div>
+
+
             <div class="form-group {{$errors->has('notes')? 'has-error' : ''}}">
                 {{Form::label('notes', 'Notes', ['class' => 'control-label'])}}
                 {{Form::textarea('notes', null, ['class' => 'form-control richeditor', 'rows' => 5])}}
@@ -71,7 +90,14 @@
                 <input type="checkbox"
                        id="service_request" name="service_request"
                        @if(isset($category->service_request) && $category->service_request ) checked @endif>
-                <label for="service_request">Is a service request ?</label>
+                <label for="service_request">is a service request ?</label>
+            </div>
+
+            <div class="form-group">
+                <input type="checkbox"
+                       id="is_disabled" name="is_disabled"
+                       @if(isset($category->is_disabled) && $category->is_disabled) checked @endif>
+                <label for="is_disabled">is disabled ?</label>
             </div>
 
             <fieldset>
