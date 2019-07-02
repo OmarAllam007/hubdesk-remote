@@ -39,10 +39,21 @@
                                 <option v-for="tech in technicians" :value="tech.id"> @{{tech.name}}</option>
                             </select>
                         </div>
+                        @php
+                            $list = new \App\Http\Controllers\ListController();
+                            $task_categories = $list->category(\App\KModel::TASK_TYPE);
+                        @endphp
 
                         <div :class="{'form-group': true , 'has-error':errors.category}">
                             {{ Form::label('category_id', t('Category'), ['class' => 'control-label']) }}
-                            {{ Form::select('category_id', App\Category::where('type')->selection('Select Category'),null, ['class' => 'form-control',  'v-model' => 'category','v-on:change'=>'loadSubcategory']) }}
+                            <select name="category_id" id="category_id" class="form-control" v-model="category" v-on:change = "loadSubcategory">
+                                <option value="">{{t('Select Category')}}</option>
+                                @foreach($task_categories as $category)
+                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
+                            </select>
+
+{{--                            {{ Form::select('category_id', $task_categories[0]->toArray() ,null, ['class' => 'form-control',  'v-model' => 'category','v-on:change'=>'loadSubcategory']) }}--}}
                             <span class="help-block" v-for="error in errors.category">@{{error}}</span>
                         </div>
 
@@ -71,7 +82,7 @@
 
                     </div>
 
-                    <div >
+                    <div>
                         <div id="CustomFields">
                             @include('custom-fields.render', [
                                 'category' => App\Category::find(old('category_id')),

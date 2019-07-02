@@ -32,8 +32,8 @@ use KGS\Requirement;
 class Subcategory extends KModel
 {
     use Listable, ServiceConfiguration;
-    
-    protected $fillable = ['category_id', 'name', 'description','service_request','service_cost','notes','service_type','is_disabled'];
+
+    protected $fillable = ['category_id', 'name', 'description', 'service_request', 'service_cost', 'notes', 'service_type', 'is_disabled'];
 
     public function items()
     {
@@ -45,27 +45,35 @@ class Subcategory extends KModel
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
-    function levels(){
-        return $this->hasMany(ApprovalLevels::class,'level_id')->where('type',2);
+    function levels()
+    {
+        return $this->hasMany(ApprovalLevels::class, 'level_id')->where('type', 2);
     }
 
-    public function service_user_groups(){
-        return $this->hasMany(ServiceUserGroup::class,'level_id')->where('level',ServiceUserGroup::$SUBCATEGORY);
+    public function service_user_groups()
+    {
+        return $this->hasMany(ServiceUserGroup::class, 'level_id')->where('level', ServiceUserGroup::$SUBCATEGORY);
     }
 
-    function fees(){
+    function fees()
+    {
         return $this->hasMany(AdditionalFee::class, 'level_id')->where('level', AdditionalFee::SUBCATEGORY);
+    }
+
+    function scopeActive($query)
+    {
+        return $query->where('is_disabled', 0);
     }
 
     public function scopeCanonicalList(Builder $query)
     {
         $subcategories = $query->with('category')
             ->orderBy('name')->get()
-            ->map(function($subcategory) {
+            ->map(function ($subcategory) {
                 $subcategory->name = $subcategory->category->name . ' > ' . $subcategory->name;
                 return $subcategory;
             });
-        
+
         return $subcategories->sortBy('name');
     }
 
@@ -81,6 +89,6 @@ class Subcategory extends KModel
 
     public function requirements()
     {
-        return $this->hasMany(Requirement::class,'reference_id')->where('reference_type', Requirement::$types['Subcategory']);
+        return $this->hasMany(Requirement::class, 'reference_id')->where('reference_type', Requirement::$types['Subcategory']);
     }
 }

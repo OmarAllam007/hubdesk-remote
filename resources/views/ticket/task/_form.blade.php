@@ -37,10 +37,20 @@
                     @endif
                 </div>
             </div>
+            @php
+                $list = new \App\Http\Controllers\ListController();
+                $task_categories = $list->category(\App\KModel::TASK_TYPE);
+            @endphp
+
             <div class="col-md-6">
                 <div class="form-group {{$errors->has('category_id')? 'has-error' : ''}}">
                     {{ Form::label('category_id', t('Category'), ['class' => 'control-label']) }}
-                    {{ Form::select('category_id', App\Category::selection('Select Category'),null, ['class' => 'form-control',  'v-model' => 'category']) }}
+                    <select name="category_id" id="category_id" class="form-control" v-model="category" v-on:change = "loadSubcategory">
+                        <option value="">{{t('Select Category')}}</option>
+                        @foreach($task_categories as $category)
+                            <option value="{{$category->id}}">{{$category->name}}</option>
+                        @endforeach
+                    </select>
                     @if ($errors->has('category_id'))
                         <div class="error-message">{{$errors->first('category_id')}}</div>
                     @endif

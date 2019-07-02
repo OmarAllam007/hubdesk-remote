@@ -8,6 +8,7 @@ use App\Jobs\NewTaskJob;
 use App\Mail\NewTaskMail;
 use App\Task;
 use App\Ticket;
+use App\TicketLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -47,7 +48,6 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        dump($request->all());
         $this->validate($request, ['subject' => 'required', 'category' => 'required']);
         if ($request['technician']) {
             Ticket::flushEventListeners();
@@ -69,19 +69,27 @@ class TaskController extends Controller
         ]);
 
         foreach ($request->get('cf', []) as $key=>$item) {
-            $field = CustomField::find($key);
+
+                $field = CustomField::find($key);
 //            dd($field->name);
-            if($field && $field->required){
-                $validation['cf.'.$key] = 'required';
-                $messages['cf.'.$key.'.required'] = "The field ( {$field->name} ) is required";
-            }
+                if($field && $field->required){
+                    $validation['cf.'.$key] = 'required';
+                    $messages['cf.'.$key.'.required'] = "The field ( {$field->name} ) is required";
+                }
+
         }
 
         foreach ($request->get('cf', []) as $key=>$item){
-            $field = CustomField::find($key)->name ?? '';
+            if($item) {
+                $field = CustomField::find($key)->name ?? '';
 
-            $task->fields()->create(['name'=>$field,'value'=>$item]);
+                $task->fields()->create(['name' => $field, 'value' => $item]);
+            }
         }
+
+        /** @var Ticket $task */
+
+//        TicketLog::addNewTask($task);
 
         if ($request['technician']) {
             dispatch(new NewTaskJob($task));

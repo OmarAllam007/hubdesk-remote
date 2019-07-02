@@ -14,4 +14,8 @@ class KModel extends EloquentModel
     use SoftDeletes;
 
     static $types = [1 => 'Ticket', 2 => 'Task', 3 => 'Both'];
+
+    const TICKET_TYPE = 1;
+    const TASK_TYPE = 2;
+    const BOTH_TYPE = 3;
 }

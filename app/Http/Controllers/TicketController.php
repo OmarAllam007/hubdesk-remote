@@ -53,7 +53,6 @@ class TicketController extends Controller
 
     public function store(Request $request)
     {
-
         $validation = ['subject'=>'required','description'=>'required'];
 
         $messages = [];

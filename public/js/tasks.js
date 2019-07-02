@@ -289,13 +289,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('tasks', {
             }
         },
         createTask: function createTask() {
-            var _this = this;
-
-            $('#CustomFields').find('.cf').each(function (idx, element) {
-                if ($(element).val().length) {
-                    _this.fields[element.id.substr(3, 8)] = $(element).val();
-                }
-            });
+            this.getCustomFields();
 
             this.saving = true;
             var cs = [];
@@ -318,11 +312,11 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('tasks', {
                     cf: this.fields
                 },
                 success: function (response) {
-                    // this.loadTasks();
-                    // this.errors = response;
-                    // jQuery("#TaskForm").modal('hide');
-                    // this.saving=false;
-                    // this.resetAll();
+                    this.loadTasks();
+                    this.errors = response;
+                    jQuery("#TaskForm").modal('hide');
+                    this.saving = false;
+                    this.resetAll();
                 }.bind(this),
                 error: function (response) {
                     this.errors = response.responseJSON;
@@ -332,14 +326,13 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('tasks', {
             });
         },
         getCustomFields: function getCustomFields() {
-            var _this2 = this;
+            var _this = this;
 
             this.fields = [];
             $('#CustomFields').find('.cf').each(function (idx, element) {
-                if ($(element).val()) {
-                    _this2.fields[element.id.substr(3, 8)] = $(element).val();
-                }
+                _this.fields[element.id.substr(3, 8)] = $(element).val();
             });
+            console.log(this.fields);
         },
         editTask: function editTask(task) {
             var modal = jQuery('#TaskForm');
@@ -407,21 +400,21 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('tasks', {
             });
         },
         loadSubcategory: function loadSubcategory(withFields) {
-            var _this3 = this;
+            var _this2 = this;
 
             if (this.category) {
                 $.get('/list/subcategory/' + this.category).then(function (response) {
-                    _this3.subcategories = response;
+                    _this2.subcategories = response;
                 });
             }
             if (withFields) this.loadCustomFields();
         },
         loadItems: function loadItems(withFields) {
-            var _this4 = this;
+            var _this3 = this;
 
             if (this.subcategory) {
                 $.get('/list/item/' + this.subcategory).then(function (response) {
-                    _this4.items = response;
+                    _this3.items = response;
                 });
             }
             if (withFields) this.loadCustomFields();
@@ -441,10 +434,9 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('tasks', {
             this.technicians = [];
             this.group = '';
             this.technician = '';
+            this.fields = [];
         },
         loadCustomFields: function loadCustomFields() {
-            var _this5 = this;
-
             var customFieldsContainer = $('#CustomFields');
             var fieldValues = {};
 
@@ -460,7 +452,6 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('tasks', {
 
             var url = '/custom-fields?category=' + this.category + '&subcategory=' + this.subcategory + '&item=' + this.item;
             $.get(url).then(function (response) {
-                _this5.cf = [];
                 var newFields = $(response);
                 for (var id in fieldValues) {
                     var field = newFields.find('#' + id);
@@ -474,11 +465,11 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('tasks', {
             });
         },
         loadTechnicians: function loadTechnicians() {
-            var _this6 = this;
+            var _this4 = this;
 
             if (this.group) {
                 $.get('/list/group-technicians/' + this.group).then(function (response) {
-                    _this6.technicians = response;
+                    _this4.technicians = response;
                 });
             }
         }

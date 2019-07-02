@@ -38,9 +38,19 @@ class ListController extends Controller
         return $query->canonicalList();
     }
 
-    public function category()
+    public function category($service_type = 1)
     {
-        return Category::orderBy('name')->get(['id', 'name']);
+        $categories = Category::query()->active();
+
+        if ($service_type == 1){
+            $categories->ticketType();
+        }elseif ($service_type == 2){
+            $categories->taskType();
+        }else{
+            $categories->both();
+        }
+
+        return $categories->orderBy('order')->get(['id', 'name']);
     }
 
     public function tasksCategory()

@@ -77,6 +77,25 @@ class Category extends KModel
         return $this->belongsToMany(BusinessUnit::class, 'category_business_units');
     }
 
+    function scopeActive($query)
+    {
+        return $query->where('is_disabled', 0);
+    }
+
+    function scopeTicketType($query)
+    {
+        return $query->where('service_type', 1);
+    }
+
+    function scopeTaskType($query)
+    {
+        return $query->where('service_type', 2);
+    }
+
+    function scopeBoth($query)
+    {
+        return $query->where('service_type', 3);
+    }
 
 //    public function businessunit()
 //    {

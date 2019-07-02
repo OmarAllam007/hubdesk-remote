@@ -45,11 +45,7 @@
                 }
             },
             createTask() {
-                $('#CustomFields').find('.cf').each((idx, element) => {
-                    if($(element).val().length){
-                        this.fields[element.id.substr(3,8)] = $(element).val()
-                    }
-                });
+                this.getCustomFields()
 
 
                 this.saving = true;
@@ -73,11 +69,11 @@
                         cf: this.fields,
                     },
                     success: function (response) {
-                        // this.loadTasks();
-                        // this.errors = response;
-                        // jQuery("#TaskForm").modal('hide');
-                        // this.saving=false;
-                        // this.resetAll();
+                        this.loadTasks();
+                        this.errors = response;
+                        jQuery("#TaskForm").modal('hide');
+                        this.saving=false;
+                        this.resetAll();
                     }.bind(this),
                     error: function (response) {
                         this.errors = response.responseJSON;
@@ -89,10 +85,9 @@
             getCustomFields(){
                 this.fields = [];
                 $('#CustomFields').find('.cf').each((idx, element) => {
-                    if($(element).val()){
                         this.fields[element.id.substr(3,8)] = $(element).val()
-                    }
                 });
+                console.log(this.fields)
             },
             editTask(task) {
                 let modal = jQuery('#TaskForm');
@@ -191,6 +186,7 @@
                 this.technicians = [];
                 this.group = '';
                 this.technician ='';
+                this.fields = [];
             },
             loadCustomFields() {
                 const customFieldsContainer = $('#CustomFields');
@@ -208,7 +204,6 @@
 
                 let url = `/custom-fields?category=${this.category}&subcategory=${this.subcategory}&item=${this.item}`;
                 $.get(url).then(response => {
-                    this.cf = []
                     let newFields = $(response);
                     for (let id in fieldValues) {
                         const field = newFields.find('#' + id);

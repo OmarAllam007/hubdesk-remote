@@ -283,9 +283,8 @@ class Ticket extends KModel
                 ->get();
 
             $this->attachments = $attachments->merge($replyAttachments);
-            $this->attachments = $attachments->merge($approvalAttachments);
+            $this->attachments = $this->attachments->merge($approvalAttachments);
         }
-
         return $this->attachments;
     }
 
