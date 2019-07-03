@@ -84,12 +84,12 @@ class Category extends KModel
 
     function scopeTicketType($query)
     {
-        return $query->where('service_type', 1);
+        return $query->where('service_type', 1)->orWhere('service_type', 3);
     }
 
     function scopeTaskType($query)
     {
-        return $query->where('service_type', 2);
+        return $query->where('service_type', 2)->orWhere('service_type', 3);
     }
 
     function scopeBoth($query)
