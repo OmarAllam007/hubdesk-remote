@@ -12,13 +12,16 @@
                 <strong>{{t('Ticket has been closed by the system')}}</strong>
             @elseif($log->type == \App\TicketLog::ESCALATION)
                 <strong>{{T('Ticket has been Escalated to')}} {{$log->user->name}}</strong>
+            {{--@elseif ($log->type == \App\TicketLog::New_TASK)--}}
+                {{--<strong>{{T('New Task has been created by')}} {{$log->user->name}}</strong>--}}
             @else
                 <strong>{{t($ticket->isTask() ? 'Task '.$log->type_action.' by' :'Ticket '.$log->type_action.' by')}}   {{$log->user->name}}
                     {{t('at')}} {{$log->created_at->format('d/m/Y H:i')}}</strong>
                 <ul>
                     @foreach($log->entries as $entry)
                         <li>
-                            <small>{{ t($entry->label.' changed from') }}  <strong>{{t($entry->old_value) ?: 'None'}}</strong>
+                            <small>{{ t($entry->label.' changed from') }}
+                                <strong>{{t($entry->old_value) ?: 'None'}}</strong>
                                 {{t('to')}} <strong>{{t($entry->new_value) ?: 'None'}}</strong></small>
                         </li>
                     @endforeach

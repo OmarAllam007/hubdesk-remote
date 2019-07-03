@@ -10,9 +10,9 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Controller extends BaseController
 {
-    protected $rules = ['name' => 'required'];
-
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    protected $rules = ['name' => 'required', 'service_type' => 'required'];
 
     protected function validates(Request $request, $flashMsg = '')
     {

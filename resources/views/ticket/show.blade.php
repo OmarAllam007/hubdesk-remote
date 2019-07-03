@@ -156,7 +156,7 @@
                     <li><a href="#resolution" role="tab" data-toggle="tab"><i
                                     class="fa fa-support"></i> {{t('Resolution')}}</a></li>
                 @endif
-                @if (($ticket->approvals->count() || Auth::user()->isSupport()) && !$ticket->isTask())
+                @if (($ticket->approvals->count() || Auth::user()->isSupport()))
                     <li><a href="#approvals" role="tab" data-toggle="tab"><i
                                     class="fa fa-check"></i> {{t('Approvals')}}</a></li>
                 @endif
@@ -249,7 +249,7 @@
 @endsection
 
 @section('javascript')
-    <script src="{{asset('/js/ticket.js')}}"></script>
+    <script src="{{asset('/js/ticket-form.js')}}"></script>
     <script src="{{asset('/js/tinymce/tinymcebasic.min.js')}}"></script>
 
 @endsection

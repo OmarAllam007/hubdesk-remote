@@ -46,30 +46,28 @@ class TicketController extends Controller
         return view('ticket.create_ticket.index');
     }
 
-    public function createTicket(BusinessUnit $business_unit , Category $category,Subcategory $subcategory,Item $item)
+    public function createTicket(BusinessUnit $business_unit, Category $category, Subcategory $subcategory, Item $item)
     {
-        return view('ticket.create',compact('business_unit','category','subcategory','item'));
+        return view('ticket.create', compact('business_unit', 'category', 'subcategory', 'item'));
     }
 
     public function store(Request $request)
     {
-        $validation = ['subject'=>'required','description'=>'required'];
+        $validation = ['subject' => 'required', 'description' => 'required'];
 
         $messages = [];
 
-        foreach ($request->get('cf', []) as $key=>$item) {
+        foreach ($request->get('cf', []) as $key => $item) {
             $field = CustomField::find($key);
-//            dd($field->name);
-            if($field && $field->required){
-                 $validation['cf.'.$key] = 'required';
-                 $messages['cf.'.$key.'.required'] = "The field ( {$field->name} ) is required";
+            if ($field && $field->required) {
+                $validation['cf.' . $key] = 'required';
+                $messages['cf.' . $key . '.required'] = "The field ( {$field->name} ) is required";
             }
         }
 
-        $this->validate($request,$validation,$messages);
+        $this->validate($request, $validation, $messages);
 
         $ticket = new Ticket($request->all());
-
 
         $ticket->creator_id = $request->user()->id;
 
@@ -83,10 +81,15 @@ class TicketController extends Controller
 
         $ticket->save();
 
-        foreach ($request->get('cf', []) as $key=>$item){
-            $field = CustomField::find($key)->name ?? '';
+        foreach ($request->get('cf', []) as $key => $item) {
+            if ($item) {
+                $field = CustomField::find($key)->name ?? '';
 
-            $ticket->fields()->create(['name'=>$field,'value'=>$item]);
+                if (is_array($item) && count($item) > 0) {
+                    $item = implode(", ", $item);
+                }
+                $ticket->fields()->create(['name' => $field, 'value' => $item]);
+            }
         }
 //        $ticket->syncFields($request->get('cf', []));
 
@@ -465,17 +468,17 @@ class TicketController extends Controller
         }
         $subcategory = new Subcategory();
 
-        return view('ticket.create', compact('business_unit', 'category','subcategory'));
+        return view('ticket.create', compact('business_unit', 'category', 'subcategory'));
     }
 
     function selectItem(BusinessUnit $business_unit, Category $category, Subcategory $subcategory)
     {
-        if($subcategory->items()->count()){
-            return view('ticket.create_ticket.create_item', compact('business_unit', 'category','subcategory'));
+        if ($subcategory->items()->count()) {
+            return view('ticket.create_ticket.create_item', compact('business_unit', 'category', 'subcategory'));
         }
 
         $item = null;
-        return view('ticket.create', compact('business_unit', 'category', 'subcategory','item'));
+        return view('ticket.create', compact('business_unit', 'category', 'subcategory', 'item'));
     }
 
 }

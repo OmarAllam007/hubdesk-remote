@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 class CategoryController extends Controller
 {
 
-        protected $rules = ['name' => 'required', 'business_unit_id' => 'required|exists:businessUnits,id'];
+    protected $rules = ['name' => 'required', 'business_unit_id' => 'required|exists:businessUnits,id'];
 
 
     public function index()
@@ -19,11 +19,11 @@ class CategoryController extends Controller
         return view('category.index', compact('categories'));
     }
 
-  
+
     public function show(Category $category)
     {
         return view('category.show', compact('category'));
     }
 
-   
+
 }

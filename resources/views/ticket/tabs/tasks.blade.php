@@ -54,4 +54,5 @@
         </div>
         @include('ticket._create_task')
     </div>
+
 </tasks>

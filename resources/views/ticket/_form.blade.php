@@ -95,15 +95,6 @@ $sla = $ticketObj->getSla($category,$subcategory ?? null ,$item ?? null);
 
     </div>
 
-    @if($category->notes || (isset($subcategory) && $subcategory->notes) || (isset($item) && $item->notes) )
-    <fieldset>
-        <legend>{{t('Notes')}}</legend>
-        {!! $category->notes ?? '' !!}
-        {!! $subcategory->notes ?? '' !!}
-        {!! $item->notes ?? '' !!}
-    </fieldset>
-        <br>
-    @endif
     <div class="row">
         <div class="col-sm-7">
             <div class="form-group form-group-sm {{$errors->has('description')? 'has-error' : ''}}">
@@ -156,7 +147,15 @@ $sla = $ticketObj->getSla($category,$subcategory ?? null ,$item ?? null);
         </div>
     </div>
 
-
+    @if($category->notes || (isset($subcategory) && $subcategory->notes) || (isset($item) && $item->notes) )
+        <fieldset>
+            <label>{{t('Notes')}}</label>
+            {!! $category->notes ?? '' !!}
+            {!! $subcategory->notes ?? '' !!}
+            {!! $item->notes ?? '' !!}
+        </fieldset>
+        <br>
+    @endif
     <div class="row">
         <div class="col-md-6">
             <attachments limit="5"></attachments>

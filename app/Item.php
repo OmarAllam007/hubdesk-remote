@@ -57,6 +57,11 @@ class Item extends KModel
         return $this->hasMany(ServiceUserGroup::class,'level_id')->where('level',ServiceUserGroup::$ITEM);
     }
 
+    function scopeActive($query)
+    {
+        return $query->where('is_disabled', 0);
+    }
+
     public function scopeCanonicalList(Builder $query)
     {
         $items = $query->with('subcategory')
