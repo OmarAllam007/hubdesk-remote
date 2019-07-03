@@ -82,11 +82,17 @@ class TicketController extends Controller
         $ticket->save();
 
         foreach ($request->get('cf', []) as $key=>$item){
-            dump($item,$key);
             if($item) {
                 $field = CustomField::find($key)->name ?? '';
                 $ticket->fields()->create(['name' => $field, 'value' => $item]);
             }
+            $field = CustomField::find($key)->name ?? '';
+
+            if(is_array($item)){
+                $item = implode(", ",$item);
+            }
+
+            $ticket->fields()->create(['name'=>$field,'value'=>$item]);
         }
 //        $ticket->syncFields($request->get('cf', []));
 
