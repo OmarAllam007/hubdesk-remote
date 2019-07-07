@@ -14,17 +14,17 @@ class CreateSurveysTable extends Migration
     public function up()
     {
         Schema::create('surveys', function (Blueprint $table) {
-//            $table->increments('id');
-//            $table->string('name');
-//            $table->integer('category_id');
-//            $table->timestamps();
+            $table->increments('id');
+            $table->string('name');
+            $table->integer('category_id');
+            $table->timestamps();
         });
 
         Schema::create('category_survey', function (Blueprint $table) {
-//            $table->increments('id');
-//            $table->integer('category_id');
-//            $table->integer('survey_id');
-//            $table->timestamps();
+            $table->increments('id');
+            $table->integer('category_id');
+            $table->integer('survey_id');
+            $table->timestamps();
         });
     }
 
