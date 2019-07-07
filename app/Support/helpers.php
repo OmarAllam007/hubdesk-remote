@@ -68,6 +68,6 @@ function t($word, $language = '')
     }else{
         return $word;
     }
-
+    return $word;
 
 }

@@ -5,6 +5,7 @@
     <div class="display-flex">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
+
                 <li class="breadcrumb-item">
                     <a href="{{route('ticket.create-wizard')}}">
                         {{t('Select Company')}}
@@ -36,6 +37,7 @@
             animation: .5s ease-out 0s 1 slideInFromLeft;
             padding: 30px;
         }
+
         @keyframes displaySlowly {
             0%{
                 opacity: 0;
@@ -107,7 +109,6 @@
                 </div>
                 <div class="col-md-1"></div>
             </div>
-
         </section>
     </div>
 @endsection
