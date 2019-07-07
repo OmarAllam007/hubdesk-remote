@@ -13,13 +13,13 @@ class CreateAnswersTable extends Migration
      */
     public function up()
     {
-//        Schema::create('answers', function (Blueprint $table) {
-//            $table->increments('id');
-//            $table->string('description');
-//            $table->integer('question_id');
-//            $table->float('degree');
-//            $table->timestamps();
-//        });
+        Schema::create('answers', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('description');
+            $table->integer('question_id');
+            $table->float('degree');
+            $table->timestamps();
+        });
 
     }
 
@@ -30,6 +30,6 @@ class CreateAnswersTable extends Migration
      */
     public function down()
     {
-//        Schema::dropIfExists('answers');
+        Schema::dropIfExists('answers');
     }
 }
