@@ -78,7 +78,7 @@ class TicketController extends Controller
         $ticket->location_id = $ticket->requester->location_id;
         $ticket->business_unit_id = $ticket->requester->business_unit_id;
         $ticket->status_id = 1;
-
+        $ticket->is_opened = 0;
         $ticket->save();
 
         foreach ($request->get('cf', []) as $key => $item) {
@@ -102,6 +102,10 @@ class TicketController extends Controller
 
     public function show(Ticket $ticket)
     {
+        if(\Auth::user()->id == $ticket->technician_id) {
+            $ticket->update(['is_opened' => 1]);
+        }
+
         return view('ticket.show', compact('ticket'));
     }
 

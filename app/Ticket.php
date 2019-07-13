@@ -78,7 +78,7 @@ class Ticket extends KModel
 
     protected $fillable = [
         'subject', 'description', 'category_id', 'subcategory_id', 'item_id', 'group_id', 'technician_id',
-        'priority_id', 'impact_id', 'urgency_id', 'requester_id', 'creator_id', 'status_id', 'sdp_id', 'type', 'request_id'
+        'priority_id', 'impact_id', 'urgency_id', 'requester_id', 'creator_id', 'status_id', 'sdp_id', 'type', 'request_id','is_opened'
     ];
 
     protected $dates = ['created_at', 'updated_at', 'due_date', 'first_response_date', 'resolve_date', 'close_date'];
@@ -564,5 +564,9 @@ class Ticket extends KModel
         $data = $sla->fetchSLA();
 
         return $data;
+    }
+
+    function getIsOpenedTicketAttribute(){
+        return \Auth::user()->id == $this->technician_id && !$this->is_opened;
     }
 }

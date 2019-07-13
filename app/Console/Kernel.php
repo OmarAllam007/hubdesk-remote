@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\CheckForNotOpenedTickets;
 use App\Console\Commands\CheckForNotSubmittedSurveys;
 use App\Console\Commands\EscalateTickets;
 use App\Console\Commands\KGSPendingApprovalsNotifications;
@@ -33,6 +34,7 @@ class Kernel extends ConsoleKernel
         RenewDocument::class,
         KGSPendingApprovalsNotifications::class,
         CheckForNotSubmittedSurveys::class,
+        CheckForNotOpenedTickets::class,
     ];
 
     /**
@@ -50,6 +52,8 @@ class Kernel extends ConsoleKernel
         // Calculate time of tickets every minute
         $schedule->command('tickets:calculate-time')->everyMinute();
 
+        $schedule->command('tickets:check-viewed-tickets')
+            ->sundays()->mondays()->tuesdays()->wednesdays()->thursdays();
         // Get requests from service desk plus
 //        $schedule->command('sdp:sync')->everyFiveMinutes();
 
