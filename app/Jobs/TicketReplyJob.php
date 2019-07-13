@@ -3,7 +3,10 @@
 namespace App\Jobs;
 
 use App\Jobs\Job;
+use App\Mail\SendSurveyEmail;
+use App\TicketLog;
 use App\TicketReply;
+use App\UserSurvey;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Message;
 use Illuminate\Queue\InteractsWithQueue;
@@ -55,7 +58,6 @@ class TicketReplyJob extends Job //implements ShouldQueue
 
             $this->sendEmail();
         }
-
     }
 
     function sendEmail(){
@@ -72,6 +74,20 @@ class TicketReplyJob extends Job //implements ShouldQueue
                 $msg->cc($cc);
             }
         });
+
+        $ticket = $this->reply->ticket;
+        if ($this->reply->status_id == 8 && $ticket->requester->email){
+            $survey = UserSurvey::create([
+                'ticket_id' => $ticket->id,
+                'survey_id' => $ticket->category->survey->first()->id,
+                'comment' => '',
+                'is_submitted' => 0,
+                'notified' => 1
+            ]);
+
+            \Mail::send(new SendSurveyEmail($survey));
+            TicketLog::addReminderOnSurvey($ticket);
+        }
     }
 
 }

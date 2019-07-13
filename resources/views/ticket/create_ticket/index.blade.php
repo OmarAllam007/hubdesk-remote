@@ -56,7 +56,6 @@
 @section('body')
     <section class="col-md-12 card-section">
         <div class=form-group></div>
-
         <div class="tiles-container">
             @foreach(\App\BusinessUnit::whereHas('categories')->orderBy('name')->get() as $business_unit)
                 @if($business_unit->canDisplay())

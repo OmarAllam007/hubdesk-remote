@@ -119,8 +119,6 @@ $sla = $ticketObj->getSla($category,$subcategory ?? null ,$item ?? null);
             {{--@endif--}}
             {{--</div>--}}
 
-            {{--<div class="form-group form-group-sm {{$errors->has('subcategory')? 'has-error' : ''}}">--}}
-            {{--{{ Form::label('subcategory_id', t('Subcategory'), ['class' => 'control-label']) }}--}}
 
             {{--<select class="form-control" name="subcategory_id" id="subcategory_id" v-model="subcategory"--}}
             {{--readonly>--}}
@@ -143,7 +141,6 @@ $sla = $ticketObj->getSla($category,$subcategory ?? null ,$item ?? null);
             {{--<div class="error-message">{{$errors->first('item_id')}}</div>--}}
             {{--@endif--}}
             {{--</div>--}}
-
         </div>
     </div>
 
@@ -180,7 +177,6 @@ $sla = $ticketObj->getSla($category,$subcategory ?? null ,$item ?? null);
             @endif
         </div>
     </div>--}}
-
 
     {{--@if (Auth::user()->isSupport())--}}
     {{--<div class="col-sm-6">--}}
