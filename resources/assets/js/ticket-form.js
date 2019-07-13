@@ -42,7 +42,6 @@ window.app = new Vue({
     created() {
         this.getRequesterInfo($('#requester_id').val())
 
-
         // this.loadCategory(false);
         // this.loadSubcategory(false)
         // // this.loadTechnicians()

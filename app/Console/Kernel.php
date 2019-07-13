@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\CheckForNotSubmittedSurveys;
 use App\Console\Commands\EscalateTickets;
 use App\Console\Commands\KGSPendingApprovalsNotifications;
 use App\Console\Commands\LdapImportUser;
@@ -30,7 +31,8 @@ class Kernel extends ConsoleKernel
         Commands\SyncByRequest::class,
         EscalateTickets::class,
         RenewDocument::class,
-        KGSPendingApprovalsNotifications::class
+        KGSPendingApprovalsNotifications::class,
+        CheckForNotSubmittedSurveys::class,
     ];
 
     /**

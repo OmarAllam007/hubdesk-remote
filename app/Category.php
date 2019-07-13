@@ -120,6 +120,10 @@ class Category extends KModel
     }
 
 
+    function survey(){
+        return $this->belongsToMany(Survey::class,'category_survey','category_id','survey_id');
+    }
+
     public function requirements()
     {
         return $this->hasMany(Requirement::class, 'reference_id')->where('reference_type', Requirement::$types['Category']);

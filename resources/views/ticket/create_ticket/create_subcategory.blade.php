@@ -11,14 +11,13 @@
                     </a>
                 </li>
                 {{--<li class="breadcrumb-item"><a href="#">{{t('Home')}}</a></li>--}}
-                <li class="breadcrumb-item"><a href="{{route('ticket.create-wizard')}}">
+                <li class="breadcrumb-item">
                         <a href="{{route('ticket.create.select_category',compact('business_unit','category'))}}">
                         {{t($business_unit->name)}}
                     </a>
                 </li>
                 <li class="breadcrumb-item"> {{t($category->name)}}
                    </li>
-
                 {{--<li class="breadcrumb-item"> {{t('Select Subcategory')}}--}}
 
                 {{--</li>--}}
@@ -57,6 +56,7 @@
                     <div class="tiles-container">
                         @foreach($category->subcategories()->orderBy('order')->get() as $subcategory)
                             @if($subcategory->canDisplay(\App\ServiceUserGroup::$SUBCATEGORY))
+
                             <a href="{{route('ticket.create.select_item', compact('business_unit','category','subcategory'))}}" class="tile">
                                 <div class="tile-container"
                                      style="display: flex;align-items: center;justify-content: center;">
