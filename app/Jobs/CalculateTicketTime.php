@@ -28,7 +28,7 @@ class CalculateTicketTime extends NotifyTechnicainForNotViewedTicket
     /**
      * @var Ticket
      */
-    private $ticket;
+    protected $ticket;
 
 
     public function __construct(Ticket $ticket)
