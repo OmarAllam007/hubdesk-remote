@@ -102,6 +102,7 @@ class TicketController extends Controller
 
     public function show(Ticket $ticket)
     {
+        Ticket::flushEventListeners();
         if(\Auth::user()->id == $ticket->technician_id) {
             $ticket->update(['is_opened' => 1]);
         }
