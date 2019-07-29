@@ -60,11 +60,12 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 55);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 1:
 /***/ (function(module, exports) {
 
 var g;
@@ -91,53 +92,8 @@ module.exports = g;
 
 
 /***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(2);
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var Component = __webpack_require__(3)(
-  /* script */
-  __webpack_require__(4),
-  /* template */
-  null,
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "/Users/omarkhaled/code/hdesk/resources/assets/js/Task.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-783b63b6", Component.options)
-  } else {
-    hotAPI.reload("data-v-783b63b6", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 3 */
+/***/ 2:
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -234,273 +190,8 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-
-
-
-var $ = __webpack_require__(9);
-
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('tasks', {
-    props: ['ticket_id'],
-    data: function data() {
-        return {
-            category: window.category,
-            subcategory: window.subcategory,
-            item: window.item,
-            tasks: [],
-            errors: [],
-            subject: '',
-            description: '',
-            subcategories: [],
-            items: [],
-            technicians: [],
-            group: '',
-            status: '',
-            technician: '',
-            edit: false,
-            task_id: null,
-            saving: false,
-            fields: []
-        };
-    },
-
-    methods: {
-        loadTasks: function loadTasks() {
-            $.ajax({
-                method: 'GET',
-                url: '/ticket/tasks/' + this.ticket_id,
-                success: function (response) {
-                    this.tasks = response;
-                }.bind(this)
-
-            });
-        },
-        changeOnSubmit: function changeOnSubmit() {
-            if (this.edit) {
-                this.updateTask();
-            } else {
-                this.createTask();
-            }
-        },
-        createTask: function createTask() {
-            this.getCustomFields();
-
-            this.saving = true;
-            var cs = [];
-            jQuery.ajax({
-                method: 'POST',
-                url: '/ticket/tasks/' + this.ticket_id,
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                data: {
-                    subject: this.subject,
-                    category: this.category,
-                    subcategory: this.subcategory,
-                    item: this.item,
-                    status: this.status,
-                    description: tinyMCE.activeEditor.getContent(),
-                    group: this.group,
-                    technician: this.technician,
-                    ticket_id: this.ticket_id,
-                    cf: this.fields
-                },
-                success: function (response) {
-                    this.loadTasks();
-                    this.errors = response;
-                    jQuery("#TaskForm").modal('hide');
-                    this.saving = false;
-                    this.resetAll();
-                }.bind(this),
-                error: function (response) {
-                    this.errors = response.responseJSON;
-                    this.saving = false;
-                }.bind(this)
-
-            });
-        },
-        getCustomFields: function getCustomFields() {
-            var _this = this;
-
-            this.fields = [];
-            $('#CustomFields').find('.cf').each(function (idx, element) {
-                _this.fields[element.id.substr(3, 8)] = $(element).val();
-            });
-            console.log(this.fields);
-        },
-        editTask: function editTask(task) {
-            var modal = jQuery('#TaskForm');
-            jQuery.ajax({
-                method: 'GET',
-                url: '/ticket/tasks/edit/' + task,
-                success: function (response) {
-                    this.subject = response.subject;
-                    this.description = response.description;
-                    this.category = response.category_id;
-                    this.subcategory = response.subcategory_id;
-                    this.item = response.item_id;
-                    this.status = response.status_id;
-                    this.group = response.group_id;
-                    this.technician = response.technician_id;
-                    this.errors = [];
-                    modal.find('.modal-title').html('Edit Task #' + task);
-                    modal.modal('show');
-                }.bind(this)
-
-            });
-        },
-        deleteTask: function deleteTask(task) {
-            $.ajax({
-                method: 'DELETE',
-                url: '/ticket/tasks/' + this.ticket_id + '/' + task,
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function (response) {
-                    this.loadTasks();
-                }.bind(this)
-
-            });
-        },
-        resetTask: function resetTask() {
-            this.resetAll();
-            jQuery('#TaskForm').find('.modal-title').html('Create Task');
-        },
-        updateTask: function updateTask() {
-            jQuery.ajax({
-                method: 'PUT',
-                url: '/ticket/tasks/' + this.ticket_id,
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                data: {
-                    subject: this.subject,
-                    description: this.description,
-                    category: this.category,
-                    subcategory: this.subcategory,
-                    item: this.item,
-                    status: this.status,
-                    task_id: this.task_id
-                },
-                success: function (response) {
-                    this.loadTasks();
-                    jQuery("#TaskForm").modal('hide');
-                    this.resetAll();
-                }.bind(this),
-                error: function (response) {
-                    this.errors = response.responseJSON;
-                }.bind(this)
-
-            });
-        },
-        loadSubcategory: function loadSubcategory(withFields) {
-            var _this2 = this;
-
-            if (this.category) {
-                $.get('/list/subcategory/' + this.category).then(function (response) {
-                    _this2.subcategories = response;
-                });
-            }
-            if (withFields) this.loadCustomFields();
-        },
-        loadItems: function loadItems(withFields) {
-            var _this3 = this;
-
-            if (this.subcategory) {
-                $.get('/list/item/' + this.subcategory).then(function (response) {
-                    _this3.items = response;
-                });
-            }
-            if (withFields) this.loadCustomFields();
-        },
-        resetAll: function resetAll() {
-            this.edit = false;
-            this.subject = '';
-            this.description = '';
-            this.category = '';
-            this.subcategory = '';
-            this.item = '';
-            this.cat = '';
-            this.status = '';
-            this.errors = [];
-            this.subcategories = [];
-            this.items = [];
-            this.technicians = [];
-            this.group = '';
-            this.technician = '';
-            this.fields = [];
-        },
-        loadCustomFields: function loadCustomFields() {
-            var customFieldsContainer = $('#CustomFields');
-            var fieldValues = {};
-
-            customFieldsContainer.find('.cf').each(function (idx, element) {
-                var id = element.id;
-                var type = element.type;
-                if (type == 'checkbox') {
-                    fieldValues[id] = element.checked;
-                } else {
-                    fieldValues[id] = $(element).val();
-                }
-            });
-
-            var url = '/custom-fields?category=' + this.category + '&subcategory=' + this.subcategory + '&item=' + this.item;
-            $.get(url).then(function (response) {
-                var newFields = $(response);
-                for (var id in fieldValues) {
-                    var field = newFields.find('#' + id);
-                    if (field.attr('type') == 'checkbox') {
-                        field.prop('checked', fieldValues[id]);
-                    } else {
-                        field.val(fieldValues[id]);
-                    }
-                }
-                customFieldsContainer.html('').append(newFields);
-            });
-        },
-        loadTechnicians: function loadTechnicians() {
-            var _this4 = this;
-
-            if (this.group) {
-                $.get('/list/group-technicians/' + this.group).then(function (response) {
-                    _this4.technicians = response;
-                });
-            }
-        }
-    }, watch: {
-        category: function category() {
-            this.loadSubcategory(true);
-        },
-        subcategory: function subcategory() {
-            this.loadItems(true);
-        },
-        group: function group() {
-            this.loadTechnicians();
-        }
-    },
-    mounted: function mounted() {
-        // this.loadSubcategory(true);
-    },
-    created: function created() {
-        this.loadTasks();
-        // this.loadSubcategory(true);
-        // this.loadItems(true);
-        this.loadTechnicians();
-    }
-});
-window.app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
-    el: '#tasks'
-
-});
-
-/***/ }),
-/* 5 */
+/***/ 3:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11463,273 +11154,11 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(6).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(6).setImmediate))
 
 /***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
-            (typeof self !== "undefined" && self) ||
-            window;
-var apply = Function.prototype.apply;
-
-// DOM APIs, for completeness
-
-exports.setTimeout = function() {
-  return new Timeout(apply.call(setTimeout, scope, arguments), clearTimeout);
-};
-exports.setInterval = function() {
-  return new Timeout(apply.call(setInterval, scope, arguments), clearInterval);
-};
-exports.clearTimeout =
-exports.clearInterval = function(timeout) {
-  if (timeout) {
-    timeout.close();
-  }
-};
-
-function Timeout(id, clearFn) {
-  this._id = id;
-  this._clearFn = clearFn;
-}
-Timeout.prototype.unref = Timeout.prototype.ref = function() {};
-Timeout.prototype.close = function() {
-  this._clearFn.call(scope, this._id);
-};
-
-// Does not start the time, just sets up the members needed.
-exports.enroll = function(item, msecs) {
-  clearTimeout(item._idleTimeoutId);
-  item._idleTimeout = msecs;
-};
-
-exports.unenroll = function(item) {
-  clearTimeout(item._idleTimeoutId);
-  item._idleTimeout = -1;
-};
-
-exports._unrefActive = exports.active = function(item) {
-  clearTimeout(item._idleTimeoutId);
-
-  var msecs = item._idleTimeout;
-  if (msecs >= 0) {
-    item._idleTimeoutId = setTimeout(function onTimeout() {
-      if (item._onTimeout)
-        item._onTimeout();
-    }, msecs);
-  }
-};
-
-// setimmediate attaches itself to the global object
-__webpack_require__(7);
-// On some exotic environments, it's not clear which object `setimmediate` was
-// able to install onto.  Search each possibility in the same order as the
-// `setimmediate` library.
-exports.setImmediate = (typeof self !== "undefined" && self.setImmediate) ||
-                       (typeof global !== "undefined" && global.setImmediate) ||
-                       (this && this.setImmediate);
-exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
-                         (typeof global !== "undefined" && global.clearImmediate) ||
-                         (this && this.clearImmediate);
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
-    "use strict";
-
-    if (global.setImmediate) {
-        return;
-    }
-
-    var nextHandle = 1; // Spec says greater than zero
-    var tasksByHandle = {};
-    var currentlyRunningATask = false;
-    var doc = global.document;
-    var registerImmediate;
-
-    function setImmediate(callback) {
-      // Callback can either be a function or a string
-      if (typeof callback !== "function") {
-        callback = new Function("" + callback);
-      }
-      // Copy function arguments
-      var args = new Array(arguments.length - 1);
-      for (var i = 0; i < args.length; i++) {
-          args[i] = arguments[i + 1];
-      }
-      // Store and register the task
-      var task = { callback: callback, args: args };
-      tasksByHandle[nextHandle] = task;
-      registerImmediate(nextHandle);
-      return nextHandle++;
-    }
-
-    function clearImmediate(handle) {
-        delete tasksByHandle[handle];
-    }
-
-    function run(task) {
-        var callback = task.callback;
-        var args = task.args;
-        switch (args.length) {
-        case 0:
-            callback();
-            break;
-        case 1:
-            callback(args[0]);
-            break;
-        case 2:
-            callback(args[0], args[1]);
-            break;
-        case 3:
-            callback(args[0], args[1], args[2]);
-            break;
-        default:
-            callback.apply(undefined, args);
-            break;
-        }
-    }
-
-    function runIfPresent(handle) {
-        // From the spec: "Wait until any invocations of this algorithm started before this one have completed."
-        // So if we're currently running a task, we'll need to delay this invocation.
-        if (currentlyRunningATask) {
-            // Delay by doing a setTimeout. setImmediate was tried instead, but in Firefox 7 it generated a
-            // "too much recursion" error.
-            setTimeout(runIfPresent, 0, handle);
-        } else {
-            var task = tasksByHandle[handle];
-            if (task) {
-                currentlyRunningATask = true;
-                try {
-                    run(task);
-                } finally {
-                    clearImmediate(handle);
-                    currentlyRunningATask = false;
-                }
-            }
-        }
-    }
-
-    function installNextTickImplementation() {
-        registerImmediate = function(handle) {
-            process.nextTick(function () { runIfPresent(handle); });
-        };
-    }
-
-    function canUsePostMessage() {
-        // The test against `importScripts` prevents this implementation from being installed inside a web worker,
-        // where `global.postMessage` means something completely different and can't be used for this purpose.
-        if (global.postMessage && !global.importScripts) {
-            var postMessageIsAsynchronous = true;
-            var oldOnMessage = global.onmessage;
-            global.onmessage = function() {
-                postMessageIsAsynchronous = false;
-            };
-            global.postMessage("", "*");
-            global.onmessage = oldOnMessage;
-            return postMessageIsAsynchronous;
-        }
-    }
-
-    function installPostMessageImplementation() {
-        // Installs an event handler on `global` for the `message` event: see
-        // * https://developer.mozilla.org/en/DOM/window.postMessage
-        // * http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#crossDocumentMessages
-
-        var messagePrefix = "setImmediate$" + Math.random() + "$";
-        var onGlobalMessage = function(event) {
-            if (event.source === global &&
-                typeof event.data === "string" &&
-                event.data.indexOf(messagePrefix) === 0) {
-                runIfPresent(+event.data.slice(messagePrefix.length));
-            }
-        };
-
-        if (global.addEventListener) {
-            global.addEventListener("message", onGlobalMessage, false);
-        } else {
-            global.attachEvent("onmessage", onGlobalMessage);
-        }
-
-        registerImmediate = function(handle) {
-            global.postMessage(messagePrefix + handle, "*");
-        };
-    }
-
-    function installMessageChannelImplementation() {
-        var channel = new MessageChannel();
-        channel.port1.onmessage = function(event) {
-            var handle = event.data;
-            runIfPresent(handle);
-        };
-
-        registerImmediate = function(handle) {
-            channel.port2.postMessage(handle);
-        };
-    }
-
-    function installReadyStateChangeImplementation() {
-        var html = doc.documentElement;
-        registerImmediate = function(handle) {
-            // Create a <script> element; its readystatechange event will be fired asynchronously once it is inserted
-            // into the document. Do so, thus queuing up the task. Remember to clean up once it's been called.
-            var script = doc.createElement("script");
-            script.onreadystatechange = function () {
-                runIfPresent(handle);
-                script.onreadystatechange = null;
-                html.removeChild(script);
-                script = null;
-            };
-            html.appendChild(script);
-        };
-    }
-
-    function installSetTimeoutImplementation() {
-        registerImmediate = function(handle) {
-            setTimeout(runIfPresent, 0, handle);
-        };
-    }
-
-    // If supported, we should attach to the prototype of global, since that is where setTimeout et al. live.
-    var attachTo = Object.getPrototypeOf && Object.getPrototypeOf(global);
-    attachTo = attachTo && attachTo.setTimeout ? attachTo : global;
-
-    // Don't get fooled by e.g. browserify environments.
-    if ({}.toString.call(global.process) === "[object process]") {
-        // For Node.js before 0.9
-        installNextTickImplementation();
-
-    } else if (canUsePostMessage()) {
-        // For non-IE10 modern browsers
-        installPostMessageImplementation();
-
-    } else if (global.MessageChannel) {
-        // For web workers, where supported
-        installMessageChannelImplementation();
-
-    } else if (doc && "onreadystatechange" in doc.createElement("script")) {
-        // For IE 6–8
-        installReadyStateChangeImplementation();
-
-    } else {
-        // For older browsers
-        installSetTimeoutImplementation();
-    }
-
-    attachTo.setImmediate = setImmediate;
-    attachTo.clearImmediate = clearImmediate;
-}(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(8)))
-
-/***/ }),
-/* 8 */
+/***/ 5:
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -11919,7 +11348,588 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 9 */
+
+/***/ 55:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(56);
+
+
+/***/ }),
+
+/***/ 56:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(2)(
+  /* script */
+  __webpack_require__(57),
+  /* template */
+  null,
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/Users/omarkhaled/code/hdesk/resources/assets/js/Task.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-783b63b6", Component.options)
+  } else {
+    hotAPI.reload("data-v-783b63b6", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 57:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+
+
+
+var $ = __webpack_require__(8);
+
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('tasks', {
+    props: ['ticket_id'],
+    data: function data() {
+        return {
+            category: window.category,
+            subcategory: window.subcategory,
+            item: window.item,
+            tasks: [],
+            errors: [],
+            subject: '',
+            description: '',
+            subcategories: [],
+            items: [],
+            technicians: [],
+            group: '',
+            status: '',
+            technician: '',
+            edit: false,
+            task_id: null,
+            saving: false,
+            fields: []
+        };
+    },
+
+    methods: {
+        loadTasks: function loadTasks() {
+            $.ajax({
+                method: 'GET',
+                url: '/ticket/tasks/' + this.ticket_id,
+                success: function (response) {
+                    this.tasks = response;
+                }.bind(this)
+
+            });
+        },
+        changeOnSubmit: function changeOnSubmit() {
+            if (this.edit) {
+                this.updateTask();
+            } else {
+                this.createTask();
+            }
+        },
+        createTask: function createTask() {
+            this.getCustomFields();
+
+            this.saving = true;
+            var cs = [];
+            jQuery.ajax({
+                method: 'POST',
+                url: '/ticket/tasks/' + this.ticket_id,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    subject: this.subject,
+                    category: this.category,
+                    subcategory: this.subcategory,
+                    item: this.item,
+                    status: this.status,
+                    description: tinyMCE.activeEditor.getContent(),
+                    group: this.group,
+                    technician: this.technician,
+                    ticket_id: this.ticket_id,
+                    cf: this.fields
+                },
+                success: function (response) {
+                    this.loadTasks();
+                    this.errors = response;
+                    jQuery("#TaskForm").modal('hide');
+                    this.saving = false;
+                    this.resetAll();
+                }.bind(this),
+                error: function (response) {
+                    this.errors = response.responseJSON;
+                    this.saving = false;
+                }.bind(this)
+
+            });
+        },
+        getCustomFields: function getCustomFields() {
+            var _this = this;
+
+            this.fields = [];
+            $('#CustomFields').find('.cf').each(function (idx, element) {
+                _this.fields[element.id.substr(3, 8)] = $(element).val();
+            });
+            console.log(this.fields);
+        },
+        editTask: function editTask(task) {
+            var modal = jQuery('#TaskForm');
+            jQuery.ajax({
+                method: 'GET',
+                url: '/ticket/tasks/edit/' + task,
+                success: function (response) {
+                    this.subject = response.subject;
+                    this.description = response.description;
+                    this.category = response.category_id;
+                    this.subcategory = response.subcategory_id;
+                    this.item = response.item_id;
+                    this.status = response.status_id;
+                    this.group = response.group_id;
+                    this.technician = response.technician_id;
+                    this.errors = [];
+                    modal.find('.modal-title').html('Edit Task #' + task);
+                    modal.modal('show');
+                }.bind(this)
+
+            });
+        },
+        deleteTask: function deleteTask(task) {
+            $.ajax({
+                method: 'DELETE',
+                url: '/ticket/tasks/' + this.ticket_id + '/' + task,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (response) {
+                    this.loadTasks();
+                }.bind(this)
+
+            });
+        },
+        resetTask: function resetTask() {
+            this.resetAll();
+            jQuery('#TaskForm').find('.modal-title').html('Create Task');
+        },
+        updateTask: function updateTask() {
+            jQuery.ajax({
+                method: 'PUT',
+                url: '/ticket/tasks/' + this.ticket_id,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    subject: this.subject,
+                    description: this.description,
+                    category: this.category,
+                    subcategory: this.subcategory,
+                    item: this.item,
+                    status: this.status,
+                    task_id: this.task_id
+                },
+                success: function (response) {
+                    this.loadTasks();
+                    jQuery("#TaskForm").modal('hide');
+                    this.resetAll();
+                }.bind(this),
+                error: function (response) {
+                    this.errors = response.responseJSON;
+                }.bind(this)
+
+            });
+        },
+        loadSubcategory: function loadSubcategory(withFields) {
+            var _this2 = this;
+
+            if (this.category) {
+                $.get('/list/subcategory/' + this.category).then(function (response) {
+                    _this2.subcategories = response;
+                });
+            }
+            if (withFields) this.loadCustomFields();
+        },
+        loadItems: function loadItems(withFields) {
+            var _this3 = this;
+
+            if (this.subcategory) {
+                $.get('/list/item/' + this.subcategory).then(function (response) {
+                    _this3.items = response;
+                });
+            }
+            if (withFields) this.loadCustomFields();
+        },
+        resetAll: function resetAll() {
+            this.edit = false;
+            this.subject = '';
+            this.description = '';
+            this.category = '';
+            this.subcategory = '';
+            this.item = '';
+            this.cat = '';
+            this.status = '';
+            this.errors = [];
+            this.subcategories = [];
+            this.items = [];
+            this.technicians = [];
+            this.group = '';
+            this.technician = '';
+            this.fields = [];
+        },
+        loadCustomFields: function loadCustomFields() {
+            var customFieldsContainer = $('#CustomFields');
+            var fieldValues = {};
+
+            customFieldsContainer.find('.cf').each(function (idx, element) {
+                var id = element.id;
+                var type = element.type;
+                if (type == 'checkbox') {
+                    fieldValues[id] = element.checked;
+                } else {
+                    fieldValues[id] = $(element).val();
+                }
+            });
+
+            var url = '/custom-fields?category=' + this.category + '&subcategory=' + this.subcategory + '&item=' + this.item;
+            $.get(url).then(function (response) {
+                var newFields = $(response);
+                for (var id in fieldValues) {
+                    var field = newFields.find('#' + id);
+                    if (field.attr('type') == 'checkbox') {
+                        field.prop('checked', fieldValues[id]);
+                    } else {
+                        field.val(fieldValues[id]);
+                    }
+                }
+                customFieldsContainer.html('').append(newFields);
+            });
+        },
+        loadTechnicians: function loadTechnicians() {
+            var _this4 = this;
+
+            if (this.group) {
+                $.get('/list/group-technicians/' + this.group).then(function (response) {
+                    _this4.technicians = response;
+                });
+            }
+        }
+    }, watch: {
+        category: function category() {
+            this.loadSubcategory(true);
+        },
+        subcategory: function subcategory() {
+            this.loadItems(true);
+        },
+        group: function group() {
+            this.loadTechnicians();
+        }
+    },
+    mounted: function mounted() {
+        // this.loadSubcategory(true);
+    },
+    created: function created() {
+        this.loadTasks();
+        // this.loadSubcategory(true);
+        // this.loadItems(true);
+        this.loadTechnicians();
+    }
+});
+window.app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
+    el: '#tasks'
+
+});
+
+/***/ }),
+
+/***/ 6:
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
+            (typeof self !== "undefined" && self) ||
+            window;
+var apply = Function.prototype.apply;
+
+// DOM APIs, for completeness
+
+exports.setTimeout = function() {
+  return new Timeout(apply.call(setTimeout, scope, arguments), clearTimeout);
+};
+exports.setInterval = function() {
+  return new Timeout(apply.call(setInterval, scope, arguments), clearInterval);
+};
+exports.clearTimeout =
+exports.clearInterval = function(timeout) {
+  if (timeout) {
+    timeout.close();
+  }
+};
+
+function Timeout(id, clearFn) {
+  this._id = id;
+  this._clearFn = clearFn;
+}
+Timeout.prototype.unref = Timeout.prototype.ref = function() {};
+Timeout.prototype.close = function() {
+  this._clearFn.call(scope, this._id);
+};
+
+// Does not start the time, just sets up the members needed.
+exports.enroll = function(item, msecs) {
+  clearTimeout(item._idleTimeoutId);
+  item._idleTimeout = msecs;
+};
+
+exports.unenroll = function(item) {
+  clearTimeout(item._idleTimeoutId);
+  item._idleTimeout = -1;
+};
+
+exports._unrefActive = exports.active = function(item) {
+  clearTimeout(item._idleTimeoutId);
+
+  var msecs = item._idleTimeout;
+  if (msecs >= 0) {
+    item._idleTimeoutId = setTimeout(function onTimeout() {
+      if (item._onTimeout)
+        item._onTimeout();
+    }, msecs);
+  }
+};
+
+// setimmediate attaches itself to the global object
+__webpack_require__(7);
+// On some exotic environments, it's not clear which object `setimmediate` was
+// able to install onto.  Search each possibility in the same order as the
+// `setimmediate` library.
+exports.setImmediate = (typeof self !== "undefined" && self.setImmediate) ||
+                       (typeof global !== "undefined" && global.setImmediate) ||
+                       (this && this.setImmediate);
+exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
+                         (typeof global !== "undefined" && global.clearImmediate) ||
+                         (this && this.clearImmediate);
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+
+/***/ 7:
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
+    "use strict";
+
+    if (global.setImmediate) {
+        return;
+    }
+
+    var nextHandle = 1; // Spec says greater than zero
+    var tasksByHandle = {};
+    var currentlyRunningATask = false;
+    var doc = global.document;
+    var registerImmediate;
+
+    function setImmediate(callback) {
+      // Callback can either be a function or a string
+      if (typeof callback !== "function") {
+        callback = new Function("" + callback);
+      }
+      // Copy function arguments
+      var args = new Array(arguments.length - 1);
+      for (var i = 0; i < args.length; i++) {
+          args[i] = arguments[i + 1];
+      }
+      // Store and register the task
+      var task = { callback: callback, args: args };
+      tasksByHandle[nextHandle] = task;
+      registerImmediate(nextHandle);
+      return nextHandle++;
+    }
+
+    function clearImmediate(handle) {
+        delete tasksByHandle[handle];
+    }
+
+    function run(task) {
+        var callback = task.callback;
+        var args = task.args;
+        switch (args.length) {
+        case 0:
+            callback();
+            break;
+        case 1:
+            callback(args[0]);
+            break;
+        case 2:
+            callback(args[0], args[1]);
+            break;
+        case 3:
+            callback(args[0], args[1], args[2]);
+            break;
+        default:
+            callback.apply(undefined, args);
+            break;
+        }
+    }
+
+    function runIfPresent(handle) {
+        // From the spec: "Wait until any invocations of this algorithm started before this one have completed."
+        // So if we're currently running a task, we'll need to delay this invocation.
+        if (currentlyRunningATask) {
+            // Delay by doing a setTimeout. setImmediate was tried instead, but in Firefox 7 it generated a
+            // "too much recursion" error.
+            setTimeout(runIfPresent, 0, handle);
+        } else {
+            var task = tasksByHandle[handle];
+            if (task) {
+                currentlyRunningATask = true;
+                try {
+                    run(task);
+                } finally {
+                    clearImmediate(handle);
+                    currentlyRunningATask = false;
+                }
+            }
+        }
+    }
+
+    function installNextTickImplementation() {
+        registerImmediate = function(handle) {
+            process.nextTick(function () { runIfPresent(handle); });
+        };
+    }
+
+    function canUsePostMessage() {
+        // The test against `importScripts` prevents this implementation from being installed inside a web worker,
+        // where `global.postMessage` means something completely different and can't be used for this purpose.
+        if (global.postMessage && !global.importScripts) {
+            var postMessageIsAsynchronous = true;
+            var oldOnMessage = global.onmessage;
+            global.onmessage = function() {
+                postMessageIsAsynchronous = false;
+            };
+            global.postMessage("", "*");
+            global.onmessage = oldOnMessage;
+            return postMessageIsAsynchronous;
+        }
+    }
+
+    function installPostMessageImplementation() {
+        // Installs an event handler on `global` for the `message` event: see
+        // * https://developer.mozilla.org/en/DOM/window.postMessage
+        // * http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#crossDocumentMessages
+
+        var messagePrefix = "setImmediate$" + Math.random() + "$";
+        var onGlobalMessage = function(event) {
+            if (event.source === global &&
+                typeof event.data === "string" &&
+                event.data.indexOf(messagePrefix) === 0) {
+                runIfPresent(+event.data.slice(messagePrefix.length));
+            }
+        };
+
+        if (global.addEventListener) {
+            global.addEventListener("message", onGlobalMessage, false);
+        } else {
+            global.attachEvent("onmessage", onGlobalMessage);
+        }
+
+        registerImmediate = function(handle) {
+            global.postMessage(messagePrefix + handle, "*");
+        };
+    }
+
+    function installMessageChannelImplementation() {
+        var channel = new MessageChannel();
+        channel.port1.onmessage = function(event) {
+            var handle = event.data;
+            runIfPresent(handle);
+        };
+
+        registerImmediate = function(handle) {
+            channel.port2.postMessage(handle);
+        };
+    }
+
+    function installReadyStateChangeImplementation() {
+        var html = doc.documentElement;
+        registerImmediate = function(handle) {
+            // Create a <script> element; its readystatechange event will be fired asynchronously once it is inserted
+            // into the document. Do so, thus queuing up the task. Remember to clean up once it's been called.
+            var script = doc.createElement("script");
+            script.onreadystatechange = function () {
+                runIfPresent(handle);
+                script.onreadystatechange = null;
+                html.removeChild(script);
+                script = null;
+            };
+            html.appendChild(script);
+        };
+    }
+
+    function installSetTimeoutImplementation() {
+        registerImmediate = function(handle) {
+            setTimeout(runIfPresent, 0, handle);
+        };
+    }
+
+    // If supported, we should attach to the prototype of global, since that is where setTimeout et al. live.
+    var attachTo = Object.getPrototypeOf && Object.getPrototypeOf(global);
+    attachTo = attachTo && attachTo.setTimeout ? attachTo : global;
+
+    // Don't get fooled by e.g. browserify environments.
+    if ({}.toString.call(global.process) === "[object process]") {
+        // For Node.js before 0.9
+        installNextTickImplementation();
+
+    } else if (canUsePostMessage()) {
+        // For non-IE10 modern browsers
+        installPostMessageImplementation();
+
+    } else if (global.MessageChannel) {
+        // For web workers, where supported
+        installMessageChannelImplementation();
+
+    } else if (doc && "onreadystatechange" in doc.createElement("script")) {
+        // For IE 6–8
+        installReadyStateChangeImplementation();
+
+    } else {
+        // For older browsers
+        installSetTimeoutImplementation();
+    }
+
+    attachTo.setImmediate = setImmediate;
+    attachTo.clearImmediate = clearImmediate;
+}(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(5)))
+
+/***/ }),
+
+/***/ 8:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -22290,4 +22300,5 @@ return jQuery;
 
 
 /***/ })
-/******/ ]);
+
+/******/ });
