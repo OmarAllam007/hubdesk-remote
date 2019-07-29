@@ -77,6 +77,7 @@
     const fields = {
         subject: {type: 'text'},
         description: {type: 'text'},
+        requester_id: {type: 'select', list: 'requester', name: 'Requester'},
         category_id: {type: 'select', list: 'category', name: 'Category'},
         subcategory_id: {type: 'select', list: 'subcategory', name: 'Subcategory'},
         item_id: {type: 'select', list: 'item', name: 'Item'},
