@@ -11,7 +11,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class CalculateTicketTime extends Job
+class CalculateTicketTime extends NotifyTechnicainForNotViewedTicket
 {   
     const MINUTES_IN_DAY = 1440;
 
@@ -28,7 +28,7 @@ class CalculateTicketTime extends Job
     /**
      * @var Ticket
      */
-    private $ticket;
+    protected $ticket;
 
 
     public function __construct(Ticket $ticket)

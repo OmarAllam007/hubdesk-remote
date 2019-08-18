@@ -63,6 +63,9 @@
             font-size: 12pt;
             font-weight: bold;
         }
+        .ticket_url {
+            font-weight: bold;
+        }
     </style>
 @stop
 
@@ -127,8 +130,8 @@
                 </thead>
                 <tbody>
                 @foreach($tickets as $ticket)
-                    <tr>
-                        <td><i class="fa fa-{{t($ticket->type_icon)}}" title="{{t($ticket->type_name)}}"
+                    <tr @if($ticket->is_opened_ticket) class="ticket_url" @endif>
+                        <td><i class="fa fa-{{t($ticket->type_icon)}} " title="{{t($ticket->type_name)}}"
                                aria-hidden="true"></i> <a
                                     href="{{ route('ticket.show', $ticket) }}">{{ $ticket->id }}</a></td>
                         {{--                        <td><a href="{{ route('ticket.show', $ticket) }}">{{ $ticket->sdp_id ?? ''}}</a></td>--}}

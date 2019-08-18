@@ -60,20 +60,18 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 86);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 86:
+/******/ ([
+/* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(87);
+module.exports = __webpack_require__(1);
 
 
 /***/ }),
-
-/***/ 87:
+/* 1 */
 /***/ (function(module, exports) {
 
 $(document).ready(function () {
@@ -88,28 +86,7 @@ $(document).ready(function () {
         $('#as_first_response').parent().show();
         $('#as_first_response').attr('checked', note.as_first_response == 1 ? true : false);
     });
-
-    $('.editNote').on('click', function (e) {
-        var modal = $('#ReplyModal');
-        var note = $(this).data('note');
-        modal.find('.modal-title').html('Edit Note - Ticket #' + note.ticket_id);
-        modal.find('button[type=submit]').html('<i class="fa fa-save"></i> Save');
-        var form = modal.closest('form').attr('action', 'note-edit/' + note.id);
-        tinyMCE.activeEditor.setContent(note.note);
-        $('#display_to_requester').attr('checked', note.display_to_requester == 1 ? true : false);
-        $('#email_to_technician').attr('checked', note.email_to_technician == 1 ? true : false);
-        $('#as_first_response').parent().hide();
-    });
-
-    $('.removeNote').on('click', function () {
-        var modal = $('#removeNoteModal');
-        var note = $(this).data('note');
-        modal.find('.modal-title').html('Remove Note #' + note.id + '  - Ticket #' + note.ticket_id);
-        modal.find('.modal-body').html('Are you sure to delete #' + note.id + ' note ?');
-        var form = modal.closest('form').attr('action', 'remove-note/' + note.id);
-    });
 });
 
 /***/ })
-
-/******/ });
+/******/ ]);
