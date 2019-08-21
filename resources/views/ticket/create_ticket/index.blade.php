@@ -46,7 +46,6 @@
         }
 
         p.quot-animation {
-            margin-top: 80px;
             font-size: 18pt;
             font-weight: 800;
         }
@@ -70,12 +69,12 @@
                             {{--                            <img src="{{asset('images/logo.png')}}">--}}
                             {{--</div>--}}
                             <div class="tile-body"
-                                 style="width: 100%;height: 100%;display: flex; flex-direction:column;">
+                                 style="width: 80%;height: 80%;display: flex; flex-direction:column;">
                                 @if($business_unit->logo)
-                                <p class="text-center logo-animation">
-                                    <img src="{{$business_unit->url}}" alt="{{$business_unit->url}}" style="width: 100%">
-                                </p>
-                                {{--@endif--}}
+                                    <p class="text-center logo-animation">
+                                        <img src="{{$business_unit->url}}" alt="{{$business_unit->url}}" >
+                                    </p>
+                                    {{--@endif--}}
                                 @else
                                     <p class="text-center " style="margin-top: 20px;">
                                         {{$business_unit->name}}
