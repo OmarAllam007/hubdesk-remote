@@ -67,7 +67,7 @@ class Subcategory extends KModel
 
     public function scopeCanonicalList(Builder $query)
     {
-        $subcategories = $query->with('category')
+        $subcategories = $query->whereHas('category')->with('category')
             ->orderBy('name')->get()
             ->map(function ($subcategory) {
                 $subcategory->name = $subcategory->category->name . ' > ' . $subcategory->name;

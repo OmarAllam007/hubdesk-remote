@@ -46,8 +46,10 @@
         }
 
         p.quot-animation {
-            font-size: 18pt;
+            font-size: 20pt;
             font-weight: 800;
+            margin-top: -25px;
+
         }
     </style>
 @endsection
@@ -69,7 +71,7 @@
                             {{--                            <img src="{{asset('images/logo.png')}}">--}}
                             {{--</div>--}}
                             <div class="tile-body"
-                                 style="width: 80%;height: 80%;display: flex; flex-direction:column;">
+                                 style="width: 100%;height: 100%;display: flex; flex-direction:column;">
                                 @if($business_unit->logo)
                                     <p class="text-center logo-animation">
                                         <img src="{{$business_unit->url}}" alt="{{$business_unit->url}}" >
@@ -82,7 +84,7 @@
                                 @endif
                                 {{--for demonistration only--}}
                                 @if(str_contains(strtolower($business_unit->name),'quwa'))
-                                    <p class="text-center quot-animation">
+                                    <p class="text-center quot-animation" >
                                         نعين ونعاون
                                     </p>
                                 @endif
