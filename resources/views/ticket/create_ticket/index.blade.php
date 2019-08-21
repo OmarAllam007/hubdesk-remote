@@ -71,12 +71,12 @@
                             {{--</div>--}}
                             <div class="tile-body"
                                  style="width: 100%;height: 100%;display: flex; flex-direction:column;">
-                                {{--@if($business_unit->logo)--}}
-                                <p class="text-center logo-animation" style="height: 100px">
-                                    <img src="{{$business_unit->url}}" alt="{{$business_unit->url}}">
+                                @if($business_unit->logo)
+                                <p class="text-center logo-animation">
+                                    <img src="{{$business_unit->url}}" alt="{{$business_unit->url}}" style="width: 100%">
                                 </p>
                                 {{--@endif--}}
-                                @if(!$business_unit->logo)
+                                @else
                                     <p class="text-center " style="margin-top: 20px;">
                                         {{$business_unit->name}}
                                     </p>

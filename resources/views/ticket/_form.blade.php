@@ -92,7 +92,6 @@ $sla = $ticketObj->getSla($category,$subcategory ?? null ,$item ?? null);
                 'item' => App\Item::find(old('item_id'))
             ])
         </div>
-
     </div>
 
     <div class="row">

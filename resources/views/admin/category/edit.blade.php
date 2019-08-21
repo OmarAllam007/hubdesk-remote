@@ -16,7 +16,7 @@
 @stop
 
 @section('body')
-    {{Form::model($category, ['route' => ['admin.category.update', $category], 'class' => 'col-sm-9'])}}
+    {{Form::model($category, ['route' => ['admin.category.update', $category], 'class' => 'col-sm-9','files'=>true])}}
 
     {{method_field('patch')}}
 

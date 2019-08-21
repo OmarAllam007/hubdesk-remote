@@ -6,6 +6,7 @@ use App\Behaviors\Listable;
 use App\Behaviors\ServiceConfiguration;
 use App\Http\Requests\Request;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\UploadedFile;
 use KGS\Requirement;
 
 
@@ -32,7 +33,7 @@ class Category extends KModel
 {
     use Listable, ServiceConfiguration;
 
-    protected $fillable = ['business_unit_id', 'name', 'description', 'service_request', 'service_cost', 'notes', 'service_type', 'is_disabled'];
+    protected $fillable = ['business_unit_id', 'name', 'description', 'service_request', 'service_cost', 'notes', 'service_type', 'is_disabled','logo'];
 
     public function subcategories()
     {
@@ -127,5 +128,35 @@ class Category extends KModel
     public function requirements()
     {
         return $this->hasMany(Requirement::class, 'reference_id')->where('reference_type', Requirement::$types['Category']);
+    }
+
+    public static function uploadAttachment(Category $category, UploadedFile $file)
+    {
+        $filename = $file->getClientOriginalName();
+
+        $folder = storage_path('app/public/attachments/categories/' . $category->id . '/');
+        if (!is_dir($folder)) {
+            mkdir($folder, 0775, true);
+        }
+
+        $path = $folder . $filename;
+        if (is_file($path)) {
+            $filename = uniqid() . '_' . $filename;
+            $path = $folder . $filename;
+        }
+
+        $file->move($folder, $filename);
+
+        $final_path = '/attachments/categories/' . $category->id . '/' . $filename;
+
+        return $final_path;
+    }
+
+    public function getUrlAttribute()
+    {
+        $basename = str_replace('+', ' ', urlencode(basename($this->logo)));
+        $dirname = dirname($this->logo);
+        $path = $dirname . '/' . $basename;
+        return url('/storage' . $path);
     }
 }

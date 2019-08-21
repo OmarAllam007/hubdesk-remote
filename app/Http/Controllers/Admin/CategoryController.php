@@ -47,6 +47,11 @@ class CategoryController extends Controller
             $category->businessunits()->sync($request['units']);
         }
 
+        if ($request->hasFile('logo')) {
+            $logo_path = Category::uploadAttachment($category, $request->logo);
+            $category->update(['logo' => $logo_path]);
+        }
+
         $this->handleLevels($request, $category);
         $this->createUserGroups($request, $category);
         $this->handleRequirements($request, $category);
@@ -70,6 +75,8 @@ class CategoryController extends Controller
     public function update(Category $category, Request $request)
     {
         $this->validates($request, 'Could not save category');
+
+
         if ($request['units']) {
             $category->businessunits()->sync($request['units']);
         }
@@ -83,6 +90,12 @@ class CategoryController extends Controller
         $data['service_request'] = isset($request->service_request) ? 1 : 0;
         $data['is_disabled'] = isset($request->is_disabled) ? 1 : 0;
         $category->update($data);
+
+        if ($request->hasFile('logo')) {
+            $logo_path = Category::uploadAttachment($category, $request->logo);
+            $category->update(['logo' => $logo_path]);
+        }
+
         flash(t('Category has been saved'), 'success');
         return \Redirect::route('admin.category.index');
     }
