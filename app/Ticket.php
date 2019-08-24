@@ -78,7 +78,7 @@ class Ticket extends KModel
 
     protected $fillable = [
         'subject', 'description', 'category_id', 'subcategory_id', 'item_id', 'group_id', 'technician_id',
-        'priority_id', 'impact_id', 'urgency_id', 'requester_id', 'creator_id', 'status_id', 'sdp_id', 'type', 'request_id','is_opened'
+        'priority_id', 'impact_id', 'urgency_id', 'requester_id', 'creator_id', 'status_id', 'sdp_id', 'type', 'request_id', 'is_opened'
     ];
 
     protected $dates = ['created_at', 'updated_at', 'due_date', 'first_response_date', 'resolve_date', 'close_date'];
@@ -198,6 +198,11 @@ class Ticket extends KModel
     {
         return $this->hasMany(Ticket::class, 'request_id')
             ->where('type', 2)->where('request_id', $this->id);
+    }
+
+    public function user_survey()
+    {
+        return $this->hasOne(UserSurvey::class, 'ticket_id');
     }
 
     public function getTicketAttribute()
@@ -547,17 +552,18 @@ class Ticket extends KModel
         $fees_arr[] = $this->item->fees ?? collect();
 
         $fees = collect($fees_arr)->flatten();
-        return $fees?? collect();
+        return $fees ?? collect();
     }
 
-    function getSla($category,$subcategory = null, $item = null){
+    function getSla($category, $subcategory = null, $item = null)
+    {
         $this->category_id = $category->id;
 
-        if ($subcategory && $subcategory->sla){
+        if ($subcategory && $subcategory->sla) {
             $this->subcategory_id = $subcategory->id;
         }
 
-        if ($item && $item->sla){
+        if ($item && $item->sla) {
             $this->item_id = $item->id;
         }
         $sla = new \App\Jobs\ApplySLA($this);
@@ -566,7 +572,8 @@ class Ticket extends KModel
         return $data;
     }
 
-    function getIsOpenedTicketAttribute(){
+    function getIsOpenedTicketAttribute()
+    {
         return \Auth::user()->id == $this->technician_id && !$this->is_opened;
     }
 }

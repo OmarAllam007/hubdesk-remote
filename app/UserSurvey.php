@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class UserSurvey extends Model
 {
     protected $table = "user_surveys";
+
     protected $fillable = ['ticket_id', 'survey_id', 'comment', "is_submitted", "notified"];
 
     function survey()
@@ -28,6 +29,16 @@ class UserSurvey extends Model
     function scopeNotSubmitted($query)
     {
         return $query->whereNotNull('is_submitted')->orWhere('is_submitted', 0);
+    }
+
+    function getTotalScoreAttribute(){
+        $total = 0;
+
+        foreach ($this->survey_answers as $answer){
+            $total += $answer->answer->degree;
+        }
+
+        return $total / $this->survey_answers->count();
     }
 
 }

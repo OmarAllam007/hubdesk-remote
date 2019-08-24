@@ -15,7 +15,7 @@ class SurveyLogController extends Controller
     function update(Ticket $ticket, UserSurvey $survey, Request $request)
     {
         $survey->update([
-            'comment' => $request->comment,
+            'comment' => $request->comment ?? '',
             'is_submitted' => 1,
         ]);
 
@@ -25,7 +25,8 @@ class SurveyLogController extends Controller
             foreach ($request->questions as $key => $answer_id) {
                 $default_answer = Answer::where('question_id', $key)->where('is_default', 1)->first();
                 $answer = Answer::find($answer_id);
-                if ($answer->degree < $default_answer->degree) {
+
+                if ($default_answer && ($answer->degree < $default_answer->degree)) {
                     $unsatisfied_count += 1;
                 }
 
@@ -36,7 +37,6 @@ class SurveyLogController extends Controller
             }
 
             if ($unsatisfied_count > $question_count / 2) {
-//                Mail(new );
                 \Mail::send(new SendSurveyEscalationEmail($survey));
             }
 

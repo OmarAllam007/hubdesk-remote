@@ -23,9 +23,11 @@ class SendSurveyEscalationEmail extends Mailable
 
     public function build()
     {
-        if($this->ticket->group && $this->ticket->group->supervisors){
+        $emails = $this->ticket->group->supervisors->pluck('email')->toArray();
+
+        if($this->ticket->group && count($emails)){
             return $this->markdown('emails.ticket.escalation_survey', ['survey' => $this->survey])
-                ->to($this->ticket->group->supervisors->pluck('email')->toArray())
+                ->to($emails)
                 ->subject(t('Escalation of not-satisfied Survey - Ticket#'.$this->ticket->id));
         }
     }
