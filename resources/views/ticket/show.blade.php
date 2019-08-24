@@ -124,6 +124,16 @@
                             </small>
                         </li>
                     @endif
+
+                    @if($ticket->user_survey && $ticket->user_survey->is_submitted)
+                        <li>
+                            <small>
+                                <strong>{{t('Ticket Survey Score')}}: {{$ticket->user_survey->total_score}} </strong>
+
+                            </small>
+                        </li>
+                    @endif
+
                 </ul>
             </div>
         </div>
@@ -132,7 +142,7 @@
 
 @section('body')
     @php
-    $users = \App\User::whereNotNull('email')->orderBy('name')->get();
+        $users = \App\User::whereNotNull('email')->orderBy('name')->get();
     @endphp
 
     @if(can('show',$ticket))
@@ -161,6 +171,7 @@
                                     class="fa fa-check"></i> {{t('Approvals')}}</a></li>
                 @endif
 
+
                 @if(Auth::user()->isSupport() && !$ticket->isTask())
                     <li><a href="#tasks" role="tab" data-toggle="tab"><i
                                     class="fa fa-tasks"></i> {{t('Tasks')}}</a></li>
@@ -179,6 +190,11 @@
                 @if ($ticket->files->count())
                     <li><a href="#attachments" role="tab" data-toggle="tab"><i
                                     class="fa fa-file-o"></i> {{t('Attachments')}}</a></li>
+                @endif
+
+                @if($ticket->user_survey && $ticket->user_survey->is_submitted)
+                    <li><a href="#survey" role="tab" data-toggle="tab"><i
+                                    class="fa fa-files-o"></i> {{t('Survey')}}</a></li>
                 @endif
             </ul>
 
@@ -219,6 +235,13 @@
                 <div role="tabpanel" class="tab-pane" id="tasks">
                     @include('ticket.tabs.tasks')
                 </div>
+
+                @if($ticket->user_survey && $ticket->user_survey->survey_answers->count())
+                    <div role="tabpanel" class="tab-pane" id="survey">
+                        @include('ticket.tabs._survey')
+                    </div>
+                @endif
+
 
                 @include('ticket._assign_modal')
                 @include('ticket.partials._send_to_finance')

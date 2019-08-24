@@ -61,8 +61,9 @@ class TicketReplyJob extends Job //implements ShouldQueue
     }
 
     function sendEmail(){
-        \Mail::send('emails.ticket.reply', ['reply' => $this->reply], function (Message $msg) {
-            $ticket = $this->reply->ticket;
+        $ticket = $this->reply->ticket;
+        \Mail::send('emails.ticket.reply', ['reply' => $this->reply], function (Message $msg) use ($ticket){
+
             $subject = 'Re: Ticket #' . $ticket->id . ' ' . $this->reply->ticket->subject;
 //            if ($this->reply->ticket->sdp_id) {
 //                $subject .= " [Request ##{$this->reply->ticket->sdp_id}##]";
@@ -75,8 +76,13 @@ class TicketReplyJob extends Job //implements ShouldQueue
             }
         });
 
-        $ticket = $this->reply->ticket;
-        if ($this->reply->status_id == 8 && $ticket->requester->email){
+
+        $this->sendSurvey($ticket);
+    }
+
+    private function sendSurvey($ticket)
+    {
+        if (($this->reply->status_id == 8 && $ticket->requester->email) && $ticket->category->survey->first()){
             $survey = UserSurvey::create([
                 'ticket_id' => $ticket->id,
                 'survey_id' => $ticket->category->survey->first()->id,
