@@ -1,8 +1,20 @@
 <div class="col-sm-3">
+
     <div class="form-group">
-        <a href="{{route('reports.create')}}" class="btn btn-success btn-block">
-            <i class="fa fa-plus"></i> {{t('Create Report')}}
-        </a>
+        <div class="btn-group">
+            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{t('Create')}} <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="{{route('reports.create')}}">{{t('Standard Report')}}</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">{{t('Query Report')}}</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">{{t('Custom Report')}}</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">{{t('Scheduled Report')}}</a></li>
+            </ul>
+        </div>
     </div>
 
     <div class="panel panel-info">
