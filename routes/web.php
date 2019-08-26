@@ -154,6 +154,14 @@ Route::get('inlineimages/{any?}', 'SdpImagesController@redirect')->where('any', 
 Route::resource('error-log', 'ErrorLogController');
 Route::resource('reports', 'ReportsController', ['parameters' => 'singular']);
 
+Route::group(['prefix'=>'reports'],function (){
+    Route::get('query/create','QueryReportController@create')->name('reports.create.query');
+    Route::post('query/store','QueryReportController@store')->name('reports.query.store');
+    Route::get('query/{report}/edit','QueryReportController@edit')->name('reports.query.edit');
+    Route::post('query/{report}/update','QueryReportController@update')->name('reports.query.update');
+    Route::resource('folder','ReportFolderController');
+});
+
 Route::get('/business-unit', 'BusinessUnitController@index')->name('business-unit.index');
 
 Route::get('/business-unit/{business_unit}', 'BusinessUnitController@show')->name('business-unit.show');

@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class ReportFolder extends Model
 {
-    //
+    protected $fillable = ['name'];
 }

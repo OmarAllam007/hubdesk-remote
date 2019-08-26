@@ -175,7 +175,7 @@ return [
         \Laravel\Socialite\SocialiteServiceProvider::class,
         Illuminate\Notifications\NotificationServiceProvider::class,
         KGS\Providers\KGSProvider::class,
-
+        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider'
     ],
 
     /*

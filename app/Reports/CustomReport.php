@@ -5,7 +5,7 @@ namespace App\Reports;
 use Carbon\Carbon;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class QueryReport extends ReportContract
+class CustomReport extends ReportContract
 {
     protected $columns;
 

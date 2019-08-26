@@ -16,13 +16,11 @@
                 @include('reports.inputs.'.$param['type'])
             @endforeach
             <div class="form-group col-md-6">
-                <button type="submit" class="btn btn-success">{{t('Submit')}}</button>
+                <button type="submit" class="btn btn-success">{{t('Generate')}}</button>
             </div>
         </form>
     </div>
     <div class="container-fluid report-container">
-
-
         <section class="">
             <table class="table table-condensed report-head">
                 <thead>
