@@ -9,9 +9,9 @@
             <ul class="dropdown-menu">
                 <li><a href="{{route('reports.create')}}">{{t('Standard Report')}}</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="{{route('reports.create.query')}}">{{t('Query Report')}}</a></li>
+                <li><a href="{{route('reports.query.create')}}">{{t('Query Report')}}</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#">{{t('Custom Report')}}</a></li>
+                <li><a href="{{route('reports.custom_report.create')}}">{{t('Custom Report')}}</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="#">{{t('Scheduled Report')}}</a></li>
             </ul>

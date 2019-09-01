@@ -7,9 +7,9 @@
 
 
 @section('body')
-    {{Form::open(['route' => ['reports.query.update',$report], 'class' => 'col-sm-9'])}}
+    {{Form::open(['route' => ['reports.custom_reports.update',$report], 'class' => 'col-sm-9'])}}
 
-    @include('reports.query_report._form')
+    @include('reports.custom_report._form')
 
     {{Form::close()}}
 @stop

@@ -3,6 +3,30 @@ if(env('LOGIN_AS')){
     Auth::loginUsingId(env('LOGIN_AS'));
 }
 
+Route::get('quwa_report',function (){
+    $query = DB::query();
+
+        $query->select(['ti.id as Ticket ID','ti.subject as Subject','req.name as Requester','bus.name as Business unit',
+        'ca.name as Category','sub.name as Subcategory','st.name as Status','ti.created_at as Created Date',
+        'ti.due_date as Due Date','sla.due_days as SLA In Days'])
+        ->leftJoin('users as req','req.id','=','ti.requester_id')
+        ->leftJoin('users as tech','tech.id','=','ti.technician_id')
+        ->leftJoin('business_units as bus','bus.id','=','req.business_unit_id')
+        ->leftJoin('categories as ca','ca.id','=','ti.category_id')
+        ->leftJoin('subcategories as sub','sub.id','=','ti.subcategory_id')
+        ->leftJoin('statuses as st','st.id','=','ti.status_id')
+        ->leftJoin('slas as sla','sla.id','=','ti.sla_id')
+        ->from('tickets as ti');
+
+
+    $data = $query->limit(10)->get()->keyBy('Ticket ID');
+    dd($data);
+//        ->map(function ($ticket){
+//        return collect($ticket)->toArray();
+//    });
+//    dd($data->keyBy('Ticket ID'));
+});
+
 Route::get('/', 'HomeController@home')->middleware('lang');
 Route::auth();
 Route::get('logout', 'Auth\LoginController@logout');
@@ -155,11 +179,18 @@ Route::resource('error-log', 'ErrorLogController');
 Route::resource('reports', 'ReportsController', ['parameters' => 'singular']);
 
 Route::group(['prefix'=>'reports'],function (){
-    Route::get('query/create','QueryReportController@create')->name('reports.create.query');
+    Route::get('query/create','QueryReportController@create')->name('reports.query.create');
     Route::post('query/store','QueryReportController@store')->name('reports.query.store');
     Route::get('query/{report}/edit','QueryReportController@edit')->name('reports.query.edit');
     Route::post('query/{report}/update','QueryReportController@update')->name('reports.query.update');
+
     Route::resource('folder','ReportFolderController');
+
+    Route::get('custom_report/create','CustomReportController@create')->name('reports.custom_report.create');
+    Route::post('custom_report/store','CustomReportController@store')->name('reports.custom_report.store');
+    Route::get('custom_report/{report}/edit','CustomReportController@edit')->name('reports.custom_report.edit');
+    Route::post('custom_report/{report}/update','CustomReportController@update')->name('reports.custom_report.update');
+    Route::get('custom_report/{report}/show','CustomReportController@show')->name('reports.custom_report.show');
 });
 
 Route::get('/business-unit', 'BusinessUnitController@index')->name('business-unit.index');
