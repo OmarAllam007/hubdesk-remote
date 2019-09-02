@@ -22,20 +22,45 @@
                 <tbody>
                 @foreach($reports as $report)
                     <tr>
-                        <td><a href="{{route('reports.show', $report)}}">{{$report->title}}</a></td>
-                        <td>{{$report->user->name}}</td>
+                        <td>
+                            @if($report->type && $report->type == \App\Report::$CUSTOM_REPORT)
+                                <a href="{{route('reports.custom_report.show', $report)}}">
+                                    {{$report->title}}
+                                </a>
+                            @else
+                                <a href="{{route('reports.show', $report)}}">
+                                    {{$report->title}}
+                                </a>
+                            @endif
+                        </td>
+                        <td>{{$report->user->name ?? ''}}</td>
                         <td>{{$report->created_at->format('d/m/Y H:i')}}</td>
                         <td class="col-md-2 col-sm-3">
                             <article class="actions">
-                                <a href="{{route('reports.show', $report)}}"><i class="fa fa-eye"></i> {{t('View')}}</a>
+                                @if($report->type && $report->type == \App\Report::$CUSTOM_REPORT)
+                                    <a href="{{route('reports.custom_report.show', $report)}}"><i
+                                                class="fa fa-eye"></i> {{t('View')}}
+                                        @else
+                                    </a><a href="{{route('reports.show', $report)}}"><i
+                                                class="fa fa-eye"></i> {{t('View')}}
+                                    </a>
+                                @endif
                                 |
 
-                                @if($report->core_report_id == \App\Report::$QUERY_REPORT)
-                                    <a href="{{route('reports.query.edit', $report)}}"><i
+
+                                @if($report->type && $report->type == \App\Report::$CUSTOM_REPORT)
+                                    <a href="{{route('reports.custom_report.edit', $report)}}"><i
                                                 class="fa fa-edit"></i> {{t('Edit')}}</a>
                                 @else
-                                    <a href="{{route('reports.edit', $report)}}"><i
-                                                class="fa fa-edit"></i> {{t('Edit')}}</a>
+
+                                    @if($report->core_report_id == \App\Report::$QUERY_REPORT)
+                                        <a href="{{route('reports.query.edit', $report)}}"><i
+                                                    class="fa fa-edit"></i> {{t('Edit')}}</a>
+                                    @else
+                                        <a href="{{route('reports.edit', $report)}}"><i
+                                                    class="fa fa-edit"></i> {{t('Edit')}}</a>
+                                    @endif
+
                                 @endif
                             </article>
                         </td>

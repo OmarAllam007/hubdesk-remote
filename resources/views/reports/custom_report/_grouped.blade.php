@@ -1,3 +1,4 @@
+@php $i = 1; @endphp
 @foreach($data as $groupedBy=>$row)
     <div class="alert alert-info" role="alert">
         <a href="#{{snake_case(str_replace(['.','&'],'',$groupedBy))}}" data-toggle="collapse"

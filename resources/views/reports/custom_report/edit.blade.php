@@ -7,7 +7,7 @@
 
 
 @section('body')
-    {{Form::open(['route' => ['reports.custom_reports.update',$report], 'class' => 'col-sm-9'])}}
+    {{Form::open(['route' => ['reports.custom_report.update',$report], 'class' => 'col-sm-9'])}}
 
     @include('reports.custom_report._form')
 

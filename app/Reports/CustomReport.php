@@ -2,13 +2,14 @@
 
 namespace App\Reports;
 
-use App\KModel;
+use App\Report;
+use App\User;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-use Illuminate\Pagination\LengthAwarePaginator;
 
-class CustomReport extends KModel
+class CustomReport extends Model
 {
     use SoftDeletes;
 
@@ -17,6 +18,14 @@ class CustomReport extends KModel
     protected $casts = ['parameters' => 'array'];
 
 
+    function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    function getTypeAttribute(){
+        return Report::$CUSTOM_REPORT;
+    }
 
 //
 //    protected $columns;

@@ -6,6 +6,7 @@ use App\Category;
 use App\CoreReport;
 use App\Report;
 use App\ReportFolder;
+use App\Reports\CustomReport;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -21,8 +22,10 @@ class ReportsController extends Controller
         $this->authorize('reports');
 
         $filters = ['folder' => request('folder')];
-
         $reports = Report::filter($filters)->paginate();
+        $custom_reports = CustomReport::where('folder_id',request('folder'))->paginate();
+
+        $reports = $reports->merge($custom_reports)->forPage(\request('page'),15);
 
         $folders = ReportFolder::orderBy('name')->get();
 

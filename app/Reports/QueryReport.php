@@ -2,6 +2,7 @@
 
 namespace App\Reports;
 
+use App\Report;
 use Carbon\Carbon;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -62,5 +63,7 @@ class QueryReport extends ReportContract
         return $filters;
     }
 
-
+    function getTypeAttribute(){
+        return Report::$QUERY_REPORT;
+    }
 }

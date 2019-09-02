@@ -33,6 +33,8 @@ class CustomReportFields
         $this->selectFromTickets();
         $this->selectFromOtherTable();
         $this->filteredByDate();
+        $this->filterByTechnicians();
+        $this->filterByBusinessUnit();
 
         if ($this->report->parameters['group_by']) {
             $this->groupBy();
@@ -48,7 +50,7 @@ class CustomReportFields
             return 'ti.' . $field;
         }, $ticket_fields);
 
-        $this->query->select($ticket_fields)->from('tickets as ti');
+        $this->query->select($ticket_fields)->from('tickets as ti')->whereNotNull('ti.technician_id');
     }
 
     function selectFromOtherTable()
@@ -140,8 +142,9 @@ class CustomReportFields
             return;
         }
 
-        $this->query->whereDate('ti.' . $this->report->parameters['date_filters']['by'], '>=', $this->report->parameters['date_filters']['from'])
+        $this->query->whereDate('ti.' . $this->report->parameters['date_filters']['by'], '>=', $this->report->parameters['date_filters']['from'] ?? Carbon::now()->toDateTimeString())
             ->whereDate('ti.' . $this->report->parameters['date_filters']['by'], '<=', $this->report->parameters['date_filters']['to'] ?? Carbon::now()->toDateTimeString());
+
     }
 
     function groupBy()
@@ -160,6 +163,21 @@ class CustomReportFields
 
         return $this->data;
 
+    }
+
+    function filterByTechnicians()
+    {
+        if (isset($this->report->parameters['technicians_filter']) && count($this->report->parameters['technicians_filter'])) {
+            $this->query->whereIn('ti.technician_id', $this->report->parameters['technicians_filter']);
+        }
+
+    }
+
+    function filterByBusinessUnit()
+    {
+        if (isset($this->report->parameters['business_unit_filter']) && count($this->report->parameters['business_unit_filter'])) {
+            $this->query->whereIn('ca.business_unit_id', $this->report->parameters['business_unit_filter']);
+        }
     }
 
 

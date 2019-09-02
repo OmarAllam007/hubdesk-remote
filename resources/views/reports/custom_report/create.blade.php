@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('header')
-    <h4 class="pull-left">{{t('Create Query Report')}}</h4>
+    <h4 class="pull-left">{{t('Create Custom Report')}}</h4>
     <a href="{{route('reports.index')}}" class="btn btn-sm btn-default pull-right"><i class="fa fa-chevron-left"></i></a>
 @stop
 
