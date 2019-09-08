@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row"  id="reports">
     <div class="col-md-6">
         {{csrf_field()}}
         <div class="form-group {{$errors->has('folder_id')? 'has-error' : ''}}">
@@ -28,5 +28,8 @@
         <div class="form-group">
             <button class="btn btn-success"><i class="fa fa-check-circle"></i> {{t('Submit')}}</button>
         </div>
+    </div>
+    <div class="col-md-6">
+        <report-parameters></report-parameters>
     </div>
 </div>

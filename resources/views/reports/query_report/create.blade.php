@@ -2,7 +2,8 @@
 
 @section('header')
     <h4 class="pull-left">{{t('Create Query Report')}}</h4>
-    <a href="{{route('reports.index')}}" class="btn btn-sm btn-default pull-right"><i class="fa fa-chevron-left"></i></a>
+    <a href="{{route('reports.index')}}" class="btn btn-sm btn-default pull-right"><i
+                class="fa fa-chevron-left"></i></a>
 @stop
 
 
@@ -11,5 +12,10 @@
 
     @include('reports.query_report._form')
 
+
     {{Form::close()}}
-@stop
+@endsection
+
+@section('javascript')
+    <script src="{{asset('js/reports.js')}}"></script>
+@endsection

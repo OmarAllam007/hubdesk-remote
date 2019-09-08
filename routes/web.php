@@ -183,6 +183,7 @@ Route::group(['prefix'=>'reports'],function (){
     Route::post('query/store','QueryReportController@store')->name('reports.query.store');
     Route::get('query/{report}/edit','QueryReportController@edit')->name('reports.query.edit');
     Route::post('query/{report}/update','QueryReportController@update')->name('reports.query.update');
+    Route::get('query/{report}/show','QueryReportController@show')->name('reports.query_report.show');
 
     Route::resource('folder','ReportFolderController');
 

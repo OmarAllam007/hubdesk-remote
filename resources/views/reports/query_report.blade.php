@@ -13,6 +13,7 @@
     <div>
         <form action="" method="get">
             @foreach($report->parameters as $key=>$param)
+                {{dd($param)}}
                 @include('reports.inputs.'.$param['type'])
             @endforeach
             <div class="form-group col-md-6">
