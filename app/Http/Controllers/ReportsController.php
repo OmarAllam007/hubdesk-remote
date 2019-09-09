@@ -9,6 +9,8 @@ use App\ReportFolder;
 use App\Reports\CustomReport;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 
 class ReportsController extends Controller
 {
@@ -22,14 +24,21 @@ class ReportsController extends Controller
         $this->authorize('reports');
 
         $filters = ['folder' => request('folder')];
-        $reports = Report::filter($filters)->paginate();
-        $custom_reports = CustomReport::where('folder_id',request('folder'))->paginate();
 
-        $reports = $reports->merge($custom_reports)->forPage(\request('page'),15);
+        $reports = Report::filter($filters)->get();
+        $custom_reports = CustomReport::where('folder_id',request('folder'))->get();
+
+        $reports = $reports->merge($custom_reports);
 
         $folders = ReportFolder::orderBy('name')->get();
 
         $core_reports = CoreReport::orderBy('name')->get();
+
+        $page = \request('page') ?: (Paginator::resolveCurrentPage() ?: 1);
+
+        $reports = (new LengthAwarePaginator(
+            $reports->forPage($page, 20)->values()->all(), $reports->count(), 20, $page, []))
+            ->withPath('');
 
         return view('reports.index', compact('reports', 'core_reports', 'folders'));
     }

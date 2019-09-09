@@ -35,7 +35,7 @@ class QueryReport extends ReportContract
 
         $pager->setPath('');
 
-        return view('reports.query_report', ['report'=>$this->report , 'items' => $pager,'columns'=> $this->columns]);
+        return view('reports.query_report.show', ['report'=>$this->report , 'items' => $pager,'columns'=> $this->columns]);
     }
 
     function excel()

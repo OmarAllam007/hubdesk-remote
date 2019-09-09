@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Report;
 use App\ReportFolder;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 
 class QueryReportController extends Controller
 {
@@ -16,8 +19,8 @@ class QueryReportController extends Controller
 
     public function create()
     {
-        $folders = ReportFolder::all()->pluck('name','id')->toArray();
-        return view('reports.query_report.create',compact('folders'));
+        $folders = ReportFolder::all()->pluck('name', 'id')->toArray();
+        return view('reports.query_report.create', compact('folders'));
     }
 
 
@@ -28,38 +31,49 @@ class QueryReportController extends Controller
 
         $report = Report::create($request->all());
 
-        return redirect()->route('reports.query_report.show',compact('report'));
+        return redirect()->route('reports.query_report.show', compact('report'));
     }
 
 
     public function show(Report $report, Request $request)
     {
-        dd($request->all());
-        $data = $this->prepareReportData($report);
-        return view('reports.query_report.show',compact('report'));
+        $data = [];
+        $columns = [];
+        if (count($request->filters)) {
+            $data = $this->prepareReportData($report);
+            $columns = collect($data->first())->keys();
+
+        }
+        $page = \request('page') ?: (Paginator::resolveCurrentPage() ?: 1);
+
+        $data = (new LengthAwarePaginator(
+            collect($data)->forPage($page, 20)->values()->all(), collect($data)->count(), 20, $page, []))
+            ->withPath('');
+
+        return view('reports.query_report.show', compact('report', 'data', 'columns'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Report  $report
+     * @param Report $report
      * @return \Illuminate\Http\Response
      */
     public function edit(Report $report)
     {
-        return view('reports.query_report.edit',compact('report'));
+        return view('reports.query_report.edit', compact('report'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $report
+     * @param \Illuminate\Http\Request $request
+     * @param int $report
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Report $report)
     {
-        $this->validate($request,['title'=>'required','folder_id'=>'required','query'=>'required']);
+        $this->validate($request, ['title' => 'required', 'folder_id' => 'required', 'query' => 'required']);
 
         $report->update($request->all());
         return redirect()->route('reports.index');
@@ -68,7 +82,7 @@ class QueryReportController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -79,18 +93,28 @@ class QueryReportController extends Controller
     private function prepareReportData(Report $report)
     {
         $params = $this->prepareParams($report->parameters);
-//        $data = \DB::raw(\DB::select($report->query,));
 
+        try {
+
+            $data = \DB::select(\DB::raw($report->query), $params);
+
+        } catch (\Exception $e) {
+            \Log::info($e->getMessage());
+        }
+
+        return collect($data);
     }
 
     private function prepareParams($parameters)
     {
         $params = [];
-        foreach ($parameters as $parameter){
-            if($params[$parameter['type']] == 'date') {
-
+        foreach ($parameters as $parameter) {
+            if ($parameter['type'] == 'date') {
+                $date = \request('filters')[$parameter['name']];
+                $params[$parameter['name']] = $date ? Carbon::parse($date)->format('Y-m-d h:s') : Carbon::now()->format('Y-m-d h:s');
             }
         }
+
         return $params;
     }
 }

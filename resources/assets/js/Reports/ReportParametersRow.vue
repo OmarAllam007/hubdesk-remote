@@ -1,7 +1,7 @@
 <template>
     <tr v-model="row">
         <td>
-            <input type="text" class="form-control" :name="`filters[${index}][param]`" v-model="row.title">
+            <input type="text" class="form-control" :name="`filters[${index}][name]`" v-model="row.title">
         </td>
         <td>
             <select :name="`filters[${index}][type]`" class="form-control" v-model="row.type">

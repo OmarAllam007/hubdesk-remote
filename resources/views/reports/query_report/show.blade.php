@@ -20,7 +20,7 @@
             </div>
         </form>
     </div>
-    @if(isset($columns) && $columns->count())
+    @if(collect($columns)->count())
         <div class="container-fluid report-container">
             <section class="">
                 <table class="table table-condensed report-head">
@@ -32,7 +32,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($items as $item)
+                    @foreach($data as $item)
                         <tr>
                             @foreach($item as $cell)
                                 <td>{!! $cell !!}</td>
@@ -45,7 +45,7 @@
 
 
             <div class="text-center">
-                {{ $items->appends($_GET)->links() }}
+                {{ $data->appends($_GET)->links() }}
             </div>
 
         </div>

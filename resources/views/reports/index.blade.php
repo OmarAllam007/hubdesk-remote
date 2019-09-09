@@ -27,6 +27,10 @@
                                 <a href="{{route('reports.custom_report.show', $report)}}">
                                     {{$report->title}}
                                 </a>
+                            @elseif($report->core_report_id == \App\Report::$QUERY_REPORT)
+                                <a href="{{route('reports.query_report.show', $report)}}">
+                                    {{$report->title}}
+                                </a>
                             @else
                                 <a href="{{route('reports.show', $report)}}">
                                     {{$report->title}}
@@ -40,10 +44,15 @@
                                 @if($report->type && $report->type == \App\Report::$CUSTOM_REPORT)
                                     <a href="{{route('reports.custom_report.show', $report)}}"><i
                                                 class="fa fa-eye"></i> {{t('View')}}
-                                        @else
-                                    </a><a href="{{route('reports.show', $report)}}"><i
+                                        @elseif($report->core_report_id == \App\Report::$QUERY_REPORT)
+                                    </a><a href="{{route('reports.query_report.show', $report)}}"><i
                                                 class="fa fa-eye"></i> {{t('View')}}
                                     </a>
+                                @else
+                                    <a href="{{route('reports.show', $report)}}">
+                                        {{$report->title}}
+                                    </a>
+
                                 @endif
                                 |
 
@@ -51,16 +60,12 @@
                                 @if($report->type && $report->type == \App\Report::$CUSTOM_REPORT)
                                     <a href="{{route('reports.custom_report.edit', $report)}}"><i
                                                 class="fa fa-edit"></i> {{t('Edit')}}</a>
+                                @elseif($report->core_report_id == \App\Report::$QUERY_REPORT)
+                                    <a href="{{route('reports.query.edit', $report)}}"><i
+                                                class="fa fa-edit"></i> {{t('Edit')}}</a>
                                 @else
-
-                                    @if($report->core_report_id == \App\Report::$QUERY_REPORT)
-                                        <a href="{{route('reports.query.edit', $report)}}"><i
-                                                    class="fa fa-edit"></i> {{t('Edit')}}</a>
-                                    @else
-                                        <a href="{{route('reports.edit', $report)}}"><i
-                                                    class="fa fa-edit"></i> {{t('Edit')}}</a>
-                                    @endif
-
+                                    <a href="{{route('reports.edit', $report)}}"><i
+                                                class="fa fa-edit"></i> {{t('Edit')}}</a>
                                 @endif
                             </article>
                         </td>
@@ -68,6 +73,7 @@
                 @endforeach
                 </tbody>
             </table>
+            {!! $reports->appends($_GET)->links() !!}
         </div>
     @else
         <div class="col-md-9">
