@@ -30,7 +30,7 @@ class NotifyTechnicainForNotViewedTicket implements ShouldQueue
 
         $now = Carbon::now();
 
-        if($now->diffInDays($this->ticket->created_at) >= 1){
+        if($this->ticket->technician && $now->diffInDays($this->ticket->created_at) >= 1){
             \Mail::to($this->ticket->technician->email)->send(new SendNotificationOfNotViewedTicket($this->ticket));
         }
     }

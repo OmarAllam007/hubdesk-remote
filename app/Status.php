@@ -47,7 +47,7 @@ class Status extends KModel
         $not = [6, $ticket->status_id,10];
 
         if (\Auth::user()->isTechnician() && $ticket->requester_id != \Auth::id()) {
-            $not[] = 8;
+//            $not[] = 8;
         } else {
             $not[] = 7;
             $not[] = 2;

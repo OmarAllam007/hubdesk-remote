@@ -33,6 +33,8 @@ class NewTicketJob extends Job implements ShouldQueue
             });
         }
 
-        dispatch(new TicketAssigned($this->ticket));
+        if($this->ticket->technician){
+            dispatch(new TicketAssigned($this->ticket));
+        }
     }
 }

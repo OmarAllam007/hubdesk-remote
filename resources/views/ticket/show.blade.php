@@ -128,7 +128,7 @@
                     @if($ticket->user_survey && $ticket->user_survey->is_submitted)
                         <li>
                             <small>
-                                <strong>{{t('Ticket Survey Score')}}: {{$ticket->user_survey->total_score}} </strong>
+                                <strong>{{t('Ticket Survey Score')}}: {{number_format($ticket->user_survey->total_score,2)}} </strong>
 
                             </small>
                         </li>
