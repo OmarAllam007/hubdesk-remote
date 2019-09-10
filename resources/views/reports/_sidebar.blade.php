@@ -13,7 +13,7 @@
                 <li role="separator" class="divider"></li>
                 <li><a href="{{route('reports.custom_report.create')}}">{{t('Custom Report')}}</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#">{{t('Scheduled Report')}}</a></li>
+                <li><a href="{{route('reports.scheduled_report.create')}}">{{t('Scheduled Report')}}</a></li>
             </ul>
         </div>
     </div>

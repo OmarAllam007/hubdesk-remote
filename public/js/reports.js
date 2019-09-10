@@ -11510,8 +11510,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 5 */,
-/* 6 */
+/* 5 */
 /***/ (function(module, exports) {
 
 /*
@@ -11593,7 +11592,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -11821,7 +11820,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -11918,6 +11917,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
+/* 8 */,
 /* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -11950,13 +11950,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ReportParameters_vue__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ReportParameters_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__ReportParameters_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ScheduledReport_vue__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ScheduledReport_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__ScheduledReport_vue__);
+
 
 
 
 window.app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     el: '#reports',
 
-    components: { ReportParameters: __WEBPACK_IMPORTED_MODULE_1__ReportParameters_vue___default.a }
+    components: { ReportParameters: __WEBPACK_IMPORTED_MODULE_1__ReportParameters_vue___default.a, ScheduledReport: __WEBPACK_IMPORTED_MODULE_2__ScheduledReport_vue___default.a }
 });
 
 /***/ }),
@@ -11968,7 +11971,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(18)
 }
-var Component = __webpack_require__(8)(
+var Component = __webpack_require__(7)(
   /* script */
   __webpack_require__(21),
   /* template */
@@ -12014,7 +12017,7 @@ var content = __webpack_require__(19);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(7)("15577b82", content, false, {});
+var update = __webpack_require__(6)("15577b82", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -12033,7 +12036,7 @@ if(false) {
 /* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(6)(false);
+exports = module.exports = __webpack_require__(5)(false);
 // imports
 
 
@@ -12146,7 +12149,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(23)
 }
-var Component = __webpack_require__(8)(
+var Component = __webpack_require__(7)(
   /* script */
   __webpack_require__(25),
   /* template */
@@ -12192,7 +12195,7 @@ var content = __webpack_require__(24);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(7)("7e7a819a", content, false, {});
+var update = __webpack_require__(6)("7e7a819a", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -12211,7 +12214,7 @@ if(false) {
 /* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(6)(false);
+exports = module.exports = __webpack_require__(5)(false);
 // imports
 
 
@@ -12394,6 +12397,204 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-b7db5664", module.exports)
+  }
+}
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(29)
+}
+var Component = __webpack_require__(7)(
+  /* script */
+  __webpack_require__(31),
+  /* template */
+  __webpack_require__(32),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-d119ef3e",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/Users/omarkhaled/code/hdesk/resources/assets/js/Reports/ScheduledReport.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ScheduledReport.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d119ef3e", Component.options)
+  } else {
+    hotAPI.reload("data-v-d119ef3e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(30);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(6)("ee7dd38a", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d119ef3e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ScheduledReport.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d119ef3e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ScheduledReport.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(5)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.report-label[data-v-d119ef3e] {\n    margin: 0 20px 0 0px;\n    border: 1px solid lightgray;\n    padding: 20px;\n    border-radius: 20px;\n    width: 110px;\n    height: 110px;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 31 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: "scheduled-report"
+});
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _vm._m(0)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('fieldset', [_c('legend', [_vm._v("Report Type")]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('div', {
+    staticClass: "report-label"
+  }, [_c('label', [_c('input', {
+    attrs: {
+      "type": "radio",
+      "name": "type"
+    }
+  }), _vm._v("\n                    Once\n                ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('div', {
+    staticClass: "report-label"
+  }, [_c('label', [_c('input', {
+    attrs: {
+      "type": "radio",
+      "name": "type"
+    }
+  }), _vm._v("\n                    Daily\n                ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('div', {
+    staticClass: "report-label"
+  }, [_c('label', [_c('input', {
+    attrs: {
+      "type": "radio",
+      "name": "type"
+    }
+  }), _vm._v("\n                    Weekly\n                ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group form-check-inline"
+  }, [_c('div', {
+    staticClass: "report-label"
+  }, [_c('label', [_c('input', {
+    attrs: {
+      "type": "radio",
+      "name": "type"
+    }
+  }), _vm._v("\n                    Monthly\n                ")])])])]), _vm._v(" "), _c('fieldset', [_c('legend', [_vm._v("Select Report")]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  })])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-d119ef3e", module.exports)
   }
 }
 

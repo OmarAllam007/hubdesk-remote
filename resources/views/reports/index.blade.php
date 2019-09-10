@@ -45,12 +45,12 @@
                                     <a href="{{route('reports.custom_report.show', $report)}}"><i
                                                 class="fa fa-eye"></i> {{t('View')}}
                                         @elseif($report->core_report_id == \App\Report::$QUERY_REPORT)
-                                    </a><a href="{{route('reports.query_report.show', $report)}}"><i
-                                                class="fa fa-eye"></i> {{t('View')}}
+                                    </a><a href="{{route('reports.query_report.show', $report)}}">
+                                        <i class="fa fa-eye"></i> {{t('View')}}
                                     </a>
                                 @else
                                     <a href="{{route('reports.show', $report)}}">
-                                        {{$report->title}}
+                                        <i class="fa fa-eye"></i>  {{t('View')}}
                                     </a>
 
                                 @endif
