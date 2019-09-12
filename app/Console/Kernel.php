@@ -8,6 +8,7 @@ use App\Console\Commands\EscalateTickets;
 use App\Console\Commands\KGSPendingApprovalsNotifications;
 use App\Console\Commands\LdapImportUser;
 use App\Console\Commands\RenewDocument;
+use App\Console\Commands\ScheduledReportsCommand;
 use App\Console\Commands\SyncByRequest;
 use App\Jobs\CleanErrorLog;
 use Illuminate\Console\Scheduling\Schedule;
@@ -35,6 +36,7 @@ class Kernel extends ConsoleKernel
         KGSPendingApprovalsNotifications::class,
         CheckForNotSubmittedSurveys::class,
         CheckForNotOpenedTickets::class,
+        ScheduledReportsCommand::class
     ];
 
     /**

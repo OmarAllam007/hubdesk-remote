@@ -9,12 +9,16 @@ class Report extends Model
 {
     protected $fillable = ['title', 'folder_id', 'core_report_id', 'parameters'];
 
-//    protected $dates = ['created_at' , 'updated_at'];
-    static $STANDARD_OR_QUERY_REPORT = 1;
-    static $QUERY_REPORT = 1;
-    public static $CUSTOM_REPORT = 2;
+    public static $CORE_REPORT = 1;
+    public static $QUERY_REPORT = 2;
+    public static $CUSTOM_REPORT = 3;
 
     protected $casts = ['parameters' => 'array'];
+
+    function folder()
+    {
+        return $this->belongsTo(ReportFolder::class);
+    }
 
     function scopeFilter(Builder $query, $filters)
     {

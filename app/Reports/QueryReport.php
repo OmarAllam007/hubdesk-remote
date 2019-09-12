@@ -18,6 +18,7 @@ class QueryReport extends ReportContract
         if(count($filters = request()->get('filters'))){
             $filters  = $this->getBindingsParams($params,$filters);
             $this->data = collect(\DB::select(\DB::raw($query),$filters));
+
             $this->columns = collect($this->data->first())->keys() ;
         }else{
             $this->data = collect();

@@ -12538,9 +12538,302 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: "scheduled-report"
+    props: ['reports', 'users'],
+    name: "scheduled-report",
+
+    data: function data() {
+        return {
+            report_type: 1,
+            all_week: false,
+            all_months: false
+        };
+    },
+
+    methods: {
+        change_report_type: function change_report_type(id) {
+            this.report_type = id;
+        },
+        select_all_days: function select_all_days() {
+            this.all_week = !this.all_week;
+        },
+        select_all_months: function select_all_months() {
+            this.all_months = !this.all_months;
+        }
+    }
 });
 
 /***/ }),
@@ -12548,47 +12841,671 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
+  return _c('div', [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col-md-2"
+  }, [_c('legend', [_vm._v("Report Type")]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('div', {
+    staticClass: "report-label"
+  }, [_c('label', [_c('input', {
+    attrs: {
+      "type": "radio",
+      "name": "type",
+      "value": "1",
+      "checked": ""
+    },
+    on: {
+      "click": function($event) {
+        _vm.change_report_type(1)
+      }
+    }
+  }), _vm._v("\n                        Once\n                    ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('div', {
+    staticClass: "report-label"
+  }, [_c('label', [_c('input', {
+    attrs: {
+      "type": "radio",
+      "name": "type",
+      "value": "2"
+    },
+    on: {
+      "click": function($event) {
+        _vm.change_report_type(2)
+      }
+    }
+  }), _vm._v("\n                        Daily\n                    ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('div', {
+    staticClass: "report-label"
+  }, [_c('label', [_c('input', {
+    attrs: {
+      "type": "radio",
+      "name": "type",
+      "value": "3"
+    },
+    on: {
+      "click": function($event) {
+        _vm.change_report_type(3)
+      }
+    }
+  }), _vm._v("\n                        Weekly\n                    ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('div', {
+    staticClass: "report-label"
+  }, [_c('label', [_c('input', {
+    attrs: {
+      "type": "radio",
+      "name": "type",
+      "value": "4"
+    },
+    on: {
+      "click": function($event) {
+        _vm.change_report_type(4)
+      }
+    }
+  }), _vm._v("\n                        Monthly\n                    ")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "col-md-10"
+  }, [(_vm.report_type == 1) ? _c('fieldset', {
+    attrs: {
+      "id": "once"
+    }
+  }, [_c('legend', [_vm._v("Once")]), _vm._v(" "), _vm._m(0)]) : _vm._e(), _vm._v(" "), (_vm.report_type == 2) ? _c('fieldset', {
+    attrs: {
+      "id": "daily"
+    }
+  }, [_c('legend', [_vm._v("Daily")]), _vm._v(" "), _c('div', {
+    staticClass: "panel panel-primary"
+  }, [_c('div', {
+    staticClass: "panel-body"
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "daily_hour"
+    }
+  }, [_vm._v("Hour:")]), _vm._v(" "), _c('select', {
+    staticClass: "form-control",
+    attrs: {
+      "name": "scheduled_time[hour]",
+      "id": "daily_hour"
+    }
+  }, _vm._l((12), function(n, i) {
+    return _c('option', {
+      domProps: {
+        "value": _vm.index
+      }
+    }, [_vm._v(_vm._s(i))])
+  }))]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "daily_mins"
+    }
+  }, [_vm._v("Minutes:")]), _vm._v(" "), _c('select', {
+    staticClass: "form-control",
+    attrs: {
+      "name": "scheduled_time[minutes]",
+      "id": "daily_mins"
+    }
+  }, _vm._l((60), function(n, i) {
+    return _c('option', {
+      domProps: {
+        "value": _vm.index
+      }
+    }, [_vm._v(_vm._s(i))])
+  }))])])])]) : _vm._e(), _vm._v(" "), (_vm.report_type == 3) ? _c('fieldset', {
+    attrs: {
+      "id": "weekly"
+    }
+  }, [_c('legend', [_vm._v("Weekly")]), _vm._v(" "), _c('div', {
+    staticClass: "panel panel-primary"
+  }, [_c('div', {
+    staticClass: "panel-body"
+  }, [_c('fieldset', [_c('legend', [_c('label', {
+    attrs: {
+      "for": "everyday"
+    }
+  }, [_c('input', {
+    attrs: {
+      "type": "checkbox",
+      "name": "everyday",
+      "id": "everyday"
+    },
+    domProps: {
+      "checked": _vm.all_week
+    },
+    on: {
+      "click": function($event) {
+        _vm.select_all_days()
+      }
+    }
+  }), _vm._v("\n                                    Everyday\n                                ")])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "saturday"
+    }
+  }, [_c('input', {
+    attrs: {
+      "type": "checkbox",
+      "name": "scheduled_time[days][]",
+      "value": "6",
+      "id": "saturday"
+    },
+    domProps: {
+      "checked": _vm.all_week
+    }
+  }), _vm._v("\n                                    Saturday\n                                ")]), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "sunday"
+    }
+  }, [_c('input', {
+    attrs: {
+      "type": "checkbox",
+      "name": "scheduled_time[days][]",
+      "value": "0",
+      "id": "sunday"
+    },
+    domProps: {
+      "checked": _vm.all_week
+    }
+  }), _vm._v("\n                                    Sunday\n                                ")]), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "monday"
+    }
+  }, [_c('input', {
+    attrs: {
+      "type": "checkbox",
+      "name": "scheduled_time[days][]",
+      "value": "1",
+      "id": "monday"
+    },
+    domProps: {
+      "checked": _vm.all_week
+    }
+  }), _vm._v("\n                                    Monday\n                                ")]), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "tuesday"
+    }
+  }, [_c('input', {
+    attrs: {
+      "type": "checkbox",
+      "name": "scheduled_time[days][]",
+      "value": "2",
+      "id": "tuesday"
+    },
+    domProps: {
+      "checked": _vm.all_week
+    }
+  }), _vm._v("\n                                    Tuesday\n                                ")]), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "wednesday"
+    }
+  }, [_c('input', {
+    attrs: {
+      "type": "checkbox",
+      "name": "scheduled_time[days][]",
+      "value": "3",
+      "id": "wednesday"
+    },
+    domProps: {
+      "checked": _vm.all_week
+    }
+  }), _vm._v("\n                                    Wednesday\n                                ")]), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "thursday"
+    }
+  }, [_c('input', {
+    attrs: {
+      "type": "checkbox",
+      "name": "scheduled_time[days][]",
+      "value": "4",
+      "id": "thursday"
+    },
+    domProps: {
+      "checked": _vm.all_week
+    }
+  }), _vm._v("\n                                    Thursday\n                                ")]), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "friday"
+    }
+  }, [_c('input', {
+    attrs: {
+      "type": "checkbox",
+      "name": "scheduled_time[days][]",
+      "value": "5",
+      "id": "friday"
+    },
+    domProps: {
+      "checked": _vm.all_week
+    }
+  }), _vm._v("\n                                    Friday\n                                ")])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "weekly_hour"
+    }
+  }, [_vm._v("Hour:")]), _vm._v(" "), _c('select', {
+    staticClass: "form-control",
+    attrs: {
+      "name": "scheduled_time[hour]",
+      "id": "weekly_hour"
+    }
+  }, _vm._l((13), function(n, i) {
+    return _c('option', {
+      domProps: {
+        "value": i
+      }
+    }, [_vm._v(_vm._s(i))])
+  }))]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "weekly_hour"
+    }
+  }, [_vm._v("Minutes:")]), _vm._v(" "), _c('select', {
+    staticClass: "form-control",
+    attrs: {
+      "name": "scheduled_time[minutes]",
+      "id": "weekly_minutes"
+    }
+  }, _vm._l((60), function(n, i) {
+    return _c('option', {
+      domProps: {
+        "value": i
+      }
+    }, [_vm._v(_vm._s(i))])
+  }))])])])])]) : _vm._e(), _vm._v(" "), (_vm.report_type == 4) ? _c('fieldset', {
+    attrs: {
+      "id": "monthly"
+    }
+  }, [_c('legend', [_vm._v("Monthly")]), _vm._v(" "), _c('div', {
+    staticClass: "panel panel-primary"
+  }, [_c('div', {
+    staticClass: "panel-body"
+  }, [_c('fieldset', [_c('legend', [_c('label', {
+    attrs: {
+      "for": "every_month"
+    }
+  }, [_c('input', {
+    attrs: {
+      "type": "checkbox",
+      "name": "every_month",
+      "id": "every_month"
+    },
+    domProps: {
+      "checked": _vm.all_months
+    },
+    on: {
+      "click": function($event) {
+        _vm.select_all_months()
+      }
+    }
+  }), _vm._v("\n                                    Every Month\n                                ")])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "january"
+    }
+  }, [_c('input', {
+    attrs: {
+      "type": "checkbox",
+      "name": "scheduled_time[months][]",
+      "value": "1",
+      "id": "january"
+    },
+    domProps: {
+      "checked": _vm.all_months
+    }
+  }), _vm._v("\n                                    January\n                                ")]), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "february"
+    }
+  }, [_c('input', {
+    attrs: {
+      "type": "checkbox",
+      "name": "scheduled_time[months][]",
+      "value": "2",
+      "id": "february"
+    },
+    domProps: {
+      "checked": _vm.all_months
+    }
+  }), _vm._v("\n                                    February\n                                ")]), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "march"
+    }
+  }, [_c('input', {
+    attrs: {
+      "type": "checkbox",
+      "name": "scheduled_time[months][]",
+      "value": "3",
+      "id": "march"
+    },
+    domProps: {
+      "checked": _vm.all_months
+    }
+  }), _vm._v("\n                                    March\n                                ")]), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "april"
+    }
+  }, [_c('input', {
+    attrs: {
+      "type": "checkbox",
+      "name": "scheduled_time[months][]",
+      "value": "4",
+      "id": "april"
+    },
+    domProps: {
+      "checked": _vm.all_months
+    }
+  }), _vm._v("\n                                    April\n                                ")]), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "may"
+    }
+  }, [_c('input', {
+    attrs: {
+      "type": "checkbox",
+      "name": "scheduled_time[months][]",
+      "value": "5",
+      "id": "may"
+    },
+    domProps: {
+      "checked": _vm.all_months
+    }
+  }), _vm._v("\n                                    May\n                                ")]), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "june"
+    }
+  }, [_c('input', {
+    attrs: {
+      "type": "checkbox",
+      "name": "scheduled_time[months][]",
+      "value": "6",
+      "id": "june"
+    },
+    domProps: {
+      "checked": _vm.all_months
+    }
+  }), _vm._v("\n                                    June\n                                ")]), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "july"
+    }
+  }, [_c('input', {
+    attrs: {
+      "type": "checkbox",
+      "name": "scheduled_time[months][]",
+      "value": "7",
+      "id": "july"
+    },
+    domProps: {
+      "checked": _vm.all_months
+    }
+  }), _vm._v("\n                                    July\n                                ")]), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "august"
+    }
+  }, [_c('input', {
+    attrs: {
+      "type": "checkbox",
+      "name": "scheduled_time[months][]",
+      "value": "8",
+      "id": "august"
+    },
+    domProps: {
+      "checked": _vm.all_months
+    }
+  }), _vm._v("\n                                    August\n                                ")]), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "september"
+    }
+  }, [_c('input', {
+    attrs: {
+      "type": "checkbox",
+      "name": "scheduled_time[months][]",
+      "value": "9",
+      "id": "september"
+    },
+    domProps: {
+      "checked": _vm.all_months
+    }
+  }), _vm._v("\n                                    September\n                                ")]), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "october"
+    }
+  }, [_c('input', {
+    attrs: {
+      "type": "checkbox",
+      "name": "scheduled_time[months][]",
+      "value": "10",
+      "id": "october"
+    },
+    domProps: {
+      "checked": _vm.all_months
+    }
+  }), _vm._v("\n                                    October\n                                ")]), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "november"
+    }
+  }, [_c('input', {
+    attrs: {
+      "type": "checkbox",
+      "name": "scheduled_time[months][]",
+      "value": "11",
+      "id": "november"
+    },
+    domProps: {
+      "checked": _vm.all_months
+    }
+  }), _vm._v("\n                                    November\n                                ")]), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "december"
+    }
+  }, [_c('input', {
+    attrs: {
+      "type": "checkbox",
+      "name": "scheduled_time[months][]",
+      "value": "12",
+      "id": "december"
+    },
+    domProps: {
+      "checked": _vm.all_months
+    }
+  }), _vm._v("\n                                    December\n                                ")])]), _vm._v(" "), _c('div', {
+    staticClass: "form-inline"
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "monthly_day"
+    }
+  }, [_vm._v("Day:")]), _vm._v(" "), _c('select', {
+    staticClass: "form-control",
+    attrs: {
+      "name": "scheduled_time[day]",
+      "id": "monthly_day"
+    }
+  }, _vm._l((31), function(index) {
+    return _c('option', {
+      domProps: {
+        "value": index
+      }
+    }, [_vm._v(_vm._s(index))])
+  }))]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "monthly_hour"
+    }
+  }, [_vm._v("Hour:")]), _vm._v(" "), _c('select', {
+    staticClass: "form-control",
+    attrs: {
+      "name": "scheduled_time[hour]",
+      "id": "monthly_hour"
+    }
+  }, _vm._l((12), function(n, i) {
+    return _c('option', {
+      domProps: {
+        "value": i
+      }
+    }, [_vm._v(_vm._s(i))])
+  }))]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "monthly_hour"
+    }
+  }, [_vm._v("Minutes:")]), _vm._v(" "), _c('select', {
+    staticClass: "form-control",
+    attrs: {
+      "name": "scheduled_time[minutes]",
+      "id": "monthly_minutes"
+    }
+  }, _vm._l((60), function(n, i) {
+    return _c('option', {
+      domProps: {
+        "value": i
+      }
+    }, [_vm._v(_vm._s(i))])
+  }))])])])])])]) : _vm._e()])]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('fieldset', {
+    staticClass: "col-md-6"
+  }, [_c('legend', [_vm._v("Email Information")]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "user_id"
+    }
+  }, [_vm._v("Send To:")]), _vm._v(" "), _c('select', {
+    staticClass: "form-control select2",
+    attrs: {
+      "name": "to[]",
+      "id": "user_id",
+      "multiple": "",
+      "size": "20"
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": "",
+      "disabled": "disabled"
+    }
+  }, [_vm._v("Select User")]), _vm._v(" "), _vm._l((_vm.users), function(user) {
+    return _c('option', {
+      domProps: {
+        "value": user.id
+      }
+    }, [_vm._v("\n                        " + _vm._s(user.name) + "\n                    ")])
+  })], 2)]), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2)]), _vm._v(" "), _c('div', {
+    staticClass: "col-md-6"
+  }, [_c('fieldset', [_c('legend', [_vm._v("Select Report")]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "report_id"
+    }
+  }, [_vm._v("Report:")]), _vm._v(" "), _c('select', {
+    staticClass: "form-control",
+    attrs: {
+      "name": "report_id",
+      "id": "report_id"
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": ""
+    }
+  }, [_vm._v("Select Report")]), _vm._v(" "), _vm._l((_vm.reports), function(folder, folder_name) {
+    return _c('optgroup', {
+      attrs: {
+        "label": folder_name
+      }
+    }, _vm._l((folder), function(report) {
+      return _c('option', {
+        domProps: {
+          "value": report.id
+        }
+      }, [_vm._v("\n                                " + _vm._s(report.title) + "\n                            ")])
+    }))
+  })], 2)]), _vm._v(" "), _vm._m(3)])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('fieldset', [_c('legend', [_vm._v("Report Type")]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
+  return _c('div', {
+    staticClass: "panel panel-primary"
   }, [_c('div', {
-    staticClass: "report-label"
-  }, [_c('label', [_c('input', {
-    attrs: {
-      "type": "radio",
-      "name": "type"
-    }
-  }), _vm._v("\n                    Once\n                ")])])]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
+    staticClass: "panel-body"
   }, [_c('div', {
-    staticClass: "report-label"
-  }, [_c('label', [_c('input', {
-    attrs: {
-      "type": "radio",
-      "name": "type"
-    }
-  }), _vm._v("\n                    Daily\n                ")])])]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
-  }, [_c('div', {
-    staticClass: "report-label"
-  }, [_c('label', [_c('input', {
+  }, [_c('label', {
     attrs: {
-      "type": "radio",
-      "name": "type"
+      "for": "once_date"
     }
-  }), _vm._v("\n                    Weekly\n                ")])])]), _vm._v(" "), _c('div', {
-    staticClass: "form-group form-check-inline"
-  }, [_c('div', {
-    staticClass: "report-label"
-  }, [_c('label', [_c('input', {
+  }, [_vm._v("Date:")]), _vm._v(" "), _c('input', {
+    staticClass: "form-control",
     attrs: {
-      "type": "radio",
-      "name": "type"
+      "type": "datetime-local",
+      "name": "scheduled_time[date]",
+      "id": "once_date"
     }
-  }), _vm._v("\n                    Monthly\n                ")])])])]), _vm._v(" "), _c('fieldset', [_c('legend', [_vm._v("Select Report")]), _vm._v(" "), _c('div', {
+  })])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
     staticClass: "form-group"
-  })])])
+  }, [_c('label', {
+    attrs: {
+      "for": "subject"
+    }
+  }, [_vm._v("Subject")]), _vm._v(" "), _c('input', {
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "name": "subject",
+      "id": "subject"
+    }
+  })])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "message"
+    }
+  }), _vm._v(" "), _c('textarea', {
+    staticClass: "form-control",
+    attrs: {
+      "name": "message",
+      "id": "message",
+      "cols": "50",
+      "rows": "10"
+    }
+  })])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "format"
+    }
+  }, [_vm._v("Format:")]), _vm._v(" "), _c('select', {
+    staticClass: "form-control",
+    attrs: {
+      "name": "format",
+      "id": "format"
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": ""
+    }
+  }, [_vm._v("Select Format")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "1"
+    }
+  }, [_vm._v(" PDF")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "2"
+    }
+  }, [_vm._v(" Excel")])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {

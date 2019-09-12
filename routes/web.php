@@ -199,7 +199,6 @@ Route::group(['prefix'=>'reports'],function (){
     Route::get('scheduled_report/{report}/edit','ScheduledReportController@edit')->name('reports.scheduled_report.edit');
     Route::post('scheduled_report/{report}/update','ScheduledReportController@update')->name('reports.scheduled_report.update');
     Route::get('scheduled_report/{report}/show','ScheduledReportController@show')->name('reports.scheduled_report.show');
-
 });
 
 Route::get('/business-unit', 'BusinessUnitController@index')->name('business-unit.index');
