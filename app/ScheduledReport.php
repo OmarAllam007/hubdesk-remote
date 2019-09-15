@@ -15,6 +15,10 @@ class ScheduledReport extends Model
         'scheduled_time' => 'array'
     ];
 
+
+    static $PDF = 1;
+    static $EXCEL = 2;
+
     static $ONCE = 1;
     static $DAILY = 2;
     static $WEEKLY = 3;
@@ -27,13 +31,14 @@ class ScheduledReport extends Model
 
     function report()
     {
-        return $this->belongsTo(Report::class,'report_id');
+        return $this->belongsTo(Report::class, 'report_id');
     }
 
     function shouldSend()
     {
         $now = Carbon::parse(Carbon::now()->format('Y-m-d h:i'));
         $scheduled_date = $this->getScheduledDate();
+
         $should_send = ($scheduled_date && $scheduled_date->equalTo($now));
 
         if ($should_send) {

@@ -175,7 +175,9 @@ return [
         \Laravel\Socialite\SocialiteServiceProvider::class,
         Illuminate\Notifications\NotificationServiceProvider::class,
         KGS\Providers\KGSProvider::class,
-        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider'
+        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+        Barryvdh\DomPDF\ServiceProvider::class,
+
     ],
 
     /*
@@ -226,6 +228,8 @@ return [
         'Socialite' => \Laravel\Socialite\Facades\Socialite::class,
         'Notification' => Illuminate\Support\Facades\Notification::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-        'Alert' => RealRashid\SweetAlert\Facades\Alert::class
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
+
     ],
 ];

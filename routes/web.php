@@ -1,26 +1,42 @@
 <?php
+
+use App\Jobs\SendScheduleReport;
+use App\ScheduledReport;
+use Barryvdh\DomPDF\PDF;
+use Illuminate\Console\Scheduling\Schedule;
+
 if(env('LOGIN_AS')){
     Auth::loginUsingId(env('LOGIN_AS'));
 }
 
 Route::get('quwa_report',function (){
-    $query = DB::query();
 
-        $query->select(['ti.id as Ticket ID','ti.subject as Subject','req.name as Requester','bus.name as Business unit',
-        'ca.name as Category','sub.name as Subcategory','st.name as Status','ti.created_at as Created Date',
-        'ti.due_date as Due Date','sla.due_days as SLA In Days'])
-        ->leftJoin('users as req','req.id','=','ti.requester_id')
-        ->leftJoin('users as tech','tech.id','=','ti.technician_id')
-        ->leftJoin('business_units as bus','bus.id','=','req.business_unit_id')
-        ->leftJoin('categories as ca','ca.id','=','ti.category_id')
-        ->leftJoin('subcategories as sub','sub.id','=','ti.subcategory_id')
-        ->leftJoin('statuses as st','st.id','=','ti.status_id')
-        ->leftJoin('slas as sla','sla.id','=','ti.sla_id')
-        ->from('tickets as ti');
+    $reports = ScheduledReport::all();
 
+    foreach ($reports as $report){
+        dispatch(new SendScheduleReport($report));
 
-    $data = $query->limit(10)->get()->keyBy('Ticket ID');
-    dd($data);
+        if ($report->shouldSend()) {
+
+        }
+    }
+    //    $query = DB::query();
+//
+//        $query->select(['ti.id as Ticket ID','ti.subject as Subject','req.name as Requester','bus.name as Business unit',
+//        'ca.name as Category','sub.name as Subcategory','st.name as Status','ti.created_at as Created Date',
+//        'ti.due_date as Due Date','sla.due_days as SLA In Days'])
+//        ->leftJoin('users as req','req.id','=','ti.requester_id')
+//        ->leftJoin('users as tech','tech.id','=','ti.technician_id')
+//        ->leftJoin('business_units as bus','bus.id','=','req.business_unit_id')
+//        ->leftJoin('categories as ca','ca.id','=','ti.category_id')
+//        ->leftJoin('subcategories as sub','sub.id','=','ti.subcategory_id')
+//        ->leftJoin('statuses as st','st.id','=','ti.status_id')
+//        ->leftJoin('slas as sla','sla.id','=','ti.sla_id')
+//        ->from('tickets as ti');
+//
+//
+//    $data = $query->limit(10)->get()->keyBy('Ticket ID');
+//    dd($data);
 //        ->map(function ($ticket){
 //        return collect($ticket)->toArray();
 //    });
