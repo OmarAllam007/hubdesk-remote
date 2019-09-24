@@ -2,11 +2,19 @@
 
 @section('header')
     <h4 class="pull-left">{{$report->title}}</h4>
-    <a href="{{route('reports.index')}}" class="btn  btn-default pull-right"><i
-                class="fa fa-chevron-left"></i></a>
-    <a href="{{route('reports.custom_report.edit',compact('report'))}}" class="btn btn-warning pull-right">
-        <i class="fa fa-edit"></i>
-    </a>
+    <div class="btn-group-toggle">
+        <a href="{{route('reports.index')}}" class="btn  btn-default">
+            <i
+                    class="fa fa-chevron-left"></i></a>
+        <a href="{{route('reports.custom_report.edit',compact('report'))}}" class="btn btn-warning">
+            <i class="fa fa-edit"></i>
+        </a>
+
+        <a href="?excel" class="btn btn-success">
+
+            <i class="fa fa-file-excel-o"></i>
+        </a>
+    </div>
 @stop
 
 
@@ -20,7 +28,7 @@
 
         <div class="row">
             @if($report->parameters['summary_by'])
-                 @foreach(array_keys($report->parameters['summary_by']) as $key)
+                @foreach(array_keys($report->parameters['summary_by']) as $key)
                     <div class="col-md-6">
                         <canvas id="chart#{{$key}}"></canvas>
                     </div>
@@ -33,33 +41,34 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     @if($report->parameters['group_by'] && count($report->parameters['summary_by']))
         <script>
-            @foreach(array_keys($report->parameters['summary_by']) as $key)
-                    var {{$key}} = document.getElementById('chart#{{$key}}').getContext('2d');
-            @endforeach
+                    @foreach(array_keys($report->parameters['summary_by']) as $key)
+            var {{$key}} =
+            document.getElementById('chart#{{$key}}').getContext('2d');
+                    @endforeach
 
             var labels = {!! json_encode(array_keys($graph_data)) !!};
             var data = {!! json_encode(array_values($graph_data)) !!}
 
             @foreach(array_keys($report->parameters['summary_by']) as $key)
 
-             new Chart({{$key}}, {
-                    type: '{{$key}}',
-                    data: {
-                        datasets: [{
-                            data: data,
-                            backgroundColor: ["#ef652f", "#fecc46", "#fee7b2", "#4babaf", "#aed5d7", "#676766",
-                                "#ef652f", "#fecc46", "#fee7b2", "#4babaf", "#aed5d7", "#676766",
-                                "#ef652f", "#fecc46", "#fee7b2", "#4babaf", "#aed5d7", "#676766",
-                                "#ef652f", "#fecc46", "#fee7b2", "#4babaf", "#aed5d7", "#676766",
-                                "#ef652f", "#fecc46", "#fee7b2", "#4babaf", "#aed5d7", "#676766",
-                                "#ef652f", "#fecc46", "#fee7b2", "#4babaf", "#aed5d7", "#676766"]
-                        }],
+            new Chart({{$key}}, {
+                type: '{{$key}}',
+                data: {
+                    datasets: [{
+                        data: data,
+                        backgroundColor: ["#ef652f", "#fecc46", "#fee7b2", "#4babaf", "#aed5d7", "#676766",
+                            "#ef652f", "#fecc46", "#fee7b2", "#4babaf", "#aed5d7", "#676766",
+                            "#ef652f", "#fecc46", "#fee7b2", "#4babaf", "#aed5d7", "#676766",
+                            "#ef652f", "#fecc46", "#fee7b2", "#4babaf", "#aed5d7", "#676766",
+                            "#ef652f", "#fecc46", "#fee7b2", "#4babaf", "#aed5d7", "#676766",
+                            "#ef652f", "#fecc46", "#fee7b2", "#4babaf", "#aed5d7", "#676766"]
+                    }],
 
-                        labels: labels
-                    },
+                    labels: labels
+                },
 
 
-                });
+            });
             @endforeach
         </script>
     @endif

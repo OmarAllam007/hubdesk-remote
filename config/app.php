@@ -176,7 +176,8 @@ return [
         Illuminate\Notifications\NotificationServiceProvider::class,
         KGS\Providers\KGSProvider::class,
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
-        Barryvdh\DomPDF\ServiceProvider::class,
+//        Barryvdh\DomPDF\ServiceProvider::class,
+        niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
 
     ],
 
@@ -229,7 +230,10 @@ return [
         'Notification' => Illuminate\Support\Facades\Notification::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
-        'PDF' => Barryvdh\DomPDF\Facade::class,
+//        'PDF' => Barryvdh\DomPDF\Facade::class,
+        'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class
 
     ],
+
+    'chrome_path' => env('CHROME_PATH', '/usr/bin/chromium-browser')
 ];

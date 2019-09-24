@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ReportFolder extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = ['name','user_id'];
 
 
     function reports(){

@@ -4,22 +4,26 @@
     <h2>{{ $report->title }}</h2>
     <a href=""></a>
     <div class="btn-toolbar">
+
         <a href="?excel" class="btn btn-success btn-sm"><i class="fa fa-file-excel-o"></i> {{ t('Excel') }}</a>
         <a href="/reports" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i> {{ t('Back') }}</a>
     </div>
 @endsection
 
 @section('body')
-    <div>
-        <form action="" method="get">
-            @foreach($report->parameters as $key=>$param)
-                @include('reports.inputs.'.$param['type'])
-            @endforeach
-            <div class="form-group col-md-6">
-                <button type="submit" class="btn btn-success">{{t('Generate')}}</button>
-            </div>
-        </form>
-    </div>
+    @if($report->paramaters)
+        <div>
+            <form action="" method="get">
+                @foreach($report->parameters as $key=>$param)
+                    @include('reports.inputs.'.$param['type'])
+                @endforeach
+                <div class="form-group col-md-6">
+                    <button type="submit" class="btn btn-success">{{t('Generate')}}</button>
+                </div>
+            </form>
+        </div>
+    @endif
+
     @if(collect($columns)->count())
         <div class="container-fluid report-container">
             <section class="">

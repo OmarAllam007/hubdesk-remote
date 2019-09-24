@@ -53,11 +53,12 @@ class CustomReportController extends Controller
         $params['business_unit_filter'] = $request->get('business_unit_filter');
         $params['technicians_filter'] = $request->get('technicians_filter');
 
-        $report = CustomReport::create([
+        $report = Report::create([
             'title' => $request->title,
             'folder_id' => $request->folder_id,
             'user_id' => auth()->id(),
-            'parameters' => $params
+            'parameters' => $params,
+            'type'=>Report::$CUSTOM_REPORT,
         ]);
 
 
@@ -70,21 +71,16 @@ class CustomReportController extends Controller
      * @param CustomReport $report
      * @return \Illuminate\Http\Response
      */
-    public function show(CustomReport $report)
+    public function show(Report $report)
     {
-        $custom_report = new CustomReportFields($report);
-        $data = $custom_report->getData();
-        $graph_data = null;
+        $r = new CustomReport($report);
 
-        /** @var Collection $data */
-        if ($report->parameters['group_by']) {
-            $graph_data = $data->map(function ($value, $key) {
-                return $graph_data[$key] = $value->count();
-            })->toArray();
+        if(\request()->exists('excel')){
+            $file  = $r->excel();
+            $file->download('xlsx');
         }
 
-
-        return view('reports.custom_report.show', compact('data', 'report', 'graph_data'));
+        return $r->html();
     }
 
     /**
@@ -93,7 +89,7 @@ class CustomReportController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(CustomReport $report)
+    public function edit(Report $report)
     {
         $folder = ReportFolder::all();
 
@@ -107,7 +103,7 @@ class CustomReportController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CustomReport $report)
+    public function update(Request $request, Report $report)
     {
 //        dd($request->all());
 

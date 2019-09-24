@@ -13,3 +13,7 @@
 
     {{Form::close()}}
 @stop
+
+@section('javascript')
+    <script src="{{asset('js/reports.js')}}"></script>
+@endsection

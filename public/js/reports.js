@@ -12810,11 +12810,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['reports', 'users'],
+    props: ['reports', 'users', 'report'],
     name: "scheduled-report",
-
+    created: function created() {
+        if (this.report) {
+            this.report_type = this.report.type;
+        }
+    },
     data: function data() {
         return {
             report_type: 1,
@@ -12832,6 +12844,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         select_all_months: function select_all_months() {
             this.all_months = !this.all_months;
+        },
+        selectUser: function selectUser(id) {
+            if (this.report) {
+                return this.report.to.indexOf("" + id + "") > -1;
+            }
+            return false;
+        },
+        selectReport: function selectReport(r) {
+            if (this.report) {
+                return r.id == this.report.id;
+            }
+            return false;
         }
     }
 });
@@ -12856,6 +12880,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": "1",
       "checked": ""
     },
+    domProps: {
+      "checked": _vm.report_type == 1
+    },
     on: {
       "click": function($event) {
         _vm.change_report_type(1)
@@ -12870,6 +12897,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "radio",
       "name": "type",
       "value": "2"
+    },
+    domProps: {
+      "checked": _vm.report_type == 2
     },
     on: {
       "click": function($event) {
@@ -12886,6 +12916,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "name": "type",
       "value": "3"
     },
+    domProps: {
+      "checked": _vm.report_type == 3
+    },
     on: {
       "click": function($event) {
         _vm.change_report_type(3)
@@ -12900,6 +12933,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "radio",
       "name": "type",
       "value": "4"
+    },
+    domProps: {
+      "checked": _vm.report_type == 4
     },
     on: {
       "click": function($event) {
@@ -13396,10 +13432,44 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("Select User")]), _vm._v(" "), _vm._l((_vm.users), function(user) {
     return _c('option', {
       domProps: {
-        "value": user.id
+        "value": user.id,
+        "selected": _vm.selectUser(user.id)
       }
     }, [_vm._v("\n                        " + _vm._s(user.name) + "\n                    ")])
-  })], 2)]), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2)]), _vm._v(" "), _c('div', {
+  })], 2)]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "subject"
+    }
+  }, [_vm._v("Subject")]), _vm._v(" "), _c('input', {
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "name": "subject",
+      "id": "subject"
+    },
+    domProps: {
+      "value": _vm.report ? _vm.report.subject : ''
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "message"
+    }
+  }), _vm._v(" "), _c('textarea', {
+    staticClass: "form-control",
+    attrs: {
+      "name": "message",
+      "id": "message",
+      "cols": "50",
+      "rows": "10"
+    },
+    domProps: {
+      "textContent": _vm._s(_vm.report ? _vm.report.message : '')
+    }
+  })])]), _vm._v(" "), _c('div', {
     staticClass: "col-md-6"
   }, [_c('fieldset', [_c('legend', [_vm._v("Select Report")]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
@@ -13422,14 +13492,45 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "label": folder_name
       }
-    }, _vm._l((folder), function(report) {
+    }, _vm._l((folder), function(r) {
       return _c('option', {
         domProps: {
-          "value": report.id
+          "value": r.id,
+          "selected": _vm.selectReport(_vm.report)
         }
-      }, [_vm._v("\n                                " + _vm._s(report.title) + "\n                            ")])
+      }, [_vm._v("\n                                " + _vm._s(r.title) + "\n                            ")])
     }))
-  })], 2)]), _vm._v(" "), _vm._m(3)])])])])
+  })], 2)]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "format"
+    }
+  }, [_vm._v("Format:")]), _vm._v(" "), _c('select', {
+    staticClass: "form-control",
+    attrs: {
+      "name": "format",
+      "id": "format"
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": ""
+    }
+  }, [_vm._v("Select Format")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "1"
+    },
+    domProps: {
+      "selected": _vm.report ? _vm.report.format == 1 : false
+    }
+  }, [_vm._v(" PDF")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "2"
+    },
+    domProps: {
+      "selected": _vm.report ? _vm.report.format == 2 : false
+    }
+  }, [_vm._v(" Excel")])])])])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "panel panel-primary"
@@ -13449,63 +13550,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "once_date"
     }
   })])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    attrs: {
-      "for": "subject"
-    }
-  }, [_vm._v("Subject")]), _vm._v(" "), _c('input', {
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "name": "subject",
-      "id": "subject"
-    }
-  })])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    attrs: {
-      "for": "message"
-    }
-  }), _vm._v(" "), _c('textarea', {
-    staticClass: "form-control",
-    attrs: {
-      "name": "message",
-      "id": "message",
-      "cols": "50",
-      "rows": "10"
-    }
-  })])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    attrs: {
-      "for": "format"
-    }
-  }, [_vm._v("Format:")]), _vm._v(" "), _c('select', {
-    staticClass: "form-control",
-    attrs: {
-      "name": "format",
-      "id": "format"
-    }
-  }, [_c('option', {
-    attrs: {
-      "value": ""
-    }
-  }, [_vm._v("Select Format")]), _vm._v(" "), _c('option', {
-    attrs: {
-      "value": "1"
-    }
-  }, [_vm._v(" PDF")]), _vm._v(" "), _c('option', {
-    attrs: {
-      "value": "2"
-    }
-  }, [_vm._v(" Excel")])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {

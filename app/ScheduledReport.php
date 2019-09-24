@@ -2,17 +2,25 @@
 
 namespace App;
 
+use App\Reports\CustomReport;
+use App\Reports\QueryReport;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property Carbon last_scheduled
+ *
+ */
 class ScheduledReport extends Model
 {
     protected $fillable = ['user_id', 'report_id', 'type', 'to', 'subject',
-        'message', 'scheduled_time', 'last_scheduled'];
+        'message', 'scheduled_time', 'last_scheduled','format'];
+
+//    protected $dates = ['last_scheduled'];
 
     protected $casts = [
         'to' => 'array',
-        'scheduled_time' => 'array'
+        'scheduled_time' => 'array',
     ];
 
 
@@ -34,42 +42,79 @@ class ScheduledReport extends Model
         return $this->belongsTo(Report::class, 'report_id');
     }
 
+    function getReportTypeAttribute()
+    {
+        if ($this->report->type == Report::$CORE_REPORT) {
+            return;
+        } elseif ($this->report->type == Report::$QUERY_REPORT) {
+            return new QueryReport($this->report);
+        } else {
+            return new CustomReport($this->report);
+        }
+    }
+
     function shouldSend()
     {
-        $now = Carbon::parse(Carbon::now()->format('Y-m-d h:i'));
-        $scheduled_date = $this->getScheduledDate();
 
+        $now = Carbon::parse(Carbon::now()->format('Y-m-d h:ia'));
+
+        if ($this->last_scheduled) {
+            $scheduled_date = $this->next_schedule_date;
+        } else {
+            $scheduled_date = $this->scheduled_date;
+        }
+
+        $not_generated = ($now->greaterThan($scheduled_date) && $now->greaterThan($this->last_scheduled));
         $should_send = ($scheduled_date && $scheduled_date->equalTo($now));
 
-        if ($should_send) {
+        if ($should_send || $not_generated) {
             return true;
         }
 
         return false;
     }
 
-    private function getScheduledDate()
-    {
 
-        if ($this->type == self::$ONCE) {
-            $scheduled_date = $this->getOnceDate();
-        } elseif ($this->type == self::$DAILY) {
-            $scheduled_date = $this->getDailyDate();
-        } elseif ($this->type == self::$WEEKLY) {
-            $scheduled_date = $this->getWeeklyDate();
-        } else {
-            $scheduled_date = $this->getMonthlyDate();
+    function getNextScheduleDateAttribute()
+    {
+        $last_date = Carbon::parse($this->last_scheduled);
+
+        if (!$last_date) {
+            return;
         }
 
-        return Carbon::parse($scheduled_date->format('Y-m-d h:i'));
+        if ($this->type == self::$DAILY) {
+            return $last_date->addDay();
+        } elseif ($this->type == self::$WEEKLY) {
+            return $last_date->addWeek();
+        } elseif ($this->type == self::$MONTHLY) {
+            return $last_date->addMonth();
+        }
+
     }
 
-    private function getOnceDate()
+
+    public function getScheduledDateAttribute()
+    {
+        if ($this->type == self::$ONCE) {
+            $scheduled_date = $this->once_date;
+        } elseif ($this->type == self::$DAILY) {
+            $scheduled_date = $this->daily_date;
+        } elseif ($this->type == self::$WEEKLY) {
+            $scheduled_date = $this->weekly_date;
+        } else {
+            $scheduled_date = $this->monthly_date;
+        }
+
+        return Carbon::parse($scheduled_date->format('Y-m-d h:ia'));
+    }
+
+    private function getOnceDateAttribute()
     {
         return Carbon::parse($this->scheduled_time['date']);
     }
 
-    private function getDailyDate()
+    private function getDailyDateAttribute()
     {
         $day = Carbon::now()->day;
         $hour = $this->scheduled_time['hour'];
@@ -78,7 +123,7 @@ class ScheduledReport extends Model
         return Carbon::create()->day($day)->hour($hour)->minute($minutes);
     }
 
-    private function getWeeklyDate()
+    private function getWeeklyDateAttribute()
     {
         $scheduled_days = $this->scheduled_time['days'];
 
@@ -93,7 +138,7 @@ class ScheduledReport extends Model
 
     }
 
-    private function getMonthlyDate()
+    private function getMonthlyDateAttribute()
     {
         $scheduled_months = $this->scheduled_time['months'];
         $scheduled_day = $this->scheduled_time['day'];
@@ -108,5 +153,17 @@ class ScheduledReport extends Model
                 ->hour($scheduled_hour)->minute($scheduled_minutes);
         }
 
+    }
+
+
+    function getReportTypeStrAttribute()
+    {
+        $types = [
+            self::$ONCE => 'Once',
+            self::$DAILY => 'Daily',
+            self::$WEEKLY => 'Weekly',
+            self::$MONTHLY => 'Monthly',
+        ];
+        return $types[$this->type];
     }
 }

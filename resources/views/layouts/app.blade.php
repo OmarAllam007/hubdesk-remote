@@ -124,7 +124,7 @@
 <script src="{{asset('/js/tinymce/tinymce.min.js')}}"></script>
 
 
-@if (alert()->ready())
+{{--@if (alert()->ready())
     <script>
         swal({
             title: "{!! alert()->message() !!}",
@@ -134,7 +134,7 @@
             showConfirmButton: false,
         });
     </script>
-@endif
+@endif--}}
 
 @yield('javascript')
 

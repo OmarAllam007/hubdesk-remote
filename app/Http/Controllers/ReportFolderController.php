@@ -36,7 +36,7 @@ class ReportFolderController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,['name'=>'required']);
-
+        $request['user_id'] = auth()->id();
         ReportFolder::create($request->all());
 
         return redirect()->route('reports.index');

@@ -7,6 +7,7 @@ use App\CoreReport;
 use App\Report;
 use App\ReportFolder;
 use App\Reports\CustomReport;
+use App\Reports\QueryReport;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -23,22 +24,25 @@ class ReportsController extends Controller
     {
         $this->authorize('reports');
 
-        $filters = ['folder' => request('folder')];
+        $reports = collect();
 
-        $reports = Report::filter($filters)->get();
-        $custom_reports = CustomReport::where('folder_id',request('folder'))->get();
+        if($filters = \request('folder')){
+            $reports = Report::filter($filters)->get();
 
-        $reports = $reports->merge($custom_reports);
+            $page = \request('page') ?: (Paginator::resolveCurrentPage() ?: 1);
+            $reports = (new LengthAwarePaginator(
+                $reports->forPage($page, 20)->values()->all(), $reports->count(), 20, $page, []))
+                ->withPath('');
+        }
+
 
         $folders = ReportFolder::orderBy('name')->get();
 
         $core_reports = CoreReport::orderBy('name')->get();
 
-        $page = \request('page') ?: (Paginator::resolveCurrentPage() ?: 1);
 
-        $reports = (new LengthAwarePaginator(
-            $reports->forPage($page, 20)->values()->all(), $reports->count(), 20, $page, []))
-            ->withPath('');
+
+
 
         return view('reports.index', compact('reports', 'core_reports', 'folders'));
     }
@@ -67,6 +71,7 @@ class ReportsController extends Controller
 
         $report = new Report($request->only('title', 'core_report_id', 'folder_id', 'parameters'));
         $report->user_id = auth()->id();
+        $report->type = Report::$CORE_REPORT;
         $report->save();
 
         flash('Report has been saved', 'success');
@@ -77,10 +82,20 @@ class ReportsController extends Controller
     function show(Report $report)
     {
         $this->authorize('reports');
-        
-        $core_report_class = $report->core_report->class_name;
 
-        $r = new $core_report_class($report);
+        if($report->is_core_report){
+            $core_report_class = $report->core_report->class_name;
+            $r = new $core_report_class($report);
+
+        }elseif ($report->is_query_report){
+            $r = new QueryReport($report);
+        }else{
+            $r = new CustomReport($report);
+        }
+
+        if($r->errors->count()){
+            return view('reports.errors',['errors'=>$r->errors]);
+        }
 
         if (request()->exists('excel')) {
             return $r->excel();

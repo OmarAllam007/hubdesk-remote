@@ -1,6 +1,8 @@
 <?php
 
 use App\Jobs\SendScheduleReport;
+use App\Report;
+use App\Reports\QueryReport;
 use App\ScheduledReport;
 use Barryvdh\DomPDF\PDF;
 use Illuminate\Console\Scheduling\Schedule;
@@ -9,13 +11,16 @@ if(env('LOGIN_AS')){
     Auth::loginUsingId(env('LOGIN_AS'));
 }
 
-Route::get('quwa_report',function (){
+Route::get('quwa_reports',function (){
+//
+//    $report = Report::where('id',127)->first();
 
+//    return view('emails.report.pdf_report',['columns'=>['one','two'],'data'=>collect(["one"=>["one"]])]);
     $reports = ScheduledReport::all();
 
     foreach ($reports as $report){
-        dispatch(new SendScheduleReport($report));
 
+        dispatch(new SendScheduleReport($report));
         if ($report->shouldSend()) {
 
         }
@@ -210,11 +215,13 @@ Route::group(['prefix'=>'reports'],function (){
     Route::get('custom_report/{report}/show','CustomReportController@show')->name('reports.custom_report.show');
 
 
+    Route::get('scheduled_report/all','ScheduledReportController@index')->name('reports.scheduled_report.index');
     Route::get('scheduled_report/create','ScheduledReportController@create')->name('reports.scheduled_report.create');
     Route::post('scheduled_report/store','ScheduledReportController@store')->name('reports.scheduled_report.store');
     Route::get('scheduled_report/{report}/edit','ScheduledReportController@edit')->name('reports.scheduled_report.edit');
     Route::post('scheduled_report/{report}/update','ScheduledReportController@update')->name('reports.scheduled_report.update');
     Route::get('scheduled_report/{report}/show','ScheduledReportController@show')->name('reports.scheduled_report.show');
+    Route::post('scheduled_report/{report}/execute','ScheduledReportController@execute')->name('reports.scheduled_report.execute');
 });
 
 Route::get('/business-unit', 'BusinessUnitController@index')->name('business-unit.index');

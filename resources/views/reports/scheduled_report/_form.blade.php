@@ -1,7 +1,7 @@
 <div class="row"  id="reports">
     <div class="col-md-12">
         {{csrf_field()}}
-        <scheduled-report :reports="{{$reports}}" :users="{{$users}}" >
+        <scheduled-report :reports="{{$reports}}" :users="{{$users}}" @if(isset($report)) :report="{{$report ?? ''}}" @endif>
 
         </scheduled-report>
         <div class="form-group">

@@ -8,12 +8,17 @@
             </button>
             <ul class="dropdown-menu">
                 <li><a href="{{route('reports.create')}}">{{t('Standard Report')}}</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="{{route('reports.query.create')}}">{{t('Query Report')}}</a></li>
+
+                @if(auth()->user()->isAdmin())
+                    <li role="separator" class="divider"></li>
+                    <li><a href="{{route('reports.query.create')}}">{{t('Query Report')}}</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="{{route('reports.scheduled_report.create')}}">{{t('Scheduled Report')}}</a></li>
+                @endif
+
                 <li role="separator" class="divider"></li>
                 <li><a href="{{route('reports.custom_report.create')}}">{{t('Custom Report')}}</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="{{route('reports.scheduled_report.create')}}">{{t('Scheduled Report')}}</a></li>
+
             </ul>
         </div>
     </div>
@@ -28,14 +33,21 @@
                 {{t('Folders')}}
             </h4>
         </div>
-
-        <section class="list-group">
-            @foreach($folders as $folder)
-                <a href="/reports?folder={{$folder->id}}"
-                   class="list-group-item {{request('folder') == $folder->id? 'active' : ''}}">
-                    <i class="fa fa-fw fa-folder{{request('folder') == $folder->id? '-open' : ''}}"></i> {{$folder->name}}
-                </a>
-            @endforeach
-        </section>
+        @if($folders = auth()->user()->folders)
+            <section class="list-group">
+                @foreach($folders as $folder)
+                    <a href="/reports?folder={{$folder->id}}"
+                       class="list-group-item {{request('folder') == $folder->id? 'active' : ''}}">
+                        <i class="fa fa-fw fa-folder{{request('folder') == $folder->id? '-open' : ''}}"></i> {{$folder->name}}
+                    </a>
+                @endforeach
+                @if(auth()->user()->isAdmin())
+                        <a href="{{route('reports.scheduled_report.index')}}"
+                           class="list-group-item">
+                            <i class="fa fa-fw fa-folder"></i> {{t('Scheduled Reports')}}
+                        </a>
+                @endif
+            </section>
+        @endif
     </div>
 </div>

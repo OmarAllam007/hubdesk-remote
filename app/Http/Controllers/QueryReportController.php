@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Report;
 use App\ReportFolder;
+use App\Reports\QueryReport;
 use Carbon\Carbon;
+use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
@@ -26,8 +28,15 @@ class QueryReportController extends Controller
 
     public function store(Request $request)
     {
-        $request['core_report_id'] = 1;
+        $this->validate($request, ['title' => 'required', 'folder_id' => 'required', 'query' => 'required']);
+
+        if (!$this->valid_query($request->get('query'))) {
+            return redirect()->route('reports.index');
+        }
+
         $request['parameters'] = $request->filters;
+        $request['type'] = Report::$QUERY_REPORT;
+        $request['user_id'] = auth()->id();
 
         $report = Report::create($request->all());
 
@@ -37,20 +46,14 @@ class QueryReportController extends Controller
 
     public function show(Report $report, Request $request)
     {
-        $data = [];
-        $columns = [];
-        if (count($request->filters)) {
-            $data = $this->prepareReportData($report);
-            $columns = collect($data->first())->keys();
 
+        $r = new QueryReport($report);
+
+        if ($request->exists('excel')) {
+            return $r->excel()->download('xlsx');
         }
-        $page = \request('page') ?: (Paginator::resolveCurrentPage() ?: 1);
 
-        $data = (new LengthAwarePaginator(
-            collect($data)->forPage($page, 20)->values()->all(), collect($data)->count(), 20, $page, []))
-            ->withPath('');
-
-        return view('reports.query_report.show', compact('report', 'data', 'columns'));
+        return $r->html();
     }
 
     /**
@@ -74,6 +77,14 @@ class QueryReportController extends Controller
     public function update(Request $request, Report $report)
     {
         $this->validate($request, ['title' => 'required', 'folder_id' => 'required', 'query' => 'required']);
+
+        if (!$this->valid_query($request->get('query'))) {
+            return redirect()->route('reports.index');
+        }
+
+        $request['parameters'] = $request->filters;
+        $request['type'] = Report::$QUERY_REPORT;
+        $request['user_id'] = auth()->id();
 
         $report->update($request->all());
         return redirect()->route('reports.index');
@@ -107,6 +118,10 @@ class QueryReportController extends Controller
 
     private function prepareParams($parameters)
     {
+        if (!$parameters) {
+            return [];
+        }
+
         $params = [];
         foreach ($parameters as $parameter) {
             if ($parameter['type'] == 'date') {
@@ -116,5 +131,10 @@ class QueryReportController extends Controller
         }
 
         return $params;
+    }
+
+    private function valid_query($query)
+    {
+        return !str_contains($query, ['insert ', 'update ', 'delete ', 'truncate ']);
     }
 }

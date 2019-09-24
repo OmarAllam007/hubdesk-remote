@@ -1,3 +1,4 @@
+\
 <template>
     <div>
         <div class="row">
@@ -6,7 +7,8 @@
                 <div class="form-group">
                     <div class="report-label">
                         <label>
-                            <input type="radio" name="type" value="1" checked @click="change_report_type(1)">
+                            <input type="radio" name="type" value="1" checked @click="change_report_type(1)"
+                                   :checked="report_type == 1">
                             Once
                         </label>
                     </div>
@@ -14,7 +16,8 @@
                 <div class="form-group">
                     <div class="report-label">
                         <label>
-                            <input type="radio" name="type" value="2" class="" @click="change_report_type(2)">
+                            <input type="radio" name="type" value="2" class="" @click="change_report_type(2)"
+                                   :checked="report_type == 2">
                             Daily
                         </label>
                     </div>
@@ -22,7 +25,8 @@
                 <div class="form-group">
                     <div class="report-label">
                         <label>
-                            <input type="radio" name="type" value="3" class="" @click="change_report_type(3)">
+                            <input type="radio" name="type" value="3" class="" @click="change_report_type(3)"
+                                   :checked="report_type == 3">
                             Weekly
                         </label>
                     </div>
@@ -30,7 +34,8 @@
                 <div class="form-group">
                     <div class="report-label">
                         <label>
-                            <input type="radio" name="type" value="4" @click="change_report_type(4)">
+                            <input type="radio" name="type" value="4" @click="change_report_type(4)"
+                                   :checked="report_type == 4">
                             Monthly
                         </label>
                     </div>
@@ -227,7 +232,7 @@
                                     </label>
 
                                     <label for="december">
-                                        <input type="checkbox" name="scheduled_time[months][]"value="12"  id="december"
+                                        <input type="checkbox" name="scheduled_time[months][]" value="12" id="december"
                                                :checked="all_months">
                                         December
                                     </label>
@@ -250,7 +255,8 @@
 
                                     <div class="form-group">
                                         <label for="monthly_hour">Minutes:</label>
-                                        <select name="scheduled_time[minutes]" id="monthly_minutes" class="form-control">
+                                        <select name="scheduled_time[minutes]" id="monthly_minutes"
+                                                class="form-control">
                                             <option :value="i" v-for="(n,i) in 60">{{i}}</option>
                                         </select>
                                     </div>
@@ -271,7 +277,7 @@
                     <label for="user_id">Send To:</label>
                     <select name="to[]" id="user_id" class="form-control select2" multiple size="20">
                         <option value="" disabled="disabled">Select User</option>
-                        <option v-for="user in users" :value="user.id">
+                        <option v-for="user in users" :value="user.id" :selected="selectUser(user.id)">
                             {{user.name}}
                         </option>
 
@@ -280,11 +286,13 @@
 
                 <div class="form-group">
                     <label for="subject">Subject</label>
-                    <input type="text" class="form-control" name="subject" id="subject">
+                    <input type="text" class="form-control" name="subject" id="subject"
+                           :value="report ? report.subject :''">
                 </div>
                 <div class="form-group">
                     <label for="message"></label>
-                    <textarea name="message" id="message" cols="50" rows="10" class="form-control"></textarea>
+                    <textarea name="message" id="message" cols="50" rows="10" class="form-control"
+                              v-text="report ? report.message : ''"></textarea>
                 </div>
             </fieldset>
 
@@ -296,8 +304,8 @@
                         <select name="report_id" id="report_id" class="form-control">
                             <option value="">Select Report</option>
                             <optgroup v-for="(folder, folder_name) in reports" :label="folder_name">
-                                <option v-for="report in folder" :value="report.id">
-                                    {{report.title}}
+                                <option v-for="r in folder" :value="r.id" :selected="selectReport(report)">
+                                    {{r.title}}
                                 </option>
                             </optgroup>
                         </select>
@@ -306,8 +314,8 @@
                         <label for="format">Format:</label>
                         <select name="format" id="format" class="form-control">
                             <option value="">Select Format</option>
-                            <option value="1"> PDF</option>
-                            <option value="2"> Excel</option>
+                            <option value="1" :selected="report ? report.format == 1 : false"> PDF</option>
+                            <option value="2" :selected="report ? report.format == 2 : false"> Excel</option>
                         </select>
                     </div>
 
@@ -320,9 +328,13 @@
 
 <script>
     export default {
-        props: ['reports', 'users'],
+        props: ['reports', 'users', 'report'],
         name: "scheduled-report",
-
+        created() {
+            if (this.report) {
+                this.report_type = this.report.type
+            }
+        },
         data() {
             return {
                 report_type: 1,
@@ -339,6 +351,19 @@
             },
             select_all_months() {
                 this.all_months = !this.all_months
+            },
+            selectUser(id) {
+                if (this.report) {
+                    return this.report.to.indexOf("" + id + "") > -1
+                }
+                return false;
+            },
+
+            selectReport(r) {
+                if (this.report) {
+                    return r.id == this.report.id
+                }
+                return false;
             }
 
         }

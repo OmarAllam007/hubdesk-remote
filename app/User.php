@@ -204,5 +204,10 @@ class User extends Authenticatable implements CanResetPassword
 
         return $this->groups->contains('id', $role_id);
     }
+
+    function folders()
+    {
+        return $this->hasMany(ReportFolder::class);
+    }
 }
   

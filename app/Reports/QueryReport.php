@@ -2,50 +2,67 @@
 
 namespace App\Reports;
 
+use App\Helpers\ChromePrint;
 use App\Report;
 use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
+use Illuminate\Database\QueryException;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\App;
 use Maatwebsite\Excel\Classes\LaravelExcelWorksheet;
 use Maatwebsite\Excel\Writers\LaravelExcelWriter;
+use Illuminate\Support\Facades\Storage;
 
 class QueryReport extends ReportContract
 {
     protected $columns;
     protected $row = 1;
+    public $errors;
 
     function run()
     {
-        $query = $this->parameters['query'] ?? $this->report['query'];
-        $params = $this->parameters['parameters'] ?? $this->report['parameters'];
-        $filters = request()->get('filters');
+        try {
+            $query = $this->parameters['query'] ?? $this->report['query'];
+            $params = $this->parameters['parameters'] ?? $this->report['parameters'];
+            $filters = request()->get('filters');
 
-        if (!$filters) {
-            $filters = $this->fillParameters($params);
-        } else {
-            $filters = $this->getBindingsParams($params, $filters);
+            if (!$filters) {
+                $filters = $this->fillParameters($params);
+            } else {
+                $filters = $this->getBindingsParams($params, $filters);
+            }
+
+            $this->data = collect(\DB::select(\DB::raw($query), $filters));
+            $this->columns = collect($this->data->first())->keys();
+        } catch (\Illuminate\Database\QueryException  $e) {
+            $errors = collect();
+            $this->data = collect();
+            $errors->push($e);
+            $this->errors = $errors;
         }
-
-        $this->data = collect(\DB::select(\DB::raw($query), $filters));
-        $this->columns = collect($this->data->first())->keys();
     }
 
 
     function html()
     {
+        $this->run();
         $page = LengthAwarePaginator::resolveCurrentPage();
-        $items = $this->data->forPage($page, $this->perPage);
-        $pager = new LengthAwarePaginator($items, $this->data->count(), $this->perPage);
+        $data = $this->data->forPage($page, $this->perPage);
+        $pager = new LengthAwarePaginator($data, $this->data->count(), $this->perPage);
 
         $pager->setPath('');
 
-        return view('reports.query_report.show', ['report' => $this->report, 'items' => $pager, 'columns' => $this->columns]);
+        return view('reports.query_report.show', ['report' => $this->report, 'data' => $pager,
+            'columns' => $this->columns]);
     }
 
     function excel()
     {
         $this->run();
+
+        if($this->query_not_valid){
+            return;
+        }
 
         $data = $this->data;
 
@@ -74,15 +91,16 @@ class QueryReport extends ReportContract
 
     function pdf()
     {
-        $this->run();
+        $content = view('emails.report.pdf_report', ['report' => $this->report,
+            'data' => $this->data, 'columns' => $this->columns]);
 
-        $path = storage_path('app/reports/report.pdf');
+        $filepath = storage_path('app/' . uniqid('report') . '.html');
+        file_put_contents($filepath, $content->render());
 
-        $pdf = \PDF::loadView('emails.report.pdf_report',
-            ['report' => $this->report,
-            'data' => $this->data, 'columns' => $this->columns])->save($path);
+        $print = new ChromePrint($filepath);
+        $file = $print->print();
 
-        return $pdf;
+        return $file;
     }
 
     function csv()
@@ -107,6 +125,7 @@ class QueryReport extends ReportContract
 
     private function fillParameters($params)
     {
+        if (!$params) return [];
         $filters = [];
 
         foreach ($params as $key => $param) {

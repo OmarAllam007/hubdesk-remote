@@ -25,11 +25,10 @@ class ScheduledReportsCommand extends Command
     {
         $reports = ScheduledReport::all();
 
-        foreach ($reports as $report){
-            dispatch(new SendScheduleReport($report));
-
+        /** @var TYPE_NAME $report */
+        foreach ($reports as $report) {
             if ($report->shouldSend()) {
-
+                dispatch(new SendScheduleReport($report));
             }
         }
     }
