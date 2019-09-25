@@ -27,7 +27,7 @@
 
         <div class="panel-heading">
             <a href="{{route('folder.create')}}" class="btn btn-sm btn-success pull-right">
-                <i class="fa fa-plus"></i>
+                <i class="fa fa-plus"></i> Create Folder
             </a>
             <h4>
                 {{t('Folders')}}

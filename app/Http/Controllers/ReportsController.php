@@ -54,7 +54,7 @@ class ReportsController extends Controller
         $core_reports = CoreReport::where('name', '!=', 'Query Report')->orderBy('name')->get();
         $technicians = User::technicians()->orderBy('name')->get(['id', 'name']);
         $categories = Category::orderBy('name')->get(['id', 'name']);
-        $folders = ReportFolder::orderBy('name')->get(['id', 'name']);
+        $folders = auth()->user()->folders()->orderBy('name')->get(['id', 'name']);
 
         return view('reports.create', compact('core_reports', 'technicians', 'categories', 'folders'));
     }
@@ -93,7 +93,7 @@ class ReportsController extends Controller
             $r = new CustomReport($report);
         }
 
-        if($r->errors->count()){
+        if($r->errors && $r->errors->count()){
             return view('reports.errors',['errors'=>$r->errors]);
         }
 

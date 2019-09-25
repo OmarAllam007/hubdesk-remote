@@ -26,6 +26,8 @@ abstract class ReportContract
     /** @var int */
     protected $perPage = 50;
 
+    public $errors;
+
     public function __construct(Report $report)
     {
         $this->report = $report;

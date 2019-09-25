@@ -5,7 +5,7 @@
 
         <div class="form-group {{$errors->has('folder_id')? 'has-error' : ''}}">
             {{Form::label('folder_id', 'Folder', ['class' => 'control-label'])}}
-            {{Form::select('folder_id',\App\ReportFolder::all()->pluck('name','id')->prepend('Select Folder',""),$report->folder_id ?? null,['class'=>'form-control'])}}
+            {{Form::select('folder_id',$folders,$report->folder_id ?? null,['class'=>'form-control'])}}
             @if ($errors->has('folder_id'))
                 <div class="error-message">{{$errors->first('folder_id')}}</div>
             @endif

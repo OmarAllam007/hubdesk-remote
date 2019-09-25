@@ -60,9 +60,6 @@ class QueryReport extends ReportContract
     {
         $this->run();
 
-        if($this->query_not_valid){
-            return;
-        }
 
         $data = $this->data;
 

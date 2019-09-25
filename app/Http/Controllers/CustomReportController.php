@@ -29,9 +29,10 @@ class CustomReportController extends Controller
      */
     public function create()
     {
-        $folder = ReportFolder::all();
+        $folders = auth()->user()->folders
+            ->pluck('name', 'id')->prepend('Select Folder','');
 
-        return view('reports.custom_report.create', compact('folder'));
+        return view('reports.custom_report.create', compact('folders'));
     }
 
     /**
@@ -91,9 +92,10 @@ class CustomReportController extends Controller
      */
     public function edit(Report $report)
     {
-        $folder = ReportFolder::all();
+        $folders = auth()->user()->folders
+            ->pluck('name', 'id')->prepend('Select Folder','');
 
-        return view('reports.custom_report.edit', compact('folder', 'report'));
+        return view('reports.custom_report.edit', compact('folders', 'report'));
     }
 
     /**

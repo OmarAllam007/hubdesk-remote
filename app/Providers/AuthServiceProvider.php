@@ -46,7 +46,7 @@ class AuthServiceProvider extends ServiceProvider
 
         \Gate::define('reports', function ($user) {
             // TODO: make this check if the user have privilege and remove hard coded values.
-            return $user->isTechnician();
+            return $user->isReporting();
         });
 
         \Gate::define('show_business_document', function ($user) {

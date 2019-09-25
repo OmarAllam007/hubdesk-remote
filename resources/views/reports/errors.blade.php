@@ -1,10 +1,13 @@
 @extends('layouts.app')
 
 @section('header')
-    <a href=""></a>
-    <div class="btn-toolbar float-right">
+    <div style="
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+">
 {{--        <a href="?excel" class="btn btn-success btn-sm"><i class="fa fa-file-excel-o"></i> {{ t('Excel') }}</a>--}}
-        <a href="/reports" class="btn btn-default btn-sm "><i class="fa fa-chevron-left"></i> {{ t('Back') }}</a>
+        <a href="/reports" class="btn btn-default btn-sm float-left"><i class="fa fa-chevron-left"></i> {{ t('Back') }}</a>
     </div>
 @endsection
 
