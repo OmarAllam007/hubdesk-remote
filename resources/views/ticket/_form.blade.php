@@ -85,12 +85,9 @@ $sla = $ticketObj->getSla($category,$subcategory ?? null ,$item ?? null);
     </div>
 
     <div class="row">
+
         <div id="CustomFields">
-            @include('custom-fields.render', [
-                'category' => App\Category::find(old('category_id')),
-                'subcategory' => App\Category::find(old('subcategory_id')),
-                'item' => App\Item::find(old('item_id'))
-            ])
+            @include('custom-fields.render')
         </div>
     </div>
 
@@ -110,36 +107,6 @@ $sla = $ticketObj->getSla($category,$subcategory ?? null ,$item ?? null);
             {{Form::hidden('category_id',$category->id)}}
             {{Form::hidden('subcategory_id',$subcategory->id ?? null)}}
             {{Form::hidden('item_id',$item->id ?? null)}}
-            {{--<div class="form-group form-group-sm {{$errors->has('category_id')? 'has-error' : ''}}">--}}
-            {{--{{ Form::label('category_id', t('Category'), ['class' => 'control-label']) }}--}}
-            {{--{{ Form::select('category_id', App\Category::selection('Select Category'), request('category_id'), ['class' => 'form-control', 'v-model' => 'category','readonly'=>'readonly']) }}--}}
-            {{--@if ($errors->has('category_id'))--}}
-            {{--<div class="error-message">{{$errors->first('category_id')}}</div>--}}
-            {{--@endif--}}
-            {{--</div>--}}
-
-
-            {{--<select class="form-control" name="subcategory_id" id="subcategory_id" v-model="subcategory"--}}
-            {{--readonly>--}}
-            {{--<option value="">Select Subcategory</option>--}}
-            {{--<option v-for="(subcategory, id) in subcategories" :value="subcategory.id">@{{subcategory.name}}--}}
-            {{--</option>--}}
-            {{--</select>--}}
-            {{--@if ($errors->has('subcategory_id'))--}}
-            {{--<div class="error-message">{{$errors->first('subcategory_id')}}</div>--}}
-            {{--@endif--}}
-            {{--</div>--}}
-
-            {{--<div class="form-group form-group-sm {{$errors->has('item_id')? 'has-error' : ''}}">--}}
-            {{--{{ Form::label('item_id', t('Item'), ['class' => 'control-label']) }}--}}
-            {{--<select class="form-control" name="item_id" id="item_id" v-model="item" readonly>--}}
-            {{--<option value="">Select Item</option>--}}
-            {{--<option v-for="(item, id) in items" :value="item.id" v-text="item.name"></option>--}}
-            {{--</select>--}}
-            {{--@if ($errors->has('item_id'))--}}
-            {{--<div class="error-message">{{$errors->first('item_id')}}</div>--}}
-            {{--@endif--}}
-            {{--</div>--}}
         </div>
     </div>
 
@@ -160,55 +127,6 @@ $sla = $ticketObj->getSla($category,$subcategory ?? null ,$item ?? null);
 
     <hr class="form-divider">
 
-    {{--<div class="col-sm-6">
-        <div class="form-group form-group-sm {{$errors->has('impact_id')? 'has-error' : ''}}">
-            {{ Form::label('impact_id', 'Impact', ['class' => 'control-label']) }}
-            {{ Form::select('impact_id', App\Impact::selection('Select Impact'), null, ['class' => 'form-control']) }}
-            @if ($errors->has('impact_id'))
-                <div class="error-message">{{$errors->first('impact_id')}}</div>
-            @endif
-        </div>
-        <div class="form-group form-group-sm {{$errors->has('priority_id')? 'has-error' : ''}}">
-            {{ Form::label('priority_id', 'Priority', ['class' => 'control-label']) }}
-            {{ Form::select('priority_id', App\Priority::selection('Select Priority'), null, ['class' => 'form-control']) }}
-            @if ($errors->has('priority_id'))
-                <div class="error-message">{{$errors->first('priority_id')}}</div>
-            @endif
-        </div>
-    </div>--}}
-
-    {{--@if (Auth::user()->isSupport())--}}
-    {{--<div class="col-sm-6">--}}
-    {{--<div class="form-group form-group-sm {{$errors->has('group_id')? 'has-error' : ''}}">--}}
-    {{--{{ Form::label('group_id', t('Group'), ['class' => 'control-label']) }}--}}
-    {{--{{ Form::select('group_id', App\Group::support()->selection('Select Group'), null, ['class' => 'form-control']) }}--}}
-    {{--@if ($errors->has('group_id'))--}}
-    {{--<div class="error-message">{{$errors->first('group')}}</div>--}}
-    {{--@endif--}}
-    {{--</div>--}}
-
-    {{--<div class="form-group form-group-sm {{$errors->has('technician_id')? 'has-error' : ''}}">--}}
-    {{--{{ Form::label('technician_id', t('Technician'), ['class' => 'control-label']) }}--}}
-    {{--{{ Form::select('technician_id', App\User::technicians()->selection('Select Technician'), null, ['class' => 'form-control']) }}--}}
-    {{--@if ($errors->has('technician_id'))--}}
-    {{--<div class="error-message">{{$errors->first('technician_id')}}</div>--}}
-    {{--@endif--}}
-    {{--</div>--}}
-
-    {{--<div class="form-group form-group-sm {{$errors->has('urgency_id')? 'has-error' : ''}}">--}}
-    {{--{{ Form::label('urgency_id', t('Urgency'), ['class' => 'control-label']) }}--}}
-    {{--{{ Form::select('urgency_id', App\Urgency::selection('Select Urgency'), null, ['class' => 'form-control']) }}--}}
-    {{--@if ($errors->has('urgency_id'))--}}
-    {{--<div class="error-message">{{$errors->first('urgency_id')}}</div>--}}
-    {{--@endif--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--@endif--}}
-
-
-    {{--<ul class="list-unstyled">--}}
-    {{--<li class="text-danger">{{$error}}</li>--}}
-    {{--</ul>--}}
 </div>
 <div class="row">
     <div class="col-sm-12">
