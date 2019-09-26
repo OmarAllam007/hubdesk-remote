@@ -2,6 +2,7 @@
 
 use App\Jobs\SendScheduleReport;
 use App\Report;
+use App\Reports\MonthlyKPIWithApprovals;
 use App\Reports\QueryReport;
 use App\ScheduledReport;
 use Barryvdh\DomPDF\PDF;
@@ -12,6 +13,9 @@ if(env('LOGIN_AS')){
 }
 
 Route::get('quwa_reports',function (){
+    $r = Report::find(146);
+    $report = new MonthlyKPIWithApprovals($r);
+    return $report->html();
 //
 //    $report = Report::where('id',127)->first();
 
