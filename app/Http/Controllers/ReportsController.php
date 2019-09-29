@@ -40,10 +40,6 @@ class ReportsController extends Controller
 
         $core_reports = CoreReport::orderBy('name')->get();
 
-
-
-
-
         return view('reports.index', compact('reports', 'core_reports', 'folders'));
     }
 
@@ -98,8 +94,23 @@ class ReportsController extends Controller
         }
 
         if (request()->exists('excel')) {
-            return $r->excel();
+            $file =  $r->excel();
+            $file->download('xlsx');
         }
+        if (request()->exists('pdf')) {
+            $file =  $r->pdf();
+
+            if(!$file){
+                return;
+            }
+
+            $headers = array(
+                'Content-Type: application/pdf',
+            );
+
+            return \Response::download($file, str_slug($report->title).'.pdf', $headers);
+        }
+
 
         return $r->html();
     }

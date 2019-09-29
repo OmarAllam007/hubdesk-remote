@@ -45,7 +45,8 @@ class ScheduledReport extends Model
     function getReportTypeAttribute()
     {
         if ($this->report->type == Report::$CORE_REPORT) {
-            return;
+            $core_report_class = $this->report->core_report->class_name;
+            return new $core_report_class($this->report);
         } elseif ($this->report->type == Report::$QUERY_REPORT) {
             return new QueryReport($this->report);
         } else {

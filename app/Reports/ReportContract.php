@@ -15,7 +15,7 @@ use App\Report;
 abstract class ReportContract
 {
     /** @var array */
-    protected $report;
+    public $report;
 
     /** @var array */
     protected $parameters;

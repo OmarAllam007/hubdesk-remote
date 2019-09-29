@@ -41,10 +41,11 @@ class ScheduledReport extends Mailable
             $mime = 'application/xlsx';
         }
 
+        $report_info = $report->report;
         return $this->subject($report->report->title)->attach($this->file ,[
             'as' =>$as,
             'mime' => $mime,
-        ])->markdown('emails.report.scheduled_template');
+        ])->markdown('emails.report.scheduled_template',['report'=>$report_info]);
 
 
     }

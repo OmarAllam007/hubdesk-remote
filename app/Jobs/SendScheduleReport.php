@@ -40,8 +40,7 @@ class SendScheduleReport extends Job
         ini_set("memory_limit", -1);
         ini_set('max_execution_time', 0);
 
-
-        if ($this->report->type == Report::$CORE_REPORT) {
+        if ($this->report->report->type == Report::$CORE_REPORT) {
             $core_report_class = $this->report->report->core_report->class_name;
             $report = new $core_report_class($this->report->report);
         } elseif ($this->report->report->type == Report::$QUERY_REPORT) {
@@ -80,6 +79,9 @@ class SendScheduleReport extends Job
 
     private function sendPDF($file, $report, $users)
     {
+        if(!$file){
+            return;
+        }
         \Mail::to($users)->send(new \App\Mail\ScheduledReport($this->report, $report, $file));
         unlink($file);
     }
@@ -87,7 +89,9 @@ class SendScheduleReport extends Job
     private function sendExcel($file, $report, $users)
     {
         /** @var LaravelExcelWriter $file */
-
+        if(!$file){
+            return;
+        }
         $file_path = $file->store('xlsx', storage_path('excel_reports'));
         $path = $file_path->storagePath . '/' . $file->title . '.' . $file->ext;
 

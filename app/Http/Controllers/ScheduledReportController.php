@@ -29,6 +29,7 @@ class ScheduledReportController extends Controller
 
     public function store(Request $request)
     {
+
         $request['user_id'] = $request->user()->id;
         ScheduledReport::create($request->all());
 
@@ -55,6 +56,7 @@ class ScheduledReportController extends Controller
 
     public function update(Request $request, ScheduledReport $report)
     {
+
         $request['user_id'] = $request->user()->id;
         $report->update($request->all());
 

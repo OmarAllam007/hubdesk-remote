@@ -51,7 +51,7 @@
 
             <section class="row">
                 <article class="form-group col-sm-6">
-                    <label class="control-label" for="from_date">Due Date From</label>
+                    <label class="control-label" for="from_date">Date From</label>
                     <input type="date" name="parameters[start_date]" id="from_date" class="form-control" value="{{old('parameters.start_date')}}">
                 </article>
 

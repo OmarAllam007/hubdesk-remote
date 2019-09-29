@@ -32,7 +32,7 @@ use App\Jobs\SendApproval;
  */
 class TicketApproval extends KModel
 {
-    protected $fillable = ['approver_id', 'content', 'status', 'comment', 'approval_date', 'stage', 'creator_id','ticket_id','created_at', 'updated_at'];
+    protected $fillable = ['approver_id', 'content', 'status', 'comment', 'approval_date', 'stage', 'creator_id', 'ticket_id', 'created_at', 'updated_at'];
 
     protected $dates = ['created_at', 'updated_at', 'approval_date'];
 
@@ -63,10 +63,19 @@ class TicketApproval extends KModel
         return $this->belongsTo(User::class, 'creator_id');
     }
 
+
+    function getStatusStrAttribute()
+    {
+        if($this->status){
+            return self::$statuses[$this->status];
+        }
+    }
+
+
     public function escalate()
     {
         if ($this->status != static::PENDING_APPROVAL || !$this->shouldSend()) return false;
-        
+
         $manager = $this->approver->manager;
 
         if ($manager) {
@@ -122,46 +131,53 @@ class TicketApproval extends KModel
     {
         return $this->status == static::PENDING_APPROVAL;
     }
-    function getApprovalStatusAttribute(){
-        return array_get(self::$statuses,$this->status);
+
+    function getApprovalStatusAttribute()
+    {
+        return array_get(self::$statuses, $this->status);
     }
 
-    function getResendAttribute(){
-        $approvals = TicketLog::where('ticket_id',$this->ticket->id)->where('type',TicketLog::RESEND_APPROVAL)->get();
+    function getResendAttribute()
+    {
+        $approvals = TicketLog::where('ticket_id', $this->ticket->id)->where('type', TicketLog::RESEND_APPROVAL)->get();
         $count = 0;
-        foreach ($approvals as $approval){
-            if(isset($approval->new_data['approval_id']) && $this->id == $approval->new_data['approval_id']){
+        foreach ($approvals as $approval) {
+            if (isset($approval->new_data['approval_id']) && $this->id == $approval->new_data['approval_id']) {
                 $count++;
             }
         }
         return $count;
     }
 
-    function getActionDateAttribute(){
-        if($this->status != 0){
+    function getActionDateAttribute()
+    {
+        if ($this->status != 0) {
             return $this->approval_date->format('d/m/Y h:i A');
         }
     }
 
-    function getApprovalIconAttribute(){
-        if($this->status == self::APPROVED) {
+    function getApprovalIconAttribute()
+    {
+        if ($this->status == self::APPROVED) {
             return 'check';
-        }elseif ($this->status == self::DENIED)  {
+        } elseif ($this->status == self::DENIED) {
             return 'times';
         }
         return '';
     }
-                                                                                                                                                                                        
-    function getApprovalColorAttribute(){
-        if($this->status == self::APPROVED) {
+
+    function getApprovalColorAttribute()
+    {
+        if ($this->status == self::APPROVED) {
             return 'success';
-        }elseif ($this->status == self::DENIED)  {
+        } elseif ($this->status == self::DENIED) {
             return 'danger';
         }
         return '';
     }
 
-    function getAttachmentsAttribute(){
-        return Attachment::where('type',Attachment::TICKET_APPROVAL_TYPE)->where('reference',$this->id)->get();
+    function getAttachmentsAttribute()
+    {
+        return Attachment::where('type', Attachment::TICKET_APPROVAL_TYPE)->where('reference', $this->id)->get();
     }
 }
