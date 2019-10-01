@@ -81,7 +81,6 @@ class QueryReport extends ReportContract
                 $sheet->setAutoFilter();
                 $sheet->setAutoSize(true);
             });
-            $excel->download('xlsx');
         });
 
     }
