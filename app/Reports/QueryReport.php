@@ -71,7 +71,9 @@ class QueryReport extends ReportContract
                 $sheet->row($this->row, collect($this->columns)->values()->toArray());
 
                 $data->each(function ($ticket) use ($sheet) {
-                    $ticket = collect($ticket);
+                    $ticket = collect($ticket)->map(function ($data){
+                        return strip_tags($data);
+                    });
                     $sheet->row(++$this->row, $ticket->toArray());
                 });
 
