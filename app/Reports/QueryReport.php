@@ -77,8 +77,8 @@ class QueryReport extends ReportContract
                     $sheet->row(++$this->row, $ticket->toArray());
                 });
 
-                $sheet->setColumnFormat(["C2:D{$this->row}" => '#,##0.00']);
-                $sheet->setColumnFormat(["E2:E{$this->row}" => '0.00%']);
+//                $sheet->setColumnFormat(["C2:D{$this->row}" => '#,##0.00']);
+//                $sheet->setColumnFormat(["E2:E{$this->row}" => '0.00%']);
 
                 $sheet->setAutoFilter();
                 $sheet->setAutoSize(true);
