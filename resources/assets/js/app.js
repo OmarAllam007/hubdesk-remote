@@ -1,6 +1,10 @@
 // import swal from 'sweetalert2'
+
+import Vue from 'vue'
+
 window.jQuery = window.$ = require('jquery');
-window.swal = require('sweetalert2')
+window.swal = require('sweetalert2');
+
 // window.swal = swal;
 require('bootstrap-sass');
 require('select2');

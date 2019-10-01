@@ -119,6 +119,10 @@ class User extends Authenticatable implements CanResetPassword
         return $this->groups()->admin()->exists();
     }
 
+    public function isReporting(){
+        return $this->groups()->reporting()->exists();
+    }
+
     public function isTechnicainSupervisor($ticket)
     {
         if ($ticket->technician) {
@@ -203,6 +207,11 @@ class User extends Authenticatable implements CanResetPassword
         }
 
         return $this->groups->contains('id', $role_id);
+    }
+
+    function folders()
+    {
+        return $this->hasMany(ReportFolder::class);
     }
 }
   

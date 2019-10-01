@@ -15,7 +15,7 @@ use App\Report;
 abstract class ReportContract
 {
     /** @var array */
-    protected $report;
+    public $report;
 
     /** @var array */
     protected $parameters;
@@ -25,6 +25,8 @@ abstract class ReportContract
 
     /** @var int */
     protected $perPage = 50;
+
+    public $errors;
 
     public function __construct(Report $report)
     {

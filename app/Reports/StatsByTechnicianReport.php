@@ -38,7 +38,7 @@ class StatsByTechnicianReport extends StatsByCategoryReport
 
     function excel()
     {
-        $data = $this->query->get();
+        $data = $this->query->take(10)->get();
 
         return \Excel::create(str_slug($this->report->title), function($excel) use ($data) {
             $excel->sheet('Stats By Technician', function ($sheet) use ($data) {

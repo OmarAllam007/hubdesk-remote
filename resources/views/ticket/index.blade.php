@@ -141,7 +141,7 @@
                             @endif
                             <a href="{{ route('ticket.show', $ticket) }}">{{ $ticket->subject }}</a>
                         </td>
-                        <td>{{ $ticket->requester->name }}</td>
+                        <td>{{ $ticket->requester->name ?? t('Not Assigned') }}</td>
                         <td>{{ $ticket->requester->employee_id ?? t('Not Assigned') }}</td>
                         <td>{{ $ticket->technician? $ticket->technician->name : 'Not Assigned' }}</td>
                         <td>{{ $ticket->created_at->format('d/m/Y h:i a') }}</td>

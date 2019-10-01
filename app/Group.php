@@ -34,10 +34,13 @@ class Group extends KModel
 
     protected $dates = ['created_at', 'updated_at'];
 
+    use Listable;
+
     const REQUESTER = 1;
     const COORDINATOR = 2;
     const TECHNICIAN = 3;
     const ADMIN = 4;
+    const Reporting = 5;
 
     public function users()
     {
@@ -70,13 +73,19 @@ class Group extends KModel
         return $query->where('type', self::ADMIN);
     }
 
+    public function scopeReporting(Builder $query)
+    {
+        return $query->where('type', self::Reporting);
+    }
+
     public function scopeTypes()
     {
         $types = collect([
             self::REQUESTER => 'Requesters',
             self::COORDINATOR => 'Coordinators',
             self::TECHNICIAN => 'Technicians',
-            self::ADMIN => 'Administrators'
+            self::ADMIN => 'Administrators',
+            self::Reporting => 'Reporting'
         ]);
 
         $types->sort();
@@ -107,5 +116,5 @@ class Group extends KModel
         }
         dd($group_ids);
     }
-    use Listable;
+
 }
