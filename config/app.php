@@ -177,7 +177,7 @@ return [
         KGS\Providers\KGSProvider::class,
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
 //        Barryvdh\DomPDF\ServiceProvider::class,
-        niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
+//        niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
 
     ],
 
