@@ -128,10 +128,10 @@ class QueryReport extends ReportContract
         foreach ($params as $key => $param) {
             if ($param["type"] == "date") {
                 if (str_contains($param["name"], "from")) {
-                    $filters[$param["name"]] = Carbon::now()->firstOfMonth()->toDateTimeString();
+                    $filters[$param["name"]] =  new Carbon('first day of last month');
                 } else if (str_contains($param["name"], "to")) {
                     {
-                        $filters[$param["name"]] = Carbon::now()->lastOfMonth()->toDateTimeString();
+                        $filters[$param["name"]] = new Carbon('last day of last month');
                     }
                 }
             }
