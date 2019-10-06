@@ -29,14 +29,16 @@
             animation: .5s ease-out 0s 1 slideInFromUp;
             padding: 30px;
         }
+
         .logo-animation {
             animation: 1.5s ease-out 0s 1 slideInFromRight;
         }
 
-        .quot-animation{
+        .quot-animation {
             animation: 1.5s ease-out 0s 1 slideInFromLeft;
         }
-        p.quot-animation{
+
+        p.quot-animation {
             margin-top: 80px;
             font-size: 18pt;
             font-weight: 800;
@@ -46,30 +48,34 @@
 
 @section('body')
     <section class="col-md-12 card-section">
-{{--        <h3 class=text-center>{{t('Select Business Unit') }}</h3>--}}
+        {{--        <h3 class=text-center>{{t('Select Business Unit') }}</h3>--}}
 
         <div class="tiles-container">
             @foreach(\App\BusinessUnit::orderBy('name')->get() as $business_unit)
                 @can('show_business_unit',$business_unit)
-                <a href="{{route('kgs.document.select_category', compact('business_unit'))}}" class="tile">
-                    <div class="tile-container" >
-                        {{--<div class="tile-icon" style="">--}}
-                        {{--                            <img src="{{asset('images/logo.png')}}">--}}
-                        {{--</div>--}}
-                        <div class="tile-body" style="width: 100%;height: 100%;display: flex; flex-direction:column;">
-                            {{--@if($business_unit->logo)--}}
-                            <p class="text-center" @if($business_unit->logo) style="height: 100px" @else style="height: 25px" @endif>
-                                @if($business_unit->logo)
-                                <img src="{{asset($business_unit->url)}}" alt="{{asset($business_unit->url)}}">
-                                @else
-                                @endif
-                            </p>
-                            <p class="text-center" style="margin-top: 40px">
-                                {{$business_unit->name}}
-                            </p>
+                    <a href="{{route('kgs.document.select_category', compact('business_unit'))}}" class="tile">
+                        <div class="tile-container">
+                            {{--<div class="tile-icon" style="">--}}
+                            {{--                            <img src="{{asset('images/logo.png')}}">--}}
+                            {{--</div>--}}
+                            <div class="tile-body"
+                                 style="width: 100%;height: 100%;display: flex; flex-direction:column;">
+                                {{--@if($business_unit->logo)--}}
+                                <p class="text-center" @if($business_unit->logo) style="height: 100px"
+                                   @else style="height: 25px" @endif>
+                                    @if($business_unit->logo)
+                                        <img src="{{asset($business_unit->url)}}" alt="{{asset($business_unit->url)}}">
+                                    @else
+                                    @endif
+                                </p>
+                                <p class="text-center" style="margin-top: 40px">
+                                    @if(!$business_unit->logo)
+                                        {{$business_unit->name}}
+                                    @endif
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
                 @endcan
             @endforeach
         </div>
