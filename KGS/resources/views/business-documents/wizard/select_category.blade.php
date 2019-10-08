@@ -3,8 +3,8 @@
 @section('header')
     <h4 class="pull-left"> {{$business_unit->name}} > {{t('Select Category')}}</h4>
     <div class="btn-group">
-        @if(Auth::user()->isAdmin())
-        <a class="btn btn-outlined  btn-success" href="{{route('kgs.document.index',compact('business_unit'))}}"><i
+        {{--@if(Auth::user()->isAdmin())--}}
+            <a class="btn btn-outlined  btn-success" href="{{route('kgs.document.index',compact('business_unit'))}}"><i
                     class="fa fa-file"></i> {{t('Documents')}}</a>
 
 
@@ -13,7 +13,7 @@
 
             <a class="btn btn-danger" href="{{route('kgs.document.manage_notifications',compact('business_unit'))}}"><i
                         class="fa fa-bell"></i> {{t('Notifications')}}</a>
-        @endif
+        {{--@endif--}}
 
         <a class="btn  btn-default" href="{{route('kgs.business_document',compact('business_unit'))}}"><i
                     class="fa fa-1x fa-arrow-right"></i></a>
