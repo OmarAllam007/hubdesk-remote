@@ -25,11 +25,11 @@ class UrgencyController extends Controller
 
     public function store(Request $request)
     {
-        $this->validates($request, 'Could not save urgency');
+        $this->validates($request);
 
         Urgency::create($request->all());
 
-        flash(t('Urgency has been saved'), 'success');
+        flash(t('Urgency Info'),t('Urgency has been saved'), 'success');
 
         return \Redirect::route('admin.urgency.index');
     }
@@ -46,11 +46,11 @@ class UrgencyController extends Controller
 
     public function update(Urgency $urgency, Request $request)
     {
-        $this->validates($request, 'Could not save urgency');
+        $this->validates($request);
 
         $urgency->update($request->all());
 
-        flash(t('Urgency has been saved'), 'success');
+        flash(t('Urgency Info'),t('Urgency has been saved'), 'success');
 
         return \Redirect::route('admin.urgency.index');
     }
@@ -59,7 +59,7 @@ class UrgencyController extends Controller
     {
         $urgency->delete();
 
-        flash(t('Urgency has been deleted'), 'success');
+        flash(t('Urgency Info'),t('Urgency has been deleted'), 'success');
 
         return \Redirect::route('admin.urgency.index');
     }

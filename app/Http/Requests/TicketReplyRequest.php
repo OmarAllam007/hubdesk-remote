@@ -69,20 +69,14 @@ class TicketReplyRequest extends Request
 
     public function response(array $errors)
     {
-        alert()->flash(t('Reply Info'), 'error', [
-            'text' => t('Cannot send reply'),
-            'timer' => 3000
-        ]);
+        flash(t('Reply Info'), t('Cannot send reply') ,'error');
 
         return \Redirect::back()->withErrors($errors)->withInput($this->all());
     }
 
     public function forbiddenResponse()
     {
-        alert()->flash(t('Reply Info'), 'error', [
-            'text' => t('You cannot add reply to this ticket'),
-            'timer' => 3000
-        ]);
+        flash(t('Reply Info'), t('You cannot add reply to this ticket'),'error');
 
         return \Redirect::back();
     }

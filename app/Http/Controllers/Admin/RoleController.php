@@ -25,8 +25,8 @@ class RoleController extends Controller
     }
 
     public function store(Request $request)
- {
-        $this->validates($request, 'Could not save role');
+    {
+        $this->validates($request);
 
         $role = Role::create($request->all());
 
@@ -34,7 +34,7 @@ class RoleController extends Controller
             $role->users()->sync($request->users);
         }
 
-        flash('role has been saved', 'success');
+        flash(t('Role Info'), t('role has been saved'), 'success');
 
         return \Redirect::route('admin.role.index');
     }
@@ -49,9 +49,9 @@ class RoleController extends Controller
         return view('admin.role.edit', compact('role'));
     }
 
-     public function update(Role $role, Request $request)
+    public function update(Role $role, Request $request)
     {
-        $this->validates($request, 'Could not save role');
+        $this->validates($request);
 
         if ($request->users) {
             $role->users()->sync($request->users);
@@ -59,7 +59,7 @@ class RoleController extends Controller
 
         $role->update($request->all());
 
-        flash('role has been saved', 'success');
+        flash(t('Role Info'), t('role has been saved'), 'success');
 
         return \Redirect::route('admin.role.index');
     }
@@ -68,7 +68,7 @@ class RoleController extends Controller
     {
         $role->delete();
 
-        flash('Role has been deleted', 'success');
+        flash(t('Role Info'), t('Role has been deleted'), 'success');
 
         return \Redirect::route('admin.role.index');
     }
@@ -79,7 +79,7 @@ class RoleController extends Controller
 
         $role->users()->attach($request->get('user_id'));
 
-        flash('User has been added to role', 'success');
+        flash(t('Role Info'), t('User has been added to role'), 'success');
 
         return \Redirect::route('admin.role.show', $role);
     }
@@ -88,7 +88,7 @@ class RoleController extends Controller
     {
         $role->users()->detach($user->id);
 
-        flash('User has been removed from role', 'success');
+        flash(t('Role Info'), t('User has been removed from role'), 'success');
 
         return \Redirect::route('admin.role.show', $role);
     }

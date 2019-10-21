@@ -24,11 +24,11 @@ class RegionController extends Controller
 
     public function store(Request $request)
     {
-        $this->validates($request, 'Could not save region');
+        $this->validates($request);
 
         Region::create($request->all());
 
-        flash(t('Region has been saved'), 'success');
+        flash(t('Region Info'),t('Region has been saved'), 'success');
 
         return \Redirect::route('admin.region.index');
     }
@@ -45,11 +45,11 @@ class RegionController extends Controller
 
     public function update(Region $region, Request $request)
     {
-        $this->validates($request, 'Could not save region');
+        $this->validates($request);
 
         $region->update($request->all());
 
-        flash(t('Region has been saved'), 'success');
+        flash(t('Region Info'),t('Region has been saved'), 'success');
 
         return \Redirect::route('admin.region.index');
     }
@@ -58,7 +58,7 @@ class RegionController extends Controller
     {
         $region->delete();
 
-        flash(t('Region has been deleted'), 'success');
+        flash(t('Region Info'),t('Region has been deleted'), 'success');
 
         return \Redirect::route('admin.region.index');
     }

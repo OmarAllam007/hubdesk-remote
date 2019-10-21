@@ -25,11 +25,11 @@ class PriorityController extends Controller
 
     public function store(Request $request)
     {
-        $this->validates($request, 'Could not save priority');
+        $this->validates($request);
 
         Priority::create($request->all());
 
-        flash(t('Priority has been saved'), 'success');
+        flash(t('Priority Info'),t('Priority has been saved'), 'success');
 
         return \Redirect::route('admin.priority.index');
     }
@@ -46,11 +46,11 @@ class PriorityController extends Controller
 
     public function update(Priority $priority, Request $request)
     {
-        $this->validates($request, 'Could not save priority');
+        $this->validates($request);
 
         $priority->update($request->all());
 
-        flash(t('Priority has been saved'), 'success');
+        flash(t('Priority Info'),t('Priority has been saved'), 'success');
 
         return \Redirect::route('admin.priority.index');
     }
@@ -59,7 +59,7 @@ class PriorityController extends Controller
     {
         $priority->delete();
 
-        flash(t('Priority has been deleted'), 'success');
+        flash(t('Priority Info'),t('Priority has been deleted'), 'success');
 
         return \Redirect::route('admin.priority.index');
     }

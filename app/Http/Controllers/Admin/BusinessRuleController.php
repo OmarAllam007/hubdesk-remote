@@ -26,7 +26,7 @@ class BusinessRuleController extends Controller
         $rule->updateCriteria($request);
         $rule->updateRules($request->get('rules'));
 
-        flash(t('Business rule has been saved'), 'success');
+        flash(t('Business Rule Info'),t('Business rule has been saved'), 'success');
 
         return \Redirect::route('admin.business-rule.index');
     }
@@ -49,7 +49,7 @@ class BusinessRuleController extends Controller
         $business_rule->updateCriteria($request);
         $business_rule->updateRules($request->get('rules'));
 
-        flash(t('Business rule has been saved'), 'success');
+        flash(t('Business Rule Info'),t('Business rule has been saved'), 'success');
 
         return \Redirect::route('admin.business-rule.index');
     }
@@ -58,7 +58,7 @@ class BusinessRuleController extends Controller
     {
         $business_rule->delete();
 
-        flash(t('Business rule has been deleted'), 'success');
+        flash(t('Business Rule Info'),t('Business rule has been deleted'), 'success');
 
         return \Redirect::route('admin.business-rule.index');
     }

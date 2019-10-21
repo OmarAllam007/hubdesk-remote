@@ -97,6 +97,7 @@
                 @yield('sidebar')
             @endif
                 @yield('body')
+            @include('sweetalert::alert')
         </div>
     </main>
 
@@ -124,17 +125,21 @@
 <script src="{{asset('/js/tinymce/tinymce.min.js')}}"></script>
 
 
-{{--@if (alert()->ready())
-    <script>
-        swal({
-            title: "{!! alert()->message() !!}",
-            text: "{!! alert()->option('text') !!}",
-            type: "{!! alert()->type() !!}",
-            timer: 3000,
-            showConfirmButton: false,
-        });
-    </script>
-@endif--}}
+@include('vendor.sweetalert.alert')
+
+
+{{--@if (alert())--}}
+
+    {{--<script>--}}
+        {{--swal({--}}
+            {{--title: "{!! alert()-> !!}",--}}
+            {{--text: "{!! alert('config.text') !!}",--}}
+            {{--type: "{!! alert()->type() !!}",--}}
+            {{--timer: 3000,--}}
+            {{--showConfirmButton: false,--}}
+        {{--});--}}
+    {{--</script>--}}
+{{--@endif--}}
 
 @yield('javascript')
 
