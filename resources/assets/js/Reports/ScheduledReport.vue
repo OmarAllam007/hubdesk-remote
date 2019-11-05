@@ -347,7 +347,7 @@
                 if(this.report.type == 3){
                     this.days = this.report.scheduled_time.days
                 }
-                else if(this.report.type == 3){
+                else if(this.report.type == 4){
                     this.months = this.report.scheduled_time.months
                 }
             }
