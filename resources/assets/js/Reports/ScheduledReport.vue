@@ -1,4 +1,3 @@
-\
 <template>
     <div>
         <div class="row">
@@ -86,64 +85,64 @@
                             <fieldset>
                                 <legend>
                                     <label for="everyday">
-                                        <input type="checkbox" name="everyday" id="everyday" @click="select_all_days()"
-                                               :checked="all_week">
+                                        <input type="checkbox" name="everyday" id="everyday" @click="selectAllInputs()"
+                                               :checked="selectAll">
                                         Everyday
                                     </label>
                                 </legend>
                                 <div class="form-group">
                                     <label for="saturday">
                                         <input type="checkbox" name="scheduled_time[days][]" value="6" id="saturday"
-                                               :checked="all_week">
+                                               :checked="checkDayOrMonth(6)">
                                         Saturday
                                     </label>
 
                                     <label for="sunday">
                                         <input type="checkbox" name="scheduled_time[days][]" value="0" id="sunday"
-                                               :checked="all_week">
+                                               :checked="checkDayOrMonth(0)">
                                         Sunday
                                     </label>
 
                                     <label for="monday">
                                         <input type="checkbox" name="scheduled_time[days][]" value="1" id="monday"
-                                               :checked="all_week">
+                                               :checked="checkDayOrMonth(1)">
                                         Monday
                                     </label>
                                     <label for="tuesday">
                                         <input type="checkbox" name="scheduled_time[days][]" value="2" id="tuesday"
-                                               :checked="all_week">
+                                               :checked="checkDayOrMonth(2)">
                                         Tuesday
                                     </label>
 
                                     <label for="wednesday">
                                         <input type="checkbox" name="scheduled_time[days][]" value="3" id="wednesday"
-                                               :checked="all_week">
+                                               :checked="checkDayOrMonth(3)">
                                         Wednesday
                                     </label>
 
                                     <label for="thursday">
                                         <input type="checkbox" name="scheduled_time[days][]" value="4" id="thursday"
-                                               :checked="all_week">
+                                               :checked="checkDayOrMonth(4)">
                                         Thursday
                                     </label>
 
                                     <label for="friday">
                                         <input type="checkbox" name="scheduled_time[days][]" value="5" id="friday"
-                                               :checked="all_week">
+                                               :checked="checkDayOrMonth(5)">
                                         Friday
                                     </label>
                                 </div>
                                 <div class="form-group">
                                     <label for="weekly_hour">Hour:</label>
                                     <select name="scheduled_time[hour]" id="weekly_hour" class="form-control">
-                                        <option :value="i" v-for="(n,i) in 13">{{i}}</option>
+                                        <option :value="i" v-for="(n,i) in 13" :selected="report.scheduled_time.hour == i">{{i}}</option>
                                     </select>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="weekly_hour">Minutes:</label>
                                     <select name="scheduled_time[minutes]" id="weekly_minutes" class="form-control">
-                                        <option :value="i" v-for="(n,i) in 60">{{i}}</option>
+                                        <option :value="i" v-for="(n,i) in 60" :selected="report.scheduled_time.minutes == i">{{i}}</option>
                                     </select>
                                 </div>
                             </fieldset>
@@ -160,80 +159,80 @@
                                 <legend>
                                     <label for="every_month">
                                         <input type="checkbox" name="every_month" id="every_month"
-                                               @click="select_all_months()" :checked="all_months">
+                                               @click="selectAllInputs()" :checked="selectAll">
                                         Every Month
                                     </label>
                                 </legend>
                                 <div class="form-group">
                                     <label for="january">
                                         <input type="checkbox" name="scheduled_time[months][]" value="1" id="january"
-                                               :checked="all_months">
+                                               :checked="checkDayOrMonth(1)">
                                         January
                                     </label>
 
                                     <label for="february">
                                         <input type="checkbox" name="scheduled_time[months][]" value="2" id="february"
-                                               :checked="all_months">
+                                               :checked="checkDayOrMonth(2)">
                                         February
                                     </label>
 
                                     <label for="march">
                                         <input type="checkbox" name="scheduled_time[months][]" value="3" id="march"
-                                               :checked="all_months">
+                                               :checked="checkDayOrMonth(3)">
                                         March
                                     </label>
 
                                     <label for="april">
                                         <input type="checkbox" name="scheduled_time[months][]" value="4" id="april"
-                                               :checked="all_months">
+                                               :checked="checkDayOrMonth(4)">
                                         April
                                     </label>
 
                                     <label for="may">
                                         <input type="checkbox" name="scheduled_time[months][]" value="5" id="may"
-                                               :checked="all_months">
+                                               :checked="checkDayOrMonth(5)">
                                         May
                                     </label>
 
                                     <label for="june">
                                         <input type="checkbox" name="scheduled_time[months][]" value="6" id="june"
-                                               :checked="all_months">
+                                               :checked="checkDayOrMonth(6)">
                                         June
                                     </label>
 
                                     <label for="july">
                                         <input type="checkbox" name="scheduled_time[months][]" value="7" id="july"
-                                               :checked="all_months">
+                                               :checked="checkDayOrMonth(7)">
                                         July
                                     </label>
 
                                     <label for="august">
                                         <input type="checkbox" name="scheduled_time[months][]" value="8" id="august"
-                                               :checked="all_months">
+                                               :checked="checkDayOrMonth(8)">
                                         August
                                     </label>
 
                                     <label for="september">
                                         <input type="checkbox" name="scheduled_time[months][]" value="9" id="september"
-                                               :checked="all_months">
+                                               :checked="checkDayOrMonth(9)">
                                         September
                                     </label>
 
                                     <label for="october">
                                         <input type="checkbox" name="scheduled_time[months][]" value="10" id="october"
-                                               :checked="all_months">
+                                               :checked="checkDayOrMonth(10)">
                                         October
                                     </label>
 
                                     <label for="november">
                                         <input type="checkbox" name="scheduled_time[months][]" value="11" id="november"
-                                               :checked="all_months">
+                                               :checked="checkDayOrMonth(11)">
                                         November
                                     </label>
 
                                     <label for="december">
                                         <input type="checkbox" name="scheduled_time[months][]" value="12" id="december"
-                                               :checked="all_months">
+                                               :checked="checkDayOrMonth(12)">
                                         December
                                     </label>
 
@@ -304,7 +303,7 @@
                         <select name="report_id" id="report_id" class="form-control">
                             <option value="">Select Report</option>
                             <optgroup v-for="(folder, folder_name) in reports" :label="folder_name">
-                                <option v-for="r in folder" :value="r.id" :selected="selectReport(report)">
+                                <option v-for="r in folder" :value="r.id" :selected="selectReport(r)">
                                     {{r.title}}
                                 </option>
                             </optgroup>
@@ -330,21 +329,36 @@
     export default {
         props: ['reports', 'users', 'report'],
         name: "scheduled-report",
-        created() {
-            if (this.report) {
-                this.report_type = this.report.type
-            }
-        },
         data() {
             return {
                 report_type: 1,
                 all_week: false,
                 all_months: false,
+                months:[],
+                days:[],
+                select_days:false,
+                select_months:false,
+
             }
         },
+        created() {
+            if (this.report) {
+                this.report_type = this.report.type;
+                if(this.report.type == 3){
+                    this.days = this.report.scheduled_time.days
+                }
+                else if(this.report.type == 3){
+                    this.months = this.report.scheduled_time.months
+                }
+            }
+        },
+
+
         methods: {
             change_report_type(id) {
                 this.report_type = id
+                this.days = []
+                this.month = []
             },
             select_all_days() {
                 this.all_week = !this.all_week
@@ -361,11 +375,38 @@
 
             selectReport(r) {
                 if (this.report) {
-                    return r.id == this.report.id
+                    return r.id === this.report.report_id
                 }
                 return false;
+            },
+
+            checkDayOrMonth(item){
+                if(this.report.type == 3){
+                    return this.days.includes(""+item)
+                }else if(this.report_type == 4){
+                    return this.months.includes(""+item)
+                }
+            },
+            selectAllInputs(){
+                if(this.report_type === 3){
+                    this.select_days = !this.select_days;
+                    $('input[name$="scheduled_time[days][]"]:checkbox').prop('checked',this.select_days)
+                }else if(this.report_type === 4){
+                    this.select_months = !this.select_months;
+                    $('input[name$="scheduled_time[months][]"]:checkbox').prop('checked',this.select_months)
+                }
+
             }
 
+        },
+        computed:{
+            selectAll(){
+                if(this.report.type == 3){
+                    return this.days.length == 7
+                }else if (this.report.type == 4){
+                    return this.months.length == 12
+                }
+            },
         }
     }
 </script>
