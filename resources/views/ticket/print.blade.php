@@ -1,7 +1,5 @@
 @extends('layouts.print')
 @section('body')
-
-
     <div class="container">
         <div class="back"><a href="{{route('ticket.show',$ticket)}}" class="btn btn-default"> <i
                         class="fa fa-chevron-left" aria-hidden="true"></i> {{t('Back to Ticket')}}
@@ -14,37 +12,45 @@
                 <div class="panel-body">
 
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="checkbox">
                                 <label> {{Form::checkbox('request-details',null,true,['id'=>'request-details'])}}{{t('Request Details')}}</label>
                             </div>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="checkbox">
                                 <label> {{Form::checkbox('requester-details',null,true,['id'=>'requester-details'])}}{{t('Requester Details')}}</label>
                             </div>
                         </div>
 
                         @if ($ticket->replies->count())
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="checkbox">
-                                    <label> {{Form::checkbox('request-conversation',null,true,['id'=>'request-conversation'])}}{{t('Request Conversations')}}</label>
+                                    <label> {{Form::checkbox('request-conversation',null,true,['id'=>'request-conversation'])}}{{t('Conversations')}}</label>
                                 </div>
                             </div>
                         @endif
 
                         @if ($ticket->approvals->count())
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="checkbox">
-                                    <label> {{Form::checkbox('request-approvals',null,true,['id'=>'request-approvals'])}}{{t('Request Approvals')}}</label>
+                                    <label> {{Form::checkbox('request-approvals',null,true,['id'=>'request-approvals'])}}{{t('Approvals')}}</label>
                                 </div>
                             </div>
                         @endif
                         @if ($ticket->resolution)
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="checkbox">
-                                    <label> {{Form::checkbox('request-resolution',null,true,['id'=>'request-resolution'])}}{{t('Request Resolution')}}</label>
+                                    <label> {{Form::checkbox('request-resolution',null,true,['id'=>'request-resolution'])}}{{t('Resolution')}}</label>
+                                </div>
+                            </div>
+                        @endif
+
+                        @if ($ticket->notes->count())
+                            <div class="col-md-2">
+                                <div class="checkbox">
+                                    <label> {{Form::checkbox('request-notes',null,true,['id'=>'request-notes'])}}{{t('Notes')}}</label>
                                 </div>
                             </div>
                         @endif
@@ -111,7 +117,7 @@
                         @if(!$ticket->isTask())
                             {{t('Request Details')}}
                         @else
-                        {{t('Task Details')}}
+                            {{t('Task Details')}}
                         @endif
                     </h4>
                 </div>
@@ -121,7 +127,7 @@
                         <td class="col-sm-3">{{$ticket->category->name or 'Not Assigned'}}</td>
                         <th class="col-sm-3">{{t('Service Cost: ')}}</th>
                         <td class="col-sm-3">{{t($ticket->category->service_cost . ' SR')}}</td>
-                    </tr> 
+                    </tr>
                     <tr>
                         <th class="col-sm-3">{{t('Subcategory')}}</th>
                         <td class="col-sm-3">{{$ticket->subcategory->name or 'Not Assigned'}}</td>
@@ -148,7 +154,7 @@
                         <td class="col-sm-3">{{$ticket->sla->name or 'Not Assigned'}}</td>
                         <th class="col-sm-3">{{t('Group')}}</th>
                         <td class="col-sm-3">{{$ticket->group->name or 'Not Assigned'}}</td>
-                        
+
 
                     </tr>
                 </table>
@@ -183,6 +189,10 @@
             </div>
 
         </div>
+    </div>
+
+    <div class="container">
+
         @if ($ticket->replies->count())
             <div class="print-ticket-conversation">
                 <h4 class="page-header"><i class="fa fa-comments-o"></i> {{t('Conversations')}} </h4>
@@ -214,20 +224,19 @@
 
                 <div class="panel panel-warning">
                     @foreach($ticket->approvals as $approval)
-                    <div class="panel-heading">
-                        {{t('By: ') . $approval->created_by->name}}
-                        {{t('On ').$approval->created_at->format('d/m/Y H:i A') }} {{t('To')}} {{$approval->approver->name}}
-                    </div>
-                    <div class="panel-body">
-                      {!! tidy_repair_string($approval->content, [], 'utf8') !!}
-                        <br>
-                        <span class="label label-default">Status: {{App\TicketApproval::$statuses[$approval->status]}}</span>
-                    </div>
+                        <div class="panel-heading">
+                            {{t('By: ') . $approval->created_by->name}}
+                            {{t('On ').$approval->created_at->format('d/m/Y H:i A') }} {{t('To')}} {{$approval->approver->name}}
+                        </div>
+                        <div class="panel-body">
+                            {!! tidy_repair_string($approval->content, [], 'utf8') !!}
+                            <br>
+                            <span class="label label-default">Status: {{App\TicketApproval::$statuses[$approval->status]}}</span>
+                        </div>
                 </div>
                 @endforeach
             </div>
         @endif
-
         @if ($ticket->resolution)
             <div class="print-ticket-resolution">
                 <div class="panel panel-success">
@@ -247,7 +256,22 @@
 
             </div>
         @endif
-
+        @if ($ticket->notes->count())
+            <div class="print-ticket-notes container">
+                <h4 class="page-header"><i class="fa fa-sticky-note-o"></i> {{t('Notes')}}</h4>
+                <div class="panel panel-primary">
+                    @foreach($ticket->notes as $note)
+                        <div class="panel-heading">
+                            {{t('By: ') . $note->creator->name}}
+                            {{t('On ').$note->created_at->format('d/m/Y H:i A') }}
+                        </div>
+                        <div class="panel-body">
+                            {!! tidy_repair_string($note->note, [], 'utf8') !!}
+                        </div>
+                </div>
+                @endforeach
+            </div>
+        @endif
     </div>
 
 @endsection

@@ -13,11 +13,9 @@
 </head>
 <body>
 
-<div>
 
     @yield('body')
 
-</div>
 
 @yield('javascript')
 </body>
