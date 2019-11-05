@@ -12817,27 +12817,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['reports', 'users', 'report'],
     name: "scheduled-report",
-    created: function created() {
-        if (this.report) {
-            this.report_type = this.report.type;
-        }
-    },
     data: function data() {
         return {
             report_type: 1,
             all_week: false,
-            all_months: false
+            all_months: false,
+            months: [],
+            days: [],
+            select_days: false,
+            select_months: false
+
         };
     },
+    created: function created() {
+        if (this.report) {
+            this.report_type = this.report.type;
+            if (this.report.type == 3) {
+                this.days = this.report.scheduled_time.days;
+            } else if (this.report.type == 3) {
+                this.months = this.report.scheduled_time.months;
+            }
+        }
+    },
+
 
     methods: {
         change_report_type: function change_report_type(id) {
             this.report_type = id;
+            this.days = [];
+            this.month = [];
         },
         select_all_days: function select_all_days() {
             this.all_week = !this.all_week;
@@ -12853,9 +12865,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         selectReport: function selectReport(r) {
             if (this.report) {
-                return r.id == this.report.id;
+                return r.id === this.report.report_id;
             }
             return false;
+        },
+        checkDayOrMonth: function checkDayOrMonth(item) {
+            if (this.report.type == 3) {
+                return this.days.includes("" + item);
+            } else if (this.report_type == 4) {
+                return this.months.includes("" + item);
+            }
+        },
+        selectAllInputs: function selectAllInputs() {
+            if (this.report_type === 3) {
+                this.select_days = !this.select_days;
+                $('input[name$="scheduled_time[days][]"]:checkbox').prop('checked', this.select_days);
+            } else if (this.report_type === 4) {
+                this.select_months = !this.select_months;
+                $('input[name$="scheduled_time[months][]"]:checkbox').prop('checked', this.select_months);
+            }
+        }
+    },
+    computed: {
+        selectAll: function selectAll() {
+            if (this.report.type == 3) {
+                return this.days.length == 7;
+            } else if (this.report.type == 4) {
+                return this.months.length == 12;
+            }
         }
     }
 });
@@ -13011,11 +13048,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "everyday"
     },
     domProps: {
-      "checked": _vm.all_week
+      "checked": _vm.selectAll
     },
     on: {
       "click": function($event) {
-        _vm.select_all_days()
+        _vm.selectAllInputs()
       }
     }
   }), _vm._v("\n                                    Everyday\n                                ")])]), _vm._v(" "), _c('div', {
@@ -13032,7 +13069,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "saturday"
     },
     domProps: {
-      "checked": _vm.all_week
+      "checked": _vm.checkDayOrMonth(6)
     }
   }), _vm._v("\n                                    Saturday\n                                ")]), _vm._v(" "), _c('label', {
     attrs: {
@@ -13046,7 +13083,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "sunday"
     },
     domProps: {
-      "checked": _vm.all_week
+      "checked": _vm.checkDayOrMonth(0)
     }
   }), _vm._v("\n                                    Sunday\n                                ")]), _vm._v(" "), _c('label', {
     attrs: {
@@ -13060,7 +13097,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "monday"
     },
     domProps: {
-      "checked": _vm.all_week
+      "checked": _vm.checkDayOrMonth(1)
     }
   }), _vm._v("\n                                    Monday\n                                ")]), _vm._v(" "), _c('label', {
     attrs: {
@@ -13074,7 +13111,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "tuesday"
     },
     domProps: {
-      "checked": _vm.all_week
+      "checked": _vm.checkDayOrMonth(2)
     }
   }), _vm._v("\n                                    Tuesday\n                                ")]), _vm._v(" "), _c('label', {
     attrs: {
@@ -13088,7 +13125,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "wednesday"
     },
     domProps: {
-      "checked": _vm.all_week
+      "checked": _vm.checkDayOrMonth(3)
     }
   }), _vm._v("\n                                    Wednesday\n                                ")]), _vm._v(" "), _c('label', {
     attrs: {
@@ -13102,7 +13139,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "thursday"
     },
     domProps: {
-      "checked": _vm.all_week
+      "checked": _vm.checkDayOrMonth(4)
     }
   }), _vm._v("\n                                    Thursday\n                                ")]), _vm._v(" "), _c('label', {
     attrs: {
@@ -13116,7 +13153,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "friday"
     },
     domProps: {
-      "checked": _vm.all_week
+      "checked": _vm.checkDayOrMonth(5)
     }
   }), _vm._v("\n                                    Friday\n                                ")])]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
@@ -13133,7 +13170,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, _vm._l((13), function(n, i) {
     return _c('option', {
       domProps: {
-        "value": i
+        "value": i,
+        "selected": _vm.report.scheduled_time.hour == i
       }
     }, [_vm._v(_vm._s(i))])
   }))]), _vm._v(" "), _c('div', {
@@ -13151,7 +13189,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, _vm._l((60), function(n, i) {
     return _c('option', {
       domProps: {
-        "value": i
+        "value": i,
+        "selected": _vm.report.scheduled_time.minutes == i
       }
     }, [_vm._v(_vm._s(i))])
   }))])])])])]) : _vm._e(), _vm._v(" "), (_vm.report_type == 4) ? _c('fieldset', {
@@ -13173,11 +13212,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "every_month"
     },
     domProps: {
-      "checked": _vm.all_months
+      "checked": _vm.selectAll
     },
     on: {
       "click": function($event) {
-        _vm.select_all_months()
+        _vm.selectAllInputs()
       }
     }
   }), _vm._v("\n                                    Every Month\n                                ")])]), _vm._v(" "), _c('div', {
@@ -13194,7 +13233,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "january"
     },
     domProps: {
-      "checked": _vm.all_months
+      "checked": _vm.checkDayOrMonth(1)
     }
   }), _vm._v("\n                                    January\n                                ")]), _vm._v(" "), _c('label', {
     attrs: {
@@ -13208,7 +13247,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "february"
     },
     domProps: {
-      "checked": _vm.all_months
+      "checked": _vm.checkDayOrMonth(2)
     }
   }), _vm._v("\n                                    February\n                                ")]), _vm._v(" "), _c('label', {
     attrs: {
@@ -13222,7 +13261,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "march"
     },
     domProps: {
-      "checked": _vm.all_months
+      "checked": _vm.checkDayOrMonth(3)
     }
   }), _vm._v("\n                                    March\n                                ")]), _vm._v(" "), _c('label', {
     attrs: {
@@ -13236,7 +13275,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "april"
     },
     domProps: {
-      "checked": _vm.all_months
+      "checked": _vm.checkDayOrMonth(4)
     }
   }), _vm._v("\n                                    April\n                                ")]), _vm._v(" "), _c('label', {
     attrs: {
@@ -13250,7 +13289,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "may"
     },
     domProps: {
-      "checked": _vm.all_months
+      "checked": _vm.checkDayOrMonth(5)
     }
   }), _vm._v("\n                                    May\n                                ")]), _vm._v(" "), _c('label', {
     attrs: {
@@ -13264,7 +13303,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "june"
     },
     domProps: {
-      "checked": _vm.all_months
+      "checked": _vm.checkDayOrMonth(6)
     }
   }), _vm._v("\n                                    June\n                                ")]), _vm._v(" "), _c('label', {
     attrs: {
@@ -13278,7 +13317,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "july"
     },
     domProps: {
-      "checked": _vm.all_months
+      "checked": _vm.checkDayOrMonth(7)
     }
   }), _vm._v("\n                                    July\n                                ")]), _vm._v(" "), _c('label', {
     attrs: {
@@ -13292,7 +13331,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "august"
     },
     domProps: {
-      "checked": _vm.all_months
+      "checked": _vm.checkDayOrMonth(8)
     }
   }), _vm._v("\n                                    August\n                                ")]), _vm._v(" "), _c('label', {
     attrs: {
@@ -13306,7 +13345,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "september"
     },
     domProps: {
-      "checked": _vm.all_months
+      "checked": _vm.checkDayOrMonth(9)
     }
   }), _vm._v("\n                                    September\n                                ")]), _vm._v(" "), _c('label', {
     attrs: {
@@ -13320,7 +13359,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "october"
     },
     domProps: {
-      "checked": _vm.all_months
+      "checked": _vm.checkDayOrMonth(10)
     }
   }), _vm._v("\n                                    October\n                                ")]), _vm._v(" "), _c('label', {
     attrs: {
@@ -13334,7 +13373,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "november"
     },
     domProps: {
-      "checked": _vm.all_months
+      "checked": _vm.checkDayOrMonth(11)
     }
   }), _vm._v("\n                                    November\n                                ")]), _vm._v(" "), _c('label', {
     attrs: {
@@ -13348,7 +13387,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "december"
     },
     domProps: {
-      "checked": _vm.all_months
+      "checked": _vm.checkDayOrMonth(12)
     }
   }), _vm._v("\n                                    December\n                                ")])]), _vm._v(" "), _c('div', {
     staticClass: "form-inline"
@@ -13496,7 +13535,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       return _c('option', {
         domProps: {
           "value": r.id,
-          "selected": _vm.selectReport(_vm.report)
+          "selected": _vm.selectReport(r)
         }
       }, [_vm._v("\n                                " + _vm._s(r.title) + "\n                            ")])
     }))
