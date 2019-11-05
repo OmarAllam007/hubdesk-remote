@@ -12836,20 +12836,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {
         if (this.report) {
             this.report_type = this.report.type;
-            if (this.report.type == 3) {
+            if (this.report.type === 3) {
                 this.days = this.report.scheduled_time.days;
-            } else if (this.report.type == 3) {
+            } else if (this.report.type === 4) {
                 this.months = this.report.scheduled_time.months;
             }
+            this.checkTheSelection();
         }
     },
 
 
     methods: {
+        checkTheSelection: function checkTheSelection() {
+            if (this.report.type == 3 && this.days.length == 7) {
+                this.select_days = true;
+            } else if (this.report.type == 4 && this.months.length == 12) {
+                this.select_months = true;
+            }
+        },
         change_report_type: function change_report_type(id) {
             this.report_type = id;
             this.days = [];
-            this.month = [];
+            this.months = [];
+            this.select_days = false;
+            this.select_months = false;
         },
         select_all_days: function select_all_days() {
             this.all_week = !this.all_week;
@@ -12870,7 +12880,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return false;
         },
         checkDayOrMonth: function checkDayOrMonth(item) {
-            if (this.report.type == 3) {
+            if (this.report_type == 3) {
                 return this.days.includes("" + item);
             } else if (this.report_type == 4) {
                 return this.months.includes("" + item);
@@ -12878,6 +12888,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         selectAllInputs: function selectAllInputs() {
             if (this.report_type === 3) {
+                $('input[name$="scheduled_time[days][]"]:checkbox').prop('checked', false);
                 this.select_days = !this.select_days;
                 $('input[name$="scheduled_time[days][]"]:checkbox').prop('checked', this.select_days);
             } else if (this.report_type === 4) {
@@ -12888,9 +12899,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     computed: {
         selectAll: function selectAll() {
-            if (this.report.type == 3) {
+            if (this.report_type == 3) {
                 return this.days.length == 7;
-            } else if (this.report.type == 4) {
+            } else if (this.report_type == 4) {
                 return this.months.length == 12;
             }
         }
