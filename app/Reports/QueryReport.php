@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Input;
 use Maatwebsite\Excel\Classes\LaravelExcelWorksheet;
 use Maatwebsite\Excel\Writers\LaravelExcelWriter;
 use Illuminate\Support\Facades\Storage;
@@ -30,6 +31,12 @@ class QueryReport extends ReportContract
                 $filters = $this->fillParameters($params);
             } else {
                 $filters = $this->getBindingsParams($params, $filters);
+            }
+
+            $session_params = session(str_slug(strtolower($this->report->title)).'_filters');
+
+            if(request()->exists('excel') && count($session_params)){
+                $filters = $this->getBindingsParams($params, $session_params);
             }
 
             $this->data = collect(\DB::select(\DB::raw($query), $filters));
@@ -59,7 +66,6 @@ class QueryReport extends ReportContract
     function excel()
     {
         $this->run();
-
 
         $data = $this->data;
 
@@ -108,11 +114,12 @@ class QueryReport extends ReportContract
 
     private function getBindingsParams($params, $filters)
     {
-        foreach ($filters as $key => $filter) {
+        foreach ($params as $key => $filter) {
             if ($params[$key]["type"] == "date") {
-                $filters[$key] = Carbon::parse($filter, 'AST')->toDateTimeString();
+                $filters[$params[$key]['name']] = Carbon::parse($filters[$params[$key]['name']], 'AST')->toDateTimeString();
             }
         }
+
         return $filters;
     }
 
@@ -135,7 +142,10 @@ class QueryReport extends ReportContract
                         $filters[$param["name"]] = new Carbon('last day of last month');
                     }
                 }
+            }else{
+                $filters[$param["name"]] = 31;
             }
+
         }
 
         return $filters;

@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-
+use App\User;
 class Report extends Model
 {
-    protected $fillable = ['title', 'folder_id', 'core_report_id', 'parameters','user_id', 'query','type'];
+    protected $fillable = ['title', 'folder_id', 'core_report_id', 'parameters', 'user_id', 'query', 'type'];
 
     public static $CORE_REPORT = 1;
     public static $QUERY_REPORT = 2;
@@ -24,7 +24,7 @@ class Report extends Model
     {
         $query->privileged();
 
-        $query->where('folder_id', $folder)->where('user_id',auth()->id());
+        $query->where('folder_id', $folder);
 
     }
 
@@ -43,16 +43,28 @@ class Report extends Model
         return $this->belongsTo(User::class);
     }
 
-    function getIsCoreReportAttribute(){
+    function getIsCoreReportAttribute()
+    {
         return $this->type == Report::$CORE_REPORT;
     }
 
 
-    function getIsQueryReportAttribute(){
+    function getIsQueryReportAttribute()
+    {
         return $this->type == Report::$QUERY_REPORT;
     }
 
-    function getIsCustomReportAttribute(){
+    function getIsCustomReportAttribute()
+    {
         return $this->type == Report::$CUSTOM_REPORT;
+    }
+
+    function users()
+    {
+        return $this->hasMany(ReportUser::class);
+    }
+
+    function isAuthorized(){
+        return in_array(auth()->id(),$this->users()->pluck('user_id')->toArray());
     }
 }
