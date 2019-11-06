@@ -1,4 +1,4 @@
-<div class="row"  id="reports">
+<div class="row" id="reports">
     <div class="col-md-6">
         {{csrf_field()}}
         <div class="form-group {{$errors->has('folder_id')? 'has-error' : ''}}">
@@ -25,11 +25,20 @@
             @endif
         </div>
 
+
+        <div class="form-group {{$errors->has('users')? 'has-error' : ''}}">
+            {{Form::label('users', 'Authorized Users', ['class' => 'control-label'])}}
+            {{Form::select('users[]',\App\User::technicians()->orderBy('name')->pluck('name','id'),isset($report) ? $report->users->pluck('user_id')->toArray() : [],['class'=>'form-control select2','multiple'])}}
+            @if ($errors->has('users'))
+                <div class="error-message">{{$errors->first('users')}}</div>
+            @endif
+        </div>
+
         <div class="form-group">
             <button class="btn btn-success"><i class="fa fa-check-circle"></i> {{t('Submit')}}</button>
         </div>
     </div>
     <div class="col-md-6">
-        <report-parameters></report-parameters>
+        <report-parameters :params="{{json_encode($report->parameters)}}"></report-parameters>
     </div>
 </div>
