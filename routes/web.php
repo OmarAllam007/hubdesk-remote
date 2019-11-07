@@ -116,11 +116,13 @@ Route::group(['middleware' => ['auth']], function () {
         $r->patch('tasks/{ticket}', ['as' => 'tasks.update', 'uses' => 'TaskController@update']);
         $r->delete('tasks/{ticket}/{task}', ['as' => 'tasks.delete', 'uses' => 'TaskController@destroy']);
         $r->get('print/{ticket}', ['as' => 'ticket.print', 'uses' => 'TicketPrintController@show']);
-        Route::post('forward/{ticket}',['as'=>'ticket.forward','uses'=>'TicketController@forward']);
+        $r->post('forward/{ticket}',['as'=>'ticket.forward','uses'=>'TicketController@forward']);
         $r->post('survey_log/{ticket}/{survey}', ['as' => 'ticket.survey', 'uses' => 'SurveyLogController@update']);
 
         $r->get('survey/display/{user_survey}', ['as' => 'survey.display', 'uses' => 'SurveyController@displaySurvey']);
         $r->get('user_survey/display/{user_survey}', ['as' => 'user_survey.show', 'uses' => 'SurveyController@displayUserSurvey']);
+
+        $r->get('download-attach/{attachment}','TicketController@downloadAttachment')->name('ticket.attachment.download');
     });
 
 
