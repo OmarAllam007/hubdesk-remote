@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Attachment;
 use App\Auth\KdeskUserProvider;
 use App\BusinessUnit;
+use App\Policies\AttachmentPolicy;
 use App\Policies\BusinessUnitDocumentRoles;
 use App\Policies\ReportPolicy;
 use App\Policies\TicketApprovalPolicy;
@@ -28,6 +30,7 @@ class AuthServiceProvider extends ServiceProvider
         TicketApproval::class => TicketApprovalPolicy::class,
         BusinessUnit::class => BusinessUnitDocumentRoles::class,
         Report::class => ReportPolicy::class,
+        Attachment::class => AttachmentPolicy::class,
     ];
 
     /**
