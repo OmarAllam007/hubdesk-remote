@@ -4,8 +4,8 @@
     <h4 class="pull-left"> {{$business_unit->name}} > {{t('Select Category')}}</h4>
     <div class="btn-group">
         {{--@if(Auth::user()->isAdmin())--}}
-            <a class="btn btn-outlined  btn-success" href="{{route('kgs.document.index',compact('business_unit'))}}"><i
-                    class="fa fa-file"></i> {{t('Documents')}}</a>
+            <a class="btn btn-outlined  btn-success" href="{{route('kgs.business_documents_folder',compact('business_unit'))}}"><i
+                    class="fa fa-file"></i> {{t('Folders')}}</a>
 
 
             <a class="btn btn-outlined  btn-primary" href="{{route('kgs.document.roles.show',compact('business_unit'))}}"><i
@@ -76,7 +76,7 @@
                                 {{--@endif--}}
                             </p>
                             <p class="text-center" style="margin-top: 40px">
-                                {{$category->name}}
+                                {{t($category->name)}}
                             </p>
                         </div>
                     </div>

@@ -24,3 +24,5 @@ Route::post('business-document/{business_unit}/roles','BusinessDocumentRolesCont
 Route::get('business-document/business_unit/{business_unit}/modify-notifications','BusinessDocumentController@manageNotification')->name('document.manage_notifications');
 Route::post('business-document/business_unit/{business_unit}/modify-notifications','BusinessDocumentController@saveNotification')->name('document.manage_notifications');
 Route::post('/send-to-finance/{ticket}','KGSTicketController@sendToFinance')->name('ticket.finance.send');
+Route::get('business-folders/{business_unit}','BusinessDocumentsFolderController@index')->name('business_documents_folder');
+Route::get('business-folders/{business_unit}/create','BusinessDocumentsFolderController@create')->name('business_documents_folder.create');
