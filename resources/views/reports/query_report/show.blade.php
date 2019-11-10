@@ -11,13 +11,14 @@
 @endsection
 
 @section('body')
-    @if($report->paramaters)
+
+    @if($report->parameters)
         <div>
             <form action="" method="get">
                 @foreach($report->parameters as $key=>$param)
                     @include('reports.inputs.'.$param['type'])
                 @endforeach
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-12">
                     <button type="submit" class="btn btn-success">{{t('Generate')}}</button>
                 </div>
             </form>

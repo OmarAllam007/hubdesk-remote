@@ -209,9 +209,15 @@ class User extends Authenticatable implements CanResetPassword
         return $this->groups->contains('id', $role_id);
     }
 
-    function folders()
+    function getFoldersAttribute()
     {
-        return $this->hasMany(ReportFolder::class);
+        $folders = ReportFolder::where('user_id',auth()->id())->get();
+
+        $authorized_reports = ReportFolder::whereIn('id',Report::whereIn('id',ReportUser::where('user_id',auth()->id())
+            ->pluck('report_id')->toArray())->pluck('folder_id'))->get();
+
+
+        return $folders->merge($authorized_reports);
     }
 }
   

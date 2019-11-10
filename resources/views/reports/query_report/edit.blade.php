@@ -12,4 +12,9 @@
     @include('reports.query_report._form')
 
     {{Form::close()}}
-@stop
+@endsection
+
+@section('javascript')
+    <script src="{{asset('js/reports.js')}}"></script>
+@endsection
+

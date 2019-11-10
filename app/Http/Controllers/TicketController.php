@@ -27,6 +27,7 @@ use App\TicketField;
 use App\TicketLog;
 use App\TicketNote;
 use App\TicketReply;
+use http\Env\Response;
 use Illuminate\Http\Request;
 
 class TicketController extends Controller
@@ -103,7 +104,7 @@ class TicketController extends Controller
     public function show(Ticket $ticket)
     {
         Ticket::flushEventListeners();
-        if(\Auth::user()->id == $ticket->technician_id) {
+        if (\Auth::user()->id == $ticket->technician_id) {
             $ticket->update(['is_opened' => 1]);
         }
 
@@ -469,4 +470,20 @@ class TicketController extends Controller
         return view('ticket.create', compact('business_unit', 'category', 'subcategory', 'item'));
     }
 
+
+    function downloadAttachment(Attachment $attachment)
+    {
+        if ($attachment->type == Attachment::TICKET_TYPE) {
+            $ticket = Ticket::find($attachment->reference);
+        } elseif ($attachment->type == Attachment::TICKET_REPLY_TYPE) {
+            $ticket = TicketReply::find($attachment->reference)->ticket;
+        } else {
+            $ticket = TicketApproval::find($attachment->reference)->ticket;
+        }
+
+        $this->authorize('show', $ticket);
+
+        $file = public_path('storage') . $attachment->path;
+        return response()->download($file);
+    }
 }

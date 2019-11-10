@@ -20,6 +20,10 @@ $('#requester-details').click(function (e) {
     $('.print-ticket-requester-details').toggle();
 })
 
+$('#request-notes').click(function (e) {
+    $('.print-ticket-notes').toggle();
+})
+
 $('#printTicket').click(function (e) {
     window.print()
 })
