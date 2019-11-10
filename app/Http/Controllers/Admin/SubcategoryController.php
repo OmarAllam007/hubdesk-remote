@@ -131,6 +131,7 @@ class SubcategoryController extends Controller
                 'operator'=>'is',
                 'label'=>$requirement['label'],
                 'value'=>$requirement['value'],
+                'type'=>$requirement['type'],
             ]);
         }
 

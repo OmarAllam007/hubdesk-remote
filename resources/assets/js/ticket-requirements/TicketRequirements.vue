@@ -64,6 +64,7 @@
             allHaveChecked() {
                 for (var i = 0; i < this.items.length; i++) {
                     // console.log(this.items[i].checked, this.items[i].attached)
+                    console.log(this.items[i].type)
                     if (this.items[i].checked && !this.items[i].attached) {
                         return false;
                     }

@@ -3,13 +3,19 @@
         <div class="form-group">
             <div class="requirement-container">
                 <div class="requirement-check">
-                    <input type="checkbox" :id="`requirement-checkbox[${index}]`" :name="`requirements[${index}][checked]`"   class="requirement-checkbox" @change="updateChecked()">
-                    <label :for="`requirement-checkbox[${index}]`">{{requirement.label}} - {{requirement.cost}} SAR</label>
+                    <input type="checkbox" :id="`requirement-checkbox[${index}]`"
+                           :name="`requirements[${index}][checked]`"
+                           class="requirement-checkbox" @change="updateChecked()">
+                    <label :for="`requirement-checkbox[${index}]`">
+                       <span v-show="requirement.type == 1"> {{requirement.label}} - {{requirement.cost}} SAR</span>
+                       <span v-show="requirement.type ==  2"> {{requirement.field}}</span>
+                    </label>
                 </div>
                 <div class="requirement-actions">
                     <input type="file" :name="`requirements[${index}][file]`" class="requirement-attachment" v-if="checked" @change="attachFile()">
                     <input type="hidden" :name="`requirements[${index}][reference]`" :value="requirement.value">
                     <input type="hidden" :name="`requirements[${index}][reference_type]`" :value="requirement.reference_type">
+                    <input type="hidden" :name="`requirements[${index}][type]`" :value="requirement.type">
                     <!--<button class="btn btn-sm btn-primary" v-else>Create Ticket</button>-->
                 </div>
             </div>
@@ -26,7 +32,11 @@
         data(){
             return {
                 checked:false,
+                type:'',
             }
+        },
+        created(){
+            this.type = this.requirement.type
         },
         methods:{
             updateChecked(){

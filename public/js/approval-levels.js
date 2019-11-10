@@ -11981,7 +11981,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/omarkhaled/code/hdesk/resources/assets/js/ApprovalLevel.vue"
+Component.options.__file = "/Users/omar/code/hdesk/resources/assets/js/ApprovalLevel.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] ApprovalLevel.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -12250,7 +12250,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/omarkhaled/code/hdesk/resources/assets/js/ServiceRequirements.vue"
+Component.options.__file = "/Users/omar/code/hdesk/resources/assets/js/ServiceRequirements.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] ServiceRequirements.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -12374,6 +12374,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -12442,7 +12443,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.requirements.push({ field: '',
                 operator: 'is',
                 label: '',
-                value: '' });
+                value: '',
+                type: 1
+            });
         },
         applySelection: function applySelection() {
             var labels = [],
@@ -12484,7 +12487,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/omarkhaled/code/hdesk/resources/assets/js/ServiceRequirement.vue"
+Component.options.__file = "/Users/omar/code/hdesk/resources/assets/js/ServiceRequirement.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] ServiceRequirement.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -12542,7 +12545,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -12554,6 +12557,31 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Bus__ = __webpack_require__(3);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -12611,6 +12639,10 @@ var fields = {
     },
 
     methods: {
+        changeType: function changeType() {
+            this.requirement.value = '';
+            this.requirement.label = '';
+        },
         updateRequirement: function updateRequirement() {
             this.requirement.value = '';
             this.requirement.label = '';
@@ -12642,8 +12674,53 @@ var fields = {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_c('select', {
+  return _c('tr', [_c('td', [_c('label', [_c('input', {
     directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.requirement.type),
+      expression: "requirement.type"
+    }],
+    attrs: {
+      "type": "radio",
+      "name": ("requirements[" + _vm.index + "][type]"),
+      "value": "1"
+    },
+    domProps: {
+      "checked": _vm._q(_vm.requirement.type, "1")
+    },
+    on: {
+      "change": [function($event) {
+        _vm.$set(_vm.requirement, "type", "1")
+      }, _vm.changeType]
+    }
+  }), _vm._v("\n            Service\n        ")]), _vm._v("\n        /\n        "), _c('label', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.requirement.type),
+      expression: "requirement.type"
+    }],
+    attrs: {
+      "type": "radio",
+      "name": ("requirements[" + _vm.index + "][type]"),
+      "value": "2"
+    },
+    domProps: {
+      "checked": _vm._q(_vm.requirement.type, "2")
+    },
+    on: {
+      "change": [function($event) {
+        _vm.$set(_vm.requirement, "type", "2")
+      }, _vm.changeType]
+    }
+  }), _vm._v("\n            Document\n        ")])]), _vm._v(" "), _c('td', [_c('select', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.requirement.type == 1),
+      expression: "requirement.type == 1"
+    }, {
       name: "model",
       rawName: "v-model",
       value: (_vm.requirement.field),
@@ -12680,7 +12757,39 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "value": "item_id"
     }
-  }, [_vm._v("Item")])])]), _vm._v(" "), _c('td', [_c('div', {
+  }, [_vm._v("Item")])]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.requirement.type == 2),
+      expression: "requirement.type == 2"
+    }, {
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.requirement.field),
+      expression: "requirement.field"
+    }],
+    staticClass: "form-control input-sm",
+    attrs: {
+      "type": "text",
+      "name": ("requirements[" + _vm.index + "][field]")
+    },
+    domProps: {
+      "value": (_vm.requirement.field)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.requirement, "field", $event.target.value)
+      }
+    }
+  })]), _vm._v(" "), _c('td', [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.requirement.type == 1),
+      expression: "requirement.type == 1"
+    }],
     staticClass: "input-group"
   }, [_c('input', {
     directives: [{
@@ -12727,7 +12836,36 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.$set(_vm.requirement, "value", $event.target.value)
       }
     }
-  }), _vm._v(" "), _vm._m(0)])]), _vm._v(" "), _c('td', [_c('button', {
+  }), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.requirement.type == 2),
+      expression: "requirement.type == 2"
+    }],
+    staticClass: "input-group"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.requirement.value),
+      expression: "requirement.value"
+    }],
+    staticClass: "form-control input-sm",
+    attrs: {
+      "type": "text",
+      "name": ("requirements[" + _vm.index + "][value]")
+    },
+    domProps: {
+      "value": (_vm.requirement.value)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.requirement, "value", $event.target.value)
+      }
+    }
+  })])]), _vm._v(" "), _c('td', [_c('button', {
     staticClass: "btn btn-sm btn-warning pull-right",
     attrs: {
       "type": "button"
@@ -12771,9 +12909,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('table', {
     staticClass: "listing-table table-bordered"
   }, [_c('thead', [_c('tr', [_c('th', {
-    staticClass: "col-md-6"
+    staticClass: "col-md-4"
+  }, [_vm._v("Type")]), _vm._v(" "), _c('th', {
+    staticClass: "col-md-4"
   }, [_vm._v("Requirement")]), _vm._v(" "), _c('th', {
-    staticClass: "col-md-6"
+    staticClass: "col-md-4"
   }, [_vm._v("Value")]), _vm._v(" "), _c('th', [_c('button', {
     staticClass: "btn btn-sm btn-primary pull-right",
     attrs: {
@@ -12931,7 +13071,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/omarkhaled/code/hdesk/resources/assets/js/additional-fees/AdditionalFee.vue"
+Component.options.__file = "/Users/omar/code/hdesk/resources/assets/js/additional-fees/AdditionalFee.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] AdditionalFee.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -13090,7 +13230,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/omarkhaled/code/hdesk/resources/assets/js/additional-fees/AdditionalFeeRow.vue"
+Component.options.__file = "/Users/omar/code/hdesk/resources/assets/js/additional-fees/AdditionalFeeRow.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] AdditionalFeeRow.vue: functional components are not supported with templates, they should use render functions.")}
 

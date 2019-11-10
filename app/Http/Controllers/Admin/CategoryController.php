@@ -140,11 +140,11 @@ class CategoryController extends Controller
 
     private function handleRequirements(Request $request, Category $category)
     {
+        $category->requirements()->delete();
+
         if (!count($request->requirements)) {
             return;
         }
-
-        $category->requirements()->delete();
 
         foreach ($request->requirements as $requirement) {
             $category->requirements()->create([
@@ -154,6 +154,7 @@ class CategoryController extends Controller
                 'operator' => 'is',
                 'label' => $requirement['label'],
                 'value' => $requirement['value'],
+                'type' => $requirement['type']
             ]);
         }
 

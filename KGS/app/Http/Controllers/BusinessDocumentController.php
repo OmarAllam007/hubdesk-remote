@@ -81,7 +81,9 @@ class BusinessDocumentController extends Controller
 
         $label = $this->getServicesLabels($category, $subcategory, $item);
 
+        dd(\request()->all());
         $tasks = \request()->get('requirements');
+
         $tasks_files = \request()->allFiles();
 
 //        $all_checked = count($tasks) == count($tasks_files['requirements']);
