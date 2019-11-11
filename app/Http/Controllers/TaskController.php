@@ -48,6 +48,8 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+
+        return   $request->all();
         $this->validate($request, ['subject' => 'required', 'category' => 'required']);
         if ($request['technician']) {
             Ticket::flushEventListeners();

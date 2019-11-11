@@ -1,5 +1,5 @@
-<form method="POST" enctype="multipart/form-data" class="modal fade" id="TaskForm" v-on:submit.prevent="changeOnSubmit">
-    {{csrf_field()}}{{method_field('PUT')}}
+<form method="POST"  class="modal fade" id="TaskForm" v-on:submit.prevent="changeOnSubmit" enctype="multipart/form-data" >
+    {{csrf_field()}}{{method_field('POST')}}
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -93,8 +93,27 @@
 
                     </div>
                 </div>
-
+                <div class="row">
+                    <div class="col-md-8">
+                        <table class="listing-table table-condensed">
+                            <thead>
+                            <tr>
+                                <th>{{t('Attachments')}}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="col-md-10">
+                                    <input type="file" class="form-control input-xs" ref="files" name="files[]" @change="handleFiles" multiple>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
+
+
 
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary" :disabled="saving">
