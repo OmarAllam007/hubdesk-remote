@@ -104,7 +104,7 @@
                             <tbody>
                             <tr>
                                 <td class="col-md-10">
-                                    <input type="file" class="form-control input-xs" ref="files" name="files[]" @change="handleFiles" multiple>
+                                    <input type="file" class="form-control input-xs" ref="attachments" name="attachments[]" id="attachments" @change="handleFiles" multiple>
                                 </td>
                             </tr>
                             </tbody>

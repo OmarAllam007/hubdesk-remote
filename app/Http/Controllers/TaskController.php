@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Attachment;
 use App\CustomField;
 use App\Jobs\ApplySLA;
 use App\Jobs\NewTaskJob;
@@ -49,8 +50,8 @@ class TaskController extends Controller
     public function store(Request $request)
     {
 
-        return   $request->all();
         $this->validate($request, ['subject' => 'required', 'category' => 'required']);
+
         if ($request['technician']) {
             Ticket::flushEventListeners();
         }
@@ -70,7 +71,14 @@ class TaskController extends Controller
             'technician_id' => $request['technician'],
         ]);
 
-        foreach ($request->get('cf', []) as $key=>$item) {
+
+
+        if(count($request->attachments)){
+            Attachment::uploadFiles(Attachment::TICKET_TYPE, $task->id);
+        }
+
+        if(count($request->cf)){
+            foreach ($request->get('cf', []) as $key=>$item) {
 
                 $field = CustomField::find($key);
 //            dd($field->name);
@@ -79,15 +87,18 @@ class TaskController extends Controller
                     $messages['cf.'.$key.'.required'] = "The field ( {$field->name} ) is required";
                 }
 
-        }
+            }
 
-        foreach ($request->get('cf', []) as $key=>$item){
-            if($item) {
-                $field = CustomField::find($key)->name ?? '';
+            foreach ($request->get('cf', []) as $key=>$item){
+                if($item) {
+                    $field = CustomField::find($key)->name ?? '';
 
-                $task->fields()->create(['name' => $field, 'value' => $item]);
+                    $task->fields()->create(['name' => $field, 'value' => $item]);
+                }
             }
         }
+
+
 
         /** @var Ticket $task */
 

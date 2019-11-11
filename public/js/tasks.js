@@ -270,7 +270,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('tasks', {
             task_id: null,
             saving: false,
             fields: [],
-            files: []
+            attachments: []
         };
     },
 
@@ -299,27 +299,48 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('tasks', {
 
             this.saving = true;
 
+            // let formData = new FormData();
+            // for( let i = 0; i < this.files.length; i++ ) {
+            //     formData.append('files[]', this.files[i]);
+            // }
+            // formData.append('category_id',this.category);
+            // console.log(formData)
+            // var cs = [];
+
+            //Creates a formdata object for the upload, appends a CSRF token, the file itself and its respective name
             var formData = new FormData();
-            for (var i = 0; i < this.files.length; i++) {
-                if (this.files[i].id) {
-                    continue;
-                }
-                formData.append('file', this.files[i]);
+            formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
+
+            for (var i = 0; i < this.attachments.length; i++) {
+                formData.append('attachments[]', this.attachments[i]);
             }
 
-            var cs = [];
-            formData.append('file[]', this.files[0]);
+            formData.append('subject', this.subject);
+            formData.append('category', this.category);
+            formData.append('subcategory', this.subcategory);
+            formData.append('item', this.item);
+            formData.append('status', this.status);
+            formData.append('description', tinyMCE.activeEditor.getContent());
+            formData.append('group', this.group);
+            formData.append('technician', this.technician);
+            formData.append('ticket_id', this.ticket_id);
+            formData.append('cf', this.fields);
             jQuery.ajax({
-                method: 'POST',
                 url: '/ticket/tasks/' + this.ticket_id,
-
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                method: 'POST',
+                xhr: function xhr() {
+                    var myXhr = $.ajaxSettings.xhr();
+                    return myXhr;
                 },
 
+                headers: {
+                    // 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                },
+                dataType: 'text',
                 cache: false,
                 contentType: false,
                 processData: false,
+                async: true,
                 enctype: 'multipart/form-data',
                 data: formData,
 
@@ -486,11 +507,10 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('tasks', {
             }
         },
         handleFiles: function handleFiles(e) {
-            console.log(e.target.files);
-            var uploadedFiles = this.$refs.files.files;
+            var uploadedFiles = this.$refs.attachments.files;
 
             for (var i = 0; i < uploadedFiles.length; i++) {
-                this.files.push(uploadedFiles[i]);
+                this.attachments.push(uploadedFiles[i]);
             }
             // this.files = formData
             // this.attachments = data;
