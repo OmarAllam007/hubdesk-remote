@@ -74,7 +74,7 @@ class Attachment extends KModel
 
     public function getUploadedByAttribute()
     {
-        if (in_array($this->type, [self::TICKET_TYPE, self::TASK_TYPE])) {
+        if (in_array($this->type, [self::TICKET_TYPE])) {
             $user = Ticket::find($this->reference)->created_by;
         } elseif ($this->type == self::TICKET_APPROVAL_TYPE) {
             $user = TicketApproval::find($this->reference)->created_by;
