@@ -347,9 +347,9 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('tasks', {
                 success: function success(response) {
                     _this.loadTasks();
                     _this.errors = response;
-                    // jQuery("#TaskForm").modal('hide');
+                    jQuery("#TaskForm").modal('hide');
                     _this.saving = false;
-                    // this.resetAll();
+                    _this.resetAll();
                 },
                 error: function error(response) {
                     _this.errors = response.responseJSON;

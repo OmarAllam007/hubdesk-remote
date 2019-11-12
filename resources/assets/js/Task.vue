@@ -102,9 +102,9 @@
                     success: (response) => {
                         this.loadTasks();
                         this.errors = response;
-                        // jQuery("#TaskForm").modal('hide');
+                        jQuery("#TaskForm").modal('hide');
                         this.saving = false;
-                        // this.resetAll();
+                        this.resetAll();
                     },
                     error: (response) => {
                         this.errors = response.responseJSON;

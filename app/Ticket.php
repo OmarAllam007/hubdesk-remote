@@ -434,6 +434,9 @@ class Ticket extends KModel
             'technician' => $this->technician->name ?? '',
             'technician_id' => $this->technician->id ?? '',
             'request_id' => $this->request_id ?? '',
+            'can_edit' => can('task_edit',$this),
+            'can_show' => can('task_show',$this),
+            'can_delete' => can('task_delete',$this)
         ];
     }
 
