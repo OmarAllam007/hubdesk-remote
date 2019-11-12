@@ -156,10 +156,7 @@ class TaskController extends Controller
             $ticket->save();
         }
 
-        alert()->flash(t('Task Info'), 'success', [
-            'text' => t('Task updated successfully'),
-            'timer' => 3000
-        ]);
+        flash(t('Task Info'), t('Task updated successfully'),'success');
         return \Redirect::route('ticket.show', $ticket);
     }
 
@@ -175,10 +172,7 @@ class TaskController extends Controller
         $task = Ticket::find($task);
         if (can('delete', $task)) {
             $task->delete();
-            alert()->flash(t('Task Info'), 'success', [
-                'text' => t('Task deleted successfully'),
-                'timer' => 3000
-            ]);
+            flash(t('Task Info'),t('Task deleted successfully'), 'success');
         }
     }
 

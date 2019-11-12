@@ -30,7 +30,7 @@ class UserController extends Controller
 
         $user->save();
 
-        flash(t('User has been saved'), 'success');
+        flash(t('SLA Info'),t('User has been saved'), 'success');
 
         return \Redirect::route('admin.user.index');
     }
@@ -57,7 +57,7 @@ class UserController extends Controller
 
         $user->update($data);
 
-        flash(t('User has been saved'), 'success');
+        flash(t('User Info'),t('User has been saved'), 'success');
 
         return \Redirect::route('admin.user.index');
     }
@@ -66,7 +66,7 @@ class UserController extends Controller
     {
         $user->delete();
 
-        flash(t('User has been deleted'), 'success');
+        flash(t('User Info'),t('User has been deleted'), 'success');
 
         return \Redirect::route('admin.user.index');
     }
@@ -82,7 +82,7 @@ class UserController extends Controller
         if ($request->isJson() || $request->wantsJson()) {
             return ['ok' => true, 'message' => $msg];
         }
-        flash($msg, 'success');
+        flash(t('Users Info'),$msg, 'success');
 
         return \Redirect::back();
     }

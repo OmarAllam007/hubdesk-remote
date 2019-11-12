@@ -14,8 +14,8 @@
 <body>
 
 
-    <main class="container-fluid">
-        <div class="row">
+    <main class="col-m-12">
+        <div class="container-fluid">
             @yield('body')
         </div>
     </main>

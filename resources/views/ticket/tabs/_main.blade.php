@@ -17,37 +17,37 @@
     <table class="table table-striped table-condensed details-tbl">
         <tr>
             <th class="col-sm-3">{{t('Category')}}</th>
-            <td class="col-sm-3">{{$ticket->category->name or 'Not Assigned'}}</td>
+            <td class="col-sm-3">{{$ticket->category->name ?? 'Not Assigned'}}</td>
             <th class="col-sm-3">{{t('Service Cost: ')}}</th>
             <td class="col-sm-3">{{ $ticket->total_ticket_cost ? t($ticket->total_ticket_cost . ' SAR') : 'Not Assigned'}}</td>
 
         </tr> 
         <tr>
             <th class="col-sm-3">{{t('Subcategory')}}</th>
-            <td class="col-sm-3">{{$ticket->subcategory->name or 'Not Assigned'}}</td>
+            <td class="col-sm-3">{{$ticket->subcategory->name ?? 'Not Assigned'}}</td>
             <th class="col-sm-3">{{t('Technician')}}</th>
-            <td class="col-sm-3">{{$ticket->technician->name or 'Not Assigned'}}</td>
+            <td class="col-sm-3">{{$ticket->technician->name ?? 'Not Assigned'}}</td>
         </tr>
         <tr>
             <th class="col-sm-3">{{t('Item')}}</th>
-            <td class="col-sm-3">{{$ticket->Item->name or 'Not Assigned'}}</td>
+            <td class="col-sm-3">{{$ticket->Item->name ?? 'Not Assigned'}}</td>
             <th class="col-sm-3">{{t('First Response Due Time')}}</th>
-            <td class="col-sm-3">{{$ticket->first_response_date or 'Not Assigned'}}</td>
+            <td class="col-sm-3">{{$ticket->first_response_date ?? 'Not Assigned'}}</td>
 
 
         </tr>
         <tr>
             <th class="col-sm-3">{{t('Due Time')}}</th>
-            <td class="col-sm-3">{{$ticket->due_date or 'Not Assigned'}}</td>
+            <td class="col-sm-3">{{$ticket->due_date ?? 'Not Assigned'}}</td>
 
             <th class="col-sm-3">{{t('Urgency')}}</th>
-            <td class="col-sm-3">{{$ticket->urgency->name or 'Not Assigned'}}</td>
+            <td class="col-sm-3">{{$ticket->urgency->name ?? 'Not Assigned'}}</td>
         </tr>
         <tr>
             <th class="col-sm-3">{{t('SLA')}}</th>
-            <td class="col-sm-3">{{$ticket->sla->name or 'Not Assigned'}}</td>
+            <td class="col-sm-3">{{$ticket->sla->name ?? 'Not Assigned'}}</td>
             <th class="col-sm-3">{{t('Group')}}</th>
-            <td class="col-sm-3">{{$ticket->group->name or 'Not Assigned'}}</td>
+            <td class="col-sm-3">{{$ticket->group->name ?? 'Not Assigned'}}</td>
         </tr>
         {{--<tr>--}}
             {{--<th>{{t('Business Unit')}}</th>--}}

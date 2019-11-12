@@ -24,11 +24,11 @@ class DepartmentController extends Controller
 
     public function store(Request $request)
     {
-        $this->validates($request, 'Could not save department');
+        $this->validates($request);
 
         Department::create($request->all());
 
-        flash(t('Department has been saved'), 'success');
+        flash(t('Department Info'),t('Department has been saved'), 'success');
 
         return \Redirect::route('admin.department.index');
     }
@@ -45,11 +45,11 @@ class DepartmentController extends Controller
 
     public function update(Department $department, Request $request)
     {
-        $this->validates($request, 'Could not save department');
+        $this->validates($request);
 
         $department->update($request->all());
 
-        flash(t('Department has been saved'), 'success');
+        flash(t('Department'),t('Department has been saved'), 'success');
 
         return \Redirect::route('admin.department.index');
     }

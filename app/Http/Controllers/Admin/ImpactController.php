@@ -25,11 +25,11 @@ class ImpactController extends Controller
 
     public function store(Request $request)
     {
-        $this->validates($request, 'Could not save impact');
+        $this->validates($request);
 
         Impact::create($request->all());
 
-        flash(t('Impact has been saved'), 'success');
+        flash(t('Impact Info'),t('Impact has been saved'), 'success');
 
         return \Redirect::route('admin.impact.index');
     }
@@ -46,11 +46,11 @@ class ImpactController extends Controller
 
     public function update(Impact $impact, Request $request)
     {
-        $this->validates($request, 'Could not save impact');
+        $this->validates($request);
 
         $impact->update($request->all());
 
-        flash(t('Impact has been saved'), 'success');
+        flash(t('Impact Info'),t('Impact has been saved'), 'success');
 
         return \Redirect::route('admin.impact.index');
     }
@@ -59,7 +59,7 @@ class ImpactController extends Controller
     {
         $impact->delete();
 
-        flash(t('Impact has been deleted'), 'success');
+        flash(t('Impact Info'),t('Impact has been deleted'), 'success');
 
         return \Redirect::route('admin.impact.index');
     }

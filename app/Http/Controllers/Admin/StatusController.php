@@ -25,11 +25,11 @@ class StatusController extends Controller
 
     public function store(Request $request)
     {
-        $this->validates($request, 'Could not save status');
+        $this->validates($request);
 
         Status::create($request->all());
 
-        flash(t('Status has been saved'), 'success');
+        flash(t('Status Info'),t('Status has been saved'), 'success');
 
         return \Redirect::route('admin.status.index');
     }
@@ -46,11 +46,11 @@ class StatusController extends Controller
 
     public function update(Status $status, Request $request)
     {
-        $this->validates($request, 'Could not save status');
+        $this->validates($request);
 
         $status->update($request->all());
 
-        flash(t('Status has been saved'), 'success');
+        flash(t('Status'),t('Status has been saved'), 'success');
 
         return \Redirect::route('admin.status.index');
     }

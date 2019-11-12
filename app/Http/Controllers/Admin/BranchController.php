@@ -24,11 +24,11 @@ class BranchController extends Controller
 
     public function store(Request $request)
     {
-        $this->validates($request, 'Could not save branch');
+        $this->validates($request);
 
         Branch::create($request->all());
 
-        flash(t('Branch has been saved'), 'success');
+        flash(t('Branch Info'),t('Branch has been saved'), 'success');
 
         return \Redirect::route('admin.branch.index');
     }
@@ -45,11 +45,11 @@ class BranchController extends Controller
 
     public function update(Branch $branch, Request $request)
     {
-        $this->validates($request, 'Could not save branch');
+        $this->validates($request);
 
         $branch->update($request->all());
 
-        flash(t('Branch has been saved'), 'success');
+        flash(t('Branch Info'),t('Branch has been saved'), 'success');
 
         return \Redirect::route('admin.branch.index');
     }
@@ -58,7 +58,7 @@ class BranchController extends Controller
     {
         $branch->delete();
 
-        flash(t('Branch has been deleted'), 'success');
+        flash(t('Branch Info'),t('Branch has been deleted'), 'success');
 
         return \Redirect::route('admin.branch.index');
     }

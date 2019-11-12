@@ -24,11 +24,11 @@ class LocationController extends Controller
 
     public function store(Request $request)
     {
-        $this->validates($request, 'Could not save location');
+        $this->validates($request);
 
         Location::create($request->all());
 
-        flash(t('Location has been saved'), 'success');
+        flash(t('Location Info'),t('Location has been saved'), 'success');
 
         return \Redirect::route('admin.location.index');
     }
@@ -46,11 +46,11 @@ class LocationController extends Controller
     public function update(Location $location, Request $request)
     {
         $this->rules['name'] .= ','.$location->id;
-        $this->validates($request, 'Could not save location');
+        $this->validates($request);
 
         $location->update($request->all());
 
-        flash(t('Location has been saved'), 'success');
+        flash(t('Location Info'),t('Location has been saved'), 'success');
 
         return \Redirect::route('admin.location.index');
     }
@@ -59,7 +59,7 @@ class LocationController extends Controller
     {
         $location->delete();
 
-        flash(t('Location has been deleted'), 'success');
+        flash(t('Location Info'),t('Location has been deleted'), 'success');
 
         return \Redirect::route('admin.location.index');
     }

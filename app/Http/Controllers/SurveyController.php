@@ -39,7 +39,7 @@ class SurveyController extends Controller
         $survey->update($request->all());
         $survey->categories()->sync($request->category_id);
 
-        flash('Survey has been saved', 'success');
+        flash(t('Survey Info'),'Survey has been updated', 'success');
         return \Redirect::route('admin.survey.index');
 
     }
@@ -50,6 +50,7 @@ class SurveyController extends Controller
         $survey = Survey::create($request->all());
         $survey->categories()->sync($request->category_id);
 
+        flash(t('Survey Info'),'Survey has been saved', 'success');
         return \Redirect::route('admin.survey.index');
 
     }
@@ -62,6 +63,7 @@ class SurveyController extends Controller
     public function destroy(Survey $survey)
     {
         $survey->delete();
+        flash(t('Survey Info'),'Survey has been deleted', 'success');
 
         return \Redirect::route('admin.survey.index');
     }
