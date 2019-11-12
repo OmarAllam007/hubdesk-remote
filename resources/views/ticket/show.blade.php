@@ -172,7 +172,7 @@
                 @endif
 
 
-                @if(Auth::user()->isSupport() && !$ticket->isTask())
+                @if(!$ticket->isTask())
                     <li><a href="#tasks" role="tab" data-toggle="tab"><i
                                     class="fa fa-tasks"></i> {{t('Tasks')}}</a></li>
                 @endif
