@@ -73,11 +73,11 @@ class TaskController extends Controller
 
 
 
-        if(count($request->attachments)){
+        if(!empty($request->attachments)){
             Attachment::uploadFiles(Attachment::TICKET_TYPE, $task->id);
         }
 
-        if(count($request->cf)){
+        if(!empty($request->cf)){
             foreach ($request->get('cf', []) as $key=>$item) {
 
                 $field = CustomField::find($key);
