@@ -10,7 +10,11 @@
                     {{--<button class="btn btn-default btn-sm"><i class="fa fa-search"></i></button>--}}
                 {{--</span>--}}
         {{--</div>--}}
+
         <a href="{{route('kgs.business_documents_folder.create',compact('business_unit'))}}" class="btn btn-sm btn-outlined btn-primary"><i class="fa fa-plus"></i>  {{t('Create')}}</a>
+    <a class="btn  btn-default"
+       href="{{route('kgs.document.select_category',['business_unit'=>$business_unit])}}">{{$business_unit->name}} <i
+                class="fa fa-1x fa-arrow-right"></i> </a>
 {{--    <a class="btn  btn-default" href="{{route('kgs.document.select_category',compact('business_unit'))}}"><i class="fa fa-1x fa-arrow-right" ></i></a>--}}
 
     {{--</form>--}}
@@ -33,14 +37,15 @@
                 <tbody>
                 @foreach($document_folders as $folder)
                     <tr>
-{{--                        <td ><a href="{{route('kgs.document.edit', compact('business_unit','document'))}}">{{$folder->name}}</a></td>--}}
-{{--                        <td class="col-md-3">--}}
-{{--                            <form action="{{route('kgs.document.destroy', compact('business_unit','folder'))}}" method="post">--}}
-{{--                                {{csrf_field()}} {{method_field('delete')}}--}}
-{{--                                <a class="btn btn-sm btn-primary" href="{{route('kgs.document.edit', compact('business_unit','folder'))}}"><i class="fa fa-edit"></i> Edit</a>--}}
-{{--                                <button class="btn btn-sm btn-warning"><i class="fa fa-trash-o"></i> Delete</button>--}}
-{{--                            </form>--}}
-{{--                        </td>--}}
+                        <td ><a href="{{route('kgs.document.index', compact('folder'))}}">{{$folder->name}}</a></td>
+                        <td class="col-md-3">
+                            <form action="{{route('kgs.business_documents_folder.destroy', compact('business_unit','folder'))}}" method="post">
+                                {{csrf_field()}} {{method_field('delete')}}
+                                <a class="btn btn-sm  btn-success" href="{{route('kgs.document.index', compact('folder'))}}"><i class="fa fa-files-o"></i> Documents</a>
+                                <a class="btn btn-sm btn-primary" href="{{route('kgs.business_documents_folder.edit', compact('folder'))}}"><i class="fa fa-edit"></i> Edit</a>
+                                <button class="btn btn-sm  btn-warning"><i class="fa fa-trash-o"></i> Delete</button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>

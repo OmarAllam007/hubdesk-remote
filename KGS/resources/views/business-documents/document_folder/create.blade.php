@@ -9,9 +9,9 @@
 
 @section('body')
 
-    {{ Form::open(['route' => ['kgs.document.store','business_unit'=>$business_unit], 'files' => true, 'class' => 'col-sm-6']) }}
+    {{ Form::open(['route' => ['kgs.business_documents_folder.store','business_unit'=>$business_unit], 'files' => true, 'class' => 'col-sm-6']) }}
 
-    @include('kgs::business-documents.documents._form')
+    @include('kgs::business-documents.document_folder._form')
 
     {{ Form::close() }}
 @stop

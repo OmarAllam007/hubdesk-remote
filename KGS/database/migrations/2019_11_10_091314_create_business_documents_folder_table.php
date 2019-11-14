@@ -19,6 +19,7 @@ class CreateBusinessDocumentsFolderTable extends Migration
             $table->string('name');
             $table->unsignedInteger('creator_id');
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 

@@ -4,7 +4,7 @@
     <h4 class="pull-left"> {{$business_unit->name}} > {{t('Select Category')}}</h4>
     <div class="btn-group">
         {{--@if(Auth::user()->isAdmin())--}}
-            <a class="btn btn-outlined  btn-success" href="{{route('kgs.business_documents_folder',compact('business_unit'))}}"><i
+            <a class="btn btn-outlined  btn-success" href="{{route('kgs.business_documents_folder.index',compact('business_unit'))}}"><i
                     class="fa fa-file"></i> {{t('Folders')}}</a>
 
 

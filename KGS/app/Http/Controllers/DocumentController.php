@@ -3,39 +3,39 @@
 namespace KGS\Http\Controllers;
 
 
-use App\BusinessUnit;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
+use KGS\BusinessDocumentsFolder;
 use KGS\Document;
 
 class DocumentController extends Controller
 {
-    function index(BusinessUnit $business_unit)
+    function index(BusinessDocumentsFolder $folder)
     {
-        $documents = $business_unit->documents()->paginate(20);
-        return view('kgs::business-documents.documents.index', compact('documents', 'business_unit'));
+        $documents = $folder->documents()->paginate(20);
+        return view('kgs::business-documents.documents.index', compact('documents', 'folder'));
     }
 
-    function create(BusinessUnit $business_unit)
+    function create(BusinessDocumentsFolder $folder)
     {
-        return view('kgs::business-documents.documents.create', compact('business_unit'));
+        return view('kgs::business-documents.documents.create', compact('folder'));
     }
 
-    function edit(BusinessUnit $business_unit, Document $document)
+    function edit(BusinessDocumentsFolder $folder, Document $document)
     {
-        return view('kgs::business-documents.documents.edit', compact('business_unit', 'document'));
+        return view('kgs::business-documents.documents.edit', compact('folder', 'document'));
     }
 
-    function store(BusinessUnit $business_unit, Request $request)
+    function store(BusinessDocumentsFolder $folder, Request $request)
     {
-        $this->validate($request,['name'=>'required','end_date'=>'required','document'=>'required']);
+        $this->validate($request,['name'=>'required','end_date'=>'required','document'=>'required','folder_id'=>'required']);
 
         if ($request->hasFile('document')) {
-            $request['document_path'] = $this->uploadDocument($business_unit, $request);
+            $request['document_path'] = $this->uploadDocument($folder, $request);
         }
         Document::create([
-            'business_unit_id' => $business_unit->id,
+            'folder_id' => $folder->id,
             'name' => $request->name,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
@@ -43,41 +43,42 @@ class DocumentController extends Controller
             'last_updated_by' => \Auth::id(),
         ]);
 
-        return redirect()->route('kgs.document.index', compact('business_unit'));
+        return redirect()->route('kgs.document.index', compact('folder'));
     }
 
-    function update(BusinessUnit $business_unit, Document $document, Request $request)
+    function update(BusinessDocumentsFolder $folder, Document $document, Request $request)
     {
-        $this->validate($request,['name'=>'required','end_date'=>'required']);
+        $this->validate($request,['name'=>'required','end_date'=>'required','folder_id'=>'required']);
 
 
         if ($request->hasFile('document')) {
-            $request['document_path'] = $this->uploadDocument($business_unit, $request);
+            $request['document_path'] = $this->uploadDocument($folder, $request);
         }
+
         $document->update([
-            'business_unit_id' => $business_unit->id,
+            'folder_id' =>$request->folder_id,
             'name' => $request->name,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'path' => $request['document_path'] ? $request['document_path'] : $document->path,
 //            'last_updated_by' => \Auth::id(),
         ]);
-        return redirect()->route('kgs.document.index', compact('business_unit'));
+        return redirect()->route('kgs.document.index', compact('folder'));
     }
 
-    function destroy(BusinessUnit $business_unit, Document $document)
+    function destroy(BusinessDocumentsFolder $folder, Document $document)
     {
         $document->delete();
-        return redirect()->route('kgs.document.index', compact('business_unit'));
+        return redirect()->route('kgs.document.index', compact('folder'));
     }
 
-    private function uploadDocument(BusinessUnit $business_unit, Request $request)
+    private function uploadDocument(BusinessDocumentsFolder $business_folder, Request $request)
     {
         $file = \request('document');
         if ($file) {
             $filename = $file->getClientOriginalName();
 
-            $folder = storage_path('app/public/attachments/business-units/' . $business_unit->id . '/');
+            $folder = storage_path('app/public/attachments/business-units/' . $business_folder->id . '/');
             if (!is_dir($folder)) {
                 mkdir($folder, 0775, true);
             }
@@ -90,9 +91,16 @@ class DocumentController extends Controller
 
             $file->move($folder, $filename);
 
-            $file->path = '/attachments/business-units/' . $business_unit->id . '/' . $filename;
+            $file->path = '/attachments/business-units/' . $business_folder->id . '/' . $filename;
             return $file->path;
         }
+    }
+
+
+    function downloadAttachment(Document $document)
+    {
+        $file = public_path('storage') . $document->path;
+        return response()->download($file);
     }
 
 }
