@@ -177,6 +177,7 @@ return [
         KGS\Providers\KGSProvider::class,
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
 //        Barryvdh\DomPDF\ServiceProvider::class,
 //        niklasravnsborg\LaravelPdf\PdfServiceProvider::class,

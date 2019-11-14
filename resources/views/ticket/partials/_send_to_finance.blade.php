@@ -9,7 +9,7 @@
         <div class="modal-body" id="TicketForm">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="form-group form-group-sm {{$errors->has('to')? 'has-error' : ''}}">
+                    <div class="form-group form-group-sm @error('to') ? 'has-errors' : '' @enderror ">
                         {{Form::label('to', t('To'), ['class' => 'control-label'])}}
                         <select class="form-control select2" name="to[]" multiple>
                             <option value="">{{t('Select User')}}</option>
@@ -19,20 +19,19 @@
                                 </option>
                             @endforeach
                         </select>
-                        @if (count($errors)&&count($errors->has('to')))
-                            <div class="error-message">
-                                {{ $errors->first() }}
-                            </div>
-                        @endif
+
+                        @error('to')
+                            <div class="error-message">{{$errors->first('to')}}</div>
+                        @enderror
                     </div>
 
 
-                    <div class="form-group {{$errors->has('finance_content')? 'has-errors' : ''}}">
+                    <div class="form-group @error('finance_content') ? 'has-errors' : '' @enderror ">
                         {{Form::label('finance_content', t('Description'), ['class' => 'control-label'])}}
                         {{Form::textarea('finance_content', null, ['class' => 'form-control richeditor', 'rows' => 5])}}
-                        @if ($errors->has('finance_content'))
-                            <div class="error-message">{{$errors->first('finance_content')}}</div>
-                        @endif
+                        @error('finance_content')
+                        <div class="error-message">{{$errors->first('finance_content')}}</div>
+                        @enderror
                     </div>
                 </div>
             </div>

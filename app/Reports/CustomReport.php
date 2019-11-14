@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Classes\LaravelExcelWorksheet;
 use Maatwebsite\Excel\Writers\LaravelExcelWriter;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Style\Color;
 
 
@@ -98,51 +99,63 @@ class CustomReport extends ReportContract
         }
 
         $data = $this->data;
-
-        /** @var Collection $data */
-        return \Excel::create(str_slug($this->report->title), function ($excel) use ($data) {
-            /** @var LaravelExcelWriter $excel */
-            $excel->sheet(ucwords($this->report->title), function ($sheet) use ($data) {
-
-                $sheet->row($this->row, $this->columns);
-
-                if ($this->is_grouping) {
-                    /** @var LaravelExcelWorksheet $sheet */
-                    $data->each(function ($items, $key) use ($sheet) {
-
-                        $sheet->row(++$this->row, [$key]);
-
-                        $items_header_range = "A{$this->row}:{$sheet->getHighestDataColumn()}$this->row";
-                        $sheet->mergeCells($items_header_range);
-
-                        $sheet->getStyle($items_header_range)->getFont()->getColor()->setARGB(Color::COLOR_WHITE);
-                        $sheet->getStyle($items_header_range)->getFill()->applyFromArray([
-                            'type' => \PHPExcel_Style_Fill::FILL_SOLID,
-                            'startcolor' => [
-                                'rgb' => "194F7E"
-                            ],
-                        ]);
-
-                        $sheet->getRowDimension($items_header_range)->setVisible(false)->setCollapsed(true);
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setTitle($this->report->title);
 
 
-                        $items->each(function ($item) use ($sheet) {
-                            $sheet->row(++$this->row, collect($item)->toArray());
-                        });
-                    });
-                } else {
+        if ($this->is_grouping) {
+            /** @var LaravelExcelWorksheet $sheet */
 
-                    $sheet->row($this->row, $this->columns);
-                    $data->each(function ($item, $key) use ($sheet) {
-                        $sheet->row(++$this->row, collect($item)->toArray());
-                    });
-                }
+            $sheet->fromArray($this->columns, NULL, 'A1', true);
+            $data->each(function ($items, $key) use ($sheet) {
 
-                $sheet->setAutoFilter();
-                $sheet->setAutoSize(true);
+                $sheet->fromArray([$key],NULL,'A'.++$this->row,true);
+
+                $items_header_range = "A{$this->row}:{$sheet->getHighestDataColumn()}$this->row";
+                $sheet->mergeCells($items_header_range);
+
+                $sheet->getStyle($items_header_range)->getFont()->getColor()->setARGB(Color::COLOR_WHITE);
+                $sheet->getStyle($items_header_range)->getFill()->applyFromArray([
+                    'type' => \PHPExcel_Style_Fill::FILL_SOLID,
+                    'startcolor' => [
+                        'rgb' => "194F7E"
+                    ],
+                ]);
+
+                $sheet->getRowDimension($items_header_range)->setVisible(false)->setCollapsed(true);
+
+
+                $items->each(function ($item) use ($sheet) {
+                    $sheet->fromArray(collect($item)->toArray(),NULL,'A'.++$this->row,true);
+                });
             });
-//            $excel->download('xlsx');
-        });
+        } else {
+
+            $sheet->fromArray($this->columns, NULL, 'A1', true);
+            $data->each(function ($item, $key) use ($sheet) {
+                $sheet->fromArray(collect($item)->toArray(),NULL,'A'.++$this->row,true);
+            });
+        }
+
+        $highestColumn = $sheet->getHighestColumn(1);
+        for ($column = 'A'; $column ; $column++) {
+            if($column == $highestColumn){
+                break;
+            }
+            $sheet->getColumnDimension($column)->setAutoSize(true);
+        }
+
+        $sheet->setAutoFilter('A1:' . $highestColumn . '1');
+
+
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+//        $writer->save('export.xlsx');
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment; filename="' . str_slug($this->report->title) . '.xlsx"');
+        $writer->save("php://output");
+        exit;
+
     }
 
     function pdf()
