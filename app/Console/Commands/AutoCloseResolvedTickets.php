@@ -32,25 +32,23 @@ class AutoCloseResolvedTickets extends Command
     public function handle()
     {
         Ticket::flushEventListeners();
-        Ticket::whereIn('status_id', [7, 9])->whereNull('type')->chunk(500,function ($tickets){
-            /** @var Ticket $ticket */
+        $tickets = Ticket::whereIn('status_id', [7, 9])->whereNull('type')->get();
+        /** @var Ticket $ticket */
 
-            foreach ($tickets as $ticket) {
-//            dump(['id' => $ticket->id, 'close' => $this->shouldClose($ticket), 'resolve' => $ticket->resolve_date->format('c')]);
-                if ($this->shouldClose($ticket)) {
-                    $ticket->status_id = 8;
-                    $ticket->close_date = Carbon::now();
-                    $ticket->save();
+        foreach ($tickets as $ticket) {
+            if ($this->shouldClose($ticket)) {
+                $ticket->status_id = 8;
+                $ticket->close_date = Carbon::now();
+                $ticket->save();
 
-                    TicketLog::addAutoClose($ticket);
-//                    dispatch(new TicketAutoClosedJob($ticket));
+                TicketLog::addAutoClose($ticket);
+                dispatch(new TicketAutoClosedJob($ticket));
 
-//                if ($survey = $ticket->category->survey->first()) {
-//                    $this->sendSurvey($ticket, $survey);
-//                }
+                if ($survey = $ticket->category->survey->first()) {
+                    $this->sendSurvey($ticket, $survey);
                 }
             }
-        });
+        }
 
 
     }
@@ -75,13 +73,16 @@ class AutoCloseResolvedTickets extends Command
 
     private function sendSurvey($ticket, $survey)
     {
-        UserSurvey::create([
+
+
+        $user_survey = UserSurvey::create([
             'ticket_id' => $ticket->id,
             'survey_id' => $survey->id,
             'comment' => '',
             'is_submitted' => 0,
             'notified' => 1
         ]);
-        \Mail::send(new SendSurveyEmail($ticket));
+
+        \Mail::send(new SendSurveyEmail($user_survey));
     }
 }
