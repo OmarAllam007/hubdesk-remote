@@ -44,7 +44,7 @@
                         </td>
                         <td>{{$document->start_date ? $document->start_date->format('Y-m-d') : ''}}</td>
                         <td>{{$document->end_date ? $document->end_date->format('Y-m-d') : ''}}</td>
-                        <td><a href="{{route('kgs.business_document.download',compact('document'))}}" target="_blank">{{basename($document->path) ?? ''}}</a></td>
+                        <td><a href="{{route('kgs.business_document.download',['attachment'=>$document])}}" target="_blank">{{basename($document->path) ?? ''}}</a></td>
                         <td class="col-md-3">
                             <form action="{{route('kgs.document.destroy', compact('folder','document'))}}"
                                   method="post">

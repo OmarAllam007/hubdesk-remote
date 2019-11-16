@@ -3,7 +3,7 @@
 @section('header')
     <h4 class="pull-left">{{t('Create Document')}}</h4>
 
-    <a href="{{ route('kgs.document.index',compact('business_unit'))}}" class="btn btn-sm btn-default pull-right"><i
+    <a href="{{URL::previous()}}" class="btn btn-sm btn-default pull-right"><i
                 class="fa fa-chevron-left"></i></a>
 @stop
 

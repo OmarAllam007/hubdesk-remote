@@ -2,7 +2,7 @@
 <div id="TicketForm">
 
     <div class="form-group form-group-sm @error('name') ? 'has-error' : '' @enderror">
-        {{ Form::label('name', t('Document Name'), ['class' => 'control-label']) }}
+        {{ Form::label('name', t('Folder Name'), ['class' => 'control-label']) }}
         {{ Form::text('name', null, ['class' => 'form-control']) }}
         @if ($errors->has('name'))
             <div class="error-message">{{$errors->first('name')}}</div>

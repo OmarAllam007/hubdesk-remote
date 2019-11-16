@@ -97,9 +97,9 @@ class DocumentController extends Controller
     }
 
 
-    function downloadAttachment(Document $document)
+    function downloadAttachment(Document $attachment)
     {
-        $file = public_path('storage') . $document->path;
+        $file = public_path('storage') . $attachment->path;
         return response()->download($file);
     }
 

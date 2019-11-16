@@ -5,7 +5,8 @@
 
     <form action="{{ route('kgs.business_documents_folder.destroy', compact('business_unit','folder'))}}" class="pull-right" method="post">
         {{csrf_field()}} {{method_field('delete')}}
-        <a href="{{ route('kgs.document.index',compact('business_unit','folder'))}}" class="btn btn-sm btn-default"><i class="fa fa-chevron-left"></i></a>
+        <a href="{{URL::previous()}}" class="btn btn-sm btn-default">
+            <i class="fa fa-chevron-left"></i></a>
         <button class="btn btn-sm btn-warning" type="submit"><i class="fa fa-trash-o"></i></button>
     </form>
 @stop
