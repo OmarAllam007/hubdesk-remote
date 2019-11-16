@@ -22,7 +22,9 @@ return [
         | Pre-calculate formulas during export
         |--------------------------------------------------------------------------
         */
+
         'pre_calculate_formulas' => false,
+//        'autosize-method'             => PHPExcel_Shared_Font::AUTOSIZE_METHOD_APPROX,
 
         /*
         |--------------------------------------------------------------------------
