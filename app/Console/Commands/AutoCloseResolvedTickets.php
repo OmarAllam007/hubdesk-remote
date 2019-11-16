@@ -31,24 +31,28 @@ class AutoCloseResolvedTickets extends Command
 
     public function handle()
     {
-        $tickets = Ticket::whereIn('status_id', [7, 9])->whereNotIn('type', [2])->get();
         Ticket::flushEventListeners();
-        /** @var Ticket $ticket */
-        foreach ($tickets as $ticket) {
+        Ticket::whereIn('status_id', [7, 9])->whereNull('type')->chunk(500,function ($tickets){
+            /** @var Ticket $ticket */
+
+            foreach ($tickets as $ticket) {
 //            dump(['id' => $ticket->id, 'close' => $this->shouldClose($ticket), 'resolve' => $ticket->resolve_date->format('c')]);
-            if ($this->shouldClose($ticket)) {
-                $ticket->status_id = 8;
-                $ticket->close_date = Carbon::now();
-                $ticket->save();
+                if ($this->shouldClose($ticket)) {
+                    $ticket->status_id = 8;
+                    $ticket->close_date = Carbon::now();
+                    $ticket->save();
 
-                TicketLog::addAutoClose($ticket);
-                dispatch(new TicketAutoClosedJob($ticket));
+                    TicketLog::addAutoClose($ticket);
+//                    dispatch(new TicketAutoClosedJob($ticket));
 
-                if ($survey = $ticket->category->survey->first()) {
-                    $this->sendSurvey($ticket, $survey);
+//                if ($survey = $ticket->category->survey->first()) {
+//                    $this->sendSurvey($ticket, $survey);
+//                }
                 }
             }
-        }
+        });
+
+
     }
 
     private function shouldClose(Ticket $ticket)
