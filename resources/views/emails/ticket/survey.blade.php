@@ -7,7 +7,7 @@
     <br><br>
 </div>
 <div style="padding-left: 15px;">
-    @component('mail::button', ['url' => route('survey.display',['survey' => $survey->id])])
+    @component('mail::button', ['url' => route('survey.display',['user_survey' => $survey->id])])
         <b class="center-block">Click here to take action</b>
     @endcomponent
     <br><br>
