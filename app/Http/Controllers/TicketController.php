@@ -150,7 +150,7 @@ class TicketController extends Controller
         $reply->user_id = $request->user()->id;
         $reply->cc = $request->get("reply")["cc"] ?? null;
 
-        if($template_id = $request->get('reply')['template']){
+        if(isset($request->get('reply')['template']) && $template_id = $request->get('reply')['template']){
             $reply["content"] = ReplyTemplate::find($template_id)->description;
         }
         // Fires creating event in \App\Providers\TicketReplyObserver
@@ -181,7 +181,7 @@ class TicketController extends Controller
             return \Redirect::route('ticket.show', compact('ticket'));
         }
 
-        if($template_id = $request->get('template')){
+        if(isset($request->get('reply')['template']) && $template_id = $request->get('template')){
             $request['content'] = ReplyTemplate::find($template_id)->description;
         }
 
