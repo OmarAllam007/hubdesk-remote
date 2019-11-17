@@ -298,7 +298,7 @@
         },
         computed: {
             can_submit(){
-                return (this.subject != '' && this.category != '') || this.saving == true
+                return (this.subject != '' && this.category != '') && this.saving == false
             }
         },
         created() {
