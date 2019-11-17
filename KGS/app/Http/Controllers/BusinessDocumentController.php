@@ -20,6 +20,7 @@ use App\Ticket;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Bus;
+use KGS\Document;
 use KGS\DocumentNotification;
 use KGS\Requirement;
 use Predis\Response\Status;
@@ -208,28 +209,29 @@ class BusinessDocumentController extends Controller
 
     function saveNotification(BusinessUnit $business_unit, Request $request)
     {
-        $this->validate($request,['notifications.*.users'=>['required']]);
+        $this->validate($request, ['notifications.*.users' => ['required']]);
 
         if (count($request->notifications)) {
-            foreach ($request->notifications as $key=>$notification) {
-                $document = DocumentNotification::where('business_unit_id',$business_unit->id)
-                    ->where('level',$key)->first();
-                if($document){
+            foreach ($request->notifications as $key => $notification) {
+                $document = DocumentNotification::where('business_unit_id', $business_unit->id)
+                    ->where('level', $key)->first();
+                if ($document) {
                     $document->update([
-                        'days'=>$notification['period'],
-                       'users'=>$notification['users']
+                        'days' => $notification['period'],
+                        'users' => $notification['users']
                     ]);
-                }
-                else{
+                } else {
                     DocumentNotification::create([
-                        'business_unit_id'=>$business_unit->id,
-                        'level'=>$key,
-                        'users'=>$notification['users']
+                        'business_unit_id' => $business_unit->id,
+                        'level' => $key,
+                        'users' => $notification['users']
                     ]);
                 }
 
             }
         }
-        return redirect()->route('kgs.document.select_category',compact('business_unit'));
+        return redirect()->route('kgs.document.select_category', compact('business_unit'));
     }
+
+
 }

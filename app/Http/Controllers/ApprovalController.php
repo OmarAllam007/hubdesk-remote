@@ -37,12 +37,9 @@ class ApprovalController extends Controller
 
         $ticket->approvals()->save($approval);
 
-        flash(t('Approval Info'), 'success', [
-            'text' => 'Approval has been sent successfully',
-            'timer' => 3000
-        ]);
+        flash(t('Approval Info'),t('Approval has been sent successfully'), 'success');
 
-        return $this->backSuccessResponse($request, null);
+        return redirect()->back();
     }
 
     public function resend(TicketApproval $ticketApproval, Request $request)
@@ -51,12 +48,9 @@ class ApprovalController extends Controller
 //        $this->dispatch(new SendNewApproval($ticketApproval));
         TicketLog::resendApproval($ticketApproval);
 
-        alert()->flash(t('Approval Info'), 'success', [
-            'text' => 'Approval has been sent successfully',
-            'timer' => 3000
-        ]);
+        flash(t('Approval Info'),t('Approval has been sent successfully'), 'success');
 
-        return $this->backSuccessResponse($request, null);
+        return redirect()->back();
     }
 
     public function show(TicketApproval $ticketApproval, Request $request)
@@ -103,10 +97,7 @@ class ApprovalController extends Controller
             dispatch(new ApplySLA($ticketApproval->ticket));
         }
 
-        alert()->flash('Approval Info', 'info', [
-            'text' => 'Ticket has been ' . ($ticketApproval->status == TicketApproval::APPROVED ? 'approved' : 'rejected'),
-            'timer' => 3000
-        ]);
+        flash(t('Approval Info'), 'Ticket has been ' . ($ticketApproval->status == TicketApproval::APPROVED ? 'approved' : 'rejected'),'info');
 
         return Redirect::route('ticket.show', $ticketApproval->ticket_id);
     }
@@ -115,20 +106,14 @@ class ApprovalController extends Controller
     {
         if (!can('delete',$ticketApproval) || $ticketApproval->status != TicketApproval::PENDING_APPROVAL) {
 
-            alert()->flash(t('Approval Sent'), 'error', [
-                'text' => 'Action not authorized',
-                'timer' => 3000
-            ]);
+            flash(t('Approval Sent'), t('Action not authorized'),'error');
 
             return Redirect::back();
         }
 
         $ticketApproval->delete();
 
-        alert()->flash(t('Approval Info'), 'info', [
-            'text' => 'Approval has been deleted',
-            'timer' => 3000
-        ]);
+        flash(t('Approval Info'),'Approval has been deleted', 'info');
         return Redirect::route('ticket.show', $ticketApproval->ticket_id);
     }
 
@@ -146,18 +131,12 @@ class ApprovalController extends Controller
 
         if ($ticketApproval->status != TicketApproval::PENDING_APPROVAL) {
 
-            alert()->flash(t('Approval Info'), 'info', [
-                'text' => 'You already took action for this approval',
-                'timer' => 3000
-            ]);
+            flash(t('Approval Info'),t('You already took action for this approval'), 'info');
             return Redirect::route('ticket.show', $ticketApproval->ticket_id);
         }
 
         if ($ticketApproval->ticket->isClosed()) {
-            alert()->flash(t('Approval Info'), 'info', [
-                'text' => 'The ticket has been closed',
-                'timer' => 3000
-            ]);
+            flash(t('Approval Info'), t('The ticket has been closed'),'info');
             return Redirect::route('ticket.show', $ticketApproval->ticket_id);
         }
 

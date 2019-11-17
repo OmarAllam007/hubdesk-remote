@@ -97,7 +97,7 @@ class TicketController extends Controller
 
         $this->dispatch(new NewTicketJob($ticket));
 
-        flash(t('Ticket has been saved'), 'success');
+        flash(t('Ticket Info'),t('Ticket has been saved'), 'success');
 
         return \Redirect::route('ticket.show', $ticket);
     }
@@ -131,7 +131,7 @@ class TicketController extends Controller
     {
         $ticket->delete();
 
-        flash(t('Ticket has been deleted'), 'success');
+        flash(t('Ticket Info'),t('Ticket has been deleted'), 'success');
 
         return \Redirect::route('ticket.index');
     }
@@ -143,7 +143,7 @@ class TicketController extends Controller
         }
         if (in_array($request->reply['status_id'], [7, 8, 9]) && $ticket->hasOpenTask()) {
 
-            flash(t('Ticket has pending tasks'), 'error');
+            flash(t('Ticket Info'),t('Ticket has pending tasks'), 'error');
             return \Redirect::route('ticket.show', compact('ticket'));
         }
         $reply = new TicketReply($request->get('reply'));
@@ -160,7 +160,7 @@ class TicketController extends Controller
             if (can('reopen', $ticket)) {
                 $ticket->replies()->save($reply);
             } else {
-                flash(t('Can\'t change closed ticket status'), 'danger');
+                flash(t('Ticket Info'),t('Can\'t change closed ticket status'), 'danger');
                 return \Redirect::route('ticket.show', compact('ticket'));
             }
         } else {
@@ -168,7 +168,8 @@ class TicketController extends Controller
             $ticket->replies()->save($reply);
 //
 //        //@todo: Calculate elapsed time
-            return $this->backSuccessResponse($request, 'Reply has been added');
+            flash(t('Reply Info'),t('Reply has been added'),'success');
+            return redirect()->back();
         }
 
     }
@@ -176,7 +177,7 @@ class TicketController extends Controller
     public function resolution(Ticket $ticket, TicketResolveRequest $request)
     {
         if ($ticket->hasOpenTask()) {
-            flash(t('Ticket has pending tasks'), 'danger');
+            flash(t('Ticket Info'),t('Ticket has pending tasks'), 'danger');
             return \Redirect::route('ticket.show', compact('ticket'));
         }
 
@@ -193,11 +194,8 @@ class TicketController extends Controller
         //@todo: Calculate elapsed time
         $this->dispatch(new TicketReplyJob($reply));
 
-        alert()->flash(t('Ticket Info'), 'success', [
-            'text' => t('Ticket has been resolved'),
-            'timer' => 3000
-        ]);
-        return $this->backSuccessResponse($request, '');
+        flash(t('Ticket Info'),t('Ticket has been resolved'), 'success');
+        return redirect()->back();
     }
 
     public function jump(Request $request)
@@ -222,10 +220,7 @@ class TicketController extends Controller
             return \Redirect::route('ticket.show', $ticket->id);
         }
 
-        alert()->flash(t('Ticket Info'), 'error', [
-            'text' => t('Ticket not found'),
-            'timer' => 3000
-        ]);
+        flash(t('Ticket Info'),t('Ticket not found'), 'error');
         return \Redirect::route('ticket.index');
     }
 
@@ -254,10 +249,7 @@ class TicketController extends Controller
             $this->dispatch(new TicketAssigned($ticket));
         }
 
-        alert()->flash(t('Ticket Info'), 'success', [
-            'text' => t('Ticket has been re-assigned'),
-            'timer' => 3000
-        ]);
+        flash(t('Ticket Info'),t('Ticket has been re-assigned'), 'success');
 
         return \Redirect::route('ticket.show', $ticket);
     }
@@ -321,10 +313,7 @@ class TicketController extends Controller
         if ($note->as_first_response) {
             $this->dispatch(new ApplySLA($note->ticket));
         }
-        alert()->flash(t('Ticket Info'), 'success', [
-            'text' => t('Your note has been created'),
-            'timer' => 3000
-        ]);
+       flash(t('Note Info'),t('Your note has been created'), 'success');
         return \Redirect::route('ticket.show', $note->ticket);
     }
 
@@ -333,10 +322,7 @@ class TicketController extends Controller
         $ticket->replies()->where('status_id', 7)
             ->update(['content' => $request->get('content')]);
 
-        alert()->flash(t('Ticket Info'), 'success', [
-            'text' => t('Resolution saved successfully'),
-            'timer' => 3000
-        ]);
+        flash(t('Ticket Info'), t('Resolution saved successfully'),'success');
 
         return \Redirect::back();
     }
@@ -349,10 +335,7 @@ class TicketController extends Controller
             'note' => 'required',
         ]);
         if ($validate->fails()) {
-            alert()->flash(t('Ticket Info'), 'error', [
-                'text' => t('Your note has not been updated'),
-                'timer' => 3000
-            ]);
+            flash(t('Ticket Info'),t('Your note has not been updated'), 'error' );
 
             return \Redirect::route('ticket.show', $note->ticket);
         }
@@ -365,10 +348,7 @@ class TicketController extends Controller
         if ($note->email_to_technician) {
             $this->dispatch(new NewNoteJob($note));
         }
-        alert()->flash(t('Ticket Info'), 'success', [
-            'text' => t('Your note has been updated'),
-            'timer' => 3000
-        ]);
+        flash(t('Ticket Info'),t('Your note has been updated'), 'success');
         return \Redirect::route('ticket.show', $note->ticket);
     }
 
@@ -377,10 +357,8 @@ class TicketController extends Controller
         $target_note = TicketNote::find($note);
         $ticket = $target_note->ticket;
         $target_note->delete();
-        alert()->flash(t('Ticket Info'), 'success', [
-            'text' => t('Your note has been deleted'),
-            'timer' => 3000
-        ]);
+
+        flash(t('Ticket Info'),t('Your note has been deleted'), 'success');
         return \Redirect::route('ticket.show', $ticket);
     }
 
@@ -467,10 +445,10 @@ class TicketController extends Controller
             ]);
 
             \Mail::to($request->to)->cc($request->cc ?? [])->send(new TicketForwardJob($ticket));
-            flash('Forward the ticket has been sent', 'success');
+            flash(t('Forward Info'),'Forward the ticket has been sent', 'success');
             return \Redirect::route('ticket.show', $ticket);
         }
-        flash('Can\'t forward the ticket', 'danger');
+        flash(t('Forward Info'),'Can\'t forward the ticket', 'danger');
         return \Redirect::route('ticket.show', $ticket);
     }
 

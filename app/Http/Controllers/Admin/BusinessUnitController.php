@@ -25,14 +25,8 @@ class BusinessUnitController extends Controller
 
     public function store(Request $request)
     {
-        alert()->flash(t('Business unit Info'), 'error', [
-            'text' => t('Could not save business unit'),
-            'timer' => 3000
-        ]);
-
+        flash(t('Business unit Info'),t('Could not save business unit') ,'error');
         $this->validates($request, null);
-
-
         $business_unit = BusinessUnit::create($request->all());
 
 
@@ -47,11 +41,7 @@ class BusinessUnitController extends Controller
             $business_unit->update(['business_unit_bgd' => $bgd_path]);
         }
 
-        alert()->flash(t('Business unit Info'), 'success', [
-            'text' => t('Business unit has been saved'),
-            'timer' => 3000
-        ]);
-
+        flash(t('Business unit Info'),t('Business unit has been saved'), 'success');
         return \Redirect::route('admin.business-unit.index');
     }
 
@@ -69,10 +59,7 @@ class BusinessUnitController extends Controller
     {
         $this->rules['name'] .= ',' . $business_unit->id;
 
-        alert()->flash(t('Business unit Info'), 'error', [
-            'text' => 'Could not save business unit',
-            'timer' => 3000
-        ]);
+        flash(t('Business unit Info'),t('Could not save business unit'), 'error');
 
         $this->validates($request, null);
 
@@ -103,10 +90,7 @@ class BusinessUnitController extends Controller
 
         $business_unit->update($request->all());
 
-        alert()->flash('Business unit Info', 'success', [
-            'text' => 'Business unit has been saved',
-            'timer' => 3000
-        ]);
+        flash('Business unit Info',t('Business unit has been saved'), 'success');
 
         return \Redirect::route('admin.business-unit.index');
     }
@@ -115,10 +99,7 @@ class BusinessUnitController extends Controller
     {
         $business_unit->delete();
 
-        alert()->flash('Business unit Info', 'success', [
-            'text' => 'Business Unit has been deleted',
-            'timer' => 3000
-        ]);
+        flash(t('Business unit Info'),t('Business Unit has been deleted'), 'success');
 
         return \Redirect::route('admin.business-unit.index');
     }

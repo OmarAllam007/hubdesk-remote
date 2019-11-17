@@ -30,7 +30,7 @@ class GroupController extends Controller
 
     public function store(Request $request)
     {
-        $this->validates($request, 'Could not save group');
+        $this->validates($request);
 
         $group = Group::create($request->all());
 
@@ -42,7 +42,7 @@ class GroupController extends Controller
             $group->users()->sync($request->users);
         }
 
-        flash(t('Group has been saved'), 'success');
+        flash(t("Group Info"),t('Group has been saved'), 'success');
 
         return \Redirect::route('admin.group.index');
     }
@@ -59,7 +59,7 @@ class GroupController extends Controller
 
     public function update(Group $group, Request $request)
     {
-        $this->validates($request, 'Could not save group');
+        $this->validates($request);
 
         if ($request->supervisors) {
             $group->supervisors()->sync($request->supervisors);
@@ -69,7 +69,7 @@ class GroupController extends Controller
         }
         $group->update($request->all());
 
-        flash(t('Group has been saved'), 'success');
+        flash(t("Group Info"),t('Group has been saved'), 'success');
 
         return \Redirect::route('admin.group.index');
     }
@@ -78,7 +78,7 @@ class GroupController extends Controller
     {
         $group->delete();
 
-        flash(t('Group has been deleted'), 'success');
+        flash(t("Group Info"),t('Group has been deleted'), 'success');
 
         return \Redirect::route('admin.group.index');
     }
@@ -89,7 +89,7 @@ class GroupController extends Controller
 
         $group->users()->attach($request->get('user_id'));
 
-        flash(t('User has been added to group'), 'success');
+        flash(t("Group Info"),t('User has been added to group'), 'success');
 
         return \Redirect::route('admin.group.show', $group);
     }
@@ -98,7 +98,7 @@ class GroupController extends Controller
     {
         $group->users()->detach($user->id);
 
-        flash(t('User has been removed from group'), 'success');
+        flash(t("Group Info"),t('User has been removed from group'), 'success');
 
         return \Redirect::route('admin.group.show', $group);
     }

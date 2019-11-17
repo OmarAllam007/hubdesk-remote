@@ -5,6 +5,7 @@ namespace App;
 use App\Behaviors\Listable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\UploadedFile;
+use KGS\BusinessDocumentsFolder;
 use KGS\Document;
 use KGS\DocumentNotification;
 
@@ -120,5 +121,9 @@ class BusinessUnit extends KModel
             }
         }
         return false;
+    }
+
+    function business_folders(){
+        return $this->hasMany(BusinessDocumentsFolder::class);
     }
 } 

@@ -24,11 +24,11 @@ class CityController extends Controller
 
     public function store(Request $request)
     {
-        $this->validates($request, 'Could not save city');
+        $this->validates($request);
 
         City::create($request->all());
 
-        flash('City has been saved', 'success');
+        flash(t('City Info'),'City has been saved', 'success');
 
         return \Redirect::route('admin.city.index');
     }
@@ -46,11 +46,11 @@ class CityController extends Controller
     public function update(City $city, Request $request)
     {
         $this->rules['name'] .= ',name,' . $city->id;
-        $this->validates($request, 'Could not save city');
+        $this->validates($request);
 
         $city->update($request->all());
 
-        flash('City has been saved', 'success');
+        flash(t('City Info'),t('City has been saved'), 'success');
 
         return \Redirect::route('admin.city.index');
     }
@@ -59,7 +59,7 @@ class CityController extends Controller
     {
         $city->delete();
 
-        flash('City has been deleted', 'success');
+        flash(t('City Info'),'City has been deleted', 'error');
 
         return \Redirect::route('admin.city.index');
     }

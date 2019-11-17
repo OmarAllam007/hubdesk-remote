@@ -70,15 +70,15 @@ class TicketReplyRequest extends Request
 
     public function response(array $errors)
     {
-        flash(t('Cannot send reply'), 'error',);
 
+        flash(t('Reply Info'), t('Cannot send reply') ,'error');
         return \Redirect::back()->withErrors($errors)->withInput($this->all());
     }
 
     public function forbiddenResponse()
     {
-        flash( t('You cannot add reply to this ticket'), 'error');
 
+        flash(t('Reply Info'), t('You cannot add reply to this ticket'),'error');
         return \Redirect::back();
     }
 }

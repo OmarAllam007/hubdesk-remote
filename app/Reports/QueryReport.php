@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Input;
 use Maatwebsite\Excel\Classes\LaravelExcelWorksheet;
 use Maatwebsite\Excel\Writers\LaravelExcelWriter;
 use Illuminate\Support\Facades\Storage;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 class QueryReport extends ReportContract
 {
@@ -33,9 +34,9 @@ class QueryReport extends ReportContract
                 $filters = $this->getBindingsParams($params, $filters);
             }
 
-            $session_params = session(str_slug(strtolower($this->report->title)).'_filters');
+            $session_params = session(str_slug(strtolower($this->report->title)) . '_filters');
 
-            if(request()->exists('excel') && count($session_params)){
+            if (request()->exists('excel') && !empty($session_params)) {
                 $filters = $this->getBindingsParams($params, $session_params);
             }
 
@@ -69,27 +70,38 @@ class QueryReport extends ReportContract
 
         $data = $this->data;
 
-        return \Excel::create(str_slug($this->report->title), function ($excel) use ($data) {
-            /** @var LaravelExcelWriter $excel */
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setTitle($this->report->title);
+        $sheet->fromArray(collect($this->columns)->values()->toArray(), NULL, 'A1', true);
 
-            $excel->sheet(ucwords($this->report->title), function ($sheet) use ($data) {
-                /** @var LaravelExcelWorksheet $sheet */
-                $sheet->row($this->row, collect($this->columns)->values()->toArray());
 
-                $data->each(function ($ticket) use ($sheet) {
-                    $ticket = collect($ticket)->map(function ($data){
-                        return strip_tags($data);
-                    });
-                    $sheet->row(++$this->row, $ticket->toArray());
-                });
+        foreach ($data as $key => $ticket) {
 
-//                $sheet->setColumnFormat(["C2:D{$this->row}" => '#,##0.00']);
-//                $sheet->setColumnFormat(["E2:E{$this->row}" => '0.00%']);
-
-                $sheet->setAutoFilter();
-                $sheet->setAutoSize(true);
+            $ticket = collect($ticket)->map(function ($data) {
+                return strip_tags($data);
             });
-        });
+            $sheet->fromArray($ticket->toArray(),NULL,'A'.++$this->row,true);
+        }
+
+
+        $highestColumn = $sheet->getHighestColumn(1);
+        for ($column = 'A'; $column ; $column++) {
+            if($column == $highestColumn){
+                break;
+            }
+            $sheet->getColumnDimension($column)->setAutoSize(true);
+        }
+
+        $sheet->setAutoFilter('A1:' . $highestColumn . '1');
+
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+//        $writer->save('export.xlsx');
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment; filename="' . str_slug($this->report->title) . '.xlsx"');
+        $writer->save("php://output");
+        exit;
+
 
     }
 
@@ -136,13 +148,13 @@ class QueryReport extends ReportContract
         foreach ($params as $key => $param) {
             if ($param["type"] == "date") {
                 if (str_contains($param["name"], "from")) {
-                    $filters[$param["name"]] =  new Carbon('first day of last month');
+                    $filters[$param["name"]] = new Carbon('first day of last month');
                 } else if (str_contains($param["name"], "to")) {
                     {
                         $filters[$param["name"]] = new Carbon('last day of last month');
                     }
                 }
-            }else{
+            } else {
                 $filters[$param["name"]] = 31;
             }
 

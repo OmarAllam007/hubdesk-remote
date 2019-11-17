@@ -1403,7 +1403,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('tasks', {
 
     computed: {
         can_submit: function can_submit() {
-            return this.subject != '' && this.category != '' || this.saving == true;
+            return this.subject != '' && this.category != '' && this.saving == false;
         }
     },
     created: function created() {

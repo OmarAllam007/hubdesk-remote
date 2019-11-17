@@ -1,9 +1,11 @@
 <?php
+
 use App\Translation;
 
-function flash($message, $type = 'danger')
+function flash($title="",$message, $type)
 {
-    alert()->flash($message,$type,['text'=>'']);
+
+    alert($title,$message, $type);
 //    Session::flash('flash-message', $message);
 //    Session::flash('flash-type', $type);
 }
@@ -19,7 +21,7 @@ function cannot($ability, $object)
     return \Gate::denies($ability, $object);
 }
 
-function ife($condition, $true, $false = null) 
+function ife($condition, $true, $false = null)
 {
     if ($condition) {
         return $true;
@@ -65,7 +67,7 @@ function t($word, $language = '')
 ////        $newWord->language = $language;
 //        $newWord->save();
 //        return $newWord->word;
-    }else{
+    } else {
         return $word;
     }
     return $word;

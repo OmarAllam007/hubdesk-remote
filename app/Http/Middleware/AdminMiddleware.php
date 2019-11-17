@@ -10,7 +10,7 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next)
     {
         if (!$request->user()->isAdmin()) {
-            flash(t('You are not authorized to visit this area'));
+            flash(t('Authorized'),t('You are not authorized to visit this area'),'danger');
             return \Redirect::to('/home');
         }
 
