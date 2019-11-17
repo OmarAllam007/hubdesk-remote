@@ -71,9 +71,9 @@ class TaskController extends Controller
             'technician_id' => $request['technician'],
         ]);
 
-        if(!empty($request->attachments)){
-            Attachment::uploadFiles(Attachment::TICKET_TYPE, $task->id);
-        }
+//        if(!empty($request->attachments)){
+//            Attachment::uploadFiles(Attachment::TICKET_TYPE, $task->id);
+//        }
 
         if(!empty($request->cf)){
             foreach ($request->get('cf', []) as $key=>$item) {
@@ -168,7 +168,8 @@ class TaskController extends Controller
     public function destroy($ticket, $task)
     {
         $task = Ticket::find($task);
-        if (can('delete', $task)) {
+
+        if (can('task_delete', $task)) {
             $task->delete();
             flash(t('Task Info'),t('Task deleted successfully'), 'success');
         }
