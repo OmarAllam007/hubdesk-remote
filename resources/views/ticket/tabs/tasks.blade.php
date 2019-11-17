@@ -48,7 +48,7 @@
                         {{t('Edit')}}
                     </a>
                     {{--                    @endcan--}}
-                    {{--<button class="btn btn-rounded  btn-danger" v-on:click="deleteTask(task.id)">{{t('Delete')}}</button>--}}
+                    <button class="btn btn-rounded  btn-danger" v-on:click="deleteTask(task.id)">{{t('Delete')}}</button>
                 </td>
             </tr>
 

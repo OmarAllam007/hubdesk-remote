@@ -219,5 +219,13 @@ class User extends Authenticatable implements CanResetPassword
 
         return $folders->merge($authorized_reports);
     }
+
+
+    function reply_templates(){
+        return $this->hasMany(ReplyTemplate::class);
+    }
+//    function getReplyTemplatesAttribute(){
+//        return ReplyTemplate::where('user_id',$this->id)->get();
+//    }
 }
   

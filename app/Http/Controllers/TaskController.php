@@ -7,6 +7,7 @@ use App\CustomField;
 use App\Jobs\ApplySLA;
 use App\Jobs\NewTaskJob;
 use App\Mail\NewTaskMail;
+use App\ReplyTemplate;
 use App\Task;
 use App\Ticket;
 use App\TicketLog;
@@ -49,11 +50,10 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,['subject'=>'required','category'=>'required']);
 
-        $this->validate($request, ['subject' => 'required', 'category' => 'required']);
-
-        if ($request['technician']) {
-            Ticket::flushEventListeners();
+        if($request->template){
+            $request['description'] = ReplyTemplate::find($request->template)->description;
         }
 
         $task = Ticket::create([
@@ -70,8 +70,6 @@ class TaskController extends Controller
             'group_id' => $request['group'],
             'technician_id' => $request['technician'],
         ]);
-
-
 
         if(!empty($request->attachments)){
             Attachment::uploadFiles(Attachment::TICKET_TYPE, $task->id);

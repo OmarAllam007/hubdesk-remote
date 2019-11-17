@@ -27,7 +27,7 @@
 <body>
 
 <header>
-    <nav class="navbar navbar-default navbar-static-top navbar-style exto-bold" >
+    <nav class="navbar navbar-default navbar-static-top navbar-style exto-bold">
         <div class="container-fluid">
             <ul class="nav navbar-nav">
                 <li>
@@ -36,22 +36,33 @@
                 </li>
             </ul>
             @if (!\Auth::guest())
-                <ul class="nav navbar-nav " >
+                <ul class="nav navbar-nav ">
                     {{--@if(Auth::user()->isAdmin())--}}
-                        <li class="nav-item"><a href="{{route('ticket.create')}}"><i class="fa fa-plus"></i> {{t('New Ticket')}}</a></li>
+                    <li class="nav-item"><a href="{{route('ticket.create')}}"><i
+                                    class="fa fa-plus"></i> {{t('New Ticket')}}</a></li>
                     {{--@endif--}}
-                    <li class="nav-item"><a href="{{route('ticket.index')}}"><i class="fa fa-ticket"></i> {{t('Tickets')}}</a></li>
+                    <li class="nav-item"><a href="{{route('ticket.index')}}"><i
+                                    class="fa fa-ticket"></i> {{t('Tickets')}}</a></li>
+
+                    @if(auth()->user()->isSupport())
+                        <li class="nav-item"><a href="{{route('configurations.index')}}"><i
+                                        class="fa fa-cogs"></i> {{t('Configurations')}}</a></li>
+                    @endif
 
                     @can('reports')
-                        <li class="nav-item"><a href="{{url('/reports')}}"><i class="fa fa-bar-chart"></i> {{t('Report')}}</a></li>
+                        <li class="nav-item"><a href="{{url('/reports')}}"><i
+                                        class="fa fa-bar-chart"></i> {{t('Report')}}</a></li>
                     @endif
 
                     @can('show_business_document')
-                    <li class="nav-item"><a  href="{{route('kgs.business_document')}}"><i class="fa fa-book"></i> {{t('Business Documents')}}</a></li>
+                        <li class="nav-item"><a href="{{route('kgs.business_document')}}"><i
+                                        class="fa fa-book"></i> {{t('Business Documents')}}</a></li>
+
                     @endcan
 
                     @if (Auth::user()->isAdmin())
-                        <li class="nav-item"><a href="{{url('/admin')}}"><i class="fa fa-cogs"></i> {{t('Admin')}}</a></li>
+                        <li class="nav-item"><a href="{{url('/admin')}}"><i class="fa fa-cogs"></i> {{t('Admin')}}</a>
+                        </li>
                     @endif
                 </ul>
 
@@ -75,7 +86,8 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
                                     class="fa fa-user"></i> {{Auth::user()->name}} <i class="caret"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{route('user.reset')}}"><i class="fa fa-unlock "></i>  {{t('Reset Password')}}</a></li>
+                            <li><a href="{{route('user.reset')}}"><i class="fa fa-unlock "></i> {{t('Reset Password')}}
+                                </a></li>
                             <li><a href="{{url('/logout')}}"><i class="fa fa-sign-out"></i> {{t('Logout')}}</a></li>
                         </ul>
                     </li>
@@ -96,6 +108,7 @@
             @hasSection('sidebar')
                 @yield('sidebar')
             @endif
+
                 @yield('body')
             @include('sweetalert::alert')
         </div>
@@ -114,7 +127,9 @@
                 <p class="text-mutedtext-right">{{t('Copyright')}} &copy; <a
                             href="http://hubtech.sa">Hubtech</a> {{date('Y')}}</p>
 
-                <p class="text-mutedtext-left" style="font-weight: bold;">  <a href="{{asset('attachments/hubdesk-user-guide.pdf')}}" target="_blank"><i class="fa fa-info-circle"></i> {{t('AlQuwa Hubdesk User Guideline')}}</a>   </p>
+                <p class="text-mutedtext-left" style="font-weight: bold;"><a
+                            href="{{asset('attachments/hubdesk-user-guide.pdf')}}" target="_blank"><i
+                                class="fa fa-info-circle"></i> {{t('AlQuwa Hubdesk User Guideline')}}</a></p>
 
             </div>
         </div>

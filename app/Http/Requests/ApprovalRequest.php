@@ -14,8 +14,14 @@ class ApprovalRequest extends Request
     public function rules()
     {
         return [
-            'approver_id' => 'required', 'content' => 'required'
+            'approver_id' => 'required',
+            'content' => 'required_without:template',
         ];
+    }
+
+    public function messages()
+    {
+        return ['content.required_without'=>'The description field is required'];
     }
 
     public function response(array $errors)

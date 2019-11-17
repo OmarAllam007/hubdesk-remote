@@ -31,15 +31,16 @@ class TicketReplyRequest extends Request
     {
         $this->addCustomRules();
 
+//        dd($this->request->all());
         return [
-            'reply.content' => 'required',
+            'reply.content' => 'required_without:reply.template',
             'reply.status' => 'check_status',
         ];
     }
 
     public function messages()
     {
-        return ['check_status' => 'Invalid status', 'required' => 'Required field'];
+        return ['check_status' => 'Invalid status', 'reply.content.required_without' => 'The description field is required'];
     }
 
     protected function addCustomRules()
@@ -69,15 +70,15 @@ class TicketReplyRequest extends Request
 
     public function response(array $errors)
     {
-        flash(t('Reply Info'), t('Cannot send reply') ,'error');
 
+        flash(t('Reply Info'), t('Cannot send reply') ,'error');
         return \Redirect::back()->withErrors($errors)->withInput($this->all());
     }
 
     public function forbiddenResponse()
     {
-        flash(t('Reply Info'), t('You cannot add reply to this ticket'),'error');
 
+        flash(t('Reply Info'), t('You cannot add reply to this ticket'),'error');
         return \Redirect::back();
     }
 }

@@ -21,9 +21,27 @@
     {{Form::open(['route' => ['ticket.resolution', $ticket],'files'=>'true'])}}
     {{csrf_field()}}
 
+    <div class="row">
+        <div class="form-group">
+            @if(auth()->user()->isSupport() && auth()->user()->reply_templates->count())
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{Form::label('template', t('Reply Templates') , ['class' => 'control-label'])}}
+                        {{Form::select('template', auth()->user()->reply_templates->pluck('title','id')->prepend('Select Template',""), null, ['class' => 'form-control'])}}
+                        @if ($errors->has('template'))
+                            <div class="error-message">{{$errors->first('template')}}</div>
+                        @endif
+                    </div>
+                </div>
+            @endif
+        </div>
+    </div>
     <div class="form-group">
         {{Form::label('content', t('Description'), ['class' => 'control-label'])}}
         {{Form::textarea('content', null, ['class' => 'form-control richeditor'])}}
+        @error('content')
+            <div class="error-message">{{$errors->first('content')}}</div>
+        @enderror
     </div>
 
     <div class="row">

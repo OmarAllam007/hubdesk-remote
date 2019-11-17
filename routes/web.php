@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ConfigurationController;
+use Illuminate\Routing\Router;
+
 if(env('LOGIN_AS')){
     Auth::loginUsingId(env('LOGIN_AS'));
 }
@@ -150,6 +153,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/report/result', 'ReportController@show');
 
     Route::get('language/{language}', ['as' => 'site.changeLanguage', 'uses' => 'HomeController@changeLanguage'])->middleware('lang');
+
+    Route::group(['prefix'=>'configurations'],function (Router $r){
+        $r->get('','ConfigurationController@index')->name('configurations.index');
+        $r->resource('reply_template','ReplyTemplateController');
+    });
+
+
 });
 
 Route::get('inlineimages/{any?}', 'SdpImagesController@redirect')->where('any', '(.*)');

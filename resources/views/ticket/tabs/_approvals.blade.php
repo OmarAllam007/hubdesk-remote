@@ -79,6 +79,7 @@
                 </div>
             </div>
         @endif
+
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group form-group-sm {{$errors->has('approver_id')? 'has-error' : ''}}">
@@ -97,6 +98,20 @@
                     @endif
                 </div>
             </div>
+
+
+            @if(auth()->user()->isSupport() && auth()->user()->reply_templates->count())
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{Form::label('template', t('Reply Template') , ['class' => 'control-label'])}}
+                        {{Form::select('template', auth()->user()->reply_templates->pluck('title','id')->prepend('Select Template',""), null, ['class' => 'form-control'])}}
+                        @if ($errors->has('template'))
+                            <div class="error-message">{{$errors->first('template')}}</div>
+                        @endif
+                    </div>
+                </div>
+            @endif
+
         </div>
 
         <div class="form-group {{$errors->has('content')? 'has-error' : ''}}">

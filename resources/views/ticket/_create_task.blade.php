@@ -18,6 +18,17 @@
                             <span class="help-block" v-for="error in errors.subject">@{{error}}</span>
                         </div>
 
+                        @if(auth()->user()->isSupport() && auth()->user()->reply_templates->count())
+                                <div class="form-group">
+                                    {{Form::label('template', t('Reply Template') , ['class' => 'control-label'])}}
+                                    {{Form::select('template', auth()->user()->reply_templates->pluck('title','id')->prepend('Select Template',""), null, ['class' => 'form-control' , 'v-model'=>'template'])}}
+                                    @if ($errors->has('template'))
+                                        <div class="error-message">{{$errors->first('template')}}</div>
+                                    @endif
+                                </div>
+
+                        @endif
+
                         <div :class="{'form-group': true , 'has-error':errors.description}">
                             {{Form::label('description', t('Description'), ['class' => 'control-label'])}}
                             {{Form::textarea('description', null, ['class' => 'form-control richeditor','v-model'=>'description'])}}
@@ -116,7 +127,7 @@
 
 
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" :disabled="saving">
+                <button type="submit" class="btn btn-primary" :disabled="!can_submit" >
                     <i class="fa fa-save" v-show="!saving"></i>
                     <i class="fa fa-spinner fa-spin" v-show="saving"></i>
                     {{t('Save')}}

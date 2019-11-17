@@ -1,4 +1,3 @@
-
 @if ($ticket->replies->count() || $ticket->approvals->count())
     <section class="replies">
 
@@ -51,7 +50,7 @@
 <div id="ReplyForm">
     {{Form::open(['route' => ['ticket.reply', $ticket], 'files' => true])}}
     {{csrf_field()}}
- 
+
     <div class="row">
         <div class="col-md-6">
             <div class="form-group form-group-sm {{$errors->has('cc')? 'has-error' : ''}}">
@@ -71,6 +70,18 @@
                 @endif
             </div>
         </div>
+        @if(auth()->user()->isSupport() && auth()->user()->reply_templates->count())
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{Form::label('reply[template]', t('Reply Templates') , ['class' => 'control-label'])}}
+                    {{Form::select('reply[template]', auth()->user()->reply_templates->pluck('title','id')->prepend('Select Template',""), null, ['class' => 'form-control'])}}
+                    @if ($errors->has('reply.template'))
+                        <div class="error-message">{{$errors->first('reply.template')}}</div>
+                    @endif
+                </div>
+            </div>
+        @endif
+
     </div>
 
     <div class="form-group {{$errors->has('reply.content')? 'has-errors' : ''}}">
