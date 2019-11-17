@@ -10,6 +10,7 @@ use App\Jobs\ApplySLA;
 use App\Jobs\SendApproval;
 use App\Jobs\UpdateApprovalJob;
 use App\Mail\SendNewApproval;
+use App\ReplyTemplate;
 use App\Ticket;
 use App\TicketApproval;
 use App\TicketLog;
@@ -30,10 +31,13 @@ class ApprovalController extends Controller
         } elseif (!$ticket->hasApprovalStages()) {
             $approval->stage = 1;
         }
+        if($template_id = $request->get('template')){
+            $approval["content"] = ReplyTemplate::find($template_id)->description;
+        }
 
         $ticket->approvals()->save($approval);
 
-        alert()->flash(t('Approval Info'), 'success', [
+        flash(t('Approval Info'), 'success', [
             'text' => 'Approval has been sent successfully',
             'timer' => 3000
         ]);

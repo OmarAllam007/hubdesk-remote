@@ -28,7 +28,7 @@
                 @foreach($templates as $template)
                     <tr>
                         <td class="col-md-3">{{$template->title}}</td>
-                        <td class="col-md-3">{{$template->description}}</td>
+                        <td class="col-md-3">{!! $template->description !!}</td>
                         <td class="col-md-3">
                             <a class="btn btn-sm btn-primary" href="{{route('reply_template.edit', $template)}}"><i class="fa fa-edit"></i> Edit</a>
                             <form action="{{route('reply_template.destroy', $template)}}" method="post" class="inline-block">

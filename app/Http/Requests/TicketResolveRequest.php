@@ -12,7 +12,12 @@ class TicketResolveRequest extends Request
     public function rules()
     {
         return [
-            'content' => 'required'
+            'content' => 'required_without:template',
         ];
+    }
+
+    public function messages()
+    {
+        return ['content.required_without'=>'The description field is required'];
     }
 }

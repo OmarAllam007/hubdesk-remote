@@ -22,9 +22,12 @@ class NewTaskJob extends Job{
 
     public function handle()
     {
-        \Mail::send('emails.ticket.task_assigned', ['ticket' => $this->ticket , 'task'=>$this->task], function(Message $msg) {
-            $msg->subject('A new Task #' . $this->task->id . ' On Ticket #'.$this->ticket->id.' has been Assigned to you');
-            $msg->to($this->task->technician->email);
-        });
+        if($this->task->technician && $this->task->technician->email){
+            \Mail::send('emails.ticket.task_assigned', ['ticket' => $this->ticket , 'task'=>$this->task], function(Message $msg) {
+                $msg->subject('A new Task #' . $this->task->id . ' On Ticket #'.$this->ticket->id.' has been Assigned to you');
+                $msg->to($this->task->technician->email);
+            });
+        }
+
     }
 }

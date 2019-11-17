@@ -25,13 +25,23 @@ class ReplyTemplateController extends Controller
 
     function store(Request $request)
     {
-        $this->validate($request,['title'=>'required','description'=>'required']);
-
+        $this->validate($request, ['title' => 'required', 'description' => 'required']);
+        $request['user_id'] = auth()->user()->id;
         ReplyTemplate::create($request->all());
-        return redirect()->to('reply_template.index');
+
+        return redirect()->route('reply_template.index');
     }
 
-    function update(){
+    function update(ReplyTemplate $reply_template, Request $request)
+    {
+        $this->validate($request, ['title' => 'required', 'description' => 'required']);
+        $reply_template->update($request->all());
 
+        return redirect()->route('reply_template.index');
+    }
+
+    function destroy(ReplyTemplate $reply_template){
+        $reply_template->delete();
+        return redirect()->route('reply_template.index');
     }
 }

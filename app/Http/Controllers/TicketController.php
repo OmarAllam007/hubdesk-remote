@@ -20,6 +20,7 @@ use App\Jobs\NewTicketJob;
 use App\Jobs\TicketAssigned;
 use App\Jobs\TicketReplyJob;
 use App\Mail\TicketForwardJob;
+use App\ReplyTemplate;
 use App\Subcategory;
 use App\Ticket;
 use App\TicketApproval;
@@ -148,6 +149,10 @@ class TicketController extends Controller
         $reply = new TicketReply($request->get('reply'));
         $reply->user_id = $request->user()->id;
         $reply->cc = $request->get("reply")["cc"] ?? null;
+
+        if($template_id = $request->get('reply')['template']){
+            $reply["content"] = ReplyTemplate::find($template_id)->description;
+        }
         // Fires creating event in \App\Providers\TicketReplyObserver
 
 
@@ -175,7 +180,13 @@ class TicketController extends Controller
             return \Redirect::route('ticket.show', compact('ticket'));
         }
 
-        $data = ['content' => $request->get('content'), 'status_id' => 7, 'user_id' => $request->user()->id];
+        if($template_id = $request->get('template')){
+            $request['content'] = ReplyTemplate::find($template_id)->description;
+        }
+
+        $data = ['content' => $request->get('content'),
+            'status_id' => 7, 'user_id' => $request->user()->id];
+
         // Fires creating event in \App\Providers\TicketReplyEventProvider
         $reply = $ticket->replies()->create($data);
 
