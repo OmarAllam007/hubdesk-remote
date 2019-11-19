@@ -22,7 +22,7 @@ class TicketAutoClosedJob extends Job implements ShouldQueue
 
     public function handle()
     {
-        if (!$this->ticket->sdp_id) {
+        if (!empty($this->ticket->requester->email)) {
             \Mail::send('emails.ticket.autoclose', ['ticket' => $this->ticket], function (Message $msg) {
                 $msg->to($this->ticket->requester->email);
                 $msg->subject('Your ticket [#' . $this->ticket->id . '#] has been closed automatically');
