@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Rules\ResetPassword;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -14,18 +15,18 @@ class UserController extends Controller
 
     function resetForm(Request $request)
     {
-        $this->validate($request, ['old_password' => 'required', 'password' => 'required|confirmed']);
+        $this->validate($request, ['old_password' => ['required', new ResetPassword], 'password' => 'required|min:5|confirmed']);
 
         if (\Hash::check($request->old_password, \Auth::user()->password)) {
             \Auth::user()->update([
                 'password' => bcrypt($request->password),
             ]);
-            flash(t('Password has been Reset'), 'success');
-            return redirect()->route('ticket.index');
 
+            flash(t('Reset Password'),t('Password has been Reset'), 'success');
+            return redirect()->route('ticket.index');
         }
 
-        flash(t('Password has not been Reset'), 'error');
+        flash(t('Reset Password'),t('Password has not been Reset'), 'error');
         return redirect()->back();
     }
 

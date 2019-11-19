@@ -13,7 +13,7 @@
             @elseif($log->type == \App\TicketLog::ESCALATION)
                 <strong>{{t('Ticket has been Escalated to')}} {{$log->user->name}}</strong>
             @elseif($log->type == \App\TicketLog::REMINDER_ON_SURVEY)
-                <strong>{{t('Send email to submit the survey by the system')}}</strong>
+                <strong>{{t('Send email to submit the survey by the system')}} {{t('at')}} {{$log->created_at->format('d/m/Y H:i')}}</strong>
             @else
                 <strong>{{t($ticket->isTask() ? 'Task '.$log->type_action.' by' :'Ticket '.$log->type_action.' by')}}   {{$log->user->name}}
                     {{t('at')}} {{$log->created_at->format('d/m/Y H:i')}}</strong>
