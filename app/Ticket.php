@@ -189,6 +189,10 @@ class Ticket extends KModel
         return $this->hasMany(TicketField::class);
     }
 
+    function getCustomFieldsAttribute(){
+        return $this->type == Ticket::TASK_TYPE ? $this->ticket->fields->merge($this->fields) : $this->fields;
+    }
+
     public function logs()
     {
         return $this->hasMany(TicketLog::class);
@@ -434,9 +438,9 @@ class Ticket extends KModel
             'technician' => $this->technician->name ?? '',
             'technician_id' => $this->technician->id ?? '',
             'request_id' => $this->request_id ?? '',
-            'can_edit' => can('task_edit',$this),
-            'can_show' => can('task_show',$this),
-            'can_delete' => can('task_delete',$this)
+            'can_edit' => can('task_edit', $this),
+            'can_show' => can('task_show', $this),
+            'can_delete' => can('task_delete', $this)
         ];
     }
 

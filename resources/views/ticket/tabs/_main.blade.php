@@ -80,7 +80,7 @@
     </div>
 @endif
 
-@include('ticket.partials._ticket_additional_fields',['ticket'=>$ticket->type == App\Ticket::TASK_TYPE ? $ticket->ticket : $ticket])
+@include('ticket.partials._ticket_additional_fields',['ticket'=> $ticket])
 @include('ticket.partials._requester_details',['ticket'=>$ticket])
 @include('ticket.partials._notes',['ticket'=>$ticket])
 

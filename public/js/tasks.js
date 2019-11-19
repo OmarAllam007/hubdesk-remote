@@ -1137,7 +1137,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('tasks', {
             edit: false,
             task_id: null,
             saving: false,
-            fields: [],
+            fields: {},
             attachments: [],
             template: ''
         };
@@ -1166,7 +1166,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('tasks', {
 
             this.getCustomFields();
 
-            this.saving = true;
+            // this.saving = true;
 
             // let formData = new FormData();
             // for( let i = 0; i < this.files.length; i++ ) {
@@ -1206,7 +1206,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('tasks', {
                 headers: {
                     // 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
                 },
-                dataType: 'text',
+                dataType: 'json',
                 cache: false,
                 contentType: false,
                 processData: false,
@@ -1230,10 +1230,11 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('tasks', {
         getCustomFields: function getCustomFields() {
             var _this2 = this;
 
-            this.fields = [];
+            this.fields = {};
             $('#CustomFields').find('.cf').each(function (idx, element) {
-                _this2.fields[element.id.substr(3, 8)] = $(element).val();
+                _this2.fields[element.id.substr(3)] = $(element).val();
             });
+            this.fields = JSON.stringify(this.fields);
         },
         editTask: function editTask(task) {
             var modal = jQuery('#TaskForm');
@@ -1303,6 +1304,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('tasks', {
         loadSubcategory: function loadSubcategory(withFields) {
             var _this3 = this;
 
+            this.subcategories = [];
+            this.subcategory = '';
             if (this.category) {
                 $.get('/list/subcategory/' + this.category).then(function (response) {
                     _this3.subcategories = response;
