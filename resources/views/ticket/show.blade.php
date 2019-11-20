@@ -66,7 +66,7 @@
                         @endif
 
                         @if($ticket->isTask())
-                            @can('modify',$ticket)
+                            @can('task_edit',$ticket)
                                 <a href="{{route('tasks.edit',$ticket)}}"
                                    class="btn btn-sm btn-primary btn-rounded btn-outlined" title="Edit">
                                     <i class="fa fa-edit"></i> {{t('Edit')}}

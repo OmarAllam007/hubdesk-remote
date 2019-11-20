@@ -20,7 +20,7 @@
                 <th>{{t('Created At')}}</th>
                 <th>{{t('Created By')}}</th>
                 <th>{{t('Assigned To')}}</th>
-                @can('task_edit',$ticket->tasks->first())
+                @can('task_show',$ticket->tasks->first())
                     <th>{{t('Actions')}}</th>
                 @endif
             </tr>
@@ -43,12 +43,12 @@
                     </a>
                     {{--                    @can('modify',$ticket)--}}
                     <a class="btn btn-rounded btn-warning"
-                       :href="'/ticket/tasks/edit/'+ task.id" v-if="task.can_show">
+                       :href="'/ticket/tasks/edit/'+ task.id" v-if="task.can_edit">
                         <i class="fa fa-edit"></i>
                         {{t('Edit')}}
                     </a>
                     {{--                    @endcan--}}
-                    <button class="btn btn-rounded  btn-danger" v-on:click="deleteTask(task.id)">{{t('Delete')}}</button>
+                    <button class="btn btn-rounded  btn-danger" v-on:click="deleteTask(task.id)" v-if="task.can_delete">{{t('Delete')}}</button>
                 </td>
             </tr>
 
