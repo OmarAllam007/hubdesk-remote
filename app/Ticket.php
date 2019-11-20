@@ -440,7 +440,7 @@ class Ticket extends KModel
             'request_id' => $this->request_id ?? '',
             'can_edit' => can('task_edit', $this),
             'can_show' => can('task_show', $this),
-            'can_delete' => can('task_delete', $this)
+            'can_delete' => can('task_destroy', $this)
         ];
     }
 

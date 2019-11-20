@@ -33,12 +33,12 @@ trait TaskTrait
 
     function task_edit(User $user, Ticket $ticket)
     {
-        return $user->id == $ticket->technician_id || $user->id == $ticket->ticket->technician_id;
+        return $user->id == $ticket->ticket->technician_id;
     }
 
-    function task_delete(User $user, Ticket $ticket)
+    function task_destroy(User $user, Ticket $ticket)
     {
-        return $user->id == $ticket->technician_id || $user->id == $ticket->ticket->technician_id;
+        return  $user->id == $ticket->ticket->technician_id;
     }
 
     public function task_close(User $user, Ticket $task)
