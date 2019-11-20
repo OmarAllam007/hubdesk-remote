@@ -24,7 +24,7 @@
                 edit: false,
                 task_id: null,
                 saving: false,
-                fields: [],
+                fields: {},
                 attachments: [],
                 template: '',
             }
@@ -51,7 +51,7 @@
                 this.getCustomFields()
 
 
-                this.saving = true;
+                // this.saving = true;
 
                 // let formData = new FormData();
                 // for( let i = 0; i < this.files.length; i++ ) {
@@ -91,7 +91,7 @@
                     headers: {
                         // 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
                     },
-                    dataType: 'text',
+                    dataType: 'json',
                     cache: false,
                     contentType: false,
                     processData: false,
@@ -117,10 +117,11 @@
 
             },
             getCustomFields() {
-                this.fields = [];
+                this.fields = {};
                 $('#CustomFields').find('.cf').each((idx, element) => {
-                    this.fields[element.id.substr(3, 8)] = $(element).val()
+                    this.fields[element.id.substr(3)] = $(element).val()
                 });
+                this.fields = JSON.stringify(this.fields)
             }
             ,
             editTask(task) {
@@ -193,6 +194,8 @@
             }
             ,
             loadSubcategory(withFields) {
+                this.subcategories = [];
+                this.subcategory = '';
                 if (this.category) {
                     $.get(`/list/subcategory/${this.category}`).then(response => {
                         this.subcategories = response;
@@ -280,6 +283,7 @@
         watch: {
             category() {
                 this.loadSubcategory(true);
+
             }
             ,
 

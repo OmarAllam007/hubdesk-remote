@@ -75,8 +75,10 @@ class TaskController extends Controller
 //            Attachment::uploadFiles(Attachment::TICKET_TYPE, $task->id);
 //        }
 
-        if(!empty($request->cf)){
-            foreach ($request->get('cf', []) as $key=>$item) {
+        $items = json_decode($request->input('cf'),true);
+
+        if(!empty($items)){
+            foreach ($items as $key=>$item){
 
                 $field = CustomField::find($key);
 //            dd($field->name);
@@ -87,7 +89,7 @@ class TaskController extends Controller
 
             }
 
-            foreach ($request->get('cf', []) as $key=>$item){
+            foreach ($items as $key=>$item){
                 if($item) {
                     $field = CustomField::find($key)->name ?? '';
 
