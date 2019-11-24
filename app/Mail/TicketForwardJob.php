@@ -25,6 +25,6 @@ class TicketForwardJob extends Mailable
         $subject = $ticket->sdp_id ? '[Fwd: ##'.$ticket->sdp_id.'## : '.$ticket->subject.']' : '[Fwd: ##'.$ticket->id.'## : '.$ticket->subject.']';
         $description = request()->get('forward')["description"] ?? '';
 
-        return $this->subject($subject)->view('emails.ticket.forward',compact('ticket','description'));
+        return $this->subject($subject)->markdown('emails.ticket.forward',compact('ticket','description'));
     }
 }

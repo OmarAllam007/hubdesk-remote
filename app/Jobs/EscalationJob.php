@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\EscalationLevel;
+use App\Mail\TicketAssignedMail;
 use App\TicketLog;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -39,13 +40,14 @@ class EscalationJob extends Job implements ShouldQueue
 
     public function escalate($escalation)
     {
-        dispatch(new SendEscalationNotification($this->ticket,$escalation));
+        dispatch(new SendEscalationNotification($this->ticket, $escalation));
 
-        TicketLog::addEscalationLog($this->ticket,$escalation);
+        TicketLog::addEscalationLog($this->ticket, $escalation);
 
         if ($escalation->assign) {
             $this->ticket->update(['technician_id' => $escalation->assign]);
-            dispatch(new TicketAssigned($this->ticket));
+            \Mail::send(new TicketAssignedMail($this->ticket));
+//            dispatch(new TicketAssigned($this->ticket));
         }
 
     }

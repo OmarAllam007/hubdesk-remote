@@ -33,8 +33,8 @@ class UserController extends Controller
     function getUserInfo($requester)
     {
         $requester = User::find($requester);
-        $requester['business_unit_name'] = $requester->business_unit->name;
-        $requester['department_name'] = $requester->department->name;
+        $requester['business_unit_name'] = $requester->business_unit->name ?? 'Not Assigned';
+        $requester['department_name'] = $requester->department->name ?? 'Not Assigned';
 
         return $requester;
     }

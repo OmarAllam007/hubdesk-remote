@@ -52,6 +52,8 @@ class TaskController extends Controller
     {
         $this->validate($request,['subject'=>'required','category'=>'required']);
 
+        Ticket::flushEventListeners();
+
         if($request->template){
             $request['description'] = ReplyTemplate::find($request->template)->description;
         }
@@ -105,7 +107,8 @@ class TaskController extends Controller
 //        TicketLog::addNewTask($task);
 
         if ($request['technician']) {
-            dispatch(new NewTaskJob($task));
+            Mail::send(new NewTaskMail($task));
+//            dispatch(new NewTaskJob($task));
         }
 
 
@@ -151,7 +154,7 @@ class TaskController extends Controller
                 'item_id' => $request['item_id']]);
 
             if (isset($ticket->getDirty()['technician_id']) && $ticket->getDirty()['technician_id']!= $ticket->getOriginal()['technician_id']) {
-                Mail::send(new NewTaskMail($ticket));
+                \Mail::send(new NewTaskMail($ticket));
             }
             $ticket->save();
         }
