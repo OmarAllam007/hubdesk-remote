@@ -51,8 +51,7 @@ class ReportsController extends Controller
         $core_reports = CoreReport::where('name', '!=', 'Query Report')->orderBy('name')->get();
         $technicians = User::technicians()->orderBy('name')->get(['id', 'name']);
         $categories = Category::orderBy('name')->get(['id', 'name']);
-        $folders = auth()->user()->folders()->orderBy('name')->get(['id', 'name']);
-
+        $folders = auth()->user()->folders;
         return view('reports.create', compact('core_reports', 'technicians', 'categories', 'folders'));
     }
 
@@ -71,7 +70,7 @@ class ReportsController extends Controller
         $report->type = Report::$CORE_REPORT;
         $report->save();
 
-        flash('Report has been saved', 'success');
+        flash('Report Message','Report has been saved successfully', 'success');
 
         return \Redirect::route('reports.show', $report);
     }
