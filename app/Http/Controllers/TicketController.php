@@ -19,6 +19,7 @@ use App\Jobs\NewNoteJob;
 use App\Jobs\NewTicketJob;
 use App\Jobs\TicketAssigned;
 use App\Jobs\TicketReplyJob;
+use App\Mail\TicketAssignedMail;
 use App\Mail\TicketForwardJob;
 use App\ReplyTemplate;
 use App\Subcategory;
@@ -246,7 +247,7 @@ class TicketController extends Controller
         $ticket->update($request->only(['group_id', 'technician_id', 'category_id', 'subcategory_id', 'item_id']));
 
         if ($request->get('technician_id') != $current_technician) {
-            $this->dispatch(new TicketAssigned($ticket));
+            \Mail::send(new TicketAssignedMail($ticket));
         }
 
         flash(t('Ticket Info'),t('Ticket has been re-assigned'), 'success');
