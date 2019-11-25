@@ -2,7 +2,9 @@
 
 @section('header')
     <h4 class="pull-left">{{t('Business Units')}}</h4>
-
+    <div class="btn-group">
+        <a class="btn btn-outlined  btn-primary" href=""><i class="fa fa-cogs"></i> {{t('Admin Panel')}}</a>
+    </div>
 
 @endsection
 @section('stylesheets')
@@ -55,9 +57,6 @@
                 @can('show_business_unit',$business_unit)
                     <a href="{{route('kgs.document.select_category', compact('business_unit'))}}" class="tile">
                         <div class="tile-container">
-                            {{--<div class="tile-icon" style="">--}}
-                            {{--                            <img src="{{asset('images/logo.png')}}">--}}
-                            {{--</div>--}}
                             <div class="tile-body"
                                  style="width: 100%;height: 100%;display: flex; flex-direction:column;">
                                 {{--@if($business_unit->logo)--}}

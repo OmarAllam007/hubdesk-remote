@@ -90,7 +90,7 @@ class ItemController extends Controller
     {
         $item->levels()->delete();
 
-        if (count($request->levels)) {
+        if (!empty($request->levels)) {
             foreach ($request->levels as $key => $role) {
                 ApprovalLevels::create([
                     'type' => 3,
@@ -103,7 +103,7 @@ class ItemController extends Controller
 
     private function createUserGroups(Request $request,Item $item)
     {
-        if (count($request['user_groups'])) {
+        if (!empty($request['user_groups'])) {
             $item->service_user_groups()->delete();
             foreach ($request['user_groups'] as $group) {
                 $item->service_user_groups()->create([
@@ -115,7 +115,7 @@ class ItemController extends Controller
     }
     private function handleRequirements(Request $request, Item $item)
     {
-        if(!count($request->requirements)){
+        if(empty($request->requirements)){
             return;
         }
 
@@ -137,7 +137,7 @@ class ItemController extends Controller
 
     private function createFees(Request $request, Item $item)
     {
-        if (!count($request->fees)) {
+        if (empty($request->fees)) {
             return;
         }
         $item->fees()->delete();

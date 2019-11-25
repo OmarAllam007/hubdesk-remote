@@ -12,6 +12,8 @@
 */
 
 //Route::get('index','');
+use Illuminate\Routing\Router;
+
 Route::get('business-document','BusinessDocumentController@index')->name('business_document');
 Route::get('business-document/business_unit/{business_unit}/select_category','BusinessDocumentController@selectCategory')->name('document.select_category');
 Route::get('business-document/{business_unit}/category/{category}/select_subcategory','BusinessDocumentController@selectSubcategory')->name('document.select_subcategory');
@@ -24,3 +26,9 @@ Route::post('business-document/{business_unit}/roles','BusinessDocumentRolesCont
 Route::get('business-document/business_unit/{business_unit}/modify-notifications','BusinessDocumentController@manageNotification')->name('document.manage_notifications');
 Route::post('business-document/business_unit/{business_unit}/modify-notifications','BusinessDocumentController@saveNotification')->name('document.manage_notifications');
 Route::post('/send-to-finance/{ticket}','KGSTicketController@sendToFinance')->name('ticket.finance.send');
+
+
+Route::group(['prefix'=>'admin'],function (Router $r){
+    $r->get('category/{category}','KGSAdminController@category')->name('admin.category');
+});
+

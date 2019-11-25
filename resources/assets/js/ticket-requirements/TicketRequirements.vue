@@ -32,7 +32,7 @@
         created() {
             if (this.requirements && this.requirements.length) {
                 for (var i = 0; i < this.requirements.length; i++) {
-                    this.items.push({'id': this.requirements[i]['id'], 'checked': false, 'attached': false})
+                    this.items.push({'id': this.requirements[i]['id'], 'checked': false, 'attached': false,'type':this.requirements[i]['type']})
                 }
             }
 
@@ -64,8 +64,7 @@
             allHaveChecked() {
                 for (var i = 0; i < this.items.length; i++) {
                     // console.log(this.items[i].checked, this.items[i].attached)
-                    console.log(this.items[i].type)
-                    if (this.items[i].checked && !this.items[i].attached) {
+                    if (this.items[i].checked && !this.items[i].attached && this.items[i].type != 2) {
                         return false;
                     }
                 }

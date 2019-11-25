@@ -25,7 +25,7 @@
             </select>
 
             <input type="text" v-show="requirement.type == 2" v-model="requirement.field"  class="form-control input-sm"
-                   :name="`requirements[${index}][field]`">
+                   :name="`requirements[${index}][field]`" placeholder="Document Name">
 
 
         </td>
@@ -41,10 +41,6 @@
                 </span>
             </div>
 
-            <div class="input-group" v-show="requirement.type == 2">
-                <input type="text"   class="form-control input-sm"
-                       :name="`requirements[${index}][value]`" v-model="requirement.value">
-            </div>
         </td>
         <td>
             <button class="btn btn-sm btn-warning pull-right" type="button" @click="removeRequirement()"><i

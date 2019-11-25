@@ -13,8 +13,8 @@ use App\Http\Controllers\Controller;
 class CategoryController extends Controller
 {
 
-    protected $rules = ['name' => 'required', 'business_unit_id' => 'required|exists:business_units,id'];
-
+    protected $rules = ['name' => 'required'];
+//'business_unit_id' => 'required|exists:business_units,id'
 
     public function index()
     {
@@ -112,7 +112,7 @@ class CategoryController extends Controller
 
     private function createUserGroups(Request $request, Category $category)
     {
-        if (count($request['user_groups'])) {
+        if empty($request['user_groups'])) {
             $category->service_user_groups()->delete();
             foreach ($request['user_groups'] as $group) {
                 $category->service_user_groups()->create([
@@ -127,7 +127,7 @@ class CategoryController extends Controller
     {
         $category->levels()->delete();
 
-        if (count($request->levels)) {
+        if empty($request->levels)) {
             foreach ($request->levels as $key => $role) {
                 ApprovalLevels::create([
                     'type' => 1,
@@ -142,7 +142,7 @@ class CategoryController extends Controller
     {
         $category->requirements()->delete();
 
-        if (!count($request->requirements)) {
+        if (empty($request->requirements)) {
             return;
         }
 
@@ -163,7 +163,7 @@ class CategoryController extends Controller
 
     private function createFees(Request $request, Category $category)
     {
-        if (!count($request->fees)) {
+        if (empty($request->fees)) {
             return;
         }
         $category->fees()->delete();
