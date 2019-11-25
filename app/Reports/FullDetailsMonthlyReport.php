@@ -11,6 +11,7 @@ namespace App\Reports;
 use App\Helpers\ChromePrint;
 use App\Status;
 use App\Ticket;
+use App\TicketApproval;
 use Carbon\Carbon;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -26,13 +27,14 @@ class FullDetailsMonthlyReport extends ReportContract
     protected $query;
 
     /** @var int */
-    protected $row = 1;
+    protected $row = 2;
 
     /** @var string */
 
     protected $max_approvals = 0;
     protected $max_fields = 0;
     protected $max_replies = 0;
+    protected $max_ticket_details = 0;
     /** @var Collection */
     protected $header = '';
     protected $view = 'reports.full_details_monthly_report';
@@ -51,6 +53,37 @@ class FullDetailsMonthlyReport extends ReportContract
 
         $this->fields();
         $this->applyFilters();
+
+        $this->header = collect([
+            'ID', 'Subject', 'Requester',
+            'Technician', 'Category', 'Status', 'Created Date', 'Due Date',
+            'Resolved Date', 'Business Unit']);
+
+        $data = $this->query->get();
+        $max_approvals = 0;
+        $max_fields = 0;
+        $max_replies = 0;
+
+        $this->max_fields = $data->max(function ($item) use ($max_fields) {
+            if ($item->fields->count() > $max_fields) {
+                $max_fields = $item->fields->count();
+            }
+            return $max_fields;
+        });
+
+        $this->max_replies = $data->max(function ($item) use ($max_replies) {
+            if ($item->replies->count() > $max_replies) {
+                $max_replies = $item->replies->count();
+            }
+            return $max_replies;
+        });
+
+        $this->max_approvals = $data->max(function ($item) use ($max_approvals) {
+            if ($item->approvals->count() > $max_approvals) {
+                $max_approvals = $item->approvals->count();
+            }
+            return $max_approvals;
+        });
 //        dd($this->query->take(10)->get());
     }
 
@@ -88,7 +121,12 @@ class FullDetailsMonthlyReport extends ReportContract
         ]);
 
 
-        return view($this->view, ['data' => $data, 'report' => $this->report, 'approvals_count' => $approvals_count]);
+        return view($this->view, ['data' => $data,
+            'report' => $this->report,
+            'fields_count'=>$this->max_fields,
+            'replies_count'=>$this->max_replies,
+            'approvals_count' => $this->max_approvals,
+        ]);
     }
 
     function excel()
@@ -97,38 +135,11 @@ class FullDetailsMonthlyReport extends ReportContract
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
 
-        $max_approvals = 0;
-        $max_fields = 0;
-        $max_replies = 0;
+
         $data = $this->query->get();
 
         $sheet->setTitle('New Report');
 
-        $this->max_approvals = $data->max(function ($item) use ($max_approvals) {
-            if ($item->approvals->count() > $max_approvals) {
-                $max_approvals = $item->approvals->count();
-            }
-            return $max_approvals;
-        });
-
-        $this->max_fields = $data->max(function ($item) use ($max_fields) {
-            if ($item->fields->count() > $max_fields) {
-                $max_fields = $item->fields->count();
-            }
-            return $max_fields;
-        });
-
-        $this->max_replies = $data->max(function ($item) use ($max_replies) {
-            if ($item->replies->count() > $max_replies) {
-                $max_replies = $item->replies->count();
-            }
-            return $max_replies;
-        });
-
-        $this->header = collect([
-            'ID', 'Subject', 'Requester',
-            'Technician', 'Category', 'Status', 'Created Date', 'Date of Departure', 'Days between departure and create', 'Due Date',
-            'Resolved Date', 'Business Unit']);
 
 
         $this->fillTicketDependencies($sheet, $data);
@@ -141,7 +152,24 @@ class FullDetailsMonthlyReport extends ReportContract
             $sheet->getColumnDimension($column)->setAutoSize(true);
         }
 
-        $sheet->setAutoFilter('A1:' . $highestColumn . '1');
+//        $sheet->setAutoFilter('A2:' . $highestColumn . '2');
+
+        $t_index = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($this->max_ticket_details);
+        $sheet->mergeCells("A1:".$t_index."1");
+
+        $f_index = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($this->max_ticket_details+1);
+        $f_end_index = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($this->max_ticket_details+($this->max_fields*2));
+        $sheet->mergeCells($f_index."1:".$f_end_index."1");
+
+        $r_index = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($this->max_ticket_details+1+($this->max_fields*2));
+        $r_end_index = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($this->max_ticket_details+($this->max_fields*2)+($this->max_replies*2));
+        $sheet->mergeCells($r_index."1:".$r_end_index."1");
+
+
+        $a_index = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($this->max_ticket_details+1+($this->max_fields*2)+($this->max_replies*2));
+        $a_end_index = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($this->max_ticket_details+($this->max_fields*2)+($this->max_replies*2)+($this->max_approvals*3));
+//        dd($a_index,$a_end_index);
+        $sheet->mergeCells($a_index."1:".$a_end_index."1");
 
 
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
@@ -151,6 +179,102 @@ class FullDetailsMonthlyReport extends ReportContract
         $writer->save("php://output");
         exit;
 //
+    }
+
+    private function fillTicketDependencies(Worksheet $sheet, Collection $data)
+    {
+
+        for ($i = 1; $i <= $this->max_fields; $i++) {
+            $this->header->push(["Field Name", "Field Value"]);
+        }
+
+        for ($i = 1; $i <= $this->max_replies; $i++) {
+            $this->header->push(["Reply Content", "Status"]);
+        }
+
+        for ($i = 1; $i <= $this->max_approvals; $i++) {
+            $this->header->push(["Approval Level " . ($i) . " Sent At", "Action Date", "Status"]);
+        }
+
+
+        $sheet->fromArray($this->header->flatten()->toArray(), NULL, 'A2', true);
+
+        $row = 2;
+        $column = 1;
+
+        foreach ($data as $key => $ticket) {
+            $ticketDetails = [
+                $ticket->id, $ticket->subject, $ticket->requester, $ticket->technician,
+                $ticket->category, $ticket->status, $ticket->created_at,
+                $ticket->due_date, $ticket->resolve_date, $ticket->business_unit
+            ];
+
+            $this->max_ticket_details = count($ticketDetails);
+
+            ++$row;
+            for ($t = 0; $t < count($ticketDetails); $t++) {
+                $sheet->setCellValueByColumnAndRow($column, $row, $ticketDetails[$t]);
+                $column++;
+            }
+            $sheet->setCellValueByColumnAndRow(1, 1, 'Ticket Details');
+
+
+            $fields = $ticket->fields->pluck('name', 'value')->toArray();
+            $field_values = array_values($fields);
+            $field_names = array_keys($fields);
+            $sheet->setCellValueByColumnAndRow($column, 1, 'Ticket Additional Fields');
+
+
+            for ($f = 0; $f < $this->max_fields; $f++) {
+                if (!isset($field_values[$f])) {
+                    $column += 2;
+                    continue;
+                }
+                $sheet->setCellValueByColumnAndRow($column, $row, $field_values[$f]);
+                $column++;
+                $sheet->setCellValueByColumnAndRow($column, $row, $field_names[$f]);
+                $column++;
+            }
+
+
+            $replies = $ticket->replies()->get()->map(function ($reply) {
+                return [strip_tags($reply->content), $reply->status->name];
+            })->toArray();
+            $sheet->setCellValueByColumnAndRow($column, 1, 'Ticket Replies');
+
+            for ($r = 0; $r < $this->max_replies; $r++) {
+                if (!isset($replies[$r])) {
+                    $column += 2;
+                    continue;
+                }
+
+                $sheet->setCellValueByColumnAndRow($column, $row, $replies[$r][0]);
+                $column++;
+                $sheet->setCellValueByColumnAndRow($column, $row, $replies[$r][1]);
+                $column++;
+            }
+
+            $approvals = $ticket->approvals->toArray();
+            $sheet->setCellValueByColumnAndRow($column, 1, 'Ticket Approvals');
+
+            for ($r = 0; $r < $this->max_approvals; $r++) {
+                if (!isset($approvals[$r])) {
+                    $column += 3;
+                    continue;
+                }
+                $sheet->setCellValueByColumnAndRow($column, $row, Carbon::parse($approvals[$r]['created_at'])->format('Y-m-d'));
+                $column++;
+                $sheet->setCellValueByColumnAndRow($column, $row, Carbon::parse($approvals[$r]['approval_date'])->format('Y-m-d'));
+                $column++;
+                $sheet->setCellValueByColumnAndRow($column, $row, TicketApproval::$statuses[$approvals[$r]['status']]);
+                $column++;
+            }
+
+            $column = 1;
+        }
+
+
+
     }
 
     function pdf()
@@ -248,60 +372,5 @@ class FullDetailsMonthlyReport extends ReportContract
 
     }
 
-    private function fillTicketDependencies(Worksheet $sheet,  Collection $data)
-    {
-        for ($i = 0; $i < $this->max_fields; $i++) {
-            $this->header->push(["Field Name", "Field Value"]);
-        }
 
-        for ($i = 0; $i < $this->max_replies; $i++) {
-            $this->header->push(["Reply Content", "Status"]);
-        }
-
-        for ($i = 0; $i < $this->max_approvals; $i++) {
-            $this->header->push(["Approval Level " . ($i + 1) . " Sent At", "Action Date", "Status"]);
-        }
-
-        $sheet->fromArray($this->header->flatten()->toArray(), NULL, 'A1', true);
-
-        $row = 1;
-
-        foreach ($data as $key => $ticket) {
-            ++$row;
-            $row_fields = collect();
-
-            if ($ticket->fields->count()) {
-                foreach ($ticket->fields as $field) {
-                    $row_fields->push([$field->name,
-                        $field->value]);
-                }
-            }
-
-            if($ticket->replies->count()){
-                foreach ($ticket->replies as $reply) {
-                    $row_fields->push([$reply->content,
-                        $reply->status->name]);
-                }
-            }
-
-            if ($ticket->approvals->count()) {
-                foreach ($ticket->approvals as $approval) {
-                    $row_fields->push([$approval->created_at->format('Y-m-d'),
-                        $approval->approval_date ? $approval->approval_date->format('Y-m-d') : '',
-                        $approval->status_str]);
-                }
-            }
-
-//            dd($row_fields->flatten());
-
-            $rowData = [
-                $ticket->id, $ticket->subject, $ticket->requester, $ticket->technician,
-                $ticket->category, $ticket->status, $ticket->created_at, $ticket->date_of_dept, $ticket->difference ?? 'Not Assigned',
-                $ticket->due_date, $ticket->resolve_date, $ticket->business_unit
-            ];
-
-            $sheet->fromArray(array_merge($rowData, $row_fields->flatten()->toArray()), NULL, 'A' . $row, true);
-        }
-
-    }
 }
