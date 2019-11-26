@@ -13,8 +13,9 @@ use App\Http\Controllers\Controller;
 class CategoryController extends Controller
 {
 
-    protected $rules = ['name' => 'required', 'business_unit_id' => 'required|exists:business_units,id'];
+    protected $rules = ['name' => 'required'];
 
+//'business_unit_id' => 'required|exists:business_units,id'
 
     public function index()
     {
@@ -57,7 +58,7 @@ class CategoryController extends Controller
         $this->handleRequirements($request, $category);
         $this->createFees($request, $category);
 
-        flash(t('Category Info'),t('Category has been saved'), 'success');
+        flash(t('Category Info'), t('Category has been saved'), 'success');
 
         return \Redirect::route('admin.category.index');
     }
@@ -81,8 +82,8 @@ class CategoryController extends Controller
             $category->businessunits()->sync($request['units']);
         }
 
-        $this->handleLevels($request, $category);
         $this->createUserGroups($request, $category);
+        $this->handleLevels($request, $category);
         $this->handleRequirements($request, $category);
         $this->createFees($request, $category);
 
@@ -96,7 +97,7 @@ class CategoryController extends Controller
             $category->update(['logo' => $logo_path]);
         }
 
-        flash(t('Category Info'),t('Category has been saved'), 'success');
+        flash(t('Category Info'), t('Category has been saved'), 'success');
         return \Redirect::route('admin.category.index');
     }
 
@@ -104,7 +105,7 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        flash(t('Category Info'),t('Category has been deleted'), 'success');
+        flash(t('Category Info'), t('Category has been deleted'), 'success');
 
         return \Redirect::route('admin.category.index');
     }
@@ -112,41 +113,36 @@ class CategoryController extends Controller
 
     private function createUserGroups(Request $request, Category $category)
     {
-        if (count($request['user_groups'])) {
-            $category->service_user_groups()->delete();
-            foreach ($request['user_groups'] as $group) {
-                $category->service_user_groups()->create([
-                    'level' => ServiceUserGroup::$CATEGORY,
-                    'group_id' => $group
-                ]);
-            }
+
+        $category->service_user_groups()->delete();
+        foreach ($request->get('user_groups', []) as $group) {
+            $category->service_user_groups()->create([
+                'level' => ServiceUserGroup::$CATEGORY,
+                'group_id' => $group
+            ]);
         }
+
     }
 
     private function handleLevels(Request $request, Category $category)
     {
         $category->levels()->delete();
 
-        if (count($request->levels)) {
-            foreach ($request->levels as $key => $role) {
-                ApprovalLevels::create([
-                    'type' => 1,
-                    'level_id' => $category->id,
-                    'role_id' => $role,
-                ]);
-            }
+        foreach ($request->get('levels', []) as $key => $role) {
+            ApprovalLevels::create([
+                'type' => 1,
+                'level_id' => $category->id,
+                'role_id' => $role,
+            ]);
         }
+
     }
 
     private function handleRequirements(Request $request, Category $category)
     {
-        if (!count($request->requirements)) {
-            return;
-        }
-
         $category->requirements()->delete();
 
-        foreach ($request->requirements as $requirement) {
+        foreach ($request->get('requirements', []) as $requirement) {
             $category->requirements()->create([
                 'reference_type' => 1,
                 'reference_id' => $category->id,
@@ -154,6 +150,7 @@ class CategoryController extends Controller
                 'operator' => 'is',
                 'label' => $requirement['label'],
                 'value' => $requirement['value'],
+                'type' => $requirement['type']
             ]);
         }
 
@@ -162,17 +159,14 @@ class CategoryController extends Controller
 
     private function createFees(Request $request, Category $category)
     {
-        if (!count($request->fees)) {
-            return;
-        }
         $category->fees()->delete();
 
-        foreach ($request->fees as $fee) {
+        foreach ($request->get('fees', []) as $fee) {
             $category->fees()->create([
                 'name' => $fee['name'],
                 'cost' => $fee['cost'],
-                'level'=> AdditionalFee::CATEGORY,
-                'level_id'=> $category->id,
+                'level' => AdditionalFee::CATEGORY,
+                'level_id' => $category->id,
             ]);
         }
     }

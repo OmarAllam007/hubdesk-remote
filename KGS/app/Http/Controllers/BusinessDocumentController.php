@@ -82,7 +82,9 @@ class BusinessDocumentController extends Controller
 
         $label = $this->getServicesLabels($category, $subcategory, $item);
 
-        $tasks = \request()->get('requirements');
+        $tasks = collect(\request()->get('requirements'));
+
+
         $tasks_files = \request()->allFiles();
 
 //        $all_checked = count($tasks) == count($tasks_files['requirements']);
@@ -102,7 +104,7 @@ class BusinessDocumentController extends Controller
         $this->uploadTicketAttachments($ticket, \request('ticket-attachments'));
 
 
-        if (count($tasks)) {
+        if ($tasks->count()) {
             foreach ($tasks as $index => $task) {
                 $levels = $this->getServiceLevels($task);
 
@@ -131,6 +133,9 @@ class BusinessDocumentController extends Controller
 
     private function getServiceLevels($task)
     {
+        if($task["type"] == 2){
+            return;
+        }
         if ($task['reference_type'] == Requirement::ITEM_TYPE) {
             $item = Item::find($task['reference']);
             $subcategory = $item->subcategory;
@@ -161,7 +166,7 @@ class BusinessDocumentController extends Controller
     {
         Attachment::flushEventListeners();
 
-        if (count($files)) {
+        if (!empty($files)) {
             foreach ($files as $file) {
                 $filename = $file->getClientOriginalName();
 

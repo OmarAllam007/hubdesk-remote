@@ -3,8 +3,9 @@
         <table class="listing-table table-bordered">
             <thead>
             <tr>
-                <th class="col-md-6">Requirement</th>
-                <th class="col-md-6">Value</th>
+                <th class="col-md-4">Type</th>
+                <th class="col-md-4">Requirement</th>
+                <th class="col-md-4">Value</th>
                 <th>
                     <button class="btn btn-sm btn-primary pull-right" @click="addRequirement" type="button"><i
                             class="fa fa-plus-circle"></i></button>
@@ -116,7 +117,9 @@
                 this.requirements.push({ field: '',
                     operator: 'is',
                     label: '',
-                    value: '', })
+                    value: '',
+                    type:1,
+                })
             },
             applySelection(){
                     let labels = [], i = 0;

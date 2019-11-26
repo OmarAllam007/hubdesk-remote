@@ -77,6 +77,10 @@ class Subcategory extends KModel
         return $subcategories->sortBy('name');
     }
 
+    public function scopeGeneralService(Builder $query){
+        return $query->whereHas('category',function ($q){ return $q->where('business_unit_id',env('GS_ID')); });
+    }
+
     public function canonicalName()
     {
         return $this->category->name . ' > ' . $this->name;
@@ -89,6 +93,7 @@ class Subcategory extends KModel
 
     public function requirements()
     {
-        return $this->hasMany(Requirement::class, 'reference_id')->where('reference_type', Requirement::$types['Subcategory']);
+        return $this->hasMany(Requirement::class, 'reference_id')
+            ->where('reference_type', Requirement::$types['Subcategory']);
     }
 }

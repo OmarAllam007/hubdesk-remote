@@ -51,9 +51,9 @@
         </tr>
         {{--<tr>--}}
             {{--<th>{{t('Business Unit')}}</th>--}}
-            {{--<td>{{$ticket->business_unit->name or 'Not Assigned'}}</td>--}}
+            {{--<td>{{$ticket->business_unit->name ?? 'Not Assigned'}}</td>--}}
             {{--<th>{{t('Location')}}</th>--}}
-            {{--<td>{{$ticket->location->name or 'Not Assigned'}}</td>--}}
+            {{--<td>{{$ticket->location->name ?? 'Not Assigned'}}</td>--}}
         {{--</tr>--}}
     </table>
 </div>
