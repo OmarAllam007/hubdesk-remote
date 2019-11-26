@@ -10,6 +10,7 @@ use App\Jobs\ApprovalLevels;
 use App\Jobs\CalculateTicketTime;
 use App\Jobs\NewTaskJob;
 use App\Jobs\SendApproval;
+use App\Mail\NewTaskMail;
 use App\Mail\SendNewApproval;
 use App\Ticket;
 use App\TicketApproval;
@@ -26,7 +27,8 @@ class TicketEventsProvider extends ServiceProvider
 //            dispatch(new ApplyBusinessRules($ticket));
             dispatch(new ApplySLA($ticket));
             if ($ticket->type == Ticket::TASK_TYPE) {
-                dispatch(new NewTaskJob($ticket));
+                \Mail::send(new NewTaskMail($ticket));
+//                dispatch(new NewTaskJob($ticket));
             }
             Attachment::uploadFiles(Attachment::TICKET_TYPE, $ticket->id);
             dispatch(new ApprovalLevels($ticket));

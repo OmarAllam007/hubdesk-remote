@@ -2,11 +2,15 @@
 
 namespace App\Providers;
 
+use App\Attachment;
 use App\Auth\KdeskUserProvider;
 use App\BusinessUnit;
+use App\Policies\AttachmentPolicy;
 use App\Policies\BusinessUnitDocumentRoles;
+use App\Policies\ReportPolicy;
 use App\Policies\TicketApprovalPolicy;
 use App\Policies\TicketPolicy;
+use App\Report;
 use App\TicketApproval;
 use App\User;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
@@ -25,6 +29,8 @@ class AuthServiceProvider extends ServiceProvider
         'App\Ticket' => TicketPolicy::class,
         TicketApproval::class => TicketApprovalPolicy::class,
         BusinessUnit::class => BusinessUnitDocumentRoles::class,
+        Report::class => ReportPolicy::class,
+        Attachment::class => AttachmentPolicy::class,
     ];
 
     /**
@@ -50,7 +56,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         \Gate::define('show_business_document', function ($user) {
-            return in_array($user->id,BusinessDocumentRole::all()->pluck('user_id')->toArray());
+            return in_array($user->id, BusinessDocumentRole::all()->pluck('user_id')->toArray());
         });
 
         $this->registerPolicies();

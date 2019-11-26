@@ -189,6 +189,10 @@ class Ticket extends KModel
         return $this->hasMany(TicketField::class);
     }
 
+    function getCustomFieldsAttribute(){
+        return $this->type == Ticket::TASK_TYPE ? $this->ticket->fields->merge($this->fields) : $this->fields;
+    }
+
     public function logs()
     {
         return $this->hasMany(TicketLog::class);
@@ -287,8 +291,11 @@ class Ticket extends KModel
                 ->whereIn('reference', $this->approvals->pluck('id')->toArray())
                 ->get();
 
+//            $ticketTasks = Attachment::whereIn('reference',$this->tasks->pluck('id'))->get();
+
             $this->attachments = $attachments->merge($replyAttachments);
             $this->attachments = $this->attachments->merge($approvalAttachments);
+//            $this->attachments = $this->attachments->merge($ticketTasks);
         }
         return $this->attachments;
     }
@@ -431,6 +438,9 @@ class Ticket extends KModel
             'technician' => $this->technician->name ?? '',
             'technician_id' => $this->technician->id ?? '',
             'request_id' => $this->request_id ?? '',
+            'can_edit' => can('task_edit', $this),
+            'can_show' => can('task_show', $this),
+            'can_delete' => can('task_destroy', $this)
         ];
     }
 

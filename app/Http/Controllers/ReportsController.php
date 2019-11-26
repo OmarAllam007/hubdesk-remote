@@ -12,6 +12,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
+use Psy\Exception\FatalErrorException;
 
 class ReportsController extends Controller
 {
@@ -26,7 +27,7 @@ class ReportsController extends Controller
 
         $reports = collect();
 
-        if($filters = \request('folder')){
+        if ($filters = \request('folder')) {
             $reports = Report::filter($filters)->get();
 
             $page = \request('page') ?: (Paginator::resolveCurrentPage() ?: 1);
@@ -50,8 +51,7 @@ class ReportsController extends Controller
         $core_reports = CoreReport::where('name', '!=', 'Query Report')->orderBy('name')->get();
         $technicians = User::technicians()->orderBy('name')->get(['id', 'name']);
         $categories = Category::orderBy('name')->get(['id', 'name']);
-        $folders = auth()->user()->folders()->orderBy('name')->get(['id', 'name']);
-
+        $folders = auth()->user()->folders;
         return view('reports.create', compact('core_reports', 'technicians', 'categories', 'folders'));
     }
 
@@ -70,37 +70,41 @@ class ReportsController extends Controller
         $report->type = Report::$CORE_REPORT;
         $report->save();
 
-        flash('Report has been saved', 'success');
+        flash('Report Message','Report has been saved successfully', 'success');
 
         return \Redirect::route('reports.show', $report);
     }
 
-    function show(Report $report)
+    function show(Report $report,Request $request)
     {
-        $this->authorize('reports');
+        $this->authorize('show',$report);
 
-        if($report->is_core_report){
+        if($request->has('filters')){
+            session()->put(str_slug(strtolower($report->title)).'_filters',$request->filters);
+        }
+
+        if ($report->is_core_report) {
             $core_report_class = $report->core_report->class_name;
             $r = new $core_report_class($report);
 
-        }elseif ($report->is_query_report){
+        } elseif ($report->is_query_report) {
             $r = new QueryReport($report);
-        }else{
+        } else {
             $r = new CustomReport($report);
         }
 
-        if($r->errors && $r->errors->count()){
-            return view('reports.errors',['errors'=>$r->errors]);
+        if ($r->errors && $r->errors->count()) {
+            return view('reports.errors', ['errors' => $r->errors]);
         }
 
         if (request()->exists('excel')) {
-            $file =  $r->excel();
+            $file = $r->excel();
             $file->download('xlsx');
         }
         if (request()->exists('pdf')) {
-            $file =  $r->pdf();
+            $file = $r->pdf();
 
-            if(!$file){
+            if (!$file) {
                 return;
             }
 
@@ -108,15 +112,24 @@ class ReportsController extends Controller
                 'Content-Type: application/pdf',
             );
 
-            return \Response::download($file, str_slug($report->title).'.pdf', $headers);
+            return \Response::download($file, str_slug($report->title) . '.pdf', $headers);
         }
 
 
-        return $r->html();
+         return $r->html();
     }
 
-    function edit()
+    function edit(Report $report)
     {
+        $this->authorize('edit',$report);
+
+        if ($report->is_core_report) {
+            return redirect()->route('reports.edit', $report);
+        } elseif ($report->is_query_report) {
+            return redirect()->route('reports.query.edit', $report);
+        } else {
+            return redirect()->route('reports.custom_report.edit', $report);
+        }
 
     }
 

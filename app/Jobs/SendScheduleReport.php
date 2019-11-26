@@ -82,8 +82,8 @@ class SendScheduleReport extends Job
         if(!$file){
             return;
         }
-        \Mail::to($users)->send(new \App\Mail\ScheduledReport($this->report, $report, $file));
-        unlink($file);
+
+        $this->sendMail($users,$report,$file);
     }
 
     private function sendExcel($file, $report, $users)
@@ -95,7 +95,18 @@ class SendScheduleReport extends Job
         $file_path = $file->store('xlsx', storage_path('excel_reports'));
         $path = $file_path->storagePath . '/' . $file->title . '.' . $file->ext;
 
-        \Mail::to($users)->send(new \App\Mail\ScheduledReport($this->report, $report, $path));
+        $this->sendMail($users,$report,$path);
+    }
+
+    function sendMail($users,$report, $path){
+
+        if(count($users)){
+            foreach ($users as $user){
+                \Mail::to($user)->send(new \App\Mail\ScheduledReport($this->report, $report, $path));
+
+            }
+        }
+
         unlink($path);
     }
 }

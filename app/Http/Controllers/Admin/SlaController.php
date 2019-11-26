@@ -29,7 +29,7 @@ class SlaController extends Controller
         $sla = Sla::create($request->all());
         $sla->updateCriteria($request);
 
-        flash(t('SLA has been saved'), 'success');
+        flash(t('SLA Info'),t('SLA has been saved'), 'success');
 
         return \Redirect::route('admin.sla.index');
     }
@@ -81,7 +81,7 @@ class SlaController extends Controller
 
         $sla->update($request->all());
         $sla->updateCriteria($request);
-        flash(t('SLA has been saved'), 'success');
+        flash(t('SLA Info'),t('SLA has been saved'), 'success');
 
         return \Redirect::route('admin.sla.index');
     }
@@ -90,7 +90,7 @@ class SlaController extends Controller
     {
         $sla->delete();
 
-        flash(t('SLA has been deleted'), 'success');
+        flash(t('SLA Info'),t('SLA has been deleted'), 'success');
 
         return \Redirect::route('admin.sla.index');
     }

@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ConfigurationController;
+use Illuminate\Routing\Router;
+
 if(env('LOGIN_AS')){
     Auth::loginUsingId(env('LOGIN_AS'));
 }
@@ -116,11 +119,13 @@ Route::group(['middleware' => ['auth']], function () {
         $r->patch('tasks/{ticket}', ['as' => 'tasks.update', 'uses' => 'TaskController@update']);
         $r->delete('tasks/{ticket}/{task}', ['as' => 'tasks.delete', 'uses' => 'TaskController@destroy']);
         $r->get('print/{ticket}', ['as' => 'ticket.print', 'uses' => 'TicketPrintController@show']);
-        Route::post('forward/{ticket}',['as'=>'ticket.forward','uses'=>'TicketController@forward']);
+        $r->post('forward/{ticket}',['as'=>'ticket.forward','uses'=>'TicketController@forward']);
         $r->post('survey_log/{ticket}/{survey}', ['as' => 'ticket.survey', 'uses' => 'SurveyLogController@update']);
 
         $r->get('survey/display/{user_survey}', ['as' => 'survey.display', 'uses' => 'SurveyController@displaySurvey']);
         $r->get('user_survey/display/{user_survey}', ['as' => 'user_survey.show', 'uses' => 'SurveyController@displayUserSurvey']);
+
+        $r->get('download-attach/{attachment}','TicketController@downloadAttachment')->name('ticket.attachment.download');
     });
 
 
@@ -148,6 +153,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/report/result', 'ReportController@show');
 
     Route::get('language/{language}', ['as' => 'site.changeLanguage', 'uses' => 'HomeController@changeLanguage'])->middleware('lang');
+
+    Route::group(['prefix'=>'configurations'],function (Router $r){
+        $r->get('','ConfigurationController@index')->name('configurations.index');
+        $r->resource('reply_template','ReplyTemplateController');
+    });
+
+
 });
 
 Route::get('inlineimages/{any?}', 'SdpImagesController@redirect')->where('any', '(.*)');

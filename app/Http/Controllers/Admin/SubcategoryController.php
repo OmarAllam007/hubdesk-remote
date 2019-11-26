@@ -33,7 +33,7 @@ class SubcategoryController extends Controller
 
     public function store(Request $request)
     {
-        $this->validates($request, 'Could not save category');
+        $this->validates($request);
 
         $service_request = isset($request->service_request) ? 1 : 0;
         $data = $request->all();
@@ -45,7 +45,7 @@ class SubcategoryController extends Controller
         $this->handleRequirements($request,$subcategory);
         $this->createFees($request,$subcategory);
 
-        flash('Subcategory has been saved', 'success');
+        flash(t('Subcategory Info'),'Subcategory has been saved', 'success');
 
         return \Redirect::route('admin.category.show', $subcategory->category_id);
     }
@@ -62,7 +62,7 @@ class SubcategoryController extends Controller
 
     public function update(Subcategory $subcategory, Request $request)
     {
-        $this->validates($request, 'Could not save category');
+        $this->validates($request);
         $service_request = isset($request->service_request) ? 1 : 0;
         $data = $request->all();
         $data['service_request'] = $service_request;
@@ -74,7 +74,7 @@ class SubcategoryController extends Controller
         $this->handleRequirements($request,$subcategory);
         $this->createFees($request,$subcategory);
 
-        flash('Subcategory has been saved', 'success');
+        flash(t('Subcategory'),'Subcategory has been saved', 'success');
         return \Redirect::route('admin.category.show', $subcategory->category_id);
     }
 

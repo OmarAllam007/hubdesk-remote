@@ -67,7 +67,7 @@
                         <ul class="nav nav-pills">
                             <li><a href="{{route('admin.business-unit.index')}}">{{t('Business Units')}}</a></li>
                             <li><a href="{{route('admin.branch.index')}}">{{t('Branches')}}</a></li>
-                            <li><a href="{{'admin.department.index'}}">{{t('Departments')}}</a></li>
+                            <li><a href="{{route('admin.department.index')}}">{{t('Departments')}}</a></li>
                         </ul>
                     </div>
                 </div>

@@ -33,4 +33,4 @@ mix.js('resources/assets/js/ticket-requirements/ticket-requirements.js', 'public
 //       .js('resources/assets/js/task.js', 'public/js')
 //       .js('resources/assets/js/escalation.js', 'public/js');
 // mix.js('resources/assets/js/ticket-note.js', 'public/js');
-// mix.js('resources/assets/js/Task.vue', 'public/js/tasks.js');
+mix.js('resources/assets/js/Task.vue', 'public/js/tasks.js');

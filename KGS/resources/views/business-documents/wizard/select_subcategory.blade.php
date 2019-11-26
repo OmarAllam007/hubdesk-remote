@@ -64,7 +64,7 @@
                                 {{--@endif--}}
                             </p>
                             <p class="text-center" style="margin-top: 20px">
-                                {{$subcategory->name}}
+                                {{t($subcategory->name)}}
                             </p>
                         </div>
                     </div>

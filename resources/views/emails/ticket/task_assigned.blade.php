@@ -1,24 +1,30 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>Ticket #{{$task->ticket->id}}</title>
-</head>
-<body>
-<div style="font-size: 13px; font-face: arial,helvetica,sans-serif">
-    <font family="arial,helvetica,sans-serif">
-        Task #{{$task->id}} has been created for you on Ticket # {{$task->ticket->id}}. <br /><br />
+@component('mail::message')
+# A new task #{{$ticket->id}} been created for you on Ticket #{{$ticket->ticket->id}}.
 
-        Subject: <strong>{{$task->subject}}</strong><br />
-        Content: <br/><br/>
-    </font>
+<div style="font-size: 13px; font-family: 'Helvetica Neue', Helvetica, Arial,sans-serif">
+Subject: <strong>{{$ticket->subject}}</strong><br>
+At: {{$ticket->created_at->format('d/m/Y H:i')}}<br/>
+Content: <br/><br/>
 
-    <div>
-        {!! $task->description !!}
-    </div>
-
-    <br/><br/>
-    To view task details please go to {{link_to_route('ticket.show', null, $task->id)}}
+<div>
+{!! $ticket->description !!}
 </div>
-</body>
-</html>
+
+<br><br>
+</div>
+<div style="padding-left: 15px;">
+@component('mail::button', ['url' => route('ticket.show',$ticket->id)])
+<b class="center-block">Display Task</b>
+@endcomponent
+<div class="alert alert-info" role="alert">
+<p  style="background-color:#f6f7d2; border-radius: 5px;font-size: small; padding: 10px;margin: 10px;text-align: center">
+    <strong>
+        {{t('Please don\'t reply on this email')}}
+    </strong>
+</p>
+</div>
+</div>
+
+Thanks,<br>
+{{ config('app.name') }}
+@endcomponent

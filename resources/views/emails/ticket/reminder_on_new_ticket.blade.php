@@ -13,11 +13,11 @@
 </div>
 <div style="padding-left: 15px;">
     @component('mail::button', ['url' => route('ticket.show',$ticket->id)])
-        <b class="center-block">Click here to View</b>
+        <b class="center-block">Display Ticket</b>
     @endcomponent
         <div class="alert alert-info" role="alert">
             <p  style="background-color:#f6f7d2; border-radius: 5px;font-size: small; padding: 10px;margin: 10px;text-align: center">
-                {{t('Please don\'t reply on this email and give the approval through the system')}}
+                {{t('Please don\'t reply on this email')}}
             </p>
         </div>
 </div>

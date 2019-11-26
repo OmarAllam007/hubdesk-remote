@@ -1,6 +1,6 @@
 <template>
     <div>
-        <table class="table table-bordered" >
+        <table class="table table-bordered">
             <thead>
             <tr>
                 <td class="col-md-4">Parameters</td>
@@ -22,28 +22,37 @@
 
 <script>
     import ReportParametersRow from "./ReportParametersRow";
-    import {EventBus}from '../../js/EventBus.js'
+    import {EventBus} from '../../js/EventBus.js'
 
     export default {
         name: "report-parameters",
-        data(){
+        props: ['params'],
+
+        data() {
             return {
-                rows:[]
+                rows: []
             }
         },
-        mounted(){
-            EventBus.$on('remove-params-row',(index,item)=>{
+
+        created() {
+            if(this.params.length != 0){
+                this.rows = this.params;
+            }
+        },
+
+        mounted() {
+            EventBus.$on('remove-params-row', (index, item) => {
                 var idx = this.rows.indexOf(item);
                 this.rows.splice(idx, 1);
 
             })
         },
-        methods:{
-            AddRow(){
-                this.rows.push({title:'',type:''})
+        methods: {
+            AddRow() {
+                this.rows.push({name: '', type: ''})
             },
         },
-        components:{
+        components: {
             ReportParametersRow
         }
     }

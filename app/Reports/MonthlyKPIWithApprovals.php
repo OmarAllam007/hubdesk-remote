@@ -14,8 +14,10 @@ use App\Ticket;
 use Carbon\Carbon;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xls\Workbook;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class MonthlyKPIWithApprovals extends ReportContract
 {
@@ -30,6 +32,7 @@ class MonthlyKPIWithApprovals extends ReportContract
     protected $max_approvals = 0;
 
     protected $view = 'reports.monthly_kpi_with_approvals';
+
     function run()
     {
         $this->query = Ticket::withoutGlobalScopes()->with('sla', 'approvals')->from('tickets as t')
@@ -87,8 +90,15 @@ class MonthlyKPIWithApprovals extends ReportContract
 
     function excel()
     {
-        $data = $this->query->get();
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
         $max = 0;
+        $data = $this->query->get();
+        $approvals_header = collect();
+
+        $sheet->setTitle('New Report');
 
         $this->max_approvals = $data->max(function ($item) use ($max) {
             if ($item->approvals->count() > $max) {
@@ -97,49 +107,61 @@ class MonthlyKPIWithApprovals extends ReportContract
             return $max;
         });
 
-        return \Excel::create(str_slug($this->report->title), function ($excel) use ($data) {
-            $excel->sheet('Monthly KPI With Approvals', function ($sheet) use ($data) {
-                $approvals_header = collect();
+        for ($i = 0; $i < $this->max_approvals; $i++) {
+            $approvals_header->push(["Approval Level " . ($i + 1) . " Sent At", "Action Date", "Status"]);
+        }
 
-                for ($i = 0; $i<$this->max_approvals;$i++){
-                    $approvals_header->push(["Approval Level ".($i+1)." Sent At","Action Date","Status"]);
+
+        $header = [
+            'ID', 'Subject', 'Requester',
+            'Technician', 'Category', 'Status', 'Created Date', 'Date of Departure', 'Days between departure and create', 'Due Date',
+            'Resolved Date', 'Business Unit'];
+
+        $approvals_header = $approvals_header->flatten()->toArray();
+        $sheet->fromArray(array_merge($header, $approvals_header), NULL, 'A1',true);
+
+        $row = 1;
+        foreach ($data as $key => $ticket) {
+            ++$row;
+
+            $ticket_approvals = $ticket->approvals;
+            $approvals = collect();
+            if ($ticket_approvals->count()) {
+                foreach ($ticket_approvals as $approval) {
+                    $approvals->push([$approval->created_at,
+                        $approval->approval_date
+                        , $approval->status_str]);
                 }
+            }
 
-                $sheet->row($this->row, array_merge([
-                    'ID', 'Subject', 'Requester',
-                    'Technician', 'Category', 'Status', 'Created Date', 'Date of Departure', 'Days between departure and create', 'Due Date',
-                    'Resolved Date', 'Business Unit'
-                ],$approvals_header->flatten()->toArray()));
-
-
-                $data->each(function ($ticket) use ($sheet) {
-                    /** @var Worksheet $sheet */
-                    $row_data = [
-                        $ticket->id, $ticket->subject, $ticket->requester, $ticket->technician,
-                        $ticket->category, $ticket->status, $ticket->created_at, $ticket->date_of_dept, $ticket->difference ?? 'Not Assigned',
-                        $ticket->due_date, $ticket->resolve_date, $ticket->business_unit
-                    ];
-
-                    $ticket_approvals = $ticket->approvals;
-                    $approvals = collect();
-                    if ($ticket_approvals->count()) {
-                        foreach ($ticket_approvals as $approval){
-                            $approvals->push([$approval->created_at,
-                                 $approval->approval_date
-                                ,$approval->status_str]);
-                        }
-                    }
-
-                    $sheet->row(++$this->row, array_merge($row_data,$approvals->flatten()->toArray()));
-                });
+            $rowData = [
+                $ticket->id, $ticket->subject, $ticket->requester, $ticket->technician,
+                $ticket->category, $ticket->status, $ticket->created_at, $ticket->date_of_dept, $ticket->difference ?? 'Not Assigned',
+                $ticket->due_date, $ticket->resolve_date, $ticket->business_unit
+            ];
+            $sheet->fromArray(array_merge($rowData, $approvals->flatten()->toArray()), NULL, 'A' . $row, true);
+        }
 
 
 
-                $sheet->setAutoFilter();
-                $sheet->setAutoSize(true);
-            });
+        $highestColumn = $sheet->getHighestColumn(1);
+        for ($column = 'A'; $column ; $column++) {
+            if($column == $highestColumn){
+                break;
+            }
+            $sheet->getColumnDimension($column)->setAutoSize(true);
+        }
 
-        });
+        $sheet->setAutoFilter('A1:' . $highestColumn . '1');
+
+
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+//        $writer->save('export.xlsx');
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment; filename="' . str_slug($this->report->title) . '.xlsx"');
+        $writer->save("php://output");
+        exit;
+//
     }
 
     function pdf()
@@ -157,15 +179,15 @@ class MonthlyKPIWithApprovals extends ReportContract
             return $max;
         });
 
-        for ($i = 0; $i<$this->max_approvals;$i++){
-            $approvals_header->push(["Approval Level ".($i+1)." Sent At","Action Date","Status"]);
+        for ($i = 0; $i < $this->max_approvals; $i++) {
+            $approvals_header->push(["Approval Level " . ($i + 1) . " Sent At", "Action Date", "Status"]);
         }
 
         $columns = array_merge([
             'ID', 'Subject', 'Requester',
             'Technician', 'Category', 'Status', 'Created Date', 'Date of Departure', 'Difference', 'Due Date',
             'Resolved Date', 'Business Unit'
-        ],$approvals_header->flatten()->toArray());
+        ], $approvals_header->flatten()->toArray());
 
 
         $max = 0;
@@ -176,7 +198,7 @@ class MonthlyKPIWithApprovals extends ReportContract
             return $max;
         });
 
-        $content = view('emails.report.monthly_kpi_report_pdf', ['data' => $data, 'report' => $this->report, 'columns'=>$columns,'approvals_count'=>$approvals_count]);
+        $content = view('emails.report.monthly_kpi_report_pdf', ['data' => $data, 'report' => $this->report, 'columns' => $columns, 'approvals_count' => $approvals_count]);
 
         $filepath = storage_path('app/' . uniqid('report') . '.html');
         file_put_contents($filepath, $content->render());
@@ -194,9 +216,9 @@ class MonthlyKPIWithApprovals extends ReportContract
 
     private function applyFilters()
     {
-        if(!$this->parameters['start_date']){
+        if (!$this->parameters['start_date']) {
             $start_date = new Carbon('first day of last month');
-        }else{
+        } else {
             $start_date = Carbon::parse($this->parameters['start_date']);
         }
 
@@ -207,7 +229,7 @@ class MonthlyKPIWithApprovals extends ReportContract
         if (!empty($this->parameters['end_date'])) {
             $end_date = Carbon::parse($this->parameters['end_date']);
 
-        }else{
+        } else {
             $end_date = new Carbon('last day of last month');
         }
         $end_date->setTime(23, 59, 59);

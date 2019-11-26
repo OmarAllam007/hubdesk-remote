@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Mail\NewNoteMail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Message;
 use Illuminate\Queue\SerializesModels;
@@ -19,6 +20,7 @@ class NewNoteJob implements ShouldQueue
      * @return void
      */
     private $note;
+
     public function __construct($note)
     {
         $this->note = $note;
@@ -31,10 +33,6 @@ class NewNoteJob implements ShouldQueue
      */
     public function handle()
     {
-        \Mail::send('emails.ticket.new-note', ['note' => $this->note], function(Message $msg) {
-            $note = $this->note;
-            $msg->subject('Your assigned ticket #' . $note->ticket_id.' updated with a new note');
-            $msg->to($note->ticket->technician->email);
-        });
+        \Mail::send(new NewNoteMail($this->note));
     }
 }

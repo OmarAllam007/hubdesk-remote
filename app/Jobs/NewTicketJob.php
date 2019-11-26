@@ -3,6 +3,8 @@
 namespace App\Jobs;
 
 use App\Jobs\Job;
+use App\Mail\NewTicketCreated;
+use App\Mail\TicketAssignedMail;
 use App\Ticket;
 use Illuminate\Mail\Message;
 use Illuminate\Queue\SerializesModels;
@@ -26,15 +28,11 @@ class NewTicketJob extends Job implements ShouldQueue
     public function handle()
     {
         if ($this->ticket->requester->email) {
-            \Mail::send('emails.ticket.new-ticket', ['ticket' => $this->ticket], function(Message $msg) {
-                $ticket = $this->ticket;
-                $msg->subject('A new ticket #' . $ticket->id . ' has been created for you');
-                $msg->to($ticket->requester->email);
-            });
+            \Mail::send(new NewTicketCreated($this->ticket));
         }
 
         if($this->ticket->technician){
-            dispatch(new TicketAssigned($this->ticket));
+            \Mail::send(new TicketAssignedMail($this->ticket));
         }
     }
 }

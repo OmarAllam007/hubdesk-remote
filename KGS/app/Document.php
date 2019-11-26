@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Document extends Model
 {
-    protected $fillable = ['business_unit_id', 'name', 'start_date', 'end_date', 'last_updated_by', 'path'];
+    protected $fillable = ['folder_id', 'name', 'start_date', 'end_date', 'last_updated_by', 'path'];
 
     protected $dates = ['start_date','end_date'];
 
-    function business_unit()
+    function folder()
     {
-        return $this->belongsTo(BusinessUnit::class);
+        return $this->belongsTo(BusinessDocumentsFolder::class);
     }
 
     function getLastUpdatedAttribute()

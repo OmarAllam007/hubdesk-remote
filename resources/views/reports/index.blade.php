@@ -22,7 +22,8 @@
 
                 <tbody>
                 @foreach($reports as $report)
-                    <tr>
+                    @can('show',$report)
+                        <tr>
                         <td>
                             <a href="{{route('reports.show', $report)}}">
                                 {{$report->title}}
@@ -45,22 +46,27 @@
                                     </a>
 
                                 @endif
-                                |
 
 
-                                @if($report->type && $report->type == \App\Report::$CUSTOM_REPORT)
-                                    <a href="{{route('reports.custom_report.edit', $report)}}"><i
-                                                class="fa fa-edit"></i> {{t('Edit')}}</a>
-                                @elseif($report->type && $report->type == \App\Report::$QUERY_REPORT)
-                                    <a href="{{route('reports.query.edit', $report)}}"><i
-                                                class="fa fa-edit"></i> {{t('Edit')}}</a>
-                                @else
-                                    <a href="{{route('reports.edit', $report)}}"><i
-                                                class="fa fa-edit"></i> {{t('Edit')}}</a>
-                                @endif
+                                    @can('edit',$report)
+                                        |
+                                        <a href="{{route('reports.edit', $report)}}"><i
+                                                    class="fa fa-edit"></i> {{t('Edit')}}</a>
+                                    @endcan
+{{--                                @if($report->type && $report->type == \App\Report::$CUSTOM_REPORT)--}}
+{{--                                    <a href="{{route('reports.custom_report.edit', $report)}}"><i--}}
+{{--                                                class="fa fa-edit"></i> {{t('Edit')}}</a>--}}
+{{--                                @elseif($report->type && $report->type == \App\Report::$QUERY_REPORT)--}}
+{{--                                    <a href="{{route('reports.query.edit', $report)}}"><i--}}
+{{--                                                class="fa fa-edit"></i> {{t('Edit')}}</a>--}}
+{{--                                @else--}}
+{{--                                    <a href="{{route('reports.edit', $report)}}"><i--}}
+{{--                                                class="fa fa-edit"></i> {{t('Edit')}}</a>--}}
+{{--                                @endif--}}
                             </article>
                         </td>
                     </tr>
+                    @endcan
                 @endforeach
                 </tbody>
             </table>

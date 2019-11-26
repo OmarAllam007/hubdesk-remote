@@ -1,5 +1,5 @@
-<form method="POST" enctype="multipart/form-data" class="modal fade" id="TaskForm" v-on:submit.prevent="changeOnSubmit">
-    {{csrf_field()}}{{method_field('PUT')}}
+<form method="POST"  class="modal fade" id="TaskForm" v-on:submit.prevent="changeOnSubmit" enctype="multipart/form-data" >
+    {{csrf_field()}}{{method_field('POST')}}
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -17,6 +17,17 @@
                             {{Form::text('subject', null, ['class' => 'form-control','v-model'=>'subject'])}}
                             <span class="help-block" v-for="error in errors.subject">@{{error}}</span>
                         </div>
+
+                        @if(auth()->user()->isSupport() && auth()->user()->reply_templates->count())
+                                <div class="form-group">
+                                    {{Form::label('template', t('Reply Template') , ['class' => 'control-label'])}}
+                                    {{Form::select('template', auth()->user()->reply_templates->pluck('title','id')->prepend('Select Template',""), null, ['class' => 'form-control' , 'v-model'=>'template'])}}
+                                    @if ($errors->has('template'))
+                                        <div class="error-message">{{$errors->first('template')}}</div>
+                                    @endif
+                                </div>
+
+                        @endif
 
                         <div :class="{'form-group': true , 'has-error':errors.description}">
                             {{Form::label('description', t('Description'), ['class' => 'control-label'])}}
@@ -93,11 +104,30 @@
 
                     </div>
                 </div>
-
+                <div class="row">
+                    <div class="col-md-8">
+                        <table class="listing-table table-condensed">
+                            <thead>
+                            <tr>
+                                <th>{{t('Attachments')}}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="col-md-10">
+                                    <input type="file" class="form-control input-xs" ref="attachments" name="attachments[]" id="attachments" @change="handleFiles" multiple>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
 
+
+
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" :disabled="saving">
+                <button type="submit" class="btn btn-primary" :disabled="!can_submit" >
                     <i class="fa fa-save" v-show="!saving"></i>
                     <i class="fa fa-spinner fa-spin" v-show="saving"></i>
                     {{t('Save')}}

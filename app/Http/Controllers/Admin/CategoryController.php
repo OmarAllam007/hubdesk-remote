@@ -36,7 +36,7 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        $this->validates($request, 'Could not save category');
+        $this->validates($request);
 
         $data = $request->all();
         $data['service_request'] = isset($request->service_request) ? 1 : 0;
@@ -58,7 +58,7 @@ class CategoryController extends Controller
         $this->handleRequirements($request, $category);
         $this->createFees($request, $category);
 
-        flash(t('Category has been saved'), 'success');
+        flash(t('Category Info'),t('Category has been saved'), 'success');
 
         return \Redirect::route('admin.category.index');
     }
@@ -75,7 +75,7 @@ class CategoryController extends Controller
 
     public function update(Category $category, Request $request)
     {
-        $this->validates($request, 'Could not save category');
+        $this->validates($request);
 
 
         if ($request['units']) {
@@ -97,7 +97,7 @@ class CategoryController extends Controller
             $category->update(['logo' => $logo_path]);
         }
 
-        flash(t('Category has been saved'), 'success');
+        flash(t('Category Info'),t('Category has been saved'), 'success');
         return \Redirect::route('admin.category.index');
     }
 
@@ -105,7 +105,7 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        flash(t('Category has been deleted'), 'success');
+        flash(t('Category Info'),t('Category has been deleted'), 'success');
 
         return \Redirect::route('admin.category.index');
     }

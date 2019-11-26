@@ -11,7 +11,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Message;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-
+use App\Mail\TicketReplyMail;
 class TicketReplyJob extends Job //implements ShouldQueue
 {
     //use InteractsWithQueue, SerializesModels;
@@ -61,23 +61,10 @@ class TicketReplyJob extends Job //implements ShouldQueue
     }
 
     function sendEmail(){
-        $ticket = $this->reply->ticket;
-        \Mail::send('emails.ticket.reply', ['reply' => $this->reply], function (Message $msg) use ($ticket){
+        $cc = request()->get("reply")["cc"] ?? [];
 
-            $subject = 'Re: Ticket #' . $ticket->id . ' ' . $this->reply->ticket->subject;
-//            if ($this->reply->ticket->sdp_id) {
-//                $subject .= " [Request ##{$this->reply->ticket->sdp_id}##]";
-//            }
-            $cc = request()->get("reply")["cc"] ?? null;
-            $msg->subject($subject);
-            $msg->to($this->to);
-            if ($cc) {
-                $msg->cc($cc);
-            }
-        });
-
-
-        $this->sendSurvey($ticket);
+        \Mail::to($this->to)->cc($cc)->send(new TicketReplyMail($this->reply));
+        $this->sendSurvey($this->reply->ticket);
     }
 
     private function sendSurvey($ticket)

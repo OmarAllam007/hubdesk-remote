@@ -34,7 +34,7 @@
             @foreach($locations as $location)
                 <tr>
                     <td class="col-md-5"><a href="{{route('admin.location.edit', $location)}}">{{$location->name}}</a></td>
-                    <td class="col-md-3">{{$location->city->name}}</td>
+                    <td class="col-md-3">{{$location->city->name ?? 'Not Assigned'}}</td>
                     <td class="col-md-3">
                         <a class="btn btn-sm btn-primary" href="{{route('admin.location.edit', $location)}}"><i
                                     class="fa fa-edit"></i> Edit</a>

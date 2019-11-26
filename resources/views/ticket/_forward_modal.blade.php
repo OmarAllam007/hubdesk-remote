@@ -9,17 +9,20 @@
         <div class="modal-body" id="TicketForm">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="form-group form-group-sm {{$errors->has('to')? 'has-error' : ''}}">
+                    <div class="form-group form-group-sm @error('to')? 'has-error' : '' @enderror">
                         {{Form::label('to', t('To'), ['class' => 'control-label'])}}
                         <select class="form-control select2" name="to[]" multiple>
                             @foreach($users as $user)
                                 <option value="{{$user->email}}">{{$user->name}} - {{$user->email}}</option>
                             @endforeach
                         </select>
-                        @if (count($errors)&&count($errors->has('to')))
-                            <div class="error-message">
-                                {{ $errors->first() }}
-
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
                             </div>
                         @endif
                     </div>

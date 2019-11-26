@@ -157,10 +157,12 @@ class TicketViewScope
         });
     }
 
-    public function sent_to_finance_in_my_groups(){
+    public function sent_to_finance_in_my_groups()
+    {
         $this->in_my_groups();
         $this->sent_to_finance();
     }
+
     public function pending_in_my_groups()
     {
         $this->in_my_groups();
@@ -192,9 +194,11 @@ class TicketViewScope
         }
     }
 
-    public function sent_to_finance(){
+    public function sent_to_finance()
+    {
         $this->query->whereIn('status_id', [10]);
     }
+
     public function pending()
     {
         $this->query->pending();
@@ -227,7 +231,7 @@ class TicketViewScope
         $this->query->whereHas('approvals', function (Builder $q) {
             $q->where('approver_id', \Auth::user()->id)
                 ->where('status', TicketApproval::PENDING_APPROVAL);
-        });
+        })->whereNotIn('status_id', [7, 8, 9]);
     }
 
     public function open_assigned()

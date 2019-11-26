@@ -1,5 +1,6 @@
 <script>
     import Vue from 'vue';
+    import axios from 'axios'
 
     var $ = require('jquery');
 
@@ -22,8 +23,10 @@
                 technician: '',
                 edit: false,
                 task_id: null,
-                saving:false,
-                fields:[]
+                saving: false,
+                fields: {},
+                attachments: [],
+                template: '',
             }
         },
         methods: {
@@ -48,47 +51,79 @@
                 this.getCustomFields()
 
 
-                this.saving = true;
-                var cs = [];
+                // this.saving = true;
+
+                // let formData = new FormData();
+                // for( let i = 0; i < this.files.length; i++ ) {
+                //     formData.append('files[]', this.files[i]);
+                // }
+                // formData.append('category_id',this.category);
+                // console.log(formData)
+                // var cs = [];
+
+                //Creates a formdata object for the upload, appends a CSRF token, the file itself and its respective name
+                var formData = new FormData;
+                formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
+
+                for (var i = 0; i < this.attachments.length; i++) {
+                    formData.append('attachments[]', this.attachments[i]);
+                }
+
+                formData.append('subject', this.subject);
+                formData.append('category', this.category);
+                formData.append('subcategory', this.subcategory);
+                formData.append('item', this.item);
+                formData.append('status', this.status);
+                formData.append('description', tinyMCE.activeEditor.getContent());
+                formData.append('group', this.group);
+                formData.append('technician', this.technician);
+                formData.append('ticket_id', this.ticket_id);
+                formData.append('cf', this.fields);
+                formData.append('template', this.template);
                 jQuery.ajax({
-                    method: 'POST',
                     url: '/ticket/tasks/' + this.ticket_id,
+                    method: 'POST',
+                    xhr: function () {
+                        var myXhr = $.ajaxSettings.xhr();
+                        return myXhr;
+                    },
+
                     headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        // 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
                     },
-                    data: {
-                        subject: this.subject,
-                        category: this.category,
-                        subcategory: this.subcategory,
-                        item: this.item,
-                        status: this.status,
-                        description: tinyMCE.activeEditor.getContent(),
-                        group: this.group,
-                        technician: this.technician,
-                        ticket_id: this.ticket_id,
-                        cf: this.fields,
-                    },
-                    success: function (response) {
+                    dataType: 'json',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    async: true,
+                    enctype: 'multipart/form-data',
+                    data: formData,
+
+
+                    success: (response) => {
+                        this.saving = false;
                         this.loadTasks();
-                        this.errors = response;
-                        jQuery("#TaskForm").modal('hide');
-                        this.saving=false;
                         this.resetAll();
-                    }.bind(this),
-                    error: function (response) {
+                        jQuery("#TaskForm").modal('hide');
+
+                    },
+                    error: (response) => {
+                        this.saving = false;
                         this.errors = response.responseJSON;
-                        this.saving =false;
-                    }.bind(this)
+                    }
 
                 });
+
+
             },
-            getCustomFields(){
-                this.fields = [];
+            getCustomFields() {
+                this.fields = {};
                 $('#CustomFields').find('.cf').each((idx, element) => {
-                        this.fields[element.id.substr(3,8)] = $(element).val()
+                    this.fields[element.id.substr(3)] = $(element).val()
                 });
-                console.log(this.fields)
-            },
+                this.fields = JSON.stringify(this.fields)
+            }
+            ,
             editTask(task) {
                 let modal = jQuery('#TaskForm');
                 jQuery.ajax({
@@ -109,7 +144,8 @@
                     }.bind(this),
 
                 });
-            },
+            }
+            ,
             deleteTask(task) {
                 $.ajax({
                     method: 'DELETE',
@@ -123,7 +159,8 @@
 
                 });
 
-            },
+            }
+            ,
             resetTask() {
                 this.resetAll();
                 jQuery('#TaskForm').find('.modal-title').html('Create Task');
@@ -154,15 +191,19 @@
                     }.bind(this)
 
                 });
-            },
+            }
+            ,
             loadSubcategory(withFields) {
+                this.subcategories = [];
+                this.subcategory = '';
                 if (this.category) {
                     $.get(`/list/subcategory/${this.category}`).then(response => {
                         this.subcategories = response;
                     });
                 }
                 if (withFields) this.loadCustomFields();
-            },
+            }
+            ,
             loadItems(withFields) {
                 if (this.subcategory) {
                     $.get(`/list/item/${this.subcategory}`).then(response => {
@@ -170,7 +211,8 @@
                     });
                 }
                 if (withFields) this.loadCustomFields();
-            },
+            }
+            ,
             resetAll() {
                 this.edit = false;
                 this.subject = '';
@@ -185,9 +227,11 @@
                 this.items = [];
                 this.technicians = [];
                 this.group = '';
-                this.technician ='';
+                this.technician = '';
                 this.fields = [];
-            },
+                this.template = ''
+            }
+            ,
             loadCustomFields() {
                 const customFieldsContainer = $('#CustomFields');
                 const fieldValues = {};
@@ -215,7 +259,8 @@
                     }
                     customFieldsContainer.html('').append(newFields);
                 });
-            },
+            }
+            ,
             loadTechnicians() {
                 if (this.group) {
                     $.get(`/list/group-technicians/${this.group}`).then(response => {
@@ -223,21 +268,42 @@
                     });
                 }
             }
-        }, watch: {
+            ,
+
+            handleFiles(e) {
+                let uploadedFiles = this.$refs.attachments.files;
+
+                for (var i = 0; i < uploadedFiles.length; i++) {
+                    this.attachments.push(uploadedFiles[i]);
+                }
+                // this.files = formData
+                // this.attachments = data;
+            }
+        },
+        watch: {
             category() {
                 this.loadSubcategory(true);
-            },
+
+            }
+            ,
 
             subcategory() {
                 this.loadItems(true);
-            },
+            }
+            ,
             group() {
                 this.loadTechnicians();
             }
 
-        },
-        mounted(){
+        }
+        ,
+        mounted() {
             // this.loadSubcategory(true);
+        },
+        computed: {
+            can_submit(){
+                return (this.subject != '' && this.category != '') && this.saving == false
+            }
         },
         created() {
             this.loadTasks();
@@ -245,7 +311,8 @@
             // this.loadItems(true);
             this.loadTechnicians();
         }
-    });
+    })
+    ;
     window.app = new Vue({
         el: '#tasks',
 

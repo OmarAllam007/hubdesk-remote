@@ -22,8 +22,8 @@ class NewTaskMail extends Mailable
 
     public function build()
     {
-        return $this->view('emails.ticket.task_assigned', ['task' => $this->task])
+        return $this->markdown('emails.ticket.task_assigned', ['ticket' => $this->task])
             ->to($this->task->technician->email)
-            ->subject('A new Task #' . $this->task->id . ' On Ticket #'.$this->task->ticket->id.' has been Assigned to you');
+            ->subject('A new Task #' . $this->task->id .' has been Assigned to you');
     }
 }

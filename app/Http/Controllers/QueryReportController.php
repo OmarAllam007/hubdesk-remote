@@ -40,13 +40,20 @@ class QueryReportController extends Controller
 
         $report = Report::create($request->all());
 
+        if(!empty($request->users)){
+            foreach ($request->users as $user) {
+                $report->users()->create([
+                    'user_id' => $user
+                ]);
+            }
+        }
+
         return redirect()->route('reports.query_report.show', compact('report'));
     }
 
 
     public function show(Report $report, Request $request)
     {
-
         $r = new QueryReport($report);
 
         if ($request->exists('excel')) {
@@ -87,6 +94,17 @@ class QueryReportController extends Controller
         $request['user_id'] = auth()->id();
 
         $report->update($request->all());
+
+        $report->users()->delete();
+
+        if (!empty($request->users)) {
+            foreach ($request->users as $user) {
+                $report->users()->create([
+                    'user_id' => $user
+                ]);
+            }
+        }
+
         return redirect()->route('reports.index');
     }
 

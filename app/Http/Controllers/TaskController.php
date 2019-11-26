@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Attachment;
 use App\CustomField;
 use App\Jobs\ApplySLA;
 use App\Jobs\NewTaskJob;
 use App\Mail\NewTaskMail;
+use App\ReplyTemplate;
 use App\Task;
 use App\Ticket;
 use App\TicketLog;
@@ -48,9 +50,12 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['subject' => 'required', 'category' => 'required']);
-        if ($request['technician']) {
-            Ticket::flushEventListeners();
+        $this->validate($request,['subject'=>'required','category'=>'required']);
+
+        Ticket::flushEventListeners();
+
+        if($request->template){
+            $request['description'] = ReplyTemplate::find($request->template)->description;
         }
 
         $task = Ticket::create([
@@ -68,7 +73,14 @@ class TaskController extends Controller
             'technician_id' => $request['technician'],
         ]);
 
-        foreach ($request->get('cf', []) as $key=>$item) {
+//        if(!empty($request->attachments)){
+//            Attachment::uploadFiles(Attachment::TICKET_TYPE, $task->id);
+//        }
+
+        $items = json_decode($request->input('cf'),true);
+
+        if(!empty($items)){
+            foreach ($items as $key=>$item){
 
                 $field = CustomField::find($key);
 //            dd($field->name);
@@ -77,22 +89,26 @@ class TaskController extends Controller
                     $messages['cf.'.$key.'.required'] = "The field ( {$field->name} ) is required";
                 }
 
-        }
+            }
 
-        foreach ($request->get('cf', []) as $key=>$item){
-            if($item) {
-                $field = CustomField::find($key)->name ?? '';
+            foreach ($items as $key=>$item){
+                if($item) {
+                    $field = CustomField::find($key)->name ?? '';
 
-                $task->fields()->create(['name' => $field, 'value' => $item]);
+                    $task->fields()->create(['name' => $field, 'value' => $item]);
+                }
             }
         }
+
+
 
         /** @var Ticket $task */
 
 //        TicketLog::addNewTask($task);
 
         if ($request['technician']) {
-            dispatch(new NewTaskJob($task));
+            Mail::send(new NewTaskMail($task));
+//            dispatch(new NewTaskJob($task));
         }
 
 
@@ -138,15 +154,12 @@ class TaskController extends Controller
                 'item_id' => $request['item_id']]);
 
             if (isset($ticket->getDirty()['technician_id']) && $ticket->getDirty()['technician_id']!= $ticket->getOriginal()['technician_id']) {
-                Mail::send(new NewTaskMail($ticket));
+                \Mail::send(new NewTaskMail($ticket));
             }
             $ticket->save();
         }
 
-        alert()->flash(t('Task Info'), 'success', [
-            'text' => t('Task updated successfully'),
-            'timer' => 3000
-        ]);
+        flash(t('Task Info'), t('Task updated successfully'),'success');
         return \Redirect::route('ticket.show', $ticket);
     }
 
@@ -160,12 +173,10 @@ class TaskController extends Controller
     public function destroy($ticket, $task)
     {
         $task = Ticket::find($task);
-        if (can('delete', $task)) {
+
+        if (can('task_delete', $task)) {
             $task->delete();
-            alert()->flash(t('Task Info'), 'success', [
-                'text' => t('Task deleted successfully'),
-                'timer' => 3000
-            ]);
+            flash(t('Task Info'),t('Task deleted successfully'), 'success');
         }
     }
 

@@ -11,6 +11,7 @@ use App\Console\Commands\RenewDocument;
 use App\Console\Commands\ScheduledReportsCommand;
 use App\Console\Commands\SyncByRequest;
 use App\Jobs\CleanErrorLog;
+use Closure;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Make\Console\Command\Module;
@@ -22,6 +23,7 @@ class Kernel extends ConsoleKernel
      *
      * @var array
      */
+
     protected $commands = [
         Module::class,
         LdapImportUser::class,
@@ -36,7 +38,8 @@ class Kernel extends ConsoleKernel
         KGSPendingApprovalsNotifications::class,
         CheckForNotSubmittedSurveys::class,
         CheckForNotOpenedTickets::class,
-        ScheduledReportsCommand::class
+        ScheduledReportsCommand::class,
+
     ];
 
     /**
@@ -54,7 +57,7 @@ class Kernel extends ConsoleKernel
         // Calculate time of tickets every minute
         $schedule->command('tickets:calculate-time')->everyMinute();
 
-        $schedule->command('tickets:check-viewed-tickets')->daily();
+        $schedule->command('tickets:check-viewed-tickets')->daily()->between('6:30','7:30');
         // Get requests from service desk plus
 //        $schedule->command('sdp:sync')->everyFiveMinutes();
 

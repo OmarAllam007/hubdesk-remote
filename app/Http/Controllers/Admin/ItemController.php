@@ -34,7 +34,7 @@ class ItemController extends Controller
 
     public function store(Request $request)
     {
-        $this->validates($request, 'Could not save item');
+        $this->validates($request);
         $service_request = isset($request->service_request) ? 1 : 0;
         $data = $request->all();
         $data['service_request']=$service_request;
@@ -45,7 +45,7 @@ class ItemController extends Controller
         $this->handleRequirements($request,$item);
 
         $this->createFees($request,$item);
-        flash(t('Item has been saved'), 'success');
+        flash(t('Item Info'),t('Item has been saved'), 'success');
 
         return \Redirect::route('admin.subcategory.show', $item->subcategory_id);
     }
@@ -72,7 +72,7 @@ class ItemController extends Controller
         $this->handleRequirements($request,$item);
 
         $this->createFees($request,$item);
-        flash('Item has been saved', 'success');
+        flash(t('Item Info'),'Item has been saved', 'success');
 
         return \Redirect::route('admin.subcategory.show', $item->subcategory_id);
     }
@@ -81,7 +81,7 @@ class ItemController extends Controller
     {
         $item->delete();
 
-        flash(t('Item has been deleted'), 'success');
+        flash(t('Item Info'),t('Item has been deleted'), 'success');
 
         return \Redirect::route('admin.subcategory.show', $item->subcategory_id);
     }

@@ -54,7 +54,7 @@
                                 {{--@endif--}}
                             </p>
                             <p class="text-center" style="margin-top: 40px">
-                                {{$item->name}}
+                                {{t($item->name)}}
                             </p>
                             @if($item->service_cost > 0)
                                 <p>
