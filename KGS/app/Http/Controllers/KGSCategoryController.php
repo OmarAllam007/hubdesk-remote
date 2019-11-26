@@ -25,15 +25,16 @@ class KGSCategoryController extends Controller
 
     function update(Category $category, Request $request)
     {
+
+        $category->update( $request->all());
+
         $this->handleLevels($request, $category);
         $this->handleRequirements($request, $category);
         $this->createFees($request, $category);
 
-        $data = $request->all();
 
-        $category->update($data);
 
-        flash(t('Category has been saved'), 'success');
+        flash(t('Category Saved'),t('Category has been saved'), 'success');
         return \Redirect::route('kgs.admin.category.index');
 
     }
@@ -48,11 +49,7 @@ class KGSCategoryController extends Controller
     {
         $category->levels()->delete();
 
-        if (empty($request->levels)) {
-            return;
-        }
-
-        foreach ($request->levels as $key => $role) {
+        foreach ($request->get('levels',[]) as $key => $role) {
             ApprovalLevels::create([
                 'type' => 1,
                 'level_id' => $category->id,
@@ -66,11 +63,7 @@ class KGSCategoryController extends Controller
     {
         $category->requirements()->delete();
 
-        if (empty($request->requirements)) {
-            return;
-        }
-
-        foreach ($request->requirements as $requirement) {
+        foreach ($request->get('requirements',[]) as $requirement) {
             $category->requirements()->create([
                 'reference_type' => Requirement::CATEGORY_TYPE,
                 'reference_id' => $category->id,
@@ -88,11 +81,8 @@ class KGSCategoryController extends Controller
     private function createFees(Request $request, Category $category)
     {
         $category->fees()->delete();
-        if (empty($request->fees)) {
-            return;
-        }
 
-        foreach ($request->fees as $fee) {
+        foreach ($request->get('fees',[]) as $fee) {
             $category->fees()->create([
                 'name' => $fee['name'],
                 'cost' => $fee['cost'],

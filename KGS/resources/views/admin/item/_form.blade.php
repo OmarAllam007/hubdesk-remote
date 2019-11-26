@@ -8,7 +8,7 @@
                 <div class="form-group {{$errors->has('subcategory_id')? 'has-error' : ''}}">
                     {{Form::label('subcategory_id', 'Subcategory', ['class' => 'control-label'])}}
                     {{Form::select('subcategory_id',
-                     App\Subcategory::whereHas('category',function ($q){ return $q->where('business_unit_id',env('GS_ID')); })->selection('Select Subcategory')
+                     App\Subcategory::generalService()->selection('Select Subcategory')
                      , \request('subcategory')
                      , ['class' => 'form-control'])}}
                     @if ($errors->has('subcategory_id'))

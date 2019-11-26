@@ -77,6 +77,10 @@ class Subcategory extends KModel
         return $subcategories->sortBy('name');
     }
 
+    public function scopeGeneralService(Builder $query){
+        return $query->whereHas('category',function ($q){ return $q->where('business_unit_id',env('GS_ID')); });
+    }
+
     public function canonicalName()
     {
         return $this->category->name . ' > ' . $this->name;

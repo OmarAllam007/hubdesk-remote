@@ -18,7 +18,7 @@
 @section('body')
     {{Form::model($category, ['route' => ['kgs.admin.category.update', $category], 'class' => 'col-sm-9','files'=>true])}}
 
-    {{method_field('post')}}
+    @method('patch')
 
     @include('kgs::admin.category._form')
 

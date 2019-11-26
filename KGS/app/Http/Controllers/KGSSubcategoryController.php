@@ -34,7 +34,7 @@ class KGSSubcategoryController extends Controller
     function store(Request $request)
     {
         $this->validate($request, ['category_id' => 'required', 'name' => 'required', 'description' => 'required'],
-            ['category_id.required'=>'The category field is required.']);
+            ['category_id.required' => 'The category field is required.']);
 
         $subcategory = Subcategory::create($request->all());
         $this->handleLevels($request, $subcategory);
@@ -48,15 +48,17 @@ class KGSSubcategoryController extends Controller
     function update(Subcategory $subcategory, Request $request)
     {
         $this->validate($request, ['category_id' => 'required', 'name' => 'required', 'description' => 'required'],
-            ['category_id.required'=>'The category field is required.']);
+            ['category_id.required' => 'The category field is required.']);
+
+        $subcategory->update($request->all());
 
         $this->handleLevels($request, $subcategory);
         $this->handleRequirements($request, $subcategory);
         $this->createFees($request, $subcategory);
 
-        $subcategory->update($request->all());
 
-        flash(t('Subcategory has been saved'), 'success');
+        flash(t('Subcategory Saved'), t('Subcategory has been saved'), 'success');
+
         return \Redirect::route('kgs.admin.subcategory.index');
 
     }
@@ -79,11 +81,7 @@ class KGSSubcategoryController extends Controller
     {
         $subcategory->levels()->delete();
 
-        if (empty($request->levels)) {
-            return;
-        }
-
-        foreach ($request->levels as $key => $role) {
+        foreach ($request->get('levels', []) as $key => $role) {
             ApprovalLevels::create([
                 'type' => ApprovalLevels::SUBCATEGORY_TYPE,
                 'level_id' => $subcategory->id,
@@ -97,11 +95,7 @@ class KGSSubcategoryController extends Controller
     {
         $subcategory->requirements()->delete();
 
-        if (empty($request->requirements)) {
-            return;
-        }
-
-        foreach ($request->requirements as $requirement) {
+        foreach ($request->get('requirements', []) as $requirement) {
 
             $subcategory->requirements()->create([
                 'reference_type' => Requirement::SUBCATEGORY_TYPE,
@@ -120,11 +114,8 @@ class KGSSubcategoryController extends Controller
     private function createFees(Request $request, Subcategory $subcategory)
     {
         $subcategory->fees()->delete();
-        if (empty($request->fees)) {
-            return;
-        }
 
-        foreach ($request->fees as $fee) {
+        foreach ($request->get('fees', []) as $fee) {
             $subcategory->fees()->create([
                 'name' => $fee['name'],
                 'cost' => $fee['cost'],

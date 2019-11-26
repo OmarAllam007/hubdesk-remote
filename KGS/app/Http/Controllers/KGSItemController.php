@@ -31,16 +31,19 @@ class KGSItemController extends Controller
         return view('kgs::admin.item.create');
     }
 
-    function store(Request $request){
+    function store(Request $request)
+    {
+
         $this->validate($request, ['subcategory_id' => 'required', 'name' => 'required', 'description' => 'required'],
-            ['subcategory_id.required'=>'The category field is required.']);
+            ['subcategory_id.required' => 'The category field is required.']);
 
         $item = Item::create($request->all());
+
         $this->handleLevels($request, $item);
         $this->handleRequirements($request, $item);
         $this->createFees($request, $item);
 
-        flash(t('Item has been saved'), 'success');
+        flash(t('Item Saved'), t('Item has been saved'), 'success');
         return \Redirect::route('kgs.admin.item.index');
     }
 
@@ -76,11 +79,7 @@ class KGSItemController extends Controller
     {
         $item->levels()->delete();
 
-        if (empty($request->levels)) {
-            return;
-        }
-
-        foreach ($request->levels as $key => $role) {
+        foreach ($request->get('levels', []) as $key => $role) {
             ApprovalLevels::create([
                 'type' => ApprovalLevels::ITEM_TYPE,
                 'level_id' => $item->id,
@@ -94,11 +93,7 @@ class KGSItemController extends Controller
     {
         $item->requirements()->delete();
 
-        if (empty($request->requirements)) {
-            return;
-        }
-
-        foreach ($request->requirements as $requirement) {
+        foreach ($request->get('requirements', []) as $requirement) {
             $item->requirements()->create([
                 'reference_type' => Requirement::ITEM_TYPE,
                 'reference_id' => $item->id,
@@ -116,11 +111,8 @@ class KGSItemController extends Controller
     private function createFees(Request $request, Item $item)
     {
         $item->fees()->delete();
-        if (empty($request->fees)) {
-            return;
-        }
 
-        foreach ($request->fees as $fee) {
+        foreach ($request->get('fees', []) as $fee) {
             $item->fees()->create([
                 'name' => $fee['name'],
                 'cost' => $fee['cost'],
