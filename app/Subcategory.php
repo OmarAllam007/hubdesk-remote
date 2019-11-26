@@ -89,6 +89,7 @@ class Subcategory extends KModel
 
     public function requirements()
     {
-        return $this->hasMany(Requirement::class, 'reference_id')->where('reference_type', Requirement::$types['Subcategory']);
+        return $this->hasMany(Requirement::class, 'reference_id')
+            ->where('reference_type', Requirement::$types['Subcategory']);
     }
 }

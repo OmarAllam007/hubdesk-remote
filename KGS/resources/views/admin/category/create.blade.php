@@ -7,7 +7,7 @@
 @stop
 
 @section('sidebar')
-	@include('admin.partials._sidebar')
+	@include('kgs::admin.partials._sidebar')
 @endsection
 
 @section('body')

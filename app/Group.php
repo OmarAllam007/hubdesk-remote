@@ -41,6 +41,7 @@ class Group extends KModel
     const TECHNICIAN = 3;
     const ADMIN = 4;
     const Reporting = 5;
+    const KGS_ADMIN = 6;
 
     public function users()
     {
@@ -78,6 +79,10 @@ class Group extends KModel
         return $query->where('type', self::Reporting);
     }
 
+    public function scopeKGSADMIN(Builder $query)
+    {
+        return $query->where('type', self::KGS_ADMIN);
+    }
     public function scopeTypes()
     {
         $types = collect([
@@ -85,7 +90,8 @@ class Group extends KModel
             self::COORDINATOR => 'Coordinators',
             self::TECHNICIAN => 'Technicians',
             self::ADMIN => 'Administrators',
-            self::Reporting => 'Reporting'
+            self::Reporting => 'Reporting',
+            self::KGS_ADMIN => 'KGS Admin'
         ]);
 
         $types->sort();

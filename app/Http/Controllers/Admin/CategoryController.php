@@ -14,6 +14,7 @@ class CategoryController extends Controller
 {
 
     protected $rules = ['name' => 'required'];
+
 //'business_unit_id' => 'required|exists:business_units,id'
 
     public function index()
@@ -81,8 +82,8 @@ class CategoryController extends Controller
             $category->businessunits()->sync($request['units']);
         }
 
-        $this->handleLevels($request, $category);
         $this->createUserGroups($request, $category);
+        $this->handleLevels($request, $category);
         $this->handleRequirements($request, $category);
         $this->createFees($request, $category);
 
@@ -112,7 +113,7 @@ class CategoryController extends Controller
 
     private function createUserGroups(Request $request, Category $category)
     {
-        if empty($request['user_groups'])) {
+        if (!empty($request['user_groups'])) {
             $category->service_user_groups()->delete();
             foreach ($request['user_groups'] as $group) {
                 $category->service_user_groups()->create([
@@ -127,15 +128,17 @@ class CategoryController extends Controller
     {
         $category->levels()->delete();
 
-        if empty($request->levels)) {
-            foreach ($request->levels as $key => $role) {
-                ApprovalLevels::create([
-                    'type' => 1,
-                    'level_id' => $category->id,
-                    'role_id' => $role,
-                ]);
-            }
+        if (empty($request->levels)) {
+            return;
         }
+        foreach ($request->levels as $key => $role) {
+            ApprovalLevels::create([
+                'type' => 1,
+                'level_id' => $category->id,
+                'role_id' => $role,
+            ]);
+        }
+
     }
 
     private function handleRequirements(Request $request, Category $category)
@@ -172,8 +175,8 @@ class CategoryController extends Controller
             $category->fees()->create([
                 'name' => $fee['name'],
                 'cost' => $fee['cost'],
-                'level'=> AdditionalFee::CATEGORY,
-                'level_id'=> $category->id,
+                'level' => AdditionalFee::CATEGORY,
+                'level_id' => $category->id,
             ]);
         }
     }

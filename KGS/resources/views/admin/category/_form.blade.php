@@ -50,21 +50,21 @@
 {{--                @endif--}}
 {{--            </div>--}}
 
-{{--            <div class="form-group {{$errors->first('service_cost', 'has-error') }}">--}}
-{{--                {{Form::label('service_cost', 'Service Cost', ['class' => 'control-label'])}}--}}
-{{--                <div class="input-group">--}}
-{{--                    {{Form::text('service_cost', null, ['class' => 'form-control'])}}--}}
-{{--                    <span class="input-group-addon">SAR</span>--}}
-{{--                </div>--}}
-{{--                {!! $errors->first('service_cost', '<div class="error-message">:message</div>') !!}--}}
-{{--            </div>--}}
+            <div class="form-group {{$errors->first('service_cost', 'has-error') }}">
+                {{Form::label('service_cost', 'Service Cost', ['class' => 'control-label'])}}
+                <div class="input-group">
+                    {{Form::text('service_cost', null, ['class' => 'form-control'])}}
+                    <span class="input-group-addon">SAR</span>
+                </div>
+                {!! $errors->first('service_cost', '<div class="error-message">:message</div>') !!}
+            </div>
 
-{{--            <div class="form-group">--}}
-{{--                <input type="checkbox"--}}
-{{--                       id="service_request" name="service_request"--}}
-{{--                       @if(isset($category->service_request) && $category->service_request ) checked @endif>--}}
-{{--                <label for="service_request">is a service request ?</label>--}}
-{{--            </div>--}}
+            <div class="form-group">
+                <input type="checkbox"
+                       id="service_request" name="service_request"
+                       @if(isset($category->service_request) && $category->service_request ) checked @endif>
+                <label for="service_request">is a service request ?</label>
+            </div>
 
 {{--            <div class="form-group">--}}
 {{--                <input type="checkbox"--}}

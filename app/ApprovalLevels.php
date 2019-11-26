@@ -12,6 +12,8 @@ class ApprovalLevels extends Model
 
     static $types = [1 => 'Category', 2 => 'Subcategory', 3 => 'Item'];
 
-
+    const CATEGORY_TYPE = 1;
+    const SUBCATEGORY_TYPE = 2;
+    const ITEM_TYPE = 3;
 
 }

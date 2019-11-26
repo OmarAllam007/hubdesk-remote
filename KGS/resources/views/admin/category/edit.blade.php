@@ -12,13 +12,13 @@
 @stop
 
 @section('sidebar')
-    @include('admin.partials._sidebar')
+    @include('kgs::admin.partials._sidebar')
 @stop
 
 @section('body')
-    {{Form::model($category, ['route' => ['admin.category.update', $category], 'class' => 'col-sm-9','files'=>true])}}
+    {{Form::model($category, ['route' => ['kgs.admin.category.update', $category], 'class' => 'col-sm-9','files'=>true])}}
 
-    {{method_field('patch')}}
+    {{method_field('post')}}
 
     @include('kgs::admin.category._form')
 

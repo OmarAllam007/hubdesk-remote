@@ -3,7 +3,7 @@
 @section('header')
     <h4 class="pull-left">{{t('Business Units')}}</h4>
     <div class="btn-group">
-        <a class="btn btn-outlined  btn-primary" href=""><i class="fa fa-cogs"></i> {{t('Admin Panel')}}</a>
+        <a class="btn btn-outlined  btn-primary" href="{{route('kgs.admin.index')}}"><i class="fa fa-cogs"></i> {{t('Admin Panel')}}</a>
     </div>
 
 @endsection

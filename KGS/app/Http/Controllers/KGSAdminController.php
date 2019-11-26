@@ -8,7 +8,13 @@ use App\Http\Controllers\Controller;
 
 class KGSAdminController extends Controller
 {
-    function category(Category $category)
+
+    function index()
+    {
+        return view("kgs::admin.index");
+    }
+
+    function edit(Category $category)
     {
         return view("kgs::admin.category.edit", compact('category'));
     }

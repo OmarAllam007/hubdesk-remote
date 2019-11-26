@@ -2,11 +2,11 @@
 
 @section('header')
     <h4 class="pull-left">Subcategories</h4>
-    <a href="{{route('admin.subcategory.create')}}" class="btn btn-sm btn-primary pull-right"><i class="fa fa-plus"></i></a>
+    <a href="{{route('kgs.admin.subcategory.create')}}" class="btn btn-sm btn-primary pull-right"><i class="fa fa-plus"></i></a>
 @stop
 
 @section('sidebar')
-    @include('admin.partials._sidebar')
+    @include('kgs::admin.partials._sidebar')
 @stop
 
 @section('body')
@@ -23,12 +23,12 @@
             <tbody>
             @foreach($subcategories as $subcategory)
                 <tr>
-                    <td class="col-md-5"><a href="{{route('admin.subcategory.edit', $subcategory)}}">{{$subcategory->name}}</a></td>
+                    <td class="col-md-5"><a href="{{route('kgs.admin.subcategory.show', $subcategory)}}">{{$subcategory->name}}</a></td>
                     <td class="col-md-4">{{$subcategory->category->name}}</td>
                     <td class="col-md-3">
-                        <form action="{{route('admin.subcategory.destroy', $subcategory)}}" method="post">
+                        <form action="{{route('kgs.admin.subcategory.destroy', $subcategory)}}" method="post">
                             {{csrf_field()}} {{method_field('delete')}}
-                            <a class="btn btn-sm btn-primary" href="{{route('admin.subcategory.edit', $subcategory)}}"><i class="fa fa-edit"></i> Edit</a>
+                            <a class="btn btn-sm btn-primary" href="{{route('kgs.admin.subcategory.edit', $subcategory)}}"><i class="fa fa-edit"></i> Edit</a>
                             <button class="btn btn-sm btn-warning"><i class="fa fa-trash-o"></i> Delete</button>
                         </form>
                     </td>

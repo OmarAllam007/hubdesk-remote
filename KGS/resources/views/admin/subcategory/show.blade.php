@@ -4,15 +4,15 @@
     <h4 class="pull-left">{{$subcategory->canonicalName()}}</h4>
 
     <div class="pull-right">
-        <a href="{{route('admin.subcategory.edit', $subcategory)}}" class="btn btn-sm btn-primary"><i
+        <a href="{{route('kgs.admin.subcategory.edit', $subcategory)}}" class="btn btn-sm btn-primary"><i
                     class="fa fa-edit"></i></a>
-        <a href="{{route('admin.category.show', $subcategory->category_id)}}" class="btn btn-sm btn-default"><i
+        <a href="{{route('kgs.admin.category.show', $subcategory->category_id)}}" class="btn btn-sm btn-default"><i
                     class="fa fa-chevron-left"></i></a>
     </div>
 @endsection
 
 @section('sidebar')
-    @include('admin.partials._sidebar')
+    @include('kgs::admin.partials._sidebar')
 @stop
 
 @section('body')
@@ -24,7 +24,7 @@
     <h4>Items</h4>
 
     <p class="clearfix">
-        <a href="{{route('admin.item.create')}}?subcategory={{$subcategory->id}}"
+        <a href="{{route('kgs.admin.item.create')}}?subcategory={{$subcategory->id}}"
            class="pull-right btn btn-sm btn-primary"><i class="fa fa-plus-circle"></i> Add item</a>
     </p>
 
@@ -41,8 +41,8 @@
             <tr>
                 <td>{{$item->name}}</td>
                 <td>
-                    {{Form::open(['route' => ['admin.item.destroy', $item], 'method' => 'delete'])}}
-                    <a class="btn btn-xs btn-primary" href="{{route('admin.item.edit', $item)}}"><i
+                    {{Form::open(['route' => ['kgs.admin.item.destroy', $item], 'method' => 'delete'])}}
+                    <a class="btn btn-xs btn-primary" href="{{route('kgs.admin.item.edit', $item)}}"><i
                                 class="fa fa-edit"></i> Edit</a>
                     <button type="submit" class="btn btn-xs btn-warning"><i class="fa fa-trash"></i> Delete</button>
                     {{Form::close()}}

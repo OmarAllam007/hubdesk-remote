@@ -7,7 +7,10 @@
             @else
                 <div class="form-group {{$errors->has('subcategory_id')? 'has-error' : ''}}">
                     {{Form::label('subcategory_id', 'Subcategory', ['class' => 'control-label'])}}
-                    {{Form::select('subcategory_id', App\Subcategory::selection('Select Subcategory'), null, ['class' => 'form-control'])}}
+                    {{Form::select('subcategory_id',
+                     App\Subcategory::whereHas('category',function ($q){ return $q->where('business_unit_id',env('GS_ID')); })->selection('Select Subcategory')
+                     , \request('subcategory')
+                     , ['class' => 'form-control'])}}
                     @if ($errors->has('subcategory_id'))
                         <div class="error-message">{{$errors->first('category_id')}}</div>
                     @endif
@@ -30,31 +33,31 @@
                 @endif
             </div>
 
-            <div class="form-group {{$errors->has('notes')? 'has-error' : ''}}">
-                {{Form::label('notes', 'Notes', ['class' => 'control-label'])}}
-                {{Form::textarea('notes', null, ['class' => 'form-control richeditor', 'rows' => 5])}}
-                @if ($errors->has('notes'))
-                    <div class="error-message">{{$errors->first('notes')}}</div>
-                @endif
-            </div>
+{{--            <div class="form-group {{$errors->has('notes')? 'has-error' : ''}}">--}}
+{{--                {{Form::label('notes', 'Notes', ['class' => 'control-label'])}}--}}
+{{--                {{Form::textarea('notes', null, ['class' => 'form-control richeditor', 'rows' => 5])}}--}}
+{{--                @if ($errors->has('notes'))--}}
+{{--                    <div class="error-message">{{$errors->first('notes')}}</div>--}}
+{{--                @endif--}}
+{{--            </div>--}}
 
-            <div class="form-group {{$errors->has('user_groups')? 'has-error' : ''}}">
-                {{Form::label('user_groups', 'User Group', ['class' => 'control-label'])}}
-                {{--                {{Form::select('user_groups[]',\App\Group::requesters()->get()->pluck('name','id'),isset($category) ? $category->service_user_groups()->pluck('id')->toArray() : null,['class'=>'form-control select2','multiple'=>'true'])}}--}}
-                <select class="form-control" name="user_groups[]" id="user_groups" multiple>
-                    <option value="">{{t('Select Group')}}</option>
-                    @foreach(\App\Group::requesters()->get() as $group)
-                        <option value="{{$group->id}}"
-                                @if(isset($item) && in_array($group->id,$item->service_user_groups()->pluck('group_id')->toArray()))
-                                selected
-                                @endif>{{$group->name}}</option>
-                    @endforeach
-                </select>
+{{--            <div class="form-group {{$errors->has('user_groups')? 'has-error' : ''}}">--}}
+{{--                {{Form::label('user_groups', 'User Group', ['class' => 'control-label'])}}--}}
+{{--                --}}{{--                {{Form::select('user_groups[]',\App\Group::requesters()->get()->pluck('name','id'),isset($category) ? $category->service_user_groups()->pluck('id')->toArray() : null,['class'=>'form-control select2','multiple'=>'true'])}}--}}
+{{--                <select class="form-control" name="user_groups[]" id="user_groups" multiple>--}}
+{{--                    <option value="">{{t('Select Group')}}</option>--}}
+{{--                    @foreach(\App\Group::requesters()->get() as $group)--}}
+{{--                        <option value="{{$group->id}}"--}}
+{{--                                @if(isset($item) && in_array($group->id,$item->service_user_groups()->pluck('group_id')->toArray()))--}}
+{{--                                selected--}}
+{{--                                @endif>{{$group->name}}</option>--}}
+{{--                    @endforeach--}}
+{{--                </select>--}}
 
-                @if ($errors->has('user_groups'))
-                    <div class="error-message">{{$errors->first('user_groups')}}</div>
-                @endif
-            </div>
+{{--                @if ($errors->has('user_groups'))--}}
+{{--                    <div class="error-message">{{$errors->first('user_groups')}}</div>--}}
+{{--                @endif--}}
+{{--            </div>--}}
 
             <div class="form-group {{$errors->first('service_cost', 'has-error') }}">
                 {{Form::label('service_cost', 'Service Cost', ['class' => 'control-label'])}}
@@ -73,7 +76,7 @@
 
             <div class="form-group">
                 <input type="checkbox" class="checkbox-tick"
-                       id="service_request" name="service_request" @if($item->service_request) checked @endif>
+                       id="service_request" name="service_request" @if(isset($item) && $item->service_request) checked @endif>
                 <label for="service_request">Is a service request ?</label>
             </div>
 
