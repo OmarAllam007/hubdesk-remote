@@ -40,10 +40,12 @@ class QueryReportController extends Controller
 
         $report = Report::create($request->all());
 
-        foreach ($request->users as $user) {
-            $report->users()->create([
-                'user_id' => $user
-            ]);
+        if(!empty($request->users)){
+            foreach ($request->users as $user) {
+                $report->users()->create([
+                    'user_id' => $user
+                ]);
+            }
         }
 
         return redirect()->route('reports.query_report.show', compact('report'));
@@ -95,7 +97,7 @@ class QueryReportController extends Controller
 
         $report->users()->delete();
 
-        if (count($request->users)) {
+        if (!empty($request->users)) {
             foreach ($request->users as $user) {
                 $report->users()->create([
                     'user_id' => $user

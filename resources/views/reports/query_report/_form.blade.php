@@ -1,9 +1,9 @@
 <div class="row" id="reports">
     <div class="col-md-6">
         {{csrf_field()}}
-        <div class="form-group {{$errors->has('folder_id')? 'has-error' : ''}}">
+        <div class="form-group @error('folder_id') ? 'has-error' : '' @enderror ">
             {{Form::label('folder_id', 'Folder', ['class' => 'control-label'])}}
-            {{Form::select('folder_id',\App\ReportFolder::all()->pluck('name','id'),$report->folder_id ?? null,['class'=>'form-control'])}}
+            {{Form::select('folder_id',\App\ReportFolder::all()->pluck('name','id'), isset($report) && $report->folder_id ? $report->folder_id : null,['class'=>'form-control'])}}
             @if ($errors->has('folder_id'))
                 <div class="error-message">{{$errors->first('folder_id')}}</div>
             @endif
@@ -39,6 +39,6 @@
         </div>
     </div>
     <div class="col-md-6">
-        <report-parameters :params="{{json_encode($report->parameters)}}"></report-parameters>
+        <report-parameters :params="{{json_encode($report->parameters ?? '')}}"></report-parameters>
     </div>
 </div>
