@@ -69,6 +69,11 @@ Route::group(['prefix'=>'admin'],function (Router $r){
     $r->get('item/{item}','KGSItemController@show')->name('admin.item.show');
     $r->post('item/{item}','KGSItemController@update')->name('admin.item.update');
     $r->delete('item/{item}','KGSItemController@destroy')->name('admin.item.destroy');
+
+
+    $r->get('business_unit','KGSBusinessUnitController@index')->name('admin.business_unit.index');
+    $r->get('business_unit/edit','KGSBusinessUnitController@edit')->name('admin.business_unit.edit');
+    $r->post('business_unit','KGSBusinessUnitController@update')->name('admin.business_unit.update');
 });
 
 
