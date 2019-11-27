@@ -3,7 +3,8 @@
 @section('header')
     <h4 class="pull-left">{{t('Business Units')}}</h4>
     <div class="btn-group">
-        <a class="btn btn-outlined  btn-primary" href="{{route('kgs.admin.index')}}"><i class="fa fa-cogs"></i> {{t('Admin Panel')}}</a>
+        <a class="btn btn-outlined  btn-primary" href="{{route('kgs.admin.index')}}"><i
+                    class="fa fa-cogs"></i> {{t('Admin Panel')}}</a>
     </div>
 
 @endsection
@@ -53,24 +54,15 @@
         {{--        <h3 class=text-center>{{t('Select Business Unit') }}</h3>--}}
 
         <div class="tiles-container">
-            @foreach(\App\BusinessUnit::orderBy('name')->get() as $business_unit)
-                @can('show_business_unit',$business_unit)
-                    <a href="{{route('kgs.document.select_category', compact('business_unit'))}}" class="tile">
+            @foreach(\KGS\KGSBusinessUnit::businessUnits()->get() as $business_unit)
+                @can('show_business_unit',$business_unit->business_unit)
+                    <a href="{{route('kgs.document.select_category', ['business_unit'=>$business_unit->business_unit])}}"
+                       class="tile">
                         <div class="tile-container">
                             <div class="tile-body"
-                                 style="width: 100%;height: 100%;display: flex; flex-direction:column;">
-                                {{--@if($business_unit->logo)--}}
-                                <p class="text-center" @if($business_unit->logo) style="height: 100px"
-                                   @else style="height: 25px" @endif>
-                                    @if($business_unit->logo)
-                                        <img src="{{asset($business_unit->url)}}" alt="{{asset($business_unit->url)}}">
-                                    @else
-                                    @endif
-                                </p>
-                                <p class="text-center" style="margin-top: 40px">
-                                    @if(!$business_unit->logo)
-                                        {{$business_unit->name}}
-                                    @endif
+                                 style="width: 100%;height: 100%;display: flex; flex-direction:column; justify-content: center;">
+                                <p class="text-center">
+                                    {{$business_unit->business_unit->name}}
                                 </p>
                             </div>
                         </div>
