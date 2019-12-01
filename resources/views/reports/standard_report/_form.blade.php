@@ -94,7 +94,18 @@
                 @endforeach
             </ul>
         </article>
+
+        <div class="col-md-6">
+            <div class="form-group {{$errors->has('users')? 'has-error' : ''}}">
+                {{Form::label('users', 'Authorized Users', ['class' => 'control-label'])}}
+                {{Form::select('users[]',\App\User::technicians()->orderBy('name')->pluck('name','id'),isset($report) ? $report->users->pluck('user_id')->toArray() : [],['class'=>'form-control select2','multiple'])}}
+                @if ($errors->has('users'))
+                    <div class="error-message">{{$errors->first('users')}}</div>
+                @endif
+            </div>
+        </div>
     </section>
+
 
 </section>
 
