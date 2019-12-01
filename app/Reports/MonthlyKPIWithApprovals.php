@@ -14,9 +14,11 @@ use App\Ticket;
 use Carbon\Carbon;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xls\Workbook;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class MonthlyKPIWithApprovals extends ReportContract
@@ -155,12 +157,23 @@ class MonthlyKPIWithApprovals extends ReportContract
         $sheet->setAutoFilter('A1:' . $highestColumn . '1');
 
 
-        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
-//        $writer->save('export.xlsx');
-        header('Content-Type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment; filename="' . str_slug($this->report->title) . '.xlsx"');
-        $writer->save("php://output");
-        exit;
+        $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
+        $filename = storage_path('app/'.str_slug($this->report->title).'.xlsx');
+        $writer->save($filename);
+        return $filename;
+
+//
+//        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+//
+////        return $writer;
+//        $writer->save(storage_path().'/report.xlsx');
+
+//        header('Content-Type: application/vnd.ms-excel');
+//        header('Content-Disposition: attachment; filename="' . str_slug($this->report->title) . '.xlsx"');
+
+
+
+//        exit;
 //
     }
 

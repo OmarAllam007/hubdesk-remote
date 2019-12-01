@@ -12,6 +12,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
+use PhpOffice\PhpSpreadsheet\Reader\Xls;
 use Psy\Exception\FatalErrorException;
 
 class ReportsController extends Controller
@@ -52,7 +53,7 @@ class ReportsController extends Controller
         $technicians = User::technicians()->orderBy('name')->get(['id', 'name']);
         $categories = Category::orderBy('name')->get(['id', 'name']);
         $folders = auth()->user()->folders;
-        return view('reports.create', compact('core_reports', 'technicians', 'categories', 'folders'));
+        return view('reports.standard_report.create', compact('core_reports', 'technicians', 'categories', 'folders'));
     }
 
     function store(Request $request)
@@ -70,17 +71,17 @@ class ReportsController extends Controller
         $report->type = Report::$CORE_REPORT;
         $report->save();
 
-        flash('Report Message','Report has been saved successfully', 'success');
+        flash('Report Message', 'Report has been saved successfully', 'success');
 
         return \Redirect::route('reports.show', $report);
     }
 
-    function show(Report $report,Request $request)
+    function show(Report $report, Request $request)
     {
-        $this->authorize('show',$report);
+        $this->authorize('show', $report);
 
-        if($request->has('filters')){
-            session()->put(str_slug(strtolower($report->title)).'_filters',$request->filters);
+        if ($request->has('filters')) {
+            session()->put(str_slug(strtolower($report->title)) . '_filters', $request->filters);
         }
 
         if ($report->is_core_report) {
@@ -99,7 +100,13 @@ class ReportsController extends Controller
 
         if (request()->exists('excel')) {
             $file = $r->excel();
-            $file->download('xlsx');
+            $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($file);
+            $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+//        $writer->save('export.xlsx');
+            header('Content-Type: application/vnd.ms-excel');
+            header('Content-Disposition: attachment; filename="' . str_slug($report->title) . '.xlsx"');
+            $writer->save("php://output");
+
         }
         if (request()->exists('pdf')) {
             $file = $r->pdf();
@@ -116,15 +123,21 @@ class ReportsController extends Controller
         }
 
 
-         return $r->html();
+        return $r->html();
     }
 
     function edit(Report $report)
     {
-        $this->authorize('edit',$report);
+        $this->authorize('edit', $report);
+
 
         if ($report->is_core_report) {
-            return redirect()->route('reports.edit', $report);
+            $core_reports = CoreReport::where('name', '!=', 'Query Report')->orderBy('name')->get();
+            $technicians = User::technicians()->orderBy('name')->get(['id', 'name']);
+            $categories = Category::orderBy('name')->get(['id', 'name']);
+            $folders = auth()->user()->folders;
+
+            return view('reports.standard_report.edit', compact('report', 'core_reports', 'technicians', 'folders', 'categories'));
         } elseif ($report->is_query_report) {
             return redirect()->route('reports.query.edit', $report);
         } else {
@@ -133,9 +146,18 @@ class ReportsController extends Controller
 
     }
 
-    function update()
+    function update(Report $report, Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required',
+            'core_report_id' => 'required', 'folder_id' => 'required',
+            'parameters.start_date' => 'required', 'parameters.end_date' => 'required'
+        ]);
 
+        $report->update($request->only('title', 'core_report_id', 'folder_id', 'parameters','type'));
+
+        flash('Report Message', 'Report has been updated successfully', 'success');
+        return \Redirect::route('reports.show', $report);
     }
 
     function delete()

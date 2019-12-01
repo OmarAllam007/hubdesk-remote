@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Input;
 use Maatwebsite\Excel\Classes\LaravelExcelWorksheet;
 use Maatwebsite\Excel\Writers\LaravelExcelWriter;
 use Illuminate\Support\Facades\Storage;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 class QueryReport extends ReportContract
@@ -95,12 +96,11 @@ class QueryReport extends ReportContract
 
         $sheet->setAutoFilter('A1:' . $highestColumn . '1');
 
-        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
-//        $writer->save('export.xlsx');
-        header('Content-Type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment; filename="' . str_slug($this->report->title) . '.xlsx"');
-        $writer->save("php://output");
-        exit;
+        $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
+        $filename = storage_path('app/'.str_slug($this->report->title).'.xlsx');
+        $writer->save($filename);
+        return $filename;
+
 
 
     }
