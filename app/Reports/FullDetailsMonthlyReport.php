@@ -16,6 +16,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xls\Workbook;
@@ -171,13 +172,11 @@ class FullDetailsMonthlyReport extends ReportContract
 //        dd($a_index,$a_end_index);
         $sheet->mergeCells($a_index."1:".$a_end_index."1");
 
+        $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
+        $filename = storage_path('app/'.str_slug($this->report->title).'.xlsx');
+        $writer->save($filename);
+        return $filename;
 
-        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
-//        $writer->save('export.xlsx');
-        header('Content-Type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment; filename="' . str_slug($this->report->title) . '.xlsx"');
-        $writer->save("php://output");
-        exit;
 //
     }
 

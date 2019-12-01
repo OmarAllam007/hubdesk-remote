@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Classes\LaravelExcelWorksheet;
 use Maatwebsite\Excel\Writers\LaravelExcelWriter;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Style\Color;
 
@@ -148,13 +149,17 @@ class CustomReport extends ReportContract
 
         $sheet->setAutoFilter('A1:' . $highestColumn . '1');
 
+        $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
+        $filename = storage_path('app/'.str_slug($this->report->title).'.xlsx');
+        $writer->save($filename);
+        return $filename;
 
-        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
-//        $writer->save('export.xlsx');
-        header('Content-Type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment; filename="' . str_slug($this->report->title) . '.xlsx"');
-        $writer->save("php://output");
-        exit;
+//        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+////        $writer->save('export.xlsx');
+//        header('Content-Type: application/vnd.ms-excel');
+//        header('Content-Disposition: attachment; filename="' . str_slug($this->report->title) . '.xlsx"');
+//        $writer->save("php://output");
+//        exit;
 
     }
 

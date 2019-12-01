@@ -19,6 +19,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use League\Flysystem\File;
 use Maatwebsite\Excel\Classes\LaravelExcelWorksheet;
 use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\Writer;
 use Maatwebsite\Excel\Writers\LaravelExcelWriter;
 
 
@@ -88,14 +89,15 @@ class SendScheduleReport extends Job
 
     private function sendExcel($file, $report, $users)
     {
-        /** @var LaravelExcelWriter $file */
+        /** @var Writer $file */
         if(!$file){
             return;
         }
-        $file_path = $file->store('xlsx', storage_path('excel_reports'));
-        $path = $file_path->storagePath . '/' . $file->title . '.' . $file->ext;
 
-        $this->sendMail($users,$report,$path);
+//        $file_path = $file->save('xlsx', storage_path('excel_reports'));
+//        $path = $file_path->storagePath . '/' . $file->title . '.' . $file->ext;
+
+        $this->sendMail($users,$report,$file);
     }
 
     function sendMail($users,$report, $path){

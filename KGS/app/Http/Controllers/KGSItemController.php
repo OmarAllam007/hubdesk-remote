@@ -57,7 +57,7 @@ class KGSItemController extends Controller
 
         $item->update($data);
 
-        flash(t('Item has been saved'), 'success');
+        flash(t('Item Saved'),t('Item has been saved'), 'success');
         return \Redirect::route('kgs.admin.item.index');
 
     }

@@ -78,7 +78,13 @@ class CustomReportController extends Controller
 
         if(\request()->exists('excel')){
             $file  = $r->excel();
-            $file->download('xlsx');
+            $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($file);
+            $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+//        $writer->save('export.xlsx');
+            header('Content-Type: application/vnd.ms-excel');
+            header('Content-Disposition: attachment; filename="' . str_slug($this->report->title) . '.xlsx"');
+            $writer->save("php://output");
+            exit;
         }
 
         return $r->html();
