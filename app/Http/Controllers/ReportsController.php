@@ -71,6 +71,14 @@ class ReportsController extends Controller
         $report->type = Report::$CORE_REPORT;
         $report->save();
 
+        if(!empty($request->users)){
+            foreach ($request->users as $user) {
+                $report->users()->create([
+                    'user_id' => $user
+                ]);
+            }
+        }
+
         flash('Report Message', 'Report has been saved successfully', 'success');
 
         return \Redirect::route('reports.show', $report);
@@ -155,6 +163,16 @@ class ReportsController extends Controller
         ]);
 
         $report->update($request->only('title', 'core_report_id', 'folder_id', 'parameters','type'));
+
+        $report->users()->delete();
+
+        if (!empty($request->users)) {
+            foreach ($request->users as $user) {
+                $report->users()->create([
+                    'user_id' => $user
+                ]);
+            }
+        }
 
         flash('Report Message', 'Report has been updated successfully', 'success');
         return \Redirect::route('reports.show', $report);

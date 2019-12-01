@@ -19,7 +19,6 @@
             @endif
         </div>
 
-
         <div class="form-group {{$errors->has('fields')? 'has-error' : ''}}">
             <label for="columns">{{t('Select Required Columns')}}</label>
             <select name="fields[]" id="columns" class="form-control" size="15" multiple>
@@ -87,8 +86,6 @@
         </div>
 
 
-
-
         <div class="form-group">
             <label for="group_by">{{t('Group By')}}</label>
             <select id="group_by" name="group_by" class="form-control">
@@ -147,8 +144,21 @@
             </div>
         </div>
 
+
+        <div class="form-group {{$errors->has('users')? 'has-error' : ''}}">
+            {{Form::label('users', 'Authorized Users', ['class' => 'control-label'])}}
+            {{Form::select('users[]',\App\User::technicians()->orderBy('name')->pluck('name','id'),isset($report) ? $report->users->pluck('user_id')->toArray() : [],['class'=>'form-control select2','multiple'])}}
+            @if ($errors->has('users'))
+                <div class="error-message">{{$errors->first('users')}}</div>
+            @endif
+        </div>
+
         <div class="form-group">
             <button class="btn btn-success"><i class="fa fa-check-circle"></i> {{t('Submit')}}</button>
         </div>
     </div>
+
+
+
+</div>
 </div>

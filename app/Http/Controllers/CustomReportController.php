@@ -62,7 +62,13 @@ class CustomReportController extends Controller
             'type'=>Report::$CUSTOM_REPORT,
         ]);
 
-
+        if(!empty($request->users)){
+            foreach ($request->users as $user) {
+                $report->users()->create([
+                    'user_id' => $user
+                ]);
+            }
+        }
         return redirect()->route('reports.custom_report.show', compact('report'));
     }
 
@@ -133,6 +139,15 @@ class CustomReportController extends Controller
             'parameters' => $params
         ]);
 
+        $report->users()->delete();
+
+        if (!empty($request->users)) {
+            foreach ($request->users as $user) {
+                $report->users()->create([
+                    'user_id' => $user
+                ]);
+            }
+        }
 
         return redirect()->route('reports.custom_report.show', compact('report'));
     }
