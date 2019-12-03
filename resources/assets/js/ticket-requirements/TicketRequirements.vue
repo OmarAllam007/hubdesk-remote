@@ -64,7 +64,13 @@
             allHaveChecked() {
                 for (var i = 0; i < this.items.length; i++) {
                     // console.log(this.items[i].checked, this.items[i].attached)
-                    if (this.items[i].checked && !this.items[i].attached && this.items[i].type != 2) {
+                    let requirement = this.items[i];
+
+                    if (requirement.type === 1 && requirement.checked && !requirement.attached) {
+                        return false;
+                    }
+
+                    if(requirement.type === 2 && !requirement.attached) {
                         return false;
                     }
                 }
