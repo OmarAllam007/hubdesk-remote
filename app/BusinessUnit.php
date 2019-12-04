@@ -32,7 +32,7 @@ class BusinessUnit extends KModel
 {
     use Listable;
 
-    protected $fillable = ['code', 'name', 'location_id', 'logo','business_unit_bgd'];
+    protected $fillable = ['code', 'name', 'location_id', 'logo', 'business_unit_bgd'];
     protected $appends = ['bu_roles'];
 
 
@@ -109,21 +109,29 @@ class BusinessUnit extends KModel
         return $this->belongsToMany(User::class, 'bu_documents_roles');
     }
 
-    function document_notifications(){
+    function document_notifications()
+    {
         return $this->hasMany(DocumentNotification::class);
     }
 
-    function canDisplay(){
+    function canDisplay()
+    {
         /** @var Category $category */
-        foreach ($this->categories as $category){
-            if ($category->canDisplay(\App\ServiceUserGroup::$CATEGORY)){
+        foreach ($this->categories as $category) {
+            if ($category->canDisplay(\App\ServiceUserGroup::$CATEGORY)) {
                 return true;
             }
         }
         return false;
     }
 
-    function business_folders(){
+    function business_folders()
+    {
         return $this->hasMany(BusinessDocumentsFolder::class);
+    }
+
+    function business_unit_notification_levels()
+    {
+        return $this->hasMany(DocumentNotification::class);
     }
 } 

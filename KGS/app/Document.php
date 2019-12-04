@@ -10,7 +10,7 @@ class Document extends Model
 {
     protected $fillable = ['folder_id', 'name', 'start_date', 'end_date', 'last_updated_by', 'path'];
 
-    protected $dates = ['start_date','end_date'];
+    protected $dates = ['start_date', 'end_date'];
 
     function folder()
     {
@@ -31,5 +31,26 @@ class Document extends Model
         $dirname = dirname($this->path);
         $path = $dirname . '/' . $basename;
         return url('/storage/' . $path);
+    }
+
+    function notifications()
+    {
+        return $this->hasMany(KGSLog::class);
+    }
+
+    function shouldNotified($level)
+    {
+
+        $notified_before = KGSLog::where('document_id', $this->id)
+            ->where('type', KGSLog::NOTIFICATION_TYPE)
+            ->where('level_id', $level->id)
+            ->exists();
+
+        if ($this->end_date->diffInDays(now()) <= $level->days && !$notified_before) {
+            return true;
+        }
+
+
+        return false;
     }
 }

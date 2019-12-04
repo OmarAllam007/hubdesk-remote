@@ -1,38 +1,51 @@
 <template>
     <div>
-        <fieldset >
-            <legend></legend>
-        </fieldset>
-                <div class="form-group">
-                    <label for="notification_period" class="control-label">
-                    </label>
-                        <input type="text" class="form-control" id="notification_period" name="notification_period" placeholder="0">
-                </div>
+        <fieldset>
+            <legend>Notifications
+                <button class="btn btn-xs btn-success" @click.prevent="addNewNotification"><i class="fa fa-plus"></i>
+                </button>
+            </legend>
 
-                <div class="form-group">
-                    <label for="notification_users" class="control-label">
-                    </label>
-                    <select  class="form-control input-sm select2"  multiple>
-                        <option value="">Select User</option>
-                        <option v-for="user in users" :value="user.id">{{user.name}}</option>
-                    </select>
-                </div>
+            <notification v-for="(notification,index) in notifications" :key="index" :index="index"
+                          :notification="notification"></notification>
+
+        </fieldset>
+
 
     </div>
 </template>
 
 <script>
+    import Notification from "./Notification";
+    import EventBus from '../Bus';
+
     export default {
-        // name: "notifications",
-        props:['users'],
-        data(){
+        props: ['users','db_notifications'],
+        data() {
             return {
-                notifications:'',
+                notifications: [],
+            }
+        },
+
+        methods: {
+            addNewNotification() {
+                this.notifications.push({days:1,users:[]});
             }
         },
         created() {
-console.log('here')
-        }
+            this.notifications.push({days:1,users:[]});
+            if(this.db_notifications.length){
+                this.notifications = this.db_notifications
+            }
+
+            EventBus.$on('remove-notification', (index,notification) => {
+
+                let idx = this.notifications.indexOf(notification);
+                this.notifications.splice(idx, 1);
+
+            });
+        },
+        components: {Notification}
     }
 </script>
 

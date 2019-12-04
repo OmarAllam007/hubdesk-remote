@@ -12058,7 +12058,7 @@ exports = module.exports = __webpack_require__(10)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -12069,12 +12069,9 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Notification__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Notification___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Notification__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Bus__ = __webpack_require__(26);
 //
 //
 //
@@ -12093,17 +12090,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-    // name: "notifications",
-    props: ['users'],
+    props: ['users', 'db_notifications'],
     data: function data() {
         return {
-            notifications: ''
+            notifications: []
         };
     },
+
+
+    methods: {
+        addNewNotification: function addNewNotification() {
+            this.notifications.push({ days: 1, users: [] });
+        }
+    },
     created: function created() {
-        console.log('here');
-    }
+        var _this = this;
+
+        this.notifications.push({ days: 1, users: [] });
+        if (this.db_notifications.length) {
+            this.notifications = this.db_notifications;
+        }
+
+        __WEBPACK_IMPORTED_MODULE_1__Bus__["a" /* default */].$on('remove-notification', function (index, notification) {
+
+            var idx = _this.notifications.indexOf(notification);
+            _this.notifications.splice(idx, 1);
+        });
+    },
+
+    components: { Notification: __WEBPACK_IMPORTED_MODULE_0__Notification___default.a }
 });
 
 /***/ }),
@@ -12111,49 +12130,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "control-label",
-    attrs: {
-      "for": "notification_users"
-    }
-  }), _vm._v(" "), _c('select', {
-    staticClass: "form-control input-sm select2",
-    attrs: {
-      "multiple": ""
-    }
-  }, [_c('option', {
-    attrs: {
-      "value": ""
-    }
-  }, [_vm._v("Select User")]), _vm._v(" "), _vm._l((_vm.users), function(user) {
-    return _c('option', {
-      domProps: {
-        "value": user.id
+  return _c('div', [_c('fieldset', [_c('legend', [_vm._v("Notifications\n            "), _c('button', {
+    staticClass: "btn btn-xs btn-success",
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        return _vm.addNewNotification($event)
       }
-    }, [_vm._v(_vm._s(user.name))])
-  })], 2)])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('fieldset', [_c('legend')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "control-label",
-    attrs: {
-      "for": "notification_period"
     }
-  }), _vm._v(" "), _c('input', {
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "id": "notification_period",
-      "name": "notification_period",
-      "placeholder": "0"
-    }
-  })])
-}]}
+  }, [_c('i', {
+    staticClass: "fa fa-plus"
+  })])]), _vm._v(" "), _vm._l((_vm.notifications), function(notification, index) {
+    return _c('notification', {
+      key: index,
+      attrs: {
+        "index": index,
+        "notification": notification
+      }
+    })
+  })], 2)])
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -12161,6 +12157,254 @@ if (false) {
      require("vue-hot-reload-api").rerender("data-v-e7385a2e", module.exports)
   }
 }
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(22)
+}
+var Component = __webpack_require__(13)(
+  /* script */
+  __webpack_require__(24),
+  /* template */
+  __webpack_require__(25),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-08c1350c",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/Users/omarkhaled/code/hdesk/resources/assets/js/kgs_notifications/Notification.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Notification.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-08c1350c", Component.options)
+  } else {
+    hotAPI.reload("data-v-08c1350c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(23);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(11)("6ae47912", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-08c1350c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Notification.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-08c1350c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Notification.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(10)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 24 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Bus__ = __webpack_require__(26);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: "notification",
+    props: ['notification', 'index'],
+    methods: {
+        remove: function remove() {
+            __WEBPACK_IMPORTED_MODULE_0__Bus__["a" /* default */].$emit('remove-notification', this.index, this.notification);
+        }
+    },
+    mounted: function mounted() {
+        $('.select2').select2({ width: '100%', allowClear: true });
+    }
+});
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('span', [_c('button', {
+    staticClass: "btn btn-xs btn-danger",
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        return _vm.remove($event)
+      }
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-minus"
+  })]), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("Notification " + _vm._s(_vm.index + 1))])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "control-label",
+    attrs: {
+      "for": ("notifications[" + _vm.index + "]['days']")
+    }
+  }, [_vm._v("\n            Days before end date\n        ")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.notification.days),
+      expression: "notification.days"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": ("notifications[" + _vm.index + "][days]"),
+      "name": ("notifications[" + _vm.index + "][days]"),
+      "placeholder": "0"
+    },
+    domProps: {
+      "value": (_vm.notification.days)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.notification, "days", $event.target.value)
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "control-label",
+    attrs: {
+      "for": ("notifications[" + _vm.index + "][users][]")
+    }
+  }, [_vm._v("\n            Notified Users\n        ")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.notification.users),
+      expression: "notification.users"
+    }],
+    staticClass: "form-control input-sm select2",
+    attrs: {
+      "id": ("notifications[" + _vm.index + "][users][]"),
+      "name": ("notifications[" + _vm.index + "][users][]"),
+      "multiple": ""
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.$set(_vm.notification, "users", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
+      }
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": ""
+    }
+  }, [_vm._v("Select User")]), _vm._v(" "), _vm._l((_vm.$parent.users), function(user) {
+    return _c('option', {
+      domProps: {
+        "value": user.id
+      }
+    }, [_vm._v(_vm._s(user.name))])
+  })], 2)]), _vm._v(" "), _c('hr')])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-08c1350c", module.exports)
+  }
+}
+
+/***/ }),
+/* 26 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+
+
+/* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_0_vue___default.a());
 
 /***/ })
 /******/ ]);

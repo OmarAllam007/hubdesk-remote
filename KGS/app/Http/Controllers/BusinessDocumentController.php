@@ -216,19 +216,21 @@ class BusinessDocumentController extends Controller
     {
         $this->validate($request, ['notifications.*.users' => ['required']]);
 
-        if (count($request->notifications)) {
+        if (!empty($request->notifications)) {
             foreach ($request->notifications as $key => $notification) {
+
                 $document = DocumentNotification::where('business_unit_id', $business_unit->id)
-                    ->where('level', $key)->first();
+                    ->where('level', ++$key)->first();
                 if ($document) {
                     $document->update([
-                        'days' => $notification['period'],
+                        'days' => $notification['days'],
                         'users' => $notification['users']
                     ]);
                 } else {
                     DocumentNotification::create([
                         'business_unit_id' => $business_unit->id,
                         'level' => $key,
+                        'days'=> $notification['days'],
                         'users' => $notification['users']
                     ]);
                 }

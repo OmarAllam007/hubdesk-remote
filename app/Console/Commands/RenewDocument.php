@@ -3,10 +3,15 @@
 namespace App\Console\Commands;
 
 use App\Mail\DocumentReminder;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use KGS\Document;
 use Illuminate\Mail\Message;
+use KGS\DocumentNotification;
+use KGS\KGSBusinessUnit;
+use KGS\KGSLog;
+
 class RenewDocument extends Command
 {
 
@@ -21,20 +26,35 @@ class RenewDocument extends Command
 
     public function handle()
     {
-        $documents = Document::where('end_date', '<=', Carbon::now()->addMonth(2)->toDateString())
-            ->orWhere('end_date', '<=', Carbon::now()->addMonth(2)->subDays(3)->toDateString())
-            ->get();
+        $documents = Document::all();
 
         foreach ($documents as $document) {
-            $this->sendEmailNotification($document);
+            $bus = DocumentNotification::all()->groupBy('business_unit_id');
+            $levels = $bus->get($document->folder->business_unit->id);
+
+            if(empty($levels)){
+                continue;
+            }
+
+            foreach ($levels as $key => $level) {
+
+                if ($document->shouldNotified($level)) {
+                    $this->sendEmailNotification($document, $level);
+
+                    KGSLog::create([
+                        'document_id' => $document->id,
+                        'level_id' => $level->id,
+                        'type' => KGSLog::NOTIFICATION_TYPE
+                    ]);
+                }
+
+            }
         }
     }
 
-    function sendEmailNotification($document){
-        \Mail::to($document->last_updated->email)->send(new DocumentReminder($document));
-//        \Mail::send('kgs::emails.renew_document', ['document' => $document], function(Message $msg) use ($document) {
-//            $msg->subject('A reminder to renew the document #' . $document->name);
-//            $msg->to($document->last_updated->email);
-//        });
+    function sendEmailNotification($document, $level)
+    {
+        $users = User::whereIn('id', $level->users)->get();
+        \Mail::to($users->pluck('email'))->send(new DocumentReminder($document));
     }
 }

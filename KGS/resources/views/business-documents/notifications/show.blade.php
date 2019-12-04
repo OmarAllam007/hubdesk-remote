@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-12">
                 <notifications
-                        :users="{{json_encode(\App\User::orderBy('name')->technicians()->get())}}"></notifications>
+                        :users="{{json_encode(\App\User::orderBy('name')->technicians()->get())}}" :db_notifications="{{$business_unit->document_notifications}}"></notifications>
             </div>
         </div>
 
