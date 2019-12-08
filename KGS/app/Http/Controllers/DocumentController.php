@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use KGS\BusinessDocumentsFolder;
 use KGS\Document;
+use KGS\KGSLog;
 
 class DocumentController extends Controller
 {
@@ -51,10 +52,10 @@ class DocumentController extends Controller
         $this->validate($request,['name'=>'required','end_date'=>'required','folder_id'=>'required']);
 
 
+
         if ($request->hasFile('document')) {
             $request['document_path'] = $this->uploadDocument($folder, $request);
         }
-
         $document->update([
             'folder_id' =>$request->folder_id,
             'name' => $request->name,
@@ -63,6 +64,7 @@ class DocumentController extends Controller
             'path' => $request['document_path'] ? $request['document_path'] : $document->path,
 //            'last_updated_by' => \Auth::id(),
         ]);
+
         return redirect()->route('kgs.document.index', compact('folder'));
     }
 

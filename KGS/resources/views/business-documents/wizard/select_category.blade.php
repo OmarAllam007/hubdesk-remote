@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('header')
-    <h4 class="pull-left"> {{$business_unit->name}} > {{t('Select Category')}}</h4>
+    <h4 class="pull-left"> {{t($business_unit->name)}} > {{t('Select Category')}}</h4>
     <div class="btn-group">
         {{--@if(Auth::user()->isAdmin())--}}
             <a class="btn btn-outlined  btn-success" href="{{route('kgs.business_documents_folder.index',compact('business_unit'))}}"><i

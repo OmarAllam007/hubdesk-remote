@@ -13,7 +13,7 @@
 
         <a href="{{route('kgs.business_documents_folder.create',compact('business_unit'))}}" class="btn btn-sm btn-outlined btn-primary"><i class="fa fa-plus"></i>  {{t('Create')}}</a>
     <a class="btn  btn-default"
-       href="{{route('kgs.document.select_category',['business_unit'=>$business_unit])}}">{{$business_unit->name}} <i
+       href="{{route('kgs.document.select_category',['business_unit'=>$business_unit])}}">{{t($business_unit->name)}} <i
                 class="fa fa-1x fa-arrow-right"></i> </a>
 {{--    <a class="btn  btn-default" href="{{route('kgs.document.select_category',compact('business_unit'))}}"><i class="fa fa-1x fa-arrow-right" ></i></a>--}}
 
@@ -31,7 +31,7 @@
                 <thead>
                 <tr>
                     <th>{{t('Name')}}</th>
-                    <th>Actions</th>
+                    <th>{{t('Actions')}}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -41,9 +41,9 @@
                         <td class="col-md-3">
                             <form action="{{route('kgs.business_documents_folder.destroy', compact('business_unit','folder'))}}" method="post">
                                 {{csrf_field()}} {{method_field('delete')}}
-                                <a class="btn btn-sm  btn-success" href="{{route('kgs.document.index', compact('folder'))}}"><i class="fa fa-files-o"></i> Documents</a>
-                                <a class="btn btn-sm btn-primary" href="{{route('kgs.business_documents_folder.edit', compact('folder'))}}"><i class="fa fa-edit"></i> Edit</a>
-                                <button class="btn btn-sm  btn-warning"><i class="fa fa-trash-o"></i> Delete</button>
+                                <a class="btn btn-sm  btn-success" href="{{route('kgs.document.index', compact('folder'))}}"><i class="fa fa-files-o"></i> {{t('Documents')}}</a>
+                                <a class="btn btn-sm btn-primary" href="{{route('kgs.business_documents_folder.edit', compact('folder'))}}"><i class="fa fa-edit"></i> {{t('Edit')}}</a>
+                                <button class="btn btn-sm  btn-warning"><i class="fa fa-trash-o"></i> {{t('Delete')}}</button>
                             </form>
                         </td>
                     </tr>

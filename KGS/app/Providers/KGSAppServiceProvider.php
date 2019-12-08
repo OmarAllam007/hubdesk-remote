@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Providers;
+namespace KGS\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use KGS\Document;
+use KGS\Observers\DocumentObserver;
 
-class AppServiceProvider extends ServiceProvider
+class KGSAppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
@@ -13,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+
     }
 
     /**
@@ -23,6 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
+        Document::observe(DocumentObserver::class);
     }
 }

@@ -62,7 +62,7 @@
                             <div class="tile-body"
                                  style="width: 100%;height: 100%;display: flex; flex-direction:column; justify-content: center;">
                                 <p class="text-center">
-                                    {{$business_unit->business_unit->name}}
+                                    {{t($business_unit->business_unit->name)}}
                                 </p>
                             </div>
                         </div>

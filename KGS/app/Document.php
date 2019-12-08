@@ -12,6 +12,8 @@ class Document extends Model
 
     protected $dates = ['start_date', 'end_date'];
 
+
+
     function folder()
     {
         return $this->belongsTo(BusinessDocumentsFolder::class);
@@ -52,5 +54,26 @@ class Document extends Model
 
 
         return false;
+    }
+
+    public function getDirtyOriginals()
+    {
+        if (!$this->isDirty()) {
+            return [];
+        }
+
+        $attributes = [];
+        $updated = array_keys($this->getDirty());
+
+        foreach ($updated as $item) {
+            $attributes[$item] = $this->getOriginal($item);
+        }
+
+        return $attributes;
+    }
+
+    function logs()
+    {
+        return $this->hasMany(KGSLog::class);
     }
 }

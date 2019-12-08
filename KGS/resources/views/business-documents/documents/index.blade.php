@@ -33,7 +33,7 @@
                     <th>{{t('Start Date')}}</th>
                     <th>{{t('End Date')}}</th>
                     <th>{{t('Document')}}</th>
-                    <th>Actions</th>
+                    <th>{{t('Actions')}}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -51,8 +51,14 @@
                                 {{csrf_field()}} {{method_field('delete')}}
                                 <a class="btn btn-sm btn-primary"
                                    href="{{route('kgs.document.edit', compact('folder','document'))}}"><i
-                                            class="fa fa-edit"></i> Edit</a>
-                                <button class="btn btn-sm btn-warning"><i class="fa fa-trash-o"></i> Delete</button>
+                                            class="fa fa-edit"></i> {{t('Edit')}}</a>
+
+{{--                                <a class="btn btn-sm btn-default"--}}
+{{--                                   href="{{route('kgs.document.edit', compact('folder','document'))}}"><i--}}
+{{--                                            class="fa fa-history"></i> {{t('History')}}</a>--}}
+
+                                <button class="btn btn-sm btn-warning"><i class="fa fa-trash-o"></i> {{t('Delete')}}</button>
+
                             </form>
                         </td>
                     </tr>
@@ -62,7 +68,7 @@
 
             {{--            @include('partials._pagination', ['items' => $documents])--}}
         @else
-            <div class="alert alert-info"><i class="fa fa-exclamation-circle"></i> <strong>No Documents found</strong>
+            <div class="alert alert-info"><i class="fa fa-exclamation-circle"></i> <strong>{{t('No Documents found')}}</strong>
             </div>
         @endif
     </section>

@@ -215,10 +215,8 @@ class BusinessDocumentController extends Controller
     function saveNotification(BusinessUnit $business_unit, Request $request)
     {
         $this->validate($request, ['notifications.*.users' => ['required']]);
-
         if (!empty($request->notifications)) {
             foreach ($request->notifications as $key => $notification) {
-
                 $document = DocumentNotification::where('business_unit_id', $business_unit->id)
                     ->where('level', ++$key)->first();
                 if ($document) {

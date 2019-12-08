@@ -32,7 +32,7 @@ class RenewDocument extends Command
             $bus = DocumentNotification::all()->groupBy('business_unit_id');
             $levels = $bus->get($document->folder->business_unit->id);
 
-            if(empty($levels)){
+            if (empty($levels)) {
                 continue;
             }
 
@@ -55,6 +55,11 @@ class RenewDocument extends Command
     function sendEmailNotification($document, $level)
     {
         $users = User::whereIn('id', $level->users)->get();
-        \Mail::to($users->pluck('email'))->send(new DocumentReminder($document));
+
+        if (!empty($users)) {
+            foreach ($users->pluck('email') as $email) {
+                \Mail::to($email)->send(new DocumentReminder($document));
+            }
+        }
     }
 }

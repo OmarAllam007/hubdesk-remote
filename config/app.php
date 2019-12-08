@@ -1,5 +1,7 @@
 <?php
 
+
+
 return [
 
     /*
@@ -164,6 +166,7 @@ return [
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
+        KGS\Providers\KGSAppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
