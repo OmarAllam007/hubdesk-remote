@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('header')
-    <h4 class="pull-left">Edit Ticket</h4>
+    <h4 class="pull-left">{{t('Edit Ticket')}}</h4>
 
     <form action="{{ route('ticket.destroy', $ticket)}}" class="pull-right" method="post">
         {{csrf_field()}} {{method_field('delete')}}

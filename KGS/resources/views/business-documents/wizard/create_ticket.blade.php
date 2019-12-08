@@ -35,7 +35,7 @@
                 <input type="file" class="form-control-file" name="ticket-attachments[]" multiple>
             </div>
             <div class="form-group">
-                <button class="btn btn-sm btn-success" :disabled="!allHaveChecked">Submit</button>
+                <button class="btn btn-sm btn-success" :disabled="!allHaveChecked">{{t('Submit')}}</button>
             </div>
         </form>
     </div>

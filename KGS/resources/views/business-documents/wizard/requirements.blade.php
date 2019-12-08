@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('header')
-    <h4 class="pull-left">  {{$category->name}} > {{$subcategory->name ?? ''}} > {{$item->name ?? ''}}
-        - {{t('Check for Requirements')}} </h4>
+    <h4 class="pull-left">  {{t($category->name)}} > {{t($subcategory->name ?? '')}} > {{t($item->name ?? '')}}
+        > {{t('Check for Requirements')}} </h4>
 @endsection
 
 @section('stylesheets')

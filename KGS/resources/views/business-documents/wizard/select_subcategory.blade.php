@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('header')
-    <h4 class="pull-left">{{t('Business Units')}}</h4>
+{{--    <h4 class="pull-left">{{t('Business Units')}}</h4>--}}
+<h4 class="pull-left"> {{t($business_unit->name)}} > {{t($category->name)}} > {{t('Select Subcategory')}}</h4>
 
 @stop
 @section('stylesheets')

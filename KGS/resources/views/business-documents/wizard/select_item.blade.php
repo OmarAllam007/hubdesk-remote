@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('header')
-    <h4 class="pull-left">{{t('Business Units')}}</h4>
-
+    <h4 class="pull-left"> {{t($business_unit->name)}} > {{t($category->name)}} > {{t($subcategory->name)}}</h4>
 @stop
 @section('stylesheets')
     <style>
@@ -58,7 +57,7 @@
                             </p>
                             @if($item->service_cost > 0)
                                 <p>
-                                    <span>{{$item->service_cost}} SAR</span>
+                                    <span>{{$item->service_cost}} {{t('SAR')}}</span>
                                 </p>
                             @endif
                         </div>
