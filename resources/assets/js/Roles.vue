@@ -51,7 +51,7 @@
             EventBus.$on('removeRole', (index,level) => {
 
                     var idx = this.levels.indexOf(level);
-                    console.log(idx);
+
 
                         this.levels.splice(idx, 1);
 
