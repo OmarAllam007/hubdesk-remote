@@ -12,6 +12,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Collection;
 use PhpOffice\PhpSpreadsheet\Cell\Cell;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 class UploadUsersJob extends Job
 {
@@ -40,36 +41,33 @@ class UploadUsersJob extends Job
     {
         $this->businessUnits = BusinessUnit::all()->pluck('id', 'code');
 
-        $loader = new \PHPExcel_Reader_Excel2007();
-        $loader->setReadDataOnly(true);
-        $excelFile = $loader->load($this->file);
-        $sheet = $excelFile->getSheet(0);
+        $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReaderForFile($this->file);
+        $reader->setReadDataOnly(true);
+        $spreadsheet = $reader->load($this->file);
 
-        $rows = $sheet->getRowIterator(2);
-        foreach ($rows as $row) {
-            $cells = $row->getCellIterator();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        foreach ($sheet->getRowIterator(1,1) as $row) {
+             $cells = $row->getCellIterator();
             $data = $this->getDataOfCells($cells);
 
-            if (!array_filter($data)) {
-                continue;
-            }
-
-            $user = User::whereNotNull('email')->where('email', $data[19])->first();
-
-            if (!$user) {
-                $username = explode(" ", $data[3]);
-                $userByName = User::whereRaw("MATCH(name) AGAINST ('+$username[0] +$username[1]' IN BOOLEAN MODE)")->first();
-                if ($userByName) {
-                    $this->updateUser($userByName, $data);
-                } else {
-                    $this->createUser($data);
-                }
-
-            } else {
-                $this->updateUser($user, $data);
-            }
+             if($data[2] != 'Employee Number' && $data[40] != 'Company Code'){
+                 return;
+             }
         }
 
+
+        foreach ($sheet->getRowIterator(2) as $row) {
+
+            $cells = $row->getCellIterator();
+            $data = $this->getDataOfCells($cells);
+            $user = User::whereNotNull('employee_id')->where('employee_id', $data[2])->first();
+
+            if ($user) {
+                $this->updateUser($user, $data);
+            }
+
+        }
     }
 
     private function getDataOfCells($cells)
@@ -101,19 +99,14 @@ class UploadUsersJob extends Job
 
     private function updateUser($user, $data)
     {
-        $businessUnitId = $this->businessUnits->get($data[18]);
+        $businessUnitId = $this->businessUnits->get($data[40]);
+
         $data = [
             'business_unit_id' => $businessUnitId,
-            'job' => $data[13],
-            'department_id' => $this->getDepartmentId($data[14], $businessUnitId),
-            'employee_id' => $data[2],
-            'email' => $user->email ? $user->email : $data[19] == "" ? null : $data[19] ,
+            'job' => $data[30],
+            'department_id' => $this->getDepartmentId($data[33], $businessUnitId),
             'extra_fields' => $this->extraFields($data),
         ];
-
-        if ($user->password == "") {
-            $data['password'] = bcrypt('kifah1234');
-        }
 
         $user->update($data);
     }
@@ -134,17 +127,17 @@ class UploadUsersJob extends Job
         $fields = [];
         $fields['emis_id'] = $data[1];
         $fields['ar_name'] = $data[4];
-        $fields['nationality'] = $data[5];
+        $fields['nationality'] = $data[6];
         $fields['id_number'] = $data[6];
-        $fields['religion'] = $data[7];
-        $fields['passport_number'] = $data[8];
-        $fields['gender'] = $data[9] ?? '';
-        $fields['martital_status'] = $data[10] ?? '';
-        $fields['no_of_children'] = $data[11] ?? '';
-        $fields['hire_date'] = date('Y-m-d', \PHPExcel_Shared_Date::ExcelToPHP($data[12])) ?? '';
-        $fields['personal_area'] = $data[15];
-        $fields['personal_sub_area'] = $data[16];
-        $fields['cr_file_no'] = $data[25];
+        $fields['religion'] = $data[11];
+        $fields['passport_number'] = $data[17];
+        $fields['gender'] = $data[21] ?? '';
+        $fields['marital_status'] = $data[22] ?? '';
+        $fields['no_of_children'] = $data[23] ?? '';
+        $fields['hire_date'] = Date::excelToDateTimeObject($data[26])->format('Y-m-d') ?? '';
+        $fields['personal_area'] = $data[41];
+        $fields['personal_sub_area'] = $data[42];
+        $fields['cr_file_no'] = $data[60];
 
         return $fields;
     }
