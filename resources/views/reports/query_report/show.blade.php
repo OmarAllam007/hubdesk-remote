@@ -39,8 +39,9 @@
                     <tbody>
                     @foreach($data as $item)
                         <tr>
-                            @foreach($item as $cell)
-                                <td>{!! $cell !!}</td>
+                            @foreach($columns as $key=>$column)
+                                <td>{{str_replace('&nbsp;','',strip_tags(collect($item)->toArray()[$column])) ?? '' }}</td>
+{{--                                <td>{!! html_entity_decode(collect($item)->toArray()[$column] )?? ''   !!}</td>--}}
                             @endforeach
                         </tr>
                     @endforeach
