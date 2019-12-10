@@ -281,8 +281,31 @@ class CustomReport extends ReportContract
 
     function performance()
     {
-
+        $this->query
+            ->leftJoin('slas as sla', 'sla.id', '=', 'ti.sla_id')
+            ->addSelect(
+                \DB::raw('
+                (
+                CASE
+                  
+                WHEN 
+                ((ti.time_spent / 60) / ( (sla.due_days * 8) + sla.due_hours + (sla.due_minutes / 60) )) < 1 
+                THEN  CONCAT(100,"%")
+                WHEN
+                 
+                ((ti.time_spent / 60) / ( (sla.due_days * 8) + sla.due_hours + (sla.due_minutes / 60) )) < 1.3 
+                THEN  CONCAT(70,"%")
+                
+                WHEN 
+                ((ti.time_spent / 60) / ( (sla.due_days * 8) + sla.due_hours + (sla.due_minutes / 60) )) < 1.7 
+                THEN  CONCAT(30,"%")
+                
+                ELSE 0
+                END
+                
+                ) as Performance'));
     }
+
 
     function filteredByDate()
     {
