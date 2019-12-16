@@ -13,6 +13,7 @@ class Attachment extends KModel
     const TICKET_TYPE = 1;
     const TICKET_REPLY_TYPE = 2;
     const TICKET_APPROVAL_TYPE = 3;
+    const TASK_TYPE = 4;
 
     protected $fillable = ['reference', 'type', 'path', 'created_at', 'updated_at'];
 
@@ -73,7 +74,7 @@ class Attachment extends KModel
 
     public function getUploadedByAttribute()
     {
-        if (in_array($this->type, [self::TICKET_TYPE])) {
+        if ($this->type == self::TICKET_TYPE) {
             $user = Ticket::find($this->reference)->created_by;
         } elseif ($this->type == self::TICKET_APPROVAL_TYPE) {
             $user = TicketApproval::find($this->reference)->created_by;
