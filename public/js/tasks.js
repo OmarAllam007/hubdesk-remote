@@ -1316,6 +1316,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('tasks', {
         loadItems: function loadItems(withFields) {
             var _this4 = this;
 
+            console.log(this.subcategory);
             if (this.subcategory) {
                 $.get('/list/item/' + this.subcategory).then(function (response) {
                     _this4.items = response;

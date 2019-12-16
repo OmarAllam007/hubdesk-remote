@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('body')
-    {{ Form::model($task, ['route' => ['tasks.update', $task], 'class' => 'col-sm-12']) }}
+
+    {{ Form::model($task, ['route' => ['tasks.update', $task], 'class' => 'col-sm-12','enctype'=>'multipart/form-data']) }}
     {{ method_field('patch') }}
     @include('ticket.task._form')
     {{ Form::close() }}

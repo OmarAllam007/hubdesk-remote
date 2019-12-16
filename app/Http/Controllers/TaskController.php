@@ -45,23 +45,23 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $this->validate($request,['subject'=>'required','category'=>'required']);
+        $this->validate($request, ['subject' => 'required', 'category' => 'required']);
 
         Ticket::flushEventListeners();
 
-        if($request->template){
+        if ($request->template) {
             $request['description'] = ReplyTemplate::find($request->template)->description;
         }
 
         $task = Ticket::create([
             'subject' => $request['subject'],
             'description' => $request['description'] ?? '',
-            'type' => config('types.task'),
+            'type' => Ticket::TASK_TYPE,
             'request_id' => $request['ticket_id'],
             'requester_id' => \Auth::id(),
             'creator_id' => \Auth::id(),
@@ -73,33 +73,32 @@ class TaskController extends Controller
             'technician_id' => $request['technician'],
         ]);
 
-//        if(!empty($request->attachments)){
-//            Attachment::uploadFiles(Attachment::TICKET_TYPE, $task->id);
-//        }
+        if (!empty($request->attachments)) {
+            Attachment::uploadFiles(Attachment::TASK_TYPE, $task->id);
+        }
 
-        $items = json_decode($request->input('cf'),true);
+        $items = json_decode($request->input('cf'), true);
 
-        if(!empty($items)){
-            foreach ($items as $key=>$item){
+        if (!empty($items)) {
+            foreach ($items as $key => $item) {
 
                 $field = CustomField::find($key);
 //            dd($field->name);
-                if($field && $field->required){
-                    $validation['cf.'.$key] = 'required';
-                    $messages['cf.'.$key.'.required'] = "The field ( {$field->name} ) is required";
+                if ($field && $field->required) {
+                    $validation['cf.' . $key] = 'required';
+                    $messages['cf.' . $key . '.required'] = "The field ( {$field->name} ) is required";
                 }
 
             }
 
-            foreach ($items as $key=>$item){
-                if($item) {
+            foreach ($items as $key => $item) {
+                if ($item) {
                     $field = CustomField::find($key)->name ?? '';
 
                     $task->fields()->create(['name' => $field, 'value' => $item]);
                 }
             }
         }
-
 
 
         /** @var Ticket $task */
@@ -118,7 +117,7 @@ class TaskController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Task $task
+     * @param \App\Task $task
      * @return \Illuminate\Http\Response
      */
     public function show(Task $task)
@@ -128,7 +127,7 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource
      *
-     * @param  \App\Task $task
+     * @param \App\Task $task
      * @return \Illuminate\Http\Response
      */
     public function edit(Ticket $task)
@@ -144,22 +143,56 @@ class TaskController extends Controller
     public function update(Request $request, Ticket $ticket)
     {
         $this->validate($request, ['subject' => 'required', 'category_id' => 'required',
-            'technician_id' => 'required']);
+            'technician_id' => 'required', 'cf.*' => 'required'],['cf.*'=>'Ticket Fields Required']);
+
         if (can('modify', $ticket)) {
-            $ticket->fill(['subject' => $request['subject'],
+
+            $ticket->fill([
+                'subject' => $request['subject'],
                 'description' => $request['description'],
+                'group_id' => $request['group_id'],
                 'category_id' => $request['category_id'],
                 'subcategory_id' => $request['subcategory_id'],
                 'technician_id' => $request['technician_id'],
-                'item_id' => $request['item_id']]);
+                'item_id' => $request['item_id']
+            ]);
 
-            if (isset($ticket->getDirty()['technician_id']) && $ticket->getDirty()['technician_id']!= $ticket->getOriginal()['technician_id']) {
+            if (isset($ticket->getDirty()['technician_id']) && $ticket->getDirty()['technician_id'] != $ticket->getOriginal()['technician_id']) {
                 \Mail::send(new NewTaskMail($ticket));
             }
+
             $ticket->save();
+
+            if (!empty($request->attachments)) {
+                Attachment::uploadFiles(Attachment::TASK_TYPE, $ticket->id);
+            }
+
+            $fields = $request->get('cf');
+
+            if(!empty($fields)){
+                foreach ($fields as $key => $item) {
+                    $field = CustomField::find($key);
+                    if ($field && $field->required) {
+                        $validation['cf.' . $key] = 'required';
+                        $messages['cf.' . $key . '.required'] = "The field ( {$field->name} ) is required";
+                    }
+                }
+
+                $ticket->fields()->delete();
+
+                foreach ($fields as $key => $item) {
+                    if ($item) {
+                        $field = CustomField::find($key)->name ?? '';
+                        $ticket->fields()->create(['name' => $field, 'value' => $item]);
+                    }
+                }
+            }
+
         }
 
-        flash(t('Task Info'), t('Task updated successfully'),'success');
+
+
+        flash(t('Task Info'), t('Task updated successfully'), 'success');
         return \Redirect::route('ticket.show', $ticket);
     }
 
@@ -167,7 +200,7 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Task $task
+     * @param \App\Task $task
      * @return \Illuminate\Http\Response
      */
     public function destroy($ticket, $task)
@@ -176,7 +209,7 @@ class TaskController extends Controller
 
         if (can('task_delete', $task)) {
             $task->delete();
-            flash(t('Task Info'),t('Task deleted successfully'), 'success');
+            flash(t('Task Info'), t('Task deleted successfully'), 'success');
         }
     }
 

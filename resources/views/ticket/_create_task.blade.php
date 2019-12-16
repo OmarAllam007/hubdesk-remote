@@ -57,7 +57,7 @@
 
                         <div :class="{'form-group': true , 'has-error':errors.category}">
                             {{ Form::label('category_id', t('Category'), ['class' => 'control-label']) }}
-                            <select name="category_id" id="category_id" class="form-control" v-model="category" v-on:change = "loadSubcategory">
+                            <select name="category_id" id="category_id" class="form-control" v-model="category" @change = "loadSubcategory">
                                 <option value="">{{t('Select Category')}}</option>
                                 @foreach($task_categories as $category)
                                 <option value="{{$category->id}}">{{$category->name}}</option>
@@ -71,7 +71,7 @@
                         <div class="form-group">
                             {{ Form::label('subcategory_id', t('Subcategory'), ['class' => 'control-label']) }}
                             <select class="form-control" name="subcategory_id" id="subcategory_id" v-model="subcategory"
-                                    v-on:change="loadItems">
+                                    @change="loadItems">
                                 <option value="">Select Subcategory</option>
                                 <option v-for="subcat in subcategories" :value="subcat.id"> @{{subcat.name}}</option>
                             </select>
@@ -79,9 +79,9 @@
 
                         <div class="form-group">
                             {{ Form::label('item_id', t('Item'), ['class' => 'control-label']) }}
-                            <select class="form-control" name="item_id" id="item_id" v-model="item">
+                            <select class="form-control" name="item_id" id="item_id" v-model="item" @change="loadCustomFields">
                                 <option value="">Select Item</option>
-                                <option v-for="(name, id) in items" :value="id" v-text="name"></option>
+                                <option v-for="(item, id) in items" :value="item.id" v-text="item.name"></option>
                             </select>
                         </div>
 

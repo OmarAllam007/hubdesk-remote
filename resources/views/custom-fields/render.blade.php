@@ -6,7 +6,7 @@
     @endforeach
 @endif
 
-@if ($subcategory )
+@if (isset($subcategory))
     @foreach($subcategory->custom_fields as $field)
         <div class="col-sm-6">
         @include('custom-fields.' . $field['type'], compact('field'))

@@ -56,11 +56,10 @@ class Attachment extends KModel
     public function getTicketIdAttribute()
     {
         if ($this->type == self::TICKET_TYPE) {
-            if($this->type == Ticket::TASK_TYPE){
-                return Ticket::find($this->reference)->request_id;
-            }
-
             return $this->reference;
+        }
+        if($this->type == self::TASK_TYPE){
+            return Ticket::find($this->reference)->request_id;
         }
         if ($this->type == self::TICKET_REPLY_TYPE) {
             return TicketReply::find($this->reference)->ticket_id;
@@ -78,6 +77,8 @@ class Attachment extends KModel
             $user = Ticket::find($this->reference)->created_by;
         } elseif ($this->type == self::TICKET_APPROVAL_TYPE) {
             $user = TicketApproval::find($this->reference)->created_by;
+        }elseif ($this->type == self::TASK_TYPE) {
+            $user = Ticket::find($this->reference)->created_by;
         } else {
             $user = TicketReply::find($this->reference)->user;
         }
