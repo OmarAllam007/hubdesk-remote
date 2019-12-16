@@ -26,11 +26,14 @@ class TicketEventsProvider extends ServiceProvider
         Ticket::created(function (Ticket $ticket) {
 //            dispatch(new ApplyBusinessRules($ticket));
             dispatch(new ApplySLA($ticket));
+
             if ($ticket->type == Ticket::TASK_TYPE) {
+                Attachment::uploadFiles(Attachment::TASK_TYPE, $ticket->id);
                 \Mail::send(new NewTaskMail($ticket));
-//                dispatch(new NewTaskJob($ticket));
+            }else{
+                Attachment::uploadFiles(Attachment::TICKET_TYPE, $ticket->id);
             }
-            Attachment::uploadFiles(Attachment::TICKET_TYPE, $ticket->id);
+
             dispatch(new ApprovalLevels($ticket));
         });
 

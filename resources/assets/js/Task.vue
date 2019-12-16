@@ -205,6 +205,7 @@
             }
             ,
             loadItems(withFields) {
+                console.log(this.subcategory)
                 if (this.subcategory) {
                     $.get(`/list/item/${this.subcategory}`).then(response => {
                         this.items = response;

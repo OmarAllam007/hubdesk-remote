@@ -291,11 +291,16 @@ class Ticket extends KModel
                 ->whereIn('reference', $this->approvals->pluck('id')->toArray())
                 ->get();
 
-//            $ticketTasks = Attachment::whereIn('reference',$this->tasks->pluck('id'))->get();
+            $ticketTasks = Attachment::whereIn('reference',$this->tasks->pluck('id'))
+                ->where('type',Attachment::TASK_TYPE)
+                ->orWhere('type',Attachment::TASK_TYPE)
+                ->where('reference',$this->id)
+                ->get();
+
 
             $this->attachments = $attachments->merge($replyAttachments);
             $this->attachments = $this->attachments->merge($approvalAttachments);
-//            $this->attachments = $this->attachments->merge($ticketTasks);
+            $this->attachments = $this->attachments->merge($ticketTasks);
         }
         return $this->attachments;
     }
