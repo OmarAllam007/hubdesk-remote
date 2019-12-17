@@ -55,7 +55,9 @@ class TicketEventsProvider extends ServiceProvider
 
         TicketApproval::created(function (TicketApproval $approval) {
             $approval->ticket->status_id = 6;
-            TicketLog::addApproval($approval);
+//            TicketLog::addApproval($approval);
+            TicketLog::approvalLog($approval,TicketLog::APPROVAL_TYPE);
+
             $approval->ticket->save();
 
             if ($approval->shouldSend()) {
@@ -69,7 +71,8 @@ class TicketEventsProvider extends ServiceProvider
 
         TicketApproval::updated(function (TicketApproval $approval) {
             if (!$approval->ticket->hasPendingApprovals()) {
-                TicketLog::addApprovalUpdate($approval, $approval->status == TicketApproval::APPROVED);
+//                TicketLog::addApprovalUpdate($approval, $approval->status == TicketApproval::APPROVED);
+
                 $approval->ticket->save();
             }
         });

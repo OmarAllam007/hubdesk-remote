@@ -31,13 +31,13 @@ class ApprovalController extends Controller
         } elseif (!$ticket->hasApprovalStages()) {
             $approval->stage = 1;
         }
-        if($template_id = $request->get('template')){
+        if ($template_id = $request->get('template')) {
             $approval["content"] = ReplyTemplate::find($template_id)->description;
         }
 
         $ticket->approvals()->save($approval);
 
-        flash(t('Approval Info'),t('Approval has been sent successfully'), 'success');
+        flash(t('Approval Info'), t('Approval has been sent successfully'), 'success');
 
         return redirect()->back();
     }
@@ -46,9 +46,9 @@ class ApprovalController extends Controller
     {
         \Mail::to($ticketApproval->approver->email)->send(new SendNewApproval($ticketApproval));
 //        $this->dispatch(new SendNewApproval($ticketApproval));
-        TicketLog::resendApproval($ticketApproval);
+        TicketLog::approvalLog($ticketApproval,TicketLog::RESEND_APPROVAL);
 
-        flash(t('Approval Info'),t('Approval has been sent successfully'), 'success');
+        flash(t('Approval Info'), t('Approval has been sent successfully'), 'success');
 
         return redirect()->back();
     }
@@ -75,12 +75,12 @@ class ApprovalController extends Controller
         $ticketApproval->approval_date = Carbon::now();
         $ticketApproval->update($request->all());
 
-        if(!$ticketApproval->ticket->isClosed() && !$ticketApproval->ticket->hasPendingApprovals()){
+        if (!$ticketApproval->ticket->isClosed() && !$ticketApproval->ticket->hasPendingApprovals()) {
             $ticketApproval->ticket->status_id = 3;
             $ticketApproval->ticket->save();
         }
 
-        if($ticketApproval->ticket->technician_id){
+        if ($ticketApproval->ticket->technician_id) {
             $this->dispatch(new UpdateApprovalJob($ticketApproval));
         }
 
@@ -92,28 +92,37 @@ class ApprovalController extends Controller
         }
 
 
-        if($ticketApproval->status == 1 && !$ticketApproval->hasNext() && !$ticketApproval->ticket->technician_id){
+        if ($ticketApproval->status == 1 && !$ticketApproval->hasNext() && !$ticketApproval->ticket->technician_id) {
             dispatch(new ApplyBusinessRules($ticketApproval->ticket));
             dispatch(new ApplySLA($ticketApproval->ticket));
         }
 
-        flash(t('Approval Info'), 'Ticket has been ' . ($ticketApproval->status == TicketApproval::APPROVED ? 'approved' : 'rejected'),'info');
+        TicketLog::approvalLog($ticketApproval,$ticketApproval->status == TicketApproval::APPROVED ?
+            TicketLog::APPROVED : TicketLog::DENIED);
+
+        flash(t('Approval Info'), 'Ticket has been ' . ($ticketApproval->status == TicketApproval::APPROVED ? 'approved' : 'rejected'), 'info');
 
         return Redirect::route('ticket.show', $ticketApproval->ticket_id);
     }
 
     public function destroy(TicketApproval $ticketApproval, Request $request)
     {
-        if (!can('delete',$ticketApproval) || $ticketApproval->status != TicketApproval::PENDING_APPROVAL) {
+        if (!can('delete', $ticketApproval) || $ticketApproval->status != TicketApproval::PENDING_APPROVAL) {
 
-            flash(t('Approval Sent'), t('Action not authorized'),'error');
+            flash(t('Approval Sent'), t('Action not authorized'), 'error');
 
             return Redirect::back();
         }
 
         $ticketApproval->delete();
 
-        flash(t('Approval Info'),'Approval has been deleted', 'info');
+        TicketLog::approvalLog($ticketApproval,TicketLog::DELETE_APPROVAL);
+
+        if (!$ticketApproval->ticket->hasPendingApprovals()) {
+            $ticketApproval->ticket->update(['status_id' => 3]);
+        }
+
+        flash(t('Approval Info'), 'Approval has been deleted', 'info');
         return Redirect::route('ticket.show', $ticketApproval->ticket_id);
     }
 
@@ -131,12 +140,12 @@ class ApprovalController extends Controller
 
         if ($ticketApproval->status != TicketApproval::PENDING_APPROVAL) {
 
-            flash(t('Approval Info'),t('You already took action for this approval'), 'info');
+            flash(t('Approval Info'), t('You already took action for this approval'), 'info');
             return Redirect::route('ticket.show', $ticketApproval->ticket_id);
         }
 
         if ($ticketApproval->ticket->isClosed()) {
-            flash(t('Approval Info'), t('The ticket has been closed'),'info');
+            flash(t('Approval Info'), t('The ticket has been closed'), 'info');
             return Redirect::route('ticket.show', $ticketApproval->ticket_id);
         }
 

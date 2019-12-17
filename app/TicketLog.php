@@ -27,7 +27,7 @@ use App\Helpers\HistoryEntry;
  */
 class TicketLog extends KModel
 {
-    protected $fillable = ['user_id', 'type', 'old_data', 'new_data', 'status_id','ticket_id','created_at', 'updated_at'];
+    protected $fillable = ['user_id', 'type', 'old_data', 'new_data', 'status_id', 'ticket_id', 'created_at', 'updated_at'];
 
     const UPDATED_TYPE = 1;
     const REPLY_TYPE = 2;
@@ -42,7 +42,7 @@ class TicketLog extends KModel
     const SENT_TO_FINANCE = 14;
     const New_TASK = 15;
     const REMINDER_ON_SURVEY = 16;
-
+    const DELETE_APPROVAL = 17;
 
     protected $casts = ['old_data' => 'array', 'new_data' => 'array'];
 
@@ -60,14 +60,17 @@ class TicketLog extends KModel
     {
         return self::makeLog($approval->ticket, static::APPROVAL_TYPE, $approval->creator_id);
     }
-    public static function resendApproval(TicketApproval $approval){
+
+    public static function approvalLog(TicketApproval $approval, $type)
+    {
         $ticket = $approval->ticket;
-        $user_id =  \Auth::user()->id ?? $ticket->technician_id;
+        $user_id = \Auth::user()->id ?? $ticket->technician_id;
+
         return $approval->ticket->logs()->create([
             'user_id' => $user_id,
-            'type' => self::RESEND_APPROVAL,
+            'type' => $type,
             'old_data' => $ticket->getDirtyOriginals(),
-            'new_data' => ['approval_id'=>$approval->id],
+            'new_data' => ['approval_id' => $approval->id],
             'status_id' => $ticket->status_id
         ]);
     }
@@ -77,7 +80,7 @@ class TicketLog extends KModel
         return self::makeLog($approval->ticket, $approved ? static::APPROVED : static::DENIED, $approval->approver_id);
     }
 
-    public static function addEscalationLog(Ticket $ticket,EscalationLevel $escalation)
+    public static function addEscalationLog(Ticket $ticket, EscalationLevel $escalation)
     {
         return self::makeLog($ticket, static::ESCALATION, $escalation->user_id);
     }
@@ -100,8 +103,10 @@ class TicketLog extends KModel
     public static function addNewTask(Ticket $ticket)
     {
         return self::makeLog($ticket->ticket, static::New_TASK, $ticket->requester_id);
-}
-    public static function addReminderOnSurvey(Ticket $ticket){
+    }
+
+    public static function addReminderOnSurvey(Ticket $ticket)
+    {
         return self::makeLog($ticket, static::REMINDER_ON_SURVEY, $ticket->requester_id);
 
     }
@@ -109,7 +114,7 @@ class TicketLog extends KModel
     public static function makeLog(Ticket $ticket, $type, $user_id = null)
     {
         $user_id = $user_id ?: \Auth::user()->id ?? $ticket->technician_id;
-         return $ticket->logs()->create([
+        return $ticket->logs()->create([
             'user_id' => $user_id,
             'type' => $type,
             'old_data' => $ticket->getDirtyOriginals(),
@@ -137,14 +142,15 @@ class TicketLog extends KModel
     {
         $actions = [
             self::REPLY_TYPE => 'replied',
-            self::APPROVAL_TYPE => 'submitted for approval',
-            self::APPROVED => 'approved',
+            self::APPROVAL_TYPE => 'Ticket submitted for approval',
+            self::APPROVED => 'Ticket approved',
             self::DENIED => 'denied',
             self::NOTE_TYPE => 'Updated by a note',
-            self::RESEND_APPROVAL => 'Updated by resend an approval ',
-            self::SENT_TO_FINANCE => 'Updated by sent to finance ',
+            self::RESEND_APPROVAL => 'Ticket updated by resend an approval ',
+            self::SENT_TO_FINANCE => 'Ticket updated by sent to finance ',
             self::New_TASK => 'Updated, New Task has been created',
-            self::REMINDER_ON_SURVEY => "Updated by Send Reminder On Pending Survey "
+            self::REMINDER_ON_SURVEY => "Updated by Send Reminder On Pending Survey ",
+            self::DELETE_APPROVAL => "Ticket Updated by delete approval"
         ];
 
         if (isset($actions[$this->type])) {
@@ -174,7 +180,7 @@ class TicketLog extends KModel
         $date = clone $this->created_at;
 
         if (!$critical) {
-           // If it is not critical and time is outside working hours
+            // If it is not critical and time is outside working hours
             // move the time to nearest working hour possible.
             $dayStart = (clone $this->created_at)->setTimeFromTimeString(config('worktime.start'));
             $dayEnd = (clone $this->created_at)->setTimeFromTimeString(config('worktime.end'));
@@ -193,17 +199,46 @@ class TicketLog extends KModel
         return $date;
     }
 
-    function getColorTypeAttribute(){
-        if (isset($this->new_data['status_id']) && in_array($this->new_data['status_id'],[7,8,9]) ){
+    function getColorTypeAttribute()
+    {
+        if (isset($this->new_data['status_id']) && in_array($this->new_data['status_id'], [7, 8, 9])) {
             return 'resolved-log';
         }
-        if($this->type == self::REPLY_TYPE){
+        if ($this->type == self::REPLY_TYPE) {
             return 'reply-log';
-        }elseif ($this->type == self::UPDATED_TYPE){
+        } elseif ($this->type == self::UPDATED_TYPE) {
             return 'update-log';
         }
 
         return '';
     }
 
+
+    function getApprovalLogsAttribute()
+    {
+        return [TicketLog::APPROVAL_TYPE, TicketLog::APPROVED, TicketLog::DENIED, TicketLog::DELETE_APPROVAL, TicketLog::RESEND_APPROVAL];
+    }
+
+    function getApprovalLogDescriptionAttribute()
+    {
+        if(!isset($this->new_data['approval_id']) && in_array($this->type,$this->approval_logs)){
+            return $this->type_action;
+        }
+
+        $approval = TicketApproval::withTrashed()->find($this->new_data['approval_id']);
+        if (!$approval) {
+            return;
+        }
+
+        $actions = [
+            self::APPROVAL_TYPE => t("Approval Submitted to ") . $approval->approver->name . t(" by ") . $approval->created_by->name,
+            self::RESEND_APPROVAL => t("Approval that has been sent to ") . $approval->approver->name . t(" has been resubmitted by ") . $approval->created_by->name,
+            self::DELETE_APPROVAL => t("Approval that has been sent to ") . $approval->approver->name . t(" has been deleted") . t(" by ") . $approval->created_by->name,
+            self::APPROVED => t("Approval that has been sent to ") . $approval->approver->name . t(" has been approved"),
+            self::DENIED => t("Approval that has been sent to ") . $approval->approver->name . t(" has been denied"),
+        ];
+
+        return $actions[$this->type];
+
+    }
 }
