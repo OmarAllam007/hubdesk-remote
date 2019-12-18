@@ -207,7 +207,7 @@ class TaskController extends Controller
     {
         $task = Ticket::find($task);
 
-        if (can('task_delete', $task)) {
+        if (can('task_destroy', $task)) {
             $task->delete();
             flash(t('Task Info'), t('Task deleted successfully'), 'success');
         }
