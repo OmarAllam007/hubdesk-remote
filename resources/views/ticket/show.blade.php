@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('header')
+{{--    {{dd($ticket->logs->groupBy(\DB::raw('CAST(created_at AS DATE)')))}}--}}
     @can('show',$ticket)
         <div class="display-flex ticket-meta">
             <div class="flex">
