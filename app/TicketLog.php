@@ -204,10 +204,14 @@ class TicketLog extends KModel
         if (isset($this->new_data['status_id']) && in_array($this->new_data['status_id'], [7, 8, 9])) {
             return 'resolved-log';
         }
-        if ($this->type == self::REPLY_TYPE) {
-            return 'reply-log';
-        } elseif ($this->type == self::UPDATED_TYPE) {
-            return 'update-log';
+        if ($this->type == self::APPROVED) {
+            return 'alert-success';
+        } elseif (in_array($this->type,[self::DENIED,self::DELETE_APPROVAL])) {
+            return 'alert-danger';
+        }elseif (in_array($this->type, [self::REPLY_TYPE,self::UPDATED_TYPE])) {
+            return 'alert-info';
+        }elseif ($this->type == self::RESEND_APPROVAL) {
+            return 'alert-warning';
         }
 
         return '';
@@ -226,7 +230,8 @@ class TicketLog extends KModel
         }
 
         $approval = TicketApproval::withTrashed()->find($this->new_data['approval_id']);
-        if (!$approval) {
+
+        if (!$approval) {// must not happened :)
             return;
         }
 

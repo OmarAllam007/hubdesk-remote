@@ -189,7 +189,8 @@ class Ticket extends KModel
         return $this->hasMany(TicketField::class);
     }
 
-    function getCustomFieldsAttribute(){
+    function getCustomFieldsAttribute()
+    {
         return $this->type == Ticket::TASK_TYPE ? $this->ticket->fields->merge($this->fields) : $this->fields;
     }
 
@@ -212,6 +213,13 @@ class Ticket extends KModel
     public function getTicketAttribute()
     {
         return Ticket::where('id', $this->request_id)->first();
+    }
+
+    public function getHistoryAttribute()
+    {
+        return TicketLog::select('*', \DB::raw('DATE(created_at) as date_created'))
+            ->where('ticket_id', $this->id)->get()->groupBy('date_created');
+
     }
 
     public function getResolutionAttribute()
@@ -291,10 +299,10 @@ class Ticket extends KModel
                 ->whereIn('reference', $this->approvals->pluck('id')->toArray())
                 ->get();
 
-            $ticketTasks = Attachment::whereIn('reference',$this->tasks->pluck('id'))
-                ->where('type',Attachment::TASK_TYPE)
-                ->orWhere('type',Attachment::TASK_TYPE)
-                ->where('reference',$this->id)
+            $ticketTasks = Attachment::whereIn('reference', $this->tasks->pluck('id'))
+                ->where('type', Attachment::TASK_TYPE)
+                ->orWhere('type', Attachment::TASK_TYPE)
+                ->where('reference', $this->id)
                 ->get();
 
 
