@@ -83,6 +83,8 @@ class AutoCloseResolvedTickets extends Command
             'notified' => 1
         ]);
 
-        \Mail::send(new SendSurveyEmail($user_survey));
+        if($user_survey->ticket->requester->email){
+            \Mail::send(new SendSurveyEmail($user_survey));
+        }
     }
 }
