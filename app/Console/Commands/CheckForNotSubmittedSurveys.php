@@ -32,11 +32,14 @@ class CheckForNotSubmittedSurveys extends Command
         $notSubmittedSurveys = UserSurvey::where('is_submitted', 0)
             ->whereDate('updated_at', '<', $this->now)->get();
 
-        if($notSubmittedSurveys->count()){
+        if(!empty($notSubmittedSurveys)){
 
             foreach ($notSubmittedSurveys as $survey) {
                 if ($survey->notified == 1) {
-                    \Mail::send(new SendSurveyEmail($survey));
+
+                    if($survey->ticket->requester->email){
+                        \Mail::send(new SendSurveyEmail($survey));
+                    }
 
                     $survey->update([
                         'notified' => 2
