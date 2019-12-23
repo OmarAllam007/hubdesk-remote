@@ -58,6 +58,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('tickets:calculate-time')->everyMinute();
 
         $schedule->command('tickets:check-viewed-tickets')->daily()->between('6:30','7:30');
+        $schedule->command('surveys:check')->daily()->between('6:00','6:15');
+        $schedule->command('document:renew')->daily()->between('6:00','6:15');
 
         // Get requests from service desk plus
 //        $schedule->command('sdp:sync')->everyFiveMinutes();

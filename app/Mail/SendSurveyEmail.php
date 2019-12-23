@@ -21,6 +21,10 @@ class SendSurveyEmail extends Mailable
 
     public function build()
     {
+        if(!$this->survey->ticket->requester->email){
+            return false;
+        }
+
         return $this->markdown('emails.ticket.survey', ['survey' => $this->survey])
             ->to($this->survey->ticket->requester->email)
             ->subject(t('Please help us to improve our service by participating in this brief survey.'));
