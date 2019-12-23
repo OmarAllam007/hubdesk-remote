@@ -62,7 +62,7 @@
     <div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> {{t('No approvals yet')}}</div>
 @endif
 
-@if (Auth::user()->isSupport() && !$ticket->isClosed())
+@can (can('submit_approval',$ticket))
     <section id="approvalForm">
         {{Form::open(['route' => ['approval.send', $ticket],'files' => true])}}
 
