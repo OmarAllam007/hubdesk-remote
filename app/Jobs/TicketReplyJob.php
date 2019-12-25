@@ -63,7 +63,7 @@ class TicketReplyJob extends Job //implements ShouldQueue
 
     function sendEmail()
     {
-        $cc = request()->get('reply.cc', []);
+        $cc = request('reply.cc',[]);
 
         \Mail::to($this->to)->cc($cc)->send(new TicketReplyMail($this->reply));
         $this->sendSurvey($this->reply->ticket);
