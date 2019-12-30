@@ -78,7 +78,7 @@ class BusinessDocumentController extends Controller
 
     function createTicket(BusinessUnit $business_unit, Category $category, Subcategory $subcategory, Item $item)
     {
-        Ticket::flushEventListeners();
+//        Ticket::flushEventListeners();
 
         $label = $this->getServicesLabels($category, $subcategory, $item);
 
