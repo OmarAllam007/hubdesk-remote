@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\BusinessUnit;
 use App\Ticket;
 use App\TicketApproval;
 use Illuminate\Bus\Queueable;
@@ -15,6 +16,7 @@ class ApprovalLevels extends Job
 
     private $ticket;
     private $levels;
+
     public function __construct(Ticket $ticket)
     {
         $this->ticket = $ticket;
@@ -28,7 +30,8 @@ class ApprovalLevels extends Job
      */
     public function handle()
     {
-        $bu = $this->ticket->requester->business_unit;
+
+        $bu = BusinessUnit::find($this->ticket->business_unit_id);
 
         if ($bu) {
             $category = $this->ticket->category;
@@ -39,9 +42,9 @@ class ApprovalLevels extends Job
                 $this->levels = $this->getLevels($item);
             } else if ($subcategory && $subcategory->levels->count()) {
                 $this->levels = $this->getLevels($subcategory);
-            } else if($category && $category->levels->count()){
+            } else if ($category && $category->levels->count()) {
                 $this->levels = $this->getLevels($category);
-            }else{
+            } else {
                 dispatch(new ApplySLA($this->ticket));
                 dispatch(new ApplyBusinessRules($this->ticket));
             }
