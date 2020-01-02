@@ -22,7 +22,9 @@ class ReportPolicy
 
     function show(User $user, Report $report)
     {
-        return can('reports') && in_array($user->id, $report->users()->pluck('user_id')->toArray());
+        $report_users = $report->users()->pluck('user_id');
+
+        return can('reports') && in_array($user->id, $report_users->push($report->user_id)->toArray());
     }
 
     function edit(User $user, Report $report)
