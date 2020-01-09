@@ -43,6 +43,7 @@
                     <th>{{ t('Due Date') }}</th>
                     <th>{{ t('Resolved Date') }}</th>
                     <th>{{ t('Business Unit') }}</th>
+                    <th>{{ t('Performance') }}</th>
                     @for ($i = 1; $i < $approvals_count; $i++)
                         <th>{{t('Approval '.$i.' Sent at')}}</th>
                         <th>{{t('Approval '.$i.' Action date')}}</th>
@@ -66,6 +67,7 @@
                         <td>{{ $ticket->due_date ?? 'Not Assigned' }}</td>
                         <td>{{ $ticket->resolve_date ?? 'Not Assigned' }}</td>
                         <td>{{ $ticket->business_unit ?? 'Not Assigned' }}</td>
+                        <td>{{ $ticket->performance ?? 'Not Assigned' }}</td>
 
                         @for ($i = 1; $i < $approvals_count; $i++)
                             <td>{{ isset($ticket->approvals[$i]) ? $ticket->approvals[$i]->created_at->format('Y/m/d h:i') : '' }}</td>

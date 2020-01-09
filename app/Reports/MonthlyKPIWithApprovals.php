@@ -59,6 +59,13 @@ class MonthlyKPIWithApprovals extends ReportContract
             ->selectRaw('cat.name as category, subcat.name as subcategory, item.name as item')
             ->selectRaw('st.name as status')
             ->selectRaw('bu.name as business_unit')
+            ->selectRaw(' CASE
+ WHEN (sla.due_days - (t.time_spent / (60* 8))) >= 0 and t.status_id IN (7,8,9) THEN 100
+ WHEN (sla.due_days - (t.time_spent / (60* 8))) >= -1 and t.status_id IN (7,8,9) THEN 75
+ WHEN (sla.due_days - (t.time_spent / (60* 8))) >= -2 and t.status_id IN (7,8,9)THEN 50
+ WHEN (sla.due_days - (t.time_spent / (60* 8))) >= -3 and t.status_id IN (7,8,9) THEN 25
+ ELSE 0 END
+ as performance')
             ->selectRaw("@departure_date := (select `getDepartureDate`(t.id))  'date_of_dept',
           DATEDIFF(@departure_date, DATE_FORMAT(t.created_at, '%Y-%m-%d')) 'difference'");
 
@@ -117,7 +124,7 @@ class MonthlyKPIWithApprovals extends ReportContract
         $header = [
             'ID', 'Subject', 'Requester',
             'Technician', 'Category', 'Status', 'Created Date', 'Date of Departure', 'Days between departure and create', 'Due Date',
-            'Resolved Date', 'Business Unit'];
+            'Resolved Date', 'Business Unit','Performance'];
 
         $approvals_header = $approvals_header->flatten()->toArray();
         $sheet->fromArray(array_merge($header, $approvals_header), NULL, 'A1',true);
@@ -136,10 +143,12 @@ class MonthlyKPIWithApprovals extends ReportContract
                 }
             }
 
+
+
             $rowData = [
                 $ticket->id, $ticket->subject, $ticket->requester, $ticket->technician,
                 $ticket->category, $ticket->status, $ticket->created_at, $ticket->date_of_dept, $ticket->difference ?? 'Not Assigned',
-                $ticket->due_date, $ticket->resolve_date, $ticket->business_unit
+                $ticket->due_date, $ticket->resolve_date, $ticket->business_unit,$ticket->performance
             ];
             $sheet->fromArray(array_merge($rowData, $approvals->flatten()->toArray()), NULL, 'A' . $row, true);
         }
@@ -161,20 +170,6 @@ class MonthlyKPIWithApprovals extends ReportContract
         $filename = storage_path('app/'.str_slug($this->report->title).'.xlsx');
         $writer->save($filename);
         return $filename;
-
-//
-//        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
-//
-////        return $writer;
-//        $writer->save(storage_path().'/report.xlsx');
-
-//        header('Content-Type: application/vnd.ms-excel');
-//        header('Content-Disposition: attachment; filename="' . str_slug($this->report->title) . '.xlsx"');
-
-
-
-//        exit;
-//
     }
 
     function pdf()
@@ -199,7 +194,7 @@ class MonthlyKPIWithApprovals extends ReportContract
         $columns = array_merge([
             'ID', 'Subject', 'Requester',
             'Technician', 'Category', 'Status', 'Created Date', 'Date of Departure', 'Difference', 'Due Date',
-            'Resolved Date', 'Business Unit'
+            'Resolved Date', 'Business Unit','Performance'
         ], $approvals_header->flatten()->toArray());
 
 
