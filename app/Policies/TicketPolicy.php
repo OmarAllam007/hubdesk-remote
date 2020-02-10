@@ -6,6 +6,7 @@ use App\Ticket;
 use App\TicketApproval;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use mysql_xdevapi\Collection;
 
 class TicketPolicy
 {
@@ -129,6 +130,10 @@ class TicketPolicy
 
     function submit_approval(User $user, Ticket $ticket)
     {
-        return $user->id == $ticket->technician_id && !$ticket->isClosed();
+        /** @var \Illuminate\Support\Collection $approvals */
+        $approvals = $ticket->approvals->pluck('approver_id');
+
+        return $user->id == $ticket->technician_id && !$ticket->isClosed()
+            || ($ticket->type == Ticket::TASK_TYPE && $approvals->contains($user->id));
     }
 }
