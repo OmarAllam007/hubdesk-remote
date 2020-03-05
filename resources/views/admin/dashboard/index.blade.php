@@ -86,6 +86,7 @@
                             <li><a href="{{route('admin.urgency.index')}}">{{t('Urgency')}}</a></li>
                             <li><a href="{{route('admin.impact.index')}}">{{t('Impact')}}</a></li>
                             <li><a href="{{route('admin.status.index')}}">{{t('Status')}}</a></li>
+                            <li><a href="{{route('admin.status.index')}}">{{t('Availability')}}</a></li>
                         </ul>
                     </div>
                 </div>

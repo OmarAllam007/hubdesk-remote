@@ -33,7 +33,7 @@ class BusinessUnit extends KModel
     use Listable;
 
     protected $fillable = ['code', 'name', 'location_id', 'logo', 'business_unit_bgd'];
-    protected $appends = ['bu_roles'];
+//    protected $appends = ['bu_roles'];
 
 
     public function location()

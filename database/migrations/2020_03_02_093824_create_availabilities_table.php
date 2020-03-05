@@ -15,6 +15,12 @@ class CreateAvailabilitiesTable extends Migration
     {
         Schema::create('availabilities', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->text('value');
+            $table->string('label');
+            $table->unsignedInteger('level_id');
+            $table->string('level');
+            $table->unsignedInteger('type');
+            $table->unsignedInteger('available_until');
             $table->timestamps();
         });
     }

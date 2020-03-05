@@ -1,7 +1,7 @@
 <div class="col-sm-3">
 <section class="panel panel-primary" id="#admin-sidebar">
     <div class="panel-heading">
-        <h5 class="panel-title">{{t('Navigation')}}</h5>
+        <h5 class="panel-title">{{t('Admin Panel')}}</h5>
     </div>
 
     <nav class="list-group">
@@ -24,7 +24,8 @@
 
         <p class="list-group-item text-center info"><strong><i class="fa fa-fw fa-cogs"></i> Settings</strong></p>
         <a href="{{route('admin.category.index')}}" class="list-group-item"><i class="fa fa-fw fa-cubes"></i> Categories</a>
-        <a href="{{route('admin.status.index')}}" class="list-group-item">Status</a>
+        <a href="{{route('admin.status.index')}}" class="list-group-item"><i class="fa fa-fw fa-info-circle"></i> Status</a>
+        <a href="{{route('admin.status.index')}}" class="list-group-item"><i class="fa fa-fw fa-calendar"></i> Availability</a>
         <a href="{{route('admin.impact.index')}}" class="list-group-item"><i class="fa fa-fw fa-bullseye"></i> Impact</a>
         <a href="{{route('admin.priority.index')}}" class="list-group-item"><i class="fa fa-fw fa-star"></i> Priority</a>
         <a href="{{route('admin.urgency.index')}}" class="list-group-item"><i class="fa fa-fw fa-hourglass-half"></i> Urgency</a>

@@ -32,7 +32,7 @@ trait ServiceConfiguration
         }
 
         if ($service_groups->count()) {
-            $groups = Group::whereType(Group::REQUESTER)->whereIn('id',$service_groups->toArray())->get();
+            $groups = Group::whereType(Group::REQUESTER)->whereIn('id', $service_groups->toArray())->get();
             foreach ($groups as $group) {
                 if ($group->users && in_array($user->id, $group->users->pluck('id')->toArray())) {
                     return true;
@@ -41,6 +41,15 @@ trait ServiceConfiguration
         }
 
         return false;
+    }
+
+    public function available()
+    {
+        $availabilities = $this->availabilities;
+        $date_in_days =
+        foreach ($availabilities as $availability){
+            if(in_array(auth()->user()->business_unit_id,$availability->value) )
+        }
     }
 
 }
