@@ -2,9 +2,11 @@
 
 namespace App\Behaviors;
 
+use App\Availability;
 use App\Group;
 use App\ServiceUserGroup;
 use Illuminate\Database\Eloquent\Builder;
+use PhpParser\Node\Expr\Cast\Int_;
 
 /**
  * Created by PhpStorm.
@@ -45,11 +47,29 @@ trait ServiceConfiguration
 
     public function available()
     {
-        $availabilities = $this->availabilities;
-        $date_in_days =
-        foreach ($availabilities as $availability){
-            if(in_array(auth()->user()->business_unit_id,$availability->value) )
+        $requester_bu_id = auth()->user()->business_unit_id;
+        $can_display_the_service = true;
+
+        foreach ($this->availabilities as $availability) {
+            if (in_array($requester_bu_id, $availability->value) ) {
+                $can_display_the_service =  $this->validDate($availability);
+            }
+
         }
+        return $can_display_the_service;
+    }
+
+    function validDate($availability)
+    {
+        if ($availability->type == Availability::DAY && now()->day < $availability->available_until) {
+            return true;
+        } elseif ($availability->type == Availability::MONTH && (now()->month != $availability->available_until)) {
+            return true;
+        } elseif ($availability->type == Availability::Year && (now()->year != $availability->available_until)) {
+            return true;
+        }
+
+        return false;
     }
 
 }

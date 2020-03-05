@@ -13428,7 +13428,7 @@ var Component = __webpack_require__(2)(
   /* script */
   __webpack_require__(40),
   /* template */
-  __webpack_require__(41),
+  __webpack_require__(46),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -13505,7 +13505,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__AvailabilityRow__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__AvailabilityRow__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__AvailabilityRow___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__AvailabilityRow__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Bus_js__ = __webpack_require__(3);
 //
@@ -13665,166 +13665,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('section', {
-    staticClass: "table-container"
-  }, [_c('table', {
-    staticClass: "listing-table table-bordered"
-  }, [_c('thead', [_c('tr', [_c('th', {
-    staticClass: "col-md-3"
-  }, [_vm._v("Business Unit/s")]), _vm._v(" "), _c('th', {
-    staticClass: "col-md-3"
-  }, [_vm._v("Type")]), _vm._v(" "), _c('th', {
-    staticClass: "col-md-3"
-  }, [_vm._v("Available Until")]), _vm._v(" "), _c('th', [_c('button', {
-    staticClass: "btn btn-sm btn-primary pull-right",
-    attrs: {
-      "type": "button"
-    },
-    on: {
-      "click": _vm.addNew
-    }
-  }, [_c('i', {
-    staticClass: "fa fa-plus-circle"
-  })])])])]), _vm._v(" "), _c('tbody', _vm._l((_vm.availabilities), function(row, index) {
-    return _c("availability-row", {
-      key: index,
-      tag: "tr",
-      attrs: {
-        "index": index,
-        "row": row,
-        "availability": row
-      }
-    })
-  }))]), _vm._v(" "), _c('div', {
-    staticClass: "modal fade selection-modal",
-    attrs: {
-      "tabindex": "-1",
-      "role": "dialog",
-      "id": "SelectBusinessUnits"
-    }
-  }, [_c('div', {
-    staticClass: "modal-dialog"
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_c('div', {
-    staticClass: "modal-header"
-  }, [_vm._m(0), _vm._v(" "), _c('h4', {
-    staticClass: "modal-title"
-  }, [_vm._v(_vm._s(_vm.modal.field))])]), _vm._v(" "), _c('div', {
-    staticClass: "modal-body"
-  }, [_c('div', {
-    staticClass: "form-group"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.modal.search),
-      expression: "modal.search"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "search",
-      "placeholder": "Name"
-    },
-    domProps: {
-      "value": (_vm.modal.search)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.modal, "search", $event.target.value)
-      }
-    }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('select', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.modal.selected),
-      expression: "modal.selected"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "multiple": "multiple"
-    },
-    on: {
-      "change": function($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
-          return o.selected
-        }).map(function(o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val
-        });
-        _vm.$set(_vm.modal, "selected", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
-      }
-    }
-  }, _vm._l((_vm.filteredOptions), function(label, index) {
-    return _c('option', {
-      domProps: {
-        "value": label.id
-      }
-    }, [_vm._v("\n                                " + _vm._s(label.name) + "\n                            ")])
-  }))])]), _vm._v(" "), _c('div', {
-    staticClass: "modal-footer"
-  }, [_c('button', {
-    staticClass: "btn btn-success",
-    attrs: {
-      "type": "button"
-    },
-    on: {
-      "click": _vm.modalApply
-    }
-  }, [_c('i', {
-    staticClass: "fa fa-check-circle"
-  }), _vm._v(" Apply\n                    ")]), _vm._v(" "), _vm._m(1)])])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('button', {
-    staticClass: "close",
-    attrs: {
-      "type": "button",
-      "data-dismiss": "modal",
-      "aria-label": "Close"
-    }
-  }, [_c('span', {
-    attrs: {
-      "aria-hidden": "true"
-    }
-  }, [_vm._v("×")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('button', {
-    staticClass: "btn btn-default",
-    attrs: {
-      "type": "button",
-      "data-dismiss": "modal"
-    }
-  }, [_c('i', {
-    staticClass: "fa fa-times-circle"
-  }), _vm._v(" Cancel\n                    ")])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-1b2cdebd", module.exports)
-  }
-}
-
-/***/ }),
-/* 42 */
-/***/ (function(module, exports, __webpack_require__) {
-
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(43)
+  __webpack_require__(42)
 }
 var Component = __webpack_require__(2)(
   /* script */
-  __webpack_require__(45),
+  __webpack_require__(44),
   /* template */
-  __webpack_require__(46),
+  __webpack_require__(45),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -13856,13 +13706,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 43 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(44);
+var content = __webpack_require__(43);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -13882,7 +13732,7 @@ if(false) {
 }
 
 /***/ }),
-/* 44 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -13896,7 +13746,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 
 /***/ }),
-/* 45 */
+/* 44 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13977,7 +13827,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         loadOptions: function loadOptions() {
             __WEBPACK_IMPORTED_MODULE_0__Bus_js__["a" /* default */].$emit('openSelectModal', {
                 key: this.index,
-                selected: this.availability.value.split(',')
+                selected: this.availability.value.toString().split(',')
             });
         }
     },
@@ -13995,7 +13845,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 46 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -14201,6 +14051,156 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-61f0a5e6", module.exports)
+  }
+}
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('section', {
+    staticClass: "table-container"
+  }, [_c('table', {
+    staticClass: "listing-table table-bordered"
+  }, [_c('thead', [_c('tr', [_c('th', {
+    staticClass: "col-md-3"
+  }, [_vm._v("Business Unit/s")]), _vm._v(" "), _c('th', {
+    staticClass: "col-md-3"
+  }, [_vm._v("Type")]), _vm._v(" "), _c('th', {
+    staticClass: "col-md-3"
+  }, [_vm._v("Available Until")]), _vm._v(" "), _c('th', [_c('button', {
+    staticClass: "btn btn-sm btn-primary pull-right",
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": _vm.addNew
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-plus-circle"
+  })])])])]), _vm._v(" "), _c('tbody', _vm._l((_vm.availabilities), function(row, index) {
+    return _c("availability-row", {
+      key: index,
+      tag: "tr",
+      attrs: {
+        "index": index,
+        "row": row,
+        "availability": row
+      }
+    })
+  }))]), _vm._v(" "), _c('div', {
+    staticClass: "modal fade selection-modal",
+    attrs: {
+      "tabindex": "-1",
+      "role": "dialog",
+      "id": "SelectBusinessUnits"
+    }
+  }, [_c('div', {
+    staticClass: "modal-dialog"
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_c('div', {
+    staticClass: "modal-header"
+  }, [_vm._m(0), _vm._v(" "), _c('h4', {
+    staticClass: "modal-title"
+  }, [_vm._v(_vm._s(_vm.modal.field))])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.modal.search),
+      expression: "modal.search"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "search",
+      "placeholder": "Name"
+    },
+    domProps: {
+      "value": (_vm.modal.search)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.modal, "search", $event.target.value)
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.modal.selected),
+      expression: "modal.selected"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "multiple": "multiple"
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.$set(_vm.modal, "selected", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
+      }
+    }
+  }, _vm._l((_vm.filteredOptions), function(label, index) {
+    return _c('option', {
+      domProps: {
+        "value": label.id
+      }
+    }, [_vm._v("\n                                " + _vm._s(label.name) + "\n                            ")])
+  }))])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer"
+  }, [_c('button', {
+    staticClass: "btn btn-success",
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": _vm.modalApply
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-check-circle"
+  }), _vm._v(" Apply\n                    ")]), _vm._v(" "), _vm._m(1)])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c('span', {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('button', {
+    staticClass: "btn btn-default",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal"
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-times-circle"
+  }), _vm._v(" Cancel\n                    ")])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-1b2cdebd", module.exports)
   }
 }
 

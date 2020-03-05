@@ -73,7 +73,7 @@
             loadOptions() {
                     EventBus.$emit('openSelectModal', {
                         key: this.index,
-                        selected: this.availability.value.split(',')
+                        selected: this.availability.value.toString().split(',')
                     });
 
             }
