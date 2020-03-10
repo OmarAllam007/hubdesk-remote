@@ -31,6 +31,8 @@ class TicketReply extends KModel
 
     protected $casts = ['cc' => 'array', 'to' => 'array'];
 
+    const AUTO_REPLY = 'SYSTEM AUTO REPLY';
+
     public function user()
     {
         return $this->belongsTo(User::class);
