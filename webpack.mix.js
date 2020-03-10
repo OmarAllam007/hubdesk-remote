@@ -23,10 +23,11 @@ const { mix } = require('laravel-mix');
 //       .js('resources/assets/js/app.js', 'public/js')
 //       .js('resources/assets/js/Report/index.js', 'public/js/report.js')
 //       .js('resources/assets/js/ticket-index.js', 'public/js')
-//       mix.js('resources/assets/js/ticket-form.js', 'public/js')
+      mix.js('resources/assets/js/ticket-form.js', 'public/js')
 //       .js('resources/assets/js/ticket.js', 'public/js')
 //       .js('resources/assets/js/criteria.js', 'public/js')
-      mix.js('resources/assets/js/business-rules.js', 'public/js');
+//       mix.js('resources/assets/js/business-rules.js', 'public/js');
+//       mix.js('resources/assets/js/approvals/questions/approval-questions.js', 'public/js');
 //       mix.js('resources/assets/js/approval-levels.js', 'public/js');
 // mix.js('resources/assets/js/approval-levels.js', 'public/js');
 // mix.js('resources/assets/js/ticket-requirements/ticket-requirements.js', 'public/js/ticket-requirements.js');

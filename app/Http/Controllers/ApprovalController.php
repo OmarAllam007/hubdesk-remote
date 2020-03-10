@@ -37,6 +37,10 @@ class ApprovalController extends Controller
 
         $ticket->approvals()->save($approval);
 
+        foreach ($request->get('questions', []) as $question){
+            $approval->questions()->create($question);
+        }
+
         flash(t('Approval Info'), t('Approval has been sent successfully'), 'success');
 
         return redirect()->back();

@@ -99,7 +99,6 @@
                 </div>
             </div>
 
-
             @if(auth()->user()->isSupport() && auth()->user()->reply_templates->count())
                 <div class="col-md-6">
                     <div class="form-group">
@@ -111,6 +110,13 @@
                     </div>
                 </div>
             @endif
+
+        </div>
+
+        <div id="TicketForm" class="row">
+            <div class="col-md-6">
+                <approval-questions></approval-questions>
+            </div>
 
         </div>
 

@@ -312,11 +312,7 @@
             // this.loadItems(true);
             this.loadTechnicians();
         }
-    })
-    ;
-    window.app = new Vue({
-        el: '#tasks',
-
     });
+
 </script>
 
