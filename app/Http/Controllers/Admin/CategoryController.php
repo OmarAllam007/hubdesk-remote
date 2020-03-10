@@ -19,7 +19,7 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $categories = Category::orderBy('name')->quickSearch()->paginate();;
+        $categories = Category::orderBy('name')->quickSearch()->paginate();
 
         return view('admin.category.index', compact('categories'));
     }
@@ -75,6 +75,7 @@ class CategoryController extends Controller
 
     public function update(Category $category, Request $request)
     {
+//        dd($request->all());
         $this->validates($request);
 
 
@@ -86,6 +87,8 @@ class CategoryController extends Controller
         $this->handleLevels($request, $category);
         $this->handleRequirements($request, $category);
         $this->createFees($request, $category);
+        $this->createOrUpdateAvailability($request, $category);
+
 
         $data = $request->all();
         $data['service_request'] = isset($request->service_request) ? 1 : 0;
@@ -169,5 +172,20 @@ class CategoryController extends Controller
                 'level_id' => $category->id,
             ]);
         }
+    }
+
+    private function createOrUpdateAvailability(Request $request, Category $category)
+    {
+        $category->availabilities()->delete();
+
+        foreach ($request->get('availabilities', []) as $availability) {
+            $category->availabilities()->create([
+                'value' => explode(",",$availability['business_units_value']),
+                'label' => $availability['business_units_label'],
+                'type' => $availability['type'],
+                'available_until' => $availability['availability_until'],
+            ]);
+        }
+
     }
 }

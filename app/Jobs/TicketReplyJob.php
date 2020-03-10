@@ -34,14 +34,13 @@ class TicketReplyJob extends Job //implements ShouldQueue
 
         if ($this->reply->user_id == $this->reply->ticket->requester_id) {
 
-            if (!$ticket->technician->email) {
+            if (!$ticket->technician || !$ticket->technician->email) {
                 return false;
             }
             $this->to = [$ticket->technician->email];
             $this->sendEmail();
 
         } elseif ($this->reply->user_id == $this->reply->ticket->technician_id) {
-
             if (!$ticket->requester->email) {
                 return false;
             }

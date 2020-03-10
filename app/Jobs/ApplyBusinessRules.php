@@ -4,7 +4,10 @@ namespace App\Jobs;
 
 use App\BusinessRule;
 use App\Criteria;
+use App\Mail\TicketReplyMail;
 use App\Ticket;
+use App\TicketReply;
+use App\User;
 
 class ApplyBusinessRules extends MatchCriteria
 {
@@ -37,8 +40,24 @@ class ApplyBusinessRules extends MatchCriteria
 
     private function applyRule($rule)
     {
+        $cc = collect();
+
         foreach ($rule->rules as $action) {
-            $this->ticket->setAttribute($action->field, $action->value);
+
+            if ($action['field'] == 'cc') {
+                $cc->push(User::find($action['value'])->email);
+            } else {
+                $this->ticket->setAttribute($action->field, $action->value);
+            }
+        }
+        if ($cc->count()) {
+            $reply = $this->ticket->replies()->create([
+                'user_id' => 1021,
+                'content' => TicketReply::AUTO_REPLY,
+                'status_id' => $this->ticket->status_id,
+                'cc' => $cc->toArray()
+            ]);
+            \Mail::to($cc)->cc($cc)->send(new TicketReplyMail($reply));
         }
 
         \Log::info("Applied business rule [id: $rule->id, name: $rule->name, ticket: {$this->ticket->id}]");

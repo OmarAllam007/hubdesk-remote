@@ -33,7 +33,7 @@ class Category extends KModel
 {
     use Listable, ServiceConfiguration;
 
-    protected $fillable = ['business_unit_id', 'name', 'description', 'service_request', 'service_cost', 'notes', 'service_type', 'is_disabled','logo'];
+    protected $fillable = ['business_unit_id', 'name', 'description', 'service_request', 'service_cost', 'notes', 'service_type', 'is_disabled', 'logo'];
 
     public function subcategories()
     {
@@ -76,6 +76,12 @@ class Category extends KModel
     function businessunits()
     {
         return $this->belongsToMany(BusinessUnit::class, 'category_business_units');
+    }
+
+
+    function availabilities()
+    {
+        return $this->hasMany(Availability::class,'level_id');
     }
 
     function scopeActive($query)
@@ -121,8 +127,9 @@ class Category extends KModel
     }
 
 
-    function survey(){
-        return $this->belongsToMany(Survey::class,'category_survey','category_id','survey_id');
+    function survey()
+    {
+        return $this->belongsToMany(Survey::class, 'category_survey', 'category_id', 'survey_id');
     }
 
     public function requirements()

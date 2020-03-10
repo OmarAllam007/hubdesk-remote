@@ -80,6 +80,7 @@ export default {
             this.modal.options = options.options;
             this.modal.index = options.index;
             this.modal.selected = [];
+
             if (options.selected) {
                 this.modal.selected = options.selected;
             }

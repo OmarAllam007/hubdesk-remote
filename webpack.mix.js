@@ -26,6 +26,7 @@ const { mix } = require('laravel-mix');
 //       mix.js('resources/assets/js/ticket-form.js', 'public/js')
 //       .js('resources/assets/js/ticket.js', 'public/js')
 //       .js('resources/assets/js/criteria.js', 'public/js')
+      mix.js('resources/assets/js/business-rules.js', 'public/js');
 //       mix.js('resources/assets/js/approval-levels.js', 'public/js');
 // mix.js('resources/assets/js/approval-levels.js', 'public/js');
 // mix.js('resources/assets/js/ticket-requirements/ticket-requirements.js', 'public/js/ticket-requirements.js');
@@ -34,4 +35,4 @@ const { mix } = require('laravel-mix');
 //       .js('resources/assets/js/escalation.js', 'public/js');
 // mix.js('resources/assets/js/ticket-note.js', 'public/js');
 // mix.js('resources/assets/js/Task.vue', 'public/js/tasks.js');
-mix.js('resources/assets/js/kgs_notifications/main.js', 'public/js/kgs/notifications/notifications.js');
+// mix.js('resources/assets/js/kgs_notifications/main.js', 'public/js/kgs/notifications/notifications.js');

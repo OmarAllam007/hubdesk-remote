@@ -94,8 +94,6 @@ class TicketController extends Controller
                 $ticket->fields()->create(['name' => $field, 'value' => $item]);
             }
         }
-//        $ticket->syncFields($request->get('cf', []));
-
         $this->dispatch(new NewTicketJob($ticket));
 
         flash(t('Ticket Info'), t('Ticket has been saved'), 'success');
