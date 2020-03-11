@@ -20,6 +20,7 @@
 
 <script>
     import ApprovalQuestionRow from "./ApprovalQuestionRow";
+    import {EventBus} from "../../EventBus";
 
     export default {
         name: "ApprovalQuestions",
@@ -27,6 +28,11 @@
             return {
                 questions: [],
             }
+        },
+        created(){
+            EventBus.$on('removeQuestion', (index,question) => {
+                this.questions.splice(this.questions.indexOf(question), 1);
+            });
         },
         methods: {
             addNew() {

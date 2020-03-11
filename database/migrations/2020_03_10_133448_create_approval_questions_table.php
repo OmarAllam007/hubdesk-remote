@@ -17,7 +17,7 @@ class CreateApprovalQuestionsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('approval_id');
             $table->string('description');
-            $table->unsignedInteger('answer')->nullable();
+            $table->integer('answer')->nullable();
             $table->timestamps();
         });
     }

@@ -65,7 +65,22 @@ class TicketApproval extends KModel
 
     function questions()
     {
-        return $this->hasMany(ApprovalQuestion::class,'approval_id');
+        return $this->hasMany(ApprovalQuestion::class, 'approval_id');
+    }
+
+    function getApprovalQuestionsStatusAttribute()
+    {
+        $status = self::APPROVED;
+
+        if ($this->questions()->count()) {
+            foreach ($this->questions as $key => $question) {
+                if ($question->answer == self:: DENIED) {
+                    $status = self::DENIED;
+                }
+            }
+        }
+
+        return $status;
     }
 
     function getStatusStrAttribute()

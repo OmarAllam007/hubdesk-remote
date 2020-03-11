@@ -28,45 +28,53 @@
             <section id="action">
                 {{Form::open(['route' => ['approval.update', $ticketApproval]])}}
 
-                <h4>{{t('Questions')}}</h4>
-                @foreach($ticketApproval->questions as $question)
-                    <p>{{$question->description}}</p>
-                    <div class="row form-group">
+                @if($ticketApproval->questions->count())
+                    <h4>{{t('Questions')}}</h4>
+                    @foreach($ticketApproval->questions as $key=>$question)
+                        <p>{{$question->description}}</p>
+                        <div class="row form-group">
+                            <div class="col-md-3">
+                                <label for="approve{{$key}}" class="radio-online">
+                                    {{Form::radio('questions['.$question->id.']', \App\TicketApproval::APPROVED, null, ['id' => 'approve'.$key])}}
+                                    {{t('Approve')}}
+                                    {{--                                 <i class="fa fa-thumbs-o-up"></i>--}}
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="deny{{$key}}" class="radio-online">
+                                    {{Form::radio('questions['.$question->id.']', \App\TicketApproval::DENIED, null, ['id' => 'deny'.$key])}}
+                                    {{t('Deny')}}
+                                    {{--                                <i class="fa fa-thumbs-o-down"></i>--}}
+                                </label>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
+
+                @if(!$ticketApproval->questions->count())
+                    <h4>Action</h4>
+                    <div class="row form-group {{$errors->has('status')? 'has-error' : ''}}">
                         <div class="col-md-3">
                             <label for="approve" class="radio-online">
                                 {{Form::radio('status', \App\TicketApproval::APPROVED, null, ['id' => 'approve'])}}
-                                Approve {{-- <i class="fa fa-thumbs-o-up"></i>--}}
+                                {{t('Approve')}}
+                                {{--                            <i class="fa fa-thumbs-o-up"></i>--}}
                             </label>
                         </div>
                         <div class="col-md-3">
                             <label for="deny" class="radio-online">
                                 {{Form::radio('status', \App\TicketApproval::DENIED, null, ['id' => 'deny'])}}
-                                Deny {{--<i class="fa fa-thumbs-o-down"></i>--}}
+                                {{t('Deny')}}
+                                {{--                            <i class="fa fa-thumbs-o-down"></i>--}}
                             </label>
                         </div>
+                        <div class="col-md-12">
+                            @if($errors->has('status'))
+                                <div class="error-message">{{$errors->first('status')}}</div>
+                            @endif
+                        </div>
                     </div>
-                @endforeach
-                <h4>Action</h4>
-                <div class="row form-group {{$errors->has('status')? 'has-error' : ''}}">
-                    <div class="col-md-3">
-                        <label for="approve" class="radio-online">
-                            {{Form::radio('status', \App\TicketApproval::APPROVED, null, ['id' => 'approve'])}}
-                            Approve {{-- <i class="fa fa-thumbs-o-up"></i>--}}
-                        </label>
-                    </div>
-                    <div class="col-md-3">
-                        <label for="deny" class="radio-online">
-                            {{Form::radio('status', \App\TicketApproval::DENIED, null, ['id' => 'deny'])}}
-                            Deny {{--<i class="fa fa-thumbs-o-down"></i>--}}
-                        </label>
-                    </div>
-                    <div class="col-md-12">
-                        @if($errors->has('status'))
-                            <div class="error-message">{{$errors->first('status')}}</div>
-                        @endif
-                    </div>
-                </div>
-
+                @endif
                 <div class="form-group {{$errors->has('comment')? 'has-error' : ''}}">
                     {{Form::label('comment', 'Comment', ['class' => 'control-label'])}}
                     {{Form::textarea('comment', null, ['class' => 'form-control'])}}
