@@ -1,3 +1,4 @@
 {
-    "/js/business-rules.js": "/js/business-rules.js"
+    "/js/approval-levels.js": "/js/approval-levels.js",
+    "/js/ticket-requirements.js": "/js/ticket-requirements.js"
 }

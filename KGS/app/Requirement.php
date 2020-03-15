@@ -17,6 +17,7 @@ class Requirement extends Model
 
     const SERVICE_TYPE = 1;
     const DOCUMENT_TYPE = 2;
+    const INPUT_TYPE = 3;
 
     static $types = ['Category' => 1, 'Subcategory' => 2, 'Item' => 3];
 
@@ -40,7 +41,7 @@ class Requirement extends Model
             return Subcategory::find($this->value)->service_cost;
         }
         else if($this->reference_type == self::ITEM_TYPE){
-            return Item::find($this->value)->service_cost;
+            return Item::find($this->value)->service_cost ?? 0;
         }
 
         return 0;

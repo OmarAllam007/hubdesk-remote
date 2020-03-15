@@ -224,8 +224,6 @@ class User extends Authenticatable implements CanResetPassword
     function reply_templates(){
         return $this->hasMany(ReplyTemplate::class);
     }
-//    function getReplyTemplatesAttribute(){
-//        return ReplyTemplate::where('user_id',$this->id)->get();
-//    }
+
 }
   

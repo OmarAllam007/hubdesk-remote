@@ -9,13 +9,17 @@
                     <label :for="`requirement-checkbox[${index}]`">
                        <span v-show="requirement.type == 1"> {{requirement.label}} - {{requirement.cost}} SAR</span>
                        <span v-show="requirement.type ==  2"> {{requirement.field}}</span>
+                       <span v-show="requirement.type ==  3"> {{requirement.field}}</span>
                     </label>
                 </div>
-                <div class="requirement-actions">
-                    <input type="file" :name="`requirements[${index}][file]`" class="requirement-attachment" v-if="checked" @change="attachFile()">
+                <div class="requirement-actions" >
+                    <input type="file" :name="`requirements[${index}][file]`" class="requirement-attachment" v-if="requirement.type != 3 && checked" @change="attachFile()">
+                    <input type="text" :name="`requirements[${index}][input]`" class="form-control"  v-if="requirement.type == 3 && checked">
+
                     <input type="hidden" :name="`requirements[${index}][reference]`" :value="requirement.value">
                     <input type="hidden" :name="`requirements[${index}][reference_type]`" :value="requirement.reference_type">
                     <input type="hidden" :name="`requirements[${index}][type]`" :value="requirement.type">
+                    <input type="hidden" :name="`requirements[${index}][id]`" :value="requirement.id">
                     <!--<button class="btn btn-sm btn-primary" v-else>Create Ticket</button>-->
                 </div>
             </div>
