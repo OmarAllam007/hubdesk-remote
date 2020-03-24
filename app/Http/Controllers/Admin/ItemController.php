@@ -37,15 +37,15 @@ class ItemController extends Controller
         $this->validates($request);
         $service_request = isset($request->service_request) ? 1 : 0;
         $data = $request->all();
-        $data['service_request']=$service_request;
+        $data['service_request'] = $service_request;
         $item = Item::create($data);
 
         $this->handleLevels($request, $item);
         $this->createUserGroups($request, $item);
-        $this->handleRequirements($request,$item);
+        $this->handleRequirements($request, $item);
 
-        $this->createFees($request,$item);
-        flash(t('Item Info'),t('Item has been saved'), 'success');
+        $this->createFees($request, $item);
+        flash(t('Item Info'), t('Item has been saved'), 'success');
 
         return \Redirect::route('admin.subcategory.show', $item->subcategory_id);
     }
@@ -64,15 +64,15 @@ class ItemController extends Controller
     {
         $service_request = isset($request->service_request) ? 1 : 0;
         $data = $request->all();
-        $data['service_request']=$service_request;
+        $data['service_request'] = $service_request;
         $item->update($data);
 
         $this->handleLevels($request, $item);
         $this->createUserGroups($request, $item);
-        $this->handleRequirements($request,$item);
+        $this->handleRequirements($request, $item);
 
-        $this->createFees($request,$item);
-        flash(t('Item Info'),'Item has been saved', 'success');
+        $this->createFees($request, $item);
+        flash(t('Item Info'), 'Item has been saved', 'success');
 
         return \Redirect::route('admin.subcategory.show', $item->subcategory_id);
     }
@@ -81,55 +81,49 @@ class ItemController extends Controller
     {
         $item->delete();
 
-        flash(t('Item Info'),t('Item has been deleted'), 'success');
+        flash(t('Item Info'), t('Item has been deleted'), 'success');
 
         return \Redirect::route('admin.subcategory.show', $item->subcategory_id);
     }
 
-    private function handleLevels(Request $request,Item $item)
+    private function handleLevels(Request $request, Item $item)
     {
         $item->levels()->delete();
 
-        if (!empty($request->levels)) {
-            foreach ($request->levels as $key => $role) {
-                ApprovalLevels::create([
-                    'type' => 3,
-                    'level_id' => $item->id,
-                    'role_id' => $role,
-                ]);
-            }
+        foreach ($request->get('levels', []) as $key => $role) {
+            ApprovalLevels::create([
+                'type' => 3,
+                'level_id' => $item->id,
+                'role_id' => $role,
+            ]);
         }
     }
 
-    private function createUserGroups(Request $request,Item $item)
+    private function createUserGroups(Request $request, Item $item)
     {
-        if (!empty($request['user_groups'])) {
-            $item->service_user_groups()->delete();
-            foreach ($request['user_groups'] as $group) {
-                $item->service_user_groups()->create([
-                    'level' => ServiceUserGroup::$ITEM,
-                    'group_id' => $group
-                ]);
-            }
+        $item->service_user_groups()->delete();
+
+        foreach ($request->get('user_groups',[]) as $group) {
+            $item->service_user_groups()->create([
+                'level' => ServiceUserGroup::$ITEM,
+                'group_id' => $group
+            ]);
         }
     }
+
     private function handleRequirements(Request $request, Item $item)
     {
-        if(empty($request->requirements)){
-            return;
-        }
-
         $item->requirements()->delete();
 
-        foreach ($request->requirements as $requirement){
+        foreach ($request->get('requirements',[]) as $requirement) {
             $item->requirements()->create([
-                'reference_type'=> 3,
-                'reference_id'=> $item->id,
-                'field'=>$requirement['field'],
-                'operator'=>'is',
-                'label'=>$requirement['label'],
-                'value'=>$requirement['value'],
-                'type'=>$requirement['type'],
+                'reference_type' => 3,
+                'reference_id' => $item->id,
+                'field' => $requirement['field'],
+                'operator' => 'is',
+                'label' => $requirement['label'],
+                'value' => $requirement['value'],
+                'type' => $requirement['type'],
             ]);
         }
 
@@ -137,17 +131,15 @@ class ItemController extends Controller
 
     private function createFees(Request $request, Item $item)
     {
-        if (empty($request->fees)) {
-            return;
-        }
+
         $item->fees()->delete();
 
-        foreach ($request->fees as $fee) {
+        foreach ($request->get('fees',[]) as $fee) {
             $item->fees()->create([
                 'name' => $fee['name'],
                 'cost' => $fee['cost'],
-                'level'=> AdditionalFee::ITEM,
-                'level_id'=> $item->id,
+                'level' => AdditionalFee::ITEM,
+                'level_id' => $item->id,
             ]);
         }
     }

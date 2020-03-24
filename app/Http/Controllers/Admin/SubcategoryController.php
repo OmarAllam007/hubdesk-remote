@@ -42,10 +42,10 @@ class SubcategoryController extends Controller
 
         $this->handleLevels($request, $subcategory);
         $this->createUserGroups($request, $subcategory);
-        $this->handleRequirements($request,$subcategory);
-        $this->createFees($request,$subcategory);
+        $this->handleRequirements($request, $subcategory);
+        $this->createFees($request, $subcategory);
 
-        flash(t('Subcategory Info'),'Subcategory has been saved', 'success');
+        flash(t('Subcategory Info'), 'Subcategory has been saved', 'success');
 
         return \Redirect::route('admin.category.show', $subcategory->category_id);
     }
@@ -70,11 +70,10 @@ class SubcategoryController extends Controller
 
         $this->handleLevels($request, $subcategory);
         $this->createUserGroups($request, $subcategory);
+        $this->handleRequirements($request, $subcategory);
+        $this->createFees($request, $subcategory);
 
-        $this->handleRequirements($request,$subcategory);
-        $this->createFees($request,$subcategory);
-
-        flash(t('Subcategory'),'Subcategory has been saved', 'success');
+        flash(t('Subcategory'), 'Subcategory has been saved', 'success');
         return \Redirect::route('admin.category.show', $subcategory->category_id);
     }
 
@@ -91,47 +90,42 @@ class SubcategoryController extends Controller
     {
         $subcategory->levels()->delete();
 
-        if (count($request->levels)) {
-            foreach ($request->levels as $key => $role) {
-                ApprovalLevels::create([
-                    'type' => 2,
-                    'level_id' => $subcategory->id,
-                    'role_id' => $role,
-                ]);
-            }
+        foreach ($request->get('levels', []) as $key => $role) {
+            ApprovalLevels::create([
+                'type' => 2,
+                'level_id' => $subcategory->id,
+                'role_id' => $role,
+            ]);
         }
+
     }
 
-    private function createUserGroups(Request $request,Subcategory $subcategory)
+    private function createUserGroups(Request $request, Subcategory $subcategory)
     {
-        if (count($request['user_groups'])) {
-            $subcategory->service_user_groups()->delete();
-            foreach ($request['user_groups'] as $group) {
-                $subcategory->service_user_groups()->create([
-                    'level' => ServiceUserGroup::$SUBCATEGORY,
-                    'group_id' => $group
-                ]);
-            }
+        $subcategory->service_user_groups()->delete();
+
+        foreach ($request->get('user_groups', []) as $group) {
+            $subcategory->service_user_groups()->create([
+                'level' => ServiceUserGroup::$SUBCATEGORY,
+                'group_id' => $group
+            ]);
         }
     }
 
     private function handleRequirements(Request $request, Subcategory $subcategory)
     {
-        if(!count($request->requirements)){
-            return;
-        }
-
         $subcategory->requirements()->delete();
 
-        foreach ($request->requirements as $requirement){
+        foreach ($request->get('requirements', []) as $requirement) {
+
             $subcategory->requirements()->create([
-                'reference_type'=> 2,
-                'reference_id'=> $subcategory->id,
-                'field'=>$requirement['field'],
-                'operator'=>'is',
-                'label'=>$requirement['label'],
-                'value'=>$requirement['value'],
-                'type'=>$requirement['type'],
+                'reference_type' => 2,
+                'reference_id' => $subcategory->id,
+                'field' => $requirement['field'],
+                'operator' => 'is',
+                'label' => $requirement['label'],
+                'value' => $requirement['value'],
+                'type' => $requirement['type'],
             ]);
         }
 
@@ -139,17 +133,14 @@ class SubcategoryController extends Controller
 
     private function createFees(Request $request, Subcategory $subcategory)
     {
-        if (!count($request->fees)) {
-            return;
-        }
         $subcategory->fees()->delete();
 
         foreach ($request->fees as $fee) {
             $subcategory->fees()->create([
                 'name' => $fee['name'],
                 'cost' => $fee['cost'],
-                'level'=> AdditionalFee::SUBCATEGORY,
-                'level_id'=> $subcategory->id,
+                'level' => AdditionalFee::SUBCATEGORY,
+                'level_id' => $subcategory->id,
             ]);
         }
     }
