@@ -13,5 +13,6 @@ class ServiceUserGroup extends Model
     static $CATEGORY = 1;
     static $SUBCATEGORY = 2;
     static $ITEM = 3;
+    static $SUB_ITEM = 4;
 
 }

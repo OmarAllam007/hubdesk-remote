@@ -22,6 +22,7 @@ use Illuminate\Support\Collection;
  * @property integer $category_id
  * @property integer $subcategory_id
  * @property integer $item_id
+ * @property integer $subitem_id
  * @property integer $status_id
  * @property integer $priority_id
  * @property integer $impact_id
@@ -78,7 +79,7 @@ class Ticket extends KModel
 
     protected $fillable = [
         'subject', 'description', 'category_id', 'subcategory_id', 'item_id', 'group_id', 'technician_id',
-        'priority_id', 'impact_id', 'urgency_id', 'requester_id', 'creator_id', 'status_id', 'sdp_id', 'type', 'request_id', 'is_opened','business_unit_id'
+        'priority_id', 'impact_id', 'urgency_id', 'requester_id', 'creator_id', 'status_id', 'sdp_id', 'type', 'request_id', 'is_opened','business_unit_id','subitem_id'
     ];
 
     protected $dates = ['created_at', 'updated_at', 'due_date', 'first_response_date', 'resolve_date', 'close_date'];
@@ -145,6 +146,10 @@ class Ticket extends KModel
         return $this->belongsTo(Item::class);
     }
 
+    public function subItem()
+    {
+        return $this->belongsTo(SubItem::class,'subitem_id');
+    }
     public function status()
     {
         return $this->belongsTo(Status::class);
@@ -578,7 +583,7 @@ class Ticket extends KModel
         return $fees ?? collect();
     }
 
-    function getSla($category, $subcategory = null, $item = null)
+    function getSla($category, $subcategory = null, $item = null,$subItem = null)
     {
         $this->category_id = $category->id;
 

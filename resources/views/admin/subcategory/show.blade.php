@@ -39,7 +39,10 @@
         <tbody>
         @foreach($subcategory->items as $item)
             <tr>
-                <td>{{$item->name}}</td>
+                <td><a href="{{route('admin.item.show',$item)}}">
+                        {{$item->name}}
+                    </a>
+                </td>
                 <td>
                     {{Form::open(['route' => ['admin.item.destroy', $item], 'method' => 'delete'])}}
                     <a class="btn btn-xs btn-primary" href="{{route('admin.item.edit', $item)}}"><i

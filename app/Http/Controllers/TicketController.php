@@ -14,6 +14,7 @@ use App\Http\Requests\TicketReplyRequest;
 use App\Http\Requests\TicketRequest;
 use App\Http\Requests\TicketResolveRequest;
 use App\Item;
+use App\Jobs\ApplyBusinessRules;
 use App\Jobs\ApplySLA;
 use App\Jobs\NewNoteJob;
 use App\Jobs\NewTicketJob;
@@ -23,6 +24,7 @@ use App\Mail\TicketAssignedMail;
 use App\Mail\TicketForwardJob;
 use App\ReplyTemplate;
 use App\Subcategory;
+use App\SubItem;
 use App\Ticket;
 use App\TicketApproval;
 use App\TicketField;
@@ -49,14 +51,15 @@ class TicketController extends Controller
         return view('ticket.create_ticket.index');
     }
 
-    public function createTicket(BusinessUnit $business_unit, Category $category, Subcategory $subcategory, Item $item)
+    public function createTicket(BusinessUnit $business_unit, Category $category, Subcategory $subcategory, Item $item, SubItem $subItem)
     {
-        return view('ticket.create', compact('business_unit', 'category', 'subcategory', 'item'));
+        return view('ticket.create', compact('business_unit', 'category', 'subcategory', 'item', 'subItem'));
     }
 
     public function store(Request $request)
     {
-        $validation = ['subject' => 'required', 'description' => 'required'];
+
+        $validation = ['subject' => 'required', 'description' => 'required', 'priority_id' => 'required'];
 
         $messages = [];
 
@@ -453,41 +456,53 @@ class TicketController extends Controller
 
     function selectCategory(BusinessUnit $business_unit)
     {
-        if ($business_unit->categories()->count()) {
-            return view('ticket.create_ticket.create_category', compact('business_unit'));
-        }
-        return view('ticket.create', compact('business_unit'));
+        return view('ticket.create_ticket.select_category', compact('business_unit'));
     }
 
     function selectSubcategory(BusinessUnit $business_unit, Category $category)
     {
-
         if ($category->subcategories()->count()) {
-            return view('ticket.create_ticket.create_subcategory', compact('business_unit', 'category'));
+            return view('ticket.create_ticket.select_subcategory', compact('business_unit', 'category'));
         }
-        $subcategory = new Subcategory();
 
+        $subcategory = new Subcategory();
         return view('ticket.create', compact('business_unit', 'category', 'subcategory'));
     }
 
-    function selectItem(BusinessUnit $business_unit, Category $category, Subcategory $subcategory)
+    function selectItem(BusinessUnit $business_unit, Subcategory $subcategory)
     {
         if ($subcategory->items()->count()) {
-            return view('ticket.create_ticket.create_item', compact('business_unit', 'category', 'subcategory'));
+            return view('ticket.create_ticket.select_item', compact('business_unit', 'subcategory'));
         }
 
-        $item = null;
+        $category = $subcategory->category;
+        $item = new Item();
+
         return view('ticket.create', compact('business_unit', 'category', 'subcategory', 'item'));
+    }
+
+    function selectSubItem(BusinessUnit $business_unit, Item $item)
+    {
+
+        if ($item->subItems()->count()) {
+            return view('ticket.create_ticket.select_subitem', compact('business_unit', 'item'));
+        }
+
+        $category = $item->subcategory->category;
+        $subcategory = $item->subcategory;
+        $subItem = null;
+
+        return view('ticket.create', compact('business_unit', 'category', 'subcategory', 'item', 'subItem'));
     }
 
 
     function downloadAttachment(Attachment $attachment)
     {
-        if (in_array($attachment->type , [Attachment::TICKET_TYPE,Attachment::TASK_TYPE])) {
+        if (in_array($attachment->type, [Attachment::TICKET_TYPE, Attachment::TASK_TYPE])) {
             $ticket = Ticket::find($attachment->reference);
         } elseif ($attachment->type == Attachment::TICKET_REPLY_TYPE) {
             $ticket = TicketReply::find($attachment->reference)->ticket;
-        }else {
+        } else {
             $ticket = TicketApproval::find($attachment->reference)->ticket;
         }
 
