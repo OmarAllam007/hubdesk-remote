@@ -135,7 +135,7 @@ class SubcategoryController extends Controller
     {
         $subcategory->fees()->delete();
 
-        foreach ($request->fees as $fee) {
+        foreach ($request->get('fees', []) as $fee) {
             $subcategory->fees()->create([
                 'name' => $fee['name'],
                 'cost' => $fee['cost'],
