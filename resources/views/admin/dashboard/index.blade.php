@@ -34,6 +34,7 @@
                             <li><a href="{{route('admin.category.index')}}">{{t('Categories')}}</a></li>
                             <li><a href="{{route('admin.subcategory.index')}}">{{t('Subcategories')}}</a></li>
                             <li><a href="{{route('admin.item.index')}}">{{t('Items')}}</a></li>
+                            <li><a href="{{route('admin.subItem.index')}}">{{t('SubItems')}}</a></li>
                         </ul>
                     </div>
                 </div>

@@ -57,7 +57,7 @@
                         @foreach($category->subcategories()->orderBy('order')->get() as $subcategory)
                             @if($subcategory->canDisplay(\App\ServiceUserGroup::$SUBCATEGORY))
 
-                            <a href="{{route('ticket.create.select_item', compact('business_unit','category','subcategory'))}}" class="tile">
+                            <a href="{{route('ticket.create.select_item', compact('business_unit','subcategory'))}}" class="tile">
                                 <div class="tile-container"
                                      style="display: flex;align-items: center;justify-content: center;">
                                     {{--<div class="tile-icon" style="">--}}

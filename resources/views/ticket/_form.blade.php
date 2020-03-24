@@ -1,7 +1,7 @@
 @php
     /** @var \App\Sla $sla */
 $ticketObj = new \App\Ticket();
-$sla = $ticketObj->getSla($category,$subcategory ?? null ,$item ?? null);
+$sla = $ticketObj->getSla($category,$subcategory ?? null ,$item ?? null,$subItem ?? '');
 @endphp
 
 @if($sla)
@@ -107,9 +107,22 @@ $sla = $ticketObj->getSla($category,$subcategory ?? null ,$item ?? null);
             {{Form::hidden('category_id',$category->id)}}
             {{Form::hidden('subcategory_id',$subcategory->id ?? null)}}
             {{Form::hidden('item_id',$item->id ?? null)}}
+            {{Form::hidden('subitem_id',$subItem->id ?? null)}}
         </div>
     </div>
-
+    <div class="row">
+        <div class="col-md-6 {{$errors->has('priority_id')? 'has-error' : ''}}">
+            {{ Form::label('priority_id', t('Priority'), ['class' => 'control-label']) }} <strong
+                    class="text-danger">*</strong>
+            <select name="priority_id" id="priority_id" class="form-control">
+                <option value="">{{t('Select Priority')}}</option>
+                @foreach(App\Priority::all() as $priority)
+                    <option value="{{$priority->id}}"> {{$priority->name }}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <br>
     @if($category->notes || (isset($subcategory) && $subcategory->notes) || (isset($item) && $item->notes) )
         <fieldset>
             <label>{{t('Notes')}}</label>
