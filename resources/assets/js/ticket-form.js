@@ -7,45 +7,32 @@ window.app = new Vue({
         category: window.category,
         subcategory: window.subcategory,
         item: window.item,
+        subitem: window.subitem,
         group: window.group,
         subcategories: {},
         items: {},
+        subitems: {},
         technicians: {},
         technician_id: window.technician_id,
         requester: '',
         loading: false,
-        requester_id:'',
-        selected:0
+        requester_id: '',
+        selected: 0
     },
     mounted: function () {
         this.loadCategory(true);
         this.loadSubcategory(true);
         this.loadItem(true);
+        this.loadSubItem(true);
+
         const self = this;
 
-        $("#requester_id").change((e)=> {
-             this.getRequesterInfo(e.target.value)
+        $("#requester_id").change((e) => {
+            this.getRequesterInfo(e.target.value)
         });
-        // var selectDropDown = $("#requester_id").select2();
-        //
-        // selectDropDown.on('select2:select', function (e) {
-        //     var event = new Event('change');
-        //     e.target.dispatchEvent(event);
-        //     console.log('fired')
-        // });
-        //
-        // jQuery("#requester_id").select((e) => {
-        //     console.log(e.target.value)
-        //     this.getRequesterInfo(e.target.value)
-        // });
     },
     created() {
         this.getRequesterInfo($('#requester_id').val())
-
-        // this.loadCategory(false);
-        // this.loadSubcategory(false)
-        // // this.loadTechnicians()
-        //
         this.loadTechnicians()
 
     },
@@ -55,6 +42,7 @@ window.app = new Vue({
                 jQuery.get(`/list/subcategory/${this.category}`).then(response => {
                     this.subcategories = response;
                 });
+
                 if (withFields) this.loadCustomFields();
             }
         },
@@ -78,6 +66,14 @@ window.app = new Vue({
         },
         loadItem(withFields) {
             if (this.item && this.item != 0) {
+                jQuery.get(`/list/subitem/${this.item}`).then(response => {
+                    this.subitems = response;
+                });
+                if (withFields) this.loadCustomFields();
+            }
+        },
+        loadSubItem(withFields) {
+            if (this.subitem && this.subitem != 0) {
                 if (withFields) this.loadCustomFields();
             }
         },
@@ -96,7 +92,7 @@ window.app = new Vue({
                 }
             });
 
-            let url = `/custom-fields?category=${this.category}&subcategory=${this.subcategory}&item=${this.item}`;
+            let url = `/custom-fields?category=${this.category}&subcategory=${this.subcategory}&item=${this.item}&subitem=${this.subitem}`;
             $.get(url).then(response => {
                 let newFields = $(response);
                 for (let id in fieldValues) {
@@ -124,16 +120,28 @@ window.app = new Vue({
         category() {
             this.subcategory = ""
             this.item = ""
+
+            this.subcategories = {};
+            this.items = {};
+            this.subitems = {};
+
             this.loadCategory(true);
         },
 
         subcategory() {
             this.item = ""
             this.loadSubcategory(true);
+            this.items = {};
+            this.subitems = {};
         },
 
         item() {
             this.loadItem(true);
+            this.subitems = {};
+        },
+
+        subitem() {
+            this.loadSubItem(true);
         },
 
         group() {

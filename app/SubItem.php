@@ -2,13 +2,15 @@
 
 namespace App;
 
+use App\Behaviors\Listable;
 use App\Behaviors\ServiceConfiguration;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class SubItem extends Model
 {
-    use SoftDeletes, ServiceConfiguration;
+    use SoftDeletes, ServiceConfiguration,Listable;
 
     protected $fillable = [
         'item_id', 'name', 'description', 'service_cost', 'order', 'is_disabled'
@@ -24,5 +26,19 @@ class SubItem extends Model
     {
         return $this->hasMany(ServiceUserGroup::class, 'level_id')
             ->where('level', ServiceUserGroup::$SUB_ITEM);
+    }
+
+
+    public function scopeCanonicalList(Builder $query)
+    {
+        $items = $query->with('item')
+            ->with('item.subcategory')
+            ->with('item.subcategory.category')
+            ->get()->map(function ($item) {
+                $item->name = "{$item->item->subcategory->category->name} > {$item->item->subcategory->name} > {$item->item->name} > {$item->name}";
+                return $item;
+            });
+
+        return $items->sortBy('name');
     }
 }

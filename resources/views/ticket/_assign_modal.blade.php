@@ -55,25 +55,27 @@
                         @endif
                     </div>
 
-                    <div class="form-group  {{$errors->has('item_id')? 'has-error' : ''}}">
+                    <div class="form-group  {{$errors->has('item_id')? 'has-error' : ''}}" v-if="items.length">
                         {{ Form::label('item_id', t('Item'), ['class' => 'control-label']) }}
                         <select class="form-control" name="item_id" id="item_id" v-model="item">
                             <option value="">Select Item</option>
-                            <option v-for="(item, id) in items" :value="id" v-text="item"></option>
+                            <option v-for="(item, id) in items" :value="item.id" v-text="item.name"></option>
                         </select>
                         @if ($errors->has('item_id'))
                             <div class="error-message">{{$errors->first('item_id')}}</div>
                         @endif
                     </div>
 
-                    {{--<div id="CustomFields">--}}
-                        {{--@include('custom-fields.render', [--}}
-                            {{--'category' => App\Category::find(old('category_id')),--}}
-                            {{--'subcategory' => App\Category::find(old('subcategory_id')),--}}
-                            {{--'item' => App\Item::find(old('item_id'))--}}
-                        {{--])--}}
-                    {{--</div>--}}
-
+                    <div class="form-group  {{$errors->has('item_id')? 'has-error' : ''}}" v-if="subitems.length">
+                        {{ Form::label('item_id', t('SubItem'), ['class' => 'control-label']) }}
+                        <select class="form-control" name="subitem_id" id="subitem_id" v-model="subitem">
+                            <option value="">Select SubItem</option>
+                            <option v-for="(subitem, id) in subitems" :value="subitem.id" v-text="subitem.name"></option>
+                        </select>
+                        @if ($errors->has('subitem_id'))
+                            <div class="error-message">{{$errors->first('subitem_id')}}</div>
+                        @endif
+                    </div>
                 </div>
             </div>
 
@@ -90,6 +92,7 @@
         var category = '{{Form::getValueAttribute('category_id') ?? $ticket->category_id}}';
         var subcategory = '{{Form::getValueAttribute('subcategory_id') ?? $ticket->subcategory_id}}';
         var item = '{{Form::getValueAttribute('item_id') ?? $ticket->item_id}}';
+        var subitem = '{{Form::getValueAttribute('subitem_id') ?? $ticket->subitem_id}}';
         var group = '{{Form::getValueAttribute('group_id') ?? $ticket->group_id}}'
         var technician_id = '{{Form::getValueAttribute('technician_id') ?? $ticket->technician_id}}'
     </script>

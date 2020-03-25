@@ -245,7 +245,7 @@ class TicketController extends Controller
     {
         $current_technician = $ticket->technician_id;
 
-        $ticket->update($request->only(['group_id', 'technician_id', 'category_id', 'subcategory_id', 'item_id']));
+        $ticket->update($request->only(['group_id', 'technician_id', 'category_id', 'subcategory_id', 'item_id','subitem_id']));
 
         if ($request->get('technician_id') != $current_technician) {
             \Mail::send(new TicketAssignedMail($ticket));
