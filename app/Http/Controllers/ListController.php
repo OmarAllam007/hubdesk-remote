@@ -12,6 +12,7 @@ use App\Location;
 use App\Priority;
 use App\Status;
 use App\Subcategory;
+use App\SubItem;
 use App\Ticket;
 use App\Urgency;
 use App\User;
@@ -37,6 +38,17 @@ class ListController extends Controller
 
         return $query->canonicalList();
     }
+
+    public function subitem($item_id = false)
+    {
+        $query = SubItem::query();
+        if ($item_id) {
+            return $query->orderBy('name')->where('item_id', $item_id)->get(['name', 'id']);
+        }
+
+        return $query->canonicalList();
+    }
+
 
     public function category($service_type = 1)
     {

@@ -10,6 +10,7 @@
                     <option value="category_id">Category</option>
                     <option value="subcategory_id">Subcategory</option>
                     <option value="item_id">Item</option>
+                    <option value="subitem_id">Subitem</option>
                     <option value="urgency_id">Urgency</option>
                     <option value="priority_id">Priority</option>
                     <option value="impact_id">Impact</option>
@@ -81,6 +82,7 @@
         category_id: {type: 'select', list: 'category', name: 'Category'},
         subcategory_id: {type: 'select', list: 'subcategory', name: 'Subcategory'},
         item_id: {type: 'select', list: 'item', name: 'Item'},
+        subitem_id: {type: 'select', list: 'subitem', name: 'subitem_id'},
         location_id: {type: 'select', list: 'location', name: 'Location'},
         business_unit_id: {type: 'select', list: 'business-unit', name: 'Business Unit'},
         priority_id: {type: 'select', list: 'priority', name: 'Priority'},

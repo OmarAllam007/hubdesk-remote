@@ -16,6 +16,7 @@ Route::get('auth/google/continue', 'Auth\AuthController@googleHandle');
 Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
     $r->get('/subcategory/{cat_id?}', 'ListController@subcategory');
     $r->get('/item/{subcat_id?}', 'ListController@item');
+    $r->get('/subitem/{item_id?}', 'ListController@subitem');
     $r->get('/category', 'ListController@category');
     $r->get('/location', 'ListController@location');
     $r->get('/business-unit', 'ListController@businessUnit');
