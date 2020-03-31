@@ -33,6 +33,7 @@ class SubItemController extends Controller
         $subItem = SubItem::create($request->all());
 
         $this->createUserGroups($request, $subItem);
+        $this->createOrUpdateLimitation($request, $subItem);
 
         flash(t('SubItem Info'),t('SubItem has been saved'), 'success');
 
@@ -48,6 +49,7 @@ class SubItemController extends Controller
     {
         $subItem->update($request->all());
         $this->createUserGroups($request, $subItem);
+        $this->createOrUpdateLimitation($request, $subItem);
 
         flash(t('SubItem Info'),'SubItem has been saved', 'success');
         return \Redirect::route('admin.item.show', $subItem->item_id);
@@ -89,5 +91,20 @@ class SubItemController extends Controller
                 ]);
             }
         }
+    }
+
+    private function createOrUpdateLimitation(Request $request, SubItem $subItem)
+    {
+        $subItem->limitations()->delete();
+
+        foreach ($request->get('limitations', []) as $limitation) {
+            $subItem->limitations()->create([
+                'value' => explode(",", $limitation['value']),
+                'label' => $limitation['label'],
+                'level' => get_class($subItem),
+                'number_of_tickets' => $limitation['number_of_tickets'],
+            ]);
+        }
+
     }
 }

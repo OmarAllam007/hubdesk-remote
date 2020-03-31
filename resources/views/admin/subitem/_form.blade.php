@@ -38,7 +38,7 @@
                     <option value="">{{t('Select Group')}}</option>
                     @foreach(\App\Group::requesters()->get() as $group)
                         <option value="{{$group->id}}"
-                                @if(isset($subitem) && in_array($group->id,$item->service_user_groups()->pluck('group_id')->toArray()))
+                                @if(isset($subItem) && in_array($group->id,$subItem->service_user_groups()->pluck('group_id')->toArray()))
                                 selected
                                 @endif>{{$group->name}}</option>
                     @endforeach
@@ -79,6 +79,14 @@
 {{--                                     :approvals="{{isset($item) ? $item->levels: 0}}"></approval-levels>--}}
 {{--                </fieldset>--}}
 {{--            </div>--}}
+                <fieldset>
+                    <legend>Limitation</legend>
+                    <limitation
+                            :business_units="{{\App\BusinessUnit::orderBy('name')->get(['name','id'])}}"
+                            :limitation_data="{{ isset($subItem) && $subItem->limitations ? $subItem->limitations : null }}">
+
+                    </limitation>
+                </fieldset>
 
             <div class="form-group">
                 <button class="btn btn-success"><i class="fa fa-check-circle"></i> Submit</button>

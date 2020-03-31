@@ -4,6 +4,7 @@ namespace App\Behaviors;
 
 use App\Availability;
 use App\Group;
+use App\ServiceLimit;
 use App\ServiceUserGroup;
 use Illuminate\Database\Eloquent\Builder;
 use PhpParser\Node\Expr\Cast\Int_;
@@ -16,6 +17,13 @@ use PhpParser\Node\Expr\Cast\Int_;
  */
 trait ServiceConfiguration
 {
+
+    function limitations()
+    {
+        return $this->hasMany(ServiceLimit::class,'level_id')
+            ->where('level',get_class($this));
+    }
+
 
     public function canDisplay($type)
     {

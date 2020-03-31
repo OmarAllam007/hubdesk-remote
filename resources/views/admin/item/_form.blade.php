@@ -97,6 +97,14 @@
                 <service-requirements
                         :requirements_data="{{json_encode(isset($item) ? $item->requirements: [] )}}"></service-requirements>
             </fieldset>
+
+            <fieldset>
+                <legend>Limitation</legend>
+                <limitation
+                        :business_units="{{\App\BusinessUnit::orderBy('name')->get(['name','id'])}}"
+                        :limitation_data="{{ isset($item) && $item->limitations ? $item->limitations : null }}">
+                </limitation>
+            </fieldset>
         </div>
     </div>
 </div>
