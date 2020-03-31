@@ -6,6 +6,7 @@ use App\AdditionalFee;
 use App\ApprovalLevels;
 use App\Item;
 use App\ServiceUserGroup;
+use App\Subcategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -43,10 +44,10 @@ class ItemController extends Controller
         $this->handleLevels($request, $item);
         $this->createUserGroups($request, $item);
         $this->handleRequirements($request, $item);
-
         $this->createFees($request, $item);
-        flash(t('Item Info'), t('Item has been saved'), 'success');
+        $this->createOrUpdateLimitation($request, $item);
 
+        flash(t('Item Info'), t('Item has been saved'), 'success');
         return \Redirect::route('admin.subcategory.show', $item->subcategory_id);
     }
 
@@ -70,8 +71,9 @@ class ItemController extends Controller
         $this->handleLevels($request, $item);
         $this->createUserGroups($request, $item);
         $this->handleRequirements($request, $item);
-
         $this->createFees($request, $item);
+        $this->createOrUpdateLimitation($request, $item);
+
         flash(t('Item Info'), 'Item has been saved', 'success');
 
         return \Redirect::route('admin.subcategory.show', $item->subcategory_id);
@@ -142,5 +144,21 @@ class ItemController extends Controller
                 'level_id' => $item->id,
             ]);
         }
+    }
+
+
+    private function createOrUpdateLimitation(Request $request, Item $item)
+    {
+        $item->limitations()->delete();
+
+        foreach ($request->get('limitations', []) as $limitation) {
+            $item->limitations()->create([
+                'value' => explode(",", $limitation['value']),
+                'label' => $limitation['label'],
+                'level' => get_class($item),
+                'number_of_tickets' => $limitation['number_of_tickets'],
+            ]);
+        }
+
     }
 }

@@ -84,6 +84,7 @@ class Category extends KModel
         return $this->hasMany(Availability::class,'level_id');
     }
 
+
     function scopeActive($query)
     {
         return $query->where('is_disabled', 0);

@@ -107,7 +107,7 @@
                 <div class="form-group {{$errors->has('user_groups')? 'has-error' : ''}}">
                     {{Form::label('user_groups', 'User Group', ['class' => 'control-label'])}}
                     {{--                {{Form::select('user_groups[]',\App\Group::requesters()->get()->pluck('name','id'),isset($category) ? $category->service_user_groups()->pluck('id')->toArray() : null,['class'=>'form-control select2','multiple'=>'true'])}}--}}
-                    <select class="form-control" name="user_groups[]" id="user_groups" multiple>
+                    <select class="form-control" name="user_groups[]" id="user_groups" multiple size="10">
                         <option value="">{{t('Select Group')}}</option>
                         @foreach(\App\Group::requesters()->get() as $group)
                             <option value="{{$group->id}}"
@@ -130,6 +130,7 @@
                                      :approvals="{{isset($category) ? $category->levels: 0}}"></approval-levels>
                 </fieldset>
             </div>
+
             <div class="tab-pane fade" role="tabpanel" id="config" aria-labelledby="config-tab">
 
 
@@ -156,6 +157,13 @@
                 </fieldset>
 
 
+                <fieldset>
+                    <legend>Limitation</legend>
+                    <limitation
+                            :business_units="{{\App\BusinessUnit::orderBy('name')->get(['name','id'])}}"
+                            :limitation_data="{{ isset($category) && $category->limitations ? $category->limitations : null }}">
+                    </limitation>
+                </fieldset>
             </div>
 
 
