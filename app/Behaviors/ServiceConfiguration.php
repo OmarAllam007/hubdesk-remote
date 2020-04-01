@@ -18,13 +18,6 @@ use PhpParser\Node\Expr\Cast\Int_;
 trait ServiceConfiguration
 {
 
-    function limitations()
-    {
-        return $this->hasMany(ServiceLimit::class,'level_id')
-            ->where('level',get_class($this));
-    }
-
-
     public function canDisplay($type)
     {
         $user = \Auth::user();

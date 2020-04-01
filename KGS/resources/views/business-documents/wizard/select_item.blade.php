@@ -37,7 +37,7 @@
 {{--        <h3 class=text-center>{{t('Select Item') }}</h3>--}}
 
         <div class="tiles-container">
-            @foreach($subcategory->items as $item)
+            @foreach($subcategory->items()->corporate()->get() as $item)
                 <a href="{{route('kgs.document.check-requirements',compact('business_unit','category','subcategory','item'))}}"
                    class="tile">
                     <div class="tile-container">

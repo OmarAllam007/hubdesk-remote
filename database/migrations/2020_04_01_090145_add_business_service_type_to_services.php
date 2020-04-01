@@ -13,8 +13,20 @@ class AddBusinessServiceTypeToServices extends Migration
      */
     public function up()
     {
-        Schema::table('services', function (Blueprint $table) {
-            //
+        Schema::table('categories', function (Blueprint $table) {
+            $table->unsignedInteger('business_service_type');
+        });
+
+        Schema::table('subcategories', function (Blueprint $table) {
+            $table->unsignedInteger('business_service_type');
+        });
+
+        Schema::table('items', function (Blueprint $table) {
+            $table->unsignedInteger('business_service_type');
+        });
+
+        Schema::table('sub_items', function (Blueprint $table) {
+            $table->unsignedInteger('business_service_type');
         });
     }
 
@@ -25,8 +37,20 @@ class AddBusinessServiceTypeToServices extends Migration
      */
     public function down()
     {
-        Schema::table('services', function (Blueprint $table) {
-            //
+        Schema::table('categories', function (Blueprint $table) {
+            $table->dropColumn('business_service_type');
+        });
+
+        Schema::table('subcategories', function (Blueprint $table) {
+            $table->dropColumn('business_service_type');
+        });
+
+        Schema::table('items', function (Blueprint $table) {
+            $table->dropColumn('business_service_type');
+        });
+
+        Schema::table('sub_items', function (Blueprint $table) {
+            $table->dropColumn('business_service_type');
         });
     }
 }

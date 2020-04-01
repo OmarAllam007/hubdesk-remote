@@ -66,6 +66,7 @@ class ItemController extends Controller
         $service_request = isset($request->service_request) ? 1 : 0;
         $data = $request->all();
         $data['service_request'] = $service_request;
+
         $item->update($data);
 
         $this->handleLevels($request, $item);

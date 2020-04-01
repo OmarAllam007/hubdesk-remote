@@ -87,7 +87,7 @@
                         </a>
                         @endif
 
-                        @foreach($business_unit->categories()->active()->ticketType()->orderBy('order')->get() as $category)
+                        @foreach($business_unit->categories()->active()->individual()->ticketType()->orderBy('order')->get() as $category)
                             @if($category->canDisplay(\App\ServiceUserGroup::$CATEGORY) && $category->available())
 
                                     <a href="{{route('ticket.create.select_subcategory', compact('business_unit','category'))}}" class="tile">
@@ -97,13 +97,9 @@
     justify-content: center;
     height: 250px;
     width: 250px;">
-                                            {{--<div class="tile-icon" style="">--}}
-                                            {{--                            <img src="{{asset('images/logo.png')}}">--}}
-                                            {{--</div>--}}
                                             <div class="tile-body"
                                                  style="width: 100%;height: 100%;display: flex; flex-direction:column;">
-                                                {{--@if($business_unit->logo)--}}
-                                                @if($category->logo)
+                                                @if($category->logo && file_exists(storage_path($category->url)))
                                                 <p class="text-center logo-animation" style="height: 100px">
                                                     <img src="{{$category->url}}" alt="{{$category->url}}">
                                                 </p>
@@ -117,22 +113,6 @@
                                             </div>
                                         </div>
                                     </a>
-
-                                {{--<a href="{{route('ticket.create.select_subcategory', compact('business_unit','category'))}}"--}}
-                                   {{--class="tile">--}}
-                                    {{--<div class="tile-container"--}}
-                                         {{--style="display: flex;align-items: center;justify-content: center;">--}}
-                                        {{--<div class="tile-body"--}}
-                                             {{--style="display: flex;flex-direction: column;justify-content: center">--}}
-                                            {{--<p class="text-center">--}}
-                                                {{--{{t($category->name)}}--}}
-                                            {{--</p>--}}
-                                            {{--<p>--}}
-                                                {{--{{$category->service_cost ? $category->service_cost : ''}}--}}
-                                            {{--</p>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</a>--}}
                             @endif
                         @endforeach
                     </div>

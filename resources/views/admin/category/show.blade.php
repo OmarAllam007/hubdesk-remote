@@ -30,6 +30,8 @@
             <thead>
             <tr>
                 <th>Subcategory</th>
+                <th>{{t('Type')}}</th>
+                <th>{{t('Is Active?')}}</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -37,6 +39,8 @@
             @foreach($category->subcategories as $subcategory)
             <tr>
                 <td><a href="{{route('admin.subcategory.show', $subcategory)}}">{{$subcategory->name}}</a></td>
+                <td class="col-md-2">{{App\Subcategory::$BUSINESS_TYPES[$subcategory->business_service_type] ?? 'Not Assigned'}}</td>
+                <td class="col-md-2">{{$subcategory->is_disabled ? 'No' : 'Yes'}}</td>
                 <td>
                     {{Form::open(['route' => ['admin.subcategory.destroy', $subcategory], 'method' => 'delete'])}}
                     <a class="btn btn-xs btn-primary" href="{{route('admin.subcategory.edit', $subcategory)}}"><i class="fa fa-edit"></i> Edit</a>

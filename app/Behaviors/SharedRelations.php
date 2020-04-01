@@ -3,7 +3,7 @@ namespace App\Behaviors;
 
 use App\ServiceLimit;
 
-trait  SharedPreferences{
+trait  SharedRelations{
 
     function limitations()
     {

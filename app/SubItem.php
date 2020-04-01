@@ -4,16 +4,17 @@ namespace App;
 
 use App\Behaviors\Listable;
 use App\Behaviors\ServiceConfiguration;
+use App\Behaviors\SharedRelations;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class SubItem extends Model
+class SubItem extends KModel
 {
-    use SoftDeletes, ServiceConfiguration,Listable;
+    use SoftDeletes, ServiceConfiguration,Listable,SharedRelations;
 
     protected $fillable = [
-        'item_id', 'name', 'description', 'service_cost', 'order', 'is_disabled'
+        'item_id', 'name', 'description', 'service_cost', 'order', 'is_disabled','business_service_type'
     ];
 
     function item()

@@ -71,6 +71,24 @@
                 </div>
 
 
+                <div class="form-group {{$errors->has('business_service_type')? 'has-error' : ''}}">
+                    {{Form::label('business_service_type', 'Business Service Type', ['class' => 'control-label'])}}
+                    <select class="form-control" name="business_service_type" id="business_service_type">
+                        <option value="">{{t('Select Type')}}</option>
+                        @foreach(\App\Category::$BUSINESS_TYPES as $key=>$bu_type)
+                            <option value="{{$key}}"
+                                    @if(isset($category) && $key == $category->business_service_type)
+                                    selected
+                                    @endif>{{$bu_type}}
+                            </option>
+                        @endforeach
+                    </select>
+
+                    @if ($errors->has('business_service_type'))
+                        <div class="error-message">{{$errors->first('business_service_type')}}</div>
+                    @endif
+                </div>
+
                 <div class="form-group {{$errors->has('notes')? 'has-error' : ''}}">
                     {{Form::label('notes', 'Notes', ['class' => 'control-label'])}}
                     {{Form::textarea('notes', null, ['class' => 'form-control richeditor', 'rows' => 5])}}

@@ -17,14 +17,18 @@
             <tr>
                 <th>Name</th>
                 <th>Category</th>
+                <th>{{t('Type')}}</th>
+                <th>{{t('Is Active?')}}</th>
                 <th>Actions</th>
             </tr>
             </thead>
             <tbody>
             @foreach($subcategories as $subcategory)
                 <tr>
-                    <td class="col-md-5"><a href="{{route('admin.subcategory.edit', $subcategory)}}">{{$subcategory->name}}</a></td>
-                    <td class="col-md-4">{{$subcategory->category->name}}</td>
+                    <td class="col-md-3"><a href="{{route('admin.subcategory.edit', $subcategory)}}">{{$subcategory->name}}</a></td>
+                    <td class="col-md-2">{{$subcategory->category->name}}</td>
+                    <td class="col-md-2">{{App\Subcategory::$BUSINESS_TYPES[$subcategory->business_service_type] ?? 'Not Assigned'}}</td>
+                    <td class="col-md-2">{{$subcategory->is_disabled ? 'No' : 'Yes'}}</td>
                     <td class="col-md-3">
                         <form action="{{route('admin.subcategory.destroy', $subcategory)}}" method="post">
                             {{csrf_field()}} {{method_field('delete')}}
