@@ -74,7 +74,7 @@
                                  style="width: 100%;height: 100%;display: flex; flex-direction:column;">
                                 @if($business_unit->logo)
                                     <p class="text-center logo-animation">
-                                        <img src="{{$business_unit->url}}" alt="{{$business_unit->url}}" >
+                                        <img src="{{$business_unit->url}}" alt="{{$business_unit->url}}">
                                     </p>
                                     {{--@endif--}}
                                 @else
@@ -84,7 +84,7 @@
                                 @endif
                                 {{--for demonistration only--}}
                                 @if(str_contains(strtolower($business_unit->name),'quwa'))
-                                    <p class="text-center quot-animation" >
+                                    <p class="text-center quot-animation">
                                         نعين ونعاون
                                     </p>
                                 @endif

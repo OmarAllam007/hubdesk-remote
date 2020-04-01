@@ -4,6 +4,7 @@ namespace App;
 
 use App\Behaviors\Listable;
 use App\Behaviors\ServiceConfiguration;
+use App\Behaviors\SharedRelations;
 use Illuminate\Database\Eloquent\Builder;
 use KGS\Requirement;
 
@@ -31,9 +32,10 @@ use KGS\Requirement;
  */
 class Subcategory extends KModel
 {
-    use Listable, ServiceConfiguration;
+    use Listable, ServiceConfiguration,SharedRelations;
 
-    protected $fillable = ['category_id', 'name', 'description', 'service_request', 'service_cost', 'notes', 'service_type', 'is_disabled'];
+    protected $fillable = ['category_id', 'name', 'description', 'service_request', 'service_cost',
+        'notes', 'service_type', 'is_disabled','business_service_type'];
 
     public function items()
     {

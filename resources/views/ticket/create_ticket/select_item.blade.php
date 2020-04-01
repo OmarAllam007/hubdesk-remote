@@ -36,7 +36,7 @@
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <div class="tiles-container">
-                    @foreach($subcategory->items()->orderBy('order')->get() as $item)
+                    @foreach($subcategory->items()->individual()->orderBy('order')->get() as $item)
                         @if($item->canDisplay(\App\ServiceUserGroup::$ITEM))
                         <a href="{{route('ticket.create.select_subItem',compact('business_unit','item'))}}"
                            class="tile">

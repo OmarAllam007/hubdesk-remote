@@ -29,7 +29,7 @@
                 </div>
 
                 @php
-                    $categories = App\Category::active()->ticketType()->selection('Select Category');
+                    $categories = App\Category::active()->individual()->ticketType()->selection('Select Category');
 
                 @endphp
 
