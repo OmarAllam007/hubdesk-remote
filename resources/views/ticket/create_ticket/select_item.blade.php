@@ -42,10 +42,15 @@
                            class="tile">
                             <div class="tile-container"
                                  >
-                                <div class="tile-body" style="justify-content: center; height: 100vh;">
-                                    <p class="text-center" >
+                                <div class="tile-body" style="display: flex; flex-direction:column; width: 100%;height: 100%;">
+                                    <p class="text-center" style="margin-top: 40px">
                                         {{t($item->name)}}
                                     </p>
+                                    @if($item->service_cost > 0)
+                                        <p>
+                                            <span>{{$item->service_cost}} {{t('SAR')}}</span>
+                                        </p>
+                                    @endif
                                 </div>
                             </div>
                         </a>

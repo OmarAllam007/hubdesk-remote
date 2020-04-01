@@ -58,6 +58,7 @@ class ReportsController extends Controller
 
     function store(Request $request)
     {
+
         $this->authorize('reports');
 
         $this->validate($request, [
@@ -162,7 +163,7 @@ class ReportsController extends Controller
             'parameters.start_date' => 'required', 'parameters.end_date' => 'required'
         ]);
 
-        $report->update($request->only('title', 'core_report_id', 'folder_id', 'parameters','type'));
+        $report->update($request->only('title', 'core_report_id', 'folder_id', 'parameters','type','status'));
 
         $report->users()->delete();
 

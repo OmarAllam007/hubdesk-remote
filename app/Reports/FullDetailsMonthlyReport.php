@@ -49,8 +49,8 @@ class FullDetailsMonthlyReport extends ReportContract
             ->join('categories as cat', 't.category_id', '=', 'cat.id')
             ->leftJoin('subcategories as subcat', 't.subcategory_id', '=', 'subcat.id')
             ->leftJoin('items as item', 't.item_id', '=', 'item.id')
-            ->join('slas as sla', 't.sla_id', '=', 'sla.id')
-            ->join('business_units as bu', 'req.business_unit_id', '=', 'bu.id');
+            ->leftJoin('slas as sla', 't.sla_id', '=', 'sla.id')
+            ->leftJoin('business_units as bu', 'req.business_unit_id', '=', 'bu.id');
 
         $this->fields();
         $this->applyFilters();
@@ -346,6 +346,17 @@ class FullDetailsMonthlyReport extends ReportContract
         }
         $end_date->setTime(23, 59, 59);
         $this->query->where('t.created_at', '<=', $end_date);
+
+
+        if (!empty($this->parameters['status'])) {
+            if (is_array($this->parameters['status'])) {
+                $status = $this->parameters['status'];
+            } else {
+                $status = array_map('trim', explode(',', $this->parameters['status']));
+            }
+
+            $this->query->whereIn('t.status_id', $status);
+        }
 
         if (!empty($this->parameters['technician'])) {
             if (is_array($this->parameters['technician'])) {

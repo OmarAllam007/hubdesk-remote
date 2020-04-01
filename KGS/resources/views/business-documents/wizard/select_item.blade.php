@@ -34,24 +34,12 @@
 @section('body')
     <section class="col-md-12 card-section">
         <div class=form-group></div>
-{{--        <h3 class=text-center>{{t('Select Item') }}</h3>--}}
-
         <div class="tiles-container">
             @foreach($subcategory->items as $item)
                 <a href="{{route('kgs.document.check-requirements',compact('business_unit','category','subcategory','item'))}}"
                    class="tile">
                     <div class="tile-container">
-                        {{--<div class="tile-icon" style="">--}}
-                        {{--                            <img src="{{asset('images/logo.png')}}">--}}
-                        {{--</div>--}}
                         <div class="tile-body" style="width: 100%;height: 100%;display: flex; flex-direction:column;">
-                            {{--@if($category->logo)--}}
-                            <p class="text-center" style="height: 25px;">
-                                {{--@if($category->logo)--}}
-                                {{--<img src="{{asset($category->logo)}}" alt="{{asset($category->logo)}}">--}}
-                                {{--@else--}}
-                                {{--@endif--}}
-                            </p>
                             <p class="text-center" style="margin-top: 40px">
                                 {{t($item->name)}}
                             </p>
