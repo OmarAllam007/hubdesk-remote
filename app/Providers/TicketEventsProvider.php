@@ -59,15 +59,12 @@ class TicketEventsProvider extends ServiceProvider
 
         TicketApproval::created(function (TicketApproval $approval) {
             $approval->ticket->status_id = 6;
-//            TicketLog::addApproval($approval);
             TicketLog::approvalLog($approval, TicketLog::APPROVAL_TYPE);
 
             $approval->ticket->save();
 
             if ($approval->shouldSend()) {
                 \Mail::to($approval->approver->email)->send(new SendNewApproval($approval));
-
-//                dispatch(new SendApproval($approval));
             }
 
             Attachment::uploadFiles(Attachment::TICKET_APPROVAL_TYPE, $approval->id);
