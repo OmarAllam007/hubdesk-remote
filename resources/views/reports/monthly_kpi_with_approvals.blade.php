@@ -74,12 +74,12 @@
                         <td>{{ $ticket->performance ?? 'Not Assigned' }}</td>
 
                         @for ($i = 1; $i < $approvals_count; $i++)
-                            <td>{{ isset($ticket->approvals[$i]) ? strip_tags($ticket->approvals[$i]->content) : '' }}</td>
+                            <td>{{ isset($ticket->approvals[$i]) ? str_replace('&nbsp;',' ',strip_tags($ticket->approvals[$i]->content)) : '' }}</td>
                             <td>{{ isset($ticket->approvals[$i]) ? $ticket->approvals[$i]->created_at->format('Y/m/d h:i') : '' }}</td>
                             <td>{{ isset($ticket->approvals[$i]) && $ticket->approvals[$i]->approval_date ? $ticket->approvals[$i]->approval_date->format('Y/m/d h:i') : '' }}</td>
                             <td>{{ isset($ticket->approvals[$i]) && $ticket->approvals[$i]->approval_date ? $ticket->approvals[$i]->approval_date->diffInDays($ticket->approvals[$i]->created_at) : '' }}</td>
                             <td>{{ isset($ticket->approvals[$i]) ? App\TicketApproval::$statuses[$ticket->approvals[$i]->status] : '' }}</td>
-                            <td>{{ isset($ticket->approvals[$i]) ? strip_tags($ticket->approvals[$i]->comment) : '' }}</td>
+                            <td>{{ isset($ticket->approvals[$i]) ? str_replace('&nbsp;',' ',strip_tags($ticket->approvals[$i]->comment)) : '' }}</td>
 
                         @endfor
                     </tr>
