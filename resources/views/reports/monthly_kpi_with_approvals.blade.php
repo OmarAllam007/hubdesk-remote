@@ -45,9 +45,13 @@
                     <th>{{ t('Business Unit') }}</th>
                     <th>{{ t('Performance') }}</th>
                     @for ($i = 1; $i < $approvals_count; $i++)
+                        <th>{{t('Approval '.$i.' Description')}}</th>
                         <th>{{t('Approval '.$i.' Sent at')}}</th>
                         <th>{{t('Approval '.$i.' Action date')}}</th>
+                        <th>{{t('Approval '.$i.' Total Time (In Days)')}}</th>
                         <th>{{t('Approval '.$i.' Status')}}</th>
+                        <th>{{t('Approval '.$i.' Comment')}}</th>
+
                     @endfor
                 </tr>
                 </thead>
@@ -70,9 +74,13 @@
                         <td>{{ $ticket->performance ?? 'Not Assigned' }}</td>
 
                         @for ($i = 1; $i < $approvals_count; $i++)
+                            <td>{{ isset($ticket->approvals[$i]) ? strip_tags($ticket->approvals[$i]->content) : '' }}</td>
                             <td>{{ isset($ticket->approvals[$i]) ? $ticket->approvals[$i]->created_at->format('Y/m/d h:i') : '' }}</td>
                             <td>{{ isset($ticket->approvals[$i]) && $ticket->approvals[$i]->approval_date ? $ticket->approvals[$i]->approval_date->format('Y/m/d h:i') : '' }}</td>
+                            <td>{{ isset($ticket->approvals[$i]) && $ticket->approvals[$i]->approval_date ? $ticket->approvals[$i]->approval_date->diffInDays($ticket->approvals[$i]->created_at) : '' }}</td>
                             <td>{{ isset($ticket->approvals[$i]) ? App\TicketApproval::$statuses[$ticket->approvals[$i]->status] : '' }}</td>
+                            <td>{{ isset($ticket->approvals[$i]) ? strip_tags($ticket->approvals[$i]->comment) : '' }}</td>
+
                         @endfor
                     </tr>
                 @endforeach
