@@ -117,17 +117,23 @@ class MonthlyKPIWithApprovals extends ReportContract
         });
 
         for ($i = 0; $i < $this->max_approvals; $i++) {
-            $approvals_header->push(["Approval Level " . ($i + 1) . " Sent At", "Action Date", "Status"]);
+            $approvals_header->push(["Approval Level " . ($i + 1) . " Description",
+                "Created Date",
+                "Action Date",
+                "Total Time (In days)",
+                "Status",
+                "Comment"
+            ]);
         }
 
 
         $header = [
             'ID', 'Subject', 'Requester',
             'Technician', 'Category', 'Status', 'Created Date', 'Date of Departure', 'Days between departure and create', 'Due Date',
-            'Resolved Date', 'Business Unit','Performance'];
+            'Resolved Date', 'Business Unit', 'Performance'];
 
         $approvals_header = $approvals_header->flatten()->toArray();
-        $sheet->fromArray(array_merge($header, $approvals_header), NULL, 'A1',true);
+        $sheet->fromArray(array_merge($header, $approvals_header), NULL, 'A1', true);
 
         $row = 1;
         foreach ($data as $key => $ticket) {
@@ -137,27 +143,30 @@ class MonthlyKPIWithApprovals extends ReportContract
             $approvals = collect();
             if ($ticket_approvals->count()) {
                 foreach ($ticket_approvals as $approval) {
-                    $approvals->push([$approval->created_at,
-                        $approval->approval_date
-                        , $approval->status_str]);
+                    $approvals->push([
+                        str_replace('&nbsp;',' ',strip_tags($approval->content)),
+                        $approval->created_at,
+                        $approval->approval_date,
+                        $approval->approval_date ? $approval->approval_date->diffInDays($approval->created_at) : 0,
+                        $approval->status_str,
+                        str_replace('&nbsp;',' ',strip_tags($approval->comment))
+                    ]);
                 }
             }
-
 
 
             $rowData = [
                 $ticket->id, $ticket->subject, $ticket->requester, $ticket->technician,
                 $ticket->category, $ticket->status, $ticket->created_at, $ticket->date_of_dept, $ticket->difference ?? 'Not Assigned',
-                $ticket->due_date, $ticket->resolve_date, $ticket->business_unit,$ticket->performance
+                $ticket->due_date, $ticket->resolve_date, $ticket->business_unit, $ticket->performance
             ];
             $sheet->fromArray(array_merge($rowData, $approvals->flatten()->toArray()), NULL, 'A' . $row, true);
         }
 
 
-
         $highestColumn = $sheet->getHighestColumn(1);
-        for ($column = 'A'; $column ; $column++) {
-            if($column == $highestColumn){
+        for ($column = 'A'; $column; $column++) {
+            if ($column == $highestColumn) {
                 break;
             }
             $sheet->getColumnDimension($column)->setAutoSize(true);
@@ -167,7 +176,7 @@ class MonthlyKPIWithApprovals extends ReportContract
 
 
         $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
-        $filename = storage_path('app/'.str_slug($this->report->title).'.xlsx');
+        $filename = storage_path('app/' . str_slug($this->report->title) . '.xlsx');
         $writer->save($filename);
         return $filename;
     }
@@ -194,7 +203,7 @@ class MonthlyKPIWithApprovals extends ReportContract
         $columns = array_merge([
             'ID', 'Subject', 'Requester',
             'Technician', 'Category', 'Status', 'Created Date', 'Date of Departure', 'Difference', 'Due Date',
-            'Resolved Date', 'Business Unit','Performance'
+            'Resolved Date', 'Business Unit', 'Performance'
         ], $approvals_header->flatten()->toArray());
 
 
