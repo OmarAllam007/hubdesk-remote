@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mada:400,700">
     {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css">--}}
-    <link rel="stylesheet" href="{{asset('/css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/app.css')}}?random">
 
     @if(\Session::get('personlized-language-ar' . auth()->id(), config('app.locale')) == "ar")
         <link rel="stylesheet" href="{{asset('/css/bootstrap-rtl.css')}}">
