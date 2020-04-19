@@ -74,6 +74,8 @@
                         <ul class="dropdown-menu">
                             <li><a href="{{route('site.changeLanguage','ar')}}"> {{t('Arabic')}}</a></li>
                             <li><a href="{{route('site.changeLanguage','en')}}"> {{t('English')}}</a></li>
+                            <li><a href="{{route('site.changeLanguage','in')}}"> {{t('Indian')}}</a></li>
+                            <li><a href="{{route('site.changeLanguage','ur')}}"> {{t('URDU')}}</a></li>
                         </ul>
                     </li>
                 </ul>

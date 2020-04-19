@@ -33,7 +33,9 @@ function ife($condition, $true, $false = null)
 function t($word, $language = '')
 {
     if (Auth::check()) {
-        $language = $language ?: \Session::get('personlized-language-ar' . \Auth::user()->id, \Config::get('app.locale'));
+
+        $language = $language ?: \Session::get('personalized-language' . \Auth::user()->id, \Config::get('app.locale'));
+
         if ($word instanceof \Illuminate\Support\Collection) {
             $translate_array = collect();
             foreach ($word as $key => $item) {
@@ -62,14 +64,9 @@ function t($word, $language = '')
             return $word_exist->word;
         }
         return $word;
-//        $newWord = new Translation();
-//        $newWord->word = $word;
-////        $newWord->language = $language;
-//        $newWord->save();
-//        return $newWord->word;
-    } else {
-        return $word;
+
     }
+
     return $word;
 
 }

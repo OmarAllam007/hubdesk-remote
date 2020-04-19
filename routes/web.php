@@ -156,7 +156,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/report/result', 'ReportController@show');
     Route::post('/report/result', 'ReportController@show');
 
-    Route::get('language/{language}', ['as' => 'site.changeLanguage', 'uses' => 'HomeController@changeLanguage'])->middleware('lang');
+    Route::get('language/{language}', ['as' => 'site.changeLanguage',
+        'uses' => 'HomeController@changeLanguage'])->middleware('lang');
 
     Route::group(['prefix'=>'configurations'],function (Router $r){
         $r->get('','ConfigurationController@index')->name('configurations.index');
