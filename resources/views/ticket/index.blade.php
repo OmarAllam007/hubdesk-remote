@@ -21,10 +21,12 @@
     </div>
     {{ Form::close() }}
 
-    {{Form::open(['route' => 'ticket.jump', 'class' => 'form-inline heading-actions'])}}
-    <div class="input-group input-group-sm">
-        <input class="form-control" type="text" name="id" id="ticketID" placeholder="{{t('Ticket ID')}}"/>
-        <span class="input-group-btn">
+    {{--    {{Form::open(['route' => 'ticket.jump', 'class' => 'form-inline heading-actions'])}}--}}
+    <form action="{{route('ticket.index')}}" class="form-inline heading-actions">
+        <div class="input-group input-group-sm">
+            <input class="form-control" type="text" name="search" id="search"
+                   placeholder="{{t('Search for a ticket')}}"/>
+            <span class="input-group-btn">
             <button class="btn btn-default"><i class="fa
                          @if(\Session::get('personlized-language-ar' . \Auth::user()->id, \Config::get('app.locale'))=="ar")
                         fa-chevron-left
@@ -33,10 +35,11 @@
                         @endif
                         "></i></button>
         </span>
-    </div>
-    {{--<a href="{{ route('ticket.create') }}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></a>--}}
-    <a href="#SearchForm" data-toggle="collapse" class="btn btn-info btn-sm searchbtn"><i class="fa fa-search"></i></a>
-    {{Form::close()}}
+        </div>
+        {{--<a href="{{ route('ticket.create') }}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></a>--}}
+        <a href="#SearchForm" data-toggle="collapse" class="btn btn-info btn-sm searchbtn"><i class="fa fa-search"></i></a>
+    </form>
+    {{--    {{Form::close()}}--}}
     <style>
         .ticket-card {
             display: flex;
@@ -63,6 +66,7 @@
             font-size: 12pt;
             font-weight: bold;
         }
+
         .ticket_url {
             font-weight: bold;
         }
