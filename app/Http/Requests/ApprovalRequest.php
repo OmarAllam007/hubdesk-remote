@@ -21,20 +21,19 @@ class ApprovalRequest extends Request
 
     public function messages()
     {
-        return ['content.required_without'=>'The description field is required'];
+        flash(t('Approval Info'), t('Cannot send approval'), 'error');
+        return ['content.required_without' => 'The description field is required'];
     }
 
     public function response(array $errors)
     {
-        flash('Cannot send approval');
-
+        flash(t('Approval Info'), t('Cannot send approval'), 'error');
         return \Redirect::back()->withErrors($errors)->withInput($this->all());
     }
 
     public function forbiddenResponse()
     {
-        flash('You cannot add approval for this ticket');
-
+        flash(t('Approval Info'), t('You cannot add approval for this ticket'), 'error');
         return \Redirect::back();
     }
 }
