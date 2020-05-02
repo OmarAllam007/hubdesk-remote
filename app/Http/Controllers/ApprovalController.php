@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ApprovalQuestion;
 use App\Http\Requests;
 use App\Http\Requests\ApprovalRequest;
 use App\Http\Requests\UpdateApprovalRequest;
@@ -37,6 +38,10 @@ class ApprovalController extends Controller
 
         $ticket->approvals()->save($approval);
 
+        foreach ($request->get('questions', []) as $question) {
+            $approval->questions()->create($question);
+        }
+
         flash(t('Approval Info'), t('Approval has been sent successfully'), 'success');
 
         return redirect()->back();
@@ -46,7 +51,7 @@ class ApprovalController extends Controller
     {
         \Mail::to($ticketApproval->approver->email)->send(new SendNewApproval($ticketApproval));
 //        $this->dispatch(new SendNewApproval($ticketApproval));
-        TicketLog::approvalLog($ticketApproval,TicketLog::RESEND_APPROVAL);
+        TicketLog::approvalLog($ticketApproval, TicketLog::RESEND_APPROVAL);
 
         flash(t('Approval Info'), t('Approval has been sent successfully'), 'success');
 
@@ -73,6 +78,18 @@ class ApprovalController extends Controller
 
         //Triggers updated action in App\Providers\TicketEventsProvider
         $ticketApproval->approval_date = Carbon::now();
+
+
+        if ($request->questions && count($request->questions)) {
+            foreach ($request->get('questions', []) as $key => $answer) {
+                ApprovalQuestion::find($key)->update([
+                    'answer' => $answer
+                ]);
+            }
+
+            $request['status'] = $ticketApproval->approval_questions_status;
+        }
+
         $ticketApproval->update($request->all());
 
         if (!$ticketApproval->ticket->isClosed() && !$ticketApproval->ticket->hasPendingApprovals()) {
@@ -97,7 +114,8 @@ class ApprovalController extends Controller
             dispatch(new ApplySLA($ticketApproval->ticket));
         }
 
-        TicketLog::approvalLog($ticketApproval,$ticketApproval->status == TicketApproval::APPROVED ?
+
+        TicketLog::approvalLog($ticketApproval, $ticketApproval->status == TicketApproval::APPROVED ?
             TicketLog::APPROVED : TicketLog::DENIED);
 
         flash(t('Approval Info'), 'Ticket has been ' . ($ticketApproval->status == TicketApproval::APPROVED ? 'approved' : 'rejected'), 'info');
@@ -116,7 +134,7 @@ class ApprovalController extends Controller
 
         $ticketApproval->delete();
 
-        TicketLog::approvalLog($ticketApproval,TicketLog::DELETE_APPROVAL);
+        TicketLog::approvalLog($ticketApproval, TicketLog::DELETE_APPROVAL);
 
         if (!$ticketApproval->ticket->hasPendingApprovals()) {
             $ticketApproval->ticket->update(['status_id' => 3]);

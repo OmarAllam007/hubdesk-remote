@@ -63,10 +63,29 @@ class TicketApproval extends KModel
         return $this->belongsTo(User::class, 'creator_id');
     }
 
+    function questions()
+    {
+        return $this->hasMany(ApprovalQuestion::class, 'approval_id');
+    }
+
+    function getApprovalQuestionsStatusAttribute()
+    {
+        $status = self::APPROVED;
+
+        if ($this->questions()->count()) {
+            foreach ($this->questions as $key => $question) {
+                if ($question->answer == self:: DENIED) {
+                    $status = self::DENIED;
+                }
+            }
+        }
+
+        return $status;
+    }
 
     function getStatusStrAttribute()
     {
-        if($this->status){
+        if ($this->status) {
             return self::$statuses[$this->status];
         }
     }

@@ -15,6 +15,27 @@
                     {!! tidy_repair_string($approval->content, [], 'utf8') !!}
                 </div>
                 <br>
+
+                @if($approval->status != App\TicketApproval::PENDING_APPROVAL && $approval->questions->count())
+                    <table class="table table-bordered">
+                        <thead style="background-color: cadetblue;color: white;font-weight: bold;">
+                        <tr>
+                            <td>Question</td>
+                            <td>Status</td>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        @foreach($approval->questions as $question)
+                            <tr class="bg-{{$question->color}}">
+                                <td>{{$question->description}}</td>
+                                <td >{{$question->answer_str}}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                @endif
+
                 <span class="label label-default">Status: {{t(\App\TicketApproval::$statuses[$approval->status])}}</span>
 
                 @if($approval->attachments->count())

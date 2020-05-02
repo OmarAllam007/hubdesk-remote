@@ -16,7 +16,7 @@ class UpdateApprovalRequest extends Request
     public function rules()
     {
         return [
-            'status' => 'required',
+            'status' => 'required_if:questions,null',
             'comment' => 'requiredIf:status,'.TicketApproval::DENIED
         ];
     }

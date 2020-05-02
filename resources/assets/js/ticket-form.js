@@ -1,5 +1,8 @@
 import Vue from 'vue';
 import Attachments from './AttachmentModal.vue';
+import ApprovalQuestions from "./approvals/questions/ApprovalQuestions";
+import Task from './Task.vue';
+import Attachment from './AttachmentModal.vue';
 
 window.app = new Vue({
     el: '#TicketForm',
@@ -149,5 +152,5 @@ window.app = new Vue({
         },
     },
 
-    components: {Attachments}
+    components: {Attachments,ApprovalQuestions,Task,Attachment}
 });
