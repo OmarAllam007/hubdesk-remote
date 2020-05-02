@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ConfigurationController;
 use Illuminate\Routing\Router;
 
 if(env('LOGIN_AS')){
@@ -12,6 +11,14 @@ Route::auth();
 Route::get('logout', 'Auth\LoginController@logout');
 Route::get('auth/google', 'Auth\AuthController@googleRedirect');
 Route::get('auth/google/continue', 'Auth\AuthController@googleHandle');
+
+
+Route::group(['prefix'=>'dashboard'],function (Router $r){
+    $r->get('select_business_unit','DashboardController@selectServiceUnit')
+        ->name('dashboard.select_business_unit');
+    $r->get('display/{businessUnit}','DashboardController@display')
+        ->name('dashboard.display');
+});
 
 Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
     $r->get('/subcategory/{cat_id?}', 'ListController@subcategory');

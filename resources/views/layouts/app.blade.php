@@ -44,6 +44,11 @@
                     <li class="nav-item"><a href="{{route('ticket.index')}}"><i
                                     class="fa fa-ticket"></i> {{t('Tickets')}}</a></li>
 
+                    @can('dashboard')
+                        <li class="nav-item"><a href="{{route('dashboard.select_business_unit')}}"><i
+                                        class="fa fa-dashboard"></i> {{t('Dashboard')}}</a></li>
+                    @endcan
+
                     @if(auth()->user()->isSupport())
                         <li class="nav-item"><a href="{{route('configurations.index')}}"><i
                                         class="fa fa-cogs"></i> {{t('Configurations')}}</a></li>
@@ -111,7 +116,7 @@
                 @yield('sidebar')
             @endif
 
-                @yield('body')
+            @yield('body')
             @include('sweetalert::alert')
         </div>
     </main>
@@ -147,15 +152,15 @@
 
 {{--@if (alert())--}}
 
-    {{--<script>--}}
-        {{--swal({--}}
-            {{--title: "{!! alert()-> !!}",--}}
-            {{--text: "{!! alert('config.text') !!}",--}}
-            {{--type: "{!! alert()->type() !!}",--}}
-            {{--timer: 3000,--}}
-            {{--showConfirmButton: false,--}}
-        {{--});--}}
-    {{--</script>--}}
+{{--<script>--}}
+{{--swal({--}}
+{{--title: "{!! alert()-> !!}",--}}
+{{--text: "{!! alert('config.text') !!}",--}}
+{{--type: "{!! alert()->type() !!}",--}}
+{{--timer: 3000,--}}
+{{--showConfirmButton: false,--}}
+{{--});--}}
+{{--</script>--}}
 {{--@endif--}}
 
 @yield('javascript')
