@@ -61,7 +61,7 @@
 @section('body')
     <section class="col-md-12 card-section">
         <div class="tiles-container">
-            @foreach(\App\BusinessUnit::find(env('GS_ID'))->categories as $category)
+            @foreach(\App\BusinessUnit::find(env('GS_ID'))->categories()->corporate()->get() as $category)
                 <a href="{{route('kgs.document.select_subcategory',compact('business_unit','category'))}}" class="tile">
                     <div class="tile-container">
                         {{--<div class="tile-icon" style="">--}}

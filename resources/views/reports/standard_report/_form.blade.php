@@ -48,7 +48,7 @@
     </section>
 
     <section class="row">
-        <article class="multi-select col-sm-6">
+        <article class="multi-select col-sm-4">
             <label class="control-label" for="">{{t('Technicians')}}</label>
             <a href="#" class="select-all">{{t('Select All')}}</a> / <a href="#" class="remove-all">{{t('Remove All')}}</a>
 
@@ -71,7 +71,7 @@
             </ul>
         </article>
 
-        <article class="multi-select col-sm-6">
+        <article class="multi-select col-sm-4">
             <label class="control-label">{{t('Categories')}}</label>
             <a href="#" class="select-all">{{t('Select All')}}</a> / <a href="#" class="remove-all">{{t('Remove All')}}</a>
 
@@ -94,6 +94,15 @@
                 @endforeach
             </ul>
         </article>
+        <div class="col-sm-4">
+            <div class="form-group {{$errors->has('status')? 'has-error' : ''}}">
+                {{Form::label('status', 'Status', ['class' => 'control-label'])}}
+                {{Form::select('parameters[status][]',App\Status::all()->pluck('name','id'),null,['class'=>'form-control','multiple','size'=>10])}}
+                @if ($errors->has('status'))
+                    <div class="error-message">{{$errors->first('status')}}</div>
+                @endif
+            </div>
+        </div>
 
         <div class="col-md-6">
             <div class="form-group {{$errors->has('users')? 'has-error' : ''}}">
@@ -104,6 +113,8 @@
                 @endif
             </div>
         </div>
+
+
     </section>
 
 

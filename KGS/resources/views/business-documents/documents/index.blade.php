@@ -13,7 +13,8 @@
     <a href="{{route('kgs.document.create',compact('folder'))}}" class="btn btn-sm btn-outlined btn-primary"><i
                 class="fa fa-plus"></i> {{t('Create')}}</a>
     <a class="btn  btn-default"
-       href="{{route('kgs.business_documents_folder.index',['business_unit'=>$folder->business_unit])}}">{{$folder->name}} <i
+       href="{{route('kgs.business_documents_folder.index',['business_unit'=>$folder->business_unit])}}">{{$folder->name}}
+        <i
                 class="fa fa-1x fa-arrow-right"></i> </a>
 
     {{--</form>--}}
@@ -40,24 +41,37 @@
                 @foreach($documents as $document)
                     <tr>
                         <td>
-                            <a href="{{route('kgs.document.edit', compact('folder','document'))}}">{{$document->name}}</a>
+                            @if(auth()->user()->isAdmin() || auth()->user()->groups()->whereType(App\Group::KGS_ADMIN)->exists())
+                                <a href="{{route('kgs.document.edit', compact('folder','document'))}}">{{$document->name}}</a>
+                            @else
+                                <p>{{$document->name}}</p>
+                            @endif
                         </td>
                         <td>{{$document->start_date ? $document->start_date->format('Y-m-d') : ''}}</td>
                         <td>{{$document->end_date ? $document->end_date->format('Y-m-d') : ''}}</td>
-                        <td><a href="{{route('kgs.business_document.download',['attachment'=>$document])}}" target="_blank">{{basename($document->path) ?? ''}}</a></td>
+                        <td><a href="{{route('kgs.business_document.download',['attachment'=>$document])}}"
+                               target="_blank">{{basename($document->path) ?? ''}}</a></td>
                         <td class="col-md-3">
+
+
                             <form action="{{route('kgs.document.destroy', compact('folder','document'))}}"
                                   method="post">
+                                <a href="{{route('kgs.business_document.download',['attachment'=>$document])}}"
+                                   class="btn btn-sm btn-success"
+                                   target="_blank"><i class="fa fa-download"></i> {{t('Download')}}</a>
                                 {{csrf_field()}} {{method_field('delete')}}
-                                <a class="btn btn-sm btn-primary"
-                                   href="{{route('kgs.document.edit', compact('folder','document'))}}"><i
-                                            class="fa fa-edit"></i> {{t('Edit')}}</a>
+                                @if(auth()->user()->isAdmin() || auth()->user()->groups()->whereType(App\Group::KGS_ADMIN)->exists())
+                                    <a class="btn btn-sm btn-primary"
+                                       href="{{route('kgs.document.edit', compact('folder','document'))}}"><i
+                                                class="fa fa-edit"></i> {{t('Edit')}}</a>
 
-{{--                                <a class="btn btn-sm btn-default"--}}
-{{--                                   href="{{route('kgs.document.edit', compact('folder','document'))}}"><i--}}
-{{--                                            class="fa fa-history"></i> {{t('History')}}</a>--}}
+                                    {{--                                <a class="btn btn-sm btn-default"--}}
+                                    {{--                                   href="{{route('kgs.document.edit', compact('folder','document'))}}"><i--}}
+                                    {{--                                            class="fa fa-history"></i> {{t('History')}}</a>--}}
 
-                                <button class="btn btn-sm btn-warning"><i class="fa fa-trash-o"></i> {{t('Delete')}}</button>
+                                    <button class="btn btn-sm btn-warning"><i class="fa fa-trash-o"></i> {{t('Delete')}}
+                                    </button>
+                                @endif
 
                             </form>
                         </td>
@@ -68,7 +82,8 @@
 
             {{--            @include('partials._pagination', ['items' => $documents])--}}
         @else
-            <div class="alert alert-info"><i class="fa fa-exclamation-circle"></i> <strong>{{t('No Documents found')}}</strong>
+            <div class="alert alert-info"><i class="fa fa-exclamation-circle"></i>
+                <strong>{{t('No Documents found')}}</strong>
             </div>
         @endif
     </section>

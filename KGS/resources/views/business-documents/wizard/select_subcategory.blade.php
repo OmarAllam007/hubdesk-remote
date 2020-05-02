@@ -50,7 +50,7 @@
 {{--        <h3 class=text-center>{{t('Select Subcategory') }}</h3>--}}
 
         <div class="tiles-container">
-            @foreach($category->subcategories as $subcategory)
+            @foreach($category->subcategories()->corporate()->get() as $subcategory)
                 <a href="{{route('kgs.document.select_item', compact('business_unit','category','subcategory'))}}" class="tile">
                     <div class="tile-container" >
                         {{--<div class="tile-icon" style="">--}}

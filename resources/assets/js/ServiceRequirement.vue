@@ -13,6 +13,12 @@
                        value="2" @change="changeType">
                 Document
             </label>
+            /
+            <label>
+                <input type="radio"  :name="`requirements[${index}][type]`" v-model="requirement.type"
+                       value="3" @change="changeType">
+                Input
+            </label>
         </td>
         <td>
             <!--:name="`requirements[${index}][field]`"-->
@@ -27,6 +33,8 @@
             <input type="text" v-show="requirement.type == 2" v-model="requirement.field"  class="form-control input-sm"
                    :name="`requirements[${index}][field]`" placeholder="Document Name">
 
+            <input type="text" v-show="requirement.type == 3" v-model="requirement.field"  class="form-control input-sm"
+                   :name="`requirements[${index}][field]`" placeholder="Description">
 
         </td>
         <td>

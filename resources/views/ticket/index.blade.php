@@ -21,10 +21,12 @@
     </div>
     {{ Form::close() }}
 
-    {{Form::open(['route' => 'ticket.jump', 'class' => 'form-inline heading-actions'])}}
-    <div class="input-group input-group-sm">
-        <input class="form-control" type="text" name="id" id="ticketID" placeholder="{{t('Ticket ID')}}"/>
-        <span class="input-group-btn">
+    {{--    {{Form::open(['route' => 'ticket.jump', 'class' => 'form-inline heading-actions'])}}--}}
+    <form action="{{route('ticket.index')}}" class="form-inline heading-actions">
+        <div class="input-group input-group-sm">
+            <input class="form-control" type="text" name="search" id="search"
+                   placeholder="{{t('Search for a ticket')}}"/>
+            <span class="input-group-btn">
             <button class="btn btn-default"><i class="fa
                          @if(\Session::get('personlized-language-ar' . \Auth::user()->id, \Config::get('app.locale'))=="ar")
                         fa-chevron-left
@@ -33,10 +35,11 @@
                         @endif
                         "></i></button>
         </span>
-    </div>
-    {{--<a href="{{ route('ticket.create') }}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></a>--}}
-    <a href="#SearchForm" data-toggle="collapse" class="btn btn-info btn-sm searchbtn"><i class="fa fa-search"></i></a>
-    {{Form::close()}}
+        </div>
+        {{--<a href="{{ route('ticket.create') }}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></a>--}}
+        <a href="#SearchForm" data-toggle="collapse" class="btn btn-info btn-sm searchbtn"><i class="fa fa-search"></i></a>
+    </form>
+    {{--    {{Form::close()}}--}}
     <style>
         .ticket-card {
             display: flex;
@@ -63,6 +66,7 @@
             font-size: 12pt;
             font-weight: bold;
         }
+
         .ticket_url {
             font-weight: bold;
         }
@@ -70,44 +74,6 @@
 @stop
 
 @section('body')
-    {{--<div class="ticket-container" style="background-color: #ecf1f4">--}}
-    {{--@foreach($tickets as $ticket)--}}
-
-    {{--<div class="ticket-card">--}}
-    {{--<div class="ticket-details">--}}
-    {{--<p style="border: 1px solid dodgerblue;color:dodgerblue;text-align: center;height: 20px;padding: 0 5px 0 5px">Waiting Customer Response</p>--}}
-    {{--<p class="subject">#1234 </p>--}}
-    {{--<p class="subject">Access to System </p>--}}
-    {{--<p>Requester: Omar</p>--}}
-    {{--<p>Technician: Ahmed</p>--}}
-    {{--</div>--}}
-    {{--<div class="ticket-details2">--}}
-    {{--<p style="height: 20px"></p>--}}
-    {{--<p class="subject">Helpdesk Issues</p>--}}
-    {{--<p>Created At: 25-06-2019</p>--}}
-    {{--<p>Due At: 25-08-2019</p>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-
-    {{--<div class="ticket-card">--}}
-    {{--<div class="ticket-details">--}}
-    {{--<p style="border: 1px solid green;color:green;text-align: center;height: 20px;padding: 0 5px 0 5px">New</p>--}}
-    {{--<p class="subject">#1234 </p>--}}
-    {{--<p class="subject">Access to System </p>--}}
-    {{--<p>Requester: Omar</p>--}}
-    {{--<p>Technician: Ahmed</p>--}}
-    {{--</div>--}}
-    {{--<div class="ticket-details2">--}}
-    {{--<p style="height: 20px"><i class="fa fa-warning" style="color: darkred;font-size: 12pt"></i></p>--}}
-    {{--<p class="subject">Helpdesk Issues</p>--}}
-    {{--<p>Created At: 25-06-2019</p>--}}
-    {{--<p>Due At: 25-08-2019</p>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--@endforeach--}}
-    {{--</div>--}}
-
-
     <section class="col-sm-12" id="TicketList">
         @include('ticket._search_form')
         @if ($tickets->total())
@@ -121,11 +87,12 @@
                     <th>{{t('Subject')}}</th>
                     <th>{{t('Requester')}}</th>
                     <th>{{t('SAP ID')}}</th>
-                    <th>{{t('Technician')}}</th>
+                    <th>{{t('Coordinator')}}</th>
                     <th>{{t('Created At')}}</th>
                     <th>{{t('Due Date')}}</th>
                     <th>{{t('Status')}}</th>
                     <th>{{t('Category')}}</th>
+                    <th>{{t('Subcategory')}}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -148,6 +115,7 @@
                         <td>{{ $ticket->due_date? $ticket->due_date->format('d/m/Y h:i a') : t('Not Assigned') }}</td>
                         <td>{{ t($ticket->status->name) }}</td>
                         <td>{{ t($ticket->category->name) }}</td>
+                        <td>{{ t($ticket->subcategory->name ?? 'Not Assigned') }}</td>
                     </tr>
                 @endforeach
                 </tbody>

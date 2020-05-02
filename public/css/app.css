@@ -12877,7 +12877,7 @@ a.btn-info.searchbtn {
 .auth-form {
   width: 650px;
   background: white;
-  border-radius: 30px;
+  border-radius: 10px;
   border: #194F7E 1px solid;
   overflow: hidden;
   display: -webkit-box;
@@ -12904,7 +12904,7 @@ a.btn-info.searchbtn {
 }
 
 .auth-form .form-control {
-  border-radius: 30px;
+  border-radius: 10px;
   height: 45px;
 }
 
@@ -13067,5 +13067,159 @@ table thead {
 
 .tile-body p {
   font-family: "Sans-Plain Font", Verdana, Tahoma;
+}
+
+@-webkit-keyframes slideInFromUp {
+  0% {
+    -webkit-transform: translateY(-20%);
+            transform: translateY(-20%);
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromUp {
+  0% {
+    -webkit-transform: translateY(-20%);
+            transform: translateY(-20%);
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@-webkit-keyframes slideInFromRight {
+  0% {
+    -webkit-transform: translateX(5%);
+            transform: translateX(5%);
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    -webkit-transform: translateX(5%);
+            transform: translateX(5%);
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@-webkit-keyframes slideInFromLeft {
+  0% {
+    -webkit-transform: translateX(-20%);
+            transform: translateX(-20%);
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    -webkit-transform: translateX(-20%);
+            transform: translateX(-20%);
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+.card-section {
+  -webkit-animation: .5s ease-out 0s 1 slideInFromUp;
+          animation: .5s ease-out 0s 1 slideInFromUp;
+  padding: 30px;
+}
+
+.logo-animation {
+  -webkit-animation: 1.5s ease-out 0s 1 slideInFromRight;
+          animation: 1.5s ease-out 0s 1 slideInFromRight;
+}
+
+.quot-animation {
+  -webkit-animation: 1.5s ease-out 0s 1 slideInFromLeft;
+          animation: 1.5s ease-out 0s 1 slideInFromLeft;
+}
+
+p.quot-animation {
+  font-size: 20pt;
+  font-weight: 800;
+  margin-top: -25px;
+}
+
+.dashboard-card {
+  margin: 50px;
+  -webkit-box-shadow: -1px 2px 6px grey;
+          box-shadow: -1px 2px 6px grey;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.dashboard-input {
+  border-radius: 20px;
+  padding: 20px;
+  -webkit-box-shadow: inset -1px -1px 3px 0px grey;
+          box-shadow: inset -1px -1px 3px 0px grey;
+}
+
+.tickets-overview {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.tickets-overview > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 20px;
+  width: 150px;
+}
+
+.ticket-shape {
+  border-radius: 30%;
+  padding: 10px;
+  height: 150px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 25px;
+  font-weight: 600;
 }
 

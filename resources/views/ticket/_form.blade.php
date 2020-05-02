@@ -1,7 +1,13 @@
 @php
     /** @var \App\Sla $sla */
-$ticketObj = new \App\Ticket();
-$sla = $ticketObj->getSla($category,$subcategory ?? null ,$item ?? null);
+use App\BusinessUnit;use App\ServiceLimit;$ticketObj = new \App\Ticket();
+$sla = $ticketObj->getSla($category,$subcategory ?? null ,$item ?? null,$subItem ?? '');
+
+
+/** @var BusinessUnit $requester_bu */
+$requester_bu = auth()->user()->business_unit;
+$exceedNoOfTickets = $requester_bu->isExceedNoOfLimitedTickets($category,$subcategory ?? null ,$item ?? null ,$subItem ?? null);
+
 @endphp
 
 @if($sla)
@@ -9,6 +15,14 @@ $sla = $ticketObj->getSla($category,$subcategory ?? null ,$item ?? null);
     {{t('Your Request will Delivered within')}} {{$sla->due_days}} {{t('Days')}} {{$sla->due_hours}} {{t('Hours')}} {{$sla->due_minutes}} {{t('Minutes')}}
 </p>
 @endif
+
+@if($exceedNoOfTickets)
+<p style="font-size: 14pt;background-color: rgb(126,65,59); border-radius: 10px;text-align: center;padding: 10px;color: #fff;box-shadow: 2px 5px 2px lightgray">
+    {{t('The number of allowed requests per month is exceeded')}}
+</p>
+@endif
+
+
 
 {{ csrf_field() }}
 <div id="TicketForm">
@@ -107,9 +121,22 @@ $sla = $ticketObj->getSla($category,$subcategory ?? null ,$item ?? null);
             {{Form::hidden('category_id',$category->id)}}
             {{Form::hidden('subcategory_id',$subcategory->id ?? null)}}
             {{Form::hidden('item_id',$item->id ?? null)}}
+            {{Form::hidden('subitem_id',$subItem->id ?? null)}}
         </div>
     </div>
-
+    <div class="row">
+        <div class="col-md-6 {{$errors->has('priority_id')? 'has-error' : ''}}">
+            {{ Form::label('priority_id', t('Priority'), ['class' => 'control-label']) }} <strong
+                    class="text-danger">*</strong>
+            <select name="priority_id" id="priority_id" class="form-control">
+                <option value="">{{t('Select Priority')}}</option>
+                @foreach(App\Priority::all() as $priority)
+                    <option value="{{$priority->id}}"> {{$priority->name }}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <br>
     @if($category->notes || (isset($subcategory) && $subcategory->notes) || (isset($item) && $item->notes) )
         <fieldset>
             <label>{{t('Notes')}}</label>

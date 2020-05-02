@@ -51,6 +51,8 @@ class ApplyBusinessRules extends MatchCriteria
             }
         }
         if ($cc->count()) {
+            TicketReply::flushEventListeners();
+
             $reply = $this->ticket->replies()->create([
                 'user_id' => 1021,
                 'content' => TicketReply::AUTO_REPLY,

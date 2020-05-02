@@ -57,6 +57,8 @@ class CategoryController extends Controller
         $this->createUserGroups($request, $category);
         $this->handleRequirements($request, $category);
         $this->createFees($request, $category);
+        $this->createOrUpdateAvailability($request, $category);
+        $this->createOrUpdateLimitation($request, $category);
 
         flash(t('Category Info'), t('Category has been saved'), 'success');
 
@@ -75,7 +77,6 @@ class CategoryController extends Controller
 
     public function update(Category $category, Request $request)
     {
-//        dd($request->all());
         $this->validates($request);
 
 
@@ -88,7 +89,7 @@ class CategoryController extends Controller
         $this->handleRequirements($request, $category);
         $this->createFees($request, $category);
         $this->createOrUpdateAvailability($request, $category);
-
+        $this->createOrUpdateLimitation($request, $category);
 
         $data = $request->all();
         $data['service_request'] = isset($request->service_request) ? 1 : 0;
@@ -180,10 +181,25 @@ class CategoryController extends Controller
 
         foreach ($request->get('availabilities', []) as $availability) {
             $category->availabilities()->create([
-                'value' => explode(",",$availability['business_units_value']),
+                'value' => explode(",", $availability['business_units_value']),
                 'label' => $availability['business_units_label'],
                 'type' => $availability['type'],
                 'available_until' => $availability['availability_until'],
+            ]);
+        }
+
+    }
+
+    private function createOrUpdateLimitation(Request $request, Category $category)
+    {
+        $category->limitations()->delete();
+
+        foreach ($request->get('limitations', []) as $limitation) {
+            $category->limitations()->create([
+                'value' => explode(",", $limitation['value']),
+                'label' => $limitation['label'],
+                'level' => get_class($category),
+                'number_of_tickets' => $limitation['number_of_tickets'],
             ]);
         }
 

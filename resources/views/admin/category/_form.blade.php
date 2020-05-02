@@ -71,6 +71,24 @@
                 </div>
 
 
+                <div class="form-group {{$errors->has('business_service_type')? 'has-error' : ''}}">
+                    {{Form::label('business_service_type', 'Business Service Type', ['class' => 'control-label'])}}
+                    <select class="form-control" name="business_service_type" id="business_service_type">
+                        <option value="">{{t('Select Type')}}</option>
+                        @foreach(\App\Category::$BUSINESS_TYPES as $key=>$bu_type)
+                            <option value="{{$key}}"
+                                    @if(isset($category) && $key == $category->business_service_type)
+                                    selected
+                                    @endif>{{$bu_type}}
+                            </option>
+                        @endforeach
+                    </select>
+
+                    @if ($errors->has('business_service_type'))
+                        <div class="error-message">{{$errors->first('business_service_type')}}</div>
+                    @endif
+                </div>
+
                 <div class="form-group {{$errors->has('notes')? 'has-error' : ''}}">
                     {{Form::label('notes', 'Notes', ['class' => 'control-label'])}}
                     {{Form::textarea('notes', null, ['class' => 'form-control richeditor', 'rows' => 5])}}
@@ -107,7 +125,7 @@
                 <div class="form-group {{$errors->has('user_groups')? 'has-error' : ''}}">
                     {{Form::label('user_groups', 'User Group', ['class' => 'control-label'])}}
                     {{--                {{Form::select('user_groups[]',\App\Group::requesters()->get()->pluck('name','id'),isset($category) ? $category->service_user_groups()->pluck('id')->toArray() : null,['class'=>'form-control select2','multiple'=>'true'])}}--}}
-                    <select class="form-control" name="user_groups[]" id="user_groups" multiple>
+                    <select class="form-control" name="user_groups[]" id="user_groups" multiple size="10">
                         <option value="">{{t('Select Group')}}</option>
                         @foreach(\App\Group::requesters()->get() as $group)
                             <option value="{{$group->id}}"
@@ -130,6 +148,7 @@
                                      :approvals="{{isset($category) ? $category->levels: 0}}"></approval-levels>
                 </fieldset>
             </div>
+
             <div class="tab-pane fade" role="tabpanel" id="config" aria-labelledby="config-tab">
 
 
@@ -156,6 +175,13 @@
                 </fieldset>
 
 
+                <fieldset>
+                    <legend>Limitation</legend>
+                    <limitation
+                            :business_units="{{\App\BusinessUnit::orderBy('name')->get(['name','id'])}}"
+                            :limitation_data="{{ isset($category) && $category->limitations ? $category->limitations : null }}">
+                    </limitation>
+                </fieldset>
             </div>
 
 

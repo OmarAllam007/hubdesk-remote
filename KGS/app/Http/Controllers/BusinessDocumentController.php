@@ -17,6 +17,7 @@ use App\Item;
 use App\Subcategory;
 use App\Task;
 use App\Ticket;
+use App\TicketField;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Bus;
@@ -24,6 +25,7 @@ use KGS\Document;
 use KGS\DocumentNotification;
 use KGS\Requirement;
 use Predis\Response\Status;
+use function GuzzleHttp\Promise\all;
 
 class BusinessDocumentController extends Controller
 {
@@ -78,16 +80,7 @@ class BusinessDocumentController extends Controller
 
     function createTicket(BusinessUnit $business_unit, Category $category, Subcategory $subcategory, Item $item)
     {
-//        Ticket::flushEventListeners();
-
         $label = $this->getServicesLabels($category, $subcategory, $item);
-
-        $tasks = collect(\request()->get('requirements'));
-
-
-        $tasks_files = \request()->allFiles();
-
-//        $all_checked = count($tasks) == count($tasks_files['requirements']);
 
         $ticket = Ticket::create([
             'requester_id' => \Auth::id(),
@@ -102,38 +95,14 @@ class BusinessDocumentController extends Controller
         ]);
 
         $this->uploadTicketAttachments($ticket, \request('ticket-attachments'));
+        $this->handleTicketRequirements($ticket);
 
-
-        if ($tasks->count()) {
-            foreach ($tasks as $index => $task) {
-                $levels = $this->getServiceLevels($task);
-
-                if (isset($tasks_files['requirements'][$index]['file']) && isset($task['checked'])) {
-                    $this->uploadTicketAttachments($ticket, [$tasks_files['requirements'][$index]['file']]);
-                } else {
-                    $task_label = $this->getServicesLabels($levels['category'], $levels['subcategory'], $levels['item']);
-
-                    Ticket::create([
-                        'requester_id' => \Auth::id(),
-                        'creator_id' => \Auth::id(),
-                        'subject' => $task_label,
-                        'description' => $task_label,
-                        'category_id' => $levels['category']->id,
-                        'subcategory_id' => $levels['subcategory']->id ?? null,
-                        'item_id' => $levels['item']->id ?? null,
-                        'status_id' => 1,
-                        'request_id' => $ticket->id,
-                        'type' => Ticket::TASK_TYPE,
-                    ]);
-                }
-            }
-        }
         return redirect()->route('ticket.show', $ticket->id);
     }
 
     private function getServiceLevels($task)
     {
-        if($task["type"] == 2){
+        if ($task["type"] == 2) {
             return;
         }
         if ($task['reference_type'] == Requirement::ITEM_TYPE) {
@@ -228,7 +197,7 @@ class BusinessDocumentController extends Controller
                     DocumentNotification::create([
                         'business_unit_id' => $business_unit->id,
                         'level' => $key,
-                        'days'=> $notification['days'],
+                        'days' => $notification['days'],
                         'users' => $notification['users']
                     ]);
                 }
@@ -239,4 +208,44 @@ class BusinessDocumentController extends Controller
     }
 
 
+    private function handleTicketRequirements(Ticket $ticket)
+    {
+        $tasks_files = \request()->allFiles();
+
+        foreach (\request('requirements', []) as $index => $requirement) {
+            if ($requirement['type'] == Requirement::SERVICE_TYPE) {
+                if (isset($requirement['checked'])) {
+                    $this->uploadTicketAttachments($ticket, [$tasks_files['requirements'][$index]['file']]);
+                } else {
+                    $this->createNewTask($ticket, $requirement);
+                }
+            } elseif ($requirement['type'] == Requirement::DOCUMENT_TYPE && isset($requirement['checked'])) {
+                $this->uploadTicketAttachments($ticket, [$tasks_files['requirements'][$index]['file']]);
+            } elseif ($requirement['type'] == Requirement::INPUT_TYPE) {
+                $ticket->fields()->create([
+                    'name' => Requirement::find($requirement['id'])->field,
+                    'value' => $requirement['input']
+                ]);
+            }
+        }
+    }
+
+    private function createNewTask($ticket, $requirement)
+    {
+        $levels = $this->getServiceLevels($requirement);
+        $task_label = $this->getServicesLabels($levels['category'], $levels['subcategory'], $levels['item']);
+
+        Ticket::create([
+            'requester_id' => \Auth::id(),
+            'creator_id' => \Auth::id(),
+            'subject' => $task_label,
+            'description' => $task_label,
+            'category_id' => $levels['category']->id,
+            'subcategory_id' => $levels['subcategory']->id ?? null,
+            'item_id' => $levels['item']->id ?? null,
+            'status_id' => 1,
+            'request_id' => $ticket->id,
+            'type' => Ticket::TASK_TYPE,
+        ]);
+    }
 }

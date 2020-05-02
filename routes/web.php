@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ConfigurationController;
 use Illuminate\Routing\Router;
 
 if(env('LOGIN_AS')){
@@ -13,9 +12,18 @@ Route::get('logout', 'Auth\LoginController@logout');
 Route::get('auth/google', 'Auth\AuthController@googleRedirect');
 Route::get('auth/google/continue', 'Auth\AuthController@googleHandle');
 
+
+Route::group(['prefix'=>'dashboard'],function (Router $r){
+    $r->get('select_business_unit','DashboardController@selectServiceUnit')
+        ->name('dashboard.select_business_unit');
+    $r->get('display/{businessUnit}','DashboardController@display')
+        ->name('dashboard.display');
+});
+
 Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
     $r->get('/subcategory/{cat_id?}', 'ListController@subcategory');
     $r->get('/item/{subcat_id?}', 'ListController@item');
+    $r->get('/subitem/{item_id?}', 'ListController@subitem');
     $r->get('/category', 'ListController@category');
     $r->get('/location', 'ListController@location');
     $r->get('/business-unit', 'ListController@businessUnit');
@@ -59,6 +67,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
     $r->resource('category', 'Admin\CategoryController');
     $r->resource('subcategory', 'Admin\SubcategoryController');
     $r->resource('item', 'Admin\ItemController');
+    $r->resource('subItem', 'Admin\SubItemController');
     $r->resource('status', 'Admin\StatusController');
     $r->resource('group', 'Admin\GroupController');
     $r->get('user-group','Admin\GroupController@userGroups')->name('group.user_groups');
@@ -95,11 +104,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/reset_password','UserController@resetForm')->name('user.reset');
 
     Route::group(['prefix' => 'ticket'], function (\Illuminate\Routing\Router $r) {
-        $r->get('create-ticket/business-unit/{business_unit}/category/{category}/subcategory/{subcategory}/item/{item}', 'TicketController@createTicket')->name('ticket.create-ticket');
+        $r->get('create-ticket/business-unit/{business_unit}/category/{category}/subcategory/{subcategory?}/item/{item?}/subItem/{subItem?}', 'TicketController@createTicket')
+            ->name('ticket.create-ticket');
         $r->get('create-new', 'TicketController@create')->name('ticket.create-wizard');
         $r->get('create-new/business-unit/{business_unit}', 'TicketController@selectCategory')->name('ticket.create.select_category');
         $r->get('create-new/business-unit/{business_unit}/category/{category}', 'TicketController@selectSubcategory')->name('ticket.create.select_subcategory');
-        $r->get('create-new/business-unit/{business_unit}/category/{category}/subcategory/{subcategory}', 'TicketController@selectItem')->name('ticket.create.select_item');
+        $r->get('create-new/business-unit/{business_unit}/subcategory/{subcategory}', 'TicketController@selectItem')->name('ticket.create.select_item');
+        $r->get('create-new/business-unit/{business_unit}/item/{item}', 'TicketController@selectSubItem')->name('ticket.create.select_subItem');
         $r->post('resolution/{ticket}', ['as' => 'ticket.resolution', 'uses' => 'TicketController@resolution']);
         $r->post('edit-resolution/{ticket}', ['as' => 'ticket.edit-resolution', 'uses' => 'TicketController@editResolution']);
         $r->post('note/{ticket}', ['as' => 'ticket.note', 'uses' => 'TicketController@addNote']);
@@ -152,7 +163,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/report/result', 'ReportController@show');
     Route::post('/report/result', 'ReportController@show');
 
-    Route::get('language/{language}', ['as' => 'site.changeLanguage', 'uses' => 'HomeController@changeLanguage'])->middleware('lang');
+    Route::get('language/{language}', ['as' => 'site.changeLanguage',
+        'uses' => 'HomeController@changeLanguage'])->middleware('lang');
 
     Route::group(['prefix'=>'configurations'],function (Router $r){
         $r->get('','ConfigurationController@index')->name('configurations.index');

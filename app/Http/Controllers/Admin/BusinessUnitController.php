@@ -78,7 +78,7 @@ class BusinessUnitController extends Controller
 
         $business_unit->roles()->delete();
 
-        if (count($request->roles)) {
+        if ($request->get('roles',[])) {
             foreach ($request->roles as $key => $role) {
                 BusinessUnitRole::create([
                     'business_unit_id' => $request->id,

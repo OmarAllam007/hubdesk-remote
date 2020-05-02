@@ -4,6 +4,7 @@ namespace App;
 
 use App\Behaviors\Listable;
 use App\Behaviors\ServiceConfiguration;
+use App\Behaviors\SharedRelations;
 use App\Http\Requests\Request;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\UploadedFile;
@@ -31,9 +32,14 @@ use KGS\Requirement;
  */
 class Category extends KModel
 {
-    use Listable, ServiceConfiguration;
+    use Listable, ServiceConfiguration, SharedRelations;
 
-    protected $fillable = ['business_unit_id', 'name', 'description', 'service_request', 'service_cost', 'notes', 'service_type', 'is_disabled', 'logo'];
+    protected $fillable = ['business_unit_id', 'name', 'description', 'service_request', 'service_cost', 'notes', 'service_type', 'is_disabled', 'logo', 'business_service_type'];
+
+    function business_unit()
+    {
+        return $this->belongsTo(BusinessUnit::class);
+    }
 
     public function subcategories()
     {
@@ -81,33 +87,9 @@ class Category extends KModel
 
     function availabilities()
     {
-        return $this->hasMany(Availability::class,'level_id');
+        return $this->hasMany(Availability::class, 'level_id');
     }
 
-    function scopeActive($query)
-    {
-        return $query->where('is_disabled', 0);
-    }
-
-    function scopeTicketType($query)
-    {
-        return $query->where('service_type', 1)->orWhere('service_type', 3);
-    }
-
-    function scopeTaskType($query)
-    {
-        return $query->where('service_type', 2)->orWhere('service_type', 3);
-    }
-
-    function scopeBoth($query)
-    {
-        return $query->where('service_type', 3);
-    }
-
-//    public function businessunit()
-//    {
-//        return $this->belongsTo(BusinessUnit::class, 'business_unit_id', 'id');
-//    }
 
     public function scopeCanonicalList(Builder $query)
     {

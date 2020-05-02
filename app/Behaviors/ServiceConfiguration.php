@@ -4,6 +4,7 @@ namespace App\Behaviors;
 
 use App\Availability;
 use App\Group;
+use App\ServiceLimit;
 use App\ServiceUserGroup;
 use Illuminate\Database\Eloquent\Builder;
 use PhpParser\Node\Expr\Cast\Int_;

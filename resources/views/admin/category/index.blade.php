@@ -26,13 +26,19 @@
             <thead>
             <tr>
                 <th>{{t('Name')}}</th>
+                <th>{{t('Business Unit')}}</th>
+                <th>{{t('Type')}}</th>
+                <th>{{t('Is Active?')}}</th>
                 <th>{{t('Actions')}}</th>
             </tr>
             </thead>
             <tbody>
             @foreach($categories as $category)
                 <tr>
-                    <td class="col-md-9"><a href="{{route('admin.category.show', $category)}}">{{$category->name}}</a></td>
+                    <td class="col-md-3"><a href="{{route('admin.category.show', $category)}}">{{$category->name}}</a></td>
+                    <td class="col-md-3">{{$category->business_unit->name ?? 'Not Assigned'}}</td>
+                    <td class="col-md-2">{{App\Category::$BUSINESS_TYPES[$category->business_service_type] ?? 'Not Assigned'}}</td>
+                    <td class="col-md-2">{{$category->is_disabled ? 'No' : 'Yes'}}</td>
                     <td class="col-md-3">
                         <form action="{{route('admin.category.destroy', $category)}}" method="post">
                             {{csrf_field()}} {{method_field('delete')}}

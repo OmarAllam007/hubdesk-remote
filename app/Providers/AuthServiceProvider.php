@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Attachment;
 use App\Auth\KdeskUserProvider;
 use App\BusinessUnit;
+use App\DashboardUser;
 use App\Policies\AttachmentPolicy;
 use App\Policies\BusinessUnitDocumentRoles;
 use App\Policies\ReportPolicy;
@@ -57,6 +58,10 @@ class AuthServiceProvider extends ServiceProvider
 
         \Gate::define('show_business_document', function ($user) {
             return in_array($user->id, BusinessDocumentRole::all()->pluck('user_id')->toArray());
+        });
+
+        \Gate::define('dashboard', function ($user) {
+            return in_array($user->id, DashboardUser::all()->pluck('user_id')->toArray());
         });
 
         $this->registerPolicies();

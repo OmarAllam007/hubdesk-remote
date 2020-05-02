@@ -4,6 +4,7 @@ namespace App;
 
 use App\Behaviors\Listable;
 use App\Behaviors\ServiceConfiguration;
+use App\Behaviors\SharedRelations;
 use Illuminate\Database\Eloquent\Builder;
 use KGS\Requirement;
 
@@ -30,18 +31,29 @@ use KGS\Requirement;
  */
 class Item extends KModel
 {
-    use Listable, ServiceConfiguration;
+    use Listable, ServiceConfiguration,SharedRelations;
 
-    protected $fillable = ['subcategory_id', 'name', 'description', 'service_request','service_cost','notes'];
+    protected $fillable = ['subcategory_id', 'name', 'description', 'service_request', 'service_cost',
+        'notes' ,'business_service_type','service_type'];
 
     public function subcategory()
     {
         return $this->belongsTo(Subcategory::class, 'subcategory_id', 'id');
     }
 
+    public function subItems()
+    {
+        return $this->hasMany(SubItem::class);
+    }
+
+    public function canonicalName()
+    {
+        return $this->subcategory->category->name . ' > ' . $this->subcategory->name . '>' . $this->name;
+    }
+
     function custom_fields()
     {
-        return $this->morphMany(CustomField::class,'level', 'level')->orderBy('order');
+        return $this->morphMany(CustomField::class, 'level', 'level')->orderBy('order');
     }
 
     function levels()
@@ -49,12 +61,14 @@ class Item extends KModel
         return $this->hasMany(ApprovalLevels::class, 'level_id')->where('type', 3);
     }
 
-    function fees(){
+    function fees()
+    {
         return $this->hasMany(AdditionalFee::class, 'level_id')->where('level', AdditionalFee::ITEM);
     }
 
-    public function service_user_groups(){
-        return $this->hasMany(ServiceUserGroup::class,'level_id')->where('level',ServiceUserGroup::$ITEM);
+    public function service_user_groups()
+    {
+        return $this->hasMany(ServiceUserGroup::class, 'level_id')->where('level', ServiceUserGroup::$ITEM);
     }
 
     function scopeActive($query)
@@ -73,8 +87,9 @@ class Item extends KModel
 
         return $items->sortBy('name');
     }
+
     public function requirements()
     {
-        return $this->hasMany(Requirement::class,'reference_id')->where('reference_type', Requirement::$types['Item']);
+        return $this->hasMany(Requirement::class, 'reference_id')->where('reference_type', Requirement::$types['Item']);
     }
 }

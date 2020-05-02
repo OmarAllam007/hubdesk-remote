@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mada:400,700">
     {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css">--}}
-    <link rel="stylesheet" href="{{asset('/css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/app.css')}}?random">
 
     @if(\Session::get('personlized-language-ar' . auth()->id(), config('app.locale')) == "ar")
         <link rel="stylesheet" href="{{asset('/css/bootstrap-rtl.css')}}">
@@ -44,6 +44,11 @@
                     <li class="nav-item"><a href="{{route('ticket.index')}}"><i
                                     class="fa fa-ticket"></i> {{t('Tickets')}}</a></li>
 
+                    @can('dashboard')
+                        <li class="nav-item"><a href="{{route('dashboard.select_business_unit')}}"><i
+                                        class="fa fa-dashboard"></i> {{t('Dashboard')}}</a></li>
+                    @endcan
+
                     @if(auth()->user()->isSupport())
                         <li class="nav-item"><a href="{{route('configurations.index')}}"><i
                                         class="fa fa-cogs"></i> {{t('Configurations')}}</a></li>
@@ -74,6 +79,8 @@
                         <ul class="dropdown-menu">
                             <li><a href="{{route('site.changeLanguage','ar')}}"> {{t('Arabic')}}</a></li>
                             <li><a href="{{route('site.changeLanguage','en')}}"> {{t('English')}}</a></li>
+                            <li><a href="{{route('site.changeLanguage','in')}}"> {{t('Indian')}}</a></li>
+                            <li><a href="{{route('site.changeLanguage','ur')}}"> {{t('URDU')}}</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -109,7 +116,7 @@
                 @yield('sidebar')
             @endif
 
-                @yield('body')
+            @yield('body')
             @include('sweetalert::alert')
         </div>
     </main>
@@ -145,15 +152,15 @@
 
 {{--@if (alert())--}}
 
-    {{--<script>--}}
-        {{--swal({--}}
-            {{--title: "{!! alert()-> !!}",--}}
-            {{--text: "{!! alert('config.text') !!}",--}}
-            {{--type: "{!! alert()->type() !!}",--}}
-            {{--timer: 3000,--}}
-            {{--showConfirmButton: false,--}}
-        {{--});--}}
-    {{--</script>--}}
+{{--<script>--}}
+{{--swal({--}}
+{{--title: "{!! alert()-> !!}",--}}
+{{--text: "{!! alert('config.text') !!}",--}}
+{{--type: "{!! alert()->type() !!}",--}}
+{{--timer: 3000,--}}
+{{--showConfirmButton: false,--}}
+{{--});--}}
+{{--</script>--}}
 {{--@endif--}}
 
 @yield('javascript')

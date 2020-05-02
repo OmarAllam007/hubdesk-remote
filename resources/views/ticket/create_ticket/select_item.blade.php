@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('header')
-
     <div class="display-flex">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -9,13 +8,14 @@
                 <li class="breadcrumb-item"><a href="#">{{$business_unit->name}}
                     </a>
                 </li>
+{{--                --}}
                 <li class="breadcrumb-item"><a
-                            href="{{route('ticket.create.select_category',compact('business_unit','category'))}}"> {{$category->name}}
+                            href="{{route('ticket.create.select_category',compact('business_unit'))}}"> {{$subcategory->category->name}}
                     </a>
                 </li>
 
                 <li class="breadcrumb-item"><a
-                            href="{{route('ticket.create.select_subcategory',compact('business_unit','category'))}}"> {{$subcategory->name}}
+                            href="{{route('ticket.create.select_subcategory',[$business_unit,$subcategory->category])}}"> {{$subcategory->name}}
                     </a>
                 </li>
                 <li class="breadcrumb-item">
@@ -36,16 +36,21 @@
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <div class="tiles-container">
-                    @foreach($subcategory->items()->orderBy('order')->get() as $item)
+                    @foreach($subcategory->items()->individual()->orderBy('order')->get() as $item)
                         @if($item->canDisplay(\App\ServiceUserGroup::$ITEM))
-                        <a href="{{route('ticket.create-ticket',compact('business_unit','category','subcategory','item'))}}"
+                        <a href="{{route('ticket.create.select_subItem',compact('business_unit','item'))}}"
                            class="tile">
                             <div class="tile-container"
                                  >
-                                <div class="tile-body" style="justify-content: center; height: 100vh;">
-                                    <p class="text-center" >
+                                <div class="tile-body" style="display: flex; flex-direction:column; width: 100%;height: 100%;">
+                                    <p class="text-center" style="margin-top: 40px">
                                         {{t($item->name)}}
                                     </p>
+                                    @if($item->service_cost > 0)
+                                        <p>
+                                            <span>{{$item->service_cost}} {{t('SAR')}}</span>
+                                        </p>
+                                    @endif
                                 </div>
                             </div>
                         </a>

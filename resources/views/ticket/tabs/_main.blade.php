@@ -18,10 +18,11 @@
         <tr>
             <th class="col-sm-3">{{t('Category')}}</th>
             <td class="col-sm-3">{{$ticket->category->name ?? 'Not Assigned'}}</td>
-            <th class="col-sm-3">{{t('Service Cost: ')}}</th>
-            <td class="col-sm-3">{{ $ticket->total_ticket_cost ? t($ticket->total_ticket_cost . ' SAR') : 'Not Assigned'}}</td>
+            <th class="col-sm-3">{{t('Group')}}</th>
+            <td class="col-sm-3">{{$ticket->group->name ?? 'Not Assigned'}}</td>
 
-        </tr> 
+
+        </tr>
         <tr>
             <th class="col-sm-3">{{t('Subcategory')}}</th>
             <td class="col-sm-3">{{$ticket->subcategory->name ?? 'Not Assigned'}}</td>
@@ -31,30 +32,25 @@
         <tr>
             <th class="col-sm-3">{{t('Item')}}</th>
             <td class="col-sm-3">{{$ticket->Item->name ?? 'Not Assigned'}}</td>
-            <th class="col-sm-3">{{t('First Response Due Time')}}</th>
-            <td class="col-sm-3">{{$ticket->first_response_date ?? 'Not Assigned'}}</td>
+            <th class="col-sm-3">{{t('Priority')}}</th>
+            <td class="col-sm-3">{{$ticket->priority->name ?? 'Not Assigned'}}</td>
 
 
         </tr>
         <tr>
-            <th class="col-sm-3">{{t('Due Time')}}</th>
-            <td class="col-sm-3">{{$ticket->due_date ?? 'Not Assigned'}}</td>
+            <th class="col-sm-3">{{t('SubItem')}}</th>
+            <td class="col-sm-3">{{$ticket->subItem->name ?? 'Not Assigned'}}</td>
 
-            <th class="col-sm-3">{{t('Urgency')}}</th>
-            <td class="col-sm-3">{{$ticket->urgency->name ?? 'Not Assigned'}}</td>
+            <th class="col-sm-3">{{t('Service Cost: ')}}</th>
+            <td class="col-sm-3">{{ $ticket->total_ticket_cost ? t($ticket->total_ticket_cost . ' SAR') : 'Not Assigned'}}</td>
         </tr>
         <tr>
             <th class="col-sm-3">{{t('SLA')}}</th>
             <td class="col-sm-3">{{$ticket->sla->name ?? 'Not Assigned'}}</td>
-            <th class="col-sm-3">{{t('Group')}}</th>
-            <td class="col-sm-3">{{$ticket->group->name ?? 'Not Assigned'}}</td>
+            <th class="col-sm-3">{{t('Due Time')}}</th>
+            <td class="col-sm-3">{{$ticket->due_date ?? 'Not Assigned'}}</td>
+
         </tr>
-        {{--<tr>--}}
-            {{--<th>{{t('Business Unit')}}</th>--}}
-            {{--<td>{{$ticket->business_unit->name ?? 'Not Assigned'}}</td>--}}
-            {{--<th>{{t('Location')}}</th>--}}
-            {{--<td>{{$ticket->location->name ?? 'Not Assigned'}}</td>--}}
-        {{--</tr>--}}
     </table>
 </div>
 
@@ -86,25 +82,25 @@
 
 
 @section('javascript')
-<script>
-    $('.editNote').on('click', function (e) {
-        let modal = $('#ReplyModal');
-        let note = $(this).data('note');
-        modal.find('.modal-title').html('Edit Note - Ticket #' + note.ticket_id);
-        modal.find('button[type=submit]').html('<i class="fa fa-save"></i> Save');
-        let form = modal.closest('form').attr('action','note-edit/'+note.id);
-        tinyMCE.activeEditor.setContent(note.note);
-        $('#display_to_requester').attr('checked', note.display_to_requester==1 ? true : false);
-        $('#email_to_technician').attr('checked', note.email_to_technician==1 ? true : false);
-        $('#as_first_response').parent().hide();
-    });
+    <script>
+        $('.editNote').on('click', function (e) {
+            let modal = $('#ReplyModal');
+            let note = $(this).data('note');
+            modal.find('.modal-title').html('Edit Note - Ticket #' + note.ticket_id);
+            modal.find('button[type=submit]').html('<i class="fa fa-save"></i> Save');
+            let form = modal.closest('form').attr('action', 'note-edit/' + note.id);
+            tinyMCE.activeEditor.setContent(note.note);
+            $('#display_to_requester').attr('checked', note.display_to_requester == 1 ? true : false);
+            $('#email_to_technician').attr('checked', note.email_to_technician == 1 ? true : false);
+            $('#as_first_response').parent().hide();
+        });
 
-    $('.removeNote').on('click',function () {
-        let modal = $('#removeNoteModal');
-        let note = $(this).data('note');
-        modal.find('.modal-title').html('Remove Note #' + note.id + '  - Ticket #'+note.ticket_id);
-        modal.find('.modal-body').html('Are you sure to delete #' + note.id + ' note ?');
-        let form = modal.closest('form').attr('action','remove-note/'+note.id);
-    })
-</script>
+        $('.removeNote').on('click', function () {
+            let modal = $('#removeNoteModal');
+            let note = $(this).data('note');
+            modal.find('.modal-title').html('Remove Note #' + note.id + '  - Ticket #' + note.ticket_id);
+            modal.find('.modal-body').html('Are you sure to delete #' + note.id + ' note ?');
+            let form = modal.closest('form').attr('action', 'remove-note/' + note.id);
+        })
+    </script>
 @append

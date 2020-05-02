@@ -5,52 +5,7 @@
 @stop
 @section('stylesheets')
     <style>
-        @keyframes slideInFromUp {
-            0% {
-                transform: translateY(-20%);
-            }
-            100% {
-                transform: translateX(0);
-            }
-        }
 
-        @keyframes slideInFromRight {
-            0% {
-                transform: translateX(5%);
-            }
-            100% {
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInFromLeft {
-            0% {
-                transform: translateX(-20%);
-            }
-            100% {
-                transform: translateX(0);
-            }
-        }
-
-        .card-section {
-            animation: .5s ease-out 0s 1 slideInFromUp;
-            padding: 30px;
-        }
-
-        .logo-animation {
-            animation: 1.5s ease-out 0s 1 slideInFromRight;
-        }
-
-        .quot-animation {
-            animation: 1.5s ease-out 0s 1 slideInFromLeft;
-        }
-
-        p.quot-animation {
-            font-size: 20pt;
-            font-weight: 800;
-            margin-top: -25px;
-
-        }
     </style>
 @endsection
 
@@ -74,7 +29,7 @@
                                  style="width: 100%;height: 100%;display: flex; flex-direction:column;">
                                 @if($business_unit->logo)
                                     <p class="text-center logo-animation">
-                                        <img src="{{$business_unit->url}}" alt="{{$business_unit->url}}" >
+                                        <img src="{{$business_unit->url}}" alt="{{$business_unit->url}}">
                                     </p>
                                     {{--@endif--}}
                                 @else
@@ -84,7 +39,7 @@
                                 @endif
                                 {{--for demonistration only--}}
                                 @if(str_contains(strtolower($business_unit->name),'quwa'))
-                                    <p class="text-center quot-animation" >
+                                    <p class="text-center quot-animation">
                                         نعين ونعاون
                                     </p>
                                 @endif
