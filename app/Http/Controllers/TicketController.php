@@ -32,6 +32,7 @@ use App\TicketLog;
 use App\TicketNote;
 use App\TicketReply;
 use http\Env\Response;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class TicketController extends Controller
@@ -42,6 +43,27 @@ class TicketController extends Controller
         $query = $ticketScope['query'];
         $scope = $ticketScope['scope'];
         $scopes = $ticketScope['scopes'];
+
+        if ($search = \request('search')) {
+
+            $searchedTickets = $query->with('requester')->where('id', intval($search))
+                ->orWhereHas('requester', function (Builder $query) use ($search) {
+                    $query->where('employee_id', $search)
+                        ->orWhere('name', 'LIKE', "%${search}%");
+                });
+
+            if ($searchedTickets->count() > 1) {
+                $query = $searchedTickets;
+            } else if ($searchedTickets->count() == 1) {
+                $ticket = $searchedTickets->first()->id;
+                return redirect()->route('ticket.show', compact('ticket'));
+            } else {
+                flash(t('Ticket Info'), t('Ticket not found'), 'error');
+                return redirect()->route('ticket.index');
+            }
+
+        }
+
         $tickets = $query->latest('id')->paginate();
         return view('ticket.index', compact('tickets', 'scopes', 'scope'));
     }
@@ -245,7 +267,7 @@ class TicketController extends Controller
     {
         $current_technician = $ticket->technician_id;
 
-        $ticket->update($request->only(['group_id', 'technician_id', 'category_id', 'subcategory_id', 'item_id','subitem_id']));
+        $ticket->update($request->only(['group_id', 'technician_id', 'category_id', 'subcategory_id', 'item_id', 'subitem_id']));
 
         if ($request->get('technician_id') != $current_technician) {
             \Mail::send(new TicketAssignedMail($ticket));
