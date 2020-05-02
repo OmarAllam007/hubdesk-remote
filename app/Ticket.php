@@ -6,6 +6,7 @@ use App\Helpers\Ticket\TicketFilter;
 use App\Helpers\Ticket\TicketViewScope;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
 /**
@@ -79,7 +80,7 @@ class Ticket extends KModel
 
     protected $fillable = [
         'subject', 'description', 'category_id', 'subcategory_id', 'item_id', 'group_id', 'technician_id',
-        'priority_id', 'impact_id', 'urgency_id', 'requester_id', 'creator_id', 'status_id', 'sdp_id', 'type', 'request_id', 'is_opened','business_unit_id','subitem_id'
+        'priority_id', 'impact_id', 'urgency_id', 'requester_id', 'creator_id', 'status_id', 'sdp_id', 'type', 'request_id', 'is_opened', 'business_unit_id', 'subitem_id'
     ];
 
     protected $dates = ['created_at', 'updated_at', 'due_date', 'first_response_date', 'resolve_date', 'close_date'];
@@ -148,8 +149,9 @@ class Ticket extends KModel
 
     public function subItem()
     {
-        return $this->belongsTo(SubItem::class,'subitem_id');
+        return $this->belongsTo(SubItem::class, 'subitem_id');
     }
+
     public function status()
     {
         return $this->belongsTo(Status::class);
@@ -282,6 +284,24 @@ class Ticket extends KModel
         $filter->apply();
 
         return $query;
+    }
+
+    public function scopeMonthScope(Builder $query, $filters)
+    {
+        if (empty($filters['filters'])) {
+            return $query
+                ->leftJoin('categories as cat', 'tickets.category_id', '=', 'cat.id')
+                ->where('tickets.created_at', '>=', Carbon::now()->firstOfMonth()->toDateTimeString())
+                ->where('tickets.created_at', '<=', Carbon::now()->lastOfMonth()->toDateTimeString())
+                ->where('cat.business_unit_id', $filters['business_unit_id']);
+        }
+        return
+            $query
+                ->leftJoin('categories as cat', 'tickets.category_id', '=', 'cat.id')
+                ->where('tickets.created_at', '>=', $filters['filters']['from'])
+                ->where('tickets.created_at', '<=', $filters['filters']['to'])
+                ->where('cat.business_unit_id', $filters['business_unit_id']);
+
     }
 
     public function isOpen()
@@ -583,7 +603,7 @@ class Ticket extends KModel
         return $fees ?? collect();
     }
 
-    function getSla($category, $subcategory = null, $item = null,$subItem = null)
+    function getSla($category, $subcategory = null, $item = null, $subItem = null)
     {
         $this->category_id = $category->id;
 
