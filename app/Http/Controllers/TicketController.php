@@ -46,7 +46,7 @@ class TicketController extends Controller
 
         if ($search = \request('search')) {
 
-            $searchedTickets = $query->with('requester')->where('id', intval($search))
+            $searchedTickets = Ticket::with('requester')->where('id', intval($search))
                 ->orWhereHas('requester', function (Builder $query) use ($search) {
                     $query->where('employee_id', $search)
                         ->orWhere('name', 'LIKE', "%${search}%");
@@ -63,6 +63,7 @@ class TicketController extends Controller
             }
 
         }
+
 
         $tickets = $query->latest('id')->paginate();
         return view('ticket.index', compact('tickets', 'scopes', 'scope'));
