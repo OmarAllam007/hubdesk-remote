@@ -2,10 +2,10 @@ import Vue from 'vue';
 import Attachments from './AttachmentModal.vue';
 import ApprovalQuestions from "./approvals/questions/ApprovalQuestions";
 import Task from './Task.vue';
-import Attachment from './AttachmentModal.vue';
+
 
 window.app = new Vue({
-    el: '#TicketForm',
+    el: '#ticketArea',
     data: {
         category: window.category,
         subcategory: window.subcategory,
@@ -27,8 +27,6 @@ window.app = new Vue({
         this.loadSubcategory(true);
         this.loadItem(true);
         this.loadSubItem(true);
-
-        const self = this;
 
         $("#requester_id").change((e) => {
             this.getRequesterInfo(e.target.value)
@@ -62,7 +60,7 @@ window.app = new Vue({
         loadTechnicians() {
             if (this.group) {
                 jQuery.get(`/list/group-technicians/${this.group}`).then(response => {
-                    this.technicians = response
+                    this.technicians = response;
                 });
             }
 
@@ -148,9 +146,10 @@ window.app = new Vue({
         },
 
         group() {
+            console.log('asd');
             this.loadTechnicians();
         },
     },
 
-    components: {Attachments,ApprovalQuestions,Task,Attachment}
+    components: {Attachments,Task, ApprovalQuestions}
 });

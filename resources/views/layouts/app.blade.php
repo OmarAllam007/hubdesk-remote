@@ -124,13 +124,6 @@
     <footer>
         <div class="container-fluid">
             <div class="footer-container display-flex">
-                {{--@if(Session::has('flash-message'))--}}
-                {{--@include('partials.alert', [--}}
-                {{--'type' => Session::get('flash-type', 'danger'),--}}
-                {{--'message' => Session::get('flash-message')--}}
-                {{--])--}}
-                {{--@endif--}}
-
                 <p class="text-mutedtext-right">{{t('Copyright')}} &copy; <a
                             href="http://hubtech.sa">Hubtech</a> {{date('Y')}}</p>
 
@@ -148,21 +141,6 @@
 
 
 @include('vendor.sweetalert.alert')
-
-
-{{--@if (alert())--}}
-
-{{--<script>--}}
-{{--swal({--}}
-{{--title: "{!! alert()-> !!}",--}}
-{{--text: "{!! alert('config.text') !!}",--}}
-{{--type: "{!! alert()->type() !!}",--}}
-{{--timer: 3000,--}}
-{{--showConfirmButton: false,--}}
-{{--});--}}
-{{--</script>--}}
-{{--@endif--}}
-
 @yield('javascript')
 
 </body>

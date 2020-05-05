@@ -88,14 +88,7 @@
 </div>
 {{Form::close()}}
 @section('javascript')
-    <script>
-        var category = '{{Form::getValueAttribute('category_id') ?? $ticket->category_id}}';
-        var subcategory = '{{Form::getValueAttribute('subcategory_id') ?? $ticket->subcategory_id}}';
-        var item = '{{Form::getValueAttribute('item_id') ?? $ticket->item_id}}';
-        var subitem = '{{Form::getValueAttribute('subitem_id') ?? $ticket->subitem_id}}';
-        var group = '{{Form::getValueAttribute('group_id') ?? $ticket->group_id}}'
-        var technician_id = '{{Form::getValueAttribute('technician_id') ?? $ticket->technician_id}}'
-    </script>
-    <script src="{{asset('/js/ticket-form.js')}}"></script>
 
-@append
+{{--    <script src="{{asset('/js/ticket-form.js')}}"></script>--}}
+
+@endsection
