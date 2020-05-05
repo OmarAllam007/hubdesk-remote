@@ -299,7 +299,7 @@
         }
         ,
         mounted() {
-            // this.loadSubcategory(true);
+            console.log('asd')
         },
         computed: {
             can_submit(){
@@ -308,8 +308,6 @@
         },
         created() {
             this.loadTasks();
-            // this.loadSubcategory(true);
-            // this.loadItems(true);
             this.loadTechnicians();
         }
     });
