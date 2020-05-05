@@ -13,7 +13,7 @@
                 @endif
             </div>
         </div>
-        <hr style="background-color:black; height: 1px; border: 0; margin:0 0 5px 0px">
+        <hr>
 
         {!! tidy_repair_string($ticket->resolution->content,[],'utf8') !!}
     </div>

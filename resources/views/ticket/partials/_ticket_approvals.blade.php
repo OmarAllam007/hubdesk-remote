@@ -18,7 +18,7 @@
 
                 @if($approval->status != App\TicketApproval::PENDING_APPROVAL && $approval->questions->count())
                     <table class="table table-bordered">
-                        <thead style="background-color: cadetblue;color: white;font-weight: bold;">
+                        <thead class="approvals-thead">
                         <tr>
                             <td>Question</td>
                             <td>Status</td>

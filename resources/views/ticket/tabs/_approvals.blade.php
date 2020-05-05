@@ -113,12 +113,12 @@
 
         </div>
 
-{{--        <div id="TicketForm" class="row">--}}
-{{--            <div class="col-md-6">--}}
-{{--                <approval-questions></approval-questions>--}}
-{{--            </div>--}}
+        <div id="TicketForm" class="row">
+            <div class="col-md-6">
+                <approval-questions></approval-questions>
+            </div>
 
-{{--        </div>--}}
+        </div>
 
         <div class="form-group {{$errors->has('content')? 'has-error' : ''}}">
             {{Form::label('content', t('Description'), ['class' => 'control-label'])}}

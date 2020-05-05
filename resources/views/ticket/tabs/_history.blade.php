@@ -1,4 +1,4 @@
-<ul class="list-group" style="box-shadow: 0px 2px 1px 0px lightgrey;">
+<ul class="list-group history-panel" >
 <li class="list-group-item created-log">
     @if(!$ticket->isTask())
         <strong>{{t('Ticket created by')}}  {{$ticket->created_by->name}} {{t('at')}} {{$ticket->created_at->format('d/m/Y H:i')}}</strong>
@@ -8,9 +8,9 @@
 </li>
 </ul>
 @foreach ($ticket->history as $date=>$logs)
-    <div class="panel panel-default" style="box-shadow: 0px 2px 1px 0px lightgrey;">
+    <div class="panel panel-default history-panel" >
         <!-- Default panel contents -->
-        <div class="panel-heading" style="background-color: #e1e1e1">
+        <div class="panel-heading history-panel-heading" >
            <strong>
                <a href="#log{{str_replace('-','',$date)}}" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
                    {{$date}}
@@ -22,6 +22,7 @@
         <ul class="list-group collapse in" id="log{{str_replace('-','',$date)}}">
                 @foreach($logs as $log)
             <li class="list-group-item {{$log->color_type}}">
+
                     @if ($log->type == \App\TicketLog::AUTO_CLOSE)
                         <strong>{{t('Ticket has been closed by the system')}} {{t('at')}} {{$log->created_at->format('d/m/Y H:i')}}</strong>
                     @elseif($log->type == \App\TicketLog::ESCALATION)
@@ -37,7 +38,8 @@
                             {{t('at')}} {{$log->created_at->format('d/m/Y H:i')}}</strong>
                         <ul>
                             @foreach($log->entries as $entry)
-                                <li>
+                                <li class="list-unstyled ">
+                                    <i class="fa fa-caret-right"></i>
                                     <small>{{ t($entry->label.' changed from') }}
                                         <strong>{{t($entry->old_value) ?: 'None'}}</strong>
                                         {{t('to')}} <strong>{{t($entry->new_value) ?: 'None'}}</strong></small>

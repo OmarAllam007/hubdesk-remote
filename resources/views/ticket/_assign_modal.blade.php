@@ -87,8 +87,3 @@
     </div>
 </div>
 {{Form::close()}}
-@section('javascript')
-
-{{--    <script src="{{asset('/js/ticket-form.js')}}"></script>--}}
-
-@endsection

@@ -79,28 +79,3 @@
 @include('ticket.partials._ticket_additional_fields',['ticket'=> $ticket])
 @include('ticket.partials._requester_details',['ticket'=>$ticket])
 @include('ticket.partials._notes',['ticket'=>$ticket])
-
-
-@section('javascript')
-    <script>
-        $('.editNote').on('click', function (e) {
-            let modal = $('#ReplyModal');
-            let note = $(this).data('note');
-            modal.find('.modal-title').html('Edit Note - Ticket #' + note.ticket_id);
-            modal.find('button[type=submit]').html('<i class="fa fa-save"></i> Save');
-            let form = modal.closest('form').attr('action', 'note-edit/' + note.id);
-            tinyMCE.activeEditor.setContent(note.note);
-            $('#display_to_requester').attr('checked', note.display_to_requester == 1 ? true : false);
-            $('#email_to_technician').attr('checked', note.email_to_technician == 1 ? true : false);
-            $('#as_first_response').parent().hide();
-        });
-
-        $('.removeNote').on('click', function () {
-            let modal = $('#removeNoteModal');
-            let note = $(this).data('note');
-            modal.find('.modal-title').html('Remove Note #' + note.id + '  - Ticket #' + note.ticket_id);
-            modal.find('.modal-body').html('Are you sure to delete #' + note.id + ' note ?');
-            let form = modal.closest('form').attr('action', 'remove-note/' + note.id);
-        })
-    </script>
-@append
