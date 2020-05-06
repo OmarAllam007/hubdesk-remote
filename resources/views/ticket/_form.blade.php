@@ -12,7 +12,7 @@ $exceedNoOfTickets = $requester_bu->isExceedNoOfLimitedTickets($category,$subcat
 
 @if($sla)
 <p style="font-size: 14pt;background-color: rgb(24, 79, 126); border-radius: 10px;text-align: center;padding: 10px;color: #fff;box-shadow: 2px 5px 2px lightgray">
-    {{t('Your Request will Delivered within')}} {{$sla->due_days}} {{t('Days')}} {{$sla->due_hours}} {{t('Hours')}} {{$sla->due_minutes}} {{t('Minutes')}}
+    {{t('Your Request will Delivered within')}} {{$sla->due_days}} {{t('Days')}} {{$sla->due_hours}} {{t('Hours')}} {{$sla->due_minutes}} {{t('Minutes')}} {{t('(from the last approval)')}}
 </p>
 @endif
 
