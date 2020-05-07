@@ -54,7 +54,7 @@ class MonthlyKPIWithApprovals extends ReportContract
     protected function fields()
     {
         $this->query->selectRaw('t.id as id, t.subject, t.created_at, t.due_date, t.resolve_date, 
-        tech.name as technician, req.name as requester')
+        tech.name as technician, req.name as requester, req.employee_id as employee_id')
             ->selectRaw('t.sla_id, resolve_date, overdue, time_spent')
             ->selectRaw('cat.name as category, subcat.name as subcategory, item.name as item')
             ->selectRaw('st.name as status')
@@ -128,9 +128,9 @@ class MonthlyKPIWithApprovals extends ReportContract
 
 
         $header = [
-            'ID', 'Subject', 'Requester',
+            'ID', 'Subject', 'Employee ID', 'Requester',
             'Technician', 'Category', 'Status', 'Created Date', 'Date of Departure', 'Days between departure and create', 'Due Date',
-            'Resolved Date', 'Business Unit', 'Performance'];
+            'Resolved Date', 'First Approval Sent Date', 'Last Approval Action Date', 'Business Unit', 'Performance'];
 
         $approvals_header = $approvals_header->flatten()->toArray();
         $sheet->fromArray(array_merge($header, $approvals_header), NULL, 'A1', true);
@@ -144,21 +144,24 @@ class MonthlyKPIWithApprovals extends ReportContract
             if ($ticket_approvals->count()) {
                 foreach ($ticket_approvals as $approval) {
                     $approvals->push([
-                        str_replace('&nbsp;',' ',strip_tags($approval->content)),
+                        str_replace('&nbsp;', ' ', strip_tags($approval->content)),
                         $approval->created_at,
                         $approval->approval_date,
                         $approval->approval_date ? $approval->approval_date->diffInDays($approval->created_at) : 0,
                         $approval->status_str,
-                        str_replace('&nbsp;',' ',strip_tags($approval->comment))
+                        str_replace('&nbsp;', ' ', strip_tags($approval->comment))
                     ]);
                 }
             }
 
-
+            $last_approval = $approvals->count() > 0 && $approvals->last()[2]?
+                $approvals->last()[2]->format('Y-m-d H:m') : 'Not Assigned';
+            $first_approval = $approvals->count() > 0 && $approvals->last()[1]?
+                $approvals->last()[1]->format('Y-m-d H:m') : 'Not Assigned';
             $rowData = [
-                $ticket->id, $ticket->subject, $ticket->requester, $ticket->technician,
+                $ticket->id, $ticket->subject, $ticket->employee_id, $ticket->requester, $ticket->technician,
                 $ticket->category, $ticket->status, $ticket->created_at, $ticket->date_of_dept, $ticket->difference ?? 'Not Assigned',
-                $ticket->due_date, $ticket->resolve_date, $ticket->business_unit, $ticket->performance
+                $ticket->due_date, $ticket->resolve_date, $first_approval, $last_approval, $ticket->business_unit, $ticket->performance
             ];
             $sheet->fromArray(array_merge($rowData, $approvals->flatten()->toArray()), NULL, 'A' . $row, true);
         }
