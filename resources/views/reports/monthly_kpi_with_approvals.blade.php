@@ -76,7 +76,7 @@
                         <td>{{ $ticket->due_date->format('Y/m/d h:m') ?? 'Not Assigned' }}</td>
                         <td>{{ $ticket->resolve_date ?? 'Not Assigned' }}</td>
                         <td>{{ $ticket->approvals->first() ? $ticket->approvals->last()->created_at->format('Y/m/d H:m') : 'Not Assigned' }}</td>
-                        <td>{{ $ticket->approvals->last() ? $ticket->approvals->last()->approval_date->format('Y/m/d H:m') : 'Not Assigned' }}</td>
+                        <td>{{ ($ticket->approvals->last() && $ticket->approvals->last()->approval_date) ? $ticket->approvals->last()->approval_date->format('Y/m/d H:m') : 'Not Assigned' }}</td>
                         <td>{{ $ticket->business_unit ?? 'Not Assigned' }}</td>
                         <td>{{ $ticket->performance ?? 'Not Assigned' }}</td>
 
