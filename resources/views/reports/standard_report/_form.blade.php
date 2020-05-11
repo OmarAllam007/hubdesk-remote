@@ -21,7 +21,7 @@
         <label for="folder_id" class="control-label">{{t('Folder')}}</label>
         <select name="folder_id" id="folder_id" class="form-control">
             <option class="empty" value="">{{t("[Select Report Type]")}}</option>
-            @foreach($folders as $folder)
+            @foreach(auth()->user()->folders as $folder)
                 <option value="{{$folder->id}}" {{isset($report) && $report->folder_id  == $folder->id ? 'selected' : ''}}>{{$folder->name}}</option>
             @endforeach
         </select>

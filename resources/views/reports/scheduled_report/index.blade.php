@@ -14,6 +14,7 @@
                 <thead>
                 <tr>
                     <th>{{t('ID')}}</th>
+                    <th>{{t('Report')}}</th>
                     <th>{{t('Type')}}</th>
                     <th>{{t('Created at')}}</th>
                     <th></th>
@@ -28,6 +29,7 @@
                                 #{{$report->id}}
                             </a>
                         </td>
+                        <td>{{$report->report->title}}</td>
                         <td>{{$report->report_type_str}}</td>
                         <td>{{$report->created_at->format('d/m/Y H:i')}}</td>
                         <td class="col-md-2 col-sm-3">
