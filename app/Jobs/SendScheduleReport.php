@@ -23,8 +23,9 @@ use Maatwebsite\Excel\Writer;
 use Maatwebsite\Excel\Writers\LaravelExcelWriter;
 
 
-class SendScheduleReport extends Job
+class SendScheduleReport extends Job implements ShouldQueue
 {
+    use InteractsWithQueue, SerializesModels;
 
 
     protected $report;
@@ -37,9 +38,9 @@ class SendScheduleReport extends Job
 
     public function handle()
     {
-        set_time_limit(0);
-        ini_set("memory_limit", -1);
-        ini_set('max_execution_time', 0);
+//        set_time_limit(0);
+//        ini_set("memory_limit", -1);
+//        ini_set('max_execution_time', 0);
 
         if ($this->report->report->type == Report::$CORE_REPORT) {
             $core_report_class = $this->report->report->core_report->class_name;
@@ -49,7 +50,6 @@ class SendScheduleReport extends Job
         } else {
             $report = new CustomReport($this->report->report);
         }
-
         $this->sendReport($report);
     }
 
@@ -64,51 +64,46 @@ class SendScheduleReport extends Job
 
     private function sendReport($report)
     {
-        $users = User::whereIn('id', $this->report->to)->pluck('email')->filter()->toArray();
+        $to = User::whereIn('id', $this->report->to)->pluck('email')->filter()->toArray();
+        $cc = $this->report->cc ? User::whereIn('id', $this->report->cc)->pluck('email')->filter()->toArray() : [];
 
         $file = $this->getFile($report);
 
         if ($this->report->format == ScheduledReport::$PDF) {
-            $this->sendPDF($file, $report, $users);
+            $this->sendPDF($file, $report, $to, $cc);
 
         } elseif ($this->report->format == ScheduledReport::$EXCEL) {
-            $this->sendExcel($file, $report, $users);
+            $this->sendExcel($file, $report, $to, $cc);
         }
 
         $this->report->update(['last_scheduled' => Carbon::now()->toDateTimeString()]);
     }
 
-    private function sendPDF($file, $report, $users)
+    private function sendPDF($file, $report, $to, $cc)
     {
-        if(!$file){
+        if (!$file) {
             return;
         }
 
-        $this->sendMail($users,$report,$file);
+        $this->sendMail($report, $file,$to, $cc);
     }
 
-    private function sendExcel($file, $report, $users)
+    private function sendExcel($file, $report, $to, $cc)
     {
         /** @var Writer $file */
-        if(!$file){
+        if (!$file) {
             return;
         }
 
 //        $file_path = $file->save('xlsx', storage_path('excel_reports'));
 //        $path = $file_path->storagePath . '/' . $file->title . '.' . $file->ext;
 
-        $this->sendMail($users,$report,$file);
+        $this->sendMail($report, $file, $to, $cc);
     }
 
-    function sendMail($users,$report, $path){
-
-        if(count($users)){
-            foreach ($users as $user){
-                \Mail::to($user)->send(new \App\Mail\ScheduledReport($this->report, $report, $path));
-
-            }
-        }
-
+    function sendMail($report, $path, $to, $cc)
+    {
+        \Mail::to($to)->cc($cc)->send(new \App\Mail\ScheduledReport($this->report, $report, $path));
         unlink($path);
     }
 }

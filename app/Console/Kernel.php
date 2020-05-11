@@ -45,7 +45,7 @@ class Kernel extends ConsoleKernel
     /**
      * Define the application's command schedule.
      *
-     * @param  \Illuminate\Console\Scheduling\Schedule $schedule
+     * @param \Illuminate\Console\Scheduling\Schedule $schedule
      * @return void
      */
     protected function schedule(Schedule $schedule)
@@ -57,15 +57,12 @@ class Kernel extends ConsoleKernel
         // Calculate time of tickets every minute
         $schedule->command('tickets:calculate-time')->everyMinute();
 
-        $schedule->command('tickets:check-viewed-tickets')->daily()->between('6:30','7:30');
-        $schedule->command('surveys:check')->daily()->between('6:00','6:15');
-        $schedule->command('document:renew')->daily()->between('6:00','6:15');
-
-        // Get requests from service desk plus
-//        $schedule->command('sdp:sync')->everyFiveMinutes();
+        $schedule->command('tickets:check-viewed-tickets')->daily()->between('6:30', '7:30');
+        $schedule->command('surveys:check')->daily()->between('6:00', '6:15');
+        $schedule->command('document:renew')->daily()->between('6:00', '6:15');
+        $schedule->command('reports:schedule')->monthlyOn(1)->between('7:00', '8:00');
 
         $schedule->job(new CleanErrorLog())->daily();
-        // Escalate approvals every hour
-//        $schedule->command('approvals:escalate')->hourly();
+
     }
 }

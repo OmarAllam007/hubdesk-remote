@@ -13,13 +13,14 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ScheduledReport extends Model
 {
-    protected $fillable = ['user_id', 'report_id', 'type', 'to', 'subject',
-        'message', 'scheduled_time', 'last_scheduled','format'];
+    protected $fillable = ['user_id', 'report_id', 'type', 'to', 'cc', 'subject',
+        'message', 'scheduled_time', 'last_scheduled', 'format'];
 
 //    protected $dates = ['last_scheduled'];
 
     protected $casts = [
         'to' => 'array',
+        'cc' => 'array',
         'scheduled_time' => 'array',
     ];
 

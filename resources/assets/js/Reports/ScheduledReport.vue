@@ -284,6 +284,16 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="cc_id">Cc:</label>
+                    <select name="cc[]" id="cc_id" class="form-control select2" multiple size="20">
+                        <option value="" disabled="disabled">Select User</option>
+                        <option v-for="user in users" :value="user.id" :selected="selectCc(user.id)">
+                            {{user.name}}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
                     <label for="subject">Subject</label>
                     <input type="text" class="form-control" name="subject" id="subject"
                            :value="report ? report.subject :''">
@@ -379,6 +389,12 @@
             selectUser(id) {
                 if (this.report) {
                     return this.report.to.indexOf("" + id + "") > -1
+                }
+                return false;
+            },
+            selectCc(id) {
+                if (this.report && this.report.cc) {
+                    return this.report.cc.indexOf("" + id + "") > -1
                 }
                 return false;
             },

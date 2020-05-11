@@ -211,6 +211,10 @@ class User extends Authenticatable implements CanResetPassword
 
     function getFoldersAttribute()
     {
+        if(auth()->user()->isAdmin()){
+            return ReportFolder::all();
+        }
+
         $folders = ReportFolder::where('user_id',auth()->id())->get();
 
         $authorized_reports = ReportFolder::whereIn('id',Report::whereIn('id',ReportUser::where('user_id',auth()->id())
