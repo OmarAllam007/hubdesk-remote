@@ -104,8 +104,8 @@ window.app = new Vue({
                         field.val(fieldValues[id]);
                     }
                 }
-                // console.log(newFields)
                 customFieldsContainer.html('').append(newFields);
+                $('.cf.select2').select2({width: '100%', allowClear: true});
             });
         },
         getRequesterInfo(id) {
