@@ -13238,3 +13238,11 @@ p.quot-animation {
   background-color: #e1e1e1 !important;
 }
 
+.fields_label {
+  width: 50%;
+  padding: 10px;
+  background-color: #153c6b;
+  color: white;
+  border-radius: 20px;
+}
+

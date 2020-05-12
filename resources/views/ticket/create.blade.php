@@ -22,5 +22,5 @@
         var item = '{{request('item_id') ? Form::getValueAttribute('item_id',request('item_id')) :  isset($item) ? $item->id : null}}';
     </script>
     <script src="{{asset('/js/ticket-form.js')}}"></script>
-    <script src="{{asset('/js/tinymce/tinymce.min.js')}}"></script>
+{{--    <script src="{{asset('/js/tinymce/tinymce.min.js')}}"></script>--}}
 @append
