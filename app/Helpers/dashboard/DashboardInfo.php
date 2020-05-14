@@ -140,7 +140,6 @@ class DashboardInfo
                 $this->ticketsByStatus[$key]['values'][] = $item->pluck('count', 'name')->values();
             });
 
-//        dd($this->ticketsByStatus);
     }
 
     private function ticketsByCoordinator()
@@ -148,12 +147,18 @@ class DashboardInfo
         $query = $this->filterByDate(Carbon::now()->firstOfMonth(), Carbon::now()->lastOfMonth());
 
         $query->each(function ($ticket) {
+            if(!$ticket->technician){
+                return;
+            }
+
             if (!isset($this->ticketsByCoordinator[$ticket->technician->name])) {
                 $this->ticketsByCoordinator[$ticket->technician->name] = ['total' => 0, 'resolved' => 0, 'resolvedOnTime' => 0];
             }
             $this->ticketsByCoordinator[$ticket->technician->name]['total'] += 1;
             $this->ticketsByCoordinator[$ticket->technician->name]['resolved'] += in_array($ticket->status_id, [7]) ? 1 : 0;
             $this->ticketsByCoordinator[$ticket->technician->name]['resolvedOnTime'] += (in_array($ticket->status_id, [7]) && !$ticket->overdue) ? 1 : 0;
+
+
         });
     }
 
