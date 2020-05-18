@@ -12346,8 +12346,7 @@ module.exports = Cancel;
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(15);
-module.exports = __webpack_require__(54);
+module.exports = __webpack_require__(15);
 
 
 /***/ }),
@@ -12855,7 +12854,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -12894,7 +12892,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('table', {
     staticClass: "listing-table table-condensed"
-  }, [_c('thead', [_c('tr', [_c('th', [_vm._v("Attachments")]), _vm._v(" "), _c('th', {
+  }, [_c('thead', [_c('tr', [_c('th', {
     staticClass: "text-right"
   }, [_c('button', {
     staticClass: "btn btn-primary btn-sm",
@@ -24925,12 +24923,6 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
-
-/***/ }),
-/* 54 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

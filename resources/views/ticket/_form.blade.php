@@ -148,6 +148,7 @@ $exceedNoOfTickets = $requester_bu->isExceedNoOfLimitedTickets($category,$subcat
     @endif
     <div class="row">
         <div class="col-md-6">
+            <strong>{{t('Attachments')}}</strong>
             <attachments limit="5"></attachments>
         </div>
     </div>
