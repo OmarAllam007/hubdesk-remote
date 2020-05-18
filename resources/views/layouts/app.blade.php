@@ -81,6 +81,7 @@
                             <li><a href="{{route('site.changeLanguage','en')}}"> {{t('English')}}</a></li>
                             <li><a href="{{route('site.changeLanguage','in')}}"> {{t('Indian')}}</a></li>
                             <li><a href="{{route('site.changeLanguage','ur')}}"> {{t('URDU')}}</a></li>
+                            <li><a href="{{route('site.changeLanguage','nep')}}"> {{t('Nepali')}}</a></li>
                         </ul>
                     </li>
                 </ul>
