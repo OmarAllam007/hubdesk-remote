@@ -140,9 +140,9 @@ $exceedNoOfTickets = $requester_bu->isExceedNoOfLimitedTickets($category,$subcat
     @if($category->notes || (isset($subcategory) && $subcategory->notes) || (isset($item) && $item->notes) )
         <fieldset>
             <label>{{t('Notes')}}</label>
-            {!! t($category->notes) ?? '' !!}
-            {!! t($subcategory->notes) ?? '' !!}
-            {!! t($item->notes) ?? '' !!}
+            {!! t($category->notes ?? '')  !!}
+            {!! t($subcategory->notes ?? '')  !!}
+            {!! t($item->notes ?? '')  !!}
         </fieldset>
         <br>
     @endif
