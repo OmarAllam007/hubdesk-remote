@@ -59,12 +59,37 @@ class MonthlyKPIWithApprovals extends ReportContract
             ->selectRaw('cat.name as category, subcat.name as subcategory, item.name as item')
             ->selectRaw('st.name as status')
             ->selectRaw('bu.name as business_unit')
-            ->selectRaw(' CASE
- WHEN (sla.due_days - (t.time_spent / (60* 8))) >= 0 and t.status_id IN (7,8,9) THEN 100
- WHEN (sla.due_days - (t.time_spent / (60* 8))) >= -1 and t.status_id IN (7,8,9) THEN 75
- WHEN (sla.due_days - (t.time_spent / (60* 8))) >= -2 and t.status_id IN (7,8,9)THEN 50
- WHEN (sla.due_days - (t.time_spent / (60* 8))) >= -3 and t.status_id IN (7,8,9) THEN 25
- ELSE 0 END
+            ->selectRaw(' @sla := format((sla.due_days) + (sla.due_hours / 8) + (sla.due_minutes / (8 * 60)),
+                               1)                                                      \'SLA Delivery time\',
+
+                @last_approval_date := (SELECT DATE_FORMAT(ta.approval_date, \'%Y-%m-%d %h:%m:%s\')
+                                        from ticket_approvals ta
+                                        where t.id = ta.ticket_id
+                                        order by ta.created_at DESC
+                                        limit 1),
+
+                @last_updated_date := DATE_FORMAT((SELECT tr.created_at from ticket_replies tr where tr.ticket_id = t.id and tr.status_id IN (7,8,9) limit  1), \'%Y-%m-%d %h:%m:%s\'),
+
+                @acceptance_date := (CASE
+                                         WHEN @last_approval_date IS NULL
+                                             THEN DATE_FORMAT(t.created_at, \'%Y-%m-%d %h:%m:%s\')
+                                         ELSE @last_approval_date END)                 \'Acceptance Date\',
+
+                @actual_delivery_time :=
+                            (SELECT diffdate(@last_updated_date, @acceptance_date)) AS \'Actual delivery time\',
+
+                @difference := @actual_delivery_time - @sla                            \'SLA Diff\',
+
+                (CASE
+                     WHEN (@difference <= 0)
+                         THEN 100
+                     WHEN (@difference >= 1 && @difference < 2)
+                         THEN 75
+                     WHEN (@difference >= 2 && @difference < 3)
+                         THEN 70
+                     WHEN (@difference >= 3 && @difference < 4)
+                         THEN 60
+                     ELSE 0 END)
  as performance')
             ->selectRaw("@departure_date := (select `getDepartureDate`(t.id))  'date_of_dept',
           DATEDIFF(@departure_date, DATE_FORMAT(t.created_at, '%Y-%m-%d')) 'difference'");

@@ -131,7 +131,7 @@ $exceedNoOfTickets = $requester_bu->isExceedNoOfLimitedTickets($category,$subcat
             <select name="priority_id" id="priority_id" class="form-control">
                 <option value="">{{t('Select Priority')}}</option>
                 @foreach(App\Priority::all() as $priority)
-                    <option value="{{$priority->id}}"> {{$priority->name }}</option>
+                    <option value="{{$priority->id}}"> {{ t($priority->name) }}</option>
                 @endforeach
             </select>
         </div>
@@ -140,9 +140,9 @@ $exceedNoOfTickets = $requester_bu->isExceedNoOfLimitedTickets($category,$subcat
     @if($category->notes || (isset($subcategory) && $subcategory->notes) || (isset($item) && $item->notes) )
         <fieldset>
             <label>{{t('Notes')}}</label>
-            {!! $category->notes ?? '' !!}
-            {!! $subcategory->notes ?? '' !!}
-            {!! $item->notes ?? '' !!}
+            {!! t($category->notes) ?? '' !!}
+            {!! t($subcategory->notes) ?? '' !!}
+            {!! t($item->notes) ?? '' !!}
         </fieldset>
         <br>
     @endif
