@@ -143,6 +143,19 @@
                         :limitation_data="{{ isset($item) && $item->limitations ? $item->limitations : null }}">
                 </limitation>
             </fieldset>
+
+            <fieldset>
+                <legend>Complaints</legend>
+                <div class="form-group {{$errors->has('to')? 'has-error' : ''}}">
+                    {{ Form::label('to', 'To', ['class' => 'control-label']) }}
+                    {{ Form::select('complaint[to][]', $users ,null, ['class' => 'form-control select2', 'multiple' => true ,'size'=>12]) }}
+                </div>
+
+                <div class="form-group {{$errors->has('cc')? 'has-error' : ''}}">
+                    {{ Form::label('cc', 'Cc', ['class' => 'control-label']) }}
+                    {{ Form::select('complaint[cc][]', $users ,null, ['class' => 'form-control select2', 'multiple' => true ,'size'=>12]) }}
+                </div>
+            </fieldset>
         </div>
     </div>
 </div>

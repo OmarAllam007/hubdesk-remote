@@ -62,6 +62,11 @@ class Subcategory extends KModel
         return $this->hasMany(AdditionalFee::class, 'level_id')->where('level', AdditionalFee::SUBCATEGORY);
     }
 
+    function complaint()
+    {
+        return $this->hasOne(Complaint::class,'level_id')->where('level','App\Subcategory');
+    }
+
     function scopeActive($query)
     {
         return $query->where('is_disabled', 0);

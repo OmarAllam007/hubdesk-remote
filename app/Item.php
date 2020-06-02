@@ -66,6 +66,11 @@ class Item extends KModel
         return $this->hasMany(AdditionalFee::class, 'level_id')->where('level', AdditionalFee::ITEM);
     }
 
+    function complaint()
+    {
+        return $this->hasOne(Complaint::class,'level_id')->where('level','App\Item');
+    }
+
     public function service_user_groups()
     {
         return $this->hasMany(ServiceUserGroup::class, 'level_id')->where('level', ServiceUserGroup::$ITEM);

@@ -136,4 +136,11 @@ class TicketPolicy
         return $user->id == $ticket->technician_id && !$ticket->isClosed()
             || ($ticket->type == Ticket::TASK_TYPE && $approvals->contains($user->id));
     }
+
+
+    public function send_complaint(User $user, Ticket $ticket)
+    {
+        return in_array($user->id, [$ticket->requester_id, $ticket->creator_id]) && in_array($ticket->status_id, [8, 9, 10])
+            && $ticket->complaint;
+    }
 }

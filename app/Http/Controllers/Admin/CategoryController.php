@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\AdditionalFee;
 use App\ApprovalLevels;
 use App\Category;
+use App\Complaint;
 use App\ServiceUserGroup;
 use App\Requirement;
 use Illuminate\Http\Request;
@@ -59,6 +60,7 @@ class CategoryController extends Controller
         $this->createFees($request, $category);
         $this->createOrUpdateAvailability($request, $category);
         $this->createOrUpdateLimitation($request, $category);
+        $this->createOrUpdateComplaints($request, $category);
 
         flash(t('Category Info'), t('Category has been saved'), 'success');
 
@@ -77,6 +79,7 @@ class CategoryController extends Controller
 
     public function update(Category $category, Request $request)
     {
+
         $this->validates($request);
 
 
@@ -90,6 +93,7 @@ class CategoryController extends Controller
         $this->createFees($request, $category);
         $this->createOrUpdateAvailability($request, $category);
         $this->createOrUpdateLimitation($request, $category);
+        $this->createOrUpdateComplaints($request, $category);
 
         $data = $request->all();
         $data['service_request'] = isset($request->service_request) ? 1 : 0;
@@ -203,5 +207,17 @@ class CategoryController extends Controller
             ]);
         }
 
+    }
+
+    private function createOrUpdateComplaints(Request $request, Category $category)
+    {
+        $category->complaint()->delete();
+
+        Complaint::create([
+            'level_id' => $category->id,
+            'level' => 'App\Category',
+            'to' => $request->complaint['to'] ?? [],
+            'cc' => $request->complaint['cc'] ?? []
+        ]);
     }
 }

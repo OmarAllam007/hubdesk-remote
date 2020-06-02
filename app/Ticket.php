@@ -624,4 +624,15 @@ class Ticket extends KModel
     {
         return \Auth::user()->id == $this->technician_id && !$this->is_opened;
     }
+
+    function getComplaintAttribute()
+    {
+        if ($this->category->complaint) {
+            return $this->category->complaint;
+        } elseif ($this->subcategory && $this->subcategory->complaint) {
+            return $this->subcategory->complaint;
+        } elseif ($this->item && $this->item->complaint) {
+            return $this->item->complaint;
+        }
+    }
 }
