@@ -21,6 +21,7 @@ use App\Jobs\NewTicketJob;
 use App\Jobs\TicketAssigned;
 use App\Jobs\TicketReplyJob;
 use App\Mail\TicketAssignedMail;
+use App\Mail\TicketComplaint;
 use App\Mail\TicketForwardJob;
 use App\ReplyTemplate;
 use App\Subcategory;
@@ -31,6 +32,8 @@ use App\TicketField;
 use App\TicketLog;
 use App\TicketNote;
 use App\TicketReply;
+use App\User;
+use App\UserComplaint;
 use http\Env\Response;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -457,7 +460,9 @@ class TicketController extends Controller
     function forward(Ticket $ticket, Request $request)
     {
         if ($request->get('to')) {
+
             $this->validate($request, ['to.*' => 'email'], ['email' => 'Please enter valid email.']);
+
             TicketReply::flushEventListeners();
 
             TicketReply::create([
@@ -470,12 +475,40 @@ class TicketController extends Controller
             ]);
 
             \Mail::to($request->to)->cc($request->cc ?? [])->send(new TicketForwardJob($ticket));
+
             flash(t('Forward Info'), 'Forward the ticket has been sent', 'success');
             return \Redirect::route('ticket.show', $ticket);
+
         }
+
         flash(t('Forward Info'), 'Can\'t forward the ticket', 'danger');
         return \Redirect::route('ticket.show', $ticket);
     }
+
+    function complaint(Ticket $ticket, Request $request)
+    {
+        $this->validate($request, ['complaint.description' => 'required'],
+            ['complaint.description.required' => 'The description field is required']);
+
+        UserComplaint::create([
+            'ticket_id'=> $ticket->id,
+            'user_id' => auth()->user()->id,
+            'description'=> $request->complaint['description'] ?? '',
+        ]);
+
+        $complaint = $ticket->complaint;
+
+        if($complaint){
+            $to = User::whereIn('id',$complaint->to)->get()->pluck('email')->toArray();
+            $cc = User::whereIn('id',$complaint->cc)->get()->pluck('email')->toArray();
+
+            \Mail::to($to)->cc($cc)->send(new TicketComplaint($ticket));
+        }
+
+        flash(t('Complaint Info'), 'Complaint has been sent', 'success');
+        return \Redirect::route('ticket.show', $ticket);
+    }
+
 
     function selectCategory(BusinessUnit $business_unit)
     {

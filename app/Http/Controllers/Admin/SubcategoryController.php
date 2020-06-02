@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\AdditionalFee;
 use App\ApprovalLevels;
 use App\Category;
+use App\Complaint;
 use App\ServiceUserGroup;
 use App\Subcategory;
 use Illuminate\Http\Request;
@@ -75,6 +76,7 @@ class SubcategoryController extends Controller
         $this->handleRequirements($request, $subcategory);
         $this->createFees($request, $subcategory);
         $this->createOrUpdateLimitation($request, $subcategory);
+        $this->createOrUpdateComplaints($request, $subcategory);
 
         flash(t('Subcategory'), 'Subcategory has been saved', 'success');
         return \Redirect::route('admin.category.show', $subcategory->category_id);
@@ -162,5 +164,16 @@ class SubcategoryController extends Controller
             ]);
         }
 
+    }
+    private function createOrUpdateComplaints(Request $request, Subcategory $subcategory)
+    {
+        $subcategory->complaint()->delete();
+
+        Complaint::create([
+            'level_id' => $subcategory->id,
+            'level' => 'App\Subcategory',
+            'to' => $request->complaint['to'] ?? [],
+            'cc' => $request->complaint['cc'] ?? []
+        ]);
     }
 }

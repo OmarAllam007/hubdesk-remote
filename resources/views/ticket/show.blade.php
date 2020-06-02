@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('header')
-{{--    {{dd($ticket->logs->groupBy(\DB::raw('CAST(created_at AS DATE)')))}}--}}
+    {{--    {{dd($ticket->logs->groupBy(\DB::raw('CAST(created_at AS DATE)')))}}--}}
     @can('show',$ticket)
         <div class="display-flex ticket-meta">
             <div class="flex">
@@ -77,6 +77,12 @@
                             </button>
                         @endif
 
+                        @can('send_complaint',$ticket)
+                            <button data-toggle="modal" data-target="#ComplaintForm" type="button"
+                                    class="btn btn-sm btn-primary btn-rounded btn-outlined" title="{{t('Complaint')}}">
+                                <i class="fa fa-comments"></i> {{t('Complaint')}}
+                            </button>
+                        @endcan
                     </div>
                 @endif
 
@@ -124,7 +130,8 @@
                     @if($ticket->user_survey && $ticket->user_survey->is_submitted)
                         <li>
                             <small>
-                                <strong>{{t('Ticket Survey Score')}}: {{number_format($ticket->user_survey->total_score,2)}} </strong>
+                                <strong>{{t('Ticket Survey Score')}}
+                                    : {{number_format($ticket->user_survey->total_score,2)}} </strong>
 
                             </small>
                         </li>
@@ -245,6 +252,7 @@
                 @include('ticket._notes_modal')
                 @include('ticket._remove_note_modal')
                 @include('ticket._duplicate_modal')
+                @include('ticket._complaint_modal')
             </div>
         </section>
     @else

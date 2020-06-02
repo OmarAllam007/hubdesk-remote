@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\AdditionalFee;
 use App\ApprovalLevels;
+use App\Complaint;
 use App\Item;
 use App\ServiceUserGroup;
 use App\Subcategory;
@@ -160,6 +161,17 @@ class ItemController extends Controller
                 'number_of_tickets' => $limitation['number_of_tickets'],
             ]);
         }
+    }
 
+    private function createOrUpdateComplaints(Request $request, Item $item)
+    {
+        $item->complaint()->delete();
+
+        Complaint::create([
+            'level_id' => $item->id,
+            'level' => 'App\Item',
+            'to' => $request->complaint['to'] ?? [],
+            'cc' => $request->complaint['cc'] ?? []
+        ]);
     }
 }
