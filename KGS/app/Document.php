@@ -13,10 +13,14 @@ class Document extends Model
     protected $dates = ['start_date', 'end_date'];
 
 
-
     function folder()
     {
         return $this->belongsTo(BusinessDocumentsFolder::class);
+    }
+
+    function business_unit()
+    {
+        return $this->belongsTo(BusinessUnit::class);
     }
 
     function getLastUpdatedAttribute()
