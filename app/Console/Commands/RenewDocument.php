@@ -58,7 +58,9 @@ class RenewDocument extends Command
 
         if (!empty($users)) {
             foreach ($users->pluck('email') as $email) {
-                \Mail::to($email)->send(new DocumentReminder($document));
+                if ($email) {
+                    \Mail::to($email)->send(new DocumentReminder($document));
+                }
             }
         }
     }
