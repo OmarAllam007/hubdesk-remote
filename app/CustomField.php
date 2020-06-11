@@ -8,5 +8,5 @@ class CustomField extends Model
 {
     protected $fillable = ['name', 'type', 'level', 'level_id', 'options', 'required', 'active'];
 
-    protected $casts = ['options' => 'array'];
+//    protected $casts = ['options' => 'array'];
 }
