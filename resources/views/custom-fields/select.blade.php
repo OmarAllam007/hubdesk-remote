@@ -5,13 +5,15 @@ use function foo\func;
 
 $options = collect();
 
-if (isset($field['options']['model'])) {
-    $options = app($field['options']['model'])
-        ->select('id',DB::raw(" CONCAT(" . implode(" ,", $field['options']['keys']) . ") as 'option'"))
-        ->pluck('option','option')->filter();
 
+$data = json_decode($field['options'], true);
+
+if (isset($data["model"])) {
+    $options = app($data['model'])
+        ->select('id', DB::raw(" CONCAT(" . implode(" ,", $data["keys"]) . ") as 'option'"))
+        ->pluck('option', 'option')->filter();
 } else {
-    $options = collect($field['options'], true);
+    $options = collect(json_decode($field['options']), true);
     $options = $options->combine($options);
 }
 
