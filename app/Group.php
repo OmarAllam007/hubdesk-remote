@@ -30,7 +30,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Group extends KModel
 {
-    protected $fillable = ['name', 'description', 'type'];
+    protected $fillable = ['name', 'description', 'type', 'is_disabled'];
 
     protected $dates = ['created_at', 'updated_at'];
 
@@ -48,17 +48,18 @@ class Group extends KModel
         return $this->belongsToMany(User::class);
     }
 
+
     public function supervisors()
     {
-        return $this->belongsToMany('App\User','group_supervisor','group_id','user_id');
+        return $this->belongsToMany('App\User', 'group_supervisor', 'group_id', 'user_id');
     }
-
 
 
     public function scopeRequesters(Builder $query)
     {
-        return $query->where('type',  self::REQUESTER);
+        return $query->where('type', self::REQUESTER);
     }
+
     public function scopeSupport(Builder $query)
     {
         return $query->where('type', '!=', self::REQUESTER);
@@ -83,6 +84,7 @@ class Group extends KModel
     {
         return $query->where('type', self::KGS_ADMIN);
     }
+
     public function scopeTypes()
     {
         $types = collect([

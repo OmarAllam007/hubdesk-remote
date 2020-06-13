@@ -12,7 +12,7 @@
                 <div class="col-md-6">
                     <div class="form-group {{$errors->first('group_id', 'has-error')}}">
                         {{Form::label('group_id', t('Group'), ['class' => 'control-label'])}}
-                        {{Form::select('group_id', App\Group::selection('Select Group'),null, ['class' => 'form-control','v-model'=>'group'])}}
+                        {{Form::select('group_id', App\Group::active()->technician()->selection('Select Group'),null, ['class' => 'form-control','v-model'=>'group'])}}
                         {!! $errors->first('group_id', '<div class="help-block">:message</div>') !!}
                     </div>
 
@@ -30,7 +30,6 @@
 
                 @php
                     $categories = App\Category::active()->individual()->ticketType()->selection('Select Category');
-
                 @endphp
 
                 <div class="col-md-6">

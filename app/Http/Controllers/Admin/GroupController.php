@@ -31,8 +31,10 @@ class GroupController extends Controller
     public function store(Request $request)
     {
         $this->validates($request);
+        $data = $request->all();
+        $data['is_disabled'] = isset($request->is_disabled) ? 1 : 0;
 
-        $group = Group::create($request->all());
+        $group = Group::create($data);
 
         if ($request->supervisors) {
             $group->supervisors()->sync($request->supervisors);
@@ -67,7 +69,9 @@ class GroupController extends Controller
         if($request->users){
             $group->users()->sync($request->users);
         }
-        $group->update($request->all());
+        $data = $request->all();
+        $data['is_disabled'] = isset($request->is_disabled) ? 1 : 0;
+        $group->update($data);
 
         flash(t("Group Info"),t('Group has been saved'), 'success');
 
