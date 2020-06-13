@@ -26,6 +26,13 @@
         </div>
 
         <div class="form-group">
+            <input type="checkbox"
+                   id="is_disabled" name="is_disabled"
+                   @if(isset($group) && $group->is_disabled) checked @endif>
+            <label for="is_disabled">Is disabled ?</label>
+        </div>
+
+        <div class="form-group">
             <button class="btn btn-success"><i class="fa fa-check"></i> Submit</button>
         </div>
     </div>

@@ -29,6 +29,7 @@
                 <thead>
                 <tr>
                     <th>{{t('Name')}}</th>
+                    <th>{{t('Is Active')}}</th>
                     <th>{{t('Actions')}}</th>
                 </tr>
                 </thead>
@@ -37,6 +38,7 @@
                     <tr>
                         <td class="col-md-5"><a href="{{ route('admin.group.edit', $group) }}">{{ $group->name }}</a>
                         </td>
+                        <td>{{$group->is_disabled ? 'No' : 'Yes'}}</td>
                         <td class="col-md-3">
                             <form action="{{ route('admin.group.destroy', $group) }}" method="post">
                                 {{csrf_field()}} {{method_field('delete')}}
