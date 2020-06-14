@@ -54,7 +54,7 @@ class ApplyBusinessRules extends MatchCriteria
             TicketReply::flushEventListeners();
 
             $reply = $this->ticket->replies()->create([
-                'user_id' => $this->ticket->requester->id,
+                'user_id' => env('SYSTEM_USER') ?? $this->ticket->requester->id,
                 'content' => TicketReply::AUTO_REPLY,
                 'status_id' => $this->ticket->status_id,
                 'cc' => $cc->toArray()
