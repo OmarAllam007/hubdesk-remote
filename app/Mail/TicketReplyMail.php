@@ -29,7 +29,12 @@ class TicketReplyMail extends Mailable
      */
     public function build()
     {
-        $subject = 'Re: Ticket #' . $this->ticket->id . ' ' . $this->ticket->subject;
+        $subject = 'Re: Ticket #' . $this->ticket->id;
+
+        if($this->ticket->requester->employee_id){
+            $subject .= ' / '. $this->ticket->requester->employee_id;
+        }
+        $subject .= '- '. $this->ticket->subject;
 
         return $this->markdown('emails.ticket.reply', ['ticket' => $this->ticket, 'reply' => $this->reply])->subject($subject);
     }
