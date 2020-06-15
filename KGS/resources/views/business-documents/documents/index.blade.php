@@ -23,6 +23,9 @@
 {{--@section('sidebar')--}}
 {{--@include('admin.partials._sidebar')--}}
 {{--@stop--}}
+@php
+    $isAuth = auth()->user()->isAdmin() || auth()->user()->groups()->whereType(App\Group::KGS_ADMIN)->exists();
+@endphp
 
 @section('body')
     <section class="col-sm-12">
@@ -41,21 +44,28 @@
                 @foreach($documents as $document)
                     <tr>
                         <td>
-                            @if(auth()->user()->isAdmin() || auth()->user()->groups()->whereType(App\Group::KGS_ADMIN)->exists())
+                            @if($isAuth)
                                 <a href="{{route('kgs.document.edit', compact('folder','document'))}}">{{$document->name}}</a>
                             @else
                                 <p>{{$document->name}}</p>
                             @endif
                         </td>
+
                         <td>{{$document->start_date ? $document->start_date->format('Y-m-d') : ''}}</td>
                         <td>{{$document->end_date ? $document->end_date->format('Y-m-d') : ''}}</td>
                         <td><a href="{{route('kgs.business_document.download',['attachment'=>$document])}}"
                                target="_blank">{{basename($document->path) ?? ''}}</a></td>
+
                         <td class="col-md-3">
 
 
                             <form action="{{route('kgs.document.destroy', compact('folder','document'))}}"
                                   method="post">
+                                {{--                        <td>--}}
+                                <a class="btn btn-sm btn-primary" href="{{route('kgs.document.select_category', ['business_unit'=>$folder->business_unit])}}"
+                                   ><i
+                                            class="fa fa-plus"></i> {{t('Create Ticket')}}</a>
+                                {{--                        </td>--}}
                                 <a href="{{route('kgs.business_document.download',['attachment'=>$document])}}"
                                    class="btn btn-sm btn-success"
                                    target="_blank"><i class="fa fa-download"></i> {{t('Download')}}</a>
