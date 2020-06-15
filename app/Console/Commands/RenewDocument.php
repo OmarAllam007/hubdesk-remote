@@ -37,7 +37,6 @@ class RenewDocument extends Command
             }
 
             foreach ($levels as $key => $level) {
-
                 if ($document->shouldNotified($level)) {
                     $this->sendEmailNotification($document, $level);
 

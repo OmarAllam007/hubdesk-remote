@@ -42,7 +42,7 @@
                 </thead>
                 <tbody>
                 @foreach($documents as $document)
-                    <tr>
+                    <tr @if($document->markAsShouldRenew()) class="danger" @endif>
                         <td>
                             @if($isAuth)
                                 <a href="{{route('kgs.document.edit', compact('folder','document'))}}">{{$document->name}}</a>
@@ -62,6 +62,7 @@
                             <form action="{{route('kgs.document.destroy', compact('folder','document'))}}"
                                   method="post">
                                 {{--                        <td>--}}
+
                                 <a class="btn btn-sm btn-primary" href="{{route('kgs.document.select_category', ['business_unit'=>$folder->business_unit])}}"
                                    ><i
                                             class="fa fa-plus"></i> {{t('Create Ticket')}}</a>
