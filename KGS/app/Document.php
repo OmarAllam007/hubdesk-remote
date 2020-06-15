@@ -60,6 +60,17 @@ class Document extends Model
         return false;
     }
 
+    function markAsShouldRenew(){
+        $bus = DocumentNotification::all()->groupBy('business_unit_id');
+        $level = $bus->get($this->folder->business_unit->id)->first();
+
+        if ($this->end_date->diffInDays(now()) <= $level->days) {
+            return true;
+        }
+
+        return false;
+    }
+
     public function getDirtyOriginals()
     {
         if (!$this->isDirty()) {
