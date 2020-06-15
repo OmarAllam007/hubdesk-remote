@@ -11,15 +11,15 @@ $exceedNoOfTickets = $requester_bu->isExceedNoOfLimitedTickets($category,$subcat
 @endphp
 
 @if($sla)
-<p style="font-size: 14pt;background-color: rgb(24, 79, 126); border-radius: 10px;text-align: center;padding: 10px;color: #fff;box-shadow: 2px 5px 2px lightgray">
-    {{t('Your Request will Delivered within')}} {{$sla->due_days}} {{t('Days')}} {{$sla->due_hours}} {{t('Hours')}} {{$sla->due_minutes}} {{t('Minutes')}} {{t('(from the last approval)')}}
-</p>
+    <p style="font-size: 14pt;background-color: rgb(24, 79, 126); border-radius: 10px;text-align: center;padding: 10px;color: #fff;box-shadow: 2px 5px 2px lightgray">
+        {{t('Your Request will Delivered within')}} {{$sla->due_days}} {{t('Days')}} {{$sla->due_hours}} {{t('Hours')}} {{$sla->due_minutes}} {{t('Minutes')}} {{t('(from the last approval)')}}
+    </p>
 @endif
 
 @if($exceedNoOfTickets)
-<p style="font-size: 14pt;background-color: rgb(126,65,59); border-radius: 10px;text-align: center;padding: 10px;color: #fff;box-shadow: 2px 5px 2px lightgray">
-    {{t('The number of allowed requests per month is exceeded')}}
-</p>
+    <p style="font-size: 14pt;background-color: rgb(126,65,59); border-radius: 10px;text-align: center;padding: 10px;color: #fff;box-shadow: 2px 5px 2px lightgray">
+        {{t('The number of allowed requests per month is exceeded')}}
+    </p>
 @endif
 
 
@@ -88,9 +88,12 @@ $exceedNoOfTickets = $requester_bu->isExceedNoOfLimitedTickets($category,$subcat
             @endif
             <br>
 
+            @php
+                $subject = (auth()->user()->employee_id ? auth()->user()->employee_id.' - ' : ''). $category->name.(isset($subcategory->name) ? '  -  '.  $subcategory->name:'');
+            @endphp
             <div class="form-group form-group-sm {{$errors->has('subject')? 'has-error' : ''}}">
                 {{ Form::label('subject', t('Subject'), ['class' => 'control-label']) }}
-                {{ Form::text('subject', $category->name.(isset($subcategory->name) ? '  -  '.  $subcategory->name:'') , ['class' => 'form-control']) }}
+                {{ Form::text('subject', $subject , ['class' => 'form-control']) }}
                 @if ($errors->has('subject'))
                     <div class="error-message">{{$errors->first('subject')}}</div>
                 @endif
