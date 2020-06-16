@@ -5,6 +5,13 @@
 @endsection
 
 @section('stylesheets')
+    <style>
+        .dashboard-card-item{
+            margin: 10px;
+            box-shadow: 0 0 3px 0px;
+            border-radius: 20px;
+        }
+    </style>
 @endsection
 
 @section('body')
@@ -98,19 +105,20 @@
         </div>
         <br>
         <hr>
-        <div class="row">
-            <div class="col-md-5">
+        <div class="row " style="display: flex">
+            <div class="col-md-5 dashboard-card-item">
                 <h3 style="text-align: left">Based On the Service Type</h3>
                 <br>
 
                 @if(!empty($data->ticketsByCategory))
-                    <canvas id="myChart" width="300" height="300"></canvas>
+                    <canvas id="categoryChart"  width="300" height="300"></canvas>
                 @else
                     <p>No Data Found.</p>
                 @endif
             </div>
             <div class="col-md-2"></div>
-            <div class="col-md-5">
+
+            <div class="col-md-5 dashboard-card-item">
                 <h3 style="text-align: left">Statistics based on the Status</h3>
                 <br>
                 @if(!empty($data->ticketsByStatus))
@@ -121,8 +129,24 @@
             </div>
         </div>
         <hr>
-        <div class="row">
-            <div class="col-md-12">
+        <div class="row" style="display: flex;justify-content: space-between;">
+{{--            <div class="col-md-12 ">--}}
+                <div class="col-md-5 dashboard-card-item">
+                    <h3 style="text-align: left">Based On the Subcategory</h3>
+                    <br>
+
+                    @if(!empty($data->ticketsBySubcategory))
+                        <canvas id="subCategoryChart" width="300" height="300"></canvas>
+                    @else
+                        <p>No Data Found.</p>
+                    @endif
+                </div>
+{{--            </div>--}}
+        </div>
+        <hr>
+        <div class="row" style="display: flex;justify-content: space-between;">
+            <div class="col-md-10 dashboard-card-item">
+
                 <h3 style="text-align: left">Coordinators Performance</h3>
                 <br>
                 @if(!empty($data->ticketsByCoordinator))
@@ -135,10 +159,13 @@
         <br><br>
         <hr>
         <div class="row">
-            <div class="col-md-11" id="customerCanvases" style="display: flex">
-                <h3 style="text-align: left">Customer Satisfaction</h3>
-                <br>
-                <br>
+            <div class="col-md-12">
+            <h3 style="text-align: left">Customer Satisfaction</h3>
+
+            </div>
+            <br>
+            <div class="col-md-10" id="customerCanvases" style="display: flex;justify-content: center;">
+
 
             </div>
         </div>
@@ -146,222 +173,14 @@
 @endsection
 
 @section('javascript')
+
+        @include('dashboard.charts._category')
+        @include('dashboard.charts._subcategory')
+        @include('dashboard.charts._status')
+        @include('dashboard.charts._coordinators')
+        @include('dashboard.charts._survey')
     <script>
 
-        var ctx = document.getElementById('myChart');
-        var myChart = new Chart(ctx, {
-            type: 'pie',
-            plugins: [ChartLabels],
-            data: {
-                labels: {!! json_encode(array_keys($data->ticketsByCategory)) !!},
-                datasets: [{
-                    data: {!! json_encode(array_values($data->ticketsByCategory)) !!},
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)',
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)',
-                        'rgba(255, 159, 64, 1)',
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                plugins: {
-                    labels: [
-                        {
-                            render: 'label',
-                            position: 'outside',
-                            fontSize: 10,
-                            textMargin: 5,
-                        },
-                        {
-                            render: 'percentage',
-                            precision: 2,
 
-                        },
-                    ],
-                },
-
-            }
-        });
-
-
-        var statusData = {!! json_encode($data->ticketsByStatus) !!};
-        var statusDataSet = [];
-        var statusLabels = [];
-
-        let colors = ['#FF6384', '#36A2EB'];
-
-        let index = 0;
-        for (let [key, value] of Object.entries(statusData)) {
-            statusLabels.push(value['labels'][0]);
-            statusDataSet.push(
-                {
-                    label: key,
-                    data: Object.values(value['values'][0]),
-                    backgroundColor: Array(value['labels'][0].length).fill(colors[index])
-                }
-            );
-
-            index++;
-        }
-        console.log(statusDataSet)
-        new Chart(document.getElementById('byStatus'), {
-            type: 'bar',
-            data: {
-                labels: statusLabels[0],
-                datasets: statusDataSet,
-            },
-            options: {
-                plugins: {
-                    labels: {
-                        render: statusDataSet.length > 1 ? 'percentage' : 'value'
-                    }
-                }
-            }
-        });
-
-
-        var labels = {!! json_encode(array_keys($data->ticketsByCoordinator)) !!};
-
-        new Chart(document.getElementById('coordinators'), {
-            type: 'bar',
-            data: {
-                labels: {!! json_encode(array_keys($data->ticketsByCoordinator)) !!},
-                datasets: [
-                    {
-                        label: "Total",
-                        data: {!! json_encode(array_values(collect($data->ticketsByCoordinator)->pluck('total')->toArray())) !!},
-                        backgroundColor: Array(labels.length).fill('#FF6384')
-                    },
-                    {
-                        label: "Resolved",
-                        data: {!! json_encode(array_values(collect($data->ticketsByCoordinator)->pluck('resolved')->toArray())) !!},
-                        backgroundColor: Array(labels.length).fill('#36A2EB')
-                    },
-                    {
-                        label: "Ontime",
-                        data: {!! json_encode(array_values(collect($data->ticketsByCoordinator)->pluck('resolvedOnTime')->toArray())) !!},
-                        backgroundColor: Array(labels.length).fill('#27BUED')
-
-                    }
-                ]
-            },
-            options: {
-                plugins: {
-                    labels: {
-                        render: 'percentage'
-                    }
-                }
-            }
-        });
-
-        var items = {!! json_encode($data->customerSatisfaction->toArray()) !!};
-
-        for (let [key, value] of Object.entries(items)) {
-            let cKey = 'customers' + key.split(' ').join('');
-
-            var canvasDiv = document.createElement('div');
-            canvasDiv.setAttribute("style", "width:400px;margin:20px");
-            var canvasElem = document.createElement('canvas');
-            canvasElem.setAttribute("id", cKey);
-            var question = document.createElement('p');
-            question.innerText = key;
-
-            canvasDiv.appendChild(document.createElement('br'));
-            canvasDiv.appendChild(question);
-            canvasDiv.appendChild(canvasElem);
-
-            document.getElementById('customerCanvases').appendChild(canvasDiv);
-            new Chart(document.getElementById(cKey), {
-                type: 'pie',
-                plugins: [ChartLabels],
-                data: {
-                    labels: Object.keys(value),
-                    datasets: [{
-                        data: Object.values(value),
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)',
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)',
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 2
-                    }]
-                },
-                options: {
-                    plugins: {
-                        labels: [
-                            {
-                                render: 'label',
-                                position: 'outside',
-                                fontSize: 10,
-                                textMargin: 5,
-                            },
-                            {
-                                render: 'percentage',
-                                precision: 2,
-
-                            },
-                        ],
-                    },
-
-                }
-            });
-        }
     </script>
 @endsection
