@@ -164,7 +164,7 @@
 
             </div>
             <br>
-            <div class="col-md-10" id="customerCanvases" style="display: flex;justify-content: center;">
+            <div class="col-md-10" id="customerCanvases" style="display: flex;justify-content: space-between;">
 
 
             </div>
