@@ -20,6 +20,7 @@ class DashboardInfo
 
     public $ticketOverView = [];
     public $ticketsByCategory = [];
+    public $ticketsBySubcategory = [];
     public $ticketsByStatus = [];
     public $ticketsByCoordinator = [];
     public $customerSatisfaction = [];
@@ -38,6 +39,7 @@ class DashboardInfo
     {
         $this->ticketOverViewProcess();
         $this->ticketsByCategory();
+        $this->ticketsBySubCategory();
         $this->ticketsByStatus();
         $this->ticketsByCoordinator();
         $this->customerSatisfactions();
@@ -65,7 +67,7 @@ class DashboardInfo
 
         $total_tickets = $query->count();
 
-        $this->ticketsByCategory = $query->leftJoin('categories as ca', 'tickets.category_id', '=', 'ca.id')
+        $this->ticketsByCategory = $query
             ->groupBy(['ca.name'])
             ->select(\DB::raw('ca.name , count(tickets.id) as count, (count(tickets.id) / ' . $total_tickets . ' * 100) as percentage'))
             ->where('ca.business_unit_id', $this->business_unit->id)->get()->each(function ($item) {
@@ -85,12 +87,13 @@ class DashboardInfo
             $to = Carbon::parse($this->filters['to'])->addHours(11)->addMinutes(59)->addSeconds(59);
         }
 
-        return Ticket::leftJoin('categories as cat', 'tickets.category_id', '=', 'cat.id')
+        return Ticket::leftJoin('categories as ca', 'tickets.category_id', '=', 'ca.id')
+            ->leftJoin('subcategories as sub', 'tickets.subcategory_id', '=', 'sub.id')
             ->leftJoin('statuses as st', 'tickets.status_id', '=', 'st.id')
             ->leftJoin('users as tech', 'tickets.technician_id', '=', 'tech.id')
             ->where('tickets.created_at', '>=', $from->toDateTimeString())
             ->where('tickets.created_at', '<=', $to->toDateTimeString())
-            ->where('cat.business_unit_id', $this->business_unit->id);
+            ->where('ca.business_unit_id', $this->business_unit->id);
     }
 
     /**
@@ -147,7 +150,7 @@ class DashboardInfo
         $query = $this->filterByDate(Carbon::now()->firstOfMonth(), Carbon::now()->lastOfMonth());
 
         $query->each(function ($ticket) {
-            if(!$ticket->technician){
+            if (!$ticket->technician) {
                 return;
             }
 
@@ -155,8 +158,8 @@ class DashboardInfo
                 $this->ticketsByCoordinator[$ticket->technician->name] = ['total' => 0, 'resolved' => 0, 'resolvedOnTime' => 0];
             }
             $this->ticketsByCoordinator[$ticket->technician->name]['total'] += 1;
-            $this->ticketsByCoordinator[$ticket->technician->name]['resolved'] += in_array($ticket->status_id, [7]) ? 1 : 0;
-            $this->ticketsByCoordinator[$ticket->technician->name]['resolvedOnTime'] += (in_array($ticket->status_id, [7]) && !$ticket->overdue) ? 1 : 0;
+            $this->ticketsByCoordinator[$ticket->technician->name]['resolved'] += in_array($ticket->status_id, [7,8,9]) ? 1 : 0;
+            $this->ticketsByCoordinator[$ticket->technician->name]['resolvedOnTime'] += (in_array($ticket->status_id, [7,8,9]) && !$ticket->overdue) ? 1 : 0;
 
 
         });
@@ -194,5 +197,27 @@ class DashboardInfo
                 return count($answer);
             });
         });
+    }
+
+    private function ticketsBySubCategory()
+    {
+        $from = Carbon::now()->firstOfMonth();
+
+        $to = Carbon::now()->lastOfMonth()->addHours(11)->addMinutes(59)->addSeconds(59);
+
+        $query = $this->filterByDate($from, $to);
+
+        $total_tickets = $query->count();
+
+        $this->ticketsBySubcategory = $query->groupBy(['sub.name'])
+            ->select(\DB::raw('sub.name , count(tickets.id) as count, (count(tickets.id) / ' . $total_tickets . ' * 100) as percentage'))
+            ->where('ca.business_unit_id', $this->business_unit->id)->get()->each(function ($item) {
+                $item['percentage'] = number_format($item['percentage'], 2);
+            })->pluck('count', 'name');
+        $this->ticketsBySubcategory = $this->ticketsBySubcategory->filter(function ($value,$key){
+           return $key != "";
+        })->toArray();
+
+
     }
 }
