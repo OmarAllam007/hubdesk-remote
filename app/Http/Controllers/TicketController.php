@@ -499,8 +499,8 @@ class TicketController extends Controller
         $complaint = $ticket->complaint;
 
         if($complaint){
-            $to = User::whereIn('id',$complaint->to)->get()->pluck('email')->toArray();
-            $cc = User::whereIn('id',$complaint->cc)->get()->pluck('email')->toArray();
+            $to = User::whereIn('id',$complaint->to)->get(['email']);
+            $cc = User::whereIn('id',$complaint->cc)->get(['email']);
 
             \Mail::to($to)->cc($cc)->send(new TicketComplaint($ticket));
         }

@@ -64,8 +64,8 @@ class SendScheduleReport extends Job implements ShouldQueue
 
     private function sendReport($report)
     {
-        $to = User::whereIn('id', $this->report->to)->pluck('email')->filter()->toArray();
-        $cc = $this->report->cc ? User::whereIn('id', $this->report->cc)->pluck('email')->filter()->toArray() : [];
+        $to = User::whereIn('id', $this->report->to)->get(['email'])->filter();
+        $cc = $this->report->cc ? User::whereIn('id', $this->report->cc)->get(['email']): [];
 
         $file = $this->getFile($report);
 
