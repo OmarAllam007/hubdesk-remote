@@ -45,6 +45,7 @@ html, body {
 
 .title-bar {
   padding-bottom: 17px;
+
   .title-container {
     background: $blend-color;
     min-height: 40px;
@@ -165,6 +166,7 @@ footer {
 
   &.btn-info {
     color: $brand-info;
+
     &:hover, &:active, &:focus {
       background-color: $btn-info-bg;
       color: $btn-info-color;
@@ -173,6 +175,7 @@ footer {
 
   &.btn-success {
     color: $brand-success;
+
     &:hover, &:active, &:focus {
       background-color: $btn-success-bg;
       color: $btn-success-color;
@@ -181,6 +184,7 @@ footer {
 
   &.btn-warning {
     color: $brand-warning;
+
     &:hover, &:active, &:focus {
       background-color: $btn-warning-bg;
       color: $btn-warning-color;
@@ -306,6 +310,7 @@ hr.form-divider {
 
 #flash-alert {
   margin-right: 2em;
+
   .alert {
     margin-bottom: 0;
     padding: 5px;
@@ -368,6 +373,7 @@ table.table > thead > tr > th {
     .report-table-container {
       overflow-x: auto;
     }
+
     table.table {
       width: auto;
     }
@@ -465,10 +471,12 @@ option.empty {
 
 .navbar-style {
   background-color: #194F7E;
+
   .nav li a {
     color: white;
     font-size: 15px;
   }
+
   .nav li a:hover {
     color: white;
   }
@@ -527,37 +535,40 @@ table.details-tbl tbody tr:nth-child(odd) {
   thead {
     border-bottom: 2px solid #1B628F !important;
     background-color: rgba(25, 79, 126, 0.93);
-    color:white;
+    color: white;
   }
+
   tbody tr:hover {
     background-color: rgba(237, 233, 6, 0.14);
 
   }
-  tbody tr td a{
+
+  tbody tr td a {
     text-decoration: none;
   }
 }
 
-.description-area{
+.description-area {
   border-radius: 1px;
 }
 
-.reply-log{
+.reply-log {
   background-color: rgba(25, 79, 126, 0.06);
 }
-.update-log{
+
+.update-log {
   background-color: rgba(25, 79, 126, 0.12);
 }
 
-.created-log{
+.created-log {
   background-color: rgba(8, 126, 14, 0.1);
 }
 
-.resolved-log{
+.resolved-log {
   background-color: rgba(8, 126, 14, 0.1);
 }
 
-.resolution-area{
+.resolution-area {
   background-color: rgba(8, 126, 14, 0.05);
   border: 2px solid #1B628F !important;
   border-radius: 3px;
@@ -567,20 +578,21 @@ table.listing-table > thead.table-design {
   background-color: rgba(25, 79, 126, 0.93);
   color: #ffffff;
 }
-.logo{
+
+.logo {
   line-height: 1.7;
   font-size: 17px;
 }
 
-.dropdown-menu{
+.dropdown-menu {
   border-radius: 5px;
 }
 
-a.btn-info.searchbtn{
+a.btn-info.searchbtn {
   background-color: rgba(25, 79, 126, 0.93);
 }
 
-.auth-form{
+.auth-form {
   width: 650px;
   background: white;
   border-radius: 10px;
@@ -588,25 +600,27 @@ a.btn-info.searchbtn{
   overflow: hidden;
   display: flex;
   flex-wrap: wrap;
-  justify-content:space-between ;
+  justify-content: space-between;
   padding: 70px 70px 70px 70px;
   background-color: rgba(27, 98, 143, 0.07);
   box-shadow: 0px 15px 19px grey;
-  margin-top:40px;
-  margin-bottom:40px;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
-.login-form{
+.login-form {
   padding: 50px;
   border: 1px solid black;
   margin: 30px;
   border-radius: 5px;
 }
-.auth-form .form-control{
+
+.auth-form .form-control {
   border-radius: 10px;
   height: 45px;
 }
-.auth-form .form-control:focus{
+
+.auth-form .form-control:focus {
   border-color: #194F7E;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #194F7E;
 }
@@ -615,9 +629,10 @@ a.btn-info.searchbtn{
   font-size: larger;
 }
 
-a:hover{
+a:hover {
   text-decoration: none;
 }
+
 .tiles-container {
   display: flex;
   flex-wrap: wrap;
@@ -648,11 +663,13 @@ a:hover{
   height: 50px;
   color: #fff;
 }
+
 .tile-body p {
-  color:#144e7f ;
+  color: #144e7f;
   font-family: Verdana;
   font-size: 15px;
 }
+
 .tile-icon {
   display: flex;
   align-items: center;
@@ -672,20 +689,22 @@ a:hover{
 
 .tile:hover {
   border-radius: 10px;
-  box-shadow: 1px 1px 10px  #144e7f ;
+  box-shadow: 1px 1px 10px #144e7f;
 }
-.sans-plain{
+
+.sans-plain {
   font-family: "Sans-Plain Font", Verdana, Tahoma;
 }
 
-.sans-bold{
+.sans-bold {
   font-family: "Sans-Bold Font", Verdana, Tahoma;
 }
 
-.exto-bold{
+.exto-bold {
   font-family: "Exo2-Bold Font", Verdana, Tahoma;
 }
-.exto-plain{
+
+.exto-plain {
   font-family: "Exo2-Plain Font", Verdana, Tahoma;
 }
 
@@ -693,14 +712,17 @@ a:hover{
   font-family: "Sans-Plain Font";
   src: url(/fonts/TheSans-Plain.otf) format("truetype");
 }
+
 @font-face {
   font-family: "Sans-Bold Font";
   src: url(/fonts/TheSans-Bold.otf) format("truetype");
 }
+
 @font-face {
   font-family: "Exo2-Plain Font";
   src: url(/fonts/Exo2-Regular.otf) format("truetype");
 }
+
 @font-face {
   font-family: "Exo2-Bold Font";
   src: url(/fonts/Exo2-Bold.otf) format("truetype");
@@ -713,19 +735,23 @@ a:hover{
   transition: .5s;
 }
 
-h3{
+h3 {
   font-family: "Exo2-Bold Font", Verdana, Tahoma;
 }
-.breadcrumb-item{
+
+.breadcrumb-item {
   font-family: "Sans-Bold Font", Verdana, Tahoma;
 }
-.tile-body  p {
+
+.tile-body p {
   font-family: "Exo2-Plain Font", Verdana, Tahoma;
 }
-table thead{
+
+table thead {
   font-family: "Exo2-Bold Font", Verdana, Tahoma;
 }
-.tile-body p{
+
+.tile-body p {
   font-family: "Sans-Plain Font", Verdana, Tahoma;
 }
 
@@ -776,14 +802,15 @@ p.quot-animation {
 
 }
 
-.dashboard-card{
+.dashboard-card {
   margin: 50px;
   box-shadow: -1px 2px 6px grey;
   padding: 10px;
   border-radius: 10px;
   background-color: white;
 }
-.dashboard-input{
+
+.dashboard-input {
   border-radius: 20px;
   padding: 20px;
   box-shadow: inset -1px -1px 3px 0px grey;
@@ -809,7 +836,7 @@ p.quot-animation {
 
 }
 
-.ticket-shape{
+.ticket-shape {
   border-radius: 30%;
   padding: 10px;
   height: 150px;
@@ -819,23 +846,27 @@ p.quot-animation {
   justify-content: center;
   font-size: 25px;
   font-weight: 600;
+  box-shadow: 0px 4px 3px 0px #180f0f;
 }
 
-.approvals-thead{
-  background-color: cadetblue;color: white;font-weight: bold;
+.approvals-thead {
+  background-color: cadetblue;
+  color: white;
+  font-weight: bold;
 }
 
-.history-panel{
+.history-panel {
   box-shadow: 0px 2px 1px 0px lightgrey;
 }
-.history-panel-heading{
+
+.history-panel-heading {
   background-color: rgb(225, 225, 225) !important;
 }
 
-.fields_label{
+.fields_label {
   width: 50%;
   padding: 10px;
-  background-color: rgb(21,60,107);
+  background-color: rgb(21, 60, 107);
   color: white;
   border-radius: 20px;
 }
