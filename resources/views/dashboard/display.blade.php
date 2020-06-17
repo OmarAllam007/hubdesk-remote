@@ -6,7 +6,7 @@
 
 @section('stylesheets')
     <style>
-        .dashboard-card-item{
+        .dashboard-card-item {
             margin: 10px;
             box-shadow: 0 0 3px 0px;
             border-radius: 20px;
@@ -97,6 +97,13 @@
                                 </div>
                                 <p>Closed On Time</p>
                             </div>
+
+                            <div>
+                                <div class="ticket-shape" style="background-color:  @if($tickets['customer_satisfaction'] > 60 ) #246D24; @else #7C1500; @endif color: white">
+                                    {{$tickets['customer_satisfaction']}} %
+                                </div>
+                                <p style="line-height: 2"> Customer Satisfaction</p>
+                            </div>
                         </div>
 
                     @endforeach
@@ -111,7 +118,7 @@
                 <br>
 
                 @if(!empty($data->ticketsByCategory))
-                    <canvas id="categoryChart"  width="300" height="300"></canvas>
+                    <canvas id="categoryChart" width="300" height="300"></canvas>
                 @else
                     <p>No Data Found.</p>
                 @endif
@@ -129,19 +136,30 @@
             </div>
         </div>
         <hr>
-        <div class="row" style="display: flex;justify-content: space-between;">
-{{--            <div class="col-md-12 ">--}}
-                <div class="col-md-5 dashboard-card-item">
-                    <h3 style="text-align: left">Based On the Subcategory</h3>
-                    <br>
+        <div class="col-md-12">
+            <h3 style="text-align: left">Based On the Subservice</h3>
+            <br>
 
-                    @if(!empty($data->ticketsBySubcategory))
-                        <canvas id="subCategoryChart" width="300" height="300"></canvas>
-                    @else
-                        <p>No Data Found.</p>
-                    @endif
-                </div>
-{{--            </div>--}}
+            @if(!empty($data->ticketsBySubcategory))
+                <canvas id="subserviceChart" width="200" ></canvas>
+            @else
+                <p>No Data Found.</p>
+            @endif
+        </div>
+        <hr>
+        <div class="row" style="display: flex;justify-content: space-between;">
+            {{--            <div class="col-md-12 ">--}}
+            <div class="col-md-12 dashboard-card-item">
+                <h3 style="text-align: left">Service Performance </h3>
+                <br>
+
+                @if(!empty($data->servicePerformance))
+                    <canvas id="subCategoryPerformanceChart" width="300"></canvas>
+                @else
+                    <p>No Data Found.</p>
+                @endif
+            </div>
+            {{--            </div>--}}
         </div>
         <hr>
         <div class="row" style="display: flex;justify-content: space-between;">
@@ -160,8 +178,9 @@
         <hr>
         <div class="row">
             <div class="col-md-12">
-            <h3 style="text-align: left">Customer Satisfaction</h3>
-
+                <h3 style="text-align: left">Customer Satisfaction -  {{$data->customerSatisfaction['total_responses_percentage'] }}%</h3>
+{{--                {{$data->customerSatisfaction['total_submitted']}} response--}}
+{{--                ---}}
             </div>
             <br>
             <div class="col-md-10" id="customerCanvases" style="display: flex;justify-content: space-between;">
@@ -174,11 +193,12 @@
 
 @section('javascript')
 
-        @include('dashboard.charts._category')
-        @include('dashboard.charts._subcategory')
-        @include('dashboard.charts._status')
-        @include('dashboard.charts._coordinators')
-        @include('dashboard.charts._survey')
+    @include('dashboard.charts._category')
+    @include('dashboard.charts._subservice')
+    @include('dashboard.charts._service_performance')
+    @include('dashboard.charts._status')
+    @include('dashboard.charts._coordinators')
+    @include('dashboard.charts._survey')
     <script>
 
 

@@ -22,7 +22,7 @@ class DashboardController extends Controller
 
         $data = new DashboardInfo($request->get('filters', []),$businessUnit);
 //        dd($data);
-//        dd($data->ticketsByCoordinator);
+
         return view('dashboard.display', compact('data','businessUnit'));
 
     }

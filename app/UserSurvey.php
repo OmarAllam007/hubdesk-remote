@@ -32,6 +32,10 @@ class UserSurvey extends Model
     }
 
     function getTotalScoreAttribute(){
+        if(!$this->is_submitted){
+            return 0;
+        }
+//        dd($this->id);
         $total = 0;
 
         foreach ($this->survey_answers as $answer){

@@ -45,7 +45,6 @@
                     {
                         render: 'percentage',
                         precision: 2,
-
                     },
                 ],
             },

@@ -1,7 +1,7 @@
 <script>
 
-
-    var items = {!! json_encode($data->customerSatisfaction->toArray()) !!};
+{{--    {{dd($data->customerSatisfaction['questions'])}}--}}
+    var items = {!! json_encode($data->customerSatisfaction['questions']) !!};
 
     for (let [key, value] of Object.entries(items)) {
         let cKey = 'customers' + key.split(' ').join('');
@@ -11,20 +11,24 @@
         var canvasElem = document.createElement('canvas');
         canvasElem.setAttribute("id", cKey);
         var question = document.createElement('p');
+        var percentage = document.createElement('strong');
         question.innerText = key;
+        percentage.innerText = ' ( ' +value['percentage'] + '% )';
 
         canvasDiv.appendChild(document.createElement('br'));
+        canvasDiv.appendChild(percentage);
         canvasDiv.appendChild(question);
         canvasDiv.appendChild(canvasElem);
 
         document.getElementById('customerCanvases').appendChild(canvasDiv);
+        // console.log(Object.keys(value), value[]);
         new Chart(document.getElementById(cKey), {
             type: 'pie',
             plugins: [ChartLabels],
             data: {
-                labels: Object.keys(value),
+                labels: Object.keys(value['answers']),
                 datasets: [{
-                    data: Object.values(value),
+                    data: Object.values(value['answers']),
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
