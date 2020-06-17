@@ -137,11 +137,20 @@ class DashboardInfo
             $groupBy = "(select '{$this->filters['from']} - {$this->filters['to']}') as month";
         }
 
-
         $this->ticketOverView = $query->select('st.name', \DB::raw("tickets.id , tickets.status_id , tickets.overdue"), \DB::raw($groupBy))
             ->get()->groupBy('month')->map(function ($tickets, $key) {
-                $from = new Carbon('first day of ' . $key);
-                $to = new Carbon('last day of ' . $key);
+
+                if (isset($this->filters['from']) && $this->filters['from']) {
+                    $from = Carbon::parse($this->filters['from']);
+                }else{
+                    $from = new Carbon('first day of ' . $key);
+                }
+
+                if (isset($this->filters['to']) && $this->filters['to']) {
+                    $to = Carbon::parse($this->filters['to'])->addHours(11)->addMinutes(59)->addSeconds(59);
+                }else{
+                    $to = new Carbon('last day of ' . $key);
+                }
 
                 $surveys = UserSurvey::where('is_submitted', 1)
                     ->whereHas('survey.categories', function ($q) {
