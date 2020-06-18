@@ -42,7 +42,8 @@ class ScheduledReport extends Mailable
         }
 
         $report_info = $report->report;
-        return $this->subject($report->subject)->attach($this->file ,[
+        
+        return $this->subject($this->scheduled_report->subject)->attach($this->file ,[
             'as' =>$as,
             'mime' => $mime,
         ])->markdown('emails.report.scheduled_template',['report'=>$report_info]);
