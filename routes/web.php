@@ -59,6 +59,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
 
     $r->get('', 'Admin\DashboardController@index');
     $r->resource('region', 'Admin\RegionController');
+    $r->resource('division', 'Admin\DivisionController');
     $r->resource('city', 'Admin\CityController');
     $r->resource('location', 'Admin\LocationController');
     $r->resource('business-unit', 'Admin\BusinessUnitController');

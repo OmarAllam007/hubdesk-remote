@@ -2,8 +2,15 @@
     <div class="row">
         <div class="col-md-6">
             {{csrf_field()}}
-
             {{Form::hidden('id')}}
+
+            <div class="form-group {{$errors->has('division_id')? 'has-errors' : ''}}">
+                {{Form::label('division_id', 'Division', ['class' => 'control-label'])}}
+                {{Form::select('division_id', \App\Division::selection('Select Location'), null, ['class' => 'form-control'])}}
+                @if ($errors->has('division_id'))
+                    <div class="error-message">{{$errors->first('division_id')}}</div>
+                @endif
+            </div>
             <div class="form-group {{$errors->has('code')? 'has-errors' : ''}}">
                 {{Form::label('code', 'Code', ['class' => 'control-label'])}}
                 {{Form::text('code', null, ['class' => 'form-control'])}}

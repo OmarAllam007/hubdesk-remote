@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('header')
-    <h4 class="pull-left"> {{t($business_unit->name)}} > {{t('Select Category')}}</h4>
+    <h4 class="pull-left">{{t($business_unit->division->name)}} > {{t($business_unit->name)}} > {{t('Select Category')}}</h4>
     <div class="btn-group">
         {{--@if(Auth::user()->isAdmin())--}}
             <a class="btn btn-outlined  btn-success" href="{{route('kgs.business_documents_folder.index',compact('business_unit'))}}"><i
@@ -15,48 +15,10 @@
                         class="fa fa-bell"></i> {{t('Notifications')}}</a>
         {{--@endif--}}
 
-        <a class="btn  btn-default" href="{{route('kgs.business_document',compact('business_unit'))}}"><i
+        <a class="btn  btn-default" href="{{route('kgs.business_document.select_business_unit',['division'=> $business_unit->division])}}"><i
                     class="fa fa-1x fa-arrow-right"></i></a>
     </div>
 @stop
-@section('stylesheets')
-    <style>
-        @keyframes slideInFromUp {
-            0% {
-                transform: translateX(-20%);
-            }
-            100% {
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInFromRight {
-            0% {
-                transform: translateX(5%);
-            }
-            100% {
-                transform: translateX(0);
-            }
-        }
-
-        .card-section {
-            animation: .5s ease-out 0s 1 slideInFromUp;
-            padding: 30px;
-        }
-        .logo-animation {
-            animation: 1.5s ease-out 0s 1 slideInFromRight;
-        }
-
-        .quot-animation{
-            animation: 1.5s ease-out 0s 1 slideInFromLeft;
-        }
-        p.quot-animation{
-            margin-top: 80px;
-            font-size: 18pt;
-            font-weight: 800;
-        }
-    </style>
-@endsection
 
 @section('body')
     <section class="col-md-12 card-section">
