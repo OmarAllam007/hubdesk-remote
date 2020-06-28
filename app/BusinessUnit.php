@@ -33,7 +33,7 @@ class BusinessUnit extends KModel
 {
     use Listable;
 
-    protected $fillable = ['code', 'name', 'location_id', 'logo', 'business_unit_bgd'];
+    protected $fillable = ['code', 'name', 'location_id', 'logo', 'business_unit_bgd', 'division_id'];
 
 //    protected $appends = ['bu_roles'];
 
@@ -41,6 +41,11 @@ class BusinessUnit extends KModel
     public function location()
     {
         return $this->belongsTo(Location::class, 'location_id', 'id');
+    }
+
+    public function division()
+    {
+        return $this->belongsTo(Division::class);
     }
 
     public function scopeQuickSearch(Builder $query)

@@ -60,7 +60,7 @@
                     @endif
 
                     @can('show_business_document')
-                        <li class="nav-item"><a href="{{route('kgs.business_document')}}"><i
+                        <li class="nav-item"><a href="{{route('kgs.business_document.select_division')}}"><i
                                         class="fa fa-book"></i> {{t('Business Documents')}}</a></li>
 
                     @endcan

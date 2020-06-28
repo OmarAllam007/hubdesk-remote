@@ -12,6 +12,7 @@ namespace KGS\Http\Controllers;
 use App\Attachment;
 use App\BusinessUnit;
 use App\Category;
+use App\Division;
 use App\Http\Controllers\Controller;
 use App\Item;
 use App\Subcategory;
@@ -29,9 +30,14 @@ use function GuzzleHttp\Promise\all;
 
 class BusinessDocumentController extends Controller
 {
-    function index()
+    function selectDivision()
     {
-        return view('kgs::business-documents.wizard.index');
+        return view('kgs::business-documents.wizard.select_division');
+    }
+
+    function index(Division $division)
+    {
+        return view('kgs::business-documents.wizard.index',compact('division'));
     }
 
     function selectCategory(BusinessUnit $business_unit)

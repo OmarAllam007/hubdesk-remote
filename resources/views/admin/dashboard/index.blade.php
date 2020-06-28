@@ -66,6 +66,7 @@
                     </div>
                     <div class="panel-body">
                         <ul class="nav nav-pills">
+                            <li><a href="{{route('admin.division.index')}}">{{t('Divisions')}}</a></li>
                             <li><a href="{{route('admin.business-unit.index')}}">{{t('Business Units')}}</a></li>
                             <li><a href="{{route('admin.branch.index')}}">{{t('Branches')}}</a></li>
                             <li><a href="{{route('admin.department.index')}}">{{t('Departments')}}</a></li>

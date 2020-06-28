@@ -14,8 +14,12 @@
 use Illuminate\Routing\Router;
 
 Route::group(['middleware' => 'auth'], function (Router $r) {
-    Route::get('business-document', 'BusinessDocumentController@index')
-        ->name('business_document');
+    Route::get('business-document/select_division', 'BusinessDocumentController@selectDivision')
+        ->name('business_document.select_division');
+
+    Route::get('business-document/division/{division}/select_business_unit', 'BusinessDocumentController@index')
+        ->name('business_document.select_business_unit');
+
     Route::get('business-document/business_unit/{business_unit}/select_category', 'BusinessDocumentController@selectCategory')
         ->name('document.select_category');
 
