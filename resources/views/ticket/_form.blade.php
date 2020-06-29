@@ -40,7 +40,6 @@ $exceedNoOfTickets = $requester_bu->isExceedNoOfLimitedTickets($category,$subcat
         </div>
     </div>
     <div class="row">
-
         <div class="col-sm-6">
             @if (!isset($ticket) && Auth::user()->isSupport())
                 <div class="form-group form-group-sm {{$errors->has('requester_id')? 'has-error' : ''}}">

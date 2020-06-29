@@ -3,7 +3,7 @@
         @if($key != '')
             <div class="col-md-12">
                 <div class="fields_label">
-                    <strong>{{$key}}</strong>
+                    <strong>{{t($key)}}</strong>
                 </div>
                 <br>
             </div>
@@ -21,7 +21,7 @@
         @if($key != '')
             <div class="col-md-12">
                 <div class="fields_label">
-                    <strong>{{$key}}</strong>
+                    <strong>{{t($key)}}</strong>
                 </div>
                 <br>
             </div>

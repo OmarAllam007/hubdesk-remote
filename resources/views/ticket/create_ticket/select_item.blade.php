@@ -18,9 +18,9 @@
                             href="{{route('ticket.create.select_subcategory',[$business_unit,$subcategory->category])}}"> {{$subcategory->name}}
                     </a>
                 </li>
-                <li class="breadcrumb-item">
-                    {{t('Select Item')}}
-                </li>
+{{--                <li class="breadcrumb-item">--}}
+{{--                    {{t('Select Service')}}--}}
+{{--                </li>--}}
             </ol>
         </nav>
     </div>
@@ -31,7 +31,7 @@
     <section class="col-sm-12">
 
             <div class=form-group></div>
-            <h3 class=text-center>{{t('Items') }}</h3>
+{{--            <h3 class=text-center>{{t('Items') }}</h3>--}}
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
