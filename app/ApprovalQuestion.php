@@ -15,7 +15,11 @@ class ApprovalQuestion extends Model
 
     function getAnswerStrAttribute()
     {
-        return self::status[$this->answer];;
+        if(!isset(self::status[$this->answer])){
+            return;
+        }
+
+        return self::status[$this->answer];
     }
 
     function getColorAttribute()

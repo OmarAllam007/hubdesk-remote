@@ -35,7 +35,7 @@
                         <div class="row form-group">
                             <div class="col-md-3">
                                 <label for="approve{{$key}}" class="radio-online">
-                                    {{Form::radio('questions['.$question->id.']', \App\TicketApproval::APPROVED, null, ['id' => 'approve'.$key])}}
+                                    {{Form::radio('questions['.$question->id.']', \App\TicketApproval::APPROVED, 1, ['id' => 'approve'.$key])}}
                                     {{t('Approve')}}
                                     {{--                                 <i class="fa fa-thumbs-o-up"></i>--}}
                                 </label>
