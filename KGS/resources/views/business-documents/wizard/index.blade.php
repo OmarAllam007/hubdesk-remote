@@ -21,7 +21,7 @@
     <section class="col-md-12 card-section">
         <div class="tiles-container">
             @foreach($division->kgs_business_units as $business_unit)
-                @can('show_business_unit',$business_unit->business_unit)
+                @can('show_business_unit',$business_unit)
                     <a href="{{route('kgs.document.select_category', ['business_unit'=>$business_unit])}}"
                        class="tile">
                         <div class="tile-container">
