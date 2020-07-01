@@ -47,25 +47,27 @@ class UploadUsersJob extends Job
 
         $sheet = $spreadsheet->getActiveSheet();
 
-        foreach ($sheet->getRowIterator(1,1) as $row) {
-             $cells = $row->getCellIterator();
-            $data = $this->getDataOfCells($cells);
+        $checkRow = $sheet->getRowIterator(1, 1)->current();
 
-             if($data[2] != 'Employee Number' && $data[40] != 'Company Code'){
-                 return;
-             }
+        $dataCells = $checkRow->getCellIterator();
+        $data = $this->getDataOfCells($dataCells);
+
+        if ($data[0] != 'Employee Number' && $data[5] != 'Company Code') {
+            return;
         }
-
 
         foreach ($sheet->getRowIterator(2) as $row) {
 
             $cells = $row->getCellIterator();
             $data = $this->getDataOfCells($cells);
-            $user = User::whereNotNull('employee_id')->where('employee_id', $data[2])->first();
+            $user = User::whereNotNull('employee_id')->where('employee_id', $data[0])->first();
 
             if ($user) {
                 $this->updateUser($user, $data);
             }
+//            else{
+//                $this->createUser($data);
+//            }
 
         }
     }
@@ -83,29 +85,28 @@ class UploadUsersJob extends Job
 
     private function createUser(array $data)
     {
-        $businessUnitId = $this->businessUnits->get($data[18]);
-
+        $businessUnitId = $this->businessUnits->get($data[5]);
         User::create([
-            'name' => $data[3],
+            'name' => $data[1],
             'email' => $data[19] == "" ? null : $data[19],
             'password' => bcrypt('kifah1234'),
             'business_unit_id' => $businessUnitId,
-            'job' => $data[13],
+            'job' => $data[2],
             'department_id' => $this->getDepartmentId($data[14], $businessUnitId),
-            'employee_id' => $data[2],
+            'employee_id' => $data[0],
             'extra_fields' => $this->extraFields($data)
         ]);
     }
 
     private function updateUser($user, $data)
     {
-        $businessUnitId = $this->businessUnits->get($data[40]);
+        $businessUnitId = $this->businessUnits->get($data[5]);
 
         $data = [
             'business_unit_id' => $businessUnitId,
-            'job' => $data[30],
-            'department_id' => $this->getDepartmentId($data[33], $businessUnitId),
-            'extra_fields' => $this->extraFields($data),
+            'job' => $data[2],
+//            'department_id' => $this->getDepartmentId($data[33], $businessUnitId),
+            'extra_fields' => array_replace($user->extra_fields ?? [], $this->extraFields($data)),
         ];
 
         $user->update($data);
@@ -125,19 +126,20 @@ class UploadUsersJob extends Job
     private function extraFields($data)
     {
         $fields = [];
-        $fields['emis_id'] = $data[1];
-        $fields['ar_name'] = $data[4];
-        $fields['nationality'] = $data[6];
-        $fields['id_number'] = $data[6];
-        $fields['religion'] = $data[11];
-        $fields['passport_number'] = $data[17];
-        $fields['gender'] = $data[21] ?? '';
-        $fields['marital_status'] = $data[22] ?? '';
-        $fields['no_of_children'] = $data[23] ?? '';
-        $fields['hire_date'] = Date::excelToDateTimeObject($data[26])->format('Y-m-d') ?? '';
-        $fields['personal_area'] = $data[41];
-        $fields['personal_sub_area'] = $data[42];
-        $fields['cr_file_no'] = $data[60];
+        $fields['leave_balance'] = $data[12] ?? 0;
+//        $fields['emis_id'] = $data[1];
+//        $fields['ar_name'] = $data[4];
+//        $fields['nationality'] = $data[6];
+//        $fields['id_number'] = $data[6];
+//        $fields['religion'] = $data[11];
+//        $fields['passport_number'] = $data[17];
+//        $fields['gender'] = $data[21] ?? '';
+//        $fields['marital_status'] = $data[22] ?? '';
+//        $fields['no_of_children'] = $data[23] ?? '';
+//        $fields['hire_date'] = Date::excelToDateTimeObject($data[26])->format('Y-m-d') ?? '';
+//        $fields['personal_area'] = $data[41];
+//        $fields['personal_sub_area'] = $data[42];
+//        $fields['cr_file_no'] = $data[60];
 
         return $fields;
     }
