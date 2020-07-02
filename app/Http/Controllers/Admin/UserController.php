@@ -30,7 +30,7 @@ class UserController extends Controller
 
         $user->save();
 
-        flash(t('SLA Info'),t('User has been saved'), 'success');
+        flash(t('User Info'),t('User has been saved'), 'success');
 
         return \Redirect::route('admin.user.index');
     }

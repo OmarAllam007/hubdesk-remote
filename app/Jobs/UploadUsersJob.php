@@ -62,8 +62,8 @@ class UploadUsersJob extends Job
             $data = $this->getDataOfCells($cells);
             $user = User::whereNotNull('employee_id')->where('employee_id', $data[0])->first();
 
-            if ($user) {
-                $this->updateUser($user, $data);
+            if (!$user) {
+                $this->createUser($data);
             }
 //            else{
 //                $this->createUser($data);
@@ -86,9 +86,11 @@ class UploadUsersJob extends Job
     private function createUser(array $data)
     {
         $businessUnitId = $this->businessUnits->get($data[5]);
+
         User::create([
             'name' => $data[1],
-            'email' => $data[19] == "" ? null : $data[19],
+//            'email' => $data[19] == "" ? null : $data[19],
+            'login' => $data[0],
             'password' => bcrypt('kifah1234'),
             'business_unit_id' => $businessUnitId,
             'job' => $data[2],
