@@ -21,9 +21,10 @@ class AdminUserRequest extends Request
 
         $rules = [
             'name' => 'required',
+            'business_unit_id' => 'required',
 //            'email' => 'required_if:email,email',
             'employee_id'=>'unique:users,employee_id'. ($user ? ',' . $user->id : ''),
-            'login' => 'unique:users,login' . ($user ? ',' . $user->id : ''),
+//            'login' => 'unique:users,login' . ($user ? ',' . $user->id : ''),
         ];
 
         if ($validatePassword) {
