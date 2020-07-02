@@ -49,7 +49,6 @@ class ApplySLA extends MatchCriteria
     public function fetchSLA()
     {
         $agreements = Sla::with('criterions')->get();
-
         foreach ($agreements as $sla) {
             if ($this->match($sla)) {
                 return $sla;
