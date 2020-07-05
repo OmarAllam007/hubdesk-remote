@@ -16,6 +16,7 @@ use App\SubItem;
 use App\Ticket;
 use App\Urgency;
 use App\User;
+use KGS\BusinessDocumentsFolder;
 
 class ListController extends Controller
 {
@@ -54,15 +55,23 @@ class ListController extends Controller
     {
         $categories = Category::query()->individual()->active();
 
-        if ($service_type == 1){
+        if ($service_type == 1) {
             $categories->ticketType();
-        }elseif ($service_type == 2){
+        } elseif ($service_type == 2) {
             $categories->taskType();
-        }else{
+        } else {
             $categories->both();
         }
 
         return $categories->orderBy('order')->get(['id', 'name']);
+    }
+
+
+    public function folders($business_unit)
+    {
+        return BusinessDocumentsFolder::orderBy('name')
+            ->where('business_unit_id', $business_unit)
+            ->get(['name', 'id']);
     }
 
     public function tasksCategory()

@@ -4,8 +4,12 @@ namespace KGS;
 
 use App\BusinessUnit;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property Carbon end_date
+ */
 class Document extends Model
 {
     protected $fillable = ['folder_id', 'name', 'start_date', 'end_date', 'last_updated_by', 'path'];
@@ -60,11 +64,12 @@ class Document extends Model
         return false;
     }
 
-    function markAsShouldRenew(){
-        $bus = DocumentNotification::all()->groupBy('business_unit_id');
-        $level = $bus->get($this->folder->business_unit->id)->first();
+    function markAsShouldRenew()
+    {
+        $level = DocumentNotification::where('business_unit_id', $this->folder->business_unit->id)->first();
+        $isExpired = $this->end_date->lessThanOrEqualTo(Carbon::now()) || ($this->end_date->diffInDays(now()) <= $level->days);
 
-        if ($this->end_date->diffInDays(now()) <= $level->days) {
+        if ($isExpired) {
             return true;
         }
 

@@ -9,6 +9,7 @@ use Illuminate\Http\UploadedFile;
 use KGS\BusinessDocumentsFolder;
 use KGS\Document;
 use KGS\DocumentNotification;
+use KGS\KGSBusinessUnit;
 
 /**
  * App\BusinessUnit
@@ -60,6 +61,13 @@ class BusinessUnit extends KModel
         return $query;
     }
 
+
+    public function scopeKGS(Builder $query){
+        $kgsIds = KGSBusinessUnit::pluck('business_unit_id')->toArray();
+        $query->orderBy('name')->whereIn('id', $kgsIds);
+
+        return $query;
+    }
     public function categories()
     {
         return $this->hasMany(Category::class, 'business_unit_id', 'id');

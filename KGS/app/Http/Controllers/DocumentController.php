@@ -30,7 +30,7 @@ class DocumentController extends Controller
 
     function store(BusinessDocumentsFolder $folder, Request $request)
     {
-        $this->validate($request,['name'=>'required','end_date'=>'required','document'=>'required','folder_id'=>'required']);
+        $this->validate($request, ['name' => 'required', 'end_date' => 'required', 'document' => 'required', 'folder_id' => 'required']);
 
         if ($request->hasFile('document')) {
             $request['document_path'] = $this->uploadDocument($folder, $request);
@@ -49,15 +49,14 @@ class DocumentController extends Controller
 
     function update(BusinessDocumentsFolder $folder, Document $document, Request $request)
     {
-        $this->validate($request,['name'=>'required','end_date'=>'required','folder_id'=>'required']);
-
+        $this->validate($request, ['name' => 'required', 'end_date' => 'required', 'folder_id' => 'required']);
 
 
         if ($request->hasFile('document')) {
             $request['document_path'] = $this->uploadDocument($folder, $request);
         }
         $document->update([
-            'folder_id' =>$request->folder_id,
+            'folder_id' => $request->folder_id,
             'name' => $request->name,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
@@ -72,6 +71,15 @@ class DocumentController extends Controller
     {
         $document->delete();
         return redirect()->route('kgs.document.index', compact('folder'));
+    }
+
+    function move(BusinessDocumentsFolder $folder,  Request $request)
+    {
+        $this->validate($request, ['document_id' => 'required', 'business_unit' => 'required', 'folder_id' => 'required']);
+        Document::find($request->document_id)->update(['folder_id' => $request->folder_id]);
+
+        return redirect()->route('kgs.document.index', compact('folder'));
+
     }
 
     private function uploadDocument(BusinessDocumentsFolder $business_folder, Request $request)

@@ -25,6 +25,7 @@ Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
     $r->get('/item/{subcat_id?}', 'ListController@item');
     $r->get('/subitem/{item_id?}', 'ListController@subitem');
     $r->get('/category', 'ListController@category');
+    $r->get('/folders/{business_unit}', 'ListController@folders');
     $r->get('/location', 'ListController@location');
     $r->get('/business-unit', 'ListController@businessUnit');
     $r->get('/priority', 'ListController@priority');
