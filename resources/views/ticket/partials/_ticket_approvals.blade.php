@@ -16,7 +16,7 @@
                 </div>
                 <br>
 
-                @if($approval->status != App\TicketApproval::PENDING_APPROVAL && $approval->questions->count())
+                @if($approval->questions->count())
                     <table class="table table-bordered">
                         <thead class="approvals-thead">
                         <tr>
@@ -29,7 +29,7 @@
                         @foreach($approval->questions as $question)
                             <tr class="bg-{{$question->color}}">
                                 <td>{{$question->description}}</td>
-                                <td >{{$question->answer_str}}</td>
+                                <td >{{$question->answer_str ?? 'Not Assigned'}}</td>
                             </tr>
                         @endforeach
                         </tbody>
