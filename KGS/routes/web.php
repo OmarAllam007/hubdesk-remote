@@ -33,6 +33,7 @@ Route::group(['middleware' => 'auth'], function (Router $r) {
         ->name('document.check-requirements');
 
     Route::resource('business_unit/{folder}/document', 'DocumentController');
+    Route::post('document/{folder}/move', 'DocumentController@move')->name('document.assign');
 
     Route::post('business-document/{business_unit}/category/{category}/select_subcategory/{subcategory}/select_item/{item?}', 'BusinessDocumentController@createTicket')
         ->name('document.create-ticket');

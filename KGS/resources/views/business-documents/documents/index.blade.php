@@ -13,7 +13,7 @@
     <a href="{{route('kgs.document.create',compact('folder'))}}" class="btn btn-sm btn-outlined btn-primary"><i
                 class="fa fa-plus"></i> {{t('Create')}}</a>
     <a class="btn  btn-default"
-       href="{{route('kgs.business_documents_folder.index',['business_unit'=>$folder->business_unit])}}">{{$folder->name}}
+       href="{{route('kgs.business_documents_folder.index',['business_unit'=> $folder->business_unit])}}">{{$folder->name}}
         <i
                 class="fa fa-1x fa-arrow-right"></i> </a>
 
@@ -62,25 +62,24 @@
                             <form action="{{route('kgs.document.destroy', compact('folder','document'))}}"
                                   method="post">
                                 {{--                        <td>--}}
-
-                                <a class="btn btn-sm btn-primary" href="{{route('kgs.document.select_category', ['business_unit'=>$folder->business_unit])}}"
-                                   ><i
-                                            class="fa fa-plus"></i> {{t('Create Ticket')}}</a>
+                                <a class="btn btn-sm btn-primary"
+                                   href="{{route('kgs.document.select_category', ['business_unit'=>$folder->business_unit])}}"
+                                ><i
+                                            class="fa fa-plus"></i> {{t('New Ticket')}}</a>
                                 {{--                        </td>--}}
                                 <a href="{{route('kgs.business_document.download',['attachment'=>$document])}}"
                                    class="btn btn-sm btn-success"
-                                   target="_blank"><i class="fa fa-download"></i> {{t('Download')}}</a>
+                                   target="_blank"><i class="fa fa-download"></i></a>
                                 {{csrf_field()}} {{method_field('delete')}}
                                 @if(auth()->user()->isAdmin() || auth()->user()->groups()->whereType(App\Group::KGS_ADMIN)->exists())
                                     <a class="btn btn-sm btn-primary"
                                        href="{{route('kgs.document.edit', compact('folder','document'))}}"><i
-                                                class="fa fa-edit"></i> {{t('Edit')}}</a>
-
-                                    {{--                                <a class="btn btn-sm btn-default"--}}
-                                    {{--                                   href="{{route('kgs.document.edit', compact('folder','document'))}}"><i--}}
-                                    {{--                                            class="fa fa-history"></i> {{t('History')}}</a>--}}
-
-                                    <button class="btn btn-sm btn-warning"><i class="fa fa-trash-o"></i> {{t('Delete')}}
+                                                class="fa fa-edit"></i> </a>
+                                    <button data-toggle="modal" data-target="#MoveForm" type="button"
+                                            class="btn btn-sm btn-success btn-outlined " title="Move" onclick="changeDocumentId({{$document->id}})">
+                                        <i class="fa fa-mail-forward"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-warning"><i class="fa fa-trash-o"></i>
                                     </button>
                                 @endif
 
@@ -98,4 +97,19 @@
             </div>
         @endif
     </section>
-@stop
+    <section id="documentArea">
+        @include('kgs::business-documents.documents._modal._move')
+    </section>
+@endsection
+
+@section('javascript')
+    <script>
+        var document_id;
+        function changeDocumentId(id){
+            $('#document_id').val(id)
+        }
+        var business_unit = '{{Form::getValueAttribute('business_unit') ?? $folder->business_unit->id}}';
+        var folder = '{{Form::getValueAttribute('folder') ?? $folder}}';
+    </script>
+    <script src="{{asset('/js/document-form.js')}}"></script>
+@endsection
