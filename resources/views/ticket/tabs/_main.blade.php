@@ -19,7 +19,7 @@
             <th class="col-sm-3">{{t('Category')}}</th>
             <td class="col-sm-3">{{$ticket->category->name ?? 'Not Assigned'}}</td>
             <th class="col-sm-3">{{t('Group')}}</th>
-            <td class="col-sm-3">{{$ticket->group->name ?? 'Not Assigned'}}</td>
+            <td class="col-sm-3">{{t($ticket->group->name) ?? 'Not Assigned'}}</td>
 
 
         </tr>
