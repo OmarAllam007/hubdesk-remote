@@ -74,7 +74,14 @@ $exceedNoOfTickets = $requester_bu->isExceedNoOfLimitedTickets($category,$subcat
 
                         <span style="padding-right: 10px" v-if="requester.email">
                             <small><strong>{{t('Email')}}</strong></small> : <small v-text="requester.email"> </small>
-                    </span>
+                        </span>
+                        @if(env('BALANCE_SERVICES') && in_array($category->id , explode(',',env('BALANCE_SERVICES'))))
+                            <span style="padding-right: 10px"
+                                  v-if="requester.extra_fields && requester.extra_fields.leave_balance">
+                            <small><strong>{{t('Leave Balance')}}</strong></small> : <small
+                                        v-text="requester.extra_fields.leave_balance"></small> <strong></strong>
+                        </span>
+                        @endif
                     </div>
                     {{--                    {{ Form::select('requester_id', App\User::requesterList()->prepend('Create for me', ''), null, ['class' => 'form-control select2']) }}--}}
                     {!! $errors->first('requester_id', '<div class="error-message">:message</div>') !!}
