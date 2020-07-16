@@ -1,10 +1,16 @@
 <?php
 namespace App\Behaviors;
 use App\BusinessRule;
+use App\Jobs\ApplyBusinessRules;
+use App\Jobs\MatchCriteria;
 use App\User;
 
 trait RequestConfiguration {
+
     function getRequestCcEmails(){
+        $applyBr =  new ApplyBusinessRules($this);
+        $applyBr->fetchBusinessRule();
+        dd($applyBr->business_rule);
         $cc = collect();
 
         $rules = BusinessRule::with('criterions')->with('rules')->get();
@@ -62,6 +68,7 @@ trait RequestConfiguration {
         return [
             'id' => $this->id,
             'subject' => $this->subject ?? '',
+            'category' => $this->category->name ?? '',
             'description' => $this->description ?? '',
             'status' => $this->status->name ?? '',
             'requester' => $this->requester->name ?? '',

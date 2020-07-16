@@ -28,7 +28,7 @@ trait TaskTrait
 
     public function task_create(User $user, Ticket $ticket)
     {
-        return $user->id == $ticket->technician_id || $user->isTechnicainSupervisor($ticket);
+        return $user->id == $ticket->technician_id || $user->isTechnicainSupervisor($ticket) || $user->hasTasks($ticket);
     }
 
     function task_edit(User $user, Ticket $ticket)

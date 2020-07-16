@@ -60,8 +60,8 @@ class KModel extends EloquentModel
 
     function getRequestCc(){
         $cc = collect();
-
         $rules = BusinessRule::with('criterions')->with('rules')->get();
+
         foreach ($rules as $rule) {
             if ($this->match($rule)) {
                 foreach ($rule->rules as $action) {

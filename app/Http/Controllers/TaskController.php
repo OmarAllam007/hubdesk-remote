@@ -37,7 +37,7 @@ class TaskController extends Controller
     {
         $this->validate($request, ['subject' => 'required', 'category' => 'required']);
 
-//        Ticket::flushEventListeners();
+        Ticket::flushEventListeners();
 
         if ($request->template) {
             $request['description'] = ReplyTemplate::find($request->template)->description;
@@ -84,10 +84,11 @@ class TaskController extends Controller
             }
         }
 
-        if ($request['technician']) {
-//            \Mail::send(new NewTaskMail($task));
-        }
         dispatch(new ApplyBusinessRules($task));
+
+        if ($request['technician'] || $task->technician_id) {
+            \Mail::send(new NewTaskMail($task));
+        }
 
         return response()->json($task);
     }

@@ -229,5 +229,10 @@ class User extends Authenticatable implements CanResetPassword
         return $this->hasMany(ReplyTemplate::class);
     }
 
+    public function hasTasks(Ticket $ticket)
+    {
+         return $ticket->tasks()->where('technician_id', auth()->id())->exists();
+    }
+
 }
   
