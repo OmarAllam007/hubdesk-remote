@@ -39,6 +39,8 @@ class UploadUsersJob extends Job
      */
     public function handle()
     {
+        set_time_limit(1800);
+
         $this->businessUnits = BusinessUnit::all()->pluck('id', 'code');
 
         $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReaderForFile($this->file);
