@@ -48,11 +48,10 @@ class UploadUsersJob extends Job
         $sheet = $spreadsheet->getActiveSheet();
 
         $checkRow = $sheet->getRowIterator(1, 1)->current();
-
         $dataCells = $checkRow->getCellIterator();
         $data = $this->getDataOfCells($dataCells);
 
-        if ($data[0] != 'Employee Number' && $data[5] != 'Company Code') {
+        if ($data[0] != 'Employee ID' && $data[7] != 'Company Code') {
             return;
         }
 
@@ -61,9 +60,8 @@ class UploadUsersJob extends Job
             $cells = $row->getCellIterator();
             $data = $this->getDataOfCells($cells);
             $user = User::whereNotNull('employee_id')->where('employee_id', $data[0])->first();
-
-            if (!$user) {
-                $this->createUser($data);
+            if ($user) {
+                $this->updateUser($user, $data);
             }
 //            else{
 //                $this->createUser($data);
@@ -102,12 +100,12 @@ class UploadUsersJob extends Job
 
     private function updateUser($user, $data)
     {
-        $businessUnitId = $this->businessUnits->get($data[5]);
+        $businessUnitId = $this->businessUnits->get($data[7]);
 
         $data = [
             'business_unit_id' => $businessUnitId,
-            'job' => $data[2],
-//            'department_id' => $this->getDepartmentId($data[33], $businessUnitId),
+            'job' => $data[8],
+            'department_id' => $this->getDepartmentId($data[5], $businessUnitId),
             'extra_fields' => array_replace($user->extra_fields ?? [], $this->extraFields($data)),
         ];
 
