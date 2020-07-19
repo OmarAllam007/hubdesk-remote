@@ -17,7 +17,9 @@ class HistoryEntry
     protected static $cache = [];
     protected static $labels = [];
     protected static $models = [
-        'technician_id' => 'User'
+        'technician_id' => 'User',
+        'requester_id'=>'User',
+        'creator_id'=>'User'
     ];
 
     /**
@@ -120,7 +122,6 @@ class HistoryEntry
         } else {
             $model .= Str::studly(str_replace('_id', '', $this->key));
         }
-
         return app($model)->newQuery();
     }
 }

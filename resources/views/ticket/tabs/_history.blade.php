@@ -37,6 +37,7 @@
                         <strong>{{t($ticket->isTask() ? 'Task '.$log->type_action.' by' :'Ticket '.$log->type_action.' by')}}   {{$log->user->name}}
                             {{t('at')}} {{$log->created_at->format('d/m/Y H:i')}}</strong>
                         <ul>
+{{--                            @dd($log)--}}
                             @foreach($log->entries as $entry)
                                 <li class="list-unstyled ">
                                     <i class="fa fa-caret-right"></i>
