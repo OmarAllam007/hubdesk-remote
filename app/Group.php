@@ -54,7 +54,9 @@ class Group extends KModel
         return $this->belongsToMany('App\User', 'group_supervisor', 'group_id', 'user_id');
     }
 
-
+    public function scopeTasks(Builder $query){
+        return $query->whereIn('type', [self::REQUESTER, self::TECHNICIAN]);
+    }
     public function scopeRequesters(Builder $query)
     {
         return $query->where('type', self::REQUESTER);
@@ -122,7 +124,6 @@ class Group extends KModel
                 return $group->supervisors->pluck('id');
             });
         }
-        dd($group_ids);
     }
 
 }

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Behaviors\RequestConfiguration;
 use App\Helpers\Ticket\TicketFilter;
 use App\Helpers\Ticket\TicketViewScope;
 use Carbon\Carbon;
@@ -74,6 +75,8 @@ use Illuminate\Support\Collection;
  */
 class Ticket extends KModel
 {
+    use RequestConfiguration;
+
     const TASK_TYPE = 2;
     protected $shouldApplySla = true;
     protected $stopLog = false;
@@ -464,23 +467,6 @@ class Ticket extends KModel
         dispatch(new \App\Jobs\CalculateTicketTime($this));
     }
 
-    function taskJson()
-    {
-        return [
-            'id' => $this->id,
-            'subject' => $this->subject ?? '',
-            'description' => $this->description ?? '',
-            'status' => $this->status->name ?? '',
-            'requester' => $this->requester->name ?? '',
-            'created_at' => $this->created_at->format('d/m/Y H:i') ?? '',
-            'technician' => $this->technician->name ?? '',
-            'technician_id' => $this->technician->id ?? '',
-            'request_id' => $this->request_id ?? '',
-            'can_edit' => can('task_edit', $this),
-            'can_show' => can('task_show', $this),
-            'can_delete' => can('task_destroy', $this)
-        ];
-    }
 
     function isTask()
     {
@@ -551,11 +537,6 @@ class Ticket extends KModel
 
     }
 
-    function isClosed()
-    {
-        return $this->status_id == 8;
-    }
-
 
     function getTotalTicketCostAttribute()
     {
@@ -579,19 +560,6 @@ class Ticket extends KModel
         return $this->category->service_cost ?? 0;
     }
 
-    function getSubjectLabelAttribute()
-    {
-        $label = $this->category->name;
-        if ($this->subcategory) {
-            $label .= ' >' . $this->subcategory->name;
-        }
-        if ($this->item) {
-            $label .= ' >' . $this->item->name;
-        }
-        return $label;
-    }
-
-
     function getFeesAttribute()
     {
         $fees_arr = [];
@@ -603,23 +571,7 @@ class Ticket extends KModel
         return $fees ?? collect();
     }
 
-    function getSla($category, $subcategory = null, $item = null, $subItem = null)
-    {
-        $this->category_id = $category->id;
 
-        if ($subcategory) {
-            $this->subcategory_id = $subcategory->id;
-        }
-
-        if ($item) {
-            $this->item_id = $item->id;
-        }
-
-        $sla = new \App\Jobs\ApplySLA($this);
-        $data = $sla->fetchSLA();
-
-        return $data;
-    }
 
     function getIsOpenedTicketAttribute()
     {
@@ -636,4 +588,5 @@ class Ticket extends KModel
             return $this->item->complaint;
         }
     }
+
 }

@@ -39,7 +39,7 @@
 
                         <div :class="{'form-group': true , 'has-error':errors.group}">
                             {{Form::label('group', t('Group'), ['class' => 'control-label'])}}
-                            {{ Form::select('group_id', App\Group::selection('Select Group'),null, ['class' => 'form-control',  'v-model' => 'group','v-on:change'=>'loadTechnicians']) }}
+                            {{ Form::select('group_id', App\Group::active()->tasks()->selection('Select Group'),null, ['class' => 'form-control',  'v-model' => 'group','v-on:change'=>'loadTechnicians']) }}
                             <span class="help-block" v-for="error in errors.group">@{{error}}</span>
                         </div>
 

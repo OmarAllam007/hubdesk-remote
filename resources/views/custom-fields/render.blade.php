@@ -1,5 +1,5 @@
 @if ($category )
-    @foreach($category->custom_fields->groupBy('label') as $key=>$value)
+    @foreach($category->custom_fields->groupBy('label') as $key=>$sFields)
         @if($key != '')
             <div class="col-md-12">
                 <div class="fields_label">
@@ -8,7 +8,7 @@
                 <br>
             </div>
         @endif
-        @foreach($value as $field)
+        @foreach($sFields->sortBy('order') as $field)
             <div class="col-sm-6">
                 @include('custom-fields.' . $field['type'], compact('field'))
             </div>
@@ -17,7 +17,7 @@
 @endif
 
 @if (isset($subcategory))
-    @foreach($subcategory->custom_fields->groupBy('label') as $key=>$value)
+    @foreach($subcategory->custom_fields->groupBy('label') as $key=>$subfields)
         @if($key != '')
             <div class="col-md-12">
                 <div class="fields_label">
@@ -26,7 +26,8 @@
                 <br>
             </div>
         @endif
-        @foreach($value as $field)
+{{--        {{dd($subfields->sortBy('order') )}}--}}
+        @foreach($subfields->sortBy('order') as $field)
             <div class="col-sm-6">
                 @include('custom-fields.' . $field['type'], compact('field'))
             </div>

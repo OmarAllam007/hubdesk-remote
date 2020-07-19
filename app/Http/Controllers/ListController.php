@@ -51,7 +51,7 @@ class ListController extends Controller
     }
 
 
-    public function category($service_type = 1)
+    public function category($service_type = null)
     {
         $categories = Category::query()->individual()->active();
 

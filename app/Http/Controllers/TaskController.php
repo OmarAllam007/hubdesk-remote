@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Attachment;
 use App\CustomField;
+use App\Jobs\ApplyBusinessRules;
 use App\Jobs\ApplySLA;
 use App\Jobs\NewTaskJob;
 use App\Mail\NewTaskMail;
@@ -17,11 +18,6 @@ use Illuminate\Support\Facades\Mail;
 class TaskController extends Controller
 {
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index($ticket)
     {
 
@@ -32,22 +28,11 @@ class TaskController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $this->validate($request, ['subject' => 'required', 'category' => 'required']);
@@ -81,9 +66,8 @@ class TaskController extends Controller
 
         if (!empty($items)) {
             foreach ($items as $key => $item) {
-
                 $field = CustomField::find($key);
-//            dd($field->name);
+
                 if ($field && $field->required) {
                     $validation['cf.' . $key] = 'required';
                     $messages['cf.' . $key . '.required'] = "The field ( {$field->name} ) is required";
@@ -100,16 +84,11 @@ class TaskController extends Controller
             }
         }
 
+        dispatch(new ApplyBusinessRules($task));
 
-        /** @var Ticket $task */
-
-//        TicketLog::addNewTask($task);
-
-        if ($request['technician']) {
-            Mail::send(new NewTaskMail($task));
-//            dispatch(new NewTaskJob($task));
+        if ($request['technician'] || $task->technician_id) {
+            \Mail::send(new NewTaskMail($task));
         }
-
 
         return response()->json($task);
     }
@@ -124,12 +103,7 @@ class TaskController extends Controller
     {
     }
 
-    /**
-     * Show the form for editing the specified resource
-     *
-     * @param \App\Task $task
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Ticket $task)
     {
         if (can('modify', $task)) {
@@ -143,7 +117,7 @@ class TaskController extends Controller
     public function update(Request $request, Ticket $ticket)
     {
         $this->validate($request, ['subject' => 'required', 'category_id' => 'required',
-            'technician_id' => 'required', 'cf.*' => 'required'],['cf.*'=>'Ticket Fields Required']);
+            'technician_id' => 'required', 'cf.*' => 'required'], ['cf.*' => 'Ticket Fields Required']);
 
         if (can('modify', $ticket)) {
 
@@ -169,7 +143,7 @@ class TaskController extends Controller
 
             $fields = $request->get('cf');
 
-            if(!empty($fields)){
+            if (!empty($fields)) {
                 foreach ($fields as $key => $item) {
                     $field = CustomField::find($key);
                     if ($field && $field->required) {
@@ -191,18 +165,11 @@ class TaskController extends Controller
         }
 
 
-
         flash(t('Task Info'), t('Task updated successfully'), 'success');
         return \Redirect::route('ticket.show', $ticket);
     }
 
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Task $task
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($ticket, $task)
     {
         $task = Ticket::find($task);

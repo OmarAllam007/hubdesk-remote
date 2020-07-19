@@ -82,35 +82,9 @@ class TicketController extends Controller
         return view('ticket.create', compact('business_unit', 'category', 'subcategory', 'item', 'subItem'));
     }
 
-    public function store(Request $request)
+    public function store(TicketRequest $request)
     {
-
-        $validation = ['subject' => 'required', 'description' => 'required', 'priority_id' => 'required'];
-
-        $messages = [];
-
-        foreach ($request->get('cf', []) as $key => $item) {
-            $field = CustomField::find($key);
-            if ($field && $field->required) {
-                $validation['cf.' . $key] = 'required';
-                $messages['cf.' . $key . '.required'] = "The field ( {$field->name} ) is required";
-            }
-        }
-
-        $this->validate($request, $validation, $messages);
-
         $ticket = new Ticket($request->all());
-
-        $ticket->creator_id = $request->user()->id;
-
-        if (!$request->get('requester_id')) {
-            $ticket->requester_id = $request->user()->id;
-        }
-
-        $ticket->location_id = $ticket->requester->location_id;
-        $ticket->business_unit_id = $ticket->requester->business_unit_id;
-        $ticket->status_id = 1;
-        $ticket->is_opened = 0;
         $ticket->save();
 
         foreach ($request->get('cf', []) as $key => $item) {
@@ -123,10 +97,10 @@ class TicketController extends Controller
                 $ticket->fields()->create(['name' => $field, 'value' => $item]);
             }
         }
+
         $this->dispatch(new NewTicketJob($ticket));
 
         flash(t('Ticket Info'), t('Ticket has been saved'), 'success');
-
         return \Redirect::route('ticket.show', $ticket);
     }
 

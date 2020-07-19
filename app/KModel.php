@@ -43,7 +43,9 @@ class KModel extends EloquentModel
 
     function scopeBoth($query)
     {
-        return $query->where('service_type', self::BOTH_TYPE);
+        return $query->where('service_type', self::TICKET_TYPE)
+            ->orWhere('service_type', self::TASK_TYPE)
+            ->orWhere('service_type', self::BOTH_TYPE);
     }
 
     function scopeIndividual($query)
@@ -54,5 +56,21 @@ class KModel extends EloquentModel
     function scopeCorporate($query)
     {
         return $query->where('business_service_type', self::CORPORATE);
+    }
+
+    function getRequestCc(){
+        $cc = collect();
+        $rules = BusinessRule::with('criterions')->with('rules')->get();
+
+        foreach ($rules as $rule) {
+            if ($this->match($rule)) {
+                foreach ($rule->rules as $action) {
+
+                    if ($action['field'] == 'cc') {
+                        $cc->push(User::find($action['value'])->email);
+                    }
+                }
+            }
+        }
     }
 }
