@@ -51,10 +51,9 @@
                                 <p>{{$document->name}}</p>
                             @endif
                         </td>
-
                         <td>{{$document->start_date ? $document->start_date->format('Y-m-d') : ''}}</td>
                         <td>{{$document->end_date ? $document->end_date->format('Y-m-d') : ''}}</td>
-                        <td>{{$document->end_date ? $document->end_date->diffInDays(\Carbon\Carbon::now()) : ''}}</td>
+                        <td>{{$document->end_date ? \Carbon\Carbon::now()->diffInDays($document->end_date,false) : ''}}</td>
                         <td><a href="{{route('kgs.business_document.download',['attachment'=>$document])}}"
                                target="_blank">{{basename($document->path) ?? ''}}</a></td>
 
