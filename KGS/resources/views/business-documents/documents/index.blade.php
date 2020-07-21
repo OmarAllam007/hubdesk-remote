@@ -16,7 +16,20 @@
        href="{{route('kgs.business_documents_folder.index',['business_unit'=> $folder->business_unit])}}">{{$folder->name}}
         <i
                 class="fa fa-1x fa-arrow-right"></i> </a>
+    <style>
+        .light-danger{
+            /*background-color: #84082e !important;*/
 
+        }
+        .deep_danger{
+            background-color: #810303 !important;
+            color: #ffff;
+            
+        }
+        .deep_danger > td > a {
+            color: #ffff;
+        }
+    </style>
     {{--</form>--}}
 @stop
 
@@ -43,7 +56,7 @@
                 </thead>
                 <tbody>
                 @foreach($documents as $document)
-                    <tr @if($document->markAsShouldRenew()) class="danger" @endif>
+                    <tr @if($document->markAsShouldRenew()) class="{{$document->warning_color}}" @endif>
                         <td>
                             @if($isAuth)
                                 <a href="{{route('kgs.document.edit', compact('folder','document'))}}">{{$document->name}}</a>
@@ -53,7 +66,7 @@
                         </td>
                         <td>{{$document->start_date ? $document->start_date->format('Y-m-d') : ''}}</td>
                         <td>{{$document->end_date ? $document->end_date->format('Y-m-d') : ''}}</td>
-                        <td>{{$document->end_date ? \Carbon\Carbon::now()->diffInDays($document->end_date,false) : ''}}</td>
+                        <td>{{$document->end_date ? $document->remaining_days : ''}}</td>
                         <td><a href="{{route('kgs.business_document.download',['attachment'=>$document])}}"
                                target="_blank">{{basename($document->path) ?? ''}}</a></td>
 
