@@ -96,4 +96,14 @@ class Document extends Model
     {
         return $this->hasMany(KGSLog::class);
     }
+
+    function getRemainingDaysAttribute(){
+        return \Carbon\Carbon::now()->diffInDays($this->end_date,false);
+    }
+    function getWarningColorAttribute(){
+        if($this->remaining_days < 60 && $this->remaining_days > 0){
+            return 'danger';
+        }
+        return 'deep_danger';
+    }
 }
