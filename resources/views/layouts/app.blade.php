@@ -31,7 +31,7 @@
         <div class="container-fluid">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="{{route('ticket.index')}}">
+                    <a href="{{url('/')}}">
                         <i class="fa fa-life-ring"></i> HUBDESK</a>
                 </li>
             </ul>

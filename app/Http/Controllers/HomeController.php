@@ -25,12 +25,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('ticket.create_ticket.index');
     }
 
     public function home()
     {
-        $url = '/ticket';
+        $url = '/ticket/create';
         if (\Auth::guest()) {
             $url = '/login';
         }

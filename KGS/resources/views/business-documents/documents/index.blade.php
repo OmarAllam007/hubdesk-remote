@@ -36,6 +36,7 @@
                     <th>{{t('Name')}}</th>
                     <th>{{t('Start Date')}}</th>
                     <th>{{t('End Date')}}</th>
+                    <th>{{t('Remaining Days')}}</th>
                     <th>{{t('Document')}}</th>
                     <th>{{t('Actions')}}</th>
                 </tr>
@@ -53,6 +54,7 @@
 
                         <td>{{$document->start_date ? $document->start_date->format('Y-m-d') : ''}}</td>
                         <td>{{$document->end_date ? $document->end_date->format('Y-m-d') : ''}}</td>
+                        <td>{{$document->end_date ? $document->end_date->diffInDays(\Carbon\Carbon::now()) : ''}}</td>
                         <td><a href="{{route('kgs.business_document.download',['attachment'=>$document])}}"
                                target="_blank">{{basename($document->path) ?? ''}}</a></td>
 
@@ -76,7 +78,8 @@
                                        href="{{route('kgs.document.edit', compact('folder','document'))}}"><i
                                                 class="fa fa-edit"></i> </a>
                                     <button data-toggle="modal" data-target="#MoveForm" type="button"
-                                            class="btn btn-sm btn-success btn-outlined " title="Move" onclick="changeDocumentId({{$document->id}})">
+                                            class="btn btn-sm btn-success btn-outlined " title="Move"
+                                            onclick="changeDocumentId({{$document->id}})">
                                         <i class="fa fa-mail-forward"></i>
                                     </button>
                                     <button class="btn btn-sm btn-warning"><i class="fa fa-trash-o"></i>
@@ -105,9 +108,11 @@
 @section('javascript')
     <script>
         var document_id;
-        function changeDocumentId(id){
+
+        function changeDocumentId(id) {
             $('#document_id').val(id)
         }
+
         var business_unit = '{{Form::getValueAttribute('business_unit') ?? $folder->business_unit->id}}';
         var folder = '{{Form::getValueAttribute('folder') ?? $folder}}';
     </script>
