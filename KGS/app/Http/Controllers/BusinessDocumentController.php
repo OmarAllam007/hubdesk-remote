@@ -37,7 +37,7 @@ class BusinessDocumentController extends Controller
 
     function index(Division $division)
     {
-        return view('kgs::business-documents.wizard.index',compact('division'));
+        return view('kgs::business-documents.wizard.index', compact('division'));
     }
 
     function selectCategory(BusinessUnit $business_unit)
@@ -169,7 +169,7 @@ class BusinessDocumentController extends Controller
 
     private function checkForStatus()
     {
-        $tasks = \request()->get('requirements');
+        $tasks = \request()->get('requirements', []);
         $tasks_files = \request()->allFiles();
 
         $all_checked = count($tasks) == count($tasks_files['requirements'] ?? []);
