@@ -65,12 +65,12 @@
                 for (var i = 0; i < this.items.length; i++) {
                     // console.log(this.items[i].checked, this.items[i].attached)
                     let requirement = this.items[i];
-
+                    // console.log(requirement)
                     if (requirement.type === 1 && requirement.checked && !requirement.attached) {
                         return false;
                     }
 
-                    if(requirement.type === 2 && !requirement.attached) {
+                    if(requirement.type === "2" && !requirement.attached) {
                         return false;
                     }
                 }
