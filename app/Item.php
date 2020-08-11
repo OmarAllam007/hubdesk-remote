@@ -46,6 +46,11 @@ class Item extends KModel
         return $this->hasMany(SubItem::class);
     }
 
+    public function getLevelArrowNameAttribute()
+    {
+        return $this->subcategory->category->name . ' > ' . $this->subcategory->name . '>' . $this->name;
+    }
+
     public function canonicalName()
     {
         return $this->subcategory->category->name . ' > ' . $this->subcategory->name . '>' . $this->name;

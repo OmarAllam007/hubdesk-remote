@@ -32,10 +32,10 @@ use KGS\Requirement;
  */
 class Subcategory extends KModel
 {
-    use Listable, ServiceConfiguration,SharedRelations;
+    use Listable, ServiceConfiguration, SharedRelations;
 
     protected $fillable = ['category_id', 'name', 'description', 'service_request', 'service_cost',
-        'notes', 'service_type', 'is_disabled','business_service_type'];
+        'notes', 'service_type', 'is_disabled', 'business_service_type'];
 
     public function items()
     {
@@ -64,7 +64,7 @@ class Subcategory extends KModel
 
     function complaint()
     {
-        return $this->hasOne(Complaint::class,'level_id')->where('level','App\Subcategory');
+        return $this->hasOne(Complaint::class, 'level_id')->where('level', 'App\Subcategory');
     }
 
     function scopeActive($query)
@@ -84,8 +84,16 @@ class Subcategory extends KModel
         return $subcategories->sortBy('name');
     }
 
-    public function scopeGeneralService(Builder $query){
-        return $query->whereHas('category',function ($q){ return $q->where('business_unit_id',env('GS_ID')); });
+    public function getLevelArrowNameAttribute()
+    {
+        return $this->category->name . ' > ' . $this->name;
+    }
+
+    public function scopeGeneralService(Builder $query)
+    {
+        return $query->whereHas('category', function ($q) {
+            return $q->where('business_unit_id', env('GS_ID'));
+        });
     }
 
     public function canonicalName()

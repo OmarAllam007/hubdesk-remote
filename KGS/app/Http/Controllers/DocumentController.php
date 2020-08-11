@@ -32,6 +32,11 @@ class DocumentController extends Controller
     {
         $this->validate($request, ['name' => 'required', 'end_date' => 'required', 'document' => 'required', 'folder_id' => 'required']);
 
+        if ($request->has('level')) {
+            $level = 'App\\' . studly_case(substr($request->level['field'], 0, -3));
+            $level_id = $request->level['value'];
+        }
+
         if ($request->hasFile('document')) {
             $request['document_path'] = $this->uploadDocument($folder, $request);
         }
@@ -41,7 +46,8 @@ class DocumentController extends Controller
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'path' => $request['document_path'] ?? '',
-            'last_updated_by' => \Auth::id(),
+            'level' => $level ?? null,
+            'level_id' => $level_id ?? null
         ]);
 
         return redirect()->route('kgs.document.index', compact('folder'));
@@ -51,16 +57,24 @@ class DocumentController extends Controller
     {
         $this->validate($request, ['name' => 'required', 'end_date' => 'required', 'folder_id' => 'required']);
 
+        if ($request->has('level')) {
+            $level = 'App\\' . studly_case(substr($request->level['field'], 0, -3));
+            $level_id = $request->level['value'];
+        }
 
         if ($request->hasFile('document')) {
             $request['document_path'] = $this->uploadDocument($folder, $request);
         }
+
+
         $document->update([
             'folder_id' => $request->folder_id,
             'name' => $request->name,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'path' => $request['document_path'] ? $request['document_path'] : $document->path,
+            'level' => $level ?? null,
+            'level_id' => $level_id ?? null
 //            'last_updated_by' => \Auth::id(),
         ]);
 
@@ -73,7 +87,7 @@ class DocumentController extends Controller
         return redirect()->route('kgs.document.index', compact('folder'));
     }
 
-    function move(BusinessDocumentsFolder $folder,  Request $request)
+    function move(BusinessDocumentsFolder $folder, Request $request)
     {
         $this->validate($request, ['document_id' => 'required', 'business_unit' => 'required', 'folder_id' => 'required']);
         Document::find($request->document_id)->update(['folder_id' => $request->folder_id]);

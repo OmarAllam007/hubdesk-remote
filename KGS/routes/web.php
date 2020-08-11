@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\ListController;
 use Illuminate\Routing\Router;
 
 Route::group(['middleware' => 'auth'], function (Router $r) {
@@ -68,6 +69,7 @@ Route::group(['middleware' => 'auth'], function (Router $r) {
     Route::get('download-attach/{attachment}', 'DocumentController@downloadAttachment')
         ->name('business_document.download');
 
+    Route::get('create-ticket-check/{document}', 'BusinessDocumentController@createTicketCheck')->name('document.create_check');
 });
 
 
@@ -100,5 +102,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function (Router $r)
     $r->get('business_unit', 'KGSBusinessUnitController@index')->name('admin.business_unit.index');
     $r->get('business_unit/edit', 'KGSBusinessUnitController@edit')->name('admin.business_unit.edit');
     $r->post('business_unit', 'KGSBusinessUnitController@update')->name('admin.business_unit.update');
+
+
 });
 

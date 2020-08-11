@@ -132,4 +132,40 @@ class ListController extends Controller
         return User::technicians()->whereIn('id', $user_ids)->orderBy('name')->get(['name', 'id']);
     }
 
+
+    function kgs_category()
+    {
+        $categories = Category::query()->where('business_unit_id', 6)->corporate()->active();
+
+        return $categories->orderBy('order')->get(['id', 'name']);
+    }
+
+    function kgs_subcategory()
+    {
+        $query = Subcategory::query()->whereHas('category', function ($q) {
+            return $q->corporate();
+        })->active()->canonicalList();
+
+
+        return $query;
+    }
+
+    function kgs_item()
+    {
+        $query = Item::query()->whereHas('subcategory.category', function ($q) {
+            return $q->corporate();
+        })->active()->canonicalList();
+
+        return $query;
+    }
+
+    function kgs_subitem()
+    {
+        $query = SubItem::query()->whereHas('item.subcategory.category', function ($q) {
+            return $q->corporate();
+        })->active()->canonicalList();
+
+        return $query;
+    }
+
 }
