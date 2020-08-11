@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Document extends Model
 {
-    protected $fillable = ['folder_id', 'name', 'start_date', 'end_date', 'last_updated_by', 'path'];
+    protected $fillable = ['folder_id', 'name', 'start_date', 'end_date', 'last_updated_by', 'path', 'level', 'level_id'];
 
     protected $dates = ['start_date', 'end_date'];
 
@@ -97,13 +97,33 @@ class Document extends Model
         return $this->hasMany(KGSLog::class);
     }
 
-    function getRemainingDaysAttribute(){
-        return \Carbon\Carbon::now()->diffInDays($this->end_date,false);
+    function getRemainingDaysAttribute()
+    {
+        return \Carbon\Carbon::now()->diffInDays($this->end_date, false);
     }
-    function getWarningColorAttribute(){
-        if($this->remaining_days < 60 && $this->remaining_days > 0){
+
+    function getWarningColorAttribute()
+    {
+        if ($this->remaining_days < 60 && $this->remaining_days > 0) {
             return 'danger';
         }
         return 'deep_danger';
+    }
+
+    function getLevelIdStrAttribute()
+    {
+        if(!$this->level){
+            return;
+        }
+        return mb_strtolower(substr($this->level, strrpos($this->level, '\\') + 1)) . '_id';
+    }
+
+    function getLevelNameStrAttribute()
+    {
+        if(!$this->level){
+            return;
+        }
+        $level = app($this->level)->where('id', $this->level_id)->first();
+        return $level->level_arrow_name ?? $level->name;
     }
 }

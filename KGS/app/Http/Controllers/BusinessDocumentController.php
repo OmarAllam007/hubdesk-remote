@@ -20,6 +20,7 @@ use App\Task;
 use App\Ticket;
 use App\TicketField;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Bus;
 use KGS\Document;
@@ -38,6 +39,29 @@ class BusinessDocumentController extends Controller
     function index(Division $division)
     {
         return view('kgs::business-documents.wizard.index', compact('division'));
+    }
+
+    function createTicketCheck(Document $document)
+    {
+        $business_unit = $document->folder->business_unit_id;
+
+        if ($document->level) {
+            if (is_a(app(Item::class), $document->level)) {
+                $item = Item::find($document->level_id);
+                $subcategory = $item->subcategory;
+                $category = $subcategory->category;
+
+                return redirect()->route('kgs.document.check-requirements', compact('business_unit', 'category', 'subcategory', 'item'));
+
+            } elseif (is_a(app(Subcategory::class), $document->level)) {
+                $subcategory = Subcategory::find($document->level_id);
+                $category = $subcategory->category;
+
+                return redirect()->route('kgs.document.select_item', compact('business_unit', 'category', 'subcategory'));
+            }
+        }
+
+        return redirect()->route('kgs.document.select_category', ['business_unit' => $business_unit]);
     }
 
     function selectCategory(BusinessUnit $business_unit)
@@ -63,8 +87,6 @@ class BusinessDocumentController extends Controller
             return view('kgs::business-documents.wizard.create_ticket', compact('business_unit', 'category', 'subcategory', 'item', 'requirements'));
 
         }
-
-
     }
 
     function checkForRequirements(BusinessUnit $business_unit, Category $category, Subcategory $subcategory, Item $item)

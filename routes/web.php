@@ -37,6 +37,14 @@ Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
     $r->get('/status', 'ListController@status');
     $r->get('/requester', 'ListController@requester');
     $r->get('/group', 'ListController@supportGroup');
+
+//    KGS LIST Routes
+
+    $r->get('kgs_category', 'ListController@kgs_category');
+    $r->get('kgs_subcategory', 'ListController@kgs_subcategory');
+    $r->get('kgs_item', 'ListController@kgs_item');
+    $r->get('kgs_subitem', 'ListController@kgs_subitem');
+
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'admin.'], function (\Illuminate\Routing\Router $r) {

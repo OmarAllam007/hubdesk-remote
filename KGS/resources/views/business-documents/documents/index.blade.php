@@ -77,7 +77,7 @@
                                   method="post">
                                 {{--                        <td>--}}
                                 <a class="btn btn-sm btn-primary"
-                                   href="{{route('kgs.document.select_category', ['business_unit'=>$folder->business_unit])}}"
+                                   href="{{route('kgs.document.create_check', compact('document'))}}"
                                 ><i
                                             class="fa fa-plus"></i> {{t('New Ticket')}}</a>
                                 {{--                        </td>--}}
