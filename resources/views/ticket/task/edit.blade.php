@@ -1,11 +1,13 @@
 @extends('layouts.app')
 
 @section('body')
+    <div id="ticketArea">
+        {{ Form::model($task, ['route' => ['tasks.update', $task], 'class' => 'col-sm-12','enctype'=>'multipart/form-data']) }}
+        {{ method_field('patch') }}
+        @include('ticket.task._form')
+        {{ Form::close() }}
+    </div>
 
-    {{ Form::model($task, ['route' => ['tasks.update', $task], 'class' => 'col-sm-12','enctype'=>'multipart/form-data']) }}
-    {{ method_field('patch') }}
-    @include('ticket.task._form')
-    {{ Form::close() }}
 @endsection
 
 @section('javascript')
