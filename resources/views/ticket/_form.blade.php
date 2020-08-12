@@ -95,7 +95,8 @@ $exceedNoOfTickets = $requester_bu->isExceedNoOfLimitedTickets($category,$subcat
             <br>
 
             @php
-                $subject = (auth()->user()->employee_id ? auth()->user()->employee_id.' - ' : ''). $category->name.(isset($subcategory->name) ? '  -  '.  $subcategory->name:'');
+                $subject = (auth()->user()->employee_id ? auth()->user()->employee_id.' - ' : '').
+                 $category->name.(isset($subcategory->name) ? '  -  '.  $subcategory->name:'').(isset($item->name) ? '  -  '.  $item->name:'');
             @endphp
             <div class="form-group form-group-sm {{$errors->has('subject')? 'has-error' : ''}}">
                 {{ Form::label('subject', t('Subject'), ['class' => 'control-label']) }}
@@ -149,9 +150,15 @@ $exceedNoOfTickets = $requester_bu->isExceedNoOfLimitedTickets($category,$subcat
     @if($category->notes || (isset($subcategory) && $subcategory->notes) || (isset($item) && $item->notes) )
         <fieldset>
             <label>{{t('Notes')}}</label>
-            {!! t($category->notes ?? '')  !!}
-            {!! t($subcategory->notes ?? '')  !!}
-            {!! t($item->notes ?? '')  !!}
+            <p>
+                {!! t($category->notes ?? '')  !!}
+            </p>
+            <p>
+                {!! t($subcategory->notes ?? '')  !!}
+            </p>
+            <p>
+                {!! t($item->notes ?? '')  !!}
+            </p>
         </fieldset>
         <br>
     @endif
