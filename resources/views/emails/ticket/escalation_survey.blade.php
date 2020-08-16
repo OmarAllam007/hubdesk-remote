@@ -4,7 +4,7 @@
     Category : {{$survey->ticket->category->name}}
     Title : {{$survey->ticket->subject}}
 <div style="padding-left: 15px;">
-    @component('mail::button', ['url' => route('user_survey.show',['survey' => $survey->id])])
+    @component('mail::button', ['url' => route('user_survey.show',['user_survey' => $survey->id])])
         <b class="center-block">Display</b>
     @endcomponent
     <br><br>

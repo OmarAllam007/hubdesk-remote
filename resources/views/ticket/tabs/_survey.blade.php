@@ -11,13 +11,13 @@
         <tr>
             <td>{{$answer->answer->question->description}}</td>
             <td>{{$answer->answer->description}}</td>
-            <td>{{$answer->answer->degree}}</td>
+            <td>{{number_format($answer->answer->degree,2)}}</td>
         </tr>
     @endforeach
     <tr class="bg-success">
         <td colspan="2">Total</td>
         <td><strong>
-                {{$ticket->user_survey->total_score ?? ''}}
+                {{number_format($ticket->user_survey->total_score,2) ?? ''}}
             </strong></td>
     </tr>
     </tbody>

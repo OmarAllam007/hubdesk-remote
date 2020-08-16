@@ -3,10 +3,7 @@
 @section('header')
     <h4 class="pull-left">Survey - #{{$user_survey->id}} submitted By {{$user_survey->ticket->requester->name}}</h4>
 
-    <div class="pull-right">
-        {{--        <a href="{{route('admin.survey.edit', $user_survey)}}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>--}}
-        {{--<a href="{{route('admin.survey.index')}}" class="btn btn-sm btn-default"><i class="fa fa-chevron-left"></i></a>--}}
-    </div>
+
 @endsection
 
 
@@ -15,7 +12,11 @@
     @php
         $total = 0;
     @endphp
-    <section class="col-sm-9">
+    <section class="col-sm-9">.
+        <div class="pull-right">
+            <a href="{{route('ticket.show', $user_survey->ticket)}}" class="btn btn-lg btn-default"><i
+                        class="fa fa-eye"></i> Display Ticket</a>
+        </div>
         <h4>{{t('Questions')}}</h4>
         @if ($user_survey->survey->questions->count())
             <table class="listing-table">
@@ -57,7 +58,8 @@
 
 
             @if ($user_survey->comment)
-                <p class="bg-info" style="padding: 20px;border-radius: 10px;font-weight: bolder">Comment: {!! nl2br(e($user_survey->comment)) !!} </p>
+                <p class="bg-info" style="padding: 20px;border-radius: 10px;font-weight: bolder">
+                    Comment: {!! nl2br(e($user_survey->comment)) !!} </p>
             @endif
         @else
             <div class="alert alert-warning">

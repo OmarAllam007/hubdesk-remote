@@ -25,7 +25,7 @@
     <form action="{{route('ticket.index')}}" class="form-inline heading-actions">
         <div class="input-group input-group-sm">
             <input class="form-control" type="text" name="search" id="search"
-                   placeholder="{{t('Search for a ticket')}}"/>
+                   placeholder="{{t('Ticket ID / Employee ID')}}"/>
             <span class="input-group-btn">
             <button class="btn btn-default"><i class="fa
                          @if(\Session::get('personlized-language-ar' . \Auth::user()->id, \Config::get('app.locale'))=="ar")
