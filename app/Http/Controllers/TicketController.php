@@ -84,6 +84,7 @@ class TicketController extends Controller
 
     public function store(TicketRequest $request)
     {
+        $request['business_unit_id'] = auth()->user()->business_unit_id;
         $ticket = new Ticket($request->all());
         $ticket->save();
 
