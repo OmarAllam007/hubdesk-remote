@@ -57,7 +57,7 @@ class TicketEventsProvider extends ServiceProvider
                 $ticket->requester_id = $request->user()->id;
             }
             $ticket->location_id = $ticket->requester->location_id;
-            $ticket->business_unit_id = $ticket->requester->business_unit_id;
+//            $ticket->business_unit_id = $ticket->requester->business_unit_id;
             $ticket->status_id = 1;
             $ticket->is_opened = 0;
             $ticket->creator_id = $request->user()->id;
