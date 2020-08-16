@@ -184,7 +184,13 @@
                 </fieldset>
 
                 @php
-                    $users = \App\User::selection();
+                    $has_users = Session::has('users_list');
+                    if($has_users){
+                        $users = Session::get('users_list');
+                    }else{
+                      Session::put('users_list',\App\User::selection());
+                      $users = Session::get('users_list');
+                    }
                 @endphp
 
                 <fieldset>
