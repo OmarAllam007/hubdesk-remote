@@ -154,7 +154,7 @@ class MonthlyKPIWithApprovals extends ReportContract
 
         $header = [
             'ID', 'Subject', 'Employee ID', 'Requester',
-            'Technician', 'Category', 'Status', 'Created Date', 'Date of Departure', 'Days between departure and create', 'Due Date',
+            'Technician', 'Category','Subcategory', 'Status', 'Created Date', 'Date of Departure', 'Days between departure and create', 'Due Date',
             'Resolved Date', 'First Approval Sent Date', 'Last Approval Action Date', 'Business Unit', 'Performance'];
 
         $approvals_header = $approvals_header->flatten()->toArray();
@@ -185,7 +185,7 @@ class MonthlyKPIWithApprovals extends ReportContract
                 $approvals->last()[1]->format('Y-m-d H:m') : 'Not Assigned';
             $rowData = [
                 $ticket->id, $ticket->subject, $ticket->employee_id, $ticket->requester, $ticket->technician,
-                $ticket->category, $ticket->status, $ticket->created_at, $ticket->date_of_dept, $ticket->difference ?? 'Not Assigned',
+                $ticket->category,$ticket->subcategory, $ticket->status, $ticket->created_at, $ticket->date_of_dept, $ticket->difference ?? 'Not Assigned',
                 $ticket->due_date, $ticket->resolve_date, $first_approval, $last_approval, $ticket->business_unit, $ticket->performance
             ];
             $sheet->fromArray(array_merge($rowData, $approvals->flatten()->toArray()), NULL, 'A' . $row, true);
