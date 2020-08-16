@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\Ticket;
+use App\User;
 use App\UserSurvey;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -23,12 +24,21 @@ class SendSurveyEscalationEmail extends Mailable
 
     public function build()
     {
-        $emails = $this->ticket->group->supervisors->pluck('email')->toArray();
+        $complaint = $this->ticket->complaint;
 
-        if($this->ticket->group && count($emails)){
-            return $this->markdown('emails.ticket.escalation_survey', ['survey' => $this->survey])
-                ->to($emails)
-                ->subject(t('Escalation of not-satisfied Survey - Ticket#'.$this->ticket->id));
+        if ($complaint) {
+            $to = User::whereIn('id', $complaint->to)->get(['email']);
+            $cc = User::whereIn('id', $complaint->cc)->get(['email']);
+
+            if ($to) {
+                return $this->markdown('emails.ticket.escalation_survey', ['survey' => $this->survey])
+                    ->to($to)
+                    ->cc($cc ?? [])
+                    ->subject(t('Escalation of not-satisfied Survey - Ticket#' . $this->ticket->id));
+            }
         }
+
+
+
     }
 }
