@@ -143,7 +143,9 @@
                         :limitation_data="{{ isset($item) && $item->limitations ? $item->limitations : null }}">
                 </limitation>
             </fieldset>
-
+            @php
+                $users = \App\User::selection();
+            @endphp
             <fieldset>
                 <legend>Complaints</legend>
                 <div class="form-group {{$errors->has('to')? 'has-error' : ''}}">
