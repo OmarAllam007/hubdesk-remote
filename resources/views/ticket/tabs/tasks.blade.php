@@ -44,8 +44,8 @@
                         {{t('Show')}}
                     </a>
                     {{--                    @can('modify',$ticket)--}}
-                    <a  v-if="task.can_show || task.can_show" class="btn btn-rounded btn-warning"
-                       :href="'/ticket/tasks/edit/'+ task.id" v-if="task.can_edit">
+                    <a  v-if="task.can_edit" class="btn btn-rounded btn-warning"
+                       :href="'/ticket/tasks/edit/'+ task.id" >
                         <i class="fa fa-edit"></i>
                         {{t('Edit')}}
                     </a>
