@@ -144,11 +144,11 @@ class TicketController extends Controller
         if (isset($request->get("reply")["cc"])) {
             $this->validate($request, ['reply.cc.*' => 'email'], ['email' => 'Please enter valid emails']);
         }
-        if (in_array($request->reply['status_id'], [7, 8, 9]) && $ticket->hasOpenTask()) {
-
-            flash(t('Ticket Info'), t('Ticket has pending tasks'), 'error');
-            return \Redirect::route('ticket.show', compact('ticket'));
-        }
+//        if (in_array($request->reply['status_id'], [7, 8, 9]) && $ticket->hasOpenTask()) {
+//
+//            flash(t('Ticket Info'), t('Ticket has pending tasks'), 'error');
+//            return \Redirect::route('ticket.show', compact('ticket'));
+//        }
         $reply = new TicketReply($request->get('reply'));
         $reply->user_id = $request->user()->id;
         $reply->cc = $request->get("reply")["cc"] ?? null;
