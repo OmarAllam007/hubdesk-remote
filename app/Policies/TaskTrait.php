@@ -38,7 +38,7 @@ trait TaskTrait
 
     function task_destroy(User $user, Ticket $ticket)
     {
-        return $user->id == $ticket->ticket->technician_id;
+        return in_array($user->id, [$ticket->ticket->technician_id, $ticket->creator_id]);
     }
 
     public function task_close(User $user, Ticket $task)
