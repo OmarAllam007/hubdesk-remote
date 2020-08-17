@@ -23,7 +23,7 @@ trait TaskTrait
 
     public function task_show(User $user, Ticket $ticket)
     {
-        return in_array($user->id,[$ticket->technician_id,$ticket->ticket->technician_id]) || $user->isTechnicainSupervisor($ticket);
+        return in_array($user->id, [$ticket->technician_id, $ticket->ticket->technician_id, $ticket->creator_id]) || $user->isTechnicainSupervisor($ticket);
     }
 
     public function task_create(User $user, Ticket $ticket)
@@ -33,12 +33,12 @@ trait TaskTrait
 
     function task_edit(User $user, Ticket $ticket)
     {
-        return $user->id == $ticket->ticket->technician_id;
+        return in_array($user->id, [$ticket->ticket->technician_id, $ticket->creator_id]);
     }
 
     function task_destroy(User $user, Ticket $ticket)
     {
-        return  $user->id == $ticket->ticket->technician_id;
+        return $user->id == $ticket->ticket->technician_id;
     }
 
     public function task_close(User $user, Ticket $task)
