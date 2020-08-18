@@ -13042,7 +13042,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -13091,6 +13091,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__TicketRequirement_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__TicketRequirement_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__AttachmentModal_vue__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__AttachmentModal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__AttachmentModal_vue__);
+//
+//
+//
+//
 //
 //
 //
@@ -13329,9 +13333,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [_c('div', {
-    staticClass: "form-group"
+    staticClass: "form-group ",
+    staticStyle: {
+      "padding-bottom": "20px"
+    }
   }, [_c('div', {
-    staticClass: "requirement-container"
+    staticClass: "requirement-container col-md-12"
   }, [_c('div', {
     staticClass: "requirement-check"
   }, [_c('input', {
@@ -13372,7 +13379,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "requirement.type ==  3"
     }]
   }, [_vm._v(" " + _vm._s(_vm.requirement.field))])])]), _vm._v(" "), _c('div', {
-    staticClass: "requirement-actions"
+    staticClass: "requirement-actions col-md-8 justify-content-end"
   }, [(_vm.requirement.type != 3 && _vm.checked) ? _c('input', {
     staticClass: "requirement-attachment",
     attrs: {
@@ -13589,8 +13596,8 @@ if (false) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [_c('div', {
-    staticClass: "col-md-8"
-  }, [_vm._l((_vm.requirements), function(require, index) {
+    staticClass: "col-md-10"
+  }, _vm._l((_vm.requirements), function(require, index) {
     return _c('ticket-requirement', {
       key: index,
       attrs: {
@@ -13598,12 +13605,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "index": index
       }
     })
-  }), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('button', {
+  }), 1), _vm._v(" "), _c('br'), _vm._v(" "), _c('div', {
+    staticClass: "col-md-12",
+    staticStyle: {
+      "padding-top": "20px"
+    }
+  }, [_vm._m(0), _vm._v(" "), _c('button', {
     staticClass: "btn btn-sm btn-success",
     attrs: {
       "disabled": !_vm.allHaveChecked
     }
-  }, [_vm._v("Submit")])], 2)])
+  }, [_vm._v("Submit")])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "form-group"
