@@ -36,7 +36,7 @@ class BusinessUnit extends KModel
 
     protected $fillable = ['code', 'name', 'location_id', 'logo', 'business_unit_bgd', 'division_id'];
 
-//    protected $appends = ['bu_roles'];
+    protected $appends = ['bu_roles'];
 
 
     public function location()
