@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div class="form-group">
-            <div class="requirement-container">
+        <div class="form-group " style="padding-bottom: 20px">
+            <div class="requirement-container col-md-12">
                 <div class="requirement-check">
                     <input type="checkbox" :id="`requirement-checkbox[${index}]`"
                            :name="`requirements[${index}][checked]`"
@@ -12,9 +12,9 @@
                        <span v-show="requirement.type ==  3"> {{requirement.field}}</span>
                     </label>
                 </div>
-                <div class="requirement-actions" >
+                <div class="requirement-actions col-md-8 justify-content-end" >
                     <input type="file" :name="`requirements[${index}][file]`" class="requirement-attachment" v-if="requirement.type != 3 && checked" @change="attachFile()">
-                    <input type="text" :name="`requirements[${index}][input]`" class="form-control"  v-if="requirement.type == 3 && checked">
+                    <input type="text" :name="`requirements[${index}][input]`" class="form-control" v-if="requirement.type == 3 && checked">
 
                     <input type="hidden" :name="`requirements[${index}][reference]`" :value="requirement.value">
                     <input type="hidden" :name="`requirements[${index}][reference_type]`" :value="requirement.reference_type">
@@ -71,6 +71,7 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+
     }
     .requirement-attachment{
         padding-top: 10px;

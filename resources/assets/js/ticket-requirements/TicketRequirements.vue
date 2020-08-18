@@ -1,8 +1,12 @@
 <template>
     <div>
-        <div class="col-md-8">
+        <div class="col-md-10">
             <ticket-requirement v-for="(require,index) in requirements" :requirement="require" :index="index"
                                 :key="index"></ticket-requirement>
+
+        </div>
+        <br>
+        <div class="col-md-12" style="padding-top: 20px">
             <div class="form-group">
                 <label>
                     Attachments
