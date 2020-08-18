@@ -51,10 +51,15 @@
             <td class="col-sm-3">{{$ticket->due_date ?? 'Not Assigned'}}</td>
 
         </tr>
-        <tr>
-            <th class="col-sm-3">{{t('Business Unit')}}</th>
-            <td class="col-sm-3">{{$ticket->business_unit->name ?? 'Not Assigned'}}</td>
-        </tr>
+        {{--        // KGS_ONLY--}}
+        @if(env('GS_ID') && $ticket->category->business_unit_id == env('GS_ID'))
+            <tr>
+                <th class="col-sm-3">{{t('Business Unit')}}</th>
+                <td class="col-sm-3">{{$ticket->business_unit->name ?? 'Not Assigned'}}</td>
+                <th class="col-sm-3">{{t('Service Type')}}</th>
+                <td class="col-sm-3">{{t($ticket->category->business_service_type_str)}}</td>
+            </tr>
+        @endif
     </table>
 </div>
 

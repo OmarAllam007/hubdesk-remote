@@ -36,6 +36,8 @@ class Category extends KModel
 
     protected $fillable = ['business_unit_id', 'name', 'description', 'service_request', 'service_cost', 'notes', 'service_type', 'is_disabled', 'logo', 'business_service_type'];
 
+    const BUSINESS_SERVICE_TYPE = [1 => 'Individual', 2 => 'Corporate'];
+
     function business_unit()
     {
         return $this->belongsTo(BusinessUnit::class);
@@ -63,7 +65,7 @@ class Category extends KModel
 
     function complaint()
     {
-        return $this->hasOne(Complaint::class,'level_id')->where('level','App\Category');
+        return $this->hasOne(Complaint::class, 'level_id')->where('level', 'App\Category');
     }
 
     public function scopeQuickSearch(Builder $query)
@@ -144,6 +146,14 @@ class Category extends KModel
         $final_path = '/attachments/categories/' . $category->id . '/' . $filename;
 
         return $final_path;
+    }
+
+    function getBusinessServiceTypeStrAttribute()
+    {
+        if (!$this->business_service_type) {
+            return 'Not Assigned';
+        }
+        return self::BUSINESS_SERVICE_TYPE[$this->business_service_type];
     }
 
     public function getUrlAttribute()
