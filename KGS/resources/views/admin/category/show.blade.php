@@ -30,6 +30,7 @@
             <thead>
             <tr>
                 <th>Subcategory</th>
+                <th>Type</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -37,6 +38,8 @@
             @foreach($category->subcategories as $subcategory)
             <tr>
                 <td><a href="{{route('kgs.admin.subcategory.show', $subcategory)}}">{{$subcategory->name}}</a></td>
+                <td class="col-md-2">{{App\Subcategory::$BUSINESS_TYPES[$subcategory->business_service_type] ?? 'Not Assigned'}}</td>
+
                 <td>
                     {{Form::open(['route' => ['kgs.admin.subcategory.destroy', $subcategory], 'method' => 'delete'])}}
                     <a class="btn btn-xs btn-primary" href="{{route('kgs.admin.subcategory.edit', $subcategory)}}"><i class="fa fa-edit"></i> Edit</a>

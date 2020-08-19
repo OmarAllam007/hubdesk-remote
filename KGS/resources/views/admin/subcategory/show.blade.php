@@ -33,6 +33,7 @@
         <thead>
         <tr>
             <th>Item</th>
+            <th>Type</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -40,6 +41,8 @@
         @foreach($subcategory->items as $item)
             <tr>
                 <td>{{$item->name}}</td>
+                <td class="col-md-2">{{App\Item::$BUSINESS_TYPES[$item->business_service_type] ?? 'Not Assigned'}}</td>
+
                 <td>
                     {{Form::open(['route' => ['kgs.admin.item.destroy', $item], 'method' => 'delete'])}}
                     <a class="btn btn-xs btn-primary" href="{{route('kgs.admin.item.edit', $item)}}"><i

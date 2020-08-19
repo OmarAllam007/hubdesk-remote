@@ -26,13 +26,16 @@
             <thead>
             <tr>
                 <th>{{t('Name')}}</th>
+                <th>{{t('Type')}}</th>
                 <th>{{t('Actions')}}</th>
             </tr>
             </thead>
             <tbody>
             @foreach($categories as $category)
                 <tr>
-                    <td class="col-md-9"><a href="{{route('kgs.admin.category.show', $category)}}">{{$category->name}}</a></td>
+                    <td class="col-md-6"><a href="{{route('kgs.admin.category.show', $category)}}">{{$category->name}}</a></td>
+                    <td class="col-md-3">{{App\Category::$BUSINESS_TYPES[$category->business_service_type] ?? 'Not Assigned'}}</td>
+
                     <td class="col-md-3">
                             <a class="btn btn-sm btn-primary" href="{{route('kgs.admin.category.edit', $category)}}"><i class="fa fa-edit"></i> Edit</a>
 {{--                        <form action="{{route('admin.category.destroy', $category)}}" method="post">--}}
