@@ -17,14 +17,16 @@
             <tr>
                 <th>Name</th>
                 <th>Subcategory</th>
+                <th>Type</th>
                 <th>Actions</th>
             </tr>
             </thead>
             <tbody>
             @foreach($items as $item)
                 <tr>
-                    <td class="col-md-5"><a href="{{route('kgs.admin.item.edit', $item)}}">{{$item->name}}</a></td>
+                    <td class="col-md-4"><a href="{{route('kgs.admin.item.edit', $item)}}">{{$item->name}}</a></td>
                     <td class="col-md-4">{{$item->subcategory->name}}</td>
+                    <td class="col-md-2">{{App\Item::$BUSINESS_TYPES[$item->business_service_type] ?? 'Not Assigned'}}</td>
                     <td class="col-md-3">
                         <form action="{{route('kgs.admin.item.destroy', $item)}}" method="post">
                             {{csrf_field()}} {{method_field('delete')}}
