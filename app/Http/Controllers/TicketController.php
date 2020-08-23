@@ -466,16 +466,16 @@ class TicketController extends Controller
             ['complaint.description.required' => 'The description field is required']);
 
         UserComplaint::create([
-            'ticket_id'=> $ticket->id,
+            'ticket_id' => $ticket->id,
             'user_id' => auth()->user()->id,
-            'description'=> $request->complaint['description'] ?? '',
+            'description' => $request->complaint['description'] ?? '',
         ]);
 
         $complaint = $ticket->complaint;
 
-        if($complaint){
-            $to = User::whereIn('id',$complaint->to)->get(['email']);
-            $cc = User::whereIn('id',$complaint->cc)->get(['email']);
+        if ($complaint) {
+            $to = User::whereIn('id', $complaint->to)->get(['email']);
+            $cc = User::whereIn('id', $complaint->cc)->get(['email']);
 
             \Mail::to($to)->cc($cc)->send(new TicketComplaint($ticket));
         }

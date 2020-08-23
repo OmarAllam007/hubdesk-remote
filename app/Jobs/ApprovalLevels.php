@@ -30,8 +30,20 @@ class ApprovalLevels extends Job
      */
     public function handle()
     {
+        $specialApprovalServices = env('REQUESTER_AUTO_APPROVAL_SERVICES');// it is only one required service
+        // if they asked for more this should get another solution
+        if (($specialApprovalServices && $this->ticket->subcategory_id == $specialApprovalServices) && ($this->ticket->requester_id == auth()->id())) {
+            dispatch(new ApplySLA($this->ticket));
+            dispatch(new ApplyBusinessRules($this->ticket));
 
-        $bu = BusinessUnit::find($this->ticket->business_unit_id);
+            return;
+        }
+
+        $bu = BusinessUnit::find($this->ticket->requester->business_unit_id);
+
+        if (env('GS_ID') && $this->ticket->category->business_unit_id == env('GS_ID')) {
+            $bu = BusinessUnit::find($this->ticket->business_unit_id);
+        }
 
         if ($bu) {
             $category = $this->ticket->category;
