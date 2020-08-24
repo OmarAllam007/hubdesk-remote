@@ -96,7 +96,7 @@ $exceedNoOfTickets = $requester_bu->isExceedNoOfLimitedTickets($category,$subcat
 
             @php
                 $subject = (auth()->user()->employee_id ? auth()->user()->employee_id.' - ' : '').
-                 $category->name.(isset($subcategory->name) ? '  -  '.  $subcategory->name:'').(isset($item->name) ? '  -  '.  $item->name:'');
+                 $category->name.(isset($subcategory->name) ? '  -  '.  $subcategory->name:'').(isset($item->name) ? '  -  '.  $item->name:'').(isset($subItem->name) ? '  -  '.  $subItem->name:'');
             @endphp
             <div class="form-group form-group-sm {{$errors->has('subject')? 'has-error' : ''}}">
                 {{ Form::label('subject', t('Subject'), ['class' => 'control-label']) }}
