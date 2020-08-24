@@ -17,7 +17,6 @@
         }
 
 
-
         .card-section {
             animation: .5s ease-out 0s 1 slideInFromUp;
             /*padding: 30px;*/
@@ -34,9 +33,16 @@
             $data['item_id'] = $item->id ?? '';
 
         @endphp
-        <form method="post" action="{{route('kgs.document.create-ticket',compact('business_unit','category','subcategory','item'))}}" enctype="multipart/form-data" class="form-group-lg">
+        <form method="post"
+              action="{{route('kgs.document.create-ticket',compact('business_unit','category','subcategory','item'))}}"
+              enctype="multipart/form-data" class="form-group-lg">
             {{method_field('post')}} {{csrf_field()}}
+            <div id="CustomFields">
+                @include('custom-fields.render')
+            </div>
             <ticket-requirements :requirements="{{$requirements}}" :data="{{json_encode($data)}}"></ticket-requirements>
+
+
         </form>
     </div>
 @endsection
@@ -44,3 +50,4 @@
 @section('javascript')
     <script src="{{asset('/js/ticket-requirements.js')}}"></script>
 @append
+
