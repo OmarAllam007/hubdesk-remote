@@ -12,6 +12,7 @@ namespace KGS\Http\Controllers;
 use App\Attachment;
 use App\BusinessUnit;
 use App\Category;
+use App\CustomField;
 use App\Division;
 use App\Http\Controllers\Controller;
 use App\Item;
@@ -114,13 +115,24 @@ class BusinessDocumentController extends Controller
             'requester_id' => \Auth::id(),
             'creator_id' => \Auth::id(),
             'subject' => $label,
-            'description' => $label,
+            'description' => \request('description',''),
             'category_id' => $category->id,
             'subcategory_id' => $subcategory->id ?? null,
             'item_id' => $item->id ?? null,
             'status_id' => $this->checkForStatus(),
             'business_unit_id' => $business_unit->id
         ]);
+
+        foreach (\request()->get('cf', []) as $key => $item) {
+            if ($item) {
+                $field = CustomField::find($key)->name ?? '';
+
+                if (is_array($item) && count($item) > 0) {
+                    $item = implode(", ", $item);
+                }
+                $ticket->fields()->create(['name' => $field, 'value' => $item]);
+            }
+        }
 
         $this->uploadTicketAttachments($ticket, \request('ticket-attachments'));
         $this->handleTicketRequirements($ticket);
