@@ -145,7 +145,7 @@
             </fieldset>
 
             @php
-                $users = \App\User::selection();
+                $users = \App\User::whereNotNull('email')->selection();
             @endphp
 
             <fieldset>

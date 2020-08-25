@@ -114,7 +114,7 @@
                         <td>{{ $ticket->created_at->format('d/m/Y h:i a') }}</td>
                         <td>{{ $ticket->due_date? $ticket->due_date->format('d/m/Y h:i a') : t('Not Assigned') }}</td>
                         <td>{{ t($ticket->status->name) }}</td>
-                        <td>{{ t($ticket->category->name) }}</td>
+                        <td>{{ t($ticket->category->name ?? 'Not Assigned') }}</td>
                         <td>{{ t($ticket->subcategory->name ?? 'Not Assigned') }}</td>
                     </tr>
                 @endforeach
