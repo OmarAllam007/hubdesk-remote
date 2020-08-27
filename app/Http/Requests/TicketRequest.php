@@ -9,6 +9,7 @@ use App\Subcategory;
 
 class TicketRequest extends Request
 {
+    protected $max_file_upload;
     public function authorize()
     {
         return true;
@@ -19,11 +20,13 @@ class TicketRequest extends Request
         $this->customRules();
         $validation = [];
 
+        $this->max_uploaded_file = env('MAX_FILE_UPLOAD') ?? 5120;
+
         $rules = collect([
             'subject' => 'required',
             'description' => 'required',
             'priority_id' => 'required',
-            'attachments.*' => 'max:10240|mimes:jpg,png,pdf,gif,docx,xlsx,pptx,doc,xls,ppt,zip,rar'
+            'attachments.*' => "max:$this->max_uploaded_file|mimes:jpg,png,pdf,gif,docx,xlsx,pptx,doc,xls,ppt,zip,rar"
         ]);
 
         $fields = collect($this->get('cf', []));
@@ -37,13 +40,16 @@ class TicketRequest extends Request
 
     public function messages()
     {
+
         $fields = collect($this->get('cf', []));
 
         $messages = CustomField::whereIn('id', $fields->keys())->where('required', true)->get()->reduce(function ($rules, $customField) {
             return $rules->put('cf.' . $customField->id. '.required', "This {$customField->name} is required");
         }, collect());
 
-//        $messages->put('subcategory', 'Valid subcategory required');
+        $messages->put('attachments.*.max', "Attachments size should not exceed ". $this->max_uploaded_file / 1024 .'MB');
+        $messages->put('priority_id.required', "Priority Field is required");
+
         return $messages->toArray();
     }
 
