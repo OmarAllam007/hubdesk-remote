@@ -61,8 +61,12 @@ class ApprovalLevels extends Job
                 dispatch(new ApplyBusinessRules($this->ticket));
             }
 
+//
+            $roles = $bu->roles()->whereIn('role_id', $this->levels->toArray())->get()->keyBy('role_id');
 
-            $bu->roles()->whereIn('role_id', $this->levels->toArray())->each(function ($role, $key) {
+            foreach ($this->levels as $key => $level) {
+                $role = $roles->get($level);
+
                 $this->ticket->approvals()->create([
                     'creator_id' => $this->ticket->creator_id,
                     'approver_id' => $role->user->id,
@@ -70,8 +74,7 @@ class ApprovalLevels extends Job
                     'stage' => $key + 1,
                     'content' => ''
                 ]);
-            });
-
+            }
         }
     }
 
