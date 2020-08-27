@@ -12,6 +12,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Str;
 use PhpOffice\PhpSpreadsheet\Reader\Xls;
 use Psy\Exception\FatalErrorException;
 
@@ -109,13 +110,9 @@ class ReportsController extends Controller
 
         if (request()->exists('excel')) {
             $file = $r->excel();
-            $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($file);
-            $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
-//        $writer->save('export.xlsx');
-            header('Content-Type: application/vnd.ms-excel');
-            header('Content-Disposition: attachment; filename="' . str_slug($report->title) . '.xlsx"');
-            $writer->save("php://output");
 
+            return response()->download($file, Str::slug($report->title) . date('d M Y') . '.xlsx')
+                ->deleteFileAfterSend(true);
         }
         if (request()->exists('pdf')) {
             $file = $r->pdf();

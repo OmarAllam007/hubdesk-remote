@@ -60,12 +60,12 @@ class QueryReportController extends Controller
             $file = $r->excel();
             $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($file);
             $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
-//        $writer->save('export.xlsx');
+
+
             header('Content-Type: application/vnd.ms-excel');
             header('Content-Disposition: attachment; filename="' . str_slug($report->title) . '.xlsx"');
+
             $writer->save("php://output");
-//            exit;
-//            return $r->excel()->download('xlsx');
         }
 
         return $r->html();
