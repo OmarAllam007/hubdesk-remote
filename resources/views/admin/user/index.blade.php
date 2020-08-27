@@ -37,8 +37,8 @@
                     <tr>
                         <td><a href="{{ route('admin.user.edit', $user) }}">{{ $user->name }}</a></td>
                         <td><a href="{{ route('admin.user.edit', $user) }}">{{ $user->login }}</a></td>
-                        <td>{{ $user->business_unit->name or 'Not Assigned' }}</td>
-                        <td>{{ $user->location->name or 'Not Assigned' }}</td>
+                        <td>{{ $user->business_unit->name ?? 'Not Assigned' }}</td>
+                        <td>{{ $user->location->name ?? 'Not Assigned' }}</td>
                         <td class="col-md-2">
                             <form action="{{ route('admin.user.destroy', $user) }}" method="post">
                                 {{csrf_field()}} {{method_field('delete')}}
