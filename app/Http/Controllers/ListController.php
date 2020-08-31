@@ -22,7 +22,7 @@ class ListController extends Controller
 {
     public function subcategory($cat_id = false)
     {
-        $query = Subcategory::query()->individual()->active();
+        $query = Subcategory::query()->active();
         if ($cat_id) {
             return $query->orderBy('name')->where('category_id', $cat_id)->get(['name', 'id']);
         }
@@ -32,7 +32,8 @@ class ListController extends Controller
 
     public function item($subcat_id = false)
     {
-        $query = Item::query()->individual()->active();
+        $query = Item::query()->active();
+
         if ($subcat_id) {
             return $query->orderBy('name')->where('subcategory_id', $subcat_id)->get(['name', 'id']);
         }
@@ -42,7 +43,7 @@ class ListController extends Controller
 
     public function subitem($item_id = false)
     {
-        $query = SubItem::query()->individual()->active();
+        $query = SubItem::query()->active();
         if ($item_id) {
             return $query->orderBy('name')->where('item_id', $item_id)->get(['name', 'id']);
         }
@@ -53,7 +54,7 @@ class ListController extends Controller
 
     public function category($service_type = null)
     {
-        $categories = Category::query()->individual()->active();
+        $categories = Category::query()->active();
 
         if ($service_type == 1) {
             $categories->ticketType();

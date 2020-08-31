@@ -1,4 +1,7 @@
-@if ($ticket->approvals->count())
+@if($ticket->isTask() && $ticket->ticket->approvals->count())
+    <h5><strong>
+            {{t('Main Ticket Approvals')}}
+        </strong></h5>
     <table class="listing-table">
         <thead class="table-design">
         <tr>
@@ -14,6 +17,81 @@
         </tr>
         </thead>
         <tbody>
+        @foreach($ticket->ticket->approvals as $approval)
+            <tr class="{{$approval->approval_color}}">
+
+                <td>{{$approval->approver->name}}</td>
+                <td>{{$approval->created_by->name}}</td>
+                <td>{{$approval->created_at->format('d/m/Y H:i')}}</td>
+                <td>{{$approval->stage}}</td>
+                <td>
+                    <i class="fa fa-lg fa-{{$approval->approval_icon}} text-{{$approval->approval_color}}"
+                       aria-hidden="true"></i>
+                    {{$approval->approval_status}}
+                </td>
+                <td>
+                    @if(!$approval->hidden_comment)
+                        <strong>{{$approval->comment}}</strong>
+                    @endif
+                </td>
+                <td>{{$approval->action_date}}</td>
+                <td>{{$approval->resend}}</td>
+                <td>
+                    {{--                    @if ($approval->pending && $approval->approver_id == \Auth::user()->id &&  !$ticket->isClosed())--}}
+                    {{--                        <a title="Take Action" href="{{route('approval.show', $approval)}}" class="btn btn-xs btn-info"><i--}}
+                    {{--                                    class="fa fa-gavel"></i></a>--}}
+                    {{--                    @endif--}}
+                </td>
+                <td>
+                    {{--                    @if ($approval->shouldSend())--}}
+                    {{--                        @if ($approval->pending && Auth::user()->id == $approval->creator_id)--}}
+                    {{--                            <a title="Resend approval" href="{{route('approval.resend', $approval)}}"--}}
+                    {{--                               class="btn btn-xs btn-primary"><i class="fa fa-refresh"></i></a>--}}
+                    {{--                        @endif--}}
+                    {{--                    @endif--}}
+                </td>
+                <td>
+                    {{--                    @if ($approval->pending)--}}
+                    {{--                        @if (can('delete',$approval))--}}
+                    {{--                            {{Form::open(['route' => ['approval.destroy', $approval], 'method' => 'delete'])}}--}}
+                    {{--                            <button type="submit" title="Remove approval" class="btn btn-xs btn-warning">--}}
+                    {{--                                <i class="fa fa-remove"></i>--}}
+                    {{--                            </button>--}}
+                    {{--                            {{Form::close()}}--}}
+                    {{--                        @endif--}}
+                    {{--                    @endif--}}
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+@endif
+
+@if($ticket->isTask() && $ticket->approvals->count())
+    <h5>
+        <strong>
+            {{t('Task Approvals')}}
+        </strong>
+    </h5>
+@endif
+
+@if ($ticket->approvals->count() || ($ticket->isTask() && $ticket->ticket->approvals->count()))
+    <table class="listing-table">
+        <thead class="table-design">
+        <tr>
+            <th>{{t('Sent to')}}</th>
+            <th>{{t('By')}}</th>
+            <th>{{t('Sent at')}}</th>
+            <th>{{t('Stage')}}</th>
+            <th>{{t('Status')}}</th>
+            <th>{{t('Comment')}}</th>
+            <th>{{t('Action Date')}}</th>
+            <th>{{t('Resend')}}</th>
+            <th colspan="3" class="text-center">{{t('Actions')}}</th>
+        </tr>
+        </thead>
+        <tbody>
+
         @foreach($ticket->approvals as $approval)
             <tr class="{{$approval->approval_color}}">
 
@@ -26,7 +104,11 @@
                        aria-hidden="true"></i>
                     {{$approval->approval_status}}
                 </td>
-                <td><strong>{{$approval->comment}}</strong></td>
+                <td>
+                    @if(!$approval->hidden_comment)
+                        <strong>{{$approval->comment}}</strong>
+                    @endif
+                </td>
                 <td>{{$approval->action_date}}</td>
                 <td>{{$approval->resend}}</td>
                 <td>

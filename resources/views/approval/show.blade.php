@@ -83,7 +83,17 @@
                         <div class="error-message">{{$errors->first('comment')}}</div>
                     @endif
                 </div>
+                <div class="form-group {{$errors->has('hidden_comment')? 'has-error' : ''}}">
+                    <label for="hidden_comment" class="control-label">
+                        <input type="checkbox" name="hidden_comment" class="form-check" id="hidden_comment">
+                        {{t('mark as a private comment ?')}}
+                    </label>
 
+
+                    @if($errors->has('hidden_comment'))
+                        <div class="error-message">{{$errors->first('hidden_comment')}}</div>
+                    @endif
+                </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary"><i class="fa fa-pencil"></i> Update</button>
                 </div>
