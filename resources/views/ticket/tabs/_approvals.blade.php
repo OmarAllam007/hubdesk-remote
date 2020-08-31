@@ -37,29 +37,10 @@
                 <td>{{$approval->action_date}}</td>
                 <td>{{$approval->resend}}</td>
                 <td>
-                    {{--                    @if ($approval->pending && $approval->approver_id == \Auth::user()->id &&  !$ticket->isClosed())--}}
-                    {{--                        <a title="Take Action" href="{{route('approval.show', $approval)}}" class="btn btn-xs btn-info"><i--}}
-                    {{--                                    class="fa fa-gavel"></i></a>--}}
-                    {{--                    @endif--}}
                 </td>
                 <td>
-                    {{--                    @if ($approval->shouldSend())--}}
-                    {{--                        @if ($approval->pending && Auth::user()->id == $approval->creator_id)--}}
-                    {{--                            <a title="Resend approval" href="{{route('approval.resend', $approval)}}"--}}
-                    {{--                               class="btn btn-xs btn-primary"><i class="fa fa-refresh"></i></a>--}}
-                    {{--                        @endif--}}
-                    {{--                    @endif--}}
                 </td>
                 <td>
-                    {{--                    @if ($approval->pending)--}}
-                    {{--                        @if (can('delete',$approval))--}}
-                    {{--                            {{Form::open(['route' => ['approval.destroy', $approval], 'method' => 'delete'])}}--}}
-                    {{--                            <button type="submit" title="Remove approval" class="btn btn-xs btn-warning">--}}
-                    {{--                                <i class="fa fa-remove"></i>--}}
-                    {{--                            </button>--}}
-                    {{--                            {{Form::close()}}--}}
-                    {{--                        @endif--}}
-                    {{--                    @endif--}}
                 </td>
             </tr>
         @endforeach
@@ -75,7 +56,7 @@
     </h5>
 @endif
 
-@if ($ticket->approvals->count() || ($ticket->isTask() && $ticket->ticket->approvals->count()))
+@if ($ticket->approvals->count())
     <table class="listing-table">
         <thead class="table-design">
         <tr>
