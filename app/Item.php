@@ -31,10 +31,10 @@ use KGS\Requirement;
  */
 class Item extends KModel
 {
-    use Listable, ServiceConfiguration,SharedRelations;
+    use Listable, ServiceConfiguration, SharedRelations;
 
     protected $fillable = ['subcategory_id', 'name', 'description', 'service_request', 'service_cost',
-        'notes' ,'business_service_type','service_type'];
+        'notes', 'business_service_type', 'service_type'];
 
     public function subcategory()
     {
@@ -73,7 +73,7 @@ class Item extends KModel
 
     function complaint()
     {
-        return $this->hasOne(Complaint::class,'level_id')->where('level','App\Item');
+        return $this->hasOne(Complaint::class, 'level_id')->where('level', 'App\Item');
     }
 
     public function service_user_groups()
@@ -88,9 +88,9 @@ class Item extends KModel
 
     public function scopeCanonicalList(Builder $query)
     {
-        $items = $query->with('subcategory')
+        $items = $query->whereHas('subcategory')->with('subcategory')
             ->with('subcategory.category')
-            ->get()->map(function ($item) {
+            ->orderByDesc('name')->get()->map(function ($item) {
                 $item->name = "{$item->subcategory->category->name} > {$item->subcategory->name} > {$item->name}";
                 return $item;
             });
