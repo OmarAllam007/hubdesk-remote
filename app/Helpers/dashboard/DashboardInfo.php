@@ -246,7 +246,8 @@ class DashboardInfo
             return $survey->total_score;
         });
 
-        $this->customerSatisfaction['total_responses_percentage'] = number_format($total_responses_percentage / $this->customerSatisfaction['total_submitted'], 1);
+        $this->customerSatisfaction['total_responses_percentage'] = $this->customerSatisfaction['total_submitted'] ?
+            number_format($total_responses_percentage / $this->customerSatisfaction['total_submitted'], 1) : 0;
 
         $answers = UserSurveyAnswer::with('survey', 'survey.survey.categories', 'answer', 'answer.question')
             ->whereHas('survey.survey.categories', function ($q) {

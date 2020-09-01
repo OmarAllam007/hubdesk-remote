@@ -1,7 +1,7 @@
 <script>
 
 {{--    {{dd($data->customerSatisfaction['questions'])}}--}}
-    var items = {!! json_encode($data->customerSatisfaction['questions']) !!};
+    var items = {!! json_encode($data->customerSatisfaction['questions'] ?? []) !!};
 
     for (let [key, value] of Object.entries(items)) {
         let cKey = 'customers' + key.split(' ').join('');
