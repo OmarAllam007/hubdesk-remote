@@ -21,7 +21,7 @@
         <div class="col-md-6">
             <div class="form-group {{$errors->first('group_id', 'has-error')}}">
                 {{Form::label('group_id', t('Group'), ['class' => 'control-label'])}}
-                {{Form::select('group_id', App\Group::selection('Select Group'),isset($task) ? $task->group_id : null ,
+                {{Form::select('group_id', App\Group::active()->technician()->tasks()->selection('Select Group'),isset($task) ? $task->group_id : null ,
                  ['class' => 'form-control','v-model'=>'group'])}}
                 {!! $errors->first('group_id', '<div class="help-block">:message</div>') !!}
             </div>
@@ -83,20 +83,20 @@
         </div>
     </div>
 
-{{--    <div class="row">--}}
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="attachments">{{t('Attachments')}}</label>
-                <input type="file" class="form-control input-xs"  name="attachments[]" id="attachments"
-                       multiple>
-            </div>
+    {{--    <div class="row">--}}
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="attachments">{{t('Attachments')}}</label>
+            <input type="file" class="form-control input-xs" name="attachments[]" id="attachments"
+                   multiple>
         </div>
-        <div class="col-md-6">
-            <div id="CustomFields" style="padding: 0">
-                @include('custom-fields.render')
-            </div>
+    </div>
+    <div class="col-md-6">
+        <div id="CustomFields" style="padding: 0">
+            @include('custom-fields.render')
         </div>
-{{--    </div>--}}
+    </div>
+    {{--    </div>--}}
 
 </div>
 
