@@ -10,6 +10,7 @@
         "barryvdh/laravel-ide-helper": "^2.3",
         "doctrine/dbal": "^2.5",
         "facade/ignition": "^1.11",
+        "jakubkulhan/chrome-devtools-protocol": "^1.0",
         "kylekatarnls/laravel-carbon-2": "^1.0.0",
         "laravel/framework": "^6.0",
         "laravel/helpers": "^1.1",

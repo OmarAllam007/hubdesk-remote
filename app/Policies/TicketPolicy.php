@@ -87,6 +87,7 @@ class TicketPolicy
         $isTaskTechnicianOrCreator = $ticket->tasks()->where(function ($q) use ($user) {
             $q->where('technician_id', $user->id)->orWhere('creator_id', $user->id);
         })->exists();
+
         $isTicketOwner = Ticket::where('id', $ticket->request_id)->where('technician_id', $user->id)->exists();
 
         if ($ticket->replies->pluck('cc')->count()) {
@@ -95,10 +96,10 @@ class TicketPolicy
         }
 
         if ($ticket->replies->pluck('to')->count()) {
-            $to_users = User::whereIn('email', $ticket->replies->pluck('to')->flatten()->filter()->toArray())->pluck('id')->toArray();
+            $to_users = User::whereIn('email', $ticket->replies->pluck('to')
+                ->flatten()->filter()->toArray())->pluck('id')->toArray();
             $isInToUsers = in_array($user->id, $to_users) ? true : false;
         }
-
         return in_array($user->id, [$ticket->technician_id, $ticket->requester_id, $ticket->creator_id])
             || $user->hasGroup($ticket->group) || $isApprover || $isTaskTechnicianOrCreator || $isTicketOwner
             || $isInCC || $isInToUsers;
