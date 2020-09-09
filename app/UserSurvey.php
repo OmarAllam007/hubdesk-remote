@@ -42,6 +42,9 @@ class UserSurvey extends Model
             $total += $answer->answer->degree;
         }
 
+        if(!$this->survey_answers->count()){
+            return 0;
+        }
         return $total / $this->survey_answers->count();
     }
 

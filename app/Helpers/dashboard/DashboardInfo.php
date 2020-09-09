@@ -25,6 +25,10 @@ class DashboardInfo
     public $ticketsByStatus = [];
     public $ticketsByCoordinator = [];
     public $customerSatisfaction = [];
+    public $topServices;
+    public $yearlyPerformance = [];
+    public $customerSatisfactionOverYear = [];
+
     public $business_unit;
     private $_submittedTickets;
     private $_totalScore;
@@ -41,6 +45,9 @@ class DashboardInfo
     function process()
     {
         $this->ticketOverViewProcess();
+        $this->getTopServices();
+        $this->getPerformanceOverYear();
+        $this->getSatisfactionOverYear();
         $this->ticketsByCategory();
         $this->ticketsBySubcategory();
         $this->ticketsByCategoryPerformance();
@@ -115,7 +122,7 @@ class DashboardInfo
             $to = Carbon::parse($this->filters['to'])->addHours(11)->addMinutes(59)->addSeconds(59);
         }
 
-        return Ticket::with('user_survey')
+        return Ticket::with('user_survey', 'category')
             ->leftJoin('categories as ca', 'tickets.category_id', '=', 'ca.id')
             ->leftJoin('subcategories as sub', 'tickets.subcategory_id', '=', 'sub.id')
             ->leftJoin('statuses as st', 'tickets.status_id', '=', 'st.id')
@@ -142,13 +149,13 @@ class DashboardInfo
 
                 if (isset($this->filters['from']) && $this->filters['from']) {
                     $from = Carbon::parse($this->filters['from']);
-                }else{
+                } else {
                     $from = new Carbon('first day of ' . $key);
                 }
 
                 if (isset($this->filters['to']) && $this->filters['to']) {
                     $to = Carbon::parse($this->filters['to'])->addHours(11)->addMinutes(59)->addSeconds(59);
-                }else{
+                } else {
                     $to = new Carbon('last day of ' . $key);
                 }
 
@@ -158,18 +165,18 @@ class DashboardInfo
                     })->where('created_at', '>=', $from)->where('created_at', '<=', $to)->get();
 
                 $surveys_count = $surveys->count();
-                $surveys_points = $surveys->sum(function ($survey){
-                   return $survey->total_score;
+                $surveys_points = $surveys->sum(function ($survey) {
+                    return $survey->total_score;
                 });
 
                 return [
                     'all' => $tickets->count(),
                     'overdue' => $tickets->where('overdue', 1)->count(),
                     'open' => $tickets->whereIn('status_id', [1, 2, 3])->count(),
-                    'resolved' => $tickets->whereIn('status_id', [7, 9, 10])->count(),
+                    'resolved' => $tickets->whereIn('status_id', [7, 8, 9, 10])->count(),
                     'onHold' => $tickets->whereIn('status_id', [4, 5, 6])->count(),
-                    'closedOnTime' => $tickets->whereIn('status_id', [8])->where('overdue', 0)->count(),
-                    'customer_satisfaction' => $surveys_count ? number_format( $surveys_points/ $surveys_count , 1) : 0,
+                    'closedOnTime' => $tickets->whereIn('status_id', [9, 10, 8])->where('overdue', 0)->count(),
+                    'customer_satisfaction' => $surveys_count ? number_format($surveys_points / $surveys_count, 1) : 0,
                 ];
             })->reverse();
 
@@ -233,9 +240,9 @@ class DashboardInfo
         }
 
         $query = UserSurvey::
-            whereHas('survey.categories', function ($q) {
-                $q->where('business_unit_id', $this->business_unit->id);
-            })
+        whereHas('survey.categories', function ($q) {
+            $q->where('business_unit_id', $this->business_unit->id);
+        })
             ->where('created_at', '>=', $from)
             ->where('created_at', '<=', $to);
 
@@ -262,10 +269,10 @@ class DashboardInfo
             $questions->push(collect(['question' => $userAnswer->answer->question->description, 'answer' => $userAnswer->answer->description, 'degree' => $userAnswer->answer->degree]));
         });
 
-         $questions->groupBy('question')->map(function ($item,$key) {
-             $this->customerSatisfaction['questions'][$key]['percentage'] =  number_format($item->sum('degree') / $item->count(),1);
-             $this->customerSatisfaction['questions'][$key]['answers'] =   collect($item)->groupBy('answer')->map(function ($answers) use($item) {
-                return count($answers) ;
+        $questions->groupBy('question')->map(function ($item, $key) {
+            $this->customerSatisfaction['questions'][$key]['percentage'] = number_format($item->sum('degree') / $item->count(), 1);
+            $this->customerSatisfaction['questions'][$key]['answers'] = collect($item)->groupBy('answer')->map(function ($answers) use ($item) {
+                return count($answers);
             });
         });
     }
@@ -287,6 +294,85 @@ class DashboardInfo
             $this->servicePerformance[$ticket->category->name]['resolvedOnTime'] += (in_array($ticket->status_id, [7, 8, 9]) && !$ticket->overdue) ? 1 : 0;
         });
 
+
+    }
+
+    private function getTopServices()
+    {
+        $from = Carbon::now()->subMonth()->firstOfMonth();
+        $to = Carbon::now()->subMonth()->lastOfMonth()->addHours(11)->addMinutes(59)->addSeconds(59);
+
+        $ticketsQuery = Ticket::with('category', 'subcategory')
+            ->leftJoin('categories as ca', 'tickets.category_id', '=', 'ca.id')
+            ->where('tickets.created_at', '>=', $from)
+            ->where('tickets.created_at', '<=', $to)
+            ->where('ca.business_unit_id', $this->business_unit->id)->get();
+
+        $ticketsQuery = $this->business_unit->id != 11 ? $ticketsQuery->groupBy('category.name') : $ticketsQuery->groupBy('subcategory.name');
+
+        $tickets = $ticketsQuery->sortByDesc(function ($data) {
+            return $data->count();
+        })->map(function ($tickets, $key) {
+            return $tickets->count();
+        });
+
+        $this->topServices = $tickets->slice(0, 5);
+        $others = $tickets->slice(5)->sum();
+
+        $this->topServices = $this->topServices->put('Others', $others)->toArray();
+
+    }
+
+    private function getPerformanceOverYear()
+    {
+        $from = Carbon::now()->firstOfYear();
+        $to = Carbon::now()->subMonth()->lastOfMonth()->addHours(11)->addMinutes(59)->addSeconds(59);
+
+        $onTimeTickets = Ticket::selectRaw("count(*) total , monthname(tickets.created_at) month")
+            ->leftJoin('categories as ca', 'tickets.category_id', '=', 'ca.id')
+            ->where('tickets.created_at', '>=', $from)
+            ->where('tickets.created_at', '<=', $to)
+            ->whereIn('status_id', [7, 8, 9, 10])
+            ->where('overdue', 0)
+            ->where('ca.business_unit_id', $this->business_unit->id)
+            ->groupBy('month')->get()->keyBy('month')->map(function ($item) {
+                return $item->total;
+            });
+
+        $this->yearlyPerformance = Ticket::selectRaw("count(*) total , monthname(tickets.created_at) month")
+            ->leftJoin('categories as ca', 'tickets.category_id', '=', 'ca.id')
+            ->where('tickets.created_at', '>=', $from)
+            ->where('tickets.created_at', '<=', $to)
+            ->where('ca.business_unit_id', $this->business_unit->id)
+            ->groupBy('month')->get()->keyBy('month')->map(function ($item) use ($onTimeTickets) {
+                return ['total' => $item->total, 'ontime' => $onTimeTickets->get($item->month), 'month' => $item->month];
+            })->toArray();
+//        dd($this->yearlyPerformance);
+    }
+
+    private function getSatisfactionOverYear()
+    {
+        $from = Carbon::now()->firstOfYear();
+        $to = Carbon::now()->subMonth()->lastOfMonth()->addHours(11)->addMinutes(59)->addSeconds(59);
+
+        /** @var Collection $months */
+        $months = UserSurvey::where('is_submitted', 1)
+            ->whereHas('survey.categories', function ($q) {
+                $q->where('business_unit_id', $this->business_unit->id);
+            })->where('created_at', '>=', $from)
+            ->where('created_at', '<=', $to)
+            ->get()->groupBy(function ($item) {
+                return $item->created_at->englishMonth;
+            });
+
+        $this->customerSatisfactionOverYear = $months->map(function ($surveys) {
+            $surveys_count = $surveys->count();
+            $surveys_points = $surveys->sum(function ($survey) {
+                return $survey->total_score;
+            });
+
+            return number_format($surveys_points / $surveys_count, 1);
+        });
 
     }
 }

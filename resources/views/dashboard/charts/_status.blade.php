@@ -4,7 +4,7 @@
     var statusDataSet = [];
     var statusLabels = [];
 
-    let colors = ['#FF6384', '#36A2EB'];
+    let colors = ['rgba(11,76,74,0.81)', 'rgba(173,69,9,0.96)'];
 
     let index = 0;
     for (let [key, value] of Object.entries(statusData)) {
@@ -27,6 +27,7 @@
             datasets: statusDataSet,
         },
         options: {
+            responsive: true,
             plugins: {
                 labels: {
                     render: statusDataSet.length > 1 ? 'percentage' : 'value'

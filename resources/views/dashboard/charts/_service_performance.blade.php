@@ -10,12 +10,12 @@
                 {
                     label: "Total",
                     data: {!! json_encode(array_values(collect($data->servicePerformance)->pluck('total')->toArray())) !!},
-                    backgroundColor: Array(labels.length).fill('#FF6384')
+                    backgroundColor: Array(labels.length).fill('rgba(173,69,9,0.96)')
                 },
                 {
                     label: "Resolved",
                     data: {!! json_encode(array_values(collect($data->servicePerformance)->pluck('resolved')->toArray())) !!},
-                    backgroundColor: Array(labels.length).fill('#36A2EB')
+                    backgroundColor: Array(labels.length).fill('rgba(11,76,74,0.81)')
                 },
                 {
                     label: "Ontime",
@@ -26,9 +26,13 @@
             ]
         },
         options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            showScale: true,
             plugins: {
                 labels: {
-                    render: 'percentage'
+                    render: 'value',
+                    fontSize: 16,
                 }
             }
         }
