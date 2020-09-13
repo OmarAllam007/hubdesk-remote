@@ -9,7 +9,6 @@
                 label: 'Customer Satisfaction',
                 data: {!! json_encode(array_values($data->customerSatisfactionOverYear->toArray())) !!},
                 backgroundColor: 'rgba(11,76,74,0.8)',
-                order: 2
             }]
         },
         options: {
@@ -33,7 +32,7 @@
                     fontSize:16,
                     render: 'value',
                     ticks: {
-                        suggestedMin: 50,
+                        suggestedMin: 0,
                     }
                 }]
             },

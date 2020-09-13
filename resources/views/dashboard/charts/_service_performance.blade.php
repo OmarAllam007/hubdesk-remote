@@ -26,14 +26,32 @@
             ]
         },
         options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            showScale: true,
             plugins: {
                 labels: {
                     render: 'value',
                     fontSize: 16,
                 }
+            },
+            responsive: true,
+
+            scales: {
+                xAxes: [{
+                    display: true,
+                    fontSize:16,
+                    barPercentage: 0.4
+
+                }],
+                yAxes: [{
+                    display: true,
+                    fontSize:16,
+                    render: 'value',
+                    ticks: {
+                        suggestedMin: 0,
+                    }
+                }]
+            },
+            ticks:{
+                beginAtZero:true
             }
         }
     });
