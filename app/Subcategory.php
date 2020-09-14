@@ -35,7 +35,7 @@ class Subcategory extends KModel
     use Listable, ServiceConfiguration, SharedRelations;
 
     protected $fillable = ['category_id', 'name', 'description', 'service_request', 'service_cost',
-        'notes', 'service_type', 'is_disabled', 'business_service_type'];
+        'notes', 'service_type', 'is_disabled', 'business_service_type','logo'];
 
     public function items()
     {

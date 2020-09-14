@@ -1,8 +1,7 @@
 <div id="Levels">
     <div class="row">
         <div class="col-md-6">
-
-            @if (!empty($item))
+            @if (isset($item->id))
                 {{Form::hidden('item_id', $item->id)}}
             @else
                 <div class="form-group {{$errors->has('item_id')? 'has-error' : ''}}">
@@ -27,6 +26,14 @@
                 {{Form::textarea('description', null, ['class' => 'form-control', 'rows' => 5])}}
                 @if ($errors->has('description'))
                     <div class="error-message">{{$errors->first('description')}}</div>
+                @endif
+            </div>
+
+            <div class="form-group {{$errors->has('logo')? 'has-errors' : ''}}">
+                {{Form::label('logo', 'Logo', ['class' => 'control-label'])}}
+                {{Form::input('file','logo', null, ['class' => 'form-control'])}}
+                @if ($errors->has('logo'))
+                    <div class="error-message">{{$errors->first('logo')}}</div>
                 @endif
             </div>
 
@@ -92,14 +99,7 @@
                 <button class="btn btn-success"><i class="fa fa-check-circle"></i> Submit</button>
             </div>
         </div>
-{{--        <div class="col-md-6">--}}
-{{--            <fieldset>--}}
-{{--                <legend>Requirements</legend>--}}
-{{--                <service-requirements--}}
-{{--                        :requirements_data="{{json_encode(isset($item) ? $item->requirements: [] )}}"></service-requirements>--}}
-{{--            </fieldset>--}}
-{{--        </div>--}}
     </div>
 </div>
-<script type="text/javascript" src="{{asset('/js/approval-levels.js')}}"></script>
+{{--<script type="text/javascript" src="{{asset('/js/approval-levels.js')}}"></script>--}}
 

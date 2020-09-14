@@ -125,28 +125,28 @@ class Category extends KModel
     {
         return $this->hasMany(Requirement::class, 'reference_id')->where('reference_type', Requirement::$types['Category']);
     }
-
-    public static function uploadAttachment(Category $category, UploadedFile $file)
-    {
-        $filename = $file->getClientOriginalName();
-
-        $folder = storage_path('app/public/attachments/categories/' . $category->id . '/');
-        if (!is_dir($folder)) {
-            mkdir($folder, 0775, true);
-        }
-
-        $path = $folder . $filename;
-        if (is_file($path)) {
-            $filename = uniqid() . '_' . $filename;
-            $path = $folder . $filename;
-        }
-
-        $file->move($folder, $filename);
-
-        $final_path = '/attachments/categories/' . $category->id . '/' . $filename;
-
-        return $final_path;
-    }
+//
+//    public static function uploadAttachment(Category $category, UploadedFile $file)
+//    {
+//        $filename = $file->getClientOriginalName();
+//
+//        $folder = storage_path('app/public/attachments/categories/' . $category->id . '/');
+//        if (!is_dir($folder)) {
+//            mkdir($folder, 0775, true);
+//        }
+//
+//        $path = $folder . $filename;
+//        if (is_file($path)) {
+//            $filename = uniqid() . '_' . $filename;
+//            $path = $folder . $filename;
+//        }
+//
+//        $file->move($folder, $filename);
+//
+//        $final_path = '/attachments/categories/' . $category->id . '/' . $filename;
+//
+//        return $final_path;
+//    }
 
     function getBusinessServiceTypeStrAttribute()
     {

@@ -48,6 +48,11 @@ class ItemController extends Controller
         $this->createFees($request, $item);
         $this->createOrUpdateLimitation($request, $item);
 
+        if ($request->hasFile('logo')) {
+            $logo_path = Item::uploadAttachment('items', $item, $request->logo);
+            $item->update(['logo' => $logo_path]);
+        }
+
         flash(t('Item Info'), t('Item has been saved'), 'success');
         return \Redirect::route('admin.subcategory.show', $item->subcategory_id);
     }
@@ -75,6 +80,11 @@ class ItemController extends Controller
         $this->handleRequirements($request, $item);
         $this->createFees($request, $item);
         $this->createOrUpdateLimitation($request, $item);
+
+        if ($request->hasFile('logo')) {
+            $logo_path = Item::uploadAttachment('items', $item, $request->logo);
+            $item->update(['logo' => $logo_path]);
+        }
 
         flash(t('Item Info'), 'Item has been saved', 'success');
 

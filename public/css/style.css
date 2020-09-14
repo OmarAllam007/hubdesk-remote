@@ -1,0 +1,861 @@
+/* CSS reset */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+fieldset, img {
+    border: 0;
+}
+
+input {
+    border: 1px solid #b0b0b0;
+    padding: 3px 5px 4px;
+    color: #979797;
+    width: 170px;
+    margin: 15px 0;
+}
+
+address, caption, cite, code, dfn, th, var {
+    font-style: normal;
+    font-weight: normal;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+caption, th {
+    text-align: left;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+q:before, q:after {
+    content: '';
+}
+
+abbr, acronym {
+    border: 0;
+}
+
+
+@font-face {
+    font-family: 'Esphimere Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Esphimere Regular'), url('../fonts/Esphimere.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Esphimere Light';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Esphimere Light'), url('../fonts/Esphimere Light.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Esphimere Semi Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Esphimere Semi Bold'), url('Esphimere Semi Bold.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Esphimere Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Esphimere Bold'), url('Esphimere Bold.woff') format('woff');
+}
+
+
+body {
+    /* background:#f9f9f9 url(../images/white_texture.png) repeat top left; */
+
+    /*background-image: url(../images/bg2.jpg);*/
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+
+    color: #333;
+    font-family: 'Esphimere Regular', Arial, sans-serif;
+    font-size: 13px;
+}
+
+
+.container {
+    position: relative;
+}
+
+a {
+    /*color: #fff;*/
+    text-decoration: none;
+}
+
+.clr {
+    clear: both;
+}
+
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /*position: relative;*/
+    /*width: 100%;*/
+    /*display: block;*/
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+}
+
+h1 {
+    margin: 0px;
+    padding: 20px 20px 10px 20px;
+    font-size: 34px;
+    color: #333;
+    text-shadow: 1px 1px 1px #fff;
+    text-align: left;
+    font-weight: 400;
+    text-align: center;
+}
+
+h1 span {
+    display: block;
+    font-size: 14px;
+    font-family: 'Esphimere Regular', serif;
+    font-style: italic;
+    color: #b2891b;
+    padding-top: 10px;
+}
+
+/* Header Style */
+.header {
+    font-family: 'Esphimere Regular', Arial, sans-serif;
+    line-height: 16px;
+    font-size: 16px;
+    background: #1a1d50;
+    opacity: 0.9;
+    text-transform: capitalize;
+    z-index: 9999;
+    position: relative;
+    -moz-box-shadow: 1px 0px 2px #000;
+    -webkit-box-shadow: 1px 0px 2px #000;
+    box-shadow: 1px 0px 2px #000;
+}
+
+.header a {
+    padding: 30px 30px;
+    color: #ddd;
+    display: block;
+}
+
+.header a:hover {
+    color: #fff;
+}
+
+.header span.right {
+    float: right;
+    display: flex;
+
+
+}
+
+.header span.right a {
+    float: none;
+    display: inline;
+}
+
+
+.header .right {
+    float: right;
+
+    text-transform: capitalize;
+}
+
+.header .right a {
+    float: right;
+    display: inline;
+}
+
+
+.under_header {
+    font-family: 'Esphimere Regular', Arial, sans-serif;
+    line-height: 14px;
+    font-size: 14px;
+    background: #d1d3d4;
+    opacity: 0.9;
+    text-transform: capitalize;
+    z-index: 9999;
+    position: relative;
+    -moz-box-shadow: 1px 0px 2px #000;
+    -webkit-box-shadow: 1px 0px 2px #000;
+    box-shadow: 1px 0px 2px #000;
+}
+
+.under_header a {
+    padding: 20px 20px;
+
+    color: #1a1d50;
+    display: block;
+    float: left;
+}
+
+.under_header a:hover {
+    color: #3c3b66;
+}
+
+.under_header span.right {
+    float: right;
+}
+
+.under_header span.right a {
+    float: none;
+    display: inline;
+}
+
+
+.under_header .right {
+    float: right;
+
+}
+
+.under_header .right a {
+    float: right;
+    display: inline;
+}
+
+.logo {
+    float: left;
+    padding: 20px;
+    vertical-align: middle;
+
+}
+
+.logo img {
+
+    display: block;
+    position: relative;
+    padding: 5px;
+    max-width: 70%;
+}
+
+
+.logo a {
+    padding: 0px 0px;
+    display: block;
+}
+
+
+.more {
+    position: relative;
+    clear: both;
+    font-family: 'Esphimere Light', Arial, sans-serif;
+    text-transform: uppercase;
+    font-size: 11px;
+    padding: 5px 0px 10px;
+    width: 540px;
+    margin: 0 auto;
+}
+
+.more ul {
+    display: block;
+    text-align: center;
+    height: 30px;
+}
+
+.more ul li {
+    display: block;
+    padding: 4px 2px;
+    float: left;
+}
+
+.more ul li.selected a,
+.more ul li.selected a:hover {
+    background: #b2891b;
+    color: #fff;
+    text-shadow: none;
+}
+
+.more ul li a {
+    color: #555;
+    float: left;
+    background: #fff;
+    width: 40px;
+    padding: 2px 5px;
+    -moz-box-shadow: 1px 1px 2px #aaa;
+    -webkit-box-shadow: 1px 1px 2px #aaa;
+    box-shadow: 1px 1px 2px #aaa;
+}
+
+.more ul li a:hover {
+    background: #000;
+    color: #fff;
+}
+
+.space {
+
+    margin: 60px 0;
+    width: 100%;
+
+    float: left;
+
+
+}
+
+
+.footer {
+    font-family: 'Esphimere Regular', Arial, sans-serif;
+    width: 100%;
+    background: #1a1d50;
+    margin-top: 12px;
+    float: left;
+    margin-bottom: 0;
+    font-size: 12pt;
+}
+
+.footer a {
+    padding: 20px 20px;
+
+    color: #fff;
+    display: block;
+}
+
+.footer a:hover {
+    color: #2ac5f5;
+}
+
+
+.footer .right {
+    float: right;
+
+}
+
+.footer .left {
+    float: left;
+
+}
+
+
+.fa, .fas {
+    padding-right: 6px;
+}
+
+
+.header ul {
+
+    list-style: none;
+    overflow: hidden;
+}
+
+.header li a {
+    display: block;
+    border-right: 1px solid rgba(255, 255, 255, .3);
+    text-decoration: none;
+}
+
+.header li a:hover,
+.header .menu-btn:hover {
+    background-color: rgba(0, 0, 0, .3);
+}
+
+
+/* CSS common */
+
+
+.view {
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+
+    cursor: default;
+
+
+}
+
+.view .mask, .view .content {
+    width: 200px;
+    height: 250px;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+
+}
+
+.view img {
+    display: block;
+    position: relative;
+    margin: auto;
+    max-width: 160px;
+    padding: 0px 5px 15px 5px;
+
+}
+
+.view h2 {
+    text-transform: capitalize;
+    color: #1a1d50;
+    text-align: center;
+    font-size: 15px;
+
+    justify-content: center;
+    align-items: center;
+    padding: 90px 20px;
+
+
+}
+
+.view p {
+    font-family: 'Esphimere Regular';
+    color: #1a1d50;
+    font-size: 15px;
+    position: relative;
+    padding: 170px 5px 0px 5px;
+    text-align: center;
+
+
+}
+
+
+.view img2 {
+    display: block;
+    position: relative;
+    padding: 5px;
+    max-width: 10px;
+    margin: auto;
+}
+
+
+.view a.info {
+    display: inline-block;
+    text-decoration: none;
+    padding: 7px 14px;
+    background: #000;
+    color: #fff;
+    text-transform: uppercase;
+    -webkit-box-shadow: 0 0 1px #000;
+    -moz-box-shadow: 0 0 1px #000;
+    box-shadow: 0 0 1px #000;
+}
+
+.view a.info: hover {
+    -webkit-box-shadow: 0 0 5px #000;
+    -moz-box-shadow: 0 0 5px #000;
+    box-shadow: 0 0 5px #000;
+}
+
+
+/* CSS style 7 */
+
+.view-seventh img {
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    -ms-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+    -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: alpha(opacity=100);
+    opacity: 1;
+}
+
+.view-seventh .mask {
+    -webkit-transform: rotate(0deg) scale(1);
+    -moz-transform: rotate(0deg) scale(1);
+    -o-transform: rotate(0deg) scale(1);
+    -ms-transform: rotate(0deg) scale(1);
+    transform: rotate(0deg) scale(1);
+    -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+.view-seventh h2 {
+    -webkit-transform: translateY(-200px);
+    -moz-transform: translateY(-200px);
+    -o-transform: translateY(-200px);
+    -ms-transform: translateY(-200px);
+    transform: translateY(-200px);
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+.view-seventh p {
+    -webkit-transform: translateY(-200px);
+    -moz-transform: translateY(-200px);
+    -o-transform: translateY(-200px);
+    -ms-transform: translateY(-200px);
+    transform: translateY(-200px);
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+.view-seventh a.info {
+    -webkit-transform: translateY(-200px);
+    -moz-transform: translateY(-200px);
+    -o-transform: translateY(-200px);
+    -ms-transform: translateY(-200px);
+    transform: translateY(-200px);
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+.view-seventh:hover img {
+    -webkit-transform: rotate(720deg) scale(0);
+    -moz-transform: rotate(720deg) scale(0);
+    -o-transform: rotate(720deg) scale(0);
+    -ms-transform: rotate(720deg) scale(0);
+    transform: rotate(720deg) scale(0);
+    -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+}
+
+.view-seventh:hover .mask {
+    -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: alpha(opacity=100);
+    opacity: 1;
+    -webkit-transform: translateY(0px) rotate(0deg);
+    -moz-transform: translateY(0px) rotate(0deg);
+    -o-transform: translateY(0px) rotate(0deg);
+    -ms-transform: translateY(0px) rotate(0deg);
+    transform: translateY(0px) rotate(0deg);
+    -webkit-transition-delay: 0.4s;
+    -moz-transition-delay: 0.4s;
+    -o-transition-delay: 0.4s;
+    -ms-transition-delay: 0.4s;
+    transition-delay: 0.4s;
+}
+
+.view-seventh:hover h2 {
+    -webkit-transform: translateY(0px);
+    -moz-transform: translateY(0px);
+    -o-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    transform: translateY(0px);
+    -webkit-transition-delay: 0.3s;
+    -moz-transition-delay: 0.3s;
+    -o-transition-delay: 0.3s;
+    -ms-transition-delay: 0.3s;
+    transition-delay: 0.3s;
+}
+
+.view-seventh:hover p {
+    -webkit-transform: translateY(0px);
+    -moz-transform: translateY(0px);
+    -o-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    transform: translateY(0px);
+    -webkit-transition-delay: 0.2s;
+    -moz-transition-delay: 0.2s;
+    -o-transition-delay: 0.2s;
+    -ms-transition-delay: 0.2s;
+    transition-delay: 0.2s;
+}
+
+.view-seventh:hover a.info {
+    -webkit-transform: translateY(0px);
+    -moz-transform: translateY(0px);
+    -o-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    transform: translateY(0px);
+    -webkit-transition-delay: 0.5s;
+    -moz-transition-delay: 0.5s;
+    -o-transition-delay: 0.5s;
+    -ms-transition-delay: 0.5s;
+    transition-delay: 0.5s;
+}
+
+
+/* menu */
+
+.header .menu {
+    clear: both;
+    max-height: 0;
+    transition: max-height .2s ease-out;
+}
+
+/* menu icon */
+
+.header .menu-icon {
+    cursor: pointer;
+    display: inline-block;
+    float: right;
+    padding: 40px 20px;
+    position: relative;
+    user-select: none;
+}
+
+.header .menu-icon .navicon {
+    background: #fff;
+    display: block;
+    height: 2px;
+    position: relative;
+    transition: background .2s ease-out;
+    width: 18px;
+}
+
+.header .menu-icon .navicon:before,
+.header .menu-icon .navicon:after {
+    background: #fff;
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    transition: all .2s ease-out;
+    width: 100%;
+}
+
+.header .menu-icon .navicon:before {
+    top: 5px;
+}
+
+.header .menu-icon .navicon:after {
+    top: -5px;
+}
+
+/* menu btn */
+
+.header .menu-btn {
+    display: none;
+}
+
+.header .menu-btn:checked ~ .menu {
+    max-height: 240px;
+}
+
+.header .menu-btn:checked ~ .menu-icon .navicon {
+    background: transparent;
+}
+
+.header .menu-btn:checked ~ .menu-icon .navicon:before {
+    transform: rotate(-45deg);
+}
+
+.header .menu-btn:checked ~ .menu-icon .navicon:after {
+    transform: rotate(45deg);
+}
+
+.header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+.header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+    top: 0;
+}
+
+/* 48em = 768px */
+
+@media (min-width: 48em) {
+    .header li {
+        float: left;
+    }
+
+    .header li a {
+        padding: 32px 30px;
+    }
+
+    .header .menu {
+        clear: none;
+        float: left;
+        max-height: none;
+    }
+
+    .header .menu-icon {
+        display: none;
+    }
+
+
+}
+
+
+@media (max-width: 768px) {
+
+    .view {
+
+        margin: 30px;
+
+    }
+}
+
+
+/*
+    Spot is the span on the inside of the href that
+    fills the parent and makes the hover and link work
+    for the entire div
+*/
+
+.spot {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+/*
+    This is the outer svg wrapper that the SVG itself will 
+    fill. Multiple svg-wrapper classes can be put side by side.
+*/
+
+.svg-wrapper {
+    margin-top: 0;
+    position: relative;
+    width: 150px;
+    /*make sure to use same height/width as in the html*/
+    height: 150px;
+    display: inline-block;
+    border-radius: 3px;
+    margin-left: 5px;
+    margin-right: 5px
+}
+
+/*
+  This is where we define the fill, color, thickness,
+  and stroke pattern of the SVG when there is no hover.
+  The dasharray and offset together define the line position
+  under the words. Here's also where the transition speed is set.
+*/
+
+#shape {
+    stroke-width: 6px;
+    fill: transparent;
+    stroke: #2ac5f5;
+    stroke-dasharray: 150 400;
+    stroke-dashoffset: -300;
+    transition: 1s all ease;
+}
+
+/*
+    Pushing the text up into the SVG. Without this the
+    text would be below the div's.
+*/
+
+#text {
+    margin-top: -85px;
+    text-align: center;
+}
+
+#text a {
+    color: #1a1d50;
+    text-decoration: none;
+    font-weight: 100;
+    font-size: 1.1em;
+}
+
+/*
+    Changing the shape on hover. I change the color of the stroke,
+make it thinner, then set it to again wrap around the entire parent element.
+*/
+
+.svg-wrapper:hover #shape {
+    stroke-dasharray: 50 0;
+    stroke-width: 3px;
+    stroke-dashoffset: 0;
+    stroke: #1a1d50;
+}
+
+
+/*
+search
+*/
+
+input[type=text] {
+    position: relative;
+    color: #525252;
+    border-radius: 3px;
+    border-color: #b9b5b4;
+    background: linear-gradient(to right, #FFFFFF 0%, #464747 #F9F9F9 100%);
+    transition: width 0.4s ease;
+    outline: none;
+
+}
+
+.is {
+    position: relative;
+    left: -40px;
+}
+
+
+.mainmenu, .submenu {
+    padding: 0;
+    margin: 0;
+}
+
+/* make ALL links (main and submenu) have padding and background color */
+.mainmenu a {
+
+}
+
+/* add hover behaviour */
+.mainmenu a:hover {
+    background-color: #C5C5C5;
+}
+
+
+/* when hovering over a .mainmenu item,
+  display the submenu inside it.
+  we're changing the submenu's max-height from 0 to 200px;
+*/
+
+.mainmenu li:hover .submenu {
+    display: block;
+    max-height: 150px;
+}
+
+/*
+  we now overwrite the background-color for .submenu links only.
+  CSS reads down the page, so code at the bottom will overwrite the code at the top.
+*/
+
+.submenu a {
+    background-color: #999;
+}
+
+/* hover behaviour for links inside .submenu */
+.submenu a:hover {
+    background-color: #666;
+}
+
+/* this is the initial state of all submenus.
+  we set it to max-height: 0, and hide the overflowed content.
+*/
+.submenu {
+    overflow: hidden;
+    max-height: 0;
+    -webkit-transition: all 0.5s ease-out;
+}
+
+.navbar {
+    padding-top: 0;
+    padding-bottom: 0;
+}
