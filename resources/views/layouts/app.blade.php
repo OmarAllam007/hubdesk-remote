@@ -34,7 +34,12 @@
 
         </style>
     @endif
-
+    <style>
+        .circular_avatar{
+            background-color: yellow;
+            border-radius: 50%;
+        }
+    </style>
 </head>
 <body>
 
@@ -68,10 +73,7 @@
                                             class="fa fa-dashboard"></i> {{t('Dashboard')}}</a></li>
                         @endcan
 
-                        @if(auth()->user()->isSupport())
-                            <li class="nav-item"><a href="{{route('configurations.index')}}"><i
-                                            class="fa fa-cogs"></i> {{t('Configurations')}}</a></li>
-                        @endif
+
 
                         @can('reports')
                             <li class="nav-item"><a href="{{url('/reports')}}"><i
@@ -84,11 +86,6 @@
 
                         @endcan
 
-                        @if (Auth::user()->isAdmin())
-                            <li class="nav-item"><a href="{{url('/admin')}}"><i class="fa fa-cogs"></i> {{t('Admin')}}
-                                </a>
-                            </li>
-                        @endif
                     </ul>
 
 
@@ -112,11 +109,20 @@
                     @endif">
                         <li class="dropdown nav-item">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                                        class="fa fa-user"></i> {{Auth::user()->name}} <i class="caret"></i></a>
+                                        class="fa fa-user"></i> {{Auth::user()->profile_name}} <i class="caret"></i></a>
                             <ul class="dropdown-menu">
+                                @if (Auth::user()->isAdmin())
+                                    <li><a href="{{url('/admin')}}"><i class="fa fa-cogs"></i> {{t('Admin')}}
+                                        </a>
+                                    </li>
+                                @endif
                                 <li><a href="{{route('user.reset')}}"><i
                                                 class="fa fa-unlock "></i> {{t('Reset Password')}}
                                     </a></li>
+                                @if(auth()->user()->isSupport())
+                                    <li ><a href="{{route('configurations.index')}}"><i
+                                                    class="fa fa-cogs"></i> {{t('Configurations')}}</a></li>
+                                @endif
                                 <li><a href="{{url('/logout')}}"><i class="fa fa-sign-out"></i> {{t('Logout')}}</a></li>
                             </ul>
                         </li>

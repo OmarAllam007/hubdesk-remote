@@ -1,6 +1,32 @@
 @extends('layouts.app')
 
+@section('stylesheets')
+    <style>
+        .flex-container {
+            height: 90px;
+            border: 1px solid lightgray;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+
+        .flex-container > div {
+            padding: 5px 20px;
+        }
+
+        .ticket_id {
+            color: #4b4b4b;
+        }
+
+        .subject {
+            font-size: 12pt;
+        }
+    </style>
+@endsection
+
 @section('header')
+
     <div style="display: flex; justify-content: space-around;width: 100%">
         <h4 style="flex-grow: 1">{{t('Tickets')}}</h4>
         <div style="flex-grow: 1 ;display: flex; justify-content: space-between">
