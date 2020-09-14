@@ -158,18 +158,17 @@
     {{--        </div>--}}
     {{--    </footer>--}}
 
-    <footer class="footer">
-        <div class="container">
-            <div class="left">
-                <a href="#"><i class="fa fa-envelope"></i>cs.alquwa@alkifah.com</a>
-            </div>
-            <div class="left"><a href="#"><i class="fa fa-link"></i>www.dss.com.sa</a></div>
-            <div class="right">
-                <a
-                        href="{{asset('attachments/hubdesk-user-guide.pdf')}}" target="_blank"><i
-                            class="fa fa-download"></i> {{t('AlQuwa Hubdesk User Guideline')}}</a></div>
-        </div>
 
+    <footer class="footer">
+        <div style="display: flex;">
+            <a href="#"><i class="fa fa-envelope"></i>cs.alquwa@alkifah.com</a>
+            <a href="#"><i class="fa fa-link"></i>www.dss.com.sa</a>
+        </div>
+        <div>
+            <a
+                    href="{{asset('attachments/hubdesk-user-guide.pdf')}}" target="_blank"><i
+                        class="fa fa-download"></i> {{t('AlQuwa Hubdesk User Guideline')}}</a>
+        </div>
     </footer>
 </div>
 

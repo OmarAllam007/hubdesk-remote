@@ -101,7 +101,7 @@ class CategoryController extends Controller
         $category->update($data);
 
         if ($request->hasFile('logo')) {
-            $logo_path = Category::uploadAttachment($category, $request->logo);
+            $logo_path = Category::uploadAttachment('categories',$category, $request->logo);
             $category->update(['logo' => $logo_path]);
         }
 
