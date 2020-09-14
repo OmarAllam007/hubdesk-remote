@@ -17,6 +17,7 @@ class ApplyBusinessRules extends MatchCriteria
     public function __construct(Ticket $ticket)
     {
         $this->ticket = $ticket;
+        $this->ccEmails = collect();
     }
 
     public function handle()
@@ -54,7 +55,6 @@ class ApplyBusinessRules extends MatchCriteria
 
     private function applyRule($rule)
     {
-        $this->ccEmails = collect();
         foreach ($rule->rules as $action) {
 
             if ($action['field'] == 'cc') {
