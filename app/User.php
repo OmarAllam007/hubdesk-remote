@@ -119,7 +119,8 @@ class User extends Authenticatable implements CanResetPassword
         return $this->groups()->admin()->exists();
     }
 
-    public function isReporting(){
+    public function isReporting()
+    {
         return $this->groups()->reporting()->exists();
     }
 
@@ -211,13 +212,13 @@ class User extends Authenticatable implements CanResetPassword
 
     function getFoldersAttribute()
     {
-        if(auth()->user()->isAdmin()){
+        if (auth()->user()->isAdmin()) {
             return ReportFolder::all();
         }
 
-        $folders = ReportFolder::where('user_id',auth()->id())->get();
+        $folders = ReportFolder::where('user_id', auth()->id())->get();
 
-        $authorized_reports = ReportFolder::whereIn('id',Report::whereIn('id',ReportUser::where('user_id',auth()->id())
+        $authorized_reports = ReportFolder::whereIn('id', Report::whereIn('id', ReportUser::where('user_id', auth()->id())
             ->pluck('report_id')->toArray())->pluck('folder_id'))->get();
 
 
@@ -225,14 +226,22 @@ class User extends Authenticatable implements CanResetPassword
     }
 
 
-    function reply_templates(){
+    function reply_templates()
+    {
         return $this->hasMany(ReplyTemplate::class);
     }
 
     public function hasTasks(Ticket $ticket)
     {
-         return $ticket->tasks()->where('technician_id', auth()->id())->exists();
+        return $ticket->tasks()->where('technician_id', auth()->id())->exists();
     }
 
+
+    function getProfileNameAttribute()
+    {
+        $user = $this->name;
+        $arrayName = explode(' ', $user);
+        return substr($arrayName[0],0) . ' '.(isset($arrayName[1]) ? substr($arrayName[1],0)  : '');
+    }
 }
   

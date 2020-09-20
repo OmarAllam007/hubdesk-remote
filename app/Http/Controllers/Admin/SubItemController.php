@@ -35,6 +35,11 @@ class SubItemController extends Controller
         $this->createUserGroups($request, $subItem);
         $this->createOrUpdateLimitation($request, $subItem);
 
+        if ($request->hasFile('logo')) {
+            $logo_path = SubItem::uploadAttachment('sub_items', $subItem, $request->logo);
+            $subItem->update(['logo' => $logo_path]);
+        }
+
         flash(t('SubItem Info'),t('SubItem has been saved'), 'success');
 
         return \Redirect::route('admin.item.show', $subItem->item_id);
@@ -50,6 +55,12 @@ class SubItemController extends Controller
         $subItem->update($request->all());
         $this->createUserGroups($request, $subItem);
         $this->createOrUpdateLimitation($request, $subItem);
+
+        if ($request->hasFile('logo')) {
+            $logo_path = SubItem::uploadAttachment('sub_items', $subItem, $request->logo);
+            $subItem->update(['logo' => $logo_path]);
+        }
+
 
         flash(t('SubItem Info'),'SubItem has been saved', 'success');
         return \Redirect::route('admin.item.show', $subItem->item_id);

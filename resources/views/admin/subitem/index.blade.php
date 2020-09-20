@@ -2,7 +2,7 @@
 
 @section('header')
     <h4 class="pull-left">SubItems</h4>
-    <a href="{{route('admin.subitem.create')}}" class="btn btn-sm btn-primary pull-right"><i class="fa fa-plus"></i></a>
+    <a href="{{route('admin.subItem.create')}}" class="btn btn-sm btn-primary pull-right"><i class="fa fa-plus"></i></a>
 @stop
 
 @section('sidebar')
@@ -26,9 +26,9 @@
                     <td class="col-md-5"><a href="{{route('admin.item.edit', $subitem)}}">{{$subitem->name}}</a></td>
                     <td class="col-md-4">{{$subitem->item->name}}</td>
                     <td class="col-md-3">
-                        <form action="{{route('admin.subitem.destroy', $subitem)}}" method="post">
+                        <form action="{{route('admin.subItem.destroy', $subitem)}}" method="post">
                             {{csrf_field()}} {{method_field('delete')}}
-                            <a class="btn btn-sm btn-primary" href="{{route('admin.subitem.edit', $subitem)}}"><i class="fa fa-edit"></i> Edit</a>
+                            <a class="btn btn-sm btn-primary" href="{{route('admin.subItem.edit', $subitem)}}"><i class="fa fa-edit"></i> Edit</a>
                             <button class="btn btn-sm btn-warning"><i class="fa fa-trash-o"></i> Delete</button>
                         </form>
                     </td>

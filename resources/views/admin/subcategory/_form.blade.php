@@ -30,6 +30,14 @@
                 @endif
             </div>
 
+            <div class="form-group {{$errors->has('logo')? 'has-errors' : ''}}">
+                {{Form::label('logo', 'Logo', ['class' => 'control-label'])}}
+                {{Form::input('file','logo', null, ['class' => 'form-control'])}}
+                @if ($errors->has('logo'))
+                    <div class="error-message">{{$errors->first('logo')}}</div>
+                @endif
+            </div>
+
             <div class="form-group {{$errors->has('service_type')? 'has-error' : ''}}">
                 {{Form::label('service_type', 'Service Type', ['class' => 'control-label'])}}
                 {{--                {{Form::select('service_type[]',\App\Group::requesters()->get()->pluck('name','id'),isset($category) ? $category->service_service_type()->pluck('id')->toArray() : null,['class'=>'form-control select2','multiple'=>'true'])}}--}}

@@ -11,7 +11,7 @@
 @stop
 
 @section('body')
-    {{Form::open(['route' => 'admin.subcategory.store', 'class' => 'col-sm-9'])}}
+    {{Form::open(['route' => 'admin.subcategory.store', 'class' => 'col-sm-9','files'=>true])}}
 
     @include('admin.subcategory._form')
 

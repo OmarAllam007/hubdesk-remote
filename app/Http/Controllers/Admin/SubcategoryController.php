@@ -48,6 +48,11 @@ class SubcategoryController extends Controller
         $this->createFees($request, $subcategory);
         $this->createOrUpdateLimitation($request, $subcategory);
 
+        if ($request->hasFile('logo')) {
+            $logo_path = Category::uploadAttachment('subcategories', $subcategory, $request->logo);
+            $subcategory->update(['logo' => $logo_path]);
+        }
+
         flash(t('Subcategory Info'), 'Subcategory has been saved', 'success');
 
         return \Redirect::route('admin.category.show', $subcategory->category_id);
@@ -77,6 +82,11 @@ class SubcategoryController extends Controller
         $this->createFees($request, $subcategory);
         $this->createOrUpdateLimitation($request, $subcategory);
         $this->createOrUpdateComplaints($request, $subcategory);
+
+        if ($request->hasFile('logo')) {
+            $logo_path = Subcategory::uploadAttachment('subcategories', $subcategory, $request->logo);
+            $subcategory->update(['logo' => $logo_path]);
+        }
 
         flash(t('Subcategory'), 'Subcategory has been saved', 'success');
         return \Redirect::route('admin.category.show', $subcategory->category_id);
@@ -165,6 +175,7 @@ class SubcategoryController extends Controller
         }
 
     }
+
     private function createOrUpdateComplaints(Request $request, Subcategory $subcategory)
     {
         $subcategory->complaint()->delete();

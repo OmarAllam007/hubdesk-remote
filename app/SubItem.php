@@ -11,10 +11,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class SubItem extends KModel
 {
-    use SoftDeletes, ServiceConfiguration,Listable,SharedRelations;
+    use SoftDeletes, ServiceConfiguration, Listable, SharedRelations;
 
     protected $fillable = [
-        'item_id', 'name', 'description', 'service_cost', 'order', 'is_disabled','business_service_type'
+        'item_id', 'name', 'description', 'service_cost', 'order', 'is_disabled', 'business_service_type', 'logo'
     ];
 
     function item()

@@ -26,10 +26,11 @@ html, body {
   min-height: 50px;
 
   .navbar-nav li a {
-    line-height: 1.5;
+    color: #ddd;
+    line-height: 50px;
     padding-top: 15px;
     padding-bottom: 15px;
-    font-weight: 700;
+    font-weight: 500;
   }
 
   .navbar-brand {
@@ -470,15 +471,24 @@ option.empty {
 }
 
 .navbar-style {
-  background-color: #194F7E;
+  color: #ddd;
+  background-color: #1a1d50;
+  //opacity: 0.9;
+  font-family: 'Esphimere Regular', Arial, sans-serif;
+  line-height: 16px;
+  font-size: 16px;
+  text-transform: capitalize;
+  z-index: 9999;
+  box-shadow: 1px 0px 2px #000;
 
   .nav li a {
-    color: white;
+    color: #ddd;
     font-size: 15px;
   }
 
   .nav li a:hover {
     color: white;
+    background-color: rgba(0, 0, 0, .3);
   }
 
   .nav li.dropdown a {
@@ -731,7 +741,7 @@ a:hover {
 .nav-item:hover {
   border-radius: 10px;
   //background-color: #477296;
-  background-color: #598cb77a;
+  //background-color: #598cb77a;
   transition: .5s;
 }
 
@@ -869,4 +879,19 @@ p.quot-animation {
   background-color: rgb(21, 60, 107);
   color: white;
   border-radius: 20px;
+}
+
+.breadcrumb {
+  background-color: transparent;
+  font-size: 12pt;
+  margin-bottom: 0;
+  color: #1a1d50;
+}
+
+.breadcrumb > li > a {
+  color: #1a1d50
+}
+
+.breadcrumb > li + li:before {
+  content: '';
 }
