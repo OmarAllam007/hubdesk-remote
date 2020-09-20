@@ -47,7 +47,7 @@
                     @foreach($item->subItems()->individual()->orderBy('order')->get() as $subItem)
                         @if($subItem->canDisplay(\App\ServiceUserGroup::$SUB_ITEM))
                             <div class="view view-seventh">
-                                <img src="{{$subItem->logo ? $subItem->logo : '/images/23.png'}}">
+                                <img src="{{$subItem->logo ? $subItem->url : '/images/23.png'}}">
                                 <div class="info"><p>{{$subItem->name}}</p></div>
                                 <div class="mask">
                                     <a href="{{route('ticket.create-ticket',[

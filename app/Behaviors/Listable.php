@@ -32,4 +32,12 @@ trait Listable
         return $list;
     }
 
+    public function getUrlAttribute()
+    {
+        $basename = str_replace('+', ' ', urlencode(basename($this->logo)));
+        $dirname = dirname($this->logo);
+        $path = $dirname . '/' . $basename;
+        return url('/storage' . $path);
+    }
+
 }

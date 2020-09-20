@@ -111,4 +111,12 @@ class Subcategory extends KModel
         return $this->hasMany(Requirement::class, 'reference_id')
             ->where('reference_type', Requirement::$types['Subcategory']);
     }
+
+    public function getUrlAttribute()
+    {
+        $basename = str_replace('+', ' ', urlencode(basename($this->logo)));
+        $dirname = dirname($this->logo);
+        $path = $dirname . '/' . $basename;
+        return url('/storage' . $path);
+    }
 }
