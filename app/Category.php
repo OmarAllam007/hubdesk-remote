@@ -156,11 +156,5 @@ class Category extends KModel
         return self::BUSINESS_SERVICE_TYPE[$this->business_service_type];
     }
 
-    public function getUrlAttribute()
-    {
-        $basename = str_replace('+', ' ', urlencode(basename($this->logo)));
-        $dirname = dirname($this->logo);
-        $path = $dirname . '/' . $basename;
-        return url('/storage' . $path);
-    }
+
 }
