@@ -10,7 +10,8 @@
                         {{t('Select Company')}}
                     </a>
                 </li>
-                /<li class="breadcrumb-item">{{t($business_unit->name)}}</li>
+                /
+                <li class="breadcrumb-item">{{t($business_unit->name)}}</li>
             </ol>
         </nav>
     </div>
@@ -50,23 +51,23 @@
 
 
 @section('body')
-    <div class="col-sm-12">
+    <div class="col-sm-2"></div>
 
+    <div class="col-sm-8">
         <div class="main">
         @foreach($business_unit->categories()->active()->individual()->ticketType()->orderBy('order')->get() as $category)
             @if($category->canDisplay(\App\ServiceUserGroup::$CATEGORY) && $category->available())
                 <!-- SEVENTH EXAMPLE -->
                     <div class="view view-seventh">
                         <img src="{{$category->logo ? $category->logo : '/images/23.png'}}">
-                        <div class="info"><p>{{$category->name}}</p></div>
+                        <div class="info"><p>{{t($category->name)}}</p></div>
                         <div class="mask">
                             <a href="{{route('ticket.create.select_subcategory', compact('business_unit','category'))}}">
-                                <h2>{{$category->name}}</h2></a>
+                                <h2>{{t($category->name)}}</h2></a>
                         </div>
                     </div>
                 @endif
             @endforeach
-            {{--            <div class="space"></div>--}}
         </div>
 
         {{--        <section class="card-section">--}}

@@ -39,7 +39,7 @@
                                     </p>
                                 @endif
                                 {{--for demonistration only--}}
-                                @if(str_contains(strtolower($business_unit->name),'quwa'))
+                                @if($business_unit->id == 10)
                                     <p class="text-center quot-animation">
                                         نعين ونعاون
                                     </p>

@@ -55,7 +55,7 @@
                         @if($subcategory->canDisplay(\App\ServiceUserGroup::$SUBCATEGORY))
                             <div class="view view-seventh">
                                 <img src="{{$subcategory->logo ? $subcategory->logo : '/images/23.png'}}">
-                                <div class="info"><p>{{$subcategory->name}}</p></div>
+                                <div class="info"><p>{{t($subcategory->name)}}</p></div>
                                 <div class="mask">
                                     <a href="{{route('ticket.create.select_item', compact('business_unit','subcategory'))}}">
                                         <h2>

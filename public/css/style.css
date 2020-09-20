@@ -860,3 +860,13 @@ input[type=text] {
     padding-top: 0;
     padding-bottom: 0;
 }
+
+@font-face {
+    font-family: QuwaFontEng;
+    src: url(/fonts/Esphimere.woff);
+}
+
+@font-face {
+    font-family: QuwaFontAr;
+    src: url(/fonts/TheSans-Bold/subset-TheSans-Plain.woff);
+}

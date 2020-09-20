@@ -12,12 +12,10 @@
     <link rel="stylesheet" href="{{asset('/css/app.css')}}?random">
     <link rel="stylesheet" href="{{asset('/css/style.css')}}?random">
 
-    @if(\Session::get('personlized-language-ar' . auth()->id(), config('app.locale')) == "ar")
-        <link rel="stylesheet" href="{{asset('/css/bootstrap-rtl.css')}}">
-    @endif
-    <meta name="csrf-token" content="{{ csrf_token() }}"/>
 
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
     @yield('stylesheets')
+
     @if(isset($business_unit))
         <style>
             body {
@@ -28,17 +26,31 @@
                 background-attachment: fixed;
                 background-size: cover;
                 color: #333;
-                font-family: 'Esphimere Regular', Arial, sans-serif;
+                /*font-family: 'Esphimere Regular', Arial, sans-serif;*/
                 font-size: 13px;
             }
+        </style>
+    @endif
 
+    <style>
+        *:not(i), .quot-animation {
+            font-family: QuwaFontEng, Arial !important;
+        }
+
+        .quot-animation {
+            font-family: QuwaFontAr, Arial !important;
+        }
+    </style>
+    @if(\Session::get('personalized-language' . auth()->id(), config('app.locale')) == "ar")
+        <style>
+            *:not(i) {
+                font-family: QuwaFontAr, Arial !important;
+            }
         </style>
     @endif
     <style>
-        .circular_avatar{
-            background-color: yellow;
-            border-radius: 50%;
-        }
+
+
     </style>
 </head>
 <body>
@@ -120,7 +132,7 @@
                                                 class="fa fa-unlock "></i> {{t('Reset Password')}}
                                     </a></li>
                                 @if(auth()->user()->isSupport())
-                                    <li ><a href="{{route('configurations.index')}}"><i
+                                    <li><a href="{{route('configurations.index')}}"><i
                                                     class="fa fa-cogs"></i> {{t('Configurations')}}</a></li>
                                 @endif
                                 <li><a href="{{url('/logout')}}"><i class="fa fa-sign-out"></i> {{t('Logout')}}</a></li>
