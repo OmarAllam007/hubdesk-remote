@@ -863,10 +863,10 @@ input[type=text] {
 
 @font-face {
     font-family: QuwaFontEng;
-    src: url(/public/fonts/Esphimere.woff) format('woff');
+    src: url(../../public/fonts/Esphimere.woff) format('woff');
 }
 
 @font-face {
     font-family: QuwaFontAr;
-    src: url(/public/fonts/TheSans-Bold/subset-TheSans-Plain.woff) format('woff');
+    src: url(../../public/fonts/TheSans-Bold/subset-TheSans-Plain.woff) format('woff');
 }
