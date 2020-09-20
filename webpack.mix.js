@@ -15,8 +15,8 @@ const { mix } = require('laravel-mix');
     // mix.js('resources/assets/js/Reports/reports.js','public/js');
     // mix.sass('resources/assets/sass/bootstrap-rtl.scss', 'public/bootstrap-rtl.css')
     // mix.sass('resources/assets/sass/app.scss', 'public/css')
-
-mix.sass('resources/assets/sass/app.scss', 'public/css');
+mix.copyDirectory('resources/fonts', 'public/fonts');
+// mix.sass('resources/assets/sass/app.scss', 'public/css');
 //       mix.js('resources/assets/js/app.js', 'public/js')
 
 // mix.sass('resources/assets/sass/app.scss', 'public/css')
