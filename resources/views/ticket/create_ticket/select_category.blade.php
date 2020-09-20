@@ -59,7 +59,7 @@
             @if($category->canDisplay(\App\ServiceUserGroup::$CATEGORY) && $category->available())
                 <!-- SEVENTH EXAMPLE -->
                     <div class="view view-seventh">
-                        <img src="{{$category->logo ? $category->logo : '/images/23.png'}}">
+                        <img src="{{$category->logo ? $category->url : '/images/23.png'}}">
                         <div class="info"><p>{{t($category->name)}}</p></div>
                         <div class="mask">
                             <a href="{{route('ticket.create.select_subcategory', compact('business_unit','category'))}}">
@@ -69,70 +69,5 @@
                 @endif
             @endforeach
         </div>
-
-        {{--        <section class="card-section">--}}
-
-        {{--            <div class=form-group></div>--}}
-        {{--            --}}{{--        <h3 class=text-center>{{t('Categories') }}</h3>--}}
-        {{--            <div class="row">--}}
-        {{--                <div class="col-md-1"></div>--}}
-        {{--                <div class="col-md-10">--}}
-        {{--                    <div class="tiles-container">--}}
-        {{--                        @if(str_contains(strtolower($business_unit->name),'quwa'))--}}
-
-        {{--                            <a href="https://fiori.alkifah.com:5447/sap/bc/ui5_ui5/ui2/ushell/shells/abap/FioriLaunchpad.html?sap-client=900&sap-language=EN&sap-sec_session_created=X"--}}
-        {{--                               class="tile" target="_blank">--}}
-        {{--                                <div class="tile-container" style="display: flex;--}}
-        {{--    flex-direction: column;--}}
-        {{--    align-items: center;--}}
-        {{--    justify-content: center;--}}
-        {{--    height: 250px;--}}
-        {{--    width: 250px;">--}}
-        {{--                                    --}}{{--<div class="tile-icon" style="">--}}
-        {{--                                    --}}{{--                            <img src="{{asset('images/logo.png')}}">--}}
-        {{--                                    --}}{{--</div>--}}
-        {{--                                    <div class="tile-body"--}}
-        {{--                                         style="width: 100%;height: 100%;display: flex; flex-direction:column;">--}}
-        {{--                                        --}}{{--@if($business_unit->logo)--}}
-        {{--                                        <img src="{{asset('images/fiori-logo.jpeg')}}" style="margin: auto;width: 100%">--}}
-        {{--                                    </div>--}}
-        {{--                                </div>--}}
-        {{--                            </a>--}}
-        {{--                        @endif--}}
-
-        {{--                        @foreach($business_unit->categories()->active()->individual()->ticketType()->orderBy('order')->get() as $category)--}}
-        {{--                            @if($category->canDisplay(\App\ServiceUserGroup::$CATEGORY) && $category->available())--}}
-
-        {{--                                <a href="{{route('ticket.create.select_subcategory', compact('business_unit','category'))}}"--}}
-        {{--                                   class="tile">--}}
-        {{--                                    <div class="tile-container" style="display: flex;--}}
-        {{--    flex-direction: column;--}}
-        {{--    align-items: center;--}}
-        {{--    justify-content: center;--}}
-        {{--    height: 250px;--}}
-        {{--    width: 250px;">--}}
-        {{--                                        <div class="tile-body"--}}
-        {{--                                             style="width: 100%;height: 100%;display: flex; flex-direction:column;">--}}
-        {{--                                            @if($category->logo && file_exists(storage_path($category->url)))--}}
-        {{--                                                <p class="text-center logo-animation" style="height: 100px">--}}
-        {{--                                                    <img src="{{$category->url}}" alt="{{$category->url}}">--}}
-        {{--                                                </p>--}}
-
-
-        {{--                                            @else--}}
-        {{--                                                <p class="text-center " style="margin:auto">--}}
-        {{--                                                    {{t($category->name)}}--}}
-        {{--                                                </p>--}}
-        {{--                                            @endif--}}
-        {{--                                        </div>--}}
-        {{--                                    </div>--}}
-        {{--                                </a>--}}
-        {{--                            @endif--}}
-        {{--                        @endforeach--}}
-        {{--                    </div>--}}
-        {{--                </div>--}}
-        {{--                <div class="col-md-1"></div>--}}
-        {{--            </div>--}}
-        {{--        </section>--}}
     </div>
 @endsection
