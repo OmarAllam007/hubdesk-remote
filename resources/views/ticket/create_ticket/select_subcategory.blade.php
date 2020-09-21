@@ -51,6 +51,23 @@
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <div class="main">
+                    {{--                    will removed--}}
+                    @if($category->id == 116)
+                        <div class="view view-seventh">
+                            <img src="/images/fiori-logo.png">
+                            <div class="info"><p>
+                                    {{t("Fiori")}}
+                                </p></div>
+                            <div class="mask">
+                                <a href="https://fiori.alkifah.com:5447/sap/bc/ui5_ui5/ui2/ushell/shells/abap/FioriLaunchpad.html?sap-client=900&sap-language=EN&sap-sec_session_created=X">
+                                    <h2>
+                                        {{t("Fiori")}}
+                                    </h2>
+                                </a>
+                            </div>
+                        </div>
+                    @endif
+
                     @foreach($category->subcategories()->individual()->orderBy('order')->get() as $subcategory)
                         @if($subcategory->canDisplay(\App\ServiceUserGroup::$SUBCATEGORY))
                             <div class="view view-seventh">
