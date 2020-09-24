@@ -34,11 +34,7 @@
 
     <style>
         *:not(i), .quot-animation {
-            font-family: QuwaFontEng, Arial !important;
-        }
-
-        .quot-animation {
-            font-family: QuwaFontAr, Arial !important;
+            font-family: 'Exo2-Plain Font', Arial !important;
         }
     </style>
     @if(\Session::get('personalized-language' . auth()->id(), config('app.locale')) == "ar")
