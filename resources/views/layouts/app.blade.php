@@ -179,13 +179,13 @@
 
     <footer class="footer">
         <div style="display: flex;">
-            <a href="#"><i class="fa fa-envelope"></i>cs.alquwa@alkifah.com</a>
-            <a href="#"><i class="fa fa-link"></i>www.dss.com.sa</a>
+{{--            <a href="#"><i class="fa fa-envelope"></i>cs.alquwa@alkifah.com</a>--}}
+            <a href="https://hubtech.sa">Powered by Hubdesk from Hubtech</a>
         </div>
         <div>
-            <a
+            {{--<a
                     href="{{asset('attachments/hubdesk-user-guide.pdf')}}" target="_blank"><i
-                        class="fa fa-download"></i> {{t('AlQuwa Hubdesk User Guideline')}}</a>
+                        class="fa fa-download"></i> {{t('AlQuwa Hubdesk User Guideline')}}</a>--}}
         </div>
     </footer>
 </div>

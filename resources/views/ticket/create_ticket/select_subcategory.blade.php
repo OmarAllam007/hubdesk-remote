@@ -66,6 +66,21 @@
                                 </a>
                             </div>
                         </div>
+
+                        <div class="view view-seventh">
+                            <!-- /storage/attachments/subcategories/427/44.png -->
+                            <img src="{{ asset('images/sf-logo.png') }}">
+                            <div class="info"><p>
+                                    {{t("Success Factor")}}
+                                </p></div>
+                            <div class="mask">
+                                <a target="_blank" href="https://performancemanager.successfactors.eu/sf/start?_s.crb=lKkyhwFB1A8TjVql2Pw1KsJNTdBkC1u9L8radVFXdoc%253d#Shell-home">
+                                    <h2>
+                                        {{t("Success Factor")}}
+                                    </h2>
+                                </a>
+                            </div>
+                        </div>
                     @endif
 
                     @foreach($category->subcategories()->individual()->orderBy('order')->get() as $subcategory)
