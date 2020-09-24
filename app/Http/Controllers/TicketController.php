@@ -496,7 +496,7 @@ class TicketController extends Controller
             return view('ticket.create_ticket.select_subcategory', compact('business_unit', 'category'));
         } elseif ($category->subcategories()->count() == 1) {
             $subcategory = $category->subcategories()->first();
-            return redirect()->route('ticket.create.select_subItem', compact('business_unit', 'subcategory'));
+            return redirect()->route('ticket.create.select_item', compact('business_unit', 'subcategory'));
         }
 
         $subcategory = new Subcategory();
