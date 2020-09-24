@@ -40,7 +40,7 @@
     @if(\Session::get('personalized-language' . auth()->id(), config('app.locale')) == "ar")
         <style>
             *:not(i) {
-                font-family: QuwaFontAr, Arial !important;
+                font-family: "Sans-Plain Font", Arial !important;
             }
         </style>
     @endif
