@@ -3,7 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
+/**
+ * @property Collection survey_answers
+ */
 class UserSurvey extends Model
 {
     protected $table = "user_surveys";
@@ -36,13 +40,15 @@ class UserSurvey extends Model
             return 0;
         }
 //        dd($this->id);
-        $total = 0;
+//        $total = 0;
 
-        foreach ($this->survey_answers as $answer){
-            $total += $answer->answer->degree;
-        }
+        return $this->survey_answers->filter(function($answer) {
+            return $answer->answer;
+        })->average('answer.degree');
 
-        return $total / $this->survey_answers->count();
+
+
+//        return $total / $this->survey_answers->count();
     }
 
 }
