@@ -259,6 +259,10 @@ class DashboardInfo
             });
 
         $answers->each(function ($userAnswer) use ($questions) {
+            if (!$userAnswer->answer) {
+                return true;
+            }
+
             $questions->push(collect(['question' => $userAnswer->answer->question->description, 'answer' => $userAnswer->answer->description, 'degree' => $userAnswer->answer->degree]));
         });
 
