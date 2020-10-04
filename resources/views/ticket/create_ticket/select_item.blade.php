@@ -6,22 +6,19 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">{{t('Create Ticket')}}</a></li>
                 /
-                <li class="breadcrumb-item"><a href="#">{{$business_unit->name}}
+                <li class="breadcrumb-item"><a href="#">{{t($business_unit->name)}}
                     </a>
                 </li>
                 /
                 <li class="breadcrumb-item"><a
-                            href="{{route('ticket.create.select_category',compact('business_unit'))}}"> {{$subcategory->category->name}}
+                            href="{{route('ticket.create.select_category',compact('business_unit'))}}"> {{t($subcategory->category->name)}}
                     </a>
                 </li>
                 /
                 <li class="breadcrumb-item"><a
-                            href="{{route('ticket.create.select_subcategory',[$business_unit,$subcategory->category])}}"> {{$subcategory->name}}
+                            href="{{route('ticket.create.select_subcategory',[$business_unit,$subcategory->category])}}"> {{t($subcategory->name)}}
                     </a>
                 </li>
-                {{--                <li class="breadcrumb-item">--}}
-                {{--                    {{t('Select Service')}}--}}
-                {{--                </li>--}}
             </ol>
         </nav>
     </div>
@@ -41,10 +38,10 @@
                         @if($item->canDisplay(\App\ServiceUserGroup::$ITEM))
                             <div class="view view-seventh">
                                 <img src="{{$item->logo ? $item->url : '/images/23.png'}}">
-                                <div class="info"><p>{{$item->name}}</p></div>
+                                <div class="info"><p>{{t($item->name)}}</p></div>
                                 <div class="mask">
                                     <a href="{{route('ticket.create.select_subItem', compact('business_unit','item'))}}">
-                                        <h2>{{$item->name}}</h2></a>
+                                        <h2>{{t($item->name)}}</h2></a>
                                 </div>
                             </div>
                         @endif
