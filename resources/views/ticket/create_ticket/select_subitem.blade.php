@@ -48,17 +48,18 @@
                         @if($subItem->canDisplay(\App\ServiceUserGroup::$SUB_ITEM))
                             <div class="view view-seventh">
                                 <img src="{{$subItem->logo ? $subItem->url : '/images/23.png'}}">
-                                <div class="info"><p>{{$subItem->name}}</p></div>
+                                <div class="info"><p>{{t($subItem->name)}}</p></div>
                                 <div class="mask">
                                     <a href="{{route('ticket.create-ticket',[
                             $business_unit,$subItem->item->subcategory->category,$subItem->item->subcategory,$subItem->item,$subItem
                             ])}}">
-                                        <h2>{{$subItem->name}}</h2></a>
+                                        <h2>{{t($subItem->name)}}</h2></a>
                                 </div>
                             </div>
                         @endif
                     @endforeach
                 </div>
-            </div></div>
+            </div>
+        </div>
     </section>
 @endsection
