@@ -90,7 +90,7 @@ class ApprovalController extends Controller
             $request['status'] = $ticketApproval->approval_questions_status;
         }
 
-        $request['hidden_comment'] = isset($request->hidden_comment) ? true : false;
+        $request['hidden_comment'] = isset($request->hidden_comment);
         $ticketApproval->update($request->all());
 
         if (!$ticketApproval->ticket->isClosed() && !$ticketApproval->ticket->hasPendingApprovals()) {
