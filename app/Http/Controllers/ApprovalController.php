@@ -11,6 +11,7 @@ use App\Jobs\ApplySLA;
 use App\Jobs\SendApproval;
 use App\Jobs\UpdateApprovalJob;
 use App\Mail\SendNewApproval;
+use App\Mail\UpdateApprovalMail;
 use App\ReplyTemplate;
 use App\Ticket;
 use App\TicketApproval;
@@ -90,7 +91,7 @@ class ApprovalController extends Controller
             $request['status'] = $ticketApproval->approval_questions_status;
         }
 
-        $request['hidden_comment'] = isset($request->hidden_comment) ? true : false;
+        $request['hidden_comment'] = isset($request->hidden_comment);
         $ticketApproval->update($request->all());
 
         if (!$ticketApproval->ticket->isClosed() && !$ticketApproval->ticket->hasPendingApprovals()) {
@@ -99,7 +100,8 @@ class ApprovalController extends Controller
         }
 
         if ($ticketApproval->ticket->technician_id) {
-            $this->dispatch(new UpdateApprovalJob($ticketApproval));
+            \Mail::send(new UpdateApprovalMail($ticketApproval));
+//            $this->dispatch(new UpdateApprovalJob($ticketApproval));
         }
 
         if ($ticketApproval->status != -1 && $ticketApproval->hasNext()) {
