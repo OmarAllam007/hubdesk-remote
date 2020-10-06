@@ -8,11 +8,13 @@
     </thead>
     <tbody>
     @foreach($ticket->user_survey->survey_answers as $answer)
-        <tr>
-            <td>{{$answer->answer->question->description}}</td>
-            <td>{{$answer->answer->description}}</td>
-            <td>{{number_format($answer->answer->degree,2)}}</td>
-        </tr>
+        @if($answer->answer)
+            <tr>
+                <td>{{$answer->answer->question->description}}</td>
+                <td>{{$answer->answer->description}}</td>
+                <td>{{number_format($answer->answer->degree,2)}}</td>
+            </tr>
+        @endif
     @endforeach
     <tr class="bg-success">
         <td colspan="2">Total</td>
