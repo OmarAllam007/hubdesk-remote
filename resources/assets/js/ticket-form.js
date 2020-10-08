@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import Attachments from './AttachmentModal.vue';
-import ApprovalQuestions from "./approvals/questions/ApprovalQuestions";
+// import ApprovalQuestions from "./approvals/questions/ApprovalQuestions";
 import Task from './Task.vue';
+import Approvals from './ticket/approvals/Approvals.vue';
 
 
 window.app = new Vue({
@@ -146,10 +147,9 @@ window.app = new Vue({
         },
 
         group() {
-            console.log('asd');
             this.loadTechnicians();
         },
     },
 
-    components: {Attachments,Task, ApprovalQuestions}
+    components: {Attachments, Task, Approvals}
 });

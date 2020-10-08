@@ -6,10 +6,10 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Session\TokenMismatchException;
-
+use Throwable;
 class ErrorLog extends Model
 {
-    static function log(\Exception $e)
+    static function log(Throwable $e)
     {
 
         $log = new ErrorLog();

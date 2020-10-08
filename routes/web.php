@@ -37,6 +37,7 @@ Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
     $r->get('/status', 'ListController@status');
     $r->get('/requester', 'ListController@requester');
     $r->get('/group', 'ListController@supportGroup');
+    $r->get('/approvers', 'ListController@approvers');
 
 //    KGS LIST Routes
 
