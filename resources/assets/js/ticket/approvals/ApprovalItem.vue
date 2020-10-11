@@ -122,7 +122,12 @@ export default {
     },
 
   },
-  components: {ApprovalQuestionRow,vSelect}
+  computed: {
+    valid_item() {
+      return this.description.length !== '' && this.approver !== 0;
+    }
+  },
+  components: {ApprovalQuestionRow, vSelect}
 
 }
 </script>

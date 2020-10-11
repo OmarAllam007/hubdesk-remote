@@ -18,7 +18,8 @@
     <!--      @endforeach-->
     <!--      @endif-->
     <div class="form-group">
-      <button type="submit" class="btn btn-success"><i class="fa fa-check-circle"></i>Send</button>
+      <button type="submit" class="btn btn-success" :disabled="!can_submit"><i class="fa fa-check-circle"></i>Send
+      </button>
     </div>
     <!--      @endcan-->
 
@@ -39,8 +40,6 @@ export default {
     }
   },
   created() {
-
-
     EventBus.$on('remove-approval-item', (index) => {
       this.removeLevel(index);
     })
@@ -58,6 +57,15 @@ export default {
     },
     removeLevel(index) {
       this.levels.splice(index, 1)
+    }
+  },
+  computed: {
+    can_submit() {
+      console.log('ere')
+      return this.$children.some((child) => {
+        console.log(child)
+        return child.valid_item;
+      })
     }
   },
   components: {ApprovalItem}
