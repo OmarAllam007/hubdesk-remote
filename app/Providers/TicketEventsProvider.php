@@ -77,10 +77,10 @@ class TicketEventsProvider extends ServiceProvider
             $approval->ticket->save();
 
             if ($approval->shouldSend()) {
-                \Mail::to($approval->approver->email)->send(new SendNewApproval($approval));
+                \Mail::to($approval->approver->email)->queue(new SendNewApproval($approval));
             }
 
-            Attachment::uploadFiles(Attachment::TICKET_APPROVAL_TYPE, $approval->id);
+//            Attachment::uploadFiles(Attachment::TICKET_APPROVAL_TYPE, $approval->id);
         });
 
         TicketApproval::updated(function (TicketApproval $approval) {

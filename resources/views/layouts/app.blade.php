@@ -189,6 +189,5 @@
 
 @include('vendor.sweetalert.alert')
 @yield('javascript')
-@livewireScripts
 </body>
 </html>

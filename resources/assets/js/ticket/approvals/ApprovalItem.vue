@@ -4,20 +4,10 @@
       <div class="panel-heading">
         <div style="display: flex; justify-content: space-between">
           <div class="form-group select2-container">
-            <label class="col-md-8">
+            <label class="col-md-10">
               Send Approval to
-              <v-select :options="users" label="name" v-model="approver" placeholder="Select Approver"></v-select>
-
-
-              <!--              <select class="form-control select2"-->
-              <!--                      v-model="approver_id">-->
-              <!--                <option value="0">Select Approver</option>-->
-
-              <!--                <option v-for="user of users" :value="approver_id">-->
-              <!--                  {{ user.name }} ( {{ user.email }} )-->
-              <!--                </option>-->
-
-              <!--              </select>-->
+              <v-select :options="users" label="name" v-model="level.approver" placeholder="Select Approver"
+                        class="selection-list"></v-select>
             </label>
 
           </div>
@@ -44,10 +34,11 @@
             </thead>
             <tbody>
 
-            <tr is="approval-question-row" v-for="(question, qIndex) in questions" :index="index" :key="qIndex"
+            <tr is="approval-question-row" v-for="(question, qIndex) in level.questions" :index="index" :key="qIndex"
                 :qIndex="qIndex"
                 :row="qIndex" :question="question"
-                @remove="removeQuestion(qIndex)" class="col-md-12">
+                @remove="removeQuestion(qIndex)"
+                class="col-md-12">
             </tr>
 
             </tbody>
@@ -57,7 +48,7 @@
           <label>
             Description
           </label>
-          <textarea class="form-control" v-model="description"
+          <textarea class="form-control" v-model="level.description"
                     name="content" cols="30" rows="8"></textarea>
         </div>
       </div>
@@ -65,12 +56,13 @@
       <div class="panel-footer">
         <div style="display: flex; justify-content: space-between">
           <div class="form-group">
-            <input type="file" class="form-control input-xs" name="attachments[]" multiple>
+            <input type="file" class="form-control input-xs" name="attachments[]" @change="attachFiles($event)"
+                   multiple>
           </div>
 
-          <div class="checkbox" v-if="index + 1 > 1">
+          <div class="checkbox" v-if="index + 1 > 1 || hasApprovals()">
             <label>
-              <input type="checkbox"> Add as a new stage
+              <input type="checkbox" v-model="level.new_stage"> Add as a new stage
             </label>
           </div>
         </div>
@@ -99,29 +91,30 @@ export default {
     }
   },
   created() {
-    // EventBus.$on(`remove-approval-question-${this.index}`, (question) => {
-    //   this.removeQuestion(question);
-    // });
+
   },
   mounted() {
-    $('.select2').on('change', function (e) {
-      var data = e;
-      console.log(e);
-      // console.log(data);
-    });
+
   },
   methods: {
     addQuestion(index) {
-      this.questions.push({description: ''});
+      this.level.questions.push({description: ''});
     },
     removeQuestion(index) {
-      this.questions.splice(index, 1);
+      this.level.questions.splice(index, 1);
     },
     deleteMe(index) {
       EventBus.$emit('remove-approval-item', index)
     },
+    hasApprovals() {
+      return this.$parent.approvals_data.length >= 1;
+    },
+    attachFiles(event) {
+      this.level.attachments.push(event.target.files[0])
+    }
 
   },
+  watch: {},
   computed: {
     valid_item() {
       return this.description.length !== '' && this.approver !== 0;
@@ -136,4 +129,8 @@ export default {
 /*.select2 {*/
 /*  width: 50%;*/
 /*}*/
+
+.selection-list {
+  width: 500px !important;
+}
 </style>

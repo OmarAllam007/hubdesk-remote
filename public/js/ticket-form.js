@@ -472,6 +472,88 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 /* 2 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11434,219 +11516,10 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(17).setImmediate))
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function(useSourceMap) {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		return this.map(function (item) {
-			var content = cssWithMappingToString(item, useSourceMap);
-			if(item[2]) {
-				return "@media " + item[2] + "{" + content + "}";
-			} else {
-				return content;
-			}
-		}).join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-function cssWithMappingToString(item, useSourceMap) {
-	var content = item[1] || '';
-	var cssMapping = item[3];
-	if (!cssMapping) {
-		return content;
-	}
-
-	if (useSourceMap && typeof btoa === 'function') {
-		var sourceMapping = toComment(cssMapping);
-		var sourceURLs = cssMapping.sources.map(function (source) {
-			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
-		});
-
-		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-	}
-
-	return [content].join('\n');
-}
-
-// Adapted from convert-source-map (MIT)
-function toComment(sourceMap) {
-	// eslint-disable-next-line no-undef
-	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
-
-	return '/*# ' + data + ' */';
-}
-
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(17).setImmediate))
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-var utils = __webpack_require__(0);
-var normalizeHeaderName = __webpack_require__(27);
-
-var DEFAULT_CONTENT_TYPE = {
-  'Content-Type': 'application/x-www-form-urlencoded'
-};
-
-function setContentTypeIfUnset(headers, value) {
-  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
-    headers['Content-Type'] = value;
-  }
-}
-
-function getDefaultAdapter() {
-  var adapter;
-  if (typeof XMLHttpRequest !== 'undefined') {
-    // For browsers use XHR adapter
-    adapter = __webpack_require__(11);
-  } else if (typeof process !== 'undefined') {
-    // For node use HTTP adapter
-    adapter = __webpack_require__(11);
-  }
-  return adapter;
-}
-
-var defaults = {
-  adapter: getDefaultAdapter(),
-
-  transformRequest: [function transformRequest(data, headers) {
-    normalizeHeaderName(headers, 'Content-Type');
-    if (utils.isFormData(data) ||
-      utils.isArrayBuffer(data) ||
-      utils.isBuffer(data) ||
-      utils.isStream(data) ||
-      utils.isFile(data) ||
-      utils.isBlob(data)
-    ) {
-      return data;
-    }
-    if (utils.isArrayBufferView(data)) {
-      return data.buffer;
-    }
-    if (utils.isURLSearchParams(data)) {
-      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
-      return data.toString();
-    }
-    if (utils.isObject(data)) {
-      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
-      return JSON.stringify(data);
-    }
-    return data;
-  }],
-
-  transformResponse: [function transformResponse(data) {
-    /*eslint no-param-reassign:0*/
-    if (typeof data === 'string') {
-      try {
-        data = JSON.parse(data);
-      } catch (e) { /* Ignore */ }
-    }
-    return data;
-  }],
-
-  timeout: 0,
-
-  xsrfCookieName: 'XSRF-TOKEN',
-  xsrfHeaderName: 'X-XSRF-TOKEN',
-
-  maxContentLength: -1,
-
-  validateStatus: function validateStatus(status) {
-    return status >= 200 && status < 300;
-  }
-};
-
-defaults.headers = {
-  common: {
-    'Accept': 'application/json, text/plain, */*'
-  }
-};
-
-utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
-  defaults.headers[method] = {};
-});
-
-utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
-  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
-});
-
-module.exports = defaults;
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
-
-/***/ }),
-/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -11874,18 +11747,151 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(24);
+
+/***/ }),
 /* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+var utils = __webpack_require__(0);
+var normalizeHeaderName = __webpack_require__(27);
+
+var DEFAULT_CONTENT_TYPE = {
+  'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+function setContentTypeIfUnset(headers, value) {
+  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
+    headers['Content-Type'] = value;
+  }
+}
+
+function getDefaultAdapter() {
+  var adapter;
+  if (typeof XMLHttpRequest !== 'undefined') {
+    // For browsers use XHR adapter
+    adapter = __webpack_require__(11);
+  } else if (typeof process !== 'undefined') {
+    // For node use HTTP adapter
+    adapter = __webpack_require__(11);
+  }
+  return adapter;
+}
+
+var defaults = {
+  adapter: getDefaultAdapter(),
+
+  transformRequest: [function transformRequest(data, headers) {
+    normalizeHeaderName(headers, 'Content-Type');
+    if (utils.isFormData(data) ||
+      utils.isArrayBuffer(data) ||
+      utils.isBuffer(data) ||
+      utils.isStream(data) ||
+      utils.isFile(data) ||
+      utils.isBlob(data)
+    ) {
+      return data;
+    }
+    if (utils.isArrayBufferView(data)) {
+      return data.buffer;
+    }
+    if (utils.isURLSearchParams(data)) {
+      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
+      return data.toString();
+    }
+    if (utils.isObject(data)) {
+      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
+      return JSON.stringify(data);
+    }
+    return data;
+  }],
+
+  transformResponse: [function transformResponse(data) {
+    /*eslint no-param-reassign:0*/
+    if (typeof data === 'string') {
+      try {
+        data = JSON.parse(data);
+      } catch (e) { /* Ignore */ }
+    }
+    return data;
+  }],
+
+  timeout: 0,
+
+  xsrfCookieName: 'XSRF-TOKEN',
+  xsrfHeaderName: 'X-XSRF-TOKEN',
+
+  maxContentLength: -1,
+
+  validateStatus: function validateStatus(status) {
+    return status >= 200 && status < 300;
+  }
+};
+
+defaults.headers = {
+  common: {
+    'Accept': 'application/json, text/plain, */*'
+  }
+};
+
+utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
+  defaults.headers[method] = {};
+});
+
+utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
+});
+
+module.exports = defaults;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
+
+/***/ }),
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventBus; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 
 var EventBus = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a();
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -12073,12 +12079,6 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(24);
 
 /***/ }),
 /* 10 */
@@ -12361,7 +12361,7 @@ module.exports = __webpack_require__(16);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__AttachmentModal_vue__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__AttachmentModal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__AttachmentModal_vue__);
@@ -12598,7 +12598,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 /* 18 */
@@ -12791,7 +12791,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(8)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(9)))
 
 /***/ }),
 /* 19 */
@@ -12810,7 +12810,7 @@ var Component = __webpack_require__(1)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/omarkhaled/code/hdesk/resources/assets/js/AttachmentModal.vue"
+Component.options.__file = "/Users/omar/code/hdesk/resources/assets/js/AttachmentModal.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] AttachmentModal.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -12961,7 +12961,7 @@ var Component = __webpack_require__(1)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/omarkhaled/code/hdesk/resources/assets/js/Task.vue"
+Component.options.__file = "/Users/omar/code/hdesk/resources/assets/js/Task.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -12989,9 +12989,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
 
 
@@ -13308,7 +13308,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('tasks', {
 var utils = __webpack_require__(0);
 var bind = __webpack_require__(10);
 var Axios = __webpack_require__(26);
-var defaults = __webpack_require__(5);
+var defaults = __webpack_require__(7);
 
 /**
  * Create an instance of Axios
@@ -13391,7 +13391,7 @@ function isSlowBuffer (obj) {
 "use strict";
 
 
-var defaults = __webpack_require__(5);
+var defaults = __webpack_require__(7);
 var utils = __webpack_require__(0);
 var InterceptorManager = __webpack_require__(35);
 var dispatchRequest = __webpack_require__(36);
@@ -13923,7 +13923,7 @@ module.exports = InterceptorManager;
 var utils = __webpack_require__(0);
 var transformData = __webpack_require__(37);
 var isCancel = __webpack_require__(13);
-var defaults = __webpack_require__(5);
+var defaults = __webpack_require__(7);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -24550,7 +24550,7 @@ var Component = __webpack_require__(1)(
   /* script */
   __webpack_require__(47),
   /* template */
-  __webpack_require__(63),
+  __webpack_require__(68),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -24558,7 +24558,7 @@ var Component = __webpack_require__(1)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/omarkhaled/code/hdesk/resources/assets/js/ticket/approvals/Approvals.vue"
+Component.options.__file = "/Users/omar/code/hdesk/resources/assets/js/ticket/approvals/Approvals.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Approvals.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -24592,7 +24592,7 @@ var content = __webpack_require__(45);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(6)("04868dda", content, false, {});
+var update = __webpack_require__(4)("04868dda", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -24611,12 +24611,12 @@ if(false) {
 /* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(3)(false);
+exports = module.exports = __webpack_require__(2)(false);
 // imports
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -24660,11 +24660,13 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ApprovalItem__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ApprovalItem___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__ApprovalItem__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__EventBus__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ApprovalRow__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ApprovalRow___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__ApprovalRow__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__EventBus__ = __webpack_require__(8);
 //
 //
 //
@@ -24693,6 +24695,78 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -24700,47 +24774,148 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Approvals",
+  props: ["ticket_id", "is_task", "approvals", 'task_approvals', 'submit_approval'],
   data: function data() {
     return {
       levels: [],
-      users: []
+      users: [],
+      loading: false,
+      approvals_data: []
     };
   },
   created: function created() {
     var _this = this;
 
-    __WEBPACK_IMPORTED_MODULE_2__EventBus__["a" /* EventBus */].$on('remove-approval-item', function (index) {
+    console.log(this.task_approvals);
+    __WEBPACK_IMPORTED_MODULE_3__EventBus__["a" /* EventBus */].$on('remove-approval-item', function (index) {
       _this.removeLevel(index);
     });
   },
   mounted: function mounted() {
-    var _this2 = this;
-
-    this.addNewLevel();
-    __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/list/approvers').then(function (response) {
-      _this2.users = response.data;
-    });
+    this.init();
   },
 
 
   methods: {
+    init: function init() {
+      var _this2 = this;
+
+      this.loading = true;
+      this.addNewLevel();
+
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/list/approvers').then(function (response) {
+        _this2.users = response.data;
+        _this2.loading = false;
+      });
+
+      this.approvals_data = this.is_task ? this.task_approvals : this.approvals;
+    },
+    removeApproval: function removeApproval(approvalIndex) {
+      this.approvals_data.splice(approvalIndex, 1);
+    },
     addNewLevel: function addNewLevel() {
-      this.levels.push({});
+      this.levels.push({ 'approver': null, 'description': '', questions: [], new_stage: false, attachments: [] });
     },
     removeLevel: function removeLevel(index) {
-      this.levels.splice(index, 1);
+      if (this.levels.length > 1) {
+        this.levels.splice(index, 1);
+      }
+    },
+    sendApproval: function sendApproval() {
+      var _this3 = this;
+
+      this.loading = true;
+      var formData = new FormData();
+      formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
+
+      for (var i = 0; i < this.levels.length; ++i) {
+        formData.append("approvals[" + i + "][description]", this.levels[i].description);
+        formData.append("approvals[" + i + "][approver_id]", this.levels[i].approver.id);
+        formData.append("approvals[" + i + "][new_stage]", this.levels[i].new_stage ? 1 : 0);
+        // formData.append(`approvals[${i}][new_stage]`, this.levels[i].new_stage);
+
+
+        var questions = this.levels[i].questions;
+        for (var q = 0; q < questions.length; q++) {
+          formData.append("approvals[" + i + "][questions][" + q + "][description]", questions[q].description);
+        }
+
+        var attachments = this.levels[i].attachments;
+        for (var l = 0; l < attachments.length; l++) {
+          formData.append("approvals[" + i + "][attachments][" + l + "]", attachments[l]);
+        }
+      }
+
+      console.log(formData);
+
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post("/approval/approval/" + this.ticket_id, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function (response) {
+        _this3.loading = false;
+        response.data.forEach(function (approval) {
+          _this3.approvals_data.push(approval);
+        });
+        _this3.clearForm();
+      }).catch(function (e) {
+        _this3.loading = false;
+      });
+    },
+    clearForm: function clearForm() {
+      this.levels = [];
+      this.addNewLevel();
     }
   },
+
   computed: {
     can_submit: function can_submit() {
-      console.log('ere');
-      return this.$children.some(function (child) {
-        console.log(child);
-        return child.valid_item;
-      });
+      if (this.loading) {
+        return false;
+      }
+
+      var validated = true;
+
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = this.levels[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var level = _step.value;
+
+          var filledQuestions = true;
+          // if(level.questions.length){
+          level.questions.forEach(function (question) {
+            if (!question.description) {
+              filledQuestions = false;
+            }
+          });
+          // }
+          if (!level.approver || !level.description || !filledQuestions) {
+            validated = false;
+            break;
+          }
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      return validated;
     }
   },
-  components: { ApprovalItem: __WEBPACK_IMPORTED_MODULE_1__ApprovalItem___default.a }
+  components: { ApprovalItem: __WEBPACK_IMPORTED_MODULE_1__ApprovalItem___default.a, ApprovalRow: __WEBPACK_IMPORTED_MODULE_2__ApprovalRow___default.a }
 });
 
 /***/ }),
@@ -24764,7 +24939,7 @@ var Component = __webpack_require__(1)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/omarkhaled/code/hdesk/resources/assets/js/ticket/approvals/ApprovalItem.vue"
+Component.options.__file = "/Users/omar/code/hdesk/resources/assets/js/ticket/approvals/ApprovalItem.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] ApprovalItem.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -24798,7 +24973,7 @@ var content = __webpack_require__(50);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(6)("6bd7221c", content, false, {});
+var update = __webpack_require__(4)("6bd7221c", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -24817,12 +24992,12 @@ if(false) {
 /* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(3)(false);
+exports = module.exports = __webpack_require__(2)(false);
 // imports
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*.select2 {*/\n/*  width: 50%;*/\n/*}*/\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*.select2 {*/\n/*  width: 50%;*/\n/*}*/\n.selection-list[data-v-55d472c8] {\n  width: 500px !important;\n}\n", ""]);
 
 // exports
 
@@ -24833,23 +25008,15 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__questions_ApprovalQuestionRow__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__questions_ApprovalQuestionRow___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__questions_ApprovalQuestionRow__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__EventBus__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__EventBus__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_select__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue_select__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_select_dist_vue_select_css__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_select_dist_vue_select_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_vue_select_dist_vue_select_css__);
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -24942,30 +25109,27 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('v-select', __WEBPACK_IMPO
       questions: []
     };
   },
-  created: function created() {
-    // EventBus.$on(`remove-approval-question-${this.index}`, (question) => {
-    //   this.removeQuestion(question);
-    // });
-  },
-  mounted: function mounted() {
-    $('.select2').on('change', function (e) {
-      var data = e;
-      console.log(e);
-      // console.log(data);
-    });
-  },
+  created: function created() {},
+  mounted: function mounted() {},
 
   methods: {
     addQuestion: function addQuestion(index) {
-      this.questions.push({ description: '' });
+      this.level.questions.push({ description: '' });
     },
     removeQuestion: function removeQuestion(index) {
-      this.questions.splice(index, 1);
+      this.level.questions.splice(index, 1);
     },
     deleteMe: function deleteMe(index) {
       __WEBPACK_IMPORTED_MODULE_2__EventBus__["a" /* EventBus */].$emit('remove-approval-item', index);
+    },
+    hasApprovals: function hasApprovals() {
+      return this.$parent.approvals_data.length >= 1;
+    },
+    attachFiles: function attachFiles(event) {
+      this.level.attachments.push(event.target.files[0]);
     }
   },
+  watch: {},
   computed: {
     valid_item: function valid_item() {
       return this.description.length !== '' && this.approver !== 0;
@@ -24996,7 +25160,7 @@ var Component = __webpack_require__(1)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/omarkhaled/code/hdesk/resources/assets/js/ticket/approvals/questions/ApprovalQuestionRow.vue"
+Component.options.__file = "/Users/omar/code/hdesk/resources/assets/js/ticket/approvals/questions/ApprovalQuestionRow.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] ApprovalQuestionRow.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -25030,7 +25194,7 @@ var content = __webpack_require__(54);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(6)("069c0530", content, false, {});
+var update = __webpack_require__(4)("069c0530", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -25049,7 +25213,7 @@ if(false) {
 /* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(3)(false);
+exports = module.exports = __webpack_require__(2)(false);
 // imports
 
 
@@ -25065,7 +25229,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__EventBus_js__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__EventBus_js__ = __webpack_require__(8);
 //
 //
 //
@@ -25191,7 +25355,7 @@ if(false) {
 /* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(3)(false);
+exports = module.exports = __webpack_require__(2)(false);
 // imports
 
 
@@ -25672,19 +25836,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "form-group select2-container"
   }, [_c('label', {
-    staticClass: "col-md-8"
+    staticClass: "col-md-10"
   }, [_vm._v("\n            Send Approval to\n            "), _c('v-select', {
+    staticClass: "selection-list",
     attrs: {
       "options": _vm.users,
       "label": "name",
       "placeholder": "Select Approver"
     },
     model: {
-      value: (_vm.approver),
+      value: (_vm.level.approver),
       callback: function($$v) {
-        _vm.approver = $$v
+        _vm.$set(_vm.level, "approver", $$v)
       },
-      expression: "approver"
+      expression: "level.approver"
     }
   })], 1)]), _vm._v(" "), _c('a', {
     staticClass: "text-danger",
@@ -25722,7 +25887,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('i', {
     staticClass: "fa fa-plus-circle"
-  })])])])]), _vm._v(" "), _c('tbody', _vm._l((_vm.questions), function(question, qIndex) {
+  })])])])]), _vm._v(" "), _c('tbody', _vm._l((_vm.level.questions), function(question, qIndex) {
     return _c("approval-question-row", {
       key: qIndex,
       tag: "tr",
@@ -25745,8 +25910,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.description),
-      expression: "description"
+      value: (_vm.level.description),
+      expression: "level.description"
     }],
     staticClass: "form-control",
     attrs: {
@@ -25755,12 +25920,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "rows": "8"
     },
     domProps: {
-      "value": (_vm.description)
+      "value": (_vm.level.description)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.description = $event.target.value
+        _vm.$set(_vm.level, "description", $event.target.value)
       }
     }
   })])]), _vm._v(" "), _c('hr'), _vm._v(" "), _c('div', {
@@ -25770,11 +25935,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "display": "flex",
       "justify-content": "space-between"
     }
-  }, [_vm._m(0), _vm._v(" "), (_vm.index + 1 > 1) ? _c('div', {
-    staticClass: "checkbox"
-  }, [_vm._m(1)]) : _vm._e()])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
+  }, [_c('div', {
     staticClass: "form-group"
   }, [_c('input', {
     staticClass: "form-control input-xs",
@@ -25782,15 +25943,47 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "file",
       "name": "attachments[]",
       "multiple": ""
+    },
+    on: {
+      "change": function($event) {
+        _vm.attachFiles($event)
+      }
     }
-  })])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('label', [_c('input', {
+  })]), _vm._v(" "), (_vm.index + 1 > 1 || _vm.hasApprovals()) ? _c('div', {
+    staticClass: "checkbox"
+  }, [_c('label', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.level.new_stage),
+      expression: "level.new_stage"
+    }],
     attrs: {
       "type": "checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.level.new_stage) ? _vm._i(_vm.level.new_stage, null) > -1 : (_vm.level.new_stage)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.level.new_stage,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.level, "new_stage", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.level, "new_stage", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.level, "new_stage", $$c)
+        }
+      }
     }
-  }), _vm._v(" Add as a new stage\n          ")])
-}]}
+  }), _vm._v(" Add as a new stage\n          ")])]) : _vm._e()])])])])
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -25803,9 +25996,261 @@ if (false) {
 /* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(64)
+}
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(66),
+  /* template */
+  __webpack_require__(67),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-e637bd96",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/Users/omar/code/hdesk/resources/assets/js/ticket/approvals/ApprovalRow.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ApprovalRow.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-e637bd96", Component.options)
+  } else {
+    hotAPI.reload("data-v-e637bd96", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(65);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("4afca648", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-e637bd96\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ApprovalRow.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-e637bd96\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ApprovalRow.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 66 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "ApprovalRow",
+  props: ['approval', 'index'],
+  data: function data() {
+    return {
+      approval_data: [],
+      loading: false
+    };
+  },
+  mounted: function mounted() {
+    this.approval_data = this.approval;
+  },
+
+  methods: {
+    removeApproval: function removeApproval() {
+      this.$emit('remove');
+
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete("/approval/delete/" + this.approval.id);
+    },
+    resendApproval: function resendApproval(id) {
+      var _this = this;
+
+      this.loading = true;
+
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/approval/resend/" + id).then(function (response) {
+        _this.approval_data['resend']++;
+        _this.loading = false;
+      });
+    }
+  }
+});
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col-md-8"
+  return _c('tr', [_c('td', [_vm._v(_vm._s(_vm.approval_data.approver))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm.approval_data.creator))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm.approval_data.created_at))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm.approval_data.stage))]), _vm._v(" "), _c('td', [_vm._v("\n    " + _vm._s(_vm.approval_data.status) + "\n  ")]), _vm._v(" "), _c('td', [_c('i', {
+    staticClass: "fa fa-lg",
+    class: ("fa-" + (_vm.approval_data.approval_icon) + " text-" + (_vm.approval_data.approval_color)),
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }), _vm._v(" "), (_vm.approval_data.hidden_comment === '0') ? _c('strong', [_vm._v(_vm._s(_vm.approval_data.comment))]) : _vm._e()]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm.approval_data.action_date))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm.approval_data.resend))]), _vm._v(" "), _c('td', [_c('a', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.approval_data.can_show),
+      expression: "approval_data.can_show"
+    }],
+    staticClass: "btn btn-xs btn-info",
+    attrs: {
+      "title": "Take Action",
+      "href": ("/approval/" + (_vm.approval_data.id))
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-gavel"
+  })])]), _vm._v(" "), _c('td', [(_vm.approval_data.can_resend) ? _c('a', {
+    staticClass: "btn btn-xs btn-primary",
+    attrs: {
+      "title": "Resend approval",
+      "disabled": _vm.loading
+    },
+    on: {
+      "click": function($event) {
+        _vm.resendApproval(_vm.approval_data.id)
+      }
+    }
+  }, [(_vm.loading) ? _c('i', {
+    staticClass: "fa fa-spin fa-spinner"
+  }) : _c('i', {
+    staticClass: "fa fa-refresh"
+  })]) : _vm._e()]), _vm._v(" "), _c('td', [(_vm.approval_data.can_delete) ? _c('button', {
+    staticClass: "btn btn-xs btn-warning",
+    attrs: {
+      "type": "submit",
+      "title": "Remove approval"
+    },
+    on: {
+      "click": function($event) {
+        _vm.removeApproval()
+      }
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-remove"
+  })]) : _vm._e()])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-e637bd96", module.exports)
+  }
+}
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {}, [(_vm.is_task) ? _c('div', [_vm._m(0), _vm._v(" "), _c('table', {
+    staticClass: "listing-table"
+  }, [_vm._m(1), _vm._v(" "), _c('tbody', _vm._l((_vm.approvals), function(approval_row) {
+    return _c('tr', [_c('td', [_vm._v(_vm._s(approval_row.approver))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(approval_row.creator))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(approval_row.created_at))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(approval_row.stage))]), _vm._v(" "), _c('td', [_vm._v("\n          " + _vm._s(approval_row.status) + "\n        ")]), _vm._v(" "), _c('td', [_c('strong', [_vm._v(_vm._s(approval_row.comment))])]), _vm._v(" "), _c('td', [_vm._v(_vm._s(approval_row.action_date))]), _vm._v(" "), _c('td'), _vm._v(" "), _c('td')])
+  }))])]) : _vm._e(), _vm._v(" "), (_vm.approvals_data.length) ? _c('div', [_c('h5', [(this.is_task) ? _c('strong', [_vm._v("\n        Task Approvals\n      ")]) : _vm._e()]), _vm._v(" "), _c('table', {
+    staticClass: "listing-table"
+  }, [_vm._m(2), _vm._v(" "), _c('tbody', _vm._l((_vm.approvals_data), function(approval, index) {
+    return _c("approval-row", {
+      key: approval.id,
+      tag: "tr",
+      class: approval.color,
+      attrs: {
+        "approval": approval,
+        "index": index
+      },
+      on: {
+        "remove": function($event) {
+          _vm.removeApproval(index)
+        }
+      }
+    })
+  }))])]) : _vm._e(), _vm._v(" "), (_vm.submit_approval) ? _c('div', {
+    staticClass: "col-md-10"
   }, [_c('div', {
     staticClass: "form-group"
   }, [_c('button', {
@@ -25818,7 +26263,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('i', {
     staticClass: "fa fa-plus"
-  }), _vm._v(" Add New Level\n    ")])]), _vm._v(" "), _vm._l((_vm.levels), function(level, key) {
+  }), _vm._v(" Add New Approval\n      ")])]), _vm._v(" "), _vm._l((_vm.levels), function(level, key) {
     return _c('div', [_c('approval-item', {
       key: key,
       attrs: {
@@ -25834,11 +26279,38 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "type": "submit",
       "disabled": !_vm.can_submit
+    },
+    on: {
+      "click": function($event) {
+        _vm.sendApproval()
+      }
     }
-  }, [_c('i', {
+  }, [(_vm.loading) ? _c('i', {
+    staticClass: "fa fa-spin fa-spinner"
+  }) : _c('i', {
     staticClass: "fa fa-check-circle"
-  }), _vm._v("Send\n    ")])])], 2)
-},staticRenderFns: []}
+  }), _vm._v(" Send\n      ")])])], 2) : _vm._e()])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h5', [_c('strong', [_vm._v("\n        Main Ticket Approvals\n      ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('thead', {
+    staticClass: "table-design"
+  }, [_c('tr', [_c('th', [_vm._v("Sent to")]), _vm._v(" "), _c('th', [_vm._v("By")]), _vm._v(" "), _c('th', [_vm._v("Sent at")]), _vm._v(" "), _c('th', [_vm._v("Stage")]), _vm._v(" "), _c('th', [_vm._v("Status")]), _vm._v(" "), _c('th', [_vm._v("Comment")]), _vm._v(" "), _c('th', [_vm._v("Action Date")]), _vm._v(" "), _c('th', [_vm._v("Resend")]), _vm._v(" "), _c('th', {
+    staticClass: "text-center",
+    attrs: {
+      "colspan": "3"
+    }
+  }, [_vm._v("Actions")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('thead', {
+    staticClass: "table-design"
+  }, [_c('tr', [_c('th', [_vm._v("Sent to")]), _vm._v(" "), _c('th', [_vm._v("By")]), _vm._v(" "), _c('th', [_vm._v("Sent at")]), _vm._v(" "), _c('th', [_vm._v("Stage")]), _vm._v(" "), _c('th', [_vm._v("Status")]), _vm._v(" "), _c('th', [_vm._v("Comment")]), _vm._v(" "), _c('th', [_vm._v("Action Date")]), _vm._v(" "), _c('th', [_vm._v("Resend")]), _vm._v(" "), _c('th', {
+    staticClass: "text-center",
+    attrs: {
+      "colspan": "3"
+    }
+  }, [_vm._v("Actions")])])])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()

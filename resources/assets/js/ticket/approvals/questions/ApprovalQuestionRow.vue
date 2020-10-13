@@ -19,7 +19,7 @@ import {EventBus} from "../../../EventBus.js";
 
 export default {
   name: "ApprovalQuestionRow",
-  props: [ 'index', 'qIndex','question'],
+  props: ['index', 'qIndex', 'question'],
   created() {
 
   },
