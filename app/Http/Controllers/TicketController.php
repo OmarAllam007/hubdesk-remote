@@ -48,20 +48,34 @@ class TicketController extends Controller
         $scopes = $ticketScope['scopes'];
 
         if ($search = \request('search')) {
+            $ticket = Ticket::where('id', intval($search))->first();
 
-            $searchedTickets = Ticket::with('requester')->where('id', intval($search))
-                ->orWhereHas('requester', function (Builder $query) use ($search) {
-                    $query->where('employee_id', $search)
-                        ->orWhere('name', 'LIKE', "%${search}%");
-                });
+            if ($ticket) {
+                return redirect()->route('ticket.show', compact('ticket'));
+            } else {
+                $user = auth()->user();
+                $searchedTickets = Ticket::query()->with('requester');
+
+                if ($user->isSupport()) {
+                    $searchedTickets = $searchedTickets->whereIn('group_id', $user->groups->pluck('id'))
+                        ->orWhereHas('requester', function (Builder $query) use ($search) {
+                            $query->where('employee_id', $search)
+                                ->orWhere('name', 'LIKE', "%${search}%");
+                        });
+                } else {
+                    if ($search == $user->employee_id) {
+                        $searchedTickets = $searchedTickets->where('requester_id', $user->id)
+                            ->orWhere('creator_id', $user->id);
+                    }else{
+                        $searchedTickets = collect();
+                    }
+                }
+            }
 
             if ($searchedTickets->count() > 1) {
                 $query = $searchedTickets;
-            } else if ($searchedTickets->count() == 1) {
-                $ticket = $searchedTickets->first()->id;
-                return redirect()->route('ticket.show', compact('ticket'));
             } else {
-                flash(t('Ticket Info'), t('Ticket not found'), 'error');
+                flash(t('Ticket Info'), t('No Results Found!'), 'error');
                 return redirect()->route('ticket.index');
             }
 
