@@ -151,7 +151,7 @@
     @if(can('show',$ticket))
         <section class="col-sm-12" id="ticketArea">
             <ul class="nav nav-tabs" role="tablist">
-                <li >
+                <li class="active">
                     <a href="#main" role="tab" data-toggle="tab"><i
                                 class="fa fa-ticket"></i>
                         @if(!$ticket->isTask())
@@ -170,7 +170,7 @@
                                     class="fa fa-support"></i> {{t('Resolution')}}</a></li>
                 @endif
                 @if (($ticket->approvals->count() || Auth::user()->isSupport()))
-                    <li class="active"><a href="#approvals" role="tab" data-toggle="tab"><i
+                    <li ><a href="#approvals" role="tab" data-toggle="tab"><i
                                     class="fa fa-check"></i> {{t('Approvals')}}</a></li>
                 @endif
 
@@ -202,7 +202,7 @@
             </ul>
 
             <div class="tab-content">
-                <div role="tabpanel" class="tab-pane " id="main">
+                <div role="tabpanel" class="tab-pane active" id="main">
                     @include('ticket.tabs._main')
                 </div>
 
@@ -223,7 +223,7 @@
                     @include('ticket.tabs._history')
                 </div>
 
-                <div role="tabpanel" class="tab-pane active" id="approvals">
+                <div role="tabpanel" class="tab-pane " id="approvals">
                     @include('ticket.tabs._approvals')
                 </div>
 
