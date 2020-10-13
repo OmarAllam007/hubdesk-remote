@@ -14,14 +14,14 @@ class ApprovalRequest extends Request
     public function rules()
     {
         return [
-            'approver_id' => 'required',
-            'content' => 'required_without:template',
+            'approvals.*.approver_id' => 'required',
+//            'content' => 'required_without:template',
         ];
     }
 
     public function messages()
     {
-        flash(t('Approval Info'), t('Cannot send approval'), 'error');
+//        flash(t('Approval Info'), t('Cannot send approval'), 'error');
         return ['content.required_without' => 'The description field is required'];
     }
 

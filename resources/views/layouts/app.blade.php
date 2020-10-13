@@ -44,10 +44,7 @@
             }
         </style>
     @endif
-    <style>
-
-
-    </style>
+{{--    @livewireStyles--}}
 </head>
 <body>
 
@@ -192,6 +189,5 @@
 
 @include('vendor.sweetalert.alert')
 @yield('javascript')
-
 </body>
 </html>

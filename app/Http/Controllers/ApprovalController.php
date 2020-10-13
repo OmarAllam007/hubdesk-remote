@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ApprovalQuestion;
+use App\Attachment;
 use App\Http\Requests;
 use App\Http\Requests\ApprovalRequest;
 use App\Http\Requests\UpdateApprovalRequest;
@@ -24,33 +25,61 @@ class ApprovalController extends Controller
 {
     public function send(Ticket $ticket, ApprovalRequest $request)
     {
-        //Triggers created action in App\Providers\TicketEventsProvider
-        $approval = new TicketApproval($request->all());
-        $approval->creator_id = $request->user()->id;
-        $approval->status = 0;
-        if ($request->get('add_stage')) {
-            $approval->stage = $ticket->nextApprovalStage();
-        } elseif (!$ticket->hasApprovalStages()) {
-            $approval->stage = 1;
+
+        $approvals = collect();
+
+        $files = $request->allFiles();
+//        $request->attachments = [];
+        $ticketAttachments = [];
+        foreach ($request->input('approvals', []) as $i => $approval) {
+            $attachments = data_get($files, "approvals.$i.attachments");
+
+            if ($attachments) {
+                foreach ($attachments as $attachment) {
+                    array_push($ticketAttachments, $attachment);
+                }
+            }
+            $request->request->set('attachments', $ticketAttachments);
+            $newApproval = new TicketApproval();
+            $newApproval->creator_id = $request->user()->id;
+            $newApproval->approver_id = $approval['approver_id'];
+            $newApproval->status = 0;
+
+            if ($approval['new_stage']) {
+                $newApproval->stage = $ticket->nextApprovalStage();
+            } elseif (!$ticket->hasApprovalStages()) {
+                $newApproval->stage = 1;
+            }
+
+            $newApproval->content = $approval['description'];
+
+            /** @var TicketApproval $createdApproval */
+            $createdApproval = $ticket->approvals()->create($newApproval->toArray());
+
+            if (isset($approval['questions'])) {
+                foreach ($approval['questions'] as $question) {
+                    $createdApproval->questions()->create($question);
+                }
+            }
+
+            $approvals->push($createdApproval->convertToJson());
+
+            if (!empty($request->attachments)) {
+                Attachment::uploadFiles(Attachment::TICKET_APPROVAL_TYPE, $createdApproval->id, $request);
+            }
+
         }
-        if ($template_id = $request->get('template')) {
-            $approval["content"] = ReplyTemplate::find($template_id)->description;
-        }
+        return $approvals;
 
-        $ticket->approvals()->save($approval);
+//        if ($template_id = $request->get('template')) {
+//            $approval["content"] = ReplyTemplate::find($template_id)->description;
+//        }
 
-        foreach ($request->get('questions', []) as $question) {
-            $approval->questions()->create($question);
-        }
-
-        flash(t('Approval Info'), t('Approval has been sent successfully'), 'success');
-
-        return redirect()->back();
     }
 
     public function resend(TicketApproval $ticketApproval, Request $request)
     {
-        \Mail::to($ticketApproval->approver->email)->send(new SendNewApproval($ticketApproval));
+        \Mail::to($ticketApproval->approver->email)->queue(new SendNewApproval($ticketApproval));
 //        $this->dispatch(new SendNewApproval($ticketApproval));
         TicketLog::approvalLog($ticketApproval, TicketLog::RESEND_APPROVAL);
 
@@ -129,10 +158,9 @@ class ApprovalController extends Controller
     public function destroy(TicketApproval $ticketApproval, Request $request)
     {
         if (!can('delete', $ticketApproval) || $ticketApproval->status != TicketApproval::PENDING_APPROVAL) {
-
-            flash(t('Approval Sent'), t('Action not authorized'), 'error');
-
-            return Redirect::back();
+//            flash(t('Approval Sent'), t('Action not authorized'), 'error');
+//            return Redirect::back();
+            return;
         }
 
         $ticketApproval->delete();
@@ -143,8 +171,8 @@ class ApprovalController extends Controller
             $ticketApproval->ticket->update(['status_id' => 3]);
         }
 
-        flash(t('Approval Info'), 'Approval has been deleted', 'info');
-        return Redirect::route('ticket.show', $ticketApproval->ticket_id);
+//        flash(t('Approval Info'), 'Approval has been deleted', 'info');
+//        return Redirect::route('ticket.show', $ticketApproval->ticket_id);
     }
 
     /**

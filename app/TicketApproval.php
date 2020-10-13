@@ -200,4 +200,25 @@ class TicketApproval extends KModel
     {
         return Attachment::where('type', Attachment::TICKET_APPROVAL_TYPE)->where('reference', $this->id)->get();
     }
+
+    function convertToJson()
+    {
+        return [
+            'id' => $this->id,
+            'color' => $this->approval_color,
+            'icon' => $this->approval_icon,
+            'approver' => $this->approver->name,
+            'status' => $this->approval_status,
+            'creator' => $this->created_by->name,
+            'created_at' => $this->created_at->format('d/m/Y H:i'),
+            'stage' => $this->stage,
+            'action_date' => $this->action_date,
+            'resend' => $this->resend,
+            'hidden_comment' => $this->hidden_comment,
+            'comment' => $this->comment,
+            'can_show' => can('approval_show', $this),
+            'can_resend'=> can('approval_resend',$this),
+            'can_delete'=> can('approval_delete', $this)
+        ];
+    }
 }

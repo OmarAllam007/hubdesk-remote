@@ -27,6 +27,7 @@
     "d3": "^5.16.0",
     "font-awesome": "^4.7.0",
     "select2": "^4.0.3",
-    "sweetalert2": "^7.26.28"
+    "sweetalert2": "^7.26.28",
+    "vue-select": "^3.10.8"
   }
 }

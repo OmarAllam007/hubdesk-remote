@@ -354,7 +354,7 @@ h1 span {
 
 
 .fa, .fas {
-    padding-right: 6px;
+    /*padding-right: 6px;*/
 }
 
 
@@ -869,4 +869,15 @@ input[type=text] {
 @font-face {
     font-family: QuwaFontAr;
     src: url(../../public/fonts/TheSans-Bold/subset-TheSans-Plain.woff) format('woff');
+}
+
+.approval-panel{
+     box-shadow: 0px 3px 1px lightgrey;
+     border-radius: 5px;
+     border: 1px solid lightgray;
+     padding: 20px;
+ }
+
+.question-header{
+    background: lightgray;
 }
