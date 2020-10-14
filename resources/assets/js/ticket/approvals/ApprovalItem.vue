@@ -3,18 +3,32 @@
     <div class="panel approval-panel ">
       <div class="panel-heading">
         <div style="display: flex; justify-content: space-between">
-          <div class="form-group select2-container">
-            <label class="col-md-10">
-              Send Approval to
+          <div class="form-group  col-md-6">
+            <label>
+              Send Approval to:
               <v-select :options="users" label="name" v-model="level.approver" placeholder="Select Approver"
                         class="selection-list"></v-select>
             </label>
 
           </div>
 
-          <a href="#" class="text-danger" type="button" @click.prevent="deleteMe(index)">
-            <i class="fa fa-2x  fa-times"></i>
-          </a>
+
+          <div class="form-group col-md-4">
+            <label>
+              Template:
+            </label>
+            <select name="" id="" v-model="level.template_id" class="form-control">
+              <option value="0">Select Template</option>
+              <option v-for="template of templates" :value="template.id">{{ template.title }}</option>
+            </select>
+
+          </div>
+
+          <div class="col-md-2">
+            <a href="#" class="text-danger cross-float" type="button" @click.prevent="deleteMe(index)">
+              <i class="fa fa-2x  fa-times"></i>
+            </a>
+          </div>
 
         </div>
       </div>
@@ -37,8 +51,7 @@
             <tr is="approval-question-row" v-for="(question, qIndex) in level.questions" :index="index" :key="qIndex"
                 :qIndex="qIndex"
                 :row="qIndex" :question="question"
-                @remove="removeQuestion(qIndex)"
-                class="col-md-12">
+                @remove="removeQuestion(qIndex)">
             </tr>
 
             </tbody>
@@ -88,10 +101,11 @@ export default {
       description: '',
       attachments: [],
       questions: [],
+      templates: [],
     }
   },
   created() {
-
+    this.templates = this.$parent.templates;
   },
   mounted() {
 
@@ -129,6 +143,9 @@ export default {
 /*.select2 {*/
 /*  width: 50%;*/
 /*}*/
+.cross-float {
+  float: right
+}
 
 .selection-list {
   width: 500px !important;

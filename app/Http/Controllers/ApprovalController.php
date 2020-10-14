@@ -47,11 +47,18 @@ class ApprovalController extends Controller
 
             if ($approval['new_stage']) {
                 $newApproval->stage = $ticket->nextApprovalStage();
-            } elseif (!$ticket->hasApprovalStages()) {
-                $newApproval->stage = 1;
+            } else {
+                if ($ticket->hasApprovalStages()) {
+                    $newApproval->stage = $ticket->approvals()->max('stage');
+                } else {
+                    $newApproval->stage = 1;
+                }
             }
-
             $newApproval->content = $approval['description'];
+
+            if ($approval['template_id']) {
+                $newApproval->content = ReplyTemplate::find($approval['template_id'])->description;
+            }
 
             /** @var TicketApproval $createdApproval */
             $createdApproval = $ticket->approvals()->create($newApproval->toArray());
@@ -72,7 +79,6 @@ class ApprovalController extends Controller
         return $approvals;
 
 //        if ($template_id = $request->get('template')) {
-//            $approval["content"] = ReplyTemplate::find($template_id)->description;
 //        }
 
     }

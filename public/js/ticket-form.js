@@ -24616,7 +24616,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -24774,7 +24774,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Approvals",
-  props: ["ticket_id", "is_task", "approvals", 'task_approvals', 'submit_approval'],
+  props: ["ticket_id", "is_task", "approvals", 'task_approvals', 'submit_approval', 'templates'],
+
   data: function data() {
     return {
       levels: [],
@@ -24786,7 +24787,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   created: function created() {
     var _this = this;
 
-    console.log(this.task_approvals);
     __WEBPACK_IMPORTED_MODULE_3__EventBus__["a" /* EventBus */].$on('remove-approval-item', function (index) {
       _this.removeLevel(index);
     });
@@ -24814,7 +24814,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.approvals_data.splice(approvalIndex, 1);
     },
     addNewLevel: function addNewLevel() {
-      this.levels.push({ 'approver': null, 'description': '', questions: [], new_stage: false, attachments: [] });
+      this.levels.push({
+        'approver': null,
+        'description': '',
+        template_id: 0,
+        questions: [],
+        new_stage: false,
+        attachments: []
+      });
     },
     removeLevel: function removeLevel(index) {
       if (this.levels.length > 1) {
@@ -24832,8 +24839,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         formData.append("approvals[" + i + "][description]", this.levels[i].description);
         formData.append("approvals[" + i + "][approver_id]", this.levels[i].approver.id);
         formData.append("approvals[" + i + "][new_stage]", this.levels[i].new_stage ? 1 : 0);
-        // formData.append(`approvals[${i}][new_stage]`, this.levels[i].new_stage);
-
+        formData.append("approvals[" + i + "][template_id]", this.levels[i].template_id);
 
         var questions = this.levels[i].questions;
         for (var q = 0; q < questions.length; q++) {
@@ -24892,7 +24898,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
           });
           // }
-          if (!level.approver || !level.description || !filledQuestions) {
+          var has_description = level.description || level.template_id;
+
+          if (!level.approver || !has_description || !filledQuestions) {
             validated = false;
             break;
           }
@@ -24997,7 +25005,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*.select2 {*/\n/*  width: 50%;*/\n/*}*/\n.selection-list[data-v-55d472c8] {\n  width: 500px !important;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*.select2 {*/\n/*  width: 50%;*/\n/*}*/\n.cross-float[data-v-55d472c8] {\n  float: right\n}\n.selection-list[data-v-55d472c8] {\n  width: 500px !important;\n}\n", ""]);
 
 // exports
 
@@ -25090,6 +25098,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -25106,10 +25127,13 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('v-select', __WEBPACK_IMPO
       approver: 0,
       description: '',
       attachments: [],
-      questions: []
+      questions: [],
+      templates: []
     };
   },
-  created: function created() {},
+  created: function created() {
+    this.templates = this.$parent.templates;
+  },
   mounted: function mounted() {},
 
   methods: {
@@ -25834,10 +25858,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "justify-content": "space-between"
     }
   }, [_c('div', {
-    staticClass: "form-group select2-container"
-  }, [_c('label', {
-    staticClass: "col-md-10"
-  }, [_vm._v("\n            Send Approval to\n            "), _c('v-select', {
+    staticClass: "form-group  col-md-6"
+  }, [_c('label', [_vm._v("\n            Send Approval to:\n            "), _c('v-select', {
     staticClass: "selection-list",
     attrs: {
       "options": _vm.users,
@@ -25851,8 +25873,45 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       expression: "level.approver"
     }
-  })], 1)]), _vm._v(" "), _c('a', {
-    staticClass: "text-danger",
+  })], 1)]), _vm._v(" "), _c('div', {
+    staticClass: "form-group col-md-4"
+  }, [_c('label', [_vm._v("\n            Template:\n          ")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.level.template_id),
+      expression: "level.template_id"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "name": "",
+      "id": ""
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.$set(_vm.level, "template_id", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
+      }
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": "0"
+    }
+  }, [_vm._v("Select Template")]), _vm._v(" "), _vm._l((_vm.templates), function(template) {
+    return _c('option', {
+      domProps: {
+        "value": template.id
+      }
+    }, [_vm._v(_vm._s(template.title))])
+  })], 2)]), _vm._v(" "), _c('div', {
+    staticClass: "col-md-2"
+  }, [_c('a', {
+    staticClass: "text-danger cross-float",
     attrs: {
       "href": "#",
       "type": "button"
@@ -25865,7 +25924,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('i', {
     staticClass: "fa fa-2x  fa-times"
-  })])])]), _vm._v(" "), _c('hr'), _vm._v(" "), _c('div', {
+  })])])])]), _vm._v(" "), _c('hr'), _vm._v(" "), _c('div', {
     staticClass: "panel-body"
   }, [_c('section', {
     staticClass: "table-container col-md-6"
@@ -25891,7 +25950,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     return _c("approval-question-row", {
       key: qIndex,
       tag: "tr",
-      staticClass: "col-md-12",
       attrs: {
         "index": _vm.index,
         "qIndex": qIndex,

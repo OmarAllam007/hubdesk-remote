@@ -105,7 +105,8 @@ import {EventBus} from "../../EventBus";
 
 export default {
   name: "Approvals",
-  props: ["ticket_id", "is_task", "approvals", 'task_approvals','submit_approval'],
+  props: ["ticket_id", "is_task", "approvals", 'task_approvals', 'submit_approval', 'templates'],
+
   data() {
     return {
       levels: [],
@@ -115,7 +116,6 @@ export default {
     }
   },
   created() {
-    console.log(this.task_approvals)
     EventBus.$on('remove-approval-item', (index) => {
       this.removeLevel(index);
     });
@@ -141,7 +141,14 @@ export default {
       this.approvals_data.splice(approvalIndex, 1);
     },
     addNewLevel() {
-      this.levels.push({'approver': null, 'description': '', questions: [], new_stage: false, attachments: []});
+      this.levels.push({
+        'approver': null,
+        'description': '',
+        template_id: 0,
+        questions: [],
+        new_stage: false,
+        attachments: []
+      });
     },
     removeLevel(index) {
       if (this.levels.length > 1) {
@@ -157,7 +164,7 @@ export default {
         formData.append(`approvals[${i}][description]`, this.levels[i].description);
         formData.append(`approvals[${i}][approver_id]`, this.levels[i].approver.id);
         formData.append(`approvals[${i}][new_stage]`, this.levels[i].new_stage ? 1 : 0);
-        // formData.append(`approvals[${i}][new_stage]`, this.levels[i].new_stage);
+        formData.append(`approvals[${i}][template_id]`, this.levels[i].template_id);
 
 
         let questions = this.levels[i].questions;
@@ -183,7 +190,7 @@ export default {
           this.approvals_data.push(approval);
         })
         this.clearForm();
-      }).catch((e)=>{
+      }).catch((e) => {
         this.loading = false;
       });
 
@@ -211,7 +218,9 @@ export default {
           }
         });
         // }
-        if (!level.approver || !level.description || !filledQuestions) {
+        let has_description = level.description || level.template_id;
+
+        if (!level.approver || !has_description  || !filledQuestions) {
           validated = false;
           break;
         }
