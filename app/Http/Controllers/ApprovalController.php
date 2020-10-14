@@ -136,8 +136,8 @@ class ApprovalController extends Controller
         }
 
         if ($ticketApproval->ticket->technician_id) {
-//            \Mail::send(new UpdateApprovalMail($ticketApproval));
-            $this->dispatch(new UpdateApprovalJob($ticketApproval));
+            \Mail::queue(new UpdateApprovalMail($ticketApproval));
+//            $this->dispatch(new UpdateApprovalJob($ticketApproval));
         }
 
         if ($ticketApproval->status != -1 && $ticketApproval->hasNext()) {
