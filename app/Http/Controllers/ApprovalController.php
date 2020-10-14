@@ -10,8 +10,10 @@ use App\Http\Requests\UpdateApprovalRequest;
 use App\Jobs\ApplyBusinessRules;
 use App\Jobs\ApplySLA;
 use App\Jobs\SendApproval;
+use App\Jobs\TicketAssigned;
 use App\Jobs\UpdateApprovalJob;
 use App\Mail\SendNewApproval;
+use App\Mail\TicketAssignedMail;
 use App\Mail\UpdateApprovalMail;
 use App\ReplyTemplate;
 use App\Ticket;
@@ -115,13 +117,12 @@ class ApprovalController extends Controller
         //Triggers updated action in App\Providers\TicketEventsProvider
         $ticketApproval->approval_date = Carbon::now();
 
-
-        if ($request->questions && count($request->questions)) {
-            foreach ($request->get('questions', []) as $key => $answer) {
-                ApprovalQuestion::find($key)->update([
-                    'answer' => $answer
-                ]);
-            }
+//        if ($request->get('questions',[]) && count($request->questions)) {
+        foreach ($request->get('questions', []) as $key => $answer) {
+            ApprovalQuestion::find($key)->update([
+                'answer' => $answer
+            ]);
+//            }
 
             $request['status'] = $ticketApproval->approval_questions_status;
         }
@@ -135,8 +136,8 @@ class ApprovalController extends Controller
         }
 
         if ($ticketApproval->ticket->technician_id) {
-            \Mail::send(new UpdateApprovalMail($ticketApproval));
-//            $this->dispatch(new UpdateApprovalJob($ticketApproval));
+//            \Mail::send(new UpdateApprovalMail($ticketApproval));
+            $this->dispatch(new UpdateApprovalJob($ticketApproval));
         }
 
         if ($ticketApproval->status != -1 && $ticketApproval->hasNext()) {
@@ -147,9 +148,13 @@ class ApprovalController extends Controller
         }
 
 
-        if ($ticketApproval->status == 1 && !$ticketApproval->hasNext() && !$ticketApproval->ticket->technician_id) {
+        if ($ticketApproval->status == 1 && !$ticketApproval->hasNext() && !$ticketApproval->ticket->technician_id) {//KGS
             dispatch(new ApplyBusinessRules($ticketApproval->ticket));
             dispatch(new ApplySLA($ticketApproval->ticket));
+
+            if ($ticketApproval->ticket->technician_id) {
+                \Mail::queue(new TicketAssignedMail($ticketApproval->ticket));
+            }
         }
 
 
