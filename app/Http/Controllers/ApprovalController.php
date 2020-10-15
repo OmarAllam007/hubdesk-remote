@@ -27,7 +27,7 @@ class ApprovalController extends Controller
 {
     public function send(Ticket $ticket, ApprovalRequest $request)
     {
-
+//        dd($request->all());
         $approvals = collect();
 
         $files = $request->allFiles();
@@ -41,14 +41,17 @@ class ApprovalController extends Controller
                     array_push($ticketAttachments, $attachment);
                 }
             }
+
             $request->request->set('attachments', $ticketAttachments);
+
             $newApproval = new TicketApproval();
             $newApproval->creator_id = $request->user()->id;
             $newApproval->approver_id = $approval['approver_id'];
             $newApproval->status = 0;
 
             if ($approval['new_stage']) {
-                $newApproval->stage = $ticket->nextApprovalStage();
+                $newApproval->stage = $i + 1;
+//                $newApproval->stage = $ticket->nextApprovalStage();
             } else {
                 if ($ticket->hasApprovalStages()) {
                     $newApproval->stage = $ticket->approvals()->max('stage');
