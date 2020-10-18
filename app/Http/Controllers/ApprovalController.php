@@ -50,8 +50,9 @@ class ApprovalController extends Controller
             $newApproval->status = 0;
 
             if ($approval['new_stage']) {
-                $newApproval->stage = $i + 1;
+//                $newApproval->stage = $i + 1;
 //                $newApproval->stage = $ticket->nextApprovalStage();
+                $newApproval->stage = $ticket->approvals()->max('stage') + 1;
             } else {
                 if ($ticket->hasApprovalStages()) {
                     $newApproval->stage = $ticket->approvals()->max('stage');
