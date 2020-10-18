@@ -315,24 +315,6 @@ class TicketController extends Controller
         return \Redirect::back();
     }
 
-    public function addNote(Ticket $ticket, NoteRequest $request)
-    {
-        $note = TicketNote::create(['ticket_id' => $ticket->id,
-            'user_id' => $request->user()->id,
-            'note' => $request['note'],
-            'display_to_requester' => $request->display_to_requester ? 1 : 0,
-            'email_to_technician' => $request->email_to_technician ? 1 : 0,
-            'as_first_response' => $request->as_first_response ? 1 : 0
-        ]);
-        if ($note->email_to_technician) {
-            $this->dispatch(new NewNoteJob($note));
-        }
-        if ($note->as_first_response) {
-            $this->dispatch(new ApplySLA($note->ticket));
-        }
-        flash(t('Note Info'), t('Your note has been created'), 'success');
-        return \Redirect::route('ticket.show', $note->ticket);
-    }
 
     public function editResolution(Ticket $ticket, TicketResolveRequest $request)
     {
@@ -345,39 +327,6 @@ class TicketController extends Controller
     }
 
 
-    public function editNote($note, Request $request)
-    {
-        $note = TicketNote::find($note);
-        $validate = \Validator::make($request->all(), [
-            'note' => 'required',
-        ]);
-        if ($validate->fails()) {
-            flash(t('Ticket Info'), t('Your note has not been updated'), 'error');
-
-            return \Redirect::route('ticket.show', $note->ticket);
-        }
-        $note->note = $request->note;
-        $note->display_to_requester = $request->display_to_requester ? 1 : 0;
-        $note->email_to_technician = $request->email_to_technician ? 1 : 0;
-        $note->as_first_response = $request->as_first_response ? 1 : 0;
-        $note->save();
-
-        if ($note->email_to_technician) {
-            $this->dispatch(new NewNoteJob($note));
-        }
-        flash(t('Ticket Info'), t('Your note has been updated'), 'success');
-        return \Redirect::route('ticket.show', $note->ticket);
-    }
-
-    public function deleteNote($note)
-    {
-        $target_note = TicketNote::find($note);
-        $ticket = $target_note->ticket;
-        $target_note->delete();
-
-        flash(t('Ticket Info'), t('Your note has been deleted'), 'success');
-        return \Redirect::route('ticket.show', $ticket);
-    }
 
     public function pickupTicket(Ticket $ticket)
     {

@@ -7,30 +7,48 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" @click="closeModal()">&times;</button>
-                <h4 class="modal-title">{{ 'Add Notes' }} - #{{ note.ticket_id }}</h4>
+                <h4 class="modal-title">{{ type ? 'Add Note' : 'Edit Note' }} - #{{ note.ticket_id }}</h4>
               </div>
               <div class="modal-body">
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
-                      <textarea class="form-control richeditor" id="editor"></textarea>
+                      <editor v-model="note.note"
+                              :init="{
+         height: 300,
+         menubar: false,
+         plugins: [
+            'advlist autolink lists link image imagetools charmap print preview anchor',
+        'insertdatetime media table paste directionality textcolor colorpicker'
+         ],
+         toolbar:
+           'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent table | link | fontselect fontsizeselect | rtl | forecolor'
+       }"
+
+                      ></editor>
                     </div>
                     <div class="checkbox">
-                      <label><input type="checkbox" name="display_to_requester">{{ 'Show this note to Requester' }}
+                      <label><input type="checkbox" v-model="note.display_to_requester"
+                                    name="display_to_requester">{{ 'Show this note to Requester' }}
                       </label>
                     </div>
                     <div class="checkbox">
-                      <label><input type="checkbox" name="email_to_technician" id="email_to_technician">
+                      <label><input type="checkbox" v-model="note.email_to_technician" name="email_to_technician"
+                                    id="email_to_technician">
                         {{ 'E-mail this note to the technician' }}</label>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="submit" class="btn btn-success submitNote"><i class="fa fa-check-circle"></i>
-                  {{ 'Add Note' }}
+                <button type="submit" class="btn btn-success submitNote" @click="createOrUpdate">
+                  <i class="fa fa-check-circle"></i>
+                  {{ type ? 'Add Note' : 'Update Note' }}
                 </button>
-                <button type="button" class="btn btn-default" data-dismiss="modal" @click="removeModal()">{{ 'Close' }}</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" @click="closeModal()">{{
+                    'Close'
+                  }}
+                </button>
               </div>
             </div>
           </div>
@@ -38,68 +56,75 @@
       </div>
     </transition>
   </div>
-  <!--  <div id="NoteModal" class="modal-comp" role="dialog" v-show="isOpened">-->
-  <!--    <div class="modal-dialog modal-lg">-->
-  <!--      <div class="modal-content">-->
-  <!--        <div class="modal-header">-->
-
-  <!--        </div>-->
-  <!--        <div class="modal-body">-->
-  <!--            <div class="row">-->
-  <!--              <div class="col-md-12">-->
-  <!--                <div class="form-group">-->
-  <!--                  <textarea class="form-control simpleditor"></textarea>-->
-  <!--                </div>-->
-  <!--                <div class="checkbox">-->
-  <!--                  <label><input type="checkbox" name="display_to_requester"-->
-  <!--                                id="display_to_requester">{{ 'Show this note to Requester' }} </label>-->
-  <!--                </div>-->
-  <!--                <div class="checkbox">-->
-  <!--                  <label><input type="checkbox" name="email_to_technician" id="email_to_technician">-->
-  <!--                    {{ 'E-mail this note to the technician' }}</label>-->
-  <!--                </div>-->
-
-  <!--              </div>-->
-  <!--            </div>-->
-  <!--&lt;!&ndash;          </div>&ndash;&gt;-->
-  <!--          <div class="modal-footer">-->
-  <!--            <button type="submit" class="btn btn-success submitNote"><i class="fa fa-check-circle"></i>-->
-  <!--              {{ 'Add Note' }}-->
-  <!--            </button>-->
-  <!--            <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'Close' }}</button>-->
-  <!--          </div>-->
-  <!--      </div>-->
-
-  <!--    </div>-->
-  <!--  </div>-->
 </template>
 
 <script>
+import Editor from '@tinymce/tinymce-vue'
+import axios from "axios";
+
 export default {
   name: "Modal",
-  props: ['isOpened'],
+  props: ['isOpened', 'selected_note'],
   data() {
     return {
-      note: {ticket_id: '',},
-      type: 1
+      note: {
+        ticket_id: this.$parent.ticket_id, note: '',
+        display_to_requester: false,
+        email_to_technician: false,
+      },
+      loading: false,
     }
   },
   methods: {
     closeModal() {
       this.$emit('close');
     },
-    removeModal(){
+    createOrUpdate() {
+
+      if (this.type) {
+        this.store();
+      } else {
+        this.update();
+      }
+
+    },
+    store() {
+      axios.post(`/ticket/note/${this.note.ticket_id}`, this.note).then((response) => {
+        this.loading = false
+        this.$parent.ticket_notes.push(response.data);
+        this.closeModal();
+      }).catch((e) => {
+        this.loading = false;
+        this.closeModal();
+      })
+    },
+    update() {
+
+      axios.post(`/ticket/note/update/${this.note.id}`, this.note).then((response) => {
+        this.loading = false;
+        // this.$parent.ticket_notes.push(response.data);
+        this.closeModal();
+      }).catch((e) => {
+        this.loading = false;
+        this.closeModal();
+      });
 
     }
-  },
-  created() {
 
   },
+  created() {
+    if (this.selected_note.note) {
+      this.note = this.selected_note;
+    }
+  },
   mounted() {
-    // $('.modal-mask').bind('shown', function() {
-    //   tinyMCE.execCommand('mceAddControl', false, 'editor');
-    // });
-  }
+  },
+  computed: {
+    type() {
+      return this.selected_note.note == '';
+    }
+  },
+  components: {Editor}
 }
 </script>
 

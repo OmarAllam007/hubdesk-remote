@@ -4,9 +4,12 @@
         return $note->convertToJson();
         });
     @endphp
-    @if($ticket->notes->count())
-        <notes :notes="{{$notes}}" :can_create_note="{{Auth::user()->isSupport() && !$ticket->isTask()}}"></notes>
-    @endif
+{{--    @if($ticket->notes->count())--}}
+        <notes :notes="{{$notes}}"
+               :can_create_note="{{Auth::user()->isSupport() && !$ticket->isTask()}}"
+               :ticket_id="{{$ticket->id}}"
+        ></notes>
+{{--    @endif--}}
 </div>
 {{--@if($ticket->notes->count())--}}
 {{--    <div class="panel panel-default panel-design">--}}
