@@ -28,11 +28,12 @@ class TicketRequest extends Request
         $this->customRules();
         $validation = [];
 
+//        dd(request()->allFiles());
         $rules = collect([
             'subject' => 'required',
             'description' => 'required',
             'priority_id' => 'required',
-            'attachments.*' => "max:$this->max_uploaded_file|mimes:jpg,png,pdf,gif,docx,xlsx,pptx,doc,xls,ppt,zip,rar"
+            'attachments.*' => "max:$this->max_uploaded_file|mimes:jpeg,png,jpg,gif,pdf,gif,docx,xlsx,pptx,doc,xls,ppt,zip,rar"
         ]);
 
         $fields = collect($this->get('cf', []));
