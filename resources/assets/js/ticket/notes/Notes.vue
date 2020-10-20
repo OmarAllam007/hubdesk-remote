@@ -2,7 +2,7 @@
   <div>
     <div class="form-group" v-if="can_create_note">
       <button type="button" class="btn btn-primary btn-sm btn-rounded btn-outlined" title="Add Note"
-              @click="openModal()">
+              @click="addNew()">
         <i class="fa fa-sticky-note"></i> Add Note
       </button>
     </div>
@@ -35,8 +35,9 @@
       </div>
     </div>
     <modal :isOpened="modalOpened"
-           @close="modalOpened = false"
+           @close="closeModal()"
            v-if="modalOpened"
+           :create_form="isCreateForm"
            :selected_note="selected_note"></modal>
   </div>
 </template>
@@ -54,15 +55,25 @@ export default {
       modalOpened: false,
       ticket_notes: this.notes,
       selected_note: {'note': ''},
-
+      isCreateForm: true,
     }
   },
 
   methods: {
+    addNew() {
+      this.isCreateForm = true;
+      this.openModal();
+    },
+    closeModal(){
+      this.modalOpened = false;
+      this.isCreateForm = true;
+    },
     openModal() {
       this.modalOpened = true;
     },
     editNote(value) {
+      this.isCreateForm = false;
+
       this.selected_note = value;
       this.openModal();
     },

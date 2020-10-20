@@ -49,10 +49,10 @@
                                 <i class="fa fa-copy"></i> {{t('Duplicate')}}
                             </button>
 
-                            <button type="button" class="btn btn-primary btn-sm btn-rounded btn-outlined addNote"
-                                    data-toggle="modal" data-target="#ReplyModal" title="{{t('Add Note')}}">
-                                <i class="fa fa-sticky-note"></i> {{t('Add Note')}}
-                            </button>
+{{--                            <button type="button" class="btn btn-primary btn-sm btn-rounded btn-outlined addNote"--}}
+{{--                                    data-toggle="modal" data-target="#ReplyModal" title="{{t('Add Note')}}">--}}
+{{--                                <i class="fa fa-sticky-note"></i> {{t('Add Note')}}--}}
+{{--                            </button>--}}
 
 
                             <a href="{{route('ticket.print',$ticket)}}" target="_blank"

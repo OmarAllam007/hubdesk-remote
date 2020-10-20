@@ -7,7 +7,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" @click="closeModal()">&times;</button>
-                <h4 class="modal-title">{{ type ? 'Add Note' : 'Edit Note' }} - #{{ note.ticket_id }}</h4>
+                <h4 class="modal-title">{{ create_form ? 'Add Note' : 'Edit Note' }} - #{{ note.ticket_id }}</h4>
               </div>
               <div class="modal-body">
                 <div class="row">
@@ -43,7 +43,7 @@
               <div class="modal-footer">
                 <button type="submit" class="btn btn-success submitNote" @click="createOrUpdate">
                   <i class="fa fa-check-circle"></i>
-                  {{ type ? 'Add Note' : 'Update Note' }}
+                  {{ create_form ? 'Add Note' : 'Update Note' }}
                 </button>
                 <button type="button" class="btn btn-default" data-dismiss="modal" @click="closeModal()">{{
                     'Close'
@@ -64,7 +64,7 @@ import axios from "axios";
 
 export default {
   name: "Modal",
-  props: ['isOpened', 'selected_note'],
+  props: ['isOpened', 'selected_note', 'create_form'],
   data() {
     return {
       note: {
@@ -81,7 +81,7 @@ export default {
     },
     createOrUpdate() {
 
-      if (this.type) {
+      if (this.create_form) {
         this.store();
       } else {
         this.update();
@@ -113,16 +113,11 @@ export default {
 
   },
   created() {
-    if (this.selected_note.note) {
+    if (this.selected_note.note && !this.create_form) {
       this.note = this.selected_note;
     }
   },
   mounted() {
-  },
-  computed: {
-    type() {
-      return this.selected_note.note == '';
-    }
   },
   components: {Editor}
 }
