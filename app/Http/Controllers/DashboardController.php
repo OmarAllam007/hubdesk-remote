@@ -24,17 +24,17 @@ class DashboardController extends Controller
 
         $data = new DashboardInfo($request->get('filters', []),$businessUnit);
 //        dd($data);
-//        if($request->has('pdf')){
-//            $content = view('dashboard.display', compact('data','businessUnit'));
-//
-//            $filepath = storage_path('app/' . uniqid('report') . '.html');
-//            file_put_contents($filepath, $content->render());
-//
-//            $print = new ChromePrint($filepath);
-//            $file = $print->print();
-//
-//            return $file;
-//        }
+        if($request->has('pdf')){
+            $content = view('dashboard.display', compact('data','businessUnit'));
+
+            $filepath = storage_path('app/' . uniqid('report') . '.html');
+            file_put_contents($filepath, $content->render());
+
+            $print = new ChromePrint($filepath);
+            $file = $print->print();
+
+            return $file;
+        }
 
         return view('dashboard.display', compact('data','businessUnit'));
 
