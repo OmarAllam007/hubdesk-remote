@@ -102,7 +102,6 @@ export default {
 
       axios.post(`/ticket/note/update/${this.note.id}`, this.note).then((response) => {
         this.loading = false;
-        // this.$parent.ticket_notes.push(response.data);
         this.closeModal();
       }).catch((e) => {
         this.loading = false;
