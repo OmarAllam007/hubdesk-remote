@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Attachments from './AttachmentModal.vue';
-// import ApprovalQuestions from "./approvals/questions/ApprovalQuestions";
 import Task from './Task.vue';
 import Approvals from './ticket/approvals/Approvals.vue';
 import Notes from "./ticket/notes/Notes";

@@ -84,13 +84,7 @@ export default {
     }
 
   },
-  watch: {
-    modalOpened() {
-      if (!this.modalOpened) {
-        tinymce.remove();
-      }
-    }
-  },
+
   components: {Note, Modal}
 }
 </script>
