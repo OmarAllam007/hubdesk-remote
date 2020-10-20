@@ -124,9 +124,9 @@ Route::group(['middleware' => ['auth']], function () {
         $r->get('create-new/business-unit/{business_unit}/item/{item}', 'TicketController@selectSubItem')->name('ticket.create.select_subItem');
         $r->post('resolution/{ticket}', ['as' => 'ticket.resolution', 'uses' => 'TicketController@resolution']);
         $r->post('edit-resolution/{ticket}', ['as' => 'ticket.edit-resolution', 'uses' => 'TicketController@editResolution']);
-        $r->post('note/{ticket}', ['as' => 'ticket.note', 'uses' => 'TicketController@addNote']);
-        $r->post('note-edit/{note}', ['as' => 'note.edit', 'uses' => 'TicketController@editNote']);
-        $r->post('remove-note/{note}', ['as' => 'note.remove', 'uses' => 'TicketController@deleteNote']);
+        $r->post('note/{ticket}', ['as' => 'ticket.note', 'uses' => 'TicketNoteController@store']);
+        $r->post('note/update/{note}', ['as' => 'note.edit', 'uses' => 'TicketNoteController@update']);
+        $r->post('remove-note/{note}', ['as' => 'note.remove', 'uses' => 'TicketNoteController@destroy']);
         $r->post('reply/{ticket}', ['as' => 'ticket.reply', 'uses' => 'TicketController@reply']);
         $r->post('jump', ['as' => 'ticket.jump', 'uses' => 'TicketController@jump']);
         $r->post('reassign/{ticket}', ['as' => 'ticket.reassign', 'uses' => 'TicketController@reassign']);
