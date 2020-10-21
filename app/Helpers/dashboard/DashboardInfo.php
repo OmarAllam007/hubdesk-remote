@@ -45,15 +45,15 @@ class DashboardInfo
     function process()
     {
         $this->ticketOverViewProcess();
-        $this->getTopServices();
-        $this->getPerformanceOverYear();
-        $this->getSatisfactionOverYear();
-        $this->ticketsByCategory();
-        $this->ticketsBySubcategory();
-        $this->ticketsByCategoryPerformance();
-        $this->ticketsByStatus();
-        $this->ticketsByCoordinator();
-        $this->customerSatisfactions();
+//        $this->getTopServices();
+//        $this->getPerformanceOverYear();
+//        $this->getSatisfactionOverYear();
+//        $this->ticketsByCategory();
+//        $this->ticketsBySubcategory();
+//        $this->ticketsByCategoryPerformance();
+//        $this->ticketsByStatus();
+//        $this->ticketsByCoordinator();
+//        $this->customerSatisfactions();
     }
 
 
@@ -146,7 +146,6 @@ class DashboardInfo
 
         $this->ticketOverView = $query->select('st.name', \DB::raw("tickets.id , tickets.status_id , tickets.overdue"), \DB::raw($groupBy))
             ->get()->groupBy('month')->map(function ($tickets, $key) {
-
                 if (isset($this->filters['from']) && $this->filters['from']) {
                     $from = Carbon::parse($this->filters['from']);
                 } else {

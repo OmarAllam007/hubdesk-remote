@@ -1,187 +1,84 @@
 <style>
-    .c-dashboardInfo {
-        margin-bottom: 15px;
-
+    main {
+        background: #f5f7fb;
     }
-
-    .c-dashboardInfo .wrap {
-        background: #ffffff;
-        box-shadow: 2px 10px 20px rgba(0, 0, 0, 0.1);
-        border-radius: 7px;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-        padding: 40px 25px 20px;
-        height: 100%;
-    }
-
-    .c-dashboardInfo__title,
-    .c-dashboardInfo__subInfo {
-        color: #6c6c6c;
-        font-size: 1.18em;
-    }
-
-    .c-dashboardInfo span {
-        display: block;
-    }
-
-    .c-dashboardInfo__count {
-        font-weight: 600;
-        font-size: 2.5em;
-        line-height: 64px;
-        color: #323c43;
-    }
-
-    .c-dashboardInfo .wrap:after {
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 10px;
-        content: "";
-    }
-
-    #firstChild .wrap:after {
-        background: linear-gradient(81.67deg, #0084f4 0%, #1a4da2 100%);
-        /*background: linear-gradient(82.59deg, #00c48c 0%, #00a173 100%);*/
-    }
-
-    #secondChild .wrap:after {
-        background: linear-gradient(81.67deg, #35393f 0%, rgba(27, 27, 32, 0.58) 100%);
-    }
-
-    #thirdChild .wrap:after {
-        background: linear-gradient(69.83deg, #f47523 0%, #c49156 100%);
-    }
-
-    #fourthChild .wrap:after {
-        background: linear-gradient(81.67deg, #034d25 0%, rgba(59, 151, 89, 0.73) 100%);
-    }
-
-    #fifthChild .wrap:after {
-        background: linear-gradient(81.67deg, #630501 0%, #c52627 100%);
-    }
-
-    #sixthChild .wrap:after {
-        background: linear-gradient(81.67deg, #034d25 0%, rgba(59, 151, 89, 0.73) 100%);
-    }
-
-    #seventhChild .wrap:after {
-        background: linear-gradient(81.67deg, #034d25 0%, rgba(59, 151, 89, 0.73) 100%);
-    }
-
-    .c-dashboardInfo__title svg {
-        color: #d7d7d7;
-        margin-left: 5px;
-    }
-
-    .MuiSvgIcon-root-19 {
-        fill: currentColor;
-        width: 1em;
-        height: 1em;
-        display: inline-block;
-        font-size: 24px;
-        transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-        user-select: none;
-        flex-shrink: 0;
-    }
-
 </style>
-
-<div>
+<div class="w-full">
     @foreach($data->ticketOverView as $key=>$tickets)
-        <div class="row">
-            <div class="col-lg-3 col-md-6"></div>
-            <div class="c-dashboardInfo col-lg-3 col-md-6" id="firstChild">
-                <div class="wrap">
-                    <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title" >
-                        {{t('All Tickets')}}
-                    </h4>
-                    <span class="hind-font caption-12 c-dashboardInfo__count">
-                    {{$tickets['all']}}
-                </span>
-                </div>
-            </div>
-            <div class="c-dashboardInfo col-lg-3 col-md-6" id="secondChild">
-                <div class="wrap">
-                    <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title" >
-                        {{t('Open')}}
-                    </h4>
-                    <span class="hind-font caption-12 c-dashboardInfo__count">
-                     {{$tickets['open']}}
-                </span>
-                </div>
-            </div>
-        </div>
+        <p class="text-3xl font-bold">{{$key}}</p>
 
-        <div class="row">
-            <div class="col-lg-3 col-md-6"></div>
+        <div class="flex content-center items-center justify-between space-x-4 ">
+            <div class="dcard my-4 py-12 px-3 ">
+                <div class="dcard-body py-3 text-center">
+                    <div class="text-right text-green">
 
-            <div class="c-dashboardInfo col-lg-3 col-md-6" id="thirdChild">
-                <div class="wrap">
-                    <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title" >
-                        {{t('On Hold')}}
-                    </h4>
-                    <span class="hind-font caption-12 c-dashboardInfo__count">
-                    {{$tickets['onHold']}}
-                </span>
+                    </div>
+                    <div class="text-5xl ">{{$tickets['all']}}</div>
+                    <div class="text-gray-500 text-3xl mb-4">{{t('All Tickets')}}</div>
                 </div>
             </div>
 
-            <div class="c-dashboardInfo col-lg-3 col-md-6" id="fourthChild">
-                <div class="wrap">
-                    <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title" >
-                        {{t('Resolved')}}
-                    </h4>
-                    <span class="hind-font caption-12 c-dashboardInfo__count">
-                    {{$tickets['resolved']}}
-                </span>
-                </div>
-            </div>
-        </div>
+            <div class="dcard my-4 py-12 px-3 ">
+                <div class="dcard-body py-3 text-center">
+                    <div class="text-right text-green">
 
-        <div class="row">
-            <div class="col-lg-3 col-md-6"></div>
-
-            <div class="c-dashboardInfo col-lg-3 col-md-6" id="fifthChild">
-                <div class="wrap">
-                    <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title" >
-                        {{t('Overdue')}}
-                    </h4>
-                    <span class="hind-font caption-12 c-dashboardInfo__count">
-                    {{$tickets['overdue']}}
-                </span>
+                    </div>
+                    <div class="text-5xl ">{{$tickets['open']}}</div>
+                    <div class="text-gray-500 text-3xl mb-4">{{t('Open')}}</div>
                 </div>
             </div>
 
-            <div class="c-dashboardInfo col-lg-3 col-md-6" id="sixthChild">
-                <div class="wrap">
-                    <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title" >
-                        {{t('Closed On time')}}
-                    </h4>
-                    <span class="hind-font caption-12 c-dashboardInfo__count">
-                    {{$tickets['closedOnTime']}}
-                </span>
+            <div class="dcard my-4 py-12 px-3 ">
+                <div class="dcard-body py-3 text-center">
+                    <div class="text-right text-green">
+
+                    </div>
+                    <div class="text-5xl ">{{$tickets['onHold']}}</div>
+                    <div class="text-gray-500 text-3xl mb-4">{{t('On Hold')}}</div>
                 </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-lg-3 col-md-6"></div>
+            <div class="dcard my-4 py-12 px-3 ">
+                <div class="dcard-body py-3 text-center">
+                    <div class="text-right text-green">
 
-            <div class="c-dashboardInfo col-lg-3 col-md-6" id="seventhChild">
-                <div class="wrap">
-                    <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title" >
-                        {{t('Customer Satisfaction')}}
-                    </h4>
-                    <span class="hind-font caption-12 c-dashboardInfo__count">
-                   {{$tickets['customer_satisfaction']}} %
-                </span>
+                    </div>
+                    <div class="text-5xl ">{{$tickets['resolved']}}</div>
+                    <div class="text-gray-500 text-3xl mb-4">{{t('Resolved')}}</div>
+                </div>
+            </div>
+
+            <div class="dcard my-4 py-12 px-3 ">
+                <div class="dcard-body py-3 text-center">
+                    <div class="text-right text-green">
+
+                    </div>
+                    <div class="text-5xl text-red-500">{{$tickets['overdue']}}</div>
+                    <div class="text-gray-500 text-3xl">{{t('Overdue')}}</div>
+                </div>
+            </div>
+
+            <div class="dcard my-4 py-12 px-3 ">
+                <div class="dcard-body py-3 text-center">
+                    <div class="text-right text-green">
+
+                    </div>
+                    <div class="text-5xl text-red-500">{{$tickets['closedOnTime']}}</div>
+                    <div class="text-gray-500 text-3xl">{{t('Closed On time')}}</div>
+                </div>
+            </div>
+
+            <div class="dcard my-4 py-12 px-3 ">
+                <div class="dcard-body py-3 text-center">
+                    <div class="text-right text-green">
+
+                    </div>
+                    <div class="text-5xl">{{$tickets['customer_satisfaction']}} %</div>
+                    <div class="text-gray-500  text-3xl">{{t('Satisfaction')}}</div>
                 </div>
             </div>
         </div>
-
     @endforeach
-
 </div>
+
+

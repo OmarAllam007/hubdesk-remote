@@ -4,11 +4,12 @@ import Vue from 'vue'
 
 window.jQuery = window.$ = require('jquery');
 window.swal = require('sweetalert2');
-// window.d3 = require('d3');
-// import Chart from 'chart.js';
-window.Chart = require('chart.js');
-window.ChartLabels = require('chartjs-plugin-labels');
-// window.ChartLabels =  require('chartjs-plugin-datalabels');
+
+
+// window.Chart = require('chart.js');
+// window.ChartLabels = require('chartjs-plugin-labels');
+
+import ApexCharts from 'apexcharts';
 
 // window.swal = swal;
 require('bootstrap-sass');

@@ -19,6 +19,14 @@ const { mix } = require('laravel-mix');
 // mix.sass('resources/assets/sass/app.scss', 'public/css');
 //       mix.js('resources/assets/js/app.js', 'public/js')
 
+const tailwindcss = require('tailwindcss')
+
+mix.sass('resources/assets/sass/app.scss', 'public/css')
+    .options({
+        processCssUrls: false,
+        postCss: [ tailwindcss('tailwind.config.js') ],
+    })
+
 // mix.sass('resources/assets/sass/app.scss', 'public/css')
 //       .js('resources/assets/js/app.js', 'public/js')
 //       .js('resources/assets/js/Report/index.js', 'public/js/report.js')
@@ -29,7 +37,7 @@ const { mix } = require('laravel-mix');
 //       mix.js('resources/assets/js/business-rules.js', 'public/js');
 //       mix.js('resources/assets/js/approval-levels.js', 'public/js');
 //         mix.js('resources/assets/js/approval-levels.js', 'public/js');
-mix.js('resources/assets/js/ticket-requirements/ticket-requirements.js', 'public/js/ticket-requirements.js');
+// mix.js('resources/assets/js/ticket-requirements/ticket-requirements.js', 'public/js/ticket-requirements.js');
 
 //       .js('resources/assets/js/task.js', 'public/js')
 //       .js('resources/assets/js/escalation.js', 'public/js');
