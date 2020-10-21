@@ -3,7 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
+/**
+ * @property Collection survey_answers
+ */
 class UserSurvey extends Model
 {
     protected $table = "user_surveys";
@@ -31,21 +35,20 @@ class UserSurvey extends Model
         return $query->whereNotNull('is_submitted')->orWhere('is_submitted', 0);
     }
 
-    function getTotalScoreAttribute(){
-        if(!$this->is_submitted){
+    function getTotalScoreAttribute()
+    {
+        if (!$this->is_submitted) {
             return 0;
         }
 //        dd($this->id);
-        $total = 0;
+//        $total = 0;
 
-        foreach ($this->survey_answers as $answer){
-            $total += $answer->answer->degree;
-        }
+        return $this->survey_answers->filter(function ($answer) {
+            return $answer->answer;
+        })->average('answer.degree');
 
-        if(!$this->survey_answers->count()){
-            return 0;
-        }
-        return $total / $this->survey_answers->count();
+
+//        return $total / $this->survey_answers->count();
     }
 
 }

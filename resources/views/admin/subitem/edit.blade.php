@@ -15,7 +15,7 @@
 @stop
 
 @section('body')
-    {{Form::model($subItem, ['route' => ['admin.subItem.update', $subItem], 'class' => 'col-sm-9'])}}
+    {{Form::model($subItem, ['route' => ['admin.subItem.update', $subItem], 'class' => 'col-sm-9','files'=>true])}}
 
     {{method_field('patch')}}
 

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('header')
-    <h4 class="pull-left">{{isset($item) ? $item->canonicalName() . '>' : ''}} Add SubItem</h4>
+    <h4 class="pull-left">Add SubItem</h4>
 
     <a href="{{route('admin.subItem.index')}}" class="btn btn-sm btn-default pull-right"><i class="fa fa-chevron-left"></i></a>
 @stop
@@ -11,7 +11,7 @@
 @stop
 
 @section('body')
-    {{Form::open(['route' => 'admin.subItem.store', 'class' => 'col-sm-9'])}}
+    {{Form::open(['route' => 'admin.subItem.store', 'class' => 'col-sm-9', 'files'=>true])}}
 
     @include('admin.subitem._form')
 

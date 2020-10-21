@@ -6,6 +6,9 @@ use App\ErrorLog;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Throwable;
 
 class Handler extends ExceptionHandler
 {
@@ -31,10 +34,10 @@ class Handler extends ExceptionHandler
      *
      * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
      *
-     * @param  \Exception  $exception
+     * @param  Throwable  $exception
      * @return void
      */
-    public function report(Exception $exception)
+    public function report(Throwable $exception)
     {
         parent::report($exception);
 
@@ -46,22 +49,24 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @param  Throwable  $exception
+     * @return Response
      */
-    public function render($request, Exception $exception)
+    public function render($request, Throwable $exception)
     {
+
         return parent::render($request, $exception);
     }
 
     /**
      * Convert an authentication exception into an unauthenticated response.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @param  \Illuminate\Auth\AuthenticationException  $exception
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
+//
     protected function unauthenticated($request, AuthenticationException $exception)
     {
         if ($request->expectsJson()) {
@@ -70,14 +75,14 @@ class Handler extends ExceptionHandler
 
         return redirect()->guest(route('login'));
     }
-
+//
     /**
      * Create a Symfony response for the given exception.
      *
-     * @param  \Exception  $e
+     * @param  Throwable  $e
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    protected function convertExceptionToResponse(Exception $e)
+    protected function convertExceptionToResponse(Throwable $e)
     {
         if (config('app.debug')) {
             return parent::convertExceptionToResponse($e);

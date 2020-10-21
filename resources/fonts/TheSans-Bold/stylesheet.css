@@ -1,0 +1,18 @@
+@font-face {
+    font-family: 'TheSans';
+    src: url('subset-TheSans-Plain.woff2') format('woff2'),
+        url('subset-TheSans-Plain.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'TheSans';
+    src: url('subset-TheSans-Bold.woff2') format('woff2'),
+        url('subset-TheSans-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+

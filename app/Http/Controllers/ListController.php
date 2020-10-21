@@ -169,4 +169,12 @@ class ListController extends Controller
         return $query;
     }
 
+
+    function approvers()
+    {
+        return User::orderBy('name')->whereNotNull('email')->get(['name', 'id', 'email'])->map(function ($user) {
+            return ['id' => $user->id, 'name' => $user->name . ' ( ' . $user->email . ' ) '];
+        });
+    }
+
 }

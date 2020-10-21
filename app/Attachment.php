@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Http\Requests\Request;
 use Illuminate\Http\UploadedFile;
 
 /**
@@ -22,9 +23,15 @@ class Attachment extends KModel
      */
     protected $uploadedFile;
 
-    public static function uploadFiles($type, $id)
+    /**
+     * @param $type
+     * @param $id
+     * @param Request $request
+     */
+    public static function uploadFiles($type, $id, $request = null)
     {
-        $files = \Request::file('attachments');
+        $files = !empty($request->attachments) ? $request->attachments : \Request::file('attachments');
+
         if ($files) {
             foreach ($files as $file) {
                 if ($file) {

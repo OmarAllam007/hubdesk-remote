@@ -10,14 +10,16 @@
                         {{t('Select Company')}}
                     </a>
                 </li>
+                /
                 {{--<li class="breadcrumb-item"><a href="#">{{t('Home')}}</a></li>--}}
                 <li class="breadcrumb-item">
-                        <a href="{{route('ticket.create.select_category',compact('business_unit','category'))}}">
+                    <a href="{{route('ticket.create.select_category',compact('business_unit','category'))}}">
                         {{t($business_unit->name)}}
                     </a>
                 </li>
+                /
                 <li class="breadcrumb-item"> {{t($category->name)}}
-                   </li>
+                </li>
                 {{--<li class="breadcrumb-item"> {{t('Select Subcategory')}}--}}
 
                 {{--</li>--}}
@@ -44,39 +46,60 @@
 
 
 @section('body')
-    <section class="col-sm-12 card-section">
-        @if ($business_unit->name)
-        @endif
+    <section class="col-sm-12">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="main">
+                    {{--                    will removed--}}
+                    @if($category->id == 116)
+                        <div class="view view-seventh">
+                            <img src="/images/fiori-logo.png">
+                            <div class="info"><p>
+                                    {{t("Fiori")}}
+                                </p></div>
+                            <div class="mask">
+                                <a target="_blank" href="https://fiori.alkifah.com:5447/sap/bc/ui5_ui5/ui2/ushell/shells/abap/FioriLaunchpad.html?sap-client=900&sap-language=EN&sap-sec_session_created=X">
+                                    <h2>
+                                        {{t("Fiori")}}
+                                    </h2>
+                                </a>
+                            </div>
+                        </div>
 
-            <div class=form-group></div>
-{{--            <h3 class=text-center>{{t('Subcategories') }}</h3>--}}
-            <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                    <div class="tiles-container">
-                        @foreach($category->subcategories()->individual()->orderBy('order')->get() as $subcategory)
-                            @if($subcategory->canDisplay(\App\ServiceUserGroup::$SUBCATEGORY))
+                        <div class="view view-seventh">
+                            <!-- /storage/attachments/subcategories/427/44.png -->
+                            <img src="{{ asset('images/sf-logo.png') }}">
+                            <div class="info"><p>
+                                    {{t("Success Factor")}}
+                                </p></div>
+                            <div class="mask">
+                                <a target="_blank" href="https://performancemanager.successfactors.eu/sf/start?_s.crb=lKkyhwFB1A8TjVql2Pw1KsJNTdBkC1u9L8radVFXdoc%253d#Shell-home">
+                                    <h2>
+                                        {{t("Success Factor")}}
+                                    </h2>
+                                </a>
+                            </div>
+                        </div>
+                    @endif
 
-                            <a href="{{route('ticket.create.select_item', compact('business_unit','subcategory'))}}" class="tile">
-                                <div class="tile-container"
-                                     style="display: flex;align-items: center;justify-content: center;">
-                                    {{--<div class="tile-icon" style="">--}}
-                                    {{--<img src="{{asset('images/logo.png')}}">--}}
-                                    {{--</div>--}}
-                                    <div class="tile-body" style="display: flex;">
-                                        <p class="text-center">
+                    @foreach($category->subcategories()->individual()->orderBy('order')->get() as $subcategory)
+                        @if($subcategory->canDisplay(\App\ServiceUserGroup::$SUBCATEGORY))
+                            <div class="view view-seventh">
+                                <img src="{{$subcategory->logo ? $subcategory->url : '/images/23.png'}}">
+                                <div class="info"><p>{{t($subcategory->name)}}</p></div>
+                                <div class="mask">
+                                    <a href="{{route('ticket.create.select_item', compact('business_unit','subcategory'))}}">
+                                        <h2>
                                             {{t($subcategory->name)}}
-                                        </p>
-                                    </div>
+                                        </h2>
+                                    </a>
                                 </div>
-                            </a>
-                            @endif
-                            {{--<p><a href="{{route('category.show', $category)}}" class="btn btn-outlined btn-block btn-primary">{{$category->name}}</a></p>--}}
-
-                        @endforeach
-                    </div>
+                            </div>
+                        @endif
+                    @endforeach
                 </div>
-                <div class="col-md-2"></div>
             </div>
+        </div>
     </section>
 @endsection

@@ -45,13 +45,13 @@ class DashboardInfo
     function process()
     {
         $this->ticketOverViewProcess();
-//        $this->getTopServices();
-//        $this->getPerformanceOverYear();
-//        $this->getSatisfactionOverYear();
+        $this->getTopServices();
+        $this->getPerformanceOverYear();
+        $this->getSatisfactionOverYear();
 //        $this->ticketsByCategory();
 //        $this->ticketsBySubcategory();
-//        $this->ticketsByCategoryPerformance();
-//        $this->ticketsByStatus();
+        $this->ticketsByCategoryPerformance();
+        $this->ticketsByStatus();
 //        $this->ticketsByCoordinator();
 //        $this->customerSatisfactions();
     }
@@ -112,15 +112,20 @@ class DashboardInfo
     }
 
 
-    function filterByDate($from, $to)
+    function filterByDate($from, $to, $skipRequest = false)
     {
-        if (isset($this->filters['from']) && $this->filters['from']) {
-            $from = Carbon::parse($this->filters['from']);
+        if (!$skipRequest) {
+
+            if (isset($this->filters['from']) && $this->filters['from']) {
+                $from = Carbon::parse($this->filters['from']);
+            }
+
+            if (isset($this->filters['to']) && $this->filters['to']) {
+                $to = Carbon::parse($this->filters['to'])->addHours(11)->addMinutes(59)->addSeconds(59);
+            }
+
         }
 
-        if (isset($this->filters['to']) && $this->filters['to']) {
-            $to = Carbon::parse($this->filters['to'])->addHours(11)->addMinutes(59)->addSeconds(59);
-        }
 
         return Ticket::with('user_survey', 'category')
             ->leftJoin('categories as ca', 'tickets.category_id', '=', 'ca.id')
@@ -183,23 +188,19 @@ class DashboardInfo
 
     private function ticketsByStatus()
     {
-        $query = $this->filterByDate(Carbon::now()->submonth()->firstOfMonth(), Carbon::now()->lastOfMonth());
+        $query = $this->filterByDate(Carbon::now()->submonth()->firstOfMonth(),
+            Carbon::now()->subMonth()->lastOfMonth()->addHours(11)->addMinutes(59)->addSeconds(59), true);
 
-        $groupBy = 'monthname(tickets.created_at) as month';
+//        $groupBy = 'monthname(tickets.created_at) as month';
 
         if (isset($this->filters['from']) && $this->filters['from']) {
             $groupBy = "(select '{$this->filters['from']} - {$this->filters['to']}') as month";
         }
 
-        $query
-            ->select(\DB::raw('st.name as name, count(tickets.id) as count'), \DB::raw($groupBy))
+        $this->ticketsByStatus = $query
+            ->select(\DB::raw('st.name as name, count(tickets.id) as count'))
             ->orderBy('name')
-            ->groupBy(['name', 'month'])->get()->groupBy('month')->map(function ($item, $key) {
-                $total = $item->pluck('count', 'name')->values()->sum();
-
-                $this->ticketsByStatus[$key]['labels'][] = $item->pluck('count', 'name')->keys();
-                $this->ticketsByStatus[$key]['values'][] = $item->pluck('count', 'name')->values();
-            });
+            ->groupBy(['name'])->get();
 
     }
 
@@ -265,6 +266,10 @@ class DashboardInfo
             });
 
         $answers->each(function ($userAnswer) use ($questions) {
+            if (!$userAnswer->answer) {
+                return true;
+            }
+
             $questions->push(collect(['question' => $userAnswer->answer->question->description, 'answer' => $userAnswer->answer->description, 'degree' => $userAnswer->answer->degree]));
         });
 
@@ -372,6 +377,7 @@ class DashboardInfo
 
             return number_format($surveys_points / $surveys_count, 1);
         });
+//        dd($this->customerSatisfactionOverYear->toArray());
 
     }
 }

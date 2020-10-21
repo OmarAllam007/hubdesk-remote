@@ -572,7 +572,6 @@ class Ticket extends KModel
     }
 
 
-
     function getIsOpenedTicketAttribute()
     {
         return \Auth::user()->id == $this->technician_id && !$this->is_opened;
@@ -587,6 +586,13 @@ class Ticket extends KModel
         } elseif ($this->item && $this->item->complaint) {
             return $this->item->complaint;
         }
+    }
+
+    function getTicketApprovalsAttribute()
+    {
+        return $this->approvals()->get()->map(function (TicketApproval $approval) {
+            return $approval->convertToJson();
+        });
     }
 
 }

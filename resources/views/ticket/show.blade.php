@@ -223,7 +223,7 @@
                     @include('ticket.tabs._history')
                 </div>
 
-                <div role="tabpanel" class="tab-pane" id="approvals">
+                <div role="tabpanel" class="tab-pane " id="approvals">
                     @include('ticket.tabs._approvals')
                 </div>
 

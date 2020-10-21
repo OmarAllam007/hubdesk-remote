@@ -35,10 +35,21 @@
     @endforeach
 @endif
 
-@if (isset($item) && count($item->custom_fields))
-    @foreach($item->custom_fields as $field)
-        <div class="col-sm-6">
-            @include('custom-fields.' . $field['type'], compact('field'))
-        </div>
+@if (isset($item))
+    @foreach($item->custom_fields->sortBy('label')->groupBy('label')->sortBy('label') as $key=>$Ifields)
+        @if($key != '')
+            <div class="col-md-12">
+                <div class="fields_label">
+                    <strong>{{t($key)}}</strong>
+                </div>
+                <br>
+            </div>
+        @endif
+        {{--        {{dd($subfields->sortBy('order') )}}--}}
+        @foreach($Ifields->sortBy('order') as $field)
+            <div class="col-sm-6">
+                @include('custom-fields.' . $field['type'], compact('field'))
+            </div>
+        @endforeach
     @endforeach
 @endif

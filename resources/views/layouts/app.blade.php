@@ -9,107 +9,138 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mada:400,700">
     {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css">--}}
-    <link rel="stylesheet" href="{{asset('/css/app.css')}}?random">
+    <link rel="stylesheet" href="{{asset('/css/app.css')}}?version={{time()}}">
+    <link rel="stylesheet" href="{{asset('/css/style.css')}}?version={{time()}}">
 
-    @if(\Session::get('personlized-language-ar' . auth()->id(), config('app.locale')) == "ar")
-        <link rel="stylesheet" href="{{asset('/css/bootstrap-rtl.css')}}">
-    @endif
+
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     @yield('stylesheets')
+
+    @if(isset($business_unit))
+        <style>
+            body {
+                background: #f9f9f9 url(../images/white_texture.png) repeat top left;
+                background-image: url({{url('/storage'.$business_unit->business_unit_bgd ?? '')}});
+                background-position: top center;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: cover;
+                color: #333;
+                /*font-family: 'Esphimere Regular', Arial, sans-serif;*/
+                font-size: 13px;
+            }
+        </style>
+    @endif
+
     <style>
-        ul.navbar > li:hover {
-            background: #20639c !important;
-            border-radius: 2px;
+        *:not(i), .quot-animation {
+            font-family: 'Exo2-Plain Font', Arial !important;
         }
     </style>
 
-
-
+    @if(\Session::get('personalized-language' . auth()->id(), config('app.locale')) == "ar")
+        <style>
+            *:not(i) {
+                font-family: "Sans-Plain Font", Arial !important;
+            }
+        </style>
+    @endif
 </head>
 <body>
+
 
 <header>
     <nav class="navbar navbar-default navbar-static-top navbar-style exto-bold">
         <div class="container-fluid">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="{{url('/')}}">
-                        <i class="fa fa-life-ring"></i> HUBDESK</a>
-                </li>
-            </ul>
-            @if (!\Auth::guest())
-                <ul class="nav navbar-nav ">
-                    {{--@if(Auth::user()->isAdmin())--}}
-                    <li class="nav-item"><a href="{{route('ticket.create')}}"><i
-                                    class="fa fa-plus"></i> {{t('New Ticket')}}</a></li>
-                    {{--@endif--}}
-                    <li class="nav-item"><a href="{{route('ticket.index')}}"><i
-                                    class="fa fa-ticket"></i> {{t('Tickets')}}</a></li>
+            <div class="navbar-header">
+                <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="logo"><a href="{{url('/')}}"><img src="{{asset('images/h_logo.png')}}"></a></div>
+                {{--                <a href="#" class="navbar-brand">Brand</a>--}}
+            </div>
+            <div id="navbarCollapse" class="collapse navbar-collapse">
 
-                    @can('dashboard')
-                        <li class="nav-item"><a href="{{route('dashboard.select_business_unit')}}"><i
-                                        class="fa fa-dashboard"></i> {{t('Dashboard')}}</a></li>
-                    @endcan
+                @if (!\Auth::guest())
+                    <ul class="nav navbar-nav ">
+                        {{--@if(Auth::user()->isAdmin())--}}
+                        <li class="nav-item"><a href="{{route('ticket.create')}}"><i
+                                        class="fa fa-plus"></i> {{t('New Ticket')}}</a></li>
+                        {{--@endif--}}
+                        <li class="nav-item"><a href="{{route('ticket.index')}}"><i
+                                        class="fa fa-ticket"></i> {{t('Tickets')}}</a></li>
 
-                    @if(auth()->user()->isSupport())
-                        <li class="nav-item"><a href="{{route('configurations.index')}}"><i
-                                        class="fa fa-cogs"></i> {{t('Configurations')}}</a></li>
-                    @endif
+                        @can('dashboard')
+                            <li class="nav-item"><a href="{{route('dashboard.select_business_unit')}}"><i
+                                            class="fa fa-dashboard"></i> {{t('Dashboard')}}</a></li>
+                        @endcan
 
-                    @can('reports')
-                        <li class="nav-item"><a href="{{url('/reports')}}"><i
-                                        class="fa fa-bar-chart"></i> {{t('Report')}}</a></li>
-                    @endif
 
-                    @can('show_business_document')
-                        <li class="nav-item"><a href="{{route('kgs.business_document.select_division')}}"><i
-                                        class="fa fa-book"></i> {{t('Corporate Services')}}</a></li>
 
-                    @endcan
+                        @can('reports')
+                            <li class="nav-item"><a href="{{url('/reports')}}"><i
+                                            class="fa fa-bar-chart"></i> {{t('Report')}}</a></li>
+                        @endif
 
-                    @if (Auth::user()->isAdmin())
-                        <li class="nav-item"><a href="{{url('/admin')}}"><i class="fa fa-cogs"></i> {{t('Admin')}}</a>
+                        @can('show_business_document')
+                            <li class="nav-item"><a href="{{route('kgs.business_document.select_division')}}"><i
+                                            class="fa fa-book"></i> {{t('Corporate Services')}}</a></li>
+
+                        @endcan
+
+                    </ul>
+
+
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown nav-item">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i>
+                                <i class="caret"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{route('site.changeLanguage','ar')}}"> {{t('Arabic')}}</a></li>
+                                <li><a href="{{route('site.changeLanguage','en')}}"> {{t('English')}}</a></li>
+                                <li><a href="{{route('site.changeLanguage','in')}}"> {{t('Indian')}}</a></li>
+                                <li><a href="{{route('site.changeLanguage','ur')}}"> {{t('URDU')}}</a></li>
+                                <li><a href="{{route('site.changeLanguage','nep')}}"> {{t('Nepali')}}</a></li>
+                            </ul>
                         </li>
-                    @endif
-                </ul>
+                    </ul>
 
-
-                <ul class="nav navbar-nav">
-                    <li class="dropdown nav-item">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i>
-                            <i class="caret"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{route('site.changeLanguage','ar')}}"> {{t('Arabic')}}</a></li>
-                            <li><a href="{{route('site.changeLanguage','en')}}"> {{t('English')}}</a></li>
-                            <li><a href="{{route('site.changeLanguage','in')}}"> {{t('Indian')}}</a></li>
-                            <li><a href="{{route('site.changeLanguage','ur')}}"> {{t('URDU')}}</a></li>
-                            <li><a href="{{route('site.changeLanguage','nep')}}"> {{t('Nepali')}}</a></li>
-                        </ul>
-                    </li>
-                </ul>
-
-                <ul class="nav navbar-nav
+                    <ul class="nav navbar-nav
                     @if(\Session::get('personlized-language-ar' . \Auth::user()->id, \Config::get('app.locale'))=="ar")
-                        navbar-left @else navbar-right
+                            navbar-left @else navbar-right
                     @endif">
-                    <li class="dropdown nav-item">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                                    class="fa fa-user"></i> {{Auth::user()->name}} <i class="caret"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{route('user.reset')}}"><i class="fa fa-unlock "></i> {{t('Reset Password')}}
-                                </a></li>
-                            <li><a href="{{url('/logout')}}"><i class="fa fa-sign-out"></i> {{t('Logout')}}</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            @endif
+                        <li class="dropdown nav-item">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+                                        class="fa fa-user"></i> {{Auth::user()->profile_name}} <i class="caret"></i></a>
+                            <ul class="dropdown-menu">
+                                @if (Auth::user()->isAdmin())
+                                    <li><a href="{{url('/admin')}}"><i class="fa fa-cogs"></i> {{t('Admin')}}
+                                        </a>
+                                    </li>
+                                @endif
+                                <li><a href="{{route('user.reset')}}"><i
+                                                class="fa fa-unlock "></i> {{t('Reset Password')}}
+                                    </a></li>
+                                @if(auth()->user()->isSupport())
+                                    <li><a href="{{route('configurations.index')}}"><i
+                                                    class="fa fa-cogs"></i> {{t('Configurations')}}</a></li>
+                                @endif
+                                <li><a href="{{url('/logout')}}"><i class="fa fa-sign-out"></i> {{t('Logout')}}</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                @endif
+            </div>
         </div>
     </nav>
 </header>
 
 <div id="wrapper">
     <main class="container-fluid">
-        <div class="row">
+        <div class="row back-animation">
             <div class="title-bar">
                 <div class="container-fluid title-container">
                     @yield('header')
@@ -124,17 +155,30 @@
         </div>
     </main>
 
-    <footer>
-        <div class="container-fluid">
-            <div class="footer-container display-flex">
-                <p class="text-mutedtext-right">{{t('Copyright')}} &copy; <a
-                            href="http://hubtech.sa">Hubtech</a> {{date('Y')}}</p>
+    {{--    <footer>--}}
+    {{--        <div class="container-fluid">--}}
+    {{--            <div class="footer-container display-flex">--}}
+    {{--                <p class="text-mutedtext-right">{{t('Copyright')}} &copy; <a--}}
+    {{--                            href="http://hubtech.sa">Hubtech</a> {{date('Y')}}</p>--}}
 
-                <p class="text-mutedtext-left" style="font-weight: bold;"><a
-                            href="{{asset('attachments/hubdesk-user-guide.pdf')}}" target="_blank"><i
-                                class="fa fa-info-circle"></i> {{t('AlQuwa Hubdesk User Guideline')}}</a></p>
+    {{--                <p class="text-mutedtext-left" style="font-weight: bold;"><a--}}
+    {{--                            href="{{asset('attachments/hubdesk-user-guide.pdf')}}" target="_blank"><i--}}
+    {{--                                class="fa fa-info-circle"></i> {{t('AlQuwa Hubdesk User Guideline')}}</a></p>--}}
 
-            </div>
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--    </footer>--}}
+
+
+    <footer class="footer">
+        <div style="display: flex;">
+{{--            <a href="#"><i class="fa fa-envelope"></i>cs.alquwa@alkifah.com</a>--}}
+            <a href="https://hubtech.sa">Powered by Hubdesk from Hubtech</a>
+        </div>
+        <div>
+            {{--<a
+                    href="{{asset('attachments/hubdesk-user-guide.pdf')}}" target="_blank"><i
+                        class="fa fa-download"></i> {{t('AlQuwa Hubdesk User Guideline')}}</a>--}}
         </div>
     </footer>
 </div>
@@ -145,6 +189,5 @@
 
 @include('vendor.sweetalert.alert')
 @yield('javascript')
-
 </body>
 </html>

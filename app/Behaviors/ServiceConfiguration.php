@@ -7,6 +7,7 @@ use App\Group;
 use App\ServiceLimit;
 use App\ServiceUserGroup;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\UploadedFile;
 use PhpParser\Node\Expr\Cast\Int_;
 
 /**
@@ -52,8 +53,8 @@ trait ServiceConfiguration
         $can_display_the_service = true;
 
         foreach ($this->availabilities as $availability) {
-            if (in_array($requester_bu_id, $availability->value) ) {
-                $can_display_the_service =  $this->validDate($availability);
+            if (in_array($requester_bu_id, $availability->value)) {
+                $can_display_the_service = $this->validDate($availability);
             }
 
         }
@@ -72,5 +73,27 @@ trait ServiceConfiguration
 
         return false;
     }
+
+    public static function uploadAttachment($folderName, $service, UploadedFile $file)
+    {
+        $filename = $file->getClientOriginalName();
+
+        $folder = storage_path('app/public/attachments/' . $folderName . '/' . $service->id . '/');
+        if (!is_dir($folder)) {
+            mkdir($folder, 0775, true);
+        }
+
+        $path = $folder . $filename;
+        if (is_file($path)) {
+            $filename = uniqid() . '_' . $filename;
+            $path = $folder . $filename;
+        }
+
+        $file->move($folder, $filename);
+
+        return '/attachments/' . $folderName . '/' . $service->id . '/' . $filename;
+    }
+
+
 
 }

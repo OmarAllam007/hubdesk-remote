@@ -35,7 +35,7 @@ class Subcategory extends KModel
     use Listable, ServiceConfiguration, SharedRelations;
 
     protected $fillable = ['category_id', 'name', 'description', 'service_request', 'service_cost',
-        'notes', 'service_type', 'is_disabled', 'business_service_type'];
+        'notes', 'service_type', 'is_disabled', 'business_service_type','logo'];
 
     public function items()
     {
@@ -110,5 +110,13 @@ class Subcategory extends KModel
     {
         return $this->hasMany(Requirement::class, 'reference_id')
             ->where('reference_type', Requirement::$types['Subcategory']);
+    }
+
+    public function getUrlAttribute()
+    {
+        $basename = str_replace('+', ' ', urlencode(basename($this->logo)));
+        $dirname = dirname($this->logo);
+        $path = $dirname . '/' . $basename;
+        return url('/storage' . $path);
     }
 }

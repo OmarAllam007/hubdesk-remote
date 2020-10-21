@@ -33,10 +33,11 @@ html, body {
   min-height: 50px;
 
   .navbar-nav li a {
-    line-height: 1.5;
+    color: #ddd;
+    line-height: 50px;
     padding-top: 15px;
     padding-bottom: 15px;
-    font-weight: 700;
+    font-weight: 500;
   }
 
   .navbar-brand {
@@ -477,15 +478,24 @@ option.empty {
 }
 
 .navbar-style {
-  background-color: #194F7E;
+  color: #ddd;
+  background-color: #1a1d50;
+  //opacity: 0.9;
+  font-family: 'Esphimere Regular', Arial, sans-serif;
+  line-height: 16px;
+  font-size: 16px;
+  text-transform: capitalize;
+  z-index: 9999;
+  box-shadow: 1px 0px 2px #000;
 
   .nav li a {
-    color: white;
+    color: #ddd;
     font-size: 15px;
   }
 
   .nav li a:hover {
     color: white;
+    background-color: rgba(0, 0, 0, .3);
   }
 
   .nav li.dropdown a {
@@ -738,7 +748,7 @@ a:hover {
 .nav-item:hover {
   border-radius: 10px;
   //background-color: #477296;
-  background-color: #598cb77a;
+  //background-color: #598cb77a;
   transition: .5s;
 }
 
@@ -883,7 +893,6 @@ p.quot-animation {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   position: relative;
   margin-bottom: 1.5rem;
-  width: 100%;
   display: flex;
   flex-direction: column;
   min-width: 0;
@@ -894,9 +903,24 @@ p.quot-animation {
   border-radius: 3px;
 }
 
-.dcard-body{
+.dcard-body {
   flex: 1 1 auto;
   margin: 0;
   //padding: 1.5rem 1.5rem;
   position: relative;
+}
+
+.breadcrumb {
+  background-color: transparent;
+  font-size: 12pt;
+  margin-bottom: 0;
+  color: #1a1d50;
+}
+
+.breadcrumb > li > a {
+  color: #1a1d50
+}
+
+.breadcrumb > li + li:before {
+  content: '';
 }

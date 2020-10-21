@@ -16,6 +16,7 @@ use App\CustomField;
 use App\Division;
 use App\Http\Controllers\Controller;
 use App\Item;
+use App\Jobs\NewTicketJob;
 use App\Subcategory;
 use App\Task;
 use App\Ticket;
@@ -123,6 +124,8 @@ class BusinessDocumentController extends Controller
             'business_unit_id' => $business_unit->id
         ]);
 
+
+
         foreach (\request()->get('cf', []) as $key => $item) {
             if ($item) {
                 $field = CustomField::find($key)->name ?? '';
@@ -136,7 +139,7 @@ class BusinessDocumentController extends Controller
 
         $this->uploadTicketAttachments($ticket, \request('ticket-attachments'));
         $this->handleTicketRequirements($ticket);
-
+        $this->dispatch(new NewTicketJob($ticket));
         return redirect()->route('ticket.show', $ticket->id);
     }
 
