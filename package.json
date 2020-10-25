@@ -18,6 +18,7 @@
     "lodash": "^4.17.4",
     "node-sass": "^4.13.1",
     "vue": "^2.4.4",
+    "@tinymce/tinymce-vue": "^3.2.4",
     "chart.js": "^2.9.3",
     "chartjs-plugin-datalabels": "^0.7.0",
     "chartjs-plugin-labels": "^1.1.0",
@@ -31,7 +32,6 @@
     "puppeteer": "^3.0.4",
     "tailwindcss": "^1.9.5",
     "vue-apexcharts": "^1.6.0",
-    "sweetalert2": "^7.26.28",
     "vue-select": "^3.10.8"
   }
 }

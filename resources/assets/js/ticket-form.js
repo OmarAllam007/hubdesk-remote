@@ -1,9 +1,8 @@
 import Vue from 'vue';
 import Attachments from './AttachmentModal.vue';
-// import ApprovalQuestions from "./approvals/questions/ApprovalQuestions";
 import Task from './Task.vue';
 import Approvals from './ticket/approvals/Approvals.vue';
-
+import Notes from "./ticket/notes/Notes";
 
 window.app = new Vue({
     el: '#ticketArea',
@@ -151,5 +150,5 @@ window.app = new Vue({
         },
     },
 
-    components: {Attachments, Task, Approvals}
+    components: {Attachments, Task, Approvals, Notes}
 });

@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('header')
-    {{--    {{dd($ticket->logs->groupBy(\DB::raw('CAST(created_at AS DATE)')))}}--}}
     @can('show',$ticket)
         <div class="display-flex ticket-meta">
             <div class="flex">
@@ -48,12 +47,6 @@
                                     class="btn btn-sm btn-primary btn-rounded btn-outlined" title="Duplicate">
                                 <i class="fa fa-copy"></i> {{t('Duplicate')}}
                             </button>
-
-                            <button type="button" class="btn btn-primary btn-sm btn-rounded btn-outlined addNote"
-                                    data-toggle="modal" data-target="#ReplyModal" title="{{t('Add Note')}}">
-                                <i class="fa fa-sticky-note"></i> {{t('Add Note')}}
-                            </button>
-
 
                             <a href="{{route('ticket.print',$ticket)}}" target="_blank"
                                class="btn btn-sm btn-primary btn-rounded btn-outlined" title="Print">
@@ -164,7 +157,7 @@
                 </li>
                 <li><a href="#conversation" role="tab" data-toggle="tab"><i
                                 class="fa fa-comments-o"></i> {{t('Conversation')}}</a></li>
-                {{--<li><a href="#tasks" role="tab" data-toggle="tab"><i class="fa fa-tasks"></i> {{t('Tasks')}}</a></li>--}}
+                <li><a href="#tasks" role="tab" data-toggle="tab"><i class="fa fa-tasks"></i> {{t('Tasks')}}</a></li>
                 @if ($ticket->resolution || can('resolve', $ticket))
                     <li><a href="#resolution" role="tab" data-toggle="tab"><i
                                     class="fa fa-support"></i> {{t('Resolution')}}</a></li>
@@ -269,36 +262,15 @@
 @endsection
 
 @section('javascript')
-    <script>
-        $('.editNote').on('click', function (e) {
-            let modal = $('#ReplyModal');
-            let note = $(this).data('note');
-            modal.find('.modal-title').html('Edit Note - Ticket #' + note.ticket_id);
-            modal.find('button[type=submit]').html('<i class="fa fa-save"></i> Save');
-            let form = modal.closest('form').attr('action', 'note-edit/' + note.id);
-            tinyMCE.activeEditor.setContent(note.note);
-            $('#display_to_requester').attr('checked', note.display_to_requester == 1 ? true : false);
-            $('#email_to_technician').attr('checked', note.email_to_technician == 1 ? true : false);
-            $('#as_first_response').parent().hide();
-        });
+        <script>
+            var category = '{{Form::getValueAttribute('category_id') ?? $ticket->category_id}}';
+            var subcategory = '{{Form::getValueAttribute('subcategory_id') ?? $ticket->subcategory_id}}';
+            var item = '{{Form::getValueAttribute('item_id') ?? $ticket->item_id}}';
+            var subitem = '{{Form::getValueAttribute('subitem_id') ?? $ticket->subitem_id}}';
+            var group = '{{Form::getValueAttribute('group_id') ?? $ticket->group_id}}';
+            var technician_id = '{{Form::getValueAttribute('technician_id') ?? $ticket->technician_id}}';
+        </script>
+    <script src="{{asset('/js/ticket-form.js')}}?version={{time()}}"></script>
 
-        $('.removeNote').on('click', function () {
-            let modal = $('#removeNoteModal');
-            let note = $(this).data('note');
-            modal.find('.modal-title').html('Remove Note #' + note.id + '  - Ticket #' + note.ticket_id);
-            modal.find('.modal-body').html('Are you sure to delete #' + note.id + ' note ?');
-            let form = modal.closest('form').attr('action', 'remove-note/' + note.id);
-        })
-    </script>
-
-    <script>
-        var category = '{{Form::getValueAttribute('category_id') ?? $ticket->category_id}}';
-        var subcategory = '{{Form::getValueAttribute('subcategory_id') ?? $ticket->subcategory_id}}';
-        var item = '{{Form::getValueAttribute('item_id') ?? $ticket->item_id}}';
-        var subitem = '{{Form::getValueAttribute('subitem_id') ?? $ticket->subitem_id}}';
-        var group = '{{Form::getValueAttribute('group_id') ?? $ticket->group_id}}';
-        var technician_id = '{{Form::getValueAttribute('technician_id') ?? $ticket->technician_id}}';
-    </script>
-    <script src="{{asset('/js/ticket-form.js')}}"></script>
 
 @append
