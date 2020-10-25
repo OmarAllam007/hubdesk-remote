@@ -1,5 +1,3 @@
 {
-    "/js/dashboard/index.js": "/js/dashboard/index.js",
-    "/css/print.css": "/css/print.css",
-    "/css/app.css": "/css/app.css"
+    "/js/ticket-form.js": "/js/ticket-form.js"
 }

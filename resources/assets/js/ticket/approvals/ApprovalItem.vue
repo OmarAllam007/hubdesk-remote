@@ -3,7 +3,7 @@
     <div class="panel approval-panel ">
       <div class="panel-heading">
         <div style="display: flex; justify-content: space-between">
-          <div class="form-group  col-md-6">
+          <div class="">
             <label>
               Send Approval to:
               <v-select :options="users" label="name" v-model="level.approver" placeholder="Select Approver"
