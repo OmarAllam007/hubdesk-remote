@@ -5,7 +5,11 @@ module.exports = {
   },
   purge: [],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        'print': {'raw': 'print'},
+      }
+    }
   },
   variants: {},
   plugins: [],

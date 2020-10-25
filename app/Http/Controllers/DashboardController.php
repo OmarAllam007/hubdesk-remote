@@ -22,21 +22,29 @@ class DashboardController extends Controller
 
         $this->authorize('dashboard');
 
-        $data = new DashboardInfo($request->get('filters', []),$businessUnit);
-//        dd($data);
-        if($request->has('pdf')){
-            $content = view('dashboard.display', compact('data','businessUnit'));
+        if (!$request->has('print')) {
+            session()->put('filters', $request->get('filters', []));
+        }
 
-            $filepath = storage_path('app/' . uniqid('report') . '.html');
+        $data = new DashboardInfo(session('filters'), $businessUnit);
+
+        if ($request->has('print')) {
+            $content = view('dashboard.display', compact('data', 'businessUnit'));
+
+            $filepath = storage_path('app/dashboard.html');
             file_put_contents($filepath, $content->render());
-
             $print = new ChromePrint($filepath);
             $file = $print->print();
 
-            return $file;
+            return response()->download($file, null, [], 'inline');
+//            $headers = array(
+//                'Content-Type: application/pdf',
+//            );
+////            return response()->download($file, strtolower(str_slug($businessUnit->name)) . '-dashboard.pdf', $headers);
+//            return $file;
         }
 
-        return view('dashboard.display', compact('data','businessUnit'));
+        return view('dashboard.display', compact('data', 'businessUnit'));
 
     }
 

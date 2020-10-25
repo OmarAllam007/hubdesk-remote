@@ -1,102 +1,46 @@
 <template>
   <div class="lineChart">
-    <apexcharts type="bar" :options="chartOptions" :series="chartOptions.series"></apexcharts>
+
   </div>
 </template>
 
 <script>
-import VueApexCharts from 'vue-apexcharts'
+import c3 from 'c3';
+import 'c3/c3.css';
 
 export default {
   name: 'ServicePerformanceChart',
   props: ['total', 'resolved', 'ontime', 'labels'],
 
-  components: {
-    apexcharts: VueApexCharts,
-  },
-  data: function () {
-    return {
-      chartOptions: {
-        chart: {
-          width: '100%',
-          height: 160,
-          type: "bar",
-          stacked: false,
-        },
-        dataLabels: {
-          enabled: true,
-          offsetY: -30,
-          style: {
-            fontSize: '14px',
-            colors: ["#1f0707"]
-          }
-        },
-        colors: ['#9d180d', '#1b3a5b', '#14562a'],
-        series: [
-          {
-            name: 'Total',
-            type: 'column',
-            data: this.total
-          },
-          {
-            name: "Resolved & Closed",
-            type: 'column',
-            data: this.resolved
-          },
-          {
-            name: "Ontime",
-            type: 'column',
-            data: this.ontime
-          },
+  mounted() {
+    c3.generate({
+      bindto: this.$el,
+      data: {
+        type: 'bar',
+        columns: [
+            ["Total", ...this.total],
+            ["Resolved", ...this.resolved],
+            ["On Time", ...this.ontime],
         ],
-        stroke: {
-          show: true,
-          width: 4,
-          colors: ['transparent']
-        },
-        plotOptions: {
-          bar: {
-            horizontal: false,
-            columnWidth: this.labels.length > 3 ? '70%' : '20%',
-            dataLabels: {
-              position: 'top', // top, center, bottom
-            },
-          }
-        },
-        fill: {
-          opacity: 0.9
-        },
-        xaxis: {
-          labels: {
-            rotate: -45
-          },
-          categories: this.labels,
-          tickPlacement: "on"
-        },
-        yaxis: [
-          {
-            seriesName: 'No. of tickets',
-            axisTicks: {
-              show: true
-            },
-            axisBorder: {
-              show: true,
-            },
-            title: {
-              text: "No. of tickets"
-            }
-          },
 
-        ],
-        title: {
-          text: 'Service Performance',
-        }
+
       },
-    }
-  },
+      axis: {
+        x: {
+          type: 'category',
+          categories: this.labels
+        },
+
+        legend: {
+          position: 'inset',
+          inset: {
+            anchor: 'bottom-right',
+            y: 10,
+            x: 0
+          }
+        }
+      }
+    })
+  }
 }
 </script>
-<style scoped>
-
-</style>
-

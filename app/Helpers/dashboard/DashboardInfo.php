@@ -48,10 +48,14 @@ class DashboardInfo
         $this->getTopServices();
         $this->getPerformanceOverYear();
         $this->getSatisfactionOverYear();
-//        $this->ticketsByCategory();
-//        $this->ticketsBySubcategory();
+
         $this->ticketsByCategoryPerformance();
         $this->ticketsByStatus();
+
+
+
+        //        $this->ticketsByCategory();
+//        $this->ticketsBySubcategory();
 //        $this->ticketsByCoordinator();
 //        $this->customerSatisfactions();
     }
@@ -115,7 +119,6 @@ class DashboardInfo
     function filterByDate($from, $to, $skipRequest = false)
     {
         if (!$skipRequest) {
-
             if (isset($this->filters['from']) && $this->filters['from']) {
                 $from = Carbon::parse($this->filters['from']);
             }
@@ -190,8 +193,6 @@ class DashboardInfo
     {
         $query = $this->filterByDate(Carbon::now()->submonth()->firstOfMonth(),
             Carbon::now()->subMonth()->lastOfMonth()->addHours(11)->addMinutes(59)->addSeconds(59), true);
-
-//        $groupBy = 'monthname(tickets.created_at) as month';
 
         if (isset($this->filters['from']) && $this->filters['from']) {
             $groupBy = "(select '{$this->filters['from']} - {$this->filters['to']}') as month";
@@ -306,24 +307,29 @@ class DashboardInfo
         $from = Carbon::now()->subMonth()->firstOfMonth();
         $to = Carbon::now()->subMonth()->lastOfMonth()->addHours(11)->addMinutes(59)->addSeconds(59);
 
-        $ticketsQuery = Ticket::with('category', 'subcategory')
-            ->leftJoin('categories as ca', 'tickets.category_id', '=', 'ca.id')
-            ->where('tickets.created_at', '>=', $from)
-            ->where('tickets.created_at', '<=', $to)
-            ->where('ca.business_unit_id', $this->business_unit->id)->get();
+        $query = $this->filterByDate($from, $to);
 
-        $ticketsQuery = $this->business_unit->id != 11 ? $ticketsQuery->groupBy('category.name') : $ticketsQuery->groupBy('subcategory.name');
+        $ticketQuery = $query->get();
+//        $ticketsQuery = Ticket::with('category', 'subcategory')
+//            ->leftJoin('categories as ca', 'tickets.category_id', '=', 'ca.id')
+//            ->where('tickets.created_at', '>=', $from)
+//            ->where('tickets.created_at', '<=', $to)
+//            ->where('ca.business_unit_id', $this->business_unit->id)->get();
 
-        $tickets = $ticketsQuery->sortByDesc(function ($data) {
+//        $query = $this->business_unit->id != 11 ? $query->groupBy('category.name') : $query->groupBy('subcategory.name');
+
+        $tickets = $ticketQuery->groupBy($this->business_unit->id != 11 ? 'category.name' : 'subcategory.name')->sortByDesc(function ($data) {
             return $data->count();
         })->map(function ($tickets, $key) {
             return $tickets->count();
         });
 
+
         $this->topServices = $tickets->slice(0, 5);
         $others = $tickets->slice(5)->sum();
 
         $this->topServices = $this->topServices->put('Others', $others)->toArray();
+
 
     }
 
