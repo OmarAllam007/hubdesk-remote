@@ -1,22 +1,21 @@
-@extends('layouts.app')
+@extends(request()->has('print') ? 'layouts.print' : 'layouts.app')
 
 @section('header')
-    <h4>Select BusinessUnit</h4>
+    <h4> {{$businessUnit->name}} > Dashboard</h4>
 @endsection
 
 @section('stylesheets')
     <style>
-        .dashboard-card-item {
-            margin: 10px;
-            box-shadow: 0 0 3px 0px;
-            border-radius: 20px;
+        main {
+            background: #f5f7fb;
         }
     </style>
 @endsection
 
 @section('body')
-    <div class="col-md-12 ">
-        <form action="{{route('dashboard.display',$businessUnit)}}">
+    <div class="w-full  p-10" id="dashboard">
+        <form action="{{route('dashboard.display',$businessUnit)}}" id="filterForm" class="">
+            <a href="?print" class="btn btn-success btn-sm"><i class="fa fa-file"></i> {{ t('PDF') }}</a>
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="form-group col-md-4">
@@ -47,160 +46,53 @@
             </div>
         </form>
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="dashboard-card">
-                    <h2>Tickets Overview</h2>
-                    <hr>
-                    @foreach($data->ticketOverView as $key=>$tickets)
-                        <h3><u>{{$key}}</u></h3>
 
-                        <div class="tickets-overview">
-                            <div>
-                                <div class="ticket-shape" style="background-color:  #0079b4; color: white">
-                                    {{$tickets['all']}}
-                                </div>
-                                <p>All Tickets</p>
-                            </div>
+        <p class="text-3xl text-center print-only mb-4">{{$businessUnit->name}}</p>
 
-                            <div>
-                                <div class="ticket-shape" style="background-color:  #4c6460; color: white">
-                                    {{$tickets['open']}}
-                                </div>
-                                <p>Open</p>
-                            </div>
+        <div class="page-break">
+            @include('dashboard.ticket_overview')
+        </div>
 
-                            <div>
-                                <div class="ticket-shape" style="background-color:  #ef996d; color: white">
-                                    {{$tickets['onHold']}}
-                                </div>
-                                <p>OnHold</p>
-                            </div>
 
-                            <div>
-                                <div class="ticket-shape" style="background-color:  darkgreen; color: white">
-                                    {{$tickets['resolved']}}
-                                </div>
-                                <p>Resolved</p>
-                            </div>
-
-                            <div>
-                                <div class="ticket-shape" style="background-color:  darkred; color: white">
-                                    {{$tickets['overdue']}}
-                                </div>
-                                <p>Overdue</p>
-                            </div>
-
-                            <div>
-                                <div class="ticket-shape" style="background-color:  #003900; color: white">
-                                    {{$tickets['closedOnTime']}}
-                                </div>
-                                <p>Closed On Time</p>
-                            </div>
-
-                            <div>
-                                <div class="ticket-shape" style="background-color:  @if($tickets['customer_satisfaction'] > 60 ) #246D24; @else #7C1500; @endif color: white">
-                                    {{$tickets['customer_satisfaction']}} %
-                                </div>
-                                <p style="line-height: 2"> Customer Satisfaction</p>
-                            </div>
-                        </div>
-
-                    @endforeach
-                </div>
+        <div class="xl:flex">
+            <div class="xl:flex-1" style="margin-right: 10px">
+                @include('dashboard.charts._yearly_performance')
+            </div>
+            <div class="xl:flex-1">
+                @include('dashboard.charts._customer_satisfaction_over_year')
             </div>
         </div>
-        <br>
-        <hr>
-        <div class="row " style="display: flex">
-            <div class="col-md-5 dashboard-card-item">
-                <h3 style="text-align: left">Based On the Service Type</h3>
-                <br>
+        <div class="page-break"></div>
 
-                @if(!empty($data->ticketsByCategory))
-                    <canvas id="categoryChart" width="300" height="300"></canvas>
-                @else
-                    <p>No Data Found.</p>
-                @endif
+        <div class="xl:flex">
+            <div class="xl:flex-1" style="margin-right: 10px">
+                @include('dashboard.charts._status')
             </div>
-            <div class="col-md-2"></div>
 
-            <div class="col-md-5 dashboard-card-item">
-                <h3 style="text-align: left">Statistics based on the Status</h3>
-                <br>
-                @if(!empty($data->ticketsByStatus))
-                    <canvas id="byStatus" width="300" height="300"></canvas>
-                @else
-                    <p>No Data Found.</p>
-                @endif
+            <div class="xl:flex-1">
+                @include('dashboard.charts._top_services')
             </div>
         </div>
-        <hr>
-        <div class="col-md-12">
-            <h3 style="text-align: left">Based On the Subservice</h3>
-            <br>
 
-            @if(!empty($data->ticketsBySubcategory))
-                <canvas id="subserviceChart" width="200" ></canvas>
-            @else
-                <p>No Data Found.</p>
-            @endif
-        </div>
-        <hr>
-        <div class="row" style="display: flex;justify-content: space-between;">
-            {{--            <div class="col-md-12 ">--}}
-            <div class="col-md-12 dashboard-card-item">
-                <h3 style="text-align: left">Service Performance </h3>
-                <br>
-
-                @if(!empty($data->servicePerformance))
-                    <canvas id="subCategoryPerformanceChart" width="300"></canvas>
-                @else
-                    <p>No Data Found.</p>
-                @endif
-            </div>
-            {{--            </div>--}}
-        </div>
-        <hr>
-        <div class="row" style="display: flex;justify-content: space-between;">
-            <div class="col-md-10 dashboard-card-item">
-
-                <h3 style="text-align: left">Coordinators Performance</h3>
-                <br>
-                @if(!empty($data->ticketsByCoordinator))
-                    <canvas id="coordinators" width="300" height="150"></canvas>
-                @else
-                    <p>No Data found.</p>
-                @endif
-            </div>
-        </div>
-        <br><br>
-        <hr>
-        <div class="row">
-            <div class="col-md-12">
-                <h3 style="text-align: left">Customer Satisfaction -  {{$data->customerSatisfaction['total_responses_percentage'] }}%</h3>
-{{--                {{$data->customerSatisfaction['total_submitted']}} response--}}
-{{--                ---}}
-            </div>
-            <br>
-            <div class="col-md-10" id="customerCanvases" style="display: flex;justify-content: space-between;">
-
-
+        <div>
+            <div class="">
+                @include('dashboard.charts._service_performance')
             </div>
         </div>
     </div>
 @endsection
 
 @section('javascript')
-
-    @include('dashboard.charts._category')
-    @include('dashboard.charts._subservice')
-    @include('dashboard.charts._service_performance')
-    @include('dashboard.charts._status')
-    @include('dashboard.charts._coordinators')
-    @include('dashboard.charts._survey')
-    <script>
+    <script src="{{ asset('js/dashboard/index.js') }}"></script>
 
 
-    </script>
+    {{--    @include('dashboard.charts._yearly_performance')--}}
+    {{--    @include('dashboard.charts._customer_satisfaction_over_year')--}}
+    {{--    @include('dashboard.charts._category')--}}
+    {{--    @include('dashboard.charts._subservice')--}}
+    {{--    @include('dashboard.charts._service_performance')--}}
+    {{--    @include('dashboard.charts._status')--}}
+    {{--    @include('dashboard.charts._coordinators')--}}
+    {{--    @include('dashboard.charts._survey')--}}
+
 @endsection

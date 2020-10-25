@@ -34,6 +34,9 @@
             }]
         },
         options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            showScale: false,
             plugins: {
                 labels: [
                     {

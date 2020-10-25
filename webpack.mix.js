@@ -15,15 +15,25 @@ const {mix} = require('laravel-mix');
 // mix.js('resources/assets/js/Reports/reports.js','public/js');
 // mix.sass('resources/assets/sass/bootstrap-rtl.scss', 'public/bootstrap-rtl.css')
 // mix.sass('resources/assets/sass/app.scss', 'public/css')
+// mix.sass('resources/assets/sass/app.scss', 'public/css')
 // mix.copyDirectory('resources/fonts', 'public/fonts');
 // mix.sass('resources/assets/sass/app.scss', 'public/css');
 //       mix.js('resources/assets/js/app.js', 'public/js')
 
-// mix.sass('resources/assets/sass/app.scss', 'public/css')
-//       .js('resources/assets/js/app.js', 'public/js')
-//       .js('resources/assets/js/Report/index.js', 'public/js/report.js')
-//       .js('resources/assets/js/ticket-index.js', 'public/js')
-      mix.js('resources/assets/js/ticket-form.js', 'public/js')
+const tailwindcss = require('tailwindcss')
+// //
+mix.sass('resources/assets/sass/print.scss', 'public/css')
+    .options({
+        processCssUrls: false,
+        postCss: [tailwindcss('tailwind.config.js')],
+    })
+
+mix.sass('resources/assets/sass/app.scss', 'public/css')
+// mix.sass('resources/assets/sass/print.scss', 'public/css')
+//     .js('resources/assets/js/app.js', 'public/js')
+// //       .js('resources/assets/js/Report/index.js', 'public/js/report.js')
+// //       .js('resources/assets/js/ticket-index.js', 'public/js')
+// mix.js('resources/assets/js/ticket-form.js', 'public/js')
 //       .js('resources/assets/js/ticket.js', 'public/js')
 //       mix.js('resources/assets/js/criteria.js', 'public/js')
 //       mix.js('resources/assets/js/business-rules.js', 'public/js');
@@ -36,3 +46,5 @@ const {mix} = require('laravel-mix');
 // mix.js('resources/assets/js/ticket-note.js', 'public/js');
 // mix.js('resources/assets/js/Task.vue', 'public/js/tasks.js');
 // mix.js('resources/assets/js/kgs_notifications/main.js', 'public/js/kgs/notifications/notifications.js');
+
+mix.js('resources/assets/js/dashboard/index.js', 'public/js/dashboard')

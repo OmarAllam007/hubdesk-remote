@@ -35,17 +35,17 @@ class UserSurvey extends Model
         return $query->whereNotNull('is_submitted')->orWhere('is_submitted', 0);
     }
 
-    function getTotalScoreAttribute(){
-        if(!$this->is_submitted){
+    function getTotalScoreAttribute()
+    {
+        if (!$this->is_submitted) {
             return 0;
         }
 //        dd($this->id);
 //        $total = 0;
 
-        return $this->survey_answers->filter(function($answer) {
+        return $this->survey_answers->filter(function ($answer) {
             return $answer->answer;
         })->average('answer.degree');
-
 
 
 //        return $total / $this->survey_answers->count();

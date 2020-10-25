@@ -4,6 +4,13 @@
 @import "node_modules/font-awesome/scss/font-awesome.scss";
 @import "node_modules/select2/src/scss/core.scss";
 
+@import "~tailwindcss/base";
+
+@import "~tailwindcss/components";
+
+@import "~tailwindcss/utilities";
+
+
 // Layout styles
 html, body {
   height: 100%;
@@ -45,7 +52,7 @@ html, body {
 }
 
 .title-bar {
-  padding-bottom: 17px;
+  //padding-bottom: 0px;
 
   .title-container {
     background: $blend-color;
@@ -881,6 +888,28 @@ p.quot-animation {
   border-radius: 20px;
 }
 
+
+.dcard {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  position: relative;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 40, 100, 0.12);
+  border-radius: 3px;
+}
+
+.dcard-body {
+  flex: 1 1 auto;
+  margin: 0;
+  //padding: 1.5rem 1.5rem;
+  position: relative;
+}
+
 .breadcrumb {
   background-color: transparent;
   font-size: 12pt;
@@ -894,4 +923,8 @@ p.quot-animation {
 
 .breadcrumb > li + li:before {
   content: '';
+}
+
+.print-only {
+  display: none;
 }

@@ -37,6 +37,7 @@
             font-family: 'Exo2-Plain Font', Arial !important;
         }
     </style>
+
     @if(\Session::get('personalized-language' . auth()->id(), config('app.locale')) == "ar")
         <style>
             *:not(i) {
@@ -44,7 +45,6 @@
             }
         </style>
     @endif
-{{--    @livewireStyles--}}
 </head>
 <body>
 

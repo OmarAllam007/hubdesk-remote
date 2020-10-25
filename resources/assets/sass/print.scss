@@ -1,8 +1,14 @@
-@import 'resources/assets/sass/_variables.scss';
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+//@import 'resources/assets/sass/_variables.scss';
+//@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 //@import "node_modules/bootflat/bootflat/scss/bootflat.scss";
 @import "node_modules/font-awesome/scss/font-awesome.scss";
-@import "node_modules/select2/src/scss/core.scss";
+//@import "node_modules/select2/src/scss/core.scss";
+
+@import "~tailwindcss/base";
+
+@import "~tailwindcss/components";
+
+@import "~tailwindcss/utilities";
 
 html, body {
   height: 100%;
@@ -23,9 +29,9 @@ html, body {
 
 .title-bar {
   .title-container {
-    background: $blend-color;
+    background: rgba(27, 98, 143, 0.07);
     min-height: 40px;
-    border-bottom: none; //1px solid darken($blend-color, 10%);
+    border-bottom: none; //1px solid darken(rgba(27, 98, 143, 0.07), 10%);
     margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
@@ -58,7 +64,7 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
-  background-color: $body-bg;
+  background-color: #FFFFFF;
 }
 
 .panel.panel-heading h4 {
@@ -76,7 +82,7 @@ body {
 }
 
 footer {
-  border-top: 2px solid $navbar-default-border;
+  border-top: 2px solid #D3E0E9;
   background: #fff;
 
   .footer-container {
@@ -101,12 +107,12 @@ footer {
 
 //Listing styles
 //-----------------------------------
-.listing-table {
-  @extend .table;
-  // @extend .table-condensed;
-  @extend .table-striped;
-  @extend .table-hover;
-}
+//.listing-table {
+////  @extend .table;
+////  // @extend .table-condensed;
+////  @extend .table-striped;
+////  @extend .table-hover;
+//}
 
 .listing-table > tr > td,
 .listing-table > tbody > tr > td,
@@ -128,35 +134,38 @@ footer {
   background-color: transparent;
 
   &.btn-primary {
-    color: $brand-primary;
+    color: #3097D1;
 
     &:hover, &:active, &:focus {
-      background-color: $btn-primary-bg;
-      color: $btn-primary-color;
+      //background-color: $btn-primary-bg;
+      color: #FFFFFF;
     }
   }
 
   &.btn-info {
-    color: $brand-info;
+    color: #5BC0DE;
+
     &:hover, &:active, &:focus {
-      background-color: $btn-info-bg;
-      color: $btn-info-color;
+      background-color: #5BC0DE;
+      color: #ffffff;
     }
   }
 
   &.btn-success {
-    color: $brand-success;
+    color: #5CB85C;
+
     &:hover, &:active, &:focus {
-      background-color: $btn-success-bg;
-      color: $btn-success-color;
+      background-color: #5CB85C;
+      color: #ffffff;
     }
   }
 
   &.btn-warning {
-    color: $brand-warning;
+    color: #F0AD4E;
+
     &:hover, &:active, &:focus {
-      background-color: $btn-warning-bg;
-      color: $btn-warning-color;
+      background-color: #F0AD4E;
+      color: #ffffff;
     }
   }
 
@@ -166,7 +175,7 @@ footer {
 //------------------------------------
 .error-message {
   margin-top: 7px;
-  color: $brand-danger;
+  color: #D9534F;
 }
 
 .panel-sm {
@@ -196,7 +205,7 @@ footer {
 
 .modal {
   .modal-header, .modal-footer {
-    background-color: darken($blend-color, 2%);
+    background-color: darken(rgba(27, 98, 143, 0.07), 2%);
   }
 
   .modal-footer {
@@ -238,9 +247,9 @@ hr.form-divider {
 }
 
 .card {
-  @extend .well;
-  @extend .well-sm;
-  @extend .well-white;
+  //@extend .well;
+  //@extend .well-sm;
+  //@extend .well-white;
   padding: 10px;
   margin-bottom: 0;
 
@@ -262,7 +271,7 @@ hr.form-divider {
 }
 
 .bg-violet {
-  background-color: $brand-violet;
+  background-color: #8A2BE2;
   color: #fff;
 }
 
@@ -271,12 +280,13 @@ hr.form-divider {
 }
 
 .list-group-item.info {
-  background-color: $brand-info;
+  background-color: #5BC0DE;
   color: #fff;
 }
 
 #flash-alert {
   margin-right: 2em;
+
   .alert {
     margin-bottom: 0;
     padding: 5px;
@@ -339,6 +349,7 @@ table.table > thead > tr > th {
     .report-table-container {
       overflow-x: auto;
     }
+
     table.table {
       width: auto;
     }
@@ -409,13 +420,76 @@ img {
   height: 25px;
   width: auto;
 }
-.back{
+
+.back {
   float: right;
   margin: 3px;
 }
-@media print {
-  .print-ticket-form ,.back {
-    display: none;
-  }
 
+
+.dcard {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  position: relative;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 40, 100, 0.12);
+  border-radius: 3px;
+}
+
+.dcard-body {
+  flex: 1 1 auto;
+  margin: 0;
+  //padding: 1.5rem 1.5rem;
+  position: relative;
+}
+
+#filterForm {
+  display: none;
+}
+
+
+.print-ticket-form, .back {
+  display: none;
+}
+
+.text-gray-500 {
+  --text-opacity: 1;
+  color: #a0aec0;
+  color: rgba(160, 174, 192, var(--text-opacity));
+}
+
+
+body, main {
+  background: transparent !important;
+}
+
+body {
+  margin: 2px;
+}
+
+.page-break {
+  page-break-inside: avoid;
+  page-break-after: always;
+}
+svg{
+  page-break-inside: avoid;
+}
+.parent_card{
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  page-break-inside: avoid;
+  page-break-after: always;
+}
+.half-card{
+  width: 50%;
+  flex-grow: 1;
+}
+.print-only {
+  display: block;
 }

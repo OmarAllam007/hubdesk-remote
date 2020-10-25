@@ -1,9 +1,9 @@
 <!doctype html>
-<html  lang="en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-{{--    <meta name="viewport" content="width=device-width, initial-scale=1">--}}
+    {{--    <meta name="viewport" content="width=device-width, initial-scale=1">--}}
     <title>HubDesk</title>
     <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
     <link rel="stylesheet" href="{{asset('/css/print.css')}}">
@@ -13,13 +13,11 @@
 </head>
 <body>
 
-
-    <main class="col-m-12">
-        <div class="container-fluid">
-            @yield('body')
-        </div>
-    </main>
-
+<main class="col-m-12">
+    <div class="container-fluid">
+        @yield('body')
+    </div>
+</main>
 
 
 @yield('javascript')

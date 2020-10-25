@@ -1,4 +1,4 @@
-<form method="POST" action="#" accept-charset="UTF-8" class="modal fade in" id="removeNoteModal">
+<form method="POST"  action="#" accept-charset="UTF-8" class="modal fade in" id="removeNoteModal">
     {{csrf_field()}}
     <div class="modal-dialog">
         <div class="modal-content">

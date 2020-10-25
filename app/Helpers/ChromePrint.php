@@ -1,16 +1,17 @@
 <?php
 
-
 namespace App\Helpers;
+
 use ChromeDevtoolsProtocol\Context;
 use ChromeDevtoolsProtocol\Instance\Launcher;
 use ChromeDevtoolsProtocol\Model\Page\NavigateRequest;
 use ChromeDevtoolsProtocol\Model\Page\PrintToPDFRequest;
 use Exception;
+use Spatie\Browsershot\Browsershot;
 
 class ChromePrint
 {
-    public $file;
+    private $file;
 
     public function __construct($file)
     {
@@ -21,31 +22,23 @@ class ChromePrint
     {
         // Sometimes an exception is thrown on cleaning up after generating the file
         // We use retry here to repeat the operation if the exception is thrown to ensure generating the file
-
         return retry(3, function () {
-            $ctx = Context::withTimeout(Context::background(), 1800);
-            $launcher = new Launcher();
-            $launcher->setExecutable(config('app.chrome_path'));
-            $instance = $launcher->launch($ctx);
+            $url = $this->file;
+            if (substr($this->file, 0, 4) !== 'http') {
+                $url = "file://$this->file";
+            }
+//            $file = storage_path('app/' . ('print_request_') . '.pdf');
+            $file = storage_path('app/print_request.pdf');
 
-            $tab = $instance->open($ctx);
-            $tab->activate($ctx);
-            $devtools = $tab->devtools();
-
-            $page = $devtools->page();
-            $page->enable($ctx);
-            $page->navigate($ctx, NavigateRequest::builder()->setUrl("file://$this->file")->build());
-            $page->awaitLoadEventFired($ctx);
-            $request = PrintToPDFRequest::builder()->setDisplayHeaderFooter(false)
-                ->setPrintBackground(true)
-                ->setPreferCSSPageSize(true)
-                ->build();
-
-            $file = storage_path('app/' . uniqid('print_report_') . '.pdf');
-            file_put_contents($file, base64_decode($page->printToPDF($ctx, $request)->data));
-
-            $devtools->close();
-            $instance->close();
+            Browsershot::url($url)
+                ->waitUntilNetworkIdle()
+                ->setDelay(3000)
+                ->showBackground()
+                ->windowSize(1024, 720)
+                ->timeout(300)
+                ->margins(0.5, 0.5, 0.5, 0.5, 'in')
+//                ->landscape(true)
+                ->format('A4')->savePdf($file);
 
             if ($file && file_exists($file)) {
                 return $file;
