@@ -21,7 +21,7 @@
                 <div class="form-group col-md-4">
                     <label for="">From</label>
                     <input type="date" name="filters[from]" value="{{request('filters.from')}}"
-                           class="form-control dashboard-input">
+                           class="form-control dashboard-input ">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="">To</label>

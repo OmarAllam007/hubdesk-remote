@@ -9,7 +9,7 @@
     </div>
     <hr>
 
-    <div>
+    <div >
         @if(!empty($data->topServices))
             <service-type-chart
                     :labels="{{json_encode(array_keys($data->topServices))}}"
