@@ -1,9 +1,9 @@
-<div class="dcard  px-3">
+<div class="dcard px-3">
     <div class="p-5">
         <h3 class="text-3xl font-bold">{{t('Performance last 9 months')}}</h3>
     </div>
     <hr>
-    <div>
+    <div class="p-5">
         @if(!empty($data->yearlyPerformance))
             <yearly-performance-chart
                     class="w-full"

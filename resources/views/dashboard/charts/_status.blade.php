@@ -4,7 +4,7 @@
         <small>{{\Carbon\Carbon::now()->submonth()->monthName}}</small>
     </div>
     <hr>
-    <div>
+    <div >
         @if(!empty($data->customerSatisfactionOverYear))
             <status-chart
                     :labels="{{json_encode($data->ticketsByStatus->pluck('name')->toArray())}}"

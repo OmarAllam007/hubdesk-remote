@@ -3,7 +3,7 @@
         <h3 class="text-3xl font-bold">{{t('Customer satisfaction last 9 months')}}</h3>
     </div>
     <hr>
-    <div>
+    <div >
         @if(!empty($data->customerSatisfactionOverYear))
             <customer-satisfaction-chart
                     :labels="{{json_encode(array_keys($data->customerSatisfactionOverYear->toArray()))}}"
