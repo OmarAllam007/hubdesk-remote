@@ -2,8 +2,8 @@
 
 @section('header')
     @can('show',$ticket)
-        <div class="display-flex ticket-meta">
-            <div class="flex">
+        <div class="flex">
+            <div class="flex flex-col">
                 <h4>#{{$ticket->id}} - {{$ticket->subject}}
                 </h4>
                 <h4>
@@ -168,10 +168,10 @@
                 @endif
 
 
-                @if(!$ticket->isTask())
-                    <li><a href="#tasks" role="tab" data-toggle="tab"><i
-                                    class="fa fa-tasks"></i> {{t('Tasks')}}</a></li>
-                @endif
+{{--                @if(!$ticket->isTask())--}}
+{{--                    <li><a href="#tasks" role="tab" data-toggle="tab"><i--}}
+{{--                                    class="fa fa-tasks"></i> {{t('Tasks')}}</a></li>--}}
+{{--                @endif--}}
 
                 <li><a href="#history" role="tab" data-toggle="tab"><i
                                 class="fa fa-history"></i>
