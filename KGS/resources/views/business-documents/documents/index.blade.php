@@ -17,15 +17,17 @@
         <i
                 class="fa fa-1x fa-arrow-right"></i> </a>
     <style>
-        .light-danger{
+        .light-danger {
             /*background-color: #84082e !important;*/
 
         }
-        .deep_danger{
+
+        .deep_danger {
             background-color: #810303 !important;
             color: #ffff;
-            
+
         }
+
         .deep_danger > td > a {
             color: #ffff;
         }
@@ -51,6 +53,7 @@
                     <th>{{t('End Date')}}</th>
                     <th>{{t('Remaining Days')}}</th>
                     <th>{{t('Document')}}</th>
+                    <th>{{t('Remarks')}}</th>
                     <th>{{t('Actions')}}</th>
                 </tr>
                 </thead>
@@ -69,10 +72,16 @@
                         <td>{{$document->end_date ? $document->remaining_days : ''}}</td>
                         <td><a href="{{route('kgs.business_document.download',['attachment'=>$document])}}"
                                target="_blank">{{basename($document->path) ?? ''}}</a></td>
-
+                        <td class="col-md-2 ">
+                            @if($document->remarks)
+                                <a href="#" data-toggle="modal" data-target="#showRemarks" type="button"
+                                   class="btn btn-sm btn-primary btn-outlined showRemarks" title="Remarks"
+                                   data-remarks="{{ strip_tags($document->remarks) }}">
+                                    <i class="fa fa-sticky-note"></i>
+                                    {{t('Remarks')}}</a>
+                            @endif
+                        </td>
                         <td class="col-md-3">
-
-
                             <form action="{{route('kgs.document.destroy', compact('folder','document'))}}"
                                   method="post">
                                 {{--                        <td>--}}
@@ -115,6 +124,8 @@
     <section id="documentArea">
         @include('kgs::business-documents.documents._modal._move')
     </section>
+    @include('kgs::business-documents.documents._modal._remarks')
+
 @endsection
 
 @section('javascript')
@@ -124,6 +135,10 @@
         function changeDocumentId(id) {
             $('#document_id').val(id)
         }
+
+        $(".showRemarks").on('click', function () {
+            $('p#remarks').text($(this).data("remarks"));
+        });
 
         var business_unit = '{{Form::getValueAttribute('business_unit') ?? $folder->business_unit->id}}';
         var folder = '{{Form::getValueAttribute('folder') ?? $folder}}';

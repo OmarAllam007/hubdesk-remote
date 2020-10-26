@@ -12,7 +12,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Document extends Model
 {
-    protected $fillable = ['folder_id', 'name', 'start_date', 'end_date', 'last_updated_by', 'path', 'level', 'level_id'];
+    protected $fillable = ['folder_id', 'name', 'start_date', 'end_date',
+        'last_updated_by', 'path', 'level', 'level_id','remarks'];
 
     protected $dates = ['start_date', 'end_date'];
 

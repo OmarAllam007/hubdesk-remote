@@ -47,7 +47,8 @@ class DocumentController extends Controller
             'end_date' => $request->end_date,
             'path' => $request['document_path'] ?? '',
             'level' => $level ?? null,
-            'level_id' => $level_id ?? null
+            'level_id' => $level_id ?? null,
+            'remarks' => $request->remarks
         ]);
 
         return redirect()->route('kgs.document.index', compact('folder'));
@@ -74,7 +75,8 @@ class DocumentController extends Controller
             'end_date' => $request->end_date,
             'path' => $request['document_path'] ? $request['document_path'] : $document->path,
             'level' => $level ?? null,
-            'level_id' => $level_id ?? null
+            'level_id' => $level_id ?? null,
+            'remarks' => $request->remarks
 //            'last_updated_by' => \Auth::id(),
         ]);
 

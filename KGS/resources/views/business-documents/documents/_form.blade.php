@@ -41,6 +41,14 @@
         @endif
     </div>
 
+    <div class="form-group form-group-sm @error('remarks')? 'has-error' : @enderror ">
+        {{ Form::label('remarks', t('Remarks'), ['class' => 'control-label']) }}
+        {{ Form::textarea('remarks', null, ['class' => 'form-control richeditor']) }}
+        @if ($errors->has('remarks'))
+            <div class="error-message">{{$errors->first('remarks')}}</div>
+        @endif
+    </div>
+
     @php
         $data = [];
        if(isset($document) && $document->level){
