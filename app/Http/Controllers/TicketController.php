@@ -66,7 +66,7 @@ class TicketController extends Controller
                     if ($search == $user->employee_id) {
                         $searchedTickets = $searchedTickets->where('requester_id', $user->id)
                             ->orWhere('creator_id', $user->id);
-                    }else{
+                    } else {
                         $searchedTickets = collect();
                     }
                 }
@@ -82,8 +82,9 @@ class TicketController extends Controller
         }
 
 
-        $tickets = $query->latest('id')->paginate();
-        return view('ticket.index', compact('tickets', 'scopes', 'scope'));
+        return view('ticket.index');
+//        return $query->latest('id')->paginate();
+//        return view('ticket.index', compact('tickets', 'scopes', 'scope'));
     }
 
     public function create()
@@ -325,7 +326,6 @@ class TicketController extends Controller
 
         return \Redirect::back();
     }
-
 
 
     public function pickupTicket(Ticket $ticket)

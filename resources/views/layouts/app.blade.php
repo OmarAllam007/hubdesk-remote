@@ -138,15 +138,18 @@
     </nav>
 </header>
 
-<div id="wrapper">
-    <main class="container-fluid">
-        <div class="row back-animation">
+<div id="wrapper" style="background: #eaeaea;">
+    <main class="container-fluid" >
+        <div class="row back-animation" >
+            @hasSection('header')
             <div class="title-bar">
                 <div class="container-fluid title-container">
-                    @yield('header')
+                        @yield('header')
+{{--                    @yield('header')--}}
                 </div>
             </div>
-            @hasSection('sidebar')
+            @endif
+        @hasSection('sidebar')
                 @yield('sidebar')
             @endif
 
