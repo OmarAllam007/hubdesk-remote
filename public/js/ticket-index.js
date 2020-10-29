@@ -12602,7 +12602,7 @@ exports = module.exports = __webpack_require__(18)(false);
 
 
 // module
-exports.push([module.i, "\n.loader[data-v-1c55e306] {\n  border-top-color: #1a1d50;\n  -webkit-animation: spinner-data-v-1c55e306 1.5s linear infinite;\n  animation: spinner-data-v-1c55e306 1.5s linear infinite;\n}\n@-webkit-keyframes spinner {\n0% {\n    -webkit-transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n}\n}\n@keyframes spinner-data-v-1c55e306 {\n0% {\n    transform: rotate(0deg);\n}\n100% {\n    transform: rotate(360deg);\n}\n}\n", ""]);
+exports.push([module.i, "\n.loader[data-v-1c55e306] {\n  border-top-color: #1a1d50;\n  -webkit-animation: spinner-data-v-1c55e306 1.5s linear infinite;\n  animation: spinner-data-v-1c55e306 1.5s linear infinite;\n}\n@-webkit-keyframes spinner {\n0% {\n    -webkit-transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n}\n}\n@keyframes spinner-data-v-1c55e306 {\n0% {\n    transform: rotate(0deg);\n}\n100% {\n    transform: rotate(360deg);\n}\n}\n.fade-enter-active[data-v-1c55e306], .fade-leave-active[data-v-1c55e306] {\n  transition: opacity .5s;\n}\n.fade-enter[data-v-1c55e306], .fade-leave-to[data-v-1c55e306] /* .fade-leave-active below version 2.1.8 */\n{\n  opacity: 0;\n}\n", ""]);
 
 // exports
 
@@ -12991,6 +12991,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -13013,6 +13029,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       _this.tickets.current_page = 1;
       _this.loadTickets();
     });
+
+    this.$on('toggle-sidebar', function (sidebar_visibility) {
+      _this.sidebar_visibility = sidebar_visibility;
+    });
+  },
+
+  computed: {
+    sideBarWidth: function sideBarWidth() {
+      return this.sidebar_visibility ? 'visible' : 'hidden';
+    },
+    ticketsWidth: function ticketsWidth() {
+      return this.sidebar_visibility ? 'w-9/12' : 'w-full';
+    }
   },
   data: function data() {
     return {
@@ -13020,6 +13049,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       initLoading: false,
       scopes: {},
       selected_scope: '',
+      sidebar_visibility: false,
+
       tickets: {
         total: 0,
         per_page: 2,
@@ -13060,20 +13091,45 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [(_vm.initLoading) ? _c('div', {
+  return _c('div', {
+    staticClass: "flex flex-col"
+  }, [(_vm.initLoading) ? _c('div', {
     staticClass: "flex justify-center"
   }, [_c('div', {
     staticClass: "loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-24 w-24 mt-64"
   })]) : _vm._e(), _vm._v(" "), _c('div', {
+    staticClass: "flex w-full pt-5 justify-center"
+  }, [_vm._m(0), _vm._v(" "), (!_vm.loading || !_vm.initLoading) ? _c('input', {
+    staticClass: "w-1/2 h-16 px-3 rounded-lg mb-8 focus:outline-none focus:shadow-outline\n    text-xl px-8 shadow-lg",
+    attrs: {
+      "type": "search",
+      "placeholder": "Ticket ID / Employee ID"
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
     staticClass: "w-full flex p-3"
-  }, [(_vm.scopes.length) ? _c('div', {
-    staticClass: "w-3/12 h-full flex flex-col m-3 rounded-2xl border border-gray-500 p-3 bg-white"
+  }, [_c('div', {
+    staticClass: "flex  w-3/12 h-full"
+  }, [_c('div', {
+    staticClass: "m-3"
+  }, [(_vm.scopes.length) ? _c('button', {
+    staticClass: "bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2\n        px-4 border border-blue-500 hover:border-transparent rounded",
+    on: {
+      "click": function($event) {
+        _vm.sidebar_visibility = !_vm.sidebar_visibility
+      }
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-bars"
+  })]) : _vm._e()]), _vm._v(" "), (_vm.scopes.length) ? _c('div', {
+    staticClass: "flex flex-col m-3 rounded-xl  bg-white shadow",
+    class: _vm.sideBarWidth
   }, [_c('filters', {
     attrs: {
       "scopes": _vm.scopes
     }
-  })], 1) : _vm._e(), _vm._v(" "), _c('div', {
-    staticClass: "w-9/12  m-3"
+  })], 1) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "m-3 relative",
+    class: _vm.ticketsWidth
   }, [(_vm.loading && !_vm.initLoading) ? _c('div', {
     staticClass: "flex justify-center"
   }, [_c('div', {
@@ -13098,7 +13154,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   })], 1)], 2)])])])
-},staticRenderFns: []}
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('button', {
+    staticClass: "h-16 px-6 bg-blue-500  rounded-3xl text-white mr-1 shadow-lg"
+  }, [_c('i', {
+    staticClass: "fa fa-search"
+  })])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -15001,7 +15063,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "ticket-card hover:shadow-lg border border-gray-400"
+    staticClass: "ticket-card hover:shadow-lg"
   }, [_c('div', {
     staticClass: "flex flex-col border-b-2 border-gray-200 pt-8 pb-8 pr-3 pl-3 pl-5 pr-5"
   }, [_c('p', {
@@ -15193,7 +15255,7 @@ exports = module.exports = __webpack_require__(18)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -15223,13 +15285,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Filters",
   props: ['scopes'],
   data: function data() {
-    return {};
+    return {
+      filters_visible: true
+    };
   },
 
   methods: {
@@ -15239,6 +15311,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     changeScope: function changeScope(scope) {
       this.$parent.$emit('changeScope', scope);
       sessionStorage.setItem('scope', scope);
+    },
+    toggleFilters: function toggleFilters() {
+      this.filters_visible = !this.filters_visible;
+      this.$parent.$emit('toggle-sidebar', this.filters_visible);
     }
   }
 });
@@ -15249,12 +15325,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "flex flex-col pt-8 mb-8"
+    staticClass: "flex flex-col"
   }, [_vm._m(0), _vm._v(" "), _c('article', {
     staticClass: "w-full pt-3"
   }, _vm._l((_vm.scopes), function(scope) {
-    return _c('div', [_c('button', {
-      staticClass: "w-full flex p-8 rounded-2xl justify-start\n                   hover:bg-gray-300 hover:shadow",
+    return _c('div', {
+      staticClass: "p-3"
+    }, [_c('button', {
+      staticClass: "w-full flex p-8 rounded-2xl justify-start\n                     hover:bg-gray-200 hover:shadow",
       class: _vm.isSelectedScope(scope[0]),
       on: {
         "click": function($event) {
@@ -15265,11 +15343,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "text-lg font-bold text-left"
     }, [_c('i', {
       staticClass: "fa fa-chevron-right"
-    }), _vm._v(" " + _vm._s(scope[1]) + "\n                      ")])])])
+    }), _vm._v(" " + _vm._s(scope[1]) + "\n                        ")])])])
   }))])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('p', {
-    staticClass: "flex justify-center border-b-2 pb-3"
+    staticClass: "flex justify-center border-b-2 pb-5 bg-gray-200 p-5  rounded-t-xl"
   }, [_c('i', {
     staticClass: "fa fa-filter"
   }), _vm._v(" Ticket Filters")])

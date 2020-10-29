@@ -1,5 +1,5 @@
 <template>
-  <div class="ticket-card hover:shadow-lg border border-gray-400">
+  <div class="ticket-card hover:shadow-lg">
     <div class="flex flex-col border-b-2 border-gray-200 pt-8 pb-8 pr-3 pl-3 pl-5 pr-5">
       <p class="pr-3 text-gray-600 font-bold border-gray-400">#{{ ticket.id }}</p>
       <p class="pt-3">{{ticket.subject}}</p>

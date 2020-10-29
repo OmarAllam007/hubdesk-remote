@@ -138,7 +138,8 @@
     </nav>
 </header>
 
-<div id="wrapper" style="background: #eaeaea;">
+{{--style="background: #eaeaea;"--}}
+<div id="wrapper" >
     <main class="container-fluid" >
         <div class="row back-animation" >
             @hasSection('header')

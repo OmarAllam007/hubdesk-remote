@@ -608,6 +608,8 @@ class Ticket extends KModel
             'subcategory' => $this->subcategory ?  $this->subcategory->name : 'Not Assigned',
             'created_at' => $this->created_at->format('Y-m-d h:i'),
             'due_date'=> $this->due_date ? $this->due_date->format('Y-m-d h:i') : 'Not Assigned',
+            'type'=> $this->ticket_type,
+
         ];
     }
 

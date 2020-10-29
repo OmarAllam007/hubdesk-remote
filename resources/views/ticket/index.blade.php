@@ -2,8 +2,8 @@
 
 @section('stylesheets')
     <style>
-        main {
-            background: rgb(240, 242, 245);
+        #wrapper {
+            background: #eaeaea;
         }
 
         .ticket-card {
