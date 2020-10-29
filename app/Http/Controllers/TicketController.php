@@ -57,16 +57,18 @@ class TicketController extends Controller
                 $searchedTickets = Ticket::query()->with('requester');
 
                 if ($user->isSupport()) {
-                    $searchedTickets = $searchedTickets->whereIn('group_id', $user->groups->pluck('id'))
-                        ->orWhereHas('requester', function (Builder $query) use ($search) {
+                    $searchedTickets = $searchedTickets->where(function ($q) use ($user, $search) {
+                        $q->whereHas('requester', function (Builder $query) use ($search) {
                             $query->where('employee_id', $search)
                                 ->orWhere('name', 'LIKE', "%${search}%");
-                        });
+                        })->whereIn('group_id', $user->groups->pluck('id'));
+
+                    });
                 } else {
                     if ($search == $user->employee_id) {
                         $searchedTickets = $searchedTickets->where('requester_id', $user->id)
                             ->orWhere('creator_id', $user->id);
-                    }else{
+                    } else {
                         $searchedTickets = collect();
                     }
                 }
@@ -325,7 +327,6 @@ class TicketController extends Controller
 
         return \Redirect::back();
     }
-
 
 
     public function pickupTicket(Ticket $ticket)
