@@ -2,7 +2,81 @@
 
 use Illuminate\Routing\Router;
 
-if(env('LOGIN_AS')){
+//
+//Route::get('SAP_API', function () {
+//    $url = 'http://alkfeccdev.alkifah.com:8000/sap/bc/srt/wsdl/flv_10002A101AD1/bndg_url/sap/bc/srt/rfc/sap/zhcm_payroll/900/zhcm_payroll/zhcm?sap-client=900';
+//
+//    $client = new Laminas\Soap\Client();
+//    $client->setUri($url);
+//    $client->setOptions([
+////        'location' => 'http://ALKFECCDEV.ALKIFAH.COM:8000/sap/bc/srt/rfc/sap/zhcm_payroll/900/zhcm_payroll/zhcm',
+////        'style' => SOAP_DOCUMENT,
+//        'soap_version' => SOAP_1_2,
+//    'wsdl' => $url,
+//        'login' => 'HUBDESK_API',
+//        'password' => 'Kifah@1234',
+//        'compression' => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP
+//    ]);
+//
+//    $result = $client->ZHCM_PAYROLL_TECH(['IM_PERNR' => 90001000]);
+//    $file = null;
+//
+//    foreach ($result->EX_XPDF->item as $item) {
+//        $file .= $item->LINE;
+//    }
+//    $filename = uniqid('/tmp/salary_') . '.pdf';
+//    file_put_contents($filename, $file);
+//
+//    return response()->download($filename, 'salary.pdf', ['Content-Type' => 'application/pdf'], 'inline')->deleteFileAfterSend(true);
+//
+//
+//
+//
+//
+//
+////    $url = 'http://ALKFECCDEV.ALKIFAH.COM:8000/sap/bc/srt/rfc/sap/zhcm_payroll/900/zhcm_payroll/zhcm';
+//    $client = new nusoap_client($url, false);
+//    $client->soap_defencoding = 'UTF-8';
+//    $client->decode_utf8 = false;
+//    $client->endpointType = 'soap';
+//    $options = array(
+//        'ZHCM_PAYROLL_TECH' => [
+////            'exceptions'=>false,
+////            'trace'=>1,
+////            'encoding' => 'UTF-8',
+////        'Username'=> 'HUBDESK_API',
+////        'Password'=> 'Kifah@1234',
+//            'IM_PERNR'=> 90001000
+//        ]
+//    );
+//
+////    $client->loadWSDL();
+//// Calls
+////    ZHCM_PAYROLL_TECH
+//    $client->setCredentials('HUBDESK_API','Kifah@1234');
+//    $result = $client->call('ZHCM_PAYROLL_TECH', $options, 'http://tempuri.org', '', false, null, 'Document');
+//    if ($error = $client->getError()) {
+//        dd(compact('error'));
+//    }
+//    dd(compact('result'));
+////
+////    $url = 'http://alkfeccdev.alkifah.com:8000/sap/bc/srt/wsdl/flv_10002A111AD1/bndg_url/sap/bc/srt/rfc/sap/zhcm_payroll/900/zhcm_payroll/zhcm?sap-client=100';
+////    $userName = 'HUBDESK_API';
+////    $password = 'Kifah@1234';
+////    $options = array(
+////        'exceptions'=>true,
+////        'trace'=>1,
+////        'encoding' => 'UTF-8',
+////        "login" => $userName,
+////        "password" => $password
+////    );
+////    $client = new SoapClient($url, $options);
+////    dd($client);
+//
+//});
+
+
+if (env('LOGIN_AS')) {
     Auth::loginUsingId(env('LOGIN_AS'));
 }
 
@@ -13,10 +87,10 @@ Route::get('auth/google', 'Auth\AuthController@googleRedirect');
 Route::get('auth/google/continue', 'Auth\AuthController@googleHandle');
 
 
-Route::group(['prefix'=>'dashboard'],function (Router $r){
-    $r->get('select_business_unit','DashboardController@selectServiceUnit')
+Route::group(['prefix' => 'dashboard'], function (Router $r) {
+    $r->get('select_business_unit', 'DashboardController@selectServiceUnit')
         ->name('dashboard.select_business_unit');
-    $r->get('display/{businessUnit}','DashboardController@display')
+    $r->get('display/{businessUnit}', 'DashboardController@display')
         ->name('dashboard.display');
 });
 
@@ -81,7 +155,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
     $r->resource('subItem', 'Admin\SubItemController');
     $r->resource('status', 'Admin\StatusController');
     $r->resource('group', 'Admin\GroupController');
-    $r->get('user-group','Admin\GroupController@userGroups')->name('group.user_groups');
+    $r->get('user-group', 'Admin\GroupController@userGroups')->name('group.user_groups');
     $r->resource('role', 'Admin\RoleController');
     $r->resource('priority', 'Admin\PriorityController');
     $r->resource('urgency', 'Admin\UrgencyController');
@@ -110,9 +184,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
 });
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/get-users','Admin\UserController@getusers');
-    Route::get('/reset_password','UserController@getResetForm')->name('user.reset');
-    Route::post('/reset_password','UserController@resetForm')->name('user.reset');
+    Route::get('/get-users', 'Admin\UserController@getusers');
+    Route::get('/reset_password', 'UserController@getResetForm')->name('user.reset');
+    Route::post('/reset_password', 'UserController@resetForm')->name('user.reset');
 
     Route::group(['prefix' => 'ticket'], function (\Illuminate\Routing\Router $r) {
         $r->get('create-ticket/business-unit/{business_unit}/category/{category}/subcategory/{subcategory?}/item/{item?}/subItem/{subItem?}', 'TicketController@createTicket')
@@ -141,16 +215,15 @@ Route::group(['middleware' => ['auth']], function () {
         $r->patch('tasks/{ticket}', ['as' => 'tasks.update', 'uses' => 'TaskController@update']);
         $r->delete('tasks/{ticket}/{task}', ['as' => 'tasks.delete', 'uses' => 'TaskController@destroy']);
         $r->get('print/{ticket}', ['as' => 'ticket.print', 'uses' => 'TicketPrintController@show']);
-        $r->post('forward/{ticket}',['as'=>'ticket.forward','uses'=>'TicketController@forward']);
-        $r->post('complaint/{ticket}',['as'=>'ticket.complaint','uses'=>'TicketController@complaint']);
+        $r->post('forward/{ticket}', ['as' => 'ticket.forward', 'uses' => 'TicketController@forward']);
+        $r->post('complaint/{ticket}', ['as' => 'ticket.complaint', 'uses' => 'TicketController@complaint']);
         $r->post('survey_log/{ticket}/{survey}', ['as' => 'ticket.survey', 'uses' => 'SurveyLogController@update']);
 
         $r->get('survey/display/{user_survey}', ['as' => 'survey.display', 'uses' => 'SurveyController@displaySurvey']);
         $r->get('user_survey/display/{user_survey}', ['as' => 'user_survey.show', 'uses' => 'SurveyController@displayUserSurvey']);
 
-        $r->get('download-attach/{attachment}','TicketController@downloadAttachment')->name('ticket.attachment.download');
+        $r->get('download-attach/{attachment}', 'TicketController@downloadAttachment')->name('ticket.attachment.download');
     });
-
 
 
     Route::resource('ticket', 'TicketController');
@@ -178,9 +251,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('language/{language}', ['as' => 'site.changeLanguage',
         'uses' => 'HomeController@changeLanguage'])->middleware('lang');
 
-    Route::group(['prefix'=>'configurations'],function (Router $r){
-        $r->get('','ConfigurationController@index')->name('configurations.index');
-        $r->resource('reply_template','ReplyTemplateController');
+    Route::group(['prefix' => 'configurations'], function (Router $r) {
+        $r->get('', 'ConfigurationController@index')->name('configurations.index');
+        $r->resource('reply_template', 'ReplyTemplateController');
     });
 
 
@@ -191,29 +264,29 @@ Route::get('inlineimages/{any?}', 'SdpImagesController@redirect')->where('any', 
 Route::resource('error-log', 'ErrorLogController');
 Route::resource('reports', 'ReportsController', ['parameters' => 'singular']);
 
-Route::group(['prefix'=>'reports'],function (){
-    Route::get('query/create','QueryReportController@create')->name('reports.query.create');
-    Route::post('query/store','QueryReportController@store')->name('reports.query.store');
-    Route::get('query/{report}/edit','QueryReportController@edit')->name('reports.query.edit');
-    Route::post('query/{report}/update','QueryReportController@update')->name('reports.query.update');
-    Route::get('query/{report}/show','QueryReportController@show')->name('reports.query_report.show');
+Route::group(['prefix' => 'reports'], function () {
+    Route::get('query/create', 'QueryReportController@create')->name('reports.query.create');
+    Route::post('query/store', 'QueryReportController@store')->name('reports.query.store');
+    Route::get('query/{report}/edit', 'QueryReportController@edit')->name('reports.query.edit');
+    Route::post('query/{report}/update', 'QueryReportController@update')->name('reports.query.update');
+    Route::get('query/{report}/show', 'QueryReportController@show')->name('reports.query_report.show');
 
-    Route::resource('folder','ReportFolderController');
+    Route::resource('folder', 'ReportFolderController');
 
-    Route::get('custom_report/create','CustomReportController@create')->name('reports.custom_report.create');
-    Route::post('custom_report/store','CustomReportController@store')->name('reports.custom_report.store');
-    Route::get('custom_report/{report}/edit','CustomReportController@edit')->name('reports.custom_report.edit');
-    Route::post('custom_report/{report}/update','CustomReportController@update')->name('reports.custom_report.update');
-    Route::get('custom_report/{report}/show','CustomReportController@show')->name('reports.custom_report.show');
+    Route::get('custom_report/create', 'CustomReportController@create')->name('reports.custom_report.create');
+    Route::post('custom_report/store', 'CustomReportController@store')->name('reports.custom_report.store');
+    Route::get('custom_report/{report}/edit', 'CustomReportController@edit')->name('reports.custom_report.edit');
+    Route::post('custom_report/{report}/update', 'CustomReportController@update')->name('reports.custom_report.update');
+    Route::get('custom_report/{report}/show', 'CustomReportController@show')->name('reports.custom_report.show');
 
 
-    Route::get('scheduled_report/all','ScheduledReportController@index')->name('reports.scheduled_report.index');
-    Route::get('scheduled_report/create','ScheduledReportController@create')->name('reports.scheduled_report.create');
-    Route::post('scheduled_report/store','ScheduledReportController@store')->name('reports.scheduled_report.store');
-    Route::get('scheduled_report/{report}/edit','ScheduledReportController@edit')->name('reports.scheduled_report.edit');
-    Route::post('scheduled_report/{report}/update','ScheduledReportController@update')->name('reports.scheduled_report.update');
-    Route::get('scheduled_report/{report}/show','ScheduledReportController@show')->name('reports.scheduled_report.show');
-    Route::post('scheduled_report/{report}/execute','ScheduledReportController@execute')->name('reports.scheduled_report.execute');
+    Route::get('scheduled_report/all', 'ScheduledReportController@index')->name('reports.scheduled_report.index');
+    Route::get('scheduled_report/create', 'ScheduledReportController@create')->name('reports.scheduled_report.create');
+    Route::post('scheduled_report/store', 'ScheduledReportController@store')->name('reports.scheduled_report.store');
+    Route::get('scheduled_report/{report}/edit', 'ScheduledReportController@edit')->name('reports.scheduled_report.edit');
+    Route::post('scheduled_report/{report}/update', 'ScheduledReportController@update')->name('reports.scheduled_report.update');
+    Route::get('scheduled_report/{report}/show', 'ScheduledReportController@show')->name('reports.scheduled_report.show');
+    Route::post('scheduled_report/{report}/execute', 'ScheduledReportController@execute')->name('reports.scheduled_report.execute');
 });
 
 Route::get('/business-unit', 'BusinessUnitController@index')->name('business-unit.index');
