@@ -47,6 +47,7 @@ class SubcategoryController extends Controller
         $this->handleRequirements($request, $subcategory);
         $this->createFees($request, $subcategory);
         $this->createOrUpdateLimitation($request, $subcategory);
+        $this->createOrUpdateAvailability($request, $subcategory);
 
         if ($request->hasFile('logo')) {
             $logo_path = Category::uploadAttachment('subcategories', $subcategory, $request->logo);
@@ -82,6 +83,7 @@ class SubcategoryController extends Controller
         $this->createFees($request, $subcategory);
         $this->createOrUpdateLimitation($request, $subcategory);
         $this->createOrUpdateComplaints($request, $subcategory);
+        $this->createOrUpdateAvailability($request, $subcategory);
 
         if ($request->hasFile('logo')) {
             $logo_path = Subcategory::uploadAttachment('subcategories', $subcategory, $request->logo);
@@ -186,5 +188,20 @@ class SubcategoryController extends Controller
             'to' => $request->complaint['to'] ?? [],
             'cc' => $request->complaint['cc'] ?? []
         ]);
+    }
+
+    private function createOrUpdateAvailability(Request $request, Subcategory $subcategory)
+    {
+        $subcategory->availabilities()->delete();
+
+        foreach ($request->get('availabilities', []) as $availability) {
+            $subcategory->availabilities()->create([
+                'value' => explode(",", $availability['business_units_value']),
+                'label' => $availability['business_units_label'],
+                'type' => $availability['type'],
+                'available_until' => $availability['availability_until'],
+            ]);
+        }
+
     }
 }

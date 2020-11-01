@@ -84,7 +84,7 @@
                     @endif
 
                     @foreach($category->subcategories()->individual()->orderBy('order')->get() as $subcategory)
-                        @if($subcategory->canDisplay(\App\ServiceUserGroup::$SUBCATEGORY))
+                        @if($subcategory->canDisplay(\App\ServiceUserGroup::$SUBCATEGORY) && $subcategory->available())
                             <div class="view view-seventh">
                                 <img src="{{$subcategory->logo ? $subcategory->url : '/images/23.png'}}">
                                 <div class="info"><p>{{t($subcategory->name)}}</p></div>

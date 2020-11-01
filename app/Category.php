@@ -92,10 +92,6 @@ class Category extends KModel
     }
 
 
-    function availabilities()
-    {
-        return $this->hasMany(Availability::class, 'level_id');
-    }
 
 
     public function scopeCanonicalList(Builder $query)
