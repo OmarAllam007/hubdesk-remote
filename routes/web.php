@@ -126,7 +126,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
 
     Route::get('question/{survey}', ['uses' => 'QuestionController@index', 'as' => 'question.index']);
     Route::get('question/create/{survey}', ['uses' => 'QuestionController@create', 'as' => 'question.create']);
-    Route::get('question/edit/{q}', ['uses' => 'QuestionController@edit', 'as' => 'question.edit']);
+    Route::get('question/edit/{question}', ['uses' => 'QuestionController@edit', 'as' => 'question.edit']);
     Route::get('question/show/{question}', ['uses' => 'QuestionController@show', 'as' => 'question.show']);
     Route::delete('question/{question}', ['uses' => 'QuestionController@destroy', 'as' => 'question.destroy']);
     Route::patch('question/{question}', ['uses' => 'QuestionController@update', 'as' => 'question.update']);
