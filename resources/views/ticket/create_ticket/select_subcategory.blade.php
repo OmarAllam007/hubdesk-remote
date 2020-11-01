@@ -59,7 +59,8 @@
                                     {{t("Fiori")}}
                                 </p></div>
                             <div class="mask">
-                                <a target="_blank" href="https://fiori.alkifah.com:5447/sap/bc/ui5_ui5/ui2/ushell/shells/abap/FioriLaunchpad.html?sap-client=900&sap-language=EN&sap-sec_session_created=X">
+                                <a target="_blank"
+                                   href="https://fiori.alkifah.com:5447/sap/bc/ui5_ui5/ui2/ushell/shells/abap/FioriLaunchpad.html?sap-client=900&sap-language=EN&sap-sec_session_created=X">
                                     <h2>
                                         {{t("Fiori")}}
                                     </h2>
@@ -74,7 +75,8 @@
                                     {{t("Success Factor")}}
                                 </p></div>
                             <div class="mask">
-                                <a target="_blank" href="https://performancemanager.successfactors.eu/sf/start?_s.crb=lKkyhwFB1A8TjVql2Pw1KsJNTdBkC1u9L8radVFXdoc%253d#Shell-home">
+                                <a target="_blank"
+                                   href="https://performancemanager.successfactors.eu/sf/start?_s.crb=lKkyhwFB1A8TjVql2Pw1KsJNTdBkC1u9L8radVFXdoc%253d#Shell-home">
                                     <h2>
                                         {{t("Success Factor")}}
                                     </h2>
@@ -84,7 +86,7 @@
                     @endif
 
                     @foreach($category->subcategories()->individual()->orderBy('order')->get() as $subcategory)
-                        @if($subcategory->canDisplay(\App\ServiceUserGroup::$SUBCATEGORY))
+                        @if($subcategory->canDisplay(\App\ServiceUserGroup::$SUBCATEGORY) && $subcategory->available())
                             <div class="view view-seventh">
                                 <img src="{{$subcategory->logo ? $subcategory->url : '/images/23.png'}}">
                                 <div class="info"><p>{{t($subcategory->name)}}</p></div>
