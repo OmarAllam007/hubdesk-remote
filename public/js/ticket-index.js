@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 14);
+/******/ 	return __webpack_require__(__webpack_require__.s = 15);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -70,7 +70,7 @@
 "use strict";
 
 
-var bind = __webpack_require__(9);
+var bind = __webpack_require__(10);
 var isBuffer = __webpack_require__(44);
 
 /*global toString:true*/
@@ -831,10 +831,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(10);
+    adapter = __webpack_require__(11);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(10);
+    adapter = __webpack_require__(11);
   }
   return adapter;
 }
@@ -11871,7 +11871,7 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(16).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(17).setImmediate))
 
 /***/ }),
 /* 7 */
@@ -12065,6 +12065,46 @@ process.umask = function() { return 0; };
 
 /***/ }),
 /* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(19),
+  /* template */
+  __webpack_require__(23),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/Users/omar/code/hdesk/resources/assets/js/Criteria.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Criteria.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-75a41202", Component.options)
+  } else {
+    hotAPI.reload("data-v-75a41202", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12075,7 +12115,7 @@ process.umask = function() { return 0; };
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_0_vue___default.a());
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12093,7 +12133,7 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12104,7 +12144,7 @@ var settle = __webpack_require__(47);
 var buildURL = __webpack_require__(49);
 var parseHeaders = __webpack_require__(50);
 var isURLSameOrigin = __webpack_require__(51);
-var createError = __webpack_require__(11);
+var createError = __webpack_require__(12);
 var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(52);
 
 module.exports = function xhrAdapter(config) {
@@ -12280,7 +12320,7 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12305,7 +12345,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12317,7 +12357,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12343,21 +12383,21 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(15);
+module.exports = __webpack_require__(16);
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Criteria_vue__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Criteria_vue__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Criteria_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Criteria_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ticket_index_TicketIndex_vue__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ticket_index_TicketIndex_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__ticket_index_TicketIndex_vue__);
@@ -12371,7 +12411,7 @@ window.app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 });
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -12427,7 +12467,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(17);
+__webpack_require__(18);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -12441,7 +12481,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -12634,46 +12674,6 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(7)))
 
 /***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var Component = __webpack_require__(1)(
-  /* script */
-  __webpack_require__(19),
-  /* template */
-  __webpack_require__(23),
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "/Users/omar/code/hdesk/resources/assets/js/Criteria.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Criteria.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-75a41202", Component.options)
-  } else {
-    hotAPI.reload("data-v-75a41202", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
 /* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -12681,7 +12681,7 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Criterion_vue__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Criterion_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Criterion_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Bus__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Bus__ = __webpack_require__(9);
 //
 //
 //
@@ -12894,7 +12894,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Bus__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Bus__ = __webpack_require__(9);
 //
 //
 //
@@ -13642,8 +13642,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Filters_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Filters_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Criteria_vue__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Criteria_vue__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Criteria_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__Criteria_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Bus__ = __webpack_require__(9);
 //
 //
 //
@@ -13705,6 +13706,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -13732,6 +13740,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     this.$on('toggle-sidebar', function (sidebar_visibility) {
       _this.sidebar_visibility = sidebar_visibility;
     });
+
+    __WEBPACK_IMPORTED_MODULE_5__Bus__["a" /* default */].$on('setCriterionValue', function (i, j, k) {});
   },
 
   computed: {
@@ -13746,6 +13756,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       initLoading: false,
       criterions: {},
       scopes: {},
+      requirements: [],
       selected_scope: '',
       sidebar_visibility: false,
       search: '',
@@ -13761,8 +13772,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
+    applyAdvancedFilter: function applyAdvancedFilter() {
+      var requirements = [];
+
+      this.$refs.criteria.$data.requirements.forEach(function (req, key) {
+        requirements.push({
+          'field': req.field,
+          'label': req.label,
+          'value': req.value,
+          'showMenuIcon': req.showMenuIcon,
+          'operator': req.operator
+        });
+      });
+
+      this.requirements = requirements;
+    },
     toggleAdvancedFilter: function toggleAdvancedFilter() {
       this.advanced_filter = !this.advanced_filter;
+    },
+    selectValues: function selectValues() {
+      console.log('logged');
     },
     loadTickets: function loadTickets() {
       var _this2 = this;
@@ -14433,7 +14462,7 @@ module.exports = __webpack_require__(43);
 
 
 var utils = __webpack_require__(0);
-var bind = __webpack_require__(9);
+var bind = __webpack_require__(10);
 var Axios = __webpack_require__(45);
 var defaults = __webpack_require__(5);
 
@@ -14468,9 +14497,9 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(13);
+axios.Cancel = __webpack_require__(14);
 axios.CancelToken = __webpack_require__(59);
-axios.isCancel = __webpack_require__(12);
+axios.isCancel = __webpack_require__(13);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -14630,7 +14659,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 "use strict";
 
 
-var createError = __webpack_require__(11);
+var createError = __webpack_require__(12);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -15049,7 +15078,7 @@ module.exports = InterceptorManager;
 
 var utils = __webpack_require__(0);
 var transformData = __webpack_require__(56);
-var isCancel = __webpack_require__(12);
+var isCancel = __webpack_require__(13);
 var defaults = __webpack_require__(5);
 
 /**
@@ -15202,7 +15231,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 "use strict";
 
 
-var Cancel = __webpack_require__(13);
+var Cancel = __webpack_require__(14);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -15358,7 +15387,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('i', {
     staticClass: "fa fa-search-plus"
-  }), _vm._v(" Advanced Search\n      ")])])]) : _vm._e(), _vm._v(" "), _c('div', {
+  }), _vm._v(" Advanced Search\n      ")])])]) : _vm._e(), _vm._v(" "), _c('transition', {
+    attrs: {
+      "name": "slide-fade"
+    }
+  }, [_c('div', {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -15367,10 +15400,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "w-full p-4 "
   }, [_c('criteria', {
-    attrs: {
-      "criterions": _vm.criterions
+    ref: "criteria",
+    on: {
+      "setCriterionValue": _vm.selectValues
     }
-  })], 1), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    staticClass: "bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 h-16 w-16\n            px-4 border border-blue-500 hover:border-transparent rounded collapse-btn",
+    on: {
+      "click": _vm.applyAdvancedFilter
+    }
+  }, [_vm._v("Save\n      ")])], 1)]), _vm._v(" "), _c('div', {
     staticClass: "w-full flex p-3"
   }, [_c('transition', {
     attrs: {
@@ -15416,7 +15455,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.loadTickets(false)
       }
     }
-  })], 1)], 2)])], 1)])
+  })], 1)], 2)])], 1)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

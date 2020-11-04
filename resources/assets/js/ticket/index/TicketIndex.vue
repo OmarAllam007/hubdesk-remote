@@ -26,11 +26,17 @@
         </button>
       </div>
     </div>
-    <div class="w-full p-4 " v-show="advanced_filter">
-      <criteria :criterions="criterions"></criteria>
-    </div>
-    <div class="w-full flex p-3">
 
+    <transition name="slide-fade">
+      <div class="w-full p-4 " v-show="advanced_filter">
+        <criteria ref="criteria" @setCriterionValue="selectValues"></criteria>
+        <button @click="applyAdvancedFilter" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 h-16 w-16
+              px-4 border border-blue-500 hover:border-transparent rounded collapse-btn">Save
+        </button>
+      </div>
+    </transition>
+
+    <div class="w-full flex p-3">
       <transition name="slide-fade">
         <div class="flex  w-3/12 h-full" v-show="sidebar_visibility">
           <div class="flex flex-col m-3 rounded-xl  bg-white shadow"
@@ -65,6 +71,7 @@ import Ticket from './Ticket.vue';
 import Filters from './Filters.vue';
 import axios from 'axios';
 import Criteria from "../../Criteria.vue";
+import EventBus from "../../Bus";
 
 export default {
   name: "TicketIndex",
@@ -85,6 +92,10 @@ export default {
     this.$on('toggle-sidebar', (sidebar_visibility) => {
       this.sidebar_visibility = sidebar_visibility;
     });
+
+    EventBus.$on('setCriterionValue', (i, j, k) => {
+
+    })
   },
   computed: {
     ticketsWidth() {
@@ -99,6 +110,7 @@ export default {
       initLoading: false,
       criterions: {},
       scopes: {},
+      requirements: [],
       selected_scope: '',
       sidebar_visibility: false,
       search: '',
@@ -113,8 +125,26 @@ export default {
     }
   },
   methods: {
+    applyAdvancedFilter() {
+      let requirements = [];
+
+      this.$refs.criteria.$data.requirements.forEach((req, key) => {
+        requirements.push({
+          'field': req.field,
+          'label': req.label,
+          'value': req.value,
+          'showMenuIcon': req.showMenuIcon,
+          'operator': req.operator,
+        })
+      });
+
+      this.requirements = requirements;
+    },
     toggleAdvancedFilter() {
       this.advanced_filter = !this.advanced_filter;
+    },
+    selectValues() {
+      console.log('logged');
     },
     loadTickets(spin = true) {
       this.loading = spin;
