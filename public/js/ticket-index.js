@@ -13590,7 +13590,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n.loader[data-v-1c55e306] {\n  border-top-color: #1a1d50;\n  -webkit-animation: spinner-data-v-1c55e306 1.5s linear infinite;\n  animation: spinner-data-v-1c55e306 1.5s linear infinite;\n}\n@-webkit-keyframes spinner {\n0% {\n    -webkit-transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n}\n}\n@keyframes spinner-data-v-1c55e306 {\n0% {\n    transform: rotate(0deg);\n}\n100% {\n    transform: rotate(360deg);\n}\n}\n.searchbtn[data-v-1c55e306] {\n  background: rgba(26, 29, 80, 0.9);\n}\n.collapse-btn[data-v-1c55e306] {\n  color: rgba(26, 29, 80, 0.9);\n  border-color: rgba(26, 29, 80, 0.9);\n}\n.collapse-btn[data-v-1c55e306]:hover {\n  background: rgba(26, 29, 80, 0.5);\n}\n.slide-fade-enter-active[data-v-1c55e306] {\n  transition: all .5s ease;\n}\n.slide-fade-leave-active[data-v-1c55e306] {\n  transition: all 0s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter[data-v-1c55e306], .slide-fade-leave-to[data-v-1c55e306]\n  /* .slide-fade-leave-active below version 2.1.8 */\n{\n  transform: translateX(10px);\n  opacity: 0;\n}\n", ""]);
+exports.push([module.i, "\n.loader[data-v-1c55e306] {\n  border-top-color: #1a1d50;\n  -webkit-animation: spinner-data-v-1c55e306 1.5s linear infinite;\n  animation: spinner-data-v-1c55e306 1.5s linear infinite;\n}\n@-webkit-keyframes spinner {\n0% {\n    -webkit-transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n}\n}\n@keyframes spinner-data-v-1c55e306 {\n0% {\n    transform: rotate(0deg);\n}\n100% {\n    transform: rotate(360deg);\n}\n}\n.searchbtn[data-v-1c55e306] {\n  background: rgba(26, 29, 80, 0.9);\n}\n.collapse-btn[data-v-1c55e306] {\n  color: rgba(26, 29, 80, 0.9);\n  border-color: rgba(26, 29, 80, 0.9);\n}\n.collapse-btn[data-v-1c55e306]:hover {\n  background: rgba(26, 29, 80, 0.5);\n}\n.slide-fade-enter-active[data-v-1c55e306] {\n  transition: all .5s ease;\n}\n.slide-fade-leave-active[data-v-1c55e306] {\n  transition: all 0s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter[data-v-1c55e306], .slide-fade-leave-to[data-v-1c55e306]\n  /* .slide-fade-leave-active below version 2.1.8 */\n{\n  transform: translateY(-10px);\n  opacity: 0;\n}\n", ""]);
 
 // exports
 
@@ -13642,6 +13642,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Filters_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Filters_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Criteria_vue__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Criteria_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__Criteria_vue__);
 //
 //
 //
@@ -13694,6 +13696,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -13723,9 +13735,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   computed: {
-    sideBarWidth: function sideBarWidth() {
-      // return this.sidebar_visibility ? 'visible' : 'hidden';
-    },
     ticketsWidth: function ticketsWidth() {
       return this.sidebar_visibility ? 'w-9/12' : 'w-full';
     }
@@ -13733,7 +13742,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       loading: false,
+      advanced_filter: false,
       initLoading: false,
+      criterions: {},
       scopes: {},
       selected_scope: '',
       sidebar_visibility: false,
@@ -13750,6 +13761,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
+    toggleAdvancedFilter: function toggleAdvancedFilter() {
+      this.advanced_filter = !this.advanced_filter;
+    },
     loadTickets: function loadTickets() {
       var _this2 = this;
 
@@ -13758,19 +13772,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.loading = spin;
 
       __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/api/ticket?page=' + this.tickets.current_page + '&scope=' + this.selected_scope + '&search=' + this.search).then(function (response) {
-        _this2.tickets = response.data.tickets;
-        _this2.scopes = Object.keys(response.data.scopes).map(function (key) {
-          return [key, response.data.scopes[key]];
-        });
-        _this2.selected_scope = response.data.scope;
-        _this2.loading = false;
-        _this2.initLoading = false;
+        if (response.data.ticket) {
+          window.location.href = '/ticket/' + _this2.search;
+        } else {
+          _this2.tickets = response.data.tickets;
+          _this2.scopes = Object.keys(response.data.scopes).map(function (key) {
+            return [key, response.data.scopes[key]];
+          });
+          _this2.selected_scope = response.data.scope;
+          _this2.loading = false;
+          _this2.initLoading = false;
+        }
       }).catch(function (e) {
         _this2.loading = false;
       });
     }
   },
-  components: { Pagination: __WEBPACK_IMPORTED_MODULE_0__Pagination_vue___default.a, Ticket: __WEBPACK_IMPORTED_MODULE_1__Ticket_vue___default.a, Filters: __WEBPACK_IMPORTED_MODULE_2__Filters_vue___default.a }
+  components: { Pagination: __WEBPACK_IMPORTED_MODULE_0__Pagination_vue___default.a, Ticket: __WEBPACK_IMPORTED_MODULE_1__Ticket_vue___default.a, Filters: __WEBPACK_IMPORTED_MODULE_2__Filters_vue___default.a, Criteria: __WEBPACK_IMPORTED_MODULE_4__Criteria_vue___default.a }
 });
 
 /***/ }),
@@ -15324,12 +15342,35 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": (_vm.search)
     },
     on: {
+      "keyup": function($event) {
+        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")) { return null; }
+        return _vm.loadTickets($event)
+      },
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.search = $event.target.value
       }
     }
-  })])]) : _vm._e(), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('button', {
+    staticClass: "h-16 px-6  searchbtn rounded-full text-white ml-2 shadow-lg",
+    on: {
+      "click": _vm.toggleAdvancedFilter
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-search-plus"
+  }), _vm._v(" Advanced Search\n      ")])])]) : _vm._e(), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.advanced_filter),
+      expression: "advanced_filter"
+    }],
+    staticClass: "w-full p-4 "
+  }, [_c('criteria', {
+    attrs: {
+      "criterions": _vm.criterions
+    }
+  })], 1), _vm._v(" "), _c('div', {
     staticClass: "w-full flex p-3"
   }, [_c('transition', {
     attrs: {
@@ -15344,8 +15385,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "flex  w-3/12 h-full"
   }, [(_vm.scopes.length) ? _c('div', {
-    staticClass: "flex flex-col m-3 rounded-xl  bg-white shadow",
-    class: _vm.sideBarWidth
+    staticClass: "flex flex-col m-3 rounded-xl  bg-white shadow"
   }, [_c('filters', {
     attrs: {
       "scopes": _vm.scopes

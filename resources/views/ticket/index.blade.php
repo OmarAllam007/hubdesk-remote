@@ -76,9 +76,9 @@
 @endsection
 
 @section('body')
-    <section  id="TicketList">
-        <ticket-index></ticket-index>
-
+    <section id="TicketList">
+        <ticket-index :criterions="{{json_encode(session('ticket.filter'))}}"></ticket-index>
+        {{--        @include('ticket._search_form')--}}
         {{--        --}}
         {{--        @include('ticket._search_form')--}}
         {{--        @if ($tickets->total())--}}

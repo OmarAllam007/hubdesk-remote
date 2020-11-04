@@ -14,17 +14,26 @@
       </div>
 
       <div class="w-8/12">
-        <button @click="loadTickets"  class="h-16 px-6  searchbtn rounded-full text-white mr-2 shadow-lg"><i class="fa fa-search"></i>
+        <button @click="loadTickets" class="h-16 px-6  searchbtn rounded-full text-white mr-2 shadow-lg"><i
+            class="fa fa-search"></i>
         </button>
-        <input v-model="search" class="w-1/2 h-16 px-3  rounded-3xl mb-8 focus:outline-none focus:shadow-outline border-0
+
+        <input v-model="search" v-on:keyup.enter="loadTickets" class="w-1/2 h-16 px-3  rounded-3xl mb-8 focus:outline-none focus:shadow-outline border-0
       text-xl px-8 shadow-lg" type="search" placeholder="Ticket ID / Employee ID">
+
+        <button @click="toggleAdvancedFilter" class="h-16 px-6  searchbtn rounded-full text-white ml-2 shadow-lg"><i
+            class="fa fa-search-plus"></i> Advanced Search
+        </button>
       </div>
+    </div>
+    <div class="w-full p-4 " v-show="advanced_filter">
+      <criteria :criterions="criterions"></criteria>
     </div>
     <div class="w-full flex p-3">
 
       <transition name="slide-fade">
         <div class="flex  w-3/12 h-full" v-show="sidebar_visibility">
-          <div class="flex flex-col m-3 rounded-xl  bg-white shadow" :class="sideBarWidth"
+          <div class="flex flex-col m-3 rounded-xl  bg-white shadow"
                v-if="scopes.length">
             <filters :scopes="scopes"></filters>
           </div>
@@ -55,6 +64,7 @@ import Pagination from './Pagination.vue';
 import Ticket from './Ticket.vue';
 import Filters from './Filters.vue';
 import axios from 'axios';
+import Criteria from "../../Criteria.vue";
 
 export default {
   name: "TicketIndex",
@@ -77,9 +87,6 @@ export default {
     });
   },
   computed: {
-    sideBarWidth() {
-      // return this.sidebar_visibility ? 'visible' : 'hidden';
-    },
     ticketsWidth() {
       return this.sidebar_visibility ? 'w-9/12' : 'w-full';
     },
@@ -88,11 +95,13 @@ export default {
   data() {
     return {
       loading: false,
+      advanced_filter: false,
       initLoading: false,
+      criterions: {},
       scopes: {},
       selected_scope: '',
       sidebar_visibility: false,
-      search:'',
+      search: '',
       tickets: {
         total: 0,
         per_page: 2,
@@ -104,22 +113,29 @@ export default {
     }
   },
   methods: {
+    toggleAdvancedFilter() {
+      this.advanced_filter = !this.advanced_filter;
+    },
     loadTickets(spin = true) {
       this.loading = spin;
 
       axios.get(`/api/ticket?page=${this.tickets.current_page}&scope=${this.selected_scope}&search=${this.search}`).then((response) => {
-        this.tickets = response.data.tickets;
-        this.scopes = Object.keys(response.data.scopes).map((key) => [key, response.data.scopes[key]]);
-        this.selected_scope = response.data.scope;
-        this.loading = false;
-        this.initLoading = false;
+        if (response.data.ticket) {
+          window.location.href = `/ticket/${this.search}`;
+        } else {
+          this.tickets = response.data.tickets;
+          this.scopes = Object.keys(response.data.scopes).map((key) => [key, response.data.scopes[key]]);
+          this.selected_scope = response.data.scope;
+          this.loading = false;
+          this.initLoading = false;
+        }
+
       }).catch(e => {
         this.loading = false;
       });
     },
-
   },
-  components: {Pagination, Ticket, Filters}
+  components: {Pagination, Ticket, Filters, Criteria}
 }
 </script>
 
@@ -172,7 +188,7 @@ export default {
 .slide-fade-enter, .slide-fade-leave-to
   /* .slide-fade-leave-active below version 2.1.8 */
 {
-  transform: translateX(10px);
+  transform: translateY(-10px);
   opacity: 0;
 }
 </style>

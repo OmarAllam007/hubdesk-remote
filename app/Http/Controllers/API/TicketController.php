@@ -27,7 +27,7 @@ class TicketController
             $ticket = Ticket::where('id', intval($search))->first();
 
             if ($ticket) {
-                return redirect()->route('ticket.show', compact('ticket'));
+                return compact('ticket', 'scope', 'scopes');
             } else {
                 $user = auth()->user();
                 $searchedTickets = Ticket::query()->with('requester');
@@ -63,6 +63,7 @@ class TicketController
         $tickets->getCollection()->transform(function (Ticket $ticket) {
             return $ticket->convertToJson();
         });
+
         return compact('tickets', 'scope', 'scopes');
     }
 
