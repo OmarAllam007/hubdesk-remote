@@ -28,11 +28,16 @@
     </div>
 
     <transition name="slide-fade">
-      <div class="w-full p-4 " v-show="advanced_filter">
+      <div class="w-full flex flex-col p-4 " v-show="advanced_filter">
         <criteria ref="criteria" @setCriterionValue="selectValues"></criteria>
-        <button @click="applyAdvancedFilter" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 h-16 w-16
-              px-4 border border-blue-500 hover:border-transparent rounded collapse-btn">Save
-        </button>
+        <div class="w-full">
+          <button @click="applyAdvancedFilter" class="bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 h-16
+              px-6 border border-green-500 hover:border-transparent rounded"><i class="fa fa-filter"></i> Filter
+          </button>
+          <button :disabled="canFilter" @click="clearFilter" class="bg-transparent hover:bg-gray-500 text-gray-700 font-semibold hover:text-white py-2 h-16
+              px-6 border border-gray-500 hover:border-transparent rounded"><i class="fa fa-times"></i> Clear
+          </button>
+        </div>
       </div>
     </transition>
 
@@ -101,6 +106,12 @@ export default {
     ticketsWidth() {
       return this.sidebar_visibility ? 'w-9/12' : 'w-full';
     },
+    canFilter() {
+      if(!this.$refs.criteria){
+        return false;
+      }
+      return this.$refs.criteria.$data.requirements.length > 0;
+    }
 
   },
   data() {
@@ -108,7 +119,7 @@ export default {
       loading: false,
       advanced_filter: false,
       initLoading: false,
-      criterions: {},
+      criterions: [],
       scopes: {},
       requirements: [],
       selected_scope: '',
@@ -125,6 +136,10 @@ export default {
     }
   },
   methods: {
+    clearFilter() {
+      this.$refs.criteria.$data.requirements = [];
+      this.criterions = [];
+    },
     applyAdvancedFilter() {
       let requirements = [];
 
@@ -138,7 +153,8 @@ export default {
         })
       });
 
-      this.requirements = requirements;
+      this.criterions = requirements;
+      this.loadTickets();
     },
     toggleAdvancedFilter() {
       this.advanced_filter = !this.advanced_filter;
@@ -146,20 +162,26 @@ export default {
     selectValues() {
       console.log('logged');
     },
+
     loadTickets(spin = true) {
       this.loading = spin;
 
-      axios.get(`/api/ticket?page=${this.tickets.current_page}&scope=${this.selected_scope}&search=${this.search}`).then((response) => {
+      axios.post(`/api/ticket`, {
+        'page': this.tickets.current_page,
+        'scope': this.selected_scope,
+        'search': this.search,
+        'criterions': this.criterions,
+      }).then((response) => {
         if (response.data.ticket) {
           window.location.href = `/ticket/${this.search}`;
         } else {
           this.tickets = response.data.tickets;
           this.scopes = Object.keys(response.data.scopes).map((key) => [key, response.data.scopes[key]]);
           this.selected_scope = response.data.scope;
+          this.criterions = response.data.criterions;
           this.loading = false;
           this.initLoading = false;
         }
-
       }).catch(e => {
         this.loading = false;
       });

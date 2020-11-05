@@ -14,14 +14,11 @@ class TicketController
 {
     function index()
     {
-        if (\request('scope') != '') {
-            \Session::put('ticket.scope', \request()->get('scope'));
-        }
-
         $ticketScope = $this->handleTicketsScope();
         $query = $ticketScope['query'];
         $scope = $ticketScope['scope'];
         $scopes = $ticketScope['scopes'];
+        $criterions = $ticketScope['criterions'];
 
         if ($search = \request('search')) {
             $ticket = Ticket::where('id', intval($search))->first();
@@ -64,15 +61,30 @@ class TicketController
             return $ticket->convertToJson();
         });
 
-        return compact('tickets', 'scope', 'scopes');
+        return compact('tickets', 'scope', 'scopes', 'criterions');
     }
 
+    function filterTickets()
+    {
+//        \request('criterions')
+        if (\request('criterions')) {
+            \Session::put('ticket.filter', \request('criterions'));
+        }
+
+
+        return $this->index();
+    }
 
     public function handleTicketsScope()
     {
 
         if (\request('scope') != '') {
             \Session::put('ticket.scope', \request()->get('scope'));;
+        }
+
+
+        if (\request('criterions')) {
+            \Session::put('ticket.filter', \request('criterions'));
         }
 
         $scope = \Session::get('ticket.scope', 'my_pending');
@@ -83,8 +95,9 @@ class TicketController
             $query = Ticket::scopedView($scope);
         }
 
+        $filters = \Session::get('ticket.filter', null);
         $scopes = TicketViewScope::getScopes();
 
-        return collect(['scope' => $scope, 'query' => $query, 'scopes' => $scopes]);
+        return collect(['scope' => $scope, 'query' => $query, 'scopes' => $scopes, 'criterions' => $filters]);
     }
 }
