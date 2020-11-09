@@ -53,7 +53,7 @@ class UploadUsersJob extends Job
         $dataCells = $checkRow->getCellIterator();
         $data = $this->getDataOfCells($dataCells);
 
-        if ($data[0] != 'Employee ID' && $data[7] != 'Company Code') {
+        if ($data[0] != 'Employee Number' && $data[3] != 'Company Code') {
             return;
         }
 
@@ -62,13 +62,10 @@ class UploadUsersJob extends Job
             $cells = $row->getCellIterator();
             $data = $this->getDataOfCells($cells);
             $user = User::whereNotNull('employee_id')->where('employee_id', $data[0])->first();
+
             if ($user) {
                 $this->updateUser($user, $data);
             }
-//            else{
-//                $this->createUser($data);
-//            }
-
         }
     }
 
@@ -102,12 +99,13 @@ class UploadUsersJob extends Job
 
     private function updateUser($user, $data)
     {
-        $businessUnitId = $this->businessUnits->get($data[7]);
+        $businessUnitId = $this->businessUnits->get($data[3]);
 
         $data = [
             'business_unit_id' => $businessUnitId,
-            'job' => $data[8],
-            'department_id' => $this->getDepartmentId($data[5], $businessUnitId),
+            'department_id' => $this->getDepartmentId($data[4], $businessUnitId),
+            'job' => $data[5],
+            'manager_id' => $this->getDirectManagerId($data[6]),
             'extra_fields' => array_replace($user->extra_fields ?? [], $this->extraFields($data)),
         ];
 
@@ -128,10 +126,12 @@ class UploadUsersJob extends Job
     private function extraFields($data)
     {
         $fields = [];
-        $fields['leave_balance'] = $data[12] ?? 0;
+        $fields['leave_balance'] = $data[7] ?? 0;
+        $fields['ar_name'] = $data[8] ?? '';
+        $fields['nationality'] = $data[9];
+        $fields['personal_id'] = $data[10];
+        $fields['cost_center'] = $data[11];
 //        $fields['emis_id'] = $data[1];
-//        $fields['ar_name'] = $data[4];
-//        $fields['nationality'] = $data[6];
 //        $fields['id_number'] = $data[6];
 //        $fields['religion'] = $data[11];
 //        $fields['passport_number'] = $data[17];
@@ -139,10 +139,15 @@ class UploadUsersJob extends Job
 //        $fields['marital_status'] = $data[22] ?? '';
 //        $fields['no_of_children'] = $data[23] ?? '';
 //        $fields['hire_date'] = Date::excelToDateTimeObject($data[26])->format('Y-m-d') ?? '';
-//        $fields['personal_area'] = $data[41];
 //        $fields['personal_sub_area'] = $data[42];
 //        $fields['cr_file_no'] = $data[60];
 
         return $fields;
+    }
+
+    private function getDirectManagerId($managerId)
+    {
+        $user = User::where('employee_id', trim($managerId))->first();
+        return $user ? $user->id : null;
     }
 }
