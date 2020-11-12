@@ -8,6 +8,7 @@ use App\Helpers\Ticket\TicketViewScope;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
 
 /**
@@ -75,7 +76,7 @@ use Illuminate\Support\Collection;
  */
 class Ticket extends KModel
 {
-    use RequestConfiguration;
+    use RequestConfiguration, Notifiable;
 
     const TASK_TYPE = 2;
     protected $shouldApplySla = true;
@@ -593,6 +594,17 @@ class Ticket extends KModel
         return $this->approvals()->get()->map(function (TicketApproval $approval) {
             return $approval->convertToJson();
         });
+    }
+
+    /**
+     * Route notifications for the Slack channel.
+     *
+     * @param  \Illuminate\Notifications\Notification  $notification
+     * @return string
+     */
+    public function routeNotificationForSlack($notification)
+    {
+        return env('HUBDESK_ISSUES_SLACK');
     }
 
 }
