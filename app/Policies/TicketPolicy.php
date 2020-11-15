@@ -36,7 +36,7 @@ class TicketPolicy
 
     function reply(User $user, Ticket $ticket)
     {
-        $privileged = [$ticket->requester_id, $ticket->technician_id, $ticket->coordinator_id];
+        $privileged = [$ticket->requester_id, $ticket->technician_id, $ticket->coordinator_id, $ticket->creator_id];
 
         return in_array($user->id, $privileged) ||
             $user->groups->contains($ticket->group_id) || $user->isTechnician();
