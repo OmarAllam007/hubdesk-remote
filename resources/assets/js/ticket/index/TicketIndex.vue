@@ -28,7 +28,7 @@
     </div>
 
     <transition name="slide-fade">
-      <div class="w-full flex flex-col p-4 " v-show="advanced_filter">
+      <div class="w-full flex flex-col p-4" v-show="advanced_filter">
         <criteria ref="criteria" @setCriterionValue="selectValues"></criteria>
         <div class="w-full">
           <button @click="applyAdvancedFilter" class="bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 h-16
@@ -65,6 +65,12 @@
             <pagination :pagination="tickets" @paginate="loadTickets(false)"></pagination>
           </div>
         </div>
+
+<!--        <div  v-else class="flex justify-center pt-10">-->
+<!--          <div class="p-4 w-1/2 bg-blue-600  font-bold text-white rounded-2xl text-center shadow-md">-->
+<!--            <p>No Tickets Found!</p>-->
+<!--          </div>-->
+<!--        </div>-->
       </div>
     </div>
   </div>
@@ -104,10 +110,10 @@ export default {
   },
   computed: {
     ticketsWidth() {
-      return this.sidebar_visibility ? 'w-9/12' : 'w-full';
+      return this.sidebar_visibility ? 'w-10/12' : 'w-full';
     },
     canFilter() {
-      if(!this.$refs.criteria){
+      if (!this.$refs.criteria) {
         return false;
       }
       return this.$refs.criteria.$data.requirements.length > 0;
