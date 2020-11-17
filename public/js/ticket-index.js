@@ -12091,7 +12091,7 @@ var Component = __webpack_require__(1)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/omar/code/hdesk/resources/assets/js/Criteria.vue"
+Component.options.__file = "/Users/omarkhaled/code/hdesk/resources/assets/js/Criteria.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Criteria.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -12865,7 +12865,7 @@ var Component = __webpack_require__(1)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/omar/code/hdesk/resources/assets/js/Criterion.vue"
+Component.options.__file = "/Users/omarkhaled/code/hdesk/resources/assets/js/Criterion.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Criterion.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -13532,7 +13532,7 @@ var Component = __webpack_require__(1)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/omar/code/hdesk/resources/assets/js/ticket/index/TicketIndex.vue"
+Component.options.__file = "/Users/omarkhaled/code/hdesk/resources/assets/js/ticket/index/TicketIndex.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] TicketIndex.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -13717,6 +13717,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -13751,7 +13757,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   computed: {
     ticketsWidth: function ticketsWidth() {
-      return this.sidebar_visibility ? 'w-9/12' : 'w-full';
+      return this.sidebar_visibility ? 'w-10/12' : 'w-full';
     },
     canFilter: function canFilter() {
       if (!this.$refs.criteria) {
@@ -13859,7 +13865,7 @@ var Component = __webpack_require__(1)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/omar/code/hdesk/resources/assets/js/ticket/index/Pagination.vue"
+Component.options.__file = "/Users/omarkhaled/code/hdesk/resources/assets/js/ticket/index/Pagination.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Pagination.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -14029,7 +14035,7 @@ var Component = __webpack_require__(1)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/omar/code/hdesk/resources/assets/js/ticket/index/Ticket.vue"
+Component.options.__file = "/Users/omarkhaled/code/hdesk/resources/assets/js/ticket/index/Ticket.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Ticket.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -14087,7 +14093,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\na[data-v-6bd58c5c] {\n  text-decoration: none;\n  color: inherit;\n}\n", ""]);
 
 // exports
 
@@ -14098,6 +14104,20 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -14190,13 +14210,24 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "name": "slide-fade"
     }
+  }, [_c('a', {
+    attrs: {
+      "href": ("ticket/" + (_vm.ticket.id))
+    }
   }, [_c('div', {
-    staticClass: "ticket-card hover:shadow-lg"
+    staticClass: "ticket-card hover:shadow-lg",
+    class: {
+      'border-t-2 border-red-300': _vm.ticket.is_overdue
+    }
   }, [_c('div', {
     staticClass: "flex flex-col border-b-2 border-gray-200 pt-8 pb-8 pr-3 pl-3 pl-5 pr-5"
+  }, [_c('div', {
+    staticClass: "flex justify-between"
   }, [_c('p', {
     staticClass: "pr-3 text-gray-600 font-bold border-gray-400"
-  }, [_vm._v("#" + _vm._s(_vm.ticket.id))]), _vm._v(" "), _c('p', {
+  }, [_vm._v("#" + _vm._s(_vm.ticket.id))]), _vm._v(" "), (_vm.ticket.is_overdue) ? _c('p', {}, [_c('i', {
+    staticClass: "fa fa-flag text-red-800 shadow-2xl"
+  })]) : _vm._e()]), _vm._v(" "), _c('p', {
     staticClass: "pt-3"
   }, [_vm._v(_vm._s(_vm.ticket.subject))])]), _vm._v(" "), _c('div', {
     staticClass: "flex justify-start bg-gray-200 border border-gray-400 rounded-b-xl pl-4 pr-4"
@@ -14205,11 +14236,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "flex justify-between border-r-2 border-gray-400 p-2 .flex-grow-0"
   }, [_c('p', {
-    staticClass: "text-gray-600 text-lg sm:text-sm md:text-xl lg:text-xl xl:text-2xl"
+    staticClass: "text-gray-600 text-lg sm:text-sm md:text-xl lg:text-xl xl:text-2xl "
   }, [_c('i', {
     staticClass: "fa fa-user"
-  }), _vm._v("\n            Requester")]), _vm._v(" "), _c('p', {
-    staticClass: "pl-4 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl"
+  }), _vm._v("\n              Requester")]), _vm._v(" "), _c('p', {
+    staticClass: "pl-4 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pr-5"
   }, [_vm._v(_vm._s(_vm.ticket.requester))])]), _vm._v(" "), _c('div', {
     staticClass: "flex  justify-between border-r-2 border-gray-400 p-2"
   }, [_c('p', {
@@ -14217,47 +14248,47 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('i', {
     staticClass: "fa fa-id-card"
   }), _vm._v(" Employee ID")]), _vm._v(" "), _c('p', {
-    staticClass: "pl-4 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl"
+    staticClass: "pl-4 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pr-5"
   }, [_vm._v(_vm._s(_vm.ticket.employee_id))])]), _vm._v(" "), _c('div', {
     staticClass: "flex justify-between border-r-2 border-gray-400  p-2"
   }, [_c('p', {
     staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl"
   }, [_c('i', {
     staticClass: "fa fa-list"
-  }), _vm._v("\n            Category")]), _vm._v(" "), _c('p', {
-    staticClass: "text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl"
+  }), _vm._v("\n              Category")]), _vm._v(" "), _c('p', {
+    staticClass: "text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pr-5"
   }, [_vm._v(_vm._s(_vm.ticket.category))])])]), _vm._v(" "), _c('div', {
     staticClass: "flex flex-col"
   }, [_c('div', {
     staticClass: "flex  justify-between border-r-2 border-gray-400 p-2"
   }, [_c('p', {
-    staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl"
+    staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pl-5"
   }, [_c('i', {
     staticClass: "fa fa-user-secret"
   }), _vm._v(" Coordinator")]), _vm._v(" "), _c('p', {
-    staticClass: "text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl"
-  }, [_vm._v(_vm._s(_vm.ticket.technician))])]), _vm._v(" "), _c('div', {
+    staticClass: "text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pr-5"
+  }, [_vm._v("\n              " + _vm._s(_vm.ticket.technician ? _vm.ticket.technician : 'Not Assigned'))])]), _vm._v(" "), _c('div', {
     staticClass: "flex justify-between border-r-2 border-gray-400 p-2"
   }, [_c('p', {
-    staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl"
+    staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pl-5 "
   }, [_c('i', {
     staticClass: "fa fa-calendar"
-  }), _vm._v("\n            Creation Date")]), _vm._v(" "), _c('p', {
-    staticClass: "text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl"
+  }), _vm._v("\n              Creation Date")]), _vm._v(" "), _c('p', {
+    staticClass: "text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pr-5"
   }, [_vm._v(_vm._s(_vm.ticket.created_at))])]), _vm._v(" "), _c('div', {
     staticClass: "flex flex-wrap  justify-between border-r-2 border-gray-400 p-2"
   }, [_c('p', {
-    staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl"
+    staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pl-5 "
   }, [_c('i', {
     staticClass: "fa fa-list-alt"
-  }), _vm._v("\n            Subcategory")]), _vm._v(" "), _c('p', {
-    staticClass: "flex text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl text-right justify-end"
-  }, [_vm._v("\n            " + _vm._s(_vm.ticket.subcategory))])])]), _vm._v(" "), _c('div', {
+  }), _vm._v("\n              Subcategory")]), _vm._v(" "), _c('p', {
+    staticClass: "flex text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl text-right justify-end pr-5"
+  }, [_vm._v("\n              " + _vm._s(_vm.ticket.subcategory))])])]), _vm._v(" "), _c('div', {
     staticClass: "flex flex-col"
   }, [_c('div', {
     staticClass: "flex justify-between p-2"
   }, [_c('p', {
-    staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl"
+    staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pl-5 "
   }, [_c('i', {
     staticClass: "fa fa-calendar-check-o"
   }), _vm._v(" Due Date")]), _vm._v(" "), _c('p', {
@@ -14265,18 +14296,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v(_vm._s(_vm.ticket.due_date))])]), _vm._v(" "), _c('div', {
     staticClass: "flex justify-between  p-2"
   }, [_c('p', {
-    staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl"
+    staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pl-5 "
   }, [_c('i', {
     staticClass: "fa fa-compass"
-  }), _vm._v("\n            Status")]), _vm._v(" "), _c('p', {
+  }), _vm._v("\n              Status")]), _vm._v(" "), _c('p', {
     staticClass: "text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl"
   }, [_vm._v(_vm._s(_vm.ticket.status))])]), _vm._v(" "), _c('div', {
-    staticClass: "flex justify-between"
+    staticClass: "flex justify-between p-2"
   }, [_c('p', {
-    staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl"
-  }), _vm._v(" "), _c('p', {
+    staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pl-5 "
+  }, [_c('i', {
+    staticClass: "fa fa-arrow-circle-up"
+  }), _vm._v("\n              Priority")]), _vm._v(" "), _c('p', {
     staticClass: "text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl"
-  })])])])])])
+  }, [_vm._v(_vm._s(_vm.ticket.priority))])])])])])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -14307,7 +14340,7 @@ var Component = __webpack_require__(1)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/omar/code/hdesk/resources/assets/js/ticket/index/Filters.vue"
+Component.options.__file = "/Users/omarkhaled/code/hdesk/resources/assets/js/ticket/index/Filters.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Filters.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -15360,7 +15393,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "w-4/12 flex justify-start ml-5"
   }, [(_vm.scopes.length) ? _c('button', {
-    staticClass: "bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 h-16 w-16\n        px-4 border border-blue-500 hover:border-transparent rounded collapse-btn",
+    staticClass: "bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 h-16 w-16\n          px-4 border border-blue-500 hover:border-transparent rounded collapse-btn",
     on: {
       "click": function($event) {
         _vm.sidebar_visibility = !_vm.sidebar_visibility
@@ -15384,7 +15417,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.search),
       expression: "search"
     }],
-    staticClass: "w-1/2 h-16 px-3  rounded-3xl mb-8 focus:outline-none focus:shadow-outline border-0\n    text-xl px-8 shadow-lg",
+    staticClass: "w-1/2 h-16 px-3  rounded-3xl mb-8 focus:outline-none focus:shadow-outline border-0\n      text-xl px-8 shadow-lg",
     attrs: {
       "type": "search",
       "placeholder": "Ticket ID / Employee ID"
@@ -15409,7 +15442,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('i', {
     staticClass: "fa fa-search-plus"
-  }), _vm._v(" Advanced Search\n      ")])])]) : _vm._e(), _vm._v(" "), _c('transition', {
+  }), _vm._v(" Advanced Search\n        ")])])]) : _vm._e(), _vm._v(" "), _c('transition', {
     attrs: {
       "name": "slide-fade"
     }
@@ -15420,7 +15453,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.advanced_filter),
       expression: "advanced_filter"
     }],
-    staticClass: "w-full flex flex-col p-4 "
+    staticClass: "w-full flex flex-col p-4"
   }, [_c('criteria', {
     ref: "criteria",
     on: {
@@ -15429,14 +15462,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }), _vm._v(" "), _c('div', {
     staticClass: "w-full"
   }, [_c('button', {
-    staticClass: "bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 h-16\n            px-6 border border-green-500 hover:border-transparent rounded",
+    staticClass: "bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 h-16\n              px-6 border border-green-500 hover:border-transparent rounded",
     on: {
       "click": _vm.applyAdvancedFilter
     }
   }, [_c('i', {
     staticClass: "fa fa-filter"
-  }), _vm._v(" Filter\n        ")]), _vm._v(" "), _c('button', {
-    staticClass: "bg-transparent hover:bg-gray-500 text-gray-700 font-semibold hover:text-white py-2 h-16\n            px-6 border border-gray-500 hover:border-transparent rounded",
+  }), _vm._v(" Filter\n          ")]), _vm._v(" "), _c('button', {
+    staticClass: "bg-transparent hover:bg-gray-500 text-gray-700 font-semibold hover:text-white py-2 h-16\n              px-6 border border-gray-500 hover:border-transparent rounded",
     attrs: {
       "disabled": _vm.canFilter
     },
@@ -15445,7 +15478,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('i', {
     staticClass: "fa fa-times"
-  }), _vm._v(" Clear\n        ")])])], 1)]), _vm._v(" "), _c('div', {
+  }), _vm._v(" Clear\n          ")])])], 1)]), _vm._v(" "), _c('div', {
     staticClass: "w-full flex p-3"
   }, [_c('transition', {
     attrs: {
