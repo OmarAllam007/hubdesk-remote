@@ -173,6 +173,7 @@ export default {
         }
 
         let attachments = this.levels[i].attachments;
+        console.log(attachments.length)
         for (var l = 0; l < attachments.length; l++) {
           formData.append(`approvals[${i}][attachments][${l}]`, attachments[l]);
         }
