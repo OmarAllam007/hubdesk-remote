@@ -46,19 +46,23 @@
         <div class="flex  w-3/12 h-full" v-show="sidebar_visibility">
           <div class="flex flex-col m-3 rounded-xl  bg-white shadow"
                v-if="scopes.length">
-            <filters :scopes="scopes"></filters>
+            <filters :scopes="scopes" :total="tickets.total"></filters>
           </div>
         </div>
       </transition>
       <div class="m-3 relative" :class="ticketsWidth">
-
         <div class="flex justify-center" v-if="loading && !initLoading">
           <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-24 w-24 mt-64"></div>
         </div>
 
 
         <div class="transition flex flex-col ease-in-out" v-else>
-          <div v-for="ticket in tickets.data">
+          <div  v-if="!loading && !tickets.data.length" class="flex justify-center pt-10">
+            <div class="p-4 w-2/3  bg-blue-600 font-bold text-white rounded-2xl text-center shadow-md">
+              <p>No Tickets Found!</p>
+            </div>
+          </div>
+          <div v-for="ticket in tickets.data" v-else>
             <ticket :ticket="ticket"></ticket>
           </div>
           <div class="flex justify-center">
@@ -66,11 +70,11 @@
           </div>
         </div>
 
-<!--        <div  v-else class="flex justify-center pt-10">-->
-<!--          <div class="p-4 w-1/2 bg-blue-600  font-bold text-white rounded-2xl text-center shadow-md">-->
-<!--            <p>No Tickets Found!</p>-->
-<!--          </div>-->
-<!--        </div>-->
+        <div  v-else class="flex justify-center pt-10">
+          <div class="p-4 w-1/2 bg-blue-600  font-bold text-white rounded-2xl text-center shadow-md">
+            <p>No Tickets Found!</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -187,6 +191,7 @@ export default {
           this.criterions = response.data.criterions;
           this.loading = false;
           this.initLoading = false;
+          this.total = response.total;
         }
       }).catch(e => {
         this.loading = false;

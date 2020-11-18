@@ -135,5 +135,5 @@
 @endsection
 
 @section('javascript')
-    <script src="{{asset('/js/ticket-index.js')}}"></script>
+    <script src="{{asset('/js/ticket-index.js')}}?version={{time()}}"></script>
 @endsection
