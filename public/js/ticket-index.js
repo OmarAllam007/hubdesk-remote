@@ -14847,7 +14847,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (response.data.ticket) {
           window.location.href = '/ticket/' + _this2.search;
         } else {
-          _this2.tickets = response.data.tickets;
+          if (!response.data.tickets) {
+            _this2.tickets = [];
+          } else {
+            _this2.tickets = response.data.tickets;
+          }
           _this2.scopes = Object.keys(response.data.scopes).map(function (key) {
             return [key, response.data.scopes[key]];
           });

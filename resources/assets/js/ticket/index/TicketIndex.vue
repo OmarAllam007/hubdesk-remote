@@ -57,7 +57,7 @@
 
 
         <div class="transition flex flex-col ease-in-out" v-else>
-          <div  v-if="!loading && !tickets.data.length" class="flex justify-center pt-10">
+          <div v-if="!loading && !tickets.data.length" class="flex justify-center pt-10">
             <div class="p-4 w-2/3  bg-blue-600 font-bold text-white rounded-2xl text-center shadow-md">
               <p>No Tickets Found!</p>
             </div>
@@ -70,7 +70,7 @@
           </div>
         </div>
 
-        <div  v-else class="flex justify-center pt-10">
+        <div v-else class="flex justify-center pt-10">
           <div class="p-4 w-1/2 bg-blue-600  font-bold text-white rounded-2xl text-center shadow-md">
             <p>No Tickets Found!</p>
           </div>
@@ -185,7 +185,11 @@ export default {
         if (response.data.ticket) {
           window.location.href = `/ticket/${this.search}`;
         } else {
-          this.tickets = response.data.tickets;
+          if (!response.data.tickets) {
+            this.tickets = [];
+          } else {
+            this.tickets = response.data.tickets;
+          }
           this.scopes = Object.keys(response.data.scopes).map((key) => [key, response.data.scopes[key]]);
           this.selected_scope = response.data.scope;
           this.criterions = response.data.criterions;

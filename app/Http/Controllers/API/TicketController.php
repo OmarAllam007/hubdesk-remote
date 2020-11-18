@@ -45,13 +45,9 @@ class TicketController
                 }
             }
 
-            if ($searchedTickets->count() > 1) {
+//            if ($searchedTickets->count() > 1) {
                 $query = $searchedTickets;
-            } else {
-//                flash(t('Ticket Info'), t('No Results Found!'), 'error');
-//                return redirect()->route('ticket.index');
-            }
-
+//            }
         }
 
 
