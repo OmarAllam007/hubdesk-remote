@@ -8,6 +8,11 @@ module.exports = {
     extend: {
       screens: {
         'print': {'raw': 'print'},
+        colors: {
+          "custom-yellow": {
+            "500": "#EDAE0A",
+          },
+        }
       }
     }
   },
