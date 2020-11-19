@@ -1,8 +1,13 @@
+// import swal from 'sweetalert2'
+
 import Vue from 'vue'
 
 window.jQuery = window.$ = require('jquery');
 window.swal = require('sweetalert2');
 
+
+// window.Chart = require('chart.js');
+// window.ChartLabels = require('chartjs-plugin-labels');
 
 import ApexCharts from 'apexcharts';
 

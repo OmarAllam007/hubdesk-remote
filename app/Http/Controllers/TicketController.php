@@ -84,9 +84,8 @@ class TicketController extends Controller
         }
 
 
-        return view('ticket.index');
-//        return $query->latest('id')->paginate();
-//        return view('ticket.index', compact('tickets', 'scopes', 'scope'));
+        $tickets = $query->latest('id')->paginate();
+        return view('ticket.index', compact('tickets', 'scopes', 'scope'));
     }
 
     public function create()
