@@ -4,16 +4,17 @@
       <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-24 w-24 mt-64"></div>
     </div>
     <div class="flex w-full pt-5 justify-center" v-if="!loading || !initLoading">
-      <div class="w-4/12 flex justify-start ml-5">
+      <div class="w-1/12  justify-start ml-5">
         <button
             class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 h-16 w-16
           px-4 border border-blue-500 hover:border-transparent rounded collapse-btn" v-if="scopes.length"
             @click="sidebar_visibility = !sidebar_visibility">
-          <i class="fa fa-bars"></i>
+          <i class="fa fa-bars transform "
+             :class="{'rotate-90': sidebar_visibility , 'animate-pulse':!sidebar_visibility}"></i>
         </button>
       </div>
 
-      <div class="w-8/12">
+      <div class="w-8/12 flex justify-end pr-3">
         <button @click="loadTickets" class="h-16 px-6  searchbtn rounded-full text-white mr-2 shadow-lg"><i
             class="fa fa-search"></i>
         </button>
@@ -22,7 +23,8 @@
       text-xl px-8 shadow-lg" type="search" placeholder="Ticket ID / Employee ID">
 
         <button @click="toggleAdvancedFilter" class="h-16 px-6  searchbtn rounded-full text-white ml-2 shadow-lg">
-          <i :class="advancedFilter"></i> {{ advanced_filter ? 'Hide Search' : 'Advanced Search' }}
+          <i :class="advancedFilter"></i>
+          <!--          <span class="sm:hidden">{{ advanced_filter ? 'Hide Search' : 'Advanced Search' }}</span>-->
         </button>
       </div>
     </div>
@@ -41,22 +43,25 @@
       </div>
     </transition>
 
-    <div class="w-full flex p-3">
+    <!--    sidebar -->
+    <div class="w-full  p-3 flex flex-col md:flex-row xl:flex-row lg:flex-row 2xl:flex-row">
       <transition name="slide-fade">
-        <div class="flex  w-3/12 h-full" v-show="sidebar_visibility">
-          <div class="flex flex-col m-3 rounded-xl  bg-white shadow"
+        <div class="w-full md:w-3/12 xl:w-3/12 lg:w-3/12 2xl:w-3/12  h-full" v-show="sidebar_visibility">
+          <div class="flex-col rounded-xl  bg-white shadow mr-0 md:mr-3 xl:mr-3 lg:mr-3 2xl:mr-3"
                v-if="scopes.length">
             <filters :scopes="scopes" :total="tickets.total"></filters>
           </div>
         </div>
       </transition>
-      <div class="m-3 relative" :class="ticketsWidth">
+
+
+      <div class="relative" :class="ticketsWidth">
         <div class="flex justify-center" v-if="loading && !initLoading">
           <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-24 w-24 mt-64"></div>
         </div>
 
 
-        <div class="transition flex flex-col ease-in-out" v-else>
+        <div class="transition flex flex-col ease-in-out mt-3 md:mt-0 xl:mt-0 lg:mt-0 2xl:mt-0" v-else>
           <div v-if="!loading && !tickets.data.length" class="flex justify-center pt-10">
             <div class="p-4 w-2/3  bg-blue-600 font-bold text-white rounded-2xl text-center shadow-md">
               <p>No Tickets Found!</p>
@@ -114,7 +119,7 @@ export default {
       return this.advanced_filter ? 'fa fa-search-minus' : 'fa fa-search-plus'
     },
     ticketsWidth() {
-      return this.sidebar_visibility ? 'w-10/12' : 'w-full';
+      return this.sidebar_visibility ? 'w-full md:10/12 xl:10/12 lg:10/12 2xl:10/12' : 'w-full';
     },
     canFilter() {
       if (!this.$refs.criteria) {
