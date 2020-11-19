@@ -14767,11 +14767,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     this.$on('toggle-sidebar', function (sidebar_visibility) {
       _this.sidebar_visibility = sidebar_visibility;
     });
-
-    __WEBPACK_IMPORTED_MODULE_5__Bus__["a" /* default */].$on('setCriterionValue', function (i, j, k) {});
   },
 
   computed: {
+    advancedFilter: function advancedFilter() {
+      return this.advanced_filter ? 'fa fa-search-minus' : 'fa fa-search-plus';
+    },
     ticketsWidth: function ticketsWidth() {
       return this.sidebar_visibility ? 'w-10/12' : 'w-full';
     },
@@ -16466,8 +16467,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "click": _vm.toggleAdvancedFilter
     }
   }, [_c('i', {
-    staticClass: "fa fa-search-plus"
-  }), _vm._v(" Advanced Search\n      ")])])]) : _vm._e(), _vm._v(" "), _c('transition', {
+    class: _vm.advancedFilter
+  }), _vm._v(" " + _vm._s(_vm.advanced_filter ? 'Hide Search' : 'Advanced Search') + "\n      ")])])]) : _vm._e(), _vm._v(" "), _c('transition', {
     attrs: {
       "name": "slide-fade"
     }

@@ -21,8 +21,8 @@
         <input v-model="search" v-on:keyup.enter="loadTickets" class="w-1/2 h-16 px-3  rounded-3xl mb-8 focus:outline-none focus:shadow-outline border-0
       text-xl px-8 shadow-lg" type="search" placeholder="Ticket ID / Employee ID">
 
-        <button @click="toggleAdvancedFilter" class="h-16 px-6  searchbtn rounded-full text-white ml-2 shadow-lg"><i
-            class="fa fa-search-plus"></i> Advanced Search
+        <button @click="toggleAdvancedFilter" class="h-16 px-6  searchbtn rounded-full text-white ml-2 shadow-lg">
+          <i :class="advancedFilter"></i> {{ advanced_filter ? 'Hide Search' : 'Advanced Search' }}
         </button>
       </div>
     </div>
@@ -108,11 +108,11 @@ export default {
       this.sidebar_visibility = sidebar_visibility;
     });
 
-    EventBus.$on('setCriterionValue', (i, j, k) => {
-
-    })
   },
   computed: {
+    advancedFilter() {
+      return this.advanced_filter ? 'fa fa-search-minus' : 'fa fa-search-plus'
+    },
     ticketsWidth() {
       return this.sidebar_visibility ? 'w-10/12' : 'w-full';
     },
@@ -146,6 +146,7 @@ export default {
     }
   },
   methods: {
+
     clearFilter() {
       this.$refs.criteria.$data.requirements = [];
       this.criterions = [];
