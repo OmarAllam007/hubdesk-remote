@@ -14739,6 +14739,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -14774,7 +14779,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return this.advanced_filter ? 'fa fa-search-minus' : 'fa fa-search-plus';
     },
     ticketsWidth: function ticketsWidth() {
-      return this.sidebar_visibility ? 'w-10/12' : 'w-full';
+      return this.sidebar_visibility ? 'w-full md:10/12 xl:10/12 lg:10/12 2xl:10/12' : 'w-full';
     },
     canFilter: function canFilter() {
       if (!this.$refs.criteria) {
@@ -15217,6 +15222,69 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Ticket",
@@ -15242,17 +15310,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       'border-t-2 border-red-300': _vm.ticket.is_overdue
     }
   }, [_c('div', {
-    staticClass: "flex flex-col border-b-2 border-gray-200 pt-8 pb-8 pr-3 pl-3 pl-5 pr-5"
+    staticClass: "flex flex-col border-b-2 border-gray-200 pt-4 pb-4 pr-3 pl-3 pl-5 pr-5"
   }, [_c('div', {
     staticClass: "flex justify-between"
   }, [_c('p', {
     staticClass: "pr-3 text-gray-600 font-bold border-gray-400"
-  }, [_vm._v("#" + _vm._s(_vm.ticket.id))]), _vm._v(" "), (_vm.ticket.is_overdue) ? _c('p', {}, [_c('i', {
+  }, [_vm._v("#" + _vm._s(_vm.ticket.id) + " - " + _vm._s(_vm.ticket.subject))]), _vm._v(" "), (_vm.ticket.is_overdue) ? _c('p', {}, [_c('i', {
     staticClass: "fa fa-flag text-red-800 shadow-2xl"
-  })]) : _vm._e()]), _vm._v(" "), _c('p', {
-    staticClass: "pt-3"
-  }, [_vm._v(_vm._s(_vm.ticket.subject))])]), _vm._v(" "), _c('div', {
-    staticClass: "flex justify-start bg-gray-200 border border-gray-400 rounded-b-xl pl-4 pr-4"
+  })]) : _vm._e()])]), _vm._v(" "), _c('div', {
+    staticClass: "flex justify-start bg-gray-200 border border-gray-400 rounded-b-xl pl-4 pr-4 "
   }, [_c('div', {
     staticClass: "flex flex-col"
   }, [_c('div', {
@@ -15261,8 +15327,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "text-gray-600 text-lg sm:text-sm md:text-xl lg:text-xl xl:text-2xl "
   }, [_c('i', {
     staticClass: "fa fa-user"
-  }), _vm._v("\n              Requester")]), _vm._v(" "), _c('p', {
-    staticClass: "pl-4 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pr-5"
+  }), _vm._v("\n                Requester")]), _vm._v(" "), _c('p', {
+    staticClass: "pl-4 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pr-5 text-right"
   }, [_vm._v(_vm._s(_vm.ticket.requester))])]), _vm._v(" "), _c('div', {
     staticClass: "flex  justify-between border-r-2 border-gray-400 p-2"
   }, [_c('p', {
@@ -15270,66 +15336,50 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('i', {
     staticClass: "fa fa-id-card"
   }), _vm._v(" Employee ID")]), _vm._v(" "), _c('p', {
-    staticClass: "pl-4 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pr-5"
+    staticClass: "pl-4 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pr-5 text-right"
   }, [_vm._v(_vm._s(_vm.ticket.employee_id))])]), _vm._v(" "), _c('div', {
     staticClass: "flex justify-between border-r-2 border-gray-400  p-2"
   }, [_c('p', {
     staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl"
   }, [_c('i', {
     staticClass: "fa fa-list"
-  }), _vm._v("\n              Category")]), _vm._v(" "), _c('p', {
-    staticClass: "text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pr-5"
+  }), _vm._v("\n                Category")]), _vm._v(" "), _c('p', {
+    staticClass: "text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pr-5 text-right"
   }, [_vm._v(_vm._s(_vm.ticket.category))])])]), _vm._v(" "), _c('div', {
     staticClass: "flex flex-col"
   }, [_c('div', {
-    staticClass: "flex  justify-between border-r-2 border-gray-400 p-2"
+    staticClass: "flex  justify-between p-2"
   }, [_c('p', {
     staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pl-5"
   }, [_c('i', {
     staticClass: "fa fa-user-secret"
   }), _vm._v(" Coordinator")]), _vm._v(" "), _c('p', {
-    staticClass: "text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pr-5"
-  }, [_vm._v("\n              " + _vm._s(_vm.ticket.technician ? _vm.ticket.technician : 'Not Assigned'))])]), _vm._v(" "), _c('div', {
-    staticClass: "flex justify-between border-r-2 border-gray-400 p-2"
-  }, [_c('p', {
-    staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pl-5 "
-  }, [_c('i', {
-    staticClass: "fa fa-calendar"
-  }), _vm._v("\n              Creation Date")]), _vm._v(" "), _c('p', {
-    staticClass: "text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pr-5"
-  }, [_vm._v(_vm._s(_vm.ticket.created_at))])]), _vm._v(" "), _c('div', {
-    staticClass: "flex flex-wrap  justify-between border-r-2 border-gray-400 p-2"
+    staticClass: "text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl text-right"
+  }, [_vm._v("\n                " + _vm._s(_vm.ticket.technician ? _vm.ticket.technician : 'Not Assigned'))])]), _vm._v(" "), _c('div', {
+    staticClass: "flex flex-wrap justify-between p-2"
   }, [_c('p', {
     staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pl-5 "
   }, [_c('i', {
     staticClass: "fa fa-list-alt"
-  }), _vm._v("\n              Subcategory")]), _vm._v(" "), _c('p', {
-    staticClass: "flex text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl text-right justify-end pr-5"
-  }, [_vm._v("\n              " + _vm._s(_vm.ticket.subcategory))])])]), _vm._v(" "), _c('div', {
-    staticClass: "flex flex-col"
+  }), _vm._v("\n                Subcategory")]), _vm._v(" "), _c('p', {
+    staticClass: "flex text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl text-right justify-end "
+  }, [_vm._v("\n                " + _vm._s(_vm.ticket.subcategory))])]), _vm._v(" "), _c('div', {
+    staticClass: "flex flex-wrap  justify-between  p-2"
+  }, [_c('p', {
+    staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pl-5"
+  }, [_c('i', {
+    staticClass: "fa fa-compass"
+  }), _vm._v("\n                Status")]), _vm._v(" "), _c('p', {
+    staticClass: "flex text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl text-right justify-end "
+  }, [_vm._v(_vm._s(_vm.ticket.status))])])]), _vm._v(" "), _c('div', {
+    staticClass: "flex flex-col hidden"
   }, [_c('div', {
     staticClass: "flex justify-between p-2"
   }, [_c('p', {
     staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pl-5 "
   }, [_c('i', {
-    staticClass: "fa fa-calendar-check-o"
-  }), _vm._v(" Due Date")]), _vm._v(" "), _c('p', {
-    staticClass: "text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl"
-  }, [_vm._v(_vm._s(_vm.ticket.due_date))])]), _vm._v(" "), _c('div', {
-    staticClass: "flex justify-between  p-2"
-  }, [_c('p', {
-    staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pl-5 "
-  }, [_c('i', {
-    staticClass: "fa fa-compass"
-  }), _vm._v("\n              Status")]), _vm._v(" "), _c('p', {
-    staticClass: "text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl"
-  }, [_vm._v(_vm._s(_vm.ticket.status))])]), _vm._v(" "), _c('div', {
-    staticClass: "flex justify-between p-2"
-  }, [_c('p', {
-    staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pl-5 "
-  }, [_c('i', {
     staticClass: "fa fa-arrow-circle-up"
-  }), _vm._v("\n              Priority")]), _vm._v(" "), _c('p', {
+  }), _vm._v("\n                Priority")]), _vm._v(" "), _c('p', {
     staticClass: "text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl"
   }, [_vm._v(_vm._s(_vm.ticket.priority))])])])])])])])
 },staticRenderFns: []}
@@ -16417,7 +16467,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   })]) : _vm._e(), _vm._v(" "), (!_vm.loading || !_vm.initLoading) ? _c('div', {
     staticClass: "flex w-full pt-5 justify-center"
   }, [_c('div', {
-    staticClass: "w-4/12 flex justify-start ml-5"
+    staticClass: "w-1/12  justify-start ml-5"
   }, [(_vm.scopes.length) ? _c('button', {
     staticClass: "bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 h-16 w-16\n        px-4 border border-blue-500 hover:border-transparent rounded collapse-btn",
     on: {
@@ -16426,9 +16476,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }, [_c('i', {
-    staticClass: "fa fa-bars"
+    staticClass: "fa fa-bars transform ",
+    class: {
+      'rotate-90': _vm.sidebar_visibility, 'animate-pulse': !_vm.sidebar_visibility
+    }
   })]) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "w-8/12"
+    staticClass: "w-8/12 flex justify-end pr-3"
   }, [_c('button', {
     staticClass: "h-16 px-6  searchbtn rounded-full text-white mr-2 shadow-lg",
     on: {
@@ -16468,7 +16521,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('i', {
     class: _vm.advancedFilter
-  }), _vm._v(" " + _vm._s(_vm.advanced_filter ? 'Hide Search' : 'Advanced Search') + "\n      ")])])]) : _vm._e(), _vm._v(" "), _c('transition', {
+  })])])]) : _vm._e(), _vm._v(" "), _c('transition', {
     attrs: {
       "name": "slide-fade"
     }
@@ -16505,7 +16558,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('i', {
     staticClass: "fa fa-times"
   }), _vm._v(" Clear\n        ")])])], 1)]), _vm._v(" "), _c('div', {
-    staticClass: "w-full flex p-3"
+    staticClass: "w-full  p-3 flex flex-col md:flex-row xl:flex-row lg:flex-row 2xl:flex-row"
   }, [_c('transition', {
     attrs: {
       "name": "slide-fade"
@@ -16517,23 +16570,23 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.sidebar_visibility),
       expression: "sidebar_visibility"
     }],
-    staticClass: "flex  w-3/12 h-full"
+    staticClass: "w-full md:w-3/12 xl:w-3/12 lg:w-3/12 2xl:w-3/12  h-full"
   }, [(_vm.scopes.length) ? _c('div', {
-    staticClass: "flex flex-col m-3 rounded-xl  bg-white shadow"
+    staticClass: "flex-col rounded-xl  bg-white shadow mr-0 md:mr-3 xl:mr-3 lg:mr-3 2xl:mr-3"
   }, [_c('filters', {
     attrs: {
       "scopes": _vm.scopes,
       "total": _vm.tickets.total
     }
   })], 1) : _vm._e()])]), _vm._v(" "), _c('div', {
-    staticClass: "m-3 relative",
+    staticClass: "relative",
     class: _vm.ticketsWidth
   }, [(_vm.loading && !_vm.initLoading) ? _c('div', {
     staticClass: "flex justify-center"
   }, [_c('div', {
     staticClass: "loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-24 w-24 mt-64"
   })]) : _c('div', {
-    staticClass: "transition flex flex-col ease-in-out"
+    staticClass: "transition flex flex-col ease-in-out mt-3 md:mt-0 xl:mt-0 lg:mt-0 2xl:mt-0"
   }, [(!_vm.loading && !_vm.tickets.data.length) ? _c('div', {
     staticClass: "flex justify-center pt-10"
   }, [_vm._m(0)]) : _vm._l((_vm.tickets.data), function(ticket) {
