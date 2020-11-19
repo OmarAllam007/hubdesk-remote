@@ -12,6 +12,7 @@ trait  SharedRelations{
             ->where('level',get_class($this));
     }
 
+
     function availabilities()
     {
         return $this->hasMany(Availability::class, 'level_id');

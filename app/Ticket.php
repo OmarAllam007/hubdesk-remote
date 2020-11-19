@@ -596,24 +596,6 @@ class Ticket extends KModel
         });
     }
 
-    function convertToJson()
-    {
-        return [
-            'id' => $this->id,
-            'subject' => $this->subject,
-            'requester' => $this->requester->name,
-            'employee_id' => $this->requester->employee_id ? $this->requester->employee_id : 'Not Assigned',
-            'technician' => $this->technician->name ?? '',
-            'status' => $this->status->name,
-            'category' => $this->category->name,
-            'subcategory' => $this->subcategory ?  $this->subcategory->name : 'Not Assigned',
-            'created_at' => $this->created_at->format('Y-m-d h:i'),
-            'due_date'=> $this->due_date ? $this->due_date->format('Y-m-d h:i') : 'Not Assigned',
-            'type'=> $this->ticket_type,
-            'priority'=> $this->priority->name ?? 'Not Assigned',
-            'is_overdue'=> $this->overdue ? 1 : 0
-
-        ];
     /**
      * Route notifications for the Slack channel.
      *
