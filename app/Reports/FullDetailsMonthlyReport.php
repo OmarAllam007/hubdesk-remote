@@ -90,7 +90,7 @@ class FullDetailsMonthlyReport extends ReportContract
 
     protected function fields()
     {
-        $this->query->selectRaw('t.id as id, t.subject, t.created_at, t.due_date, t.resolve_date, 
+        $this->query->selectRaw('t.id as id, t.subject, t.created_at, t.due_date, t.resolve_date, t.close_date,
         tech.name as technician, req.name as requester')
             ->selectRaw('t.sla_id, resolve_date, overdue, time_spent')
             ->selectRaw('cat.name as category, subcat.name as subcategory, item.name as item')

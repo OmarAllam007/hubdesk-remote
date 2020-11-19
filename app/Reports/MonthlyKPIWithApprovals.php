@@ -14,6 +14,7 @@ use App\Ticket;
 use Carbon\Carbon;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
@@ -37,7 +38,9 @@ class MonthlyKPIWithApprovals extends ReportContract
 
     function run()
     {
-        $this->query = Ticket::withoutGlobalScopes()->with('sla', 'approvals')->from('tickets as t')
+        $this->query = Ticket::withoutGlobalScopes()
+            ->with('sla', 'approvals')
+            ->from('tickets as t')
             ->join('users as tech', 't.technician_id', '=', 'tech.id')
             ->join('users as req', 't.requester_id', '=', 'req.id')
             ->join('statuses as st', 't.status_id', '=', 'st.id')
@@ -45,7 +48,9 @@ class MonthlyKPIWithApprovals extends ReportContract
             ->leftJoin('subcategories as subcat', 't.subcategory_id', '=', 'subcat.id')
             ->leftJoin('items as item', 't.item_id', '=', 'item.id')
             ->join('slas as sla', 't.sla_id', '=', 'sla.id')
-            ->join('business_units as bu', 'req.business_unit_id', '=', 'bu.id');
+            ->join('business_units as bu', 'req.business_unit_id', '=', 'bu.id')
+        ->whereIn('t.category_id',[104,56,114]);
+
 
         $this->fields();
         $this->applyFilters();
@@ -53,7 +58,7 @@ class MonthlyKPIWithApprovals extends ReportContract
 
     protected function fields()
     {
-        $this->query->selectRaw('t.id as id, t.subject, t.created_at, t.due_date, t.resolve_date, 
+        $this->query->selectRaw('t.id as id, t.subject, t.created_at, t.due_date, t.resolve_date,
         tech.name as technician, req.name as requester, req.employee_id as employee_id')
             ->selectRaw('t.sla_id, resolve_date, overdue, time_spent')
             ->selectRaw('cat.name as category, subcat.name as subcategory, item.name as item')
@@ -76,14 +81,15 @@ class MonthlyKPIWithApprovals extends ReportContract
                                          ELSE @last_approval_date END)                 \'Acceptance Date\',
 
                 @actual_delivery_time :=
-                            (SELECT diffdate(@last_updated_date, @acceptance_date)) AS \'Actual delivery time\',
+                (CASE WHEN t.category_id IN (104,56) THEN (SELECT DATEDIFF(@last_updated_date, @acceptance_date)) ELSE (SELECT diffdate(@last_updated_date, @acceptance_date)) END)
+                             AS \'Actual delivery time\',
 
                 @difference := @actual_delivery_time - @sla                            \'SLA Diff\',
 
                 (CASE
                      WHEN (@difference <= 0)
                          THEN 100
-                     WHEN (@difference >= 1 && @difference < 2)
+                     WHEN (@difference >= 1 && @difzference < 2)
                          THEN 75
                      WHEN (@difference >= 2 && @difference < 3)
                          THEN 70
@@ -92,7 +98,8 @@ class MonthlyKPIWithApprovals extends ReportContract
                      ELSE 0 END)
  as performance')
             ->selectRaw("@departure_date := (select `getDepartureDate`(t.id))  'date_of_dept',
-          DATEDIFF(@departure_date, DATE_FORMAT(t.created_at, '%Y-%m-%d')) 'difference'");
+          DATEDIFF(@departure_date, DATE_FORMAT(t.created_at, '%Y-%m-%d')) 'difference'")
+            ->selectRaw(" ( select ticket_fields.value tf from  ticket_fields where t.id = ticket_fields.ticket_id and (ticket_fields.name like '%Employee Name%' or ticket_fields.name like '%Vacation Requester%' ) ) employee_name");
 
 
     }
@@ -153,8 +160,8 @@ class MonthlyKPIWithApprovals extends ReportContract
 
 
         $header = [
-            'ID', 'Subject', 'Employee ID', 'Requester',
-            'Technician', 'Category','Subcategory', 'Status', 'Created Date', 'Date of Departure', 'Days between departure and create', 'Due Date',
+            'ID', 'Subject', 'Employee ID', 'Requester', 'Employee/Requester',
+            'Technician', 'Category', 'Subcategory', 'Status', 'Created Date', 'Date of Departure', 'Days between departure and create', 'Due Date',
             'Resolved Date', 'First Approval Sent Date', 'Last Approval Action Date', 'Business Unit', 'Performance'];
 
         $approvals_header = $approvals_header->flatten()->toArray();
@@ -179,13 +186,13 @@ class MonthlyKPIWithApprovals extends ReportContract
                 }
             }
 
-            $last_approval = $approvals->count() > 0 && $approvals->last()[2]?
+            $last_approval = $approvals->count() > 0 && $approvals->last()[2] ?
                 $approvals->last()[2]->format('Y-m-d H:m') : 'Not Assigned';
-            $first_approval = $approvals->count() > 0 && $approvals->last()[1]?
+            $first_approval = $approvals->count() > 0 && $approvals->last()[1] ?
                 $approvals->last()[1]->format('Y-m-d H:m') : 'Not Assigned';
             $rowData = [
-                $ticket->id, $ticket->subject, $ticket->employee_id, $ticket->requester, $ticket->technician,
-                $ticket->category,$ticket->subcategory, $ticket->status, $ticket->created_at, $ticket->date_of_dept, $ticket->difference ?? 'Not Assigned',
+                $ticket->id, $ticket->subject, $ticket->employee_id, $ticket->requester, $ticket->employee_name, $ticket->technician,
+                $ticket->category, $ticket->subcategory, $ticket->status, $ticket->created_at, $ticket->date_of_dept, $ticket->difference ?? 'Not Assigned',
                 $ticket->due_date, $ticket->resolve_date, $first_approval, $last_approval, $ticket->business_unit, $ticket->performance
             ];
             $sheet->fromArray(array_merge($rowData, $approvals->flatten()->toArray()), NULL, 'A' . $row, true);

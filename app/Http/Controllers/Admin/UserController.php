@@ -98,9 +98,10 @@ class UserController extends Controller
     }
 
     function submitUploadForm(Request $request){
+
         if($request->hasFile('users')){
             $this->dispatch(new UploadUsersJob($request->users));
         }
-        return redirect()->back();
+//        return redirect()->back();
     }
 }

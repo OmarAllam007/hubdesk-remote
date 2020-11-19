@@ -2,78 +2,78 @@
 
 use Illuminate\Routing\Router;
 
-
-Route::get('SAP_API', function () {
-    $url = 'http://alkfeccdev.alkifah.com:8000/sap/bc/srt/wsdl/flv_10002A101AD1/bndg_url/sap/bc/srt/rfc/sap/zhcm_payroll/900/zhcm_payroll/zhcm?sap-client=900';
-
-    $client = new Laminas\Soap\Client();
-    $client->setUri($url);
-    $client->setOptions([
-//        'location' => 'http://ALKFECCDEV.ALKIFAH.COM:8000/sap/bc/srt/rfc/sap/zhcm_payroll/900/zhcm_payroll/zhcm',
-//        'style' => SOAP_DOCUMENT,
-        'soap_version' => SOAP_1_2,
-    'wsdl' => $url,
-        'login' => 'HUBDESK_API',
-        'password' => 'Kifah@1234',
-        'compression' => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP
-    ]);
-
-    $result = $client->ZHCM_PAYROLL_TECH(['IM_PERNR' => 90001000]);
-    $file = null;
-
-    foreach ($result->EX_XPDF->item as $item) {
-        $file .= $item->LINE;
-    }
-    $filename = uniqid('/tmp/salary_') . '.pdf';
-    file_put_contents($filename, $file);
-
-    return response()->download($filename, 'salary.pdf', ['Content-Type' => 'application/pdf'], 'inline')->deleteFileAfterSend(true);
-
-
-
-
-
-
-//    $url = 'http://ALKFECCDEV.ALKIFAH.COM:8000/sap/bc/srt/rfc/sap/zhcm_payroll/900/zhcm_payroll/zhcm';
-    $client = new nusoap_client($url, false);
-    $client->soap_defencoding = 'UTF-8';
-    $client->decode_utf8 = false;
-    $client->endpointType = 'soap';
-    $options = array(
-        'ZHCM_PAYROLL_TECH' => [
-//            'exceptions'=>false,
-//            'trace'=>1,
-//            'encoding' => 'UTF-8',
-//        'Username'=> 'HUBDESK_API',
-//        'Password'=> 'Kifah@1234',
-            'IM_PERNR'=> 90001000
-        ]
-    );
-
-//    $client->loadWSDL();
-// Calls
-//    ZHCM_PAYROLL_TECH
-    $client->setCredentials('HUBDESK_API','Kifah@1234');
-    $result = $client->call('ZHCM_PAYROLL_TECH', $options, 'http://tempuri.org', '', false, null, 'Document');
-    if ($error = $client->getError()) {
-        dd(compact('error'));
-    }
-    dd(compact('result'));
 //
-//    $url = 'http://alkfeccdev.alkifah.com:8000/sap/bc/srt/wsdl/flv_10002A111AD1/bndg_url/sap/bc/srt/rfc/sap/zhcm_payroll/900/zhcm_payroll/zhcm?sap-client=100';
-//    $userName = 'HUBDESK_API';
-//    $password = 'Kifah@1234';
+//Route::get('SAP_API', function () {
+//    $url = 'http://alkfeccdev.alkifah.com:8000/sap/bc/srt/wsdl/flv_10002A101AD1/bndg_url/sap/bc/srt/rfc/sap/zhcm_payroll/900/zhcm_payroll/zhcm?sap-client=900';
+//
+//    $client = new Laminas\Soap\Client();
+//    $client->setUri($url);
+//    $client->setOptions([
+////        'location' => 'http://ALKFECCDEV.ALKIFAH.COM:8000/sap/bc/srt/rfc/sap/zhcm_payroll/900/zhcm_payroll/zhcm',
+////        'style' => SOAP_DOCUMENT,
+//        'soap_version' => SOAP_1_2,
+//    'wsdl' => $url,
+//        'login' => 'HUBDESK_API',
+//        'password' => 'Kifah@1234',
+//        'compression' => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP
+//    ]);
+//
+//    $result = $client->ZHCM_PAYROLL_TECH(['IM_PERNR' => 90001000]);
+//    $file = null;
+//
+//    foreach ($result->EX_XPDF->item as $item) {
+//        $file .= $item->LINE;
+//    }
+//    $filename = uniqid('/tmp/salary_') . '.pdf';
+//    file_put_contents($filename, $file);
+//
+//    return response()->download($filename, 'salary.pdf', ['Content-Type' => 'application/pdf'], 'inline')->deleteFileAfterSend(true);
+//
+//
+//
+//
+//
+//
+////    $url = 'http://ALKFECCDEV.ALKIFAH.COM:8000/sap/bc/srt/rfc/sap/zhcm_payroll/900/zhcm_payroll/zhcm';
+//    $client = new nusoap_client($url, false);
+//    $client->soap_defencoding = 'UTF-8';
+//    $client->decode_utf8 = false;
+//    $client->endpointType = 'soap';
 //    $options = array(
-//        'exceptions'=>true,
-//        'trace'=>1,
-//        'encoding' => 'UTF-8',
-//        "login" => $userName,
-//        "password" => $password
+//        'ZHCM_PAYROLL_TECH' => [
+////            'exceptions'=>false,
+////            'trace'=>1,
+////            'encoding' => 'UTF-8',
+////        'Username'=> 'HUBDESK_API',
+////        'Password'=> 'Kifah@1234',
+//            'IM_PERNR'=> 90001000
+//        ]
 //    );
-//    $client = new SoapClient($url, $options);
-//    dd($client);
-
-});
+//
+////    $client->loadWSDL();
+//// Calls
+////    ZHCM_PAYROLL_TECH
+//    $client->setCredentials('HUBDESK_API','Kifah@1234');
+//    $result = $client->call('ZHCM_PAYROLL_TECH', $options, 'http://tempuri.org', '', false, null, 'Document');
+//    if ($error = $client->getError()) {
+//        dd(compact('error'));
+//    }
+//    dd(compact('result'));
+////
+////    $url = 'http://alkfeccdev.alkifah.com:8000/sap/bc/srt/wsdl/flv_10002A111AD1/bndg_url/sap/bc/srt/rfc/sap/zhcm_payroll/900/zhcm_payroll/zhcm?sap-client=100';
+////    $userName = 'HUBDESK_API';
+////    $password = 'Kifah@1234';
+////    $options = array(
+////        'exceptions'=>true,
+////        'trace'=>1,
+////        'encoding' => 'UTF-8',
+////        "login" => $userName,
+////        "password" => $password
+////    );
+////    $client = new SoapClient($url, $options);
+////    dd($client);
+//
+//});
 
 
 if (env('LOGIN_AS')) {
@@ -126,7 +126,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
 
     Route::get('question/{survey}', ['uses' => 'QuestionController@index', 'as' => 'question.index']);
     Route::get('question/create/{survey}', ['uses' => 'QuestionController@create', 'as' => 'question.create']);
-    Route::get('question/edit/{q}', ['uses' => 'QuestionController@edit', 'as' => 'question.edit']);
+    Route::get('question/edit/{question}', ['uses' => 'QuestionController@edit', 'as' => 'question.edit']);
     Route::get('question/show/{question}', ['uses' => 'QuestionController@show', 'as' => 'question.show']);
     Route::delete('question/{question}', ['uses' => 'QuestionController@destroy', 'as' => 'question.destroy']);
     Route::patch('question/{question}', ['uses' => 'QuestionController@update', 'as' => 'question.update']);

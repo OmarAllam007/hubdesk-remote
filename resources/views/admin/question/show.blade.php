@@ -3,7 +3,7 @@
     <h4 class="pull-left">Questions - {{$question->description}}</h4>
 
     <div class="pull-right">
-        <a href="{{route('admin.answer.edit', compact('question'))}}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
+        <a href="{{route('admin.question.edit', compact('question'))}}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
         <a href="{{url()->previous()}}" class="btn btn-sm btn-default"><i class="fa fa-chevron-left"></i></a>
     </div>
 @endsection
@@ -35,7 +35,6 @@
                         <td>{{$answer->description}}</td>
                         <td>{{$answer->degree}}</td>
                         <td>
-
                             <form action="{{route('admin.answer.destroy', compact('answer','question'))}}" method="post"  class="inline-block">
                                 {{csrf_field()}} {{method_field('delete')}}
                                 <a class="btn btn-xs btn-primary"

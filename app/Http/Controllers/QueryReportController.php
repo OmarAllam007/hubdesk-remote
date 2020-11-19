@@ -10,6 +10,7 @@ use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Str;
 
 class QueryReportController extends Controller
 {
@@ -161,6 +162,6 @@ class QueryReportController extends Controller
 
     private function valid_query($query)
     {
-        return !str_contains($query, ['insert ', 'update ', 'delete ', 'truncate ']);
+        return !Str::contains($query, ['insert ', 'update ', 'delete ', 'truncate ']);
     }
 }

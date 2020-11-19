@@ -34,6 +34,13 @@ class TicketReplyObserver
             $this->handleTechnician($reply);
         }
 
+        if ($reply->status_id == 8) {
+            $reply->ticket->close_date = Carbon::now();
+            if (!$reply->ticket->resolve_date) {
+                $reply->ticket->resolve_date = Carbon::now();
+            }
+        }
+
         $extract_image = new ExtractImages($reply->content);
         $reply->content = $extract_image->extract();
         TicketLog::addReply($reply);

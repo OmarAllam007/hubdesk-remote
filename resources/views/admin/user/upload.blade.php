@@ -52,6 +52,7 @@
                     },
                     success: function(data)
                     {
+                        console.log(data)
                         if(data=='invalid')
                         {
                             $("#err").html("Invalid File !").fadeIn();
