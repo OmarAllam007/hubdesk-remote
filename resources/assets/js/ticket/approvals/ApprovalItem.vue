@@ -70,7 +70,7 @@
         <div style="display: flex; justify-content: space-between">
           <div class="form-group">
             <input type="file" class="form-control input-xs" name="attachments[]" @change="attachFiles($event)"
-                   multiple>
+                   multiple >
           </div>
 
           <div class="checkbox" v-if="index + 1 > 1 || hasApprovals()">
@@ -124,7 +124,13 @@ export default {
       return this.$parent.approvals_data.length >= 1;
     },
     attachFiles(event) {
-      this.level.attachments.push(event.target.files[0])
+      // console.log(event.target.files)
+      var files = event.target.files;
+
+      for (var i = 0, file; file = files[i]; i++) {
+        this.level.attachments.push(file)
+      }
+
     }
 
   },

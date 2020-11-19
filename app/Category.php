@@ -92,8 +92,6 @@ class Category extends KModel
     }
 
 
-
-
     public function scopeCanonicalList(Builder $query)
     {
         $categories = $query->with('business-unit')

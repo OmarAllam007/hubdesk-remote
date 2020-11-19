@@ -4,6 +4,34 @@
     <h4 class="panel-title">Login</h4>
 @endsection
 @section('body')
+    {{--    <div class="w-full">--}}
+    {{--        <div class="flex justify-center">--}}
+    {{--            <div class="w-1/3  bg-gray-300 border border-gray-300 shadow-lg">--}}
+    {{--                <div class="flex flex-col">--}}
+    {{--                    <div class="flex justify-center">--}}
+    {{--                        <img src="{{asset('images/hubdesk.png')}}" class="w-1/2  object-scale-down">--}}
+    {{--                    </div>--}}
+
+    {{--                    <div class="m-4">--}}
+    {{--                        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">--}}
+    {{--                            {{t('Employee ID ( 90xxxxxx )')}}--}}
+    {{--                        </label>--}}
+    {{--                        <input class="shadow border rounded-2xl w-full py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"--}}
+    {{--                               id="username" type="text" placeholder="{{t('Employee ID')}}">--}}
+    {{--                    </div>--}}
+
+    {{--                    <div class="m-4">--}}
+    {{--                        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">--}}
+    {{--                            {{t('Password')}}--}}
+    {{--                        </label>--}}
+    {{--                        <input class="shadow appearance-none border rounded w-full py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"--}}
+    {{--                               id="username" type="text" placeholder="{{t('Username')}}">--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
+
     <div style="width: 100%;display: flex;justify-content: center;align-items: center;padding: 1px">
         <div class="auth-form">
             <form style="width: 100%;align-content: center" class="form-horizontal" role="form" method="POST"
@@ -11,7 +39,7 @@
                 {!! csrf_field() !!}
 
                 <div class="form-group">
-                    <div class="col-sm-12 text-center">
+                    <div class="col-sm-12 flex justify-center">
                         <img src="{{asset('images/hubdesk.png')}}" style="width:66.66666667%" alt="">
                     </div>
                 </div>
@@ -62,20 +90,23 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="col-sm-12 text-center">
-                        <button type="submit" class="btn btn-primary"
-                                style="width: 100%;font-size: 14pt;font-weight: bold">
-                            <i class="fa fa-btn fa-sign-in"></i> Login
-                        </button>
+                <div class="w-full">
+                    <button type="submit"
+                            class="btn  btn-primary w-full">
+                        <i class="fa fa-btn fa-sign-in"></i> Login
+                    </button>
 
-                        {{--<a href="/auth/google" class="btn btn-danger">--}}
-                        {{--<i class="fa fa-btn fa-google-plus"></i> Login using Google--}}
-                        {{--</a>--}}
+                    {{--                        <a href="/auth/google" class="btn btn-danger">--}}
+                    {{--                        <i class="fa fa-btn fa-google-plus"></i> Login using Google--}}
+                    {{--                        </a>--}}
 
-                        {{--<a href="{{route('password.request')}}" class="btn btn-success">--}}
-                        {{--<i class="fa fa-btn fa-unlock"></i> Reset Password--}}
-                        {{--</a>--}}
+
+                    <div class="w-full flex justify-center pt-4">
+                        <a href="{{route('password.request')}}" class="btn w-full"
+                           title="Reset password will works only if your email registered on Hubdesk"
+                           style="background-color: rgba(20,162,185,1); color:white;">
+                            <i class="fa fa-btn fa-unlock"></i> Reset Password
+                        </a>
                     </div>
                 </div>
             </form>

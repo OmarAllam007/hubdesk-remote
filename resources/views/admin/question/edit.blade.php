@@ -5,7 +5,8 @@
 
     <form action="{{route('admin.question.destroy', compact('question'))}}" class="pull-right" method="post">
         {{csrf_field()}} {{method_field('delete')}}
-        <a href="{{route('admin.question.index',compact('question'))}}" class="btn btn-sm btn-default"><i class="fa fa-chevron-left"></i></a>
+        <a href="{{route('admin.question.index', $question->survey)}}" class="btn btn-sm btn-default"><i
+                    class="fa fa-chevron-left"></i></a>
         <button class="btn btn-sm btn-warning" type="submit"><i class="fa fa-trash-o"></i></button>
     </form>
 @stop

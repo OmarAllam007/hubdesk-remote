@@ -140,6 +140,7 @@ class TicketViewScope
         $this->query->where(function (Builder $q) {
             $q->where('technician_id', $this->user->id)
                 ->orWhere('requester_id', $this->user->id)
+                ->orWhere('creator_id', $this->user->id)
                 ->orWhere('coordinator_id', $this->user->id);
         });
     }

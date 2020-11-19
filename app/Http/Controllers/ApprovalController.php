@@ -35,7 +35,7 @@ class ApprovalController extends Controller
         $ticketAttachments = [];
         foreach ($request->input('approvals', []) as $i => $approval) {
             $attachments = data_get($files, "approvals.$i.attachments");
-
+//            dd($attachments);
             if ($attachments) {
                 foreach ($attachments as $attachment) {
                     array_push($ticketAttachments, $attachment);
@@ -43,7 +43,6 @@ class ApprovalController extends Controller
             }
 
             $request->request->set('attachments', $ticketAttachments);
-
             $newApproval = new TicketApproval();
             $newApproval->creator_id = $request->user()->id;
             $newApproval->approver_id = $approval['approver_id'];

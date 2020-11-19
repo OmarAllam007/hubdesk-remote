@@ -12,6 +12,7 @@ use App\Jobs\NewTaskJob;
 use App\Jobs\SendApproval;
 use App\Mail\NewTaskMail;
 use App\Mail\SendNewApproval;
+use App\Notifications\TicketNotAssignedNotification;
 use App\Ticket;
 use App\TicketApproval;
 use App\TicketLog;
@@ -39,6 +40,10 @@ class TicketEventsProvider extends ServiceProvider
             }
 
             dispatch(new ApprovalLevels($ticket));
+
+            if ($ticket->category->business_service_type != 2 && (!$ticket->technician_id || !$ticket->group_id)) {
+                $ticket->notify((new TicketNotAssignedNotification($ticket)));
+            }
         });
 
         Ticket::updated(function (Ticket $ticket) {
