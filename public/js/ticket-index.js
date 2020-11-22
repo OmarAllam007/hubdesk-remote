@@ -14793,6 +14793,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       loading: false,
       advanced_filter: false,
       initLoading: false,
+      clear: false,
       criterions: [],
       scopes: {},
       requirements: [],
@@ -14814,6 +14815,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     clearFilter: function clearFilter() {
       this.$refs.criteria.$data.requirements = [];
       this.criterions = [];
+      this.clear = true;
+      this.loadTickets();
     },
     applyAdvancedFilter: function applyAdvancedFilter() {
       var requirements = [];
@@ -14848,6 +14851,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         'page': this.tickets.current_page,
         'scope': this.selected_scope,
         'search': this.search,
+        'clear': this.clear,
         'criterions': this.criterions
       }).then(function (response) {
         if (response.data.ticket) {

@@ -20,6 +20,11 @@ class TicketController
         $scopes = $ticketScope['scopes'];
         $criterions = $ticketScope['criterions'];
 
+
+        if (\request('clear')) {
+            \Session::remove('ticket.filter');
+        }
+
         if ($search = \request('search')) {
             $ticket = Ticket::where('id', intval($search))->first();
 
@@ -46,7 +51,7 @@ class TicketController
             }
 
 //            if ($searchedTickets->count() > 1) {
-                $query = $searchedTickets;
+            $query = $searchedTickets;
 //            }
         }
 
