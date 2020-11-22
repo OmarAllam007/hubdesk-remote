@@ -134,6 +134,7 @@ export default {
       loading: false,
       advanced_filter: false,
       initLoading: false,
+      clear: false,
       criterions: [],
       scopes: {},
       requirements: [],
@@ -155,6 +156,8 @@ export default {
     clearFilter() {
       this.$refs.criteria.$data.requirements = [];
       this.criterions = [];
+      this.clear = true;
+      this.loadTickets()
     },
     applyAdvancedFilter() {
       let requirements = [];
@@ -186,6 +189,7 @@ export default {
         'page': this.tickets.current_page,
         'scope': this.selected_scope,
         'search': this.search,
+        'clear': this.clear,
         'criterions': this.criterions,
       }).then((response) => {
         if (response.data.ticket) {

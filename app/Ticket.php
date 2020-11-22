@@ -615,7 +615,7 @@ class Ticket extends KModel
 
         ];
     }
-
+  
     /**
      * Route notifications for the Slack channel.
      *
