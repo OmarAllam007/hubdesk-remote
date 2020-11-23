@@ -47,18 +47,31 @@ class ApprovalController extends Controller
             $newApproval->creator_id = $request->user()->id;
             $newApproval->approver_id = $approval['approver_id'];
             $newApproval->status = 0;
+            $newApproval->stage = isset($approval['stage']) ? $approval['stage'] : $ticket->approvals()->max('stage');
+
+//            if ($approval['new_stage']) {
+////                $newApproval->stage = $i + 1;
+////                $newApproval->stage = $ticket->nextApprovalStage();
+//                $newApproval->stage = $ticket->approvals()->max('stage') + 1;
+//            } else {
+//                if ($ticket->hasApprovalStages()) {
+//                    $newApproval->stage = $ticket->approvals()->max('stage');
+//                } else {
+//                    $newApproval->stage = 1;
+//                }
+//            }
 
             if ($approval['new_stage']) {
-//                $newApproval->stage = $i + 1;
-//                $newApproval->stage = $ticket->nextApprovalStage();
-                $newApproval->stage = $ticket->approvals()->max('stage') + 1;
-            } else {
-                if ($ticket->hasApprovalStages()) {
-                    $newApproval->stage = $ticket->approvals()->max('stage');
-                } else {
-                    $newApproval->stage = 1;
-                }
+                $newApproval->stage = $ticket->nextApprovalStage();
+            } elseif (!$ticket->hasApprovalStages()) {
+                $newApproval->stage = 1;
             }
+
+
+            if ($template_id = $request->get('template')) {
+                $approval["content"] = ReplyTemplate::find($template_id)->description;
+            }
+
             $newApproval->content = $approval['description'];
 
             if ($approval['template_id']) {
