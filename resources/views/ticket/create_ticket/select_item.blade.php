@@ -34,7 +34,7 @@
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <div class="main">
-                    @foreach($subcategory->items()->individual()->orderBy('order')->get() as $item)
+                    @foreach($subcategory->items()->active()->individual()->orderBy('order')->get() as $item)
                         @if($item->canDisplay(\App\ServiceUserGroup::$ITEM))
                             <div class="view view-seventh">
                                 <img src="{{$item->logo ? $item->url : '/images/23.png'}}">
