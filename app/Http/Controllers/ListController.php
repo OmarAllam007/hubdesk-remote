@@ -177,4 +177,30 @@ class ListController extends Controller
         });
     }
 
+    //define in options array like ["url":"","keys":{"key1":"key1",.....}]
+    function fromFile($fileName)
+    {
+        $url = '/files/' . $fileName;
+        $dataof = file_get_contents(url($url));
+        $data = json_decode($dataof, true);
+
+        $data = array_filter($data);
+        $keys = request('keys');
+
+        $data = collect($data)->filter()->where('type', 'airport')->whereNotNull('name')->map(function ($item) use ($keys) {
+            $value = '';
+
+            $keys_arr = explode(',', $keys);
+            foreach ($keys_arr as $index => $key) {
+                $value .= $item[$key];
+                if($index < count($keys_arr) - 1){
+                    $value .= ' - ';
+                }
+            }
+            return $value;
+        })->values()->toJson();
+
+        return $data;
+    }
+
 }
