@@ -114,12 +114,12 @@ class ListController extends Controller
 
     public function technician()
     {
-        return User::technicians()->orderBy('name')->get(['name', 'id']);
+        return User::active()->technicians()->orderBy('name')->get(['name', 'id']);
     }
 
     function requester()
     {
-        return User::orderBy('name')->get(['name', 'id']);
+        return User::active()->orderBy('name')->get(['name', 'id']);
     }
 
     function status()
@@ -130,7 +130,7 @@ class ListController extends Controller
     function technicians($group = false)
     {
         $user_ids = \DB::table('group_user')->where('group_id', $group)->pluck('user_id');
-        return User::technicians()->whereIn('id', $user_ids)->orderBy('name')->get(['name', 'id']);
+        return User::active()->technicians()->whereIn('id', $user_ids)->orderBy('name')->get(['name', 'id']);
     }
 
 
@@ -172,7 +172,7 @@ class ListController extends Controller
 
     function approvers()
     {
-        return User::orderBy('name')->whereNotNull('email')->get(['name', 'id', 'email'])->map(function ($user) {
+        return User::active()->orderBy('name')->whereNotNull('email')->get(['name', 'id', 'email'])->map(function ($user) {
             return ['id' => $user->id, 'name' => $user->name . ' ( ' . $user->email . ' ) '];
         });
     }
@@ -193,7 +193,7 @@ class ListController extends Controller
             $keys_arr = explode(',', $keys);
             foreach ($keys_arr as $index => $key) {
                 $value .= $item[$key];
-                if($index < count($keys_arr) - 1){
+                if ($index < count($keys_arr) - 1) {
                     $value .= ' - ';
                 }
             }

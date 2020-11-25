@@ -57,7 +57,7 @@ class User extends Authenticatable implements CanResetPassword
     protected $fillable = [
         'name', 'email', 'login', 'password', 'location_id', 'location_id', 'business_unit_id',
         'branch_id', 'department_id', 'manager_id', 'vip', 'is_ad', 'phone', 'mobile1', 'mobile2', 'job',
-        'manager_id', 'group_ids', 'role_ids', 'employee_id', 'extra_fields'
+        'manager_id', 'group_ids', 'role_ids', 'employee_id', 'extra_fields', 'is_disabled'
     ];
 
     protected $casts = ['extra_fields' => 'array'];
@@ -102,6 +102,11 @@ class User extends Authenticatable implements CanResetPassword
         return $query->whereHas('groups', function (Builder $q) {
             $q->support();
         });
+    }
+
+    function scopeActive($query)
+    {
+        return $query->where('is_disabled', 0);
     }
 
     public function isTechnician()
@@ -241,7 +246,7 @@ class User extends Authenticatable implements CanResetPassword
     {
         $user = $this->name;
         $arrayName = explode(' ', $user);
-        return substr($arrayName[0],0) . ' '.(isset($arrayName[1]) ? substr($arrayName[1],0)  : '');
+        return substr($arrayName[0], 0) . ' ' . (isset($arrayName[1]) ? substr($arrayName[1], 0) : '');
     }
 }
   
