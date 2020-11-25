@@ -30,7 +30,7 @@ class UserController extends Controller
 
         $user->save();
 
-        flash(t('User Info'),t('User has been saved'), 'success');
+        flash(t('User Info'), t('User has been saved'), 'success');
 
         return \Redirect::route('admin.user.index');
     }
@@ -55,9 +55,11 @@ class UserController extends Controller
             unset($data['password'], $data['password_confirmation']);
         }
 
+        $data['is_disabled'] = isset($request->is_disabled) ? 1 : 0;
+
         $user->update($data);
 
-        flash(t('User Info'),t('User has been saved'), 'success');
+        flash(t('User Info'), t('User has been saved'), 'success');
 
         return \Redirect::route('admin.user.index');
     }
@@ -66,7 +68,7 @@ class UserController extends Controller
     {
         $user->delete();
 
-        flash(t('User Info'),t('User has been deleted'), 'success');
+        flash(t('User Info'), t('User has been deleted'), 'success');
 
         return \Redirect::route('admin.user.index');
     }
@@ -82,7 +84,7 @@ class UserController extends Controller
         if ($request->isJson() || $request->wantsJson()) {
             return ['ok' => true, 'message' => $msg];
         }
-        flash(t('Users Info'),$msg, 'success');
+        flash(t('Users Info'), $msg, 'success');
 
         return \Redirect::back();
     }
@@ -90,16 +92,18 @@ class UserController extends Controller
     public function getusers()
     {
         $search = \request()->query('search');
-        return User::where('email','like','%'.$search.'%')->pluck("email");
+        return User::where('email', 'like', '%' . $search . '%')->pluck("email");
     }
 
-    function showUploadForm(){
+    function showUploadForm()
+    {
         return view('admin.user.upload');
     }
 
-    function submitUploadForm(Request $request){
+    function submitUploadForm(Request $request)
+    {
 
-        if($request->hasFile('users')){
+        if ($request->hasFile('users')) {
             $this->dispatch(new UploadUsersJob($request->users));
         }
 //        return redirect()->back();
