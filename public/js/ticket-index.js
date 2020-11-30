@@ -13839,7 +13839,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.loading = spin;
 
-      windows.axios.post('/ajax_ticket/ticket', {
+      window.axios.post('/ajax_ticket/ticket', {
         'page': this.tickets.current_page,
         'scope': this.selected_scope,
         'search': this.search,
