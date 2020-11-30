@@ -13649,6 +13649,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Criteria_vue__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Criteria_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__Criteria_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Bus__ = __webpack_require__(3);
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 //
 //
 //
@@ -13839,37 +13841,74 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.loading = spin;
 
-      window.axios.post('/ajax_ticket/ticket', {
-        'page': this.tickets.current_page,
-        'scope': this.selected_scope,
-        'search': this.search,
-        'clear': this.clear,
-        'criterions': this.criterions
-      }, {
+      $.ajaxSetup({
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
-      }).then(function (response) {
-        if (response.data.ticket) {
-          window.location.href = '/ticket/' + _this2.search;
-        } else {
-          if (!response.data.tickets) {
-            _this2.tickets = [];
-          } else {
-            _this2.tickets = response.data.tickets;
-          }
-          _this2.scopes = Object.keys(response.data.scopes).map(function (key) {
-            return [key, response.data.scopes[key]];
-          });
-          _this2.selected_scope = response.data.scope;
-          _this2.criterions = response.data.criterions;
-          _this2.loading = false;
-          _this2.initLoading = false;
-          _this2.total = response.total;
-        }
-      }).catch(function (e) {
-        _this2.loading = false;
       });
+
+      $.ajax({
+
+        url: '/ajax_ticket/ticket',
+        type: 'post',
+        data: {
+          'page': this.tickets.current_page,
+          'scope': this.selected_scope,
+          'search': this.search,
+          'clear': this.clear,
+          'criterions': [].concat(_toConsumableArray(this.criterions))
+        },
+        processData: false,
+        contentType: false,
+
+        success: function success(response) {
+          if (response.ticket) {
+            window.location.href = '/ticket/' + _this2.search;
+          } else {
+            if (!response.tickets) {
+              _this2.tickets = [];
+            } else {
+              _this2.tickets = response.tickets;
+            }
+            _this2.scopes = Object.keys(response.scopes).map(function (key) {
+              return [key, response.scopes[key]];
+            });
+            _this2.selected_scope = response.scope;
+            _this2.criterions = response.criterions;
+            _this2.loading = false;
+            _this2.initLoading = false;
+            _this2.total = response.total;
+          }
+        }
+        // error: (error) => {...},
+        // complete: () => {...}
+
+      });
+      // $.post(`/ajax_ticket/ticket`, {
+      //   'page': this.tickets.current_page,
+      //   'scope': this.selected_scope,
+      //   'search': this.search,
+      //   'clear': this.clear,
+      //   'criterions': this.criterions,
+      // }).done((response) => {
+      //   if (response.ticket) {
+      //     window.location.href = `/ticket/${this.search}`;
+      //   } else {
+      //     if (!response.data.tickets) {
+      //       this.tickets = [];
+      //     } else {
+      //       this.tickets = response.data.tickets;
+      //     }
+      //     this.scopes = Object.keys(response.data.scopes).map((key) => [key, response.data.scopes[key]]);
+      //     this.selected_scope = response.data.scope;
+      //     this.criterions = response.data.criterions;
+      //     this.loading = false;
+      //     this.initLoading = false;
+      //     this.total = response.total;
+      //   }
+      // }).catch(e => {
+      //   this.loading = false;
+      // });
     }
   },
   components: { Pagination: __WEBPACK_IMPORTED_MODULE_0__Pagination_vue___default.a, Ticket: __WEBPACK_IMPORTED_MODULE_1__Ticket_vue___default.a, Filters: __WEBPACK_IMPORTED_MODULE_2__Filters_vue___default.a, Criteria: __WEBPACK_IMPORTED_MODULE_3__Criteria_vue___default.a }
