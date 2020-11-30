@@ -13845,6 +13845,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         'search': this.search,
         'clear': this.clear,
         'criterions': this.criterions
+      }, {
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
       }).then(function (response) {
         if (response.data.ticket) {
           window.location.href = '/ticket/' + _this2.search;

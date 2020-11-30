@@ -191,6 +191,10 @@ export default {
         'search': this.search,
         'clear': this.clear,
         'criterions': this.criterions,
+      }, {
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
       }).then((response) => {
         if (response.data.ticket) {
           window.location.href = `/ticket/${this.search}`;
