@@ -185,7 +185,7 @@ export default {
     loadTickets(spin = true) {
       this.loading = spin;
 
-      axios.post(`/ajax_ticket/ticket`, {
+      windows.axios.post(`/ajax_ticket/ticket`, {
         'page': this.tickets.current_page,
         'scope': this.selected_scope,
         'search': this.search,
