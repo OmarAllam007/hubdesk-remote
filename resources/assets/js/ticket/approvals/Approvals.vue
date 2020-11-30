@@ -80,7 +80,7 @@
         </button>
       </div>
       <div v-for="(level, key) of levels">
-        <approval-item :level="level" :users="users" :index="key" :key="key"></approval-item>
+        <approval-item :level="level" :users="users" :index="key" :key="key" :stages="stages_count"></approval-item>
       </div>
 
       <div class="form-group">
@@ -90,10 +90,6 @@
         </button>
       </div>
     </div>
-
-
-    <!--      @endcan-->
-
   </div>
 </template>
 
@@ -102,6 +98,7 @@ import axios from "axios";
 import ApprovalItem from "./ApprovalItem";
 import ApprovalRow from "./ApprovalRow";
 import {EventBus} from "../../EventBus";
+import _ from "lodash";
 
 export default {
   name: "Approvals",
@@ -113,6 +110,7 @@ export default {
       users: [],
       loading: false,
       approvals_data: [],
+      approval_stages: '',
     }
   },
   created() {
@@ -147,7 +145,8 @@ export default {
         template_id: 0,
         questions: [],
         new_stage: false,
-        attachments: []
+        attachments: [],
+        stage: '',
       });
     },
     removeLevel(index) {
@@ -165,6 +164,7 @@ export default {
         formData.append(`approvals[${i}][approver_id]`, this.levels[i].approver.id);
         formData.append(`approvals[${i}][new_stage]`, this.levels[i].new_stage ? 1 : 0);
         formData.append(`approvals[${i}][template_id]`, this.levels[i].template_id);
+        formData.append(`approvals[${i}][stage]`, this.levels[i].stage);
 
 
         let questions = this.levels[i].questions;
@@ -189,11 +189,13 @@ export default {
         this.loading = false;
         response.data.forEach((approval) => {
           this.approvals_data.push(approval);
+          this.approvals_data = _.orderBy(this.approvals_data, ['stage'], ['asc'])
         })
         this.clearForm();
       }).catch((e) => {
         this.loading = false;
       });
+
 
     },
     clearForm() {
@@ -221,12 +223,20 @@ export default {
         // }
         let has_description = level.description || level.template_id;
 
-        if (!level.approver || !has_description  || !filledQuestions) {
+        if (!level.approver || !has_description || !filledQuestions) {
           validated = false;
           break;
         }
       }
       return validated;
+    },
+
+    stages_count() {
+      var keys = _.map(this.approvals_data, (item) => {
+        return item.stage;
+      })
+
+      return _.uniq(keys)
     }
   },
   components: {ApprovalItem, ApprovalRow}

@@ -26,9 +26,9 @@
                 <thead>
                 <tr>
                     <th>{{t('Name')}}</th>
-                    <th>{{t('Login')}}</th>
+                    <th>{{t('Employee ID')}}</th>
                     <th>{{t('Business Unit')}}</th>
-                    <th>{{t('Location')}}</th>
+                    <th>{{t('Is Active?')}}</th>
                     <th>{{t('Actions')}}</th>
                 </tr>
                 </thead>
@@ -36,9 +36,9 @@
                 @foreach($users as $user)
                     <tr>
                         <td><a href="{{ route('admin.user.edit', $user) }}">{{ $user->name }}</a></td>
-                        <td><a href="{{ route('admin.user.edit', $user) }}">{{ $user->login }}</a></td>
+                        <td><a href="{{ route('admin.user.edit', $user) }}">{{ $user->employee_id ?? 'Not Assigned' }}</a></td>
                         <td>{{ $user->business_unit->name ?? 'Not Assigned' }}</td>
-                        <td>{{ $user->location->name ?? 'Not Assigned' }}</td>
+                        <td>{{ $user->is_disabled ? 'No' : 'Yes'}}</td>
                         <td class="col-md-2">
                             <form action="{{ route('admin.user.destroy', $user) }}" method="post">
                                 {{csrf_field()}} {{method_field('delete')}}
