@@ -89,7 +89,7 @@
 import Pagination from './Pagination.vue';
 import Ticket from './Ticket.vue';
 import Filters from './Filters.vue';
-import axios from 'axios';
+// import axios from 'axios';
 import Criteria from "../../Criteria.vue";
 import EventBus from "../../Bus";
 
