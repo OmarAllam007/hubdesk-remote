@@ -2,10 +2,83 @@
 
 use Illuminate\Routing\Router;
 
+//
+//Route::get('SAP_API', function () {
+//    $url = 'http://alkfeccdev.alkifah.com:8000/sap/bc/srt/wsdl/flv_10002A101AD1/bndg_url/sap/bc/srt/rfc/sap/zhcm_payroll/900/zhcm_payroll/zhcm?sap-client=900';
+//
+//    $client = new Laminas\Soap\Client();
+//    $client->setUri($url);
+//    $client->setOptions([
+////        'location' => 'http://ALKFECCDEV.ALKIFAH.COM:8000/sap/bc/srt/rfc/sap/zhcm_payroll/900/zhcm_payroll/zhcm',
+////        'style' => SOAP_DOCUMENT,
+//        'soap_version' => SOAP_1_2,
+//    'wsdl' => $url,
+//        'login' => 'HUBDESK_API',
+//        'password' => 'Kifah@1234',
+//        'compression' => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP
+//    ]);
+//
+//    $result = $client->ZHCM_PAYROLL_TECH(['IM_PERNR' => 90001000]);
+//    $file = null;
+//
+//    foreach ($result->EX_XPDF->item as $item) {
+//        $file .= $item->LINE;
+//    }
+//    $filename = uniqid('/tmp/salary_') . '.pdf';
+//    file_put_contents($filename, $file);
+//
+//    return response()->download($filename, 'salary.pdf', ['Content-Type' => 'application/pdf'], 'inline')->deleteFileAfterSend(true);
+//
+//
+//
+//
+//
+//
+////    $url = 'http://ALKFECCDEV.ALKIFAH.COM:8000/sap/bc/srt/rfc/sap/zhcm_payroll/900/zhcm_payroll/zhcm';
+//    $client = new nusoap_client($url, false);
+//    $client->soap_defencoding = 'UTF-8';
+//    $client->decode_utf8 = false;
+//    $client->endpointType = 'soap';
+//    $options = array(
+//        'ZHCM_PAYROLL_TECH' => [
+////            'exceptions'=>false,
+////            'trace'=>1,
+////            'encoding' => 'UTF-8',
+////        'Username'=> 'HUBDESK_API',
+////        'Password'=> 'Kifah@1234',
+//            'IM_PERNR'=> 90001000
+//        ]
+//    );
+//
+////    $client->loadWSDL();
+//// Calls
+////    ZHCM_PAYROLL_TECH
+//    $client->setCredentials('HUBDESK_API','Kifah@1234');
+//    $result = $client->call('ZHCM_PAYROLL_TECH', $options, 'http://tempuri.org', '', false, null, 'Document');
+//    if ($error = $client->getError()) {
+//        dd(compact('error'));
+//    }
+//    dd(compact('result'));
+////
+////    $url = 'http://alkfeccdev.alkifah.com:8000/sap/bc/srt/wsdl/flv_10002A111AD1/bndg_url/sap/bc/srt/rfc/sap/zhcm_payroll/900/zhcm_payroll/zhcm?sap-client=100';
+////    $userName = 'HUBDESK_API';
+////    $password = 'Kifah@1234';
+////    $options = array(
+////        'exceptions'=>true,
+////        'trace'=>1,
+////        'encoding' => 'UTF-8',
+////        "login" => $userName,
+////        "password" => $password
+////    );
+////    $client = new SoapClient($url, $options);
+////    dd($client);
+//
+//});
+
+
 if (env('LOGIN_AS')) {
     Auth::loginUsingId(env('LOGIN_AS'));
 }
-
 
 Route::get('/', 'HomeController@home')->middleware('lang');
 Route::auth();
@@ -46,9 +119,6 @@ Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
     $r->get('kgs_subcategory', 'ListController@kgs_subcategory');
     $r->get('kgs_item', 'ListController@kgs_item');
     $r->get('kgs_subitem', 'ListController@kgs_subitem');
-
-
-    $r->get('list-from-external/{file_name}', 'ListController@fromFile');
 
 });
 
@@ -229,4 +299,9 @@ Route::get('/category/{category}', 'CategoryController@show')->name('category.sh
 
 Route::get('/subcategory', 'SubcategoryController@index')->name('subcategory.index');
 
-Route::get('/subcategory/{subcategory}', 'SubcategoryController@show')->name('subcategory.show'); 
+Route::get('/subcategory/{subcategory}', 'SubcategoryController@show')->name('subcategory.show');
+
+//Route::group(['prefix' => 'ticket'], function (\Illuminate\Routing\Router $r) {
+Route::post('ticket_api/ticket', 'API\TicketController@index');
+Route::post('ticket_api/filter-tickets', 'API\TicketController@filterTickets');
+//});
