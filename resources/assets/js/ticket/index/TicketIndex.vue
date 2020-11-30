@@ -185,35 +185,73 @@ export default {
     loadTickets(spin = true) {
       this.loading = spin;
 
-      window.axios.post(`/ajax_ticket/ticket`, {
-        'page': this.tickets.current_page,
-        'scope': this.selected_scope,
-        'search': this.search,
-        'clear': this.clear,
-        'criterions': this.criterions,
-      }, {
+      $.ajaxSetup({
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
-      }).then((response) => {
-        if (response.data.ticket) {
-          window.location.href = `/ticket/${this.search}`;
-        } else {
-          if (!response.data.tickets) {
-            this.tickets = [];
-          } else {
-            this.tickets = response.data.tickets;
-          }
-          this.scopes = Object.keys(response.data.scopes).map((key) => [key, response.data.scopes[key]]);
-          this.selected_scope = response.data.scope;
-          this.criterions = response.data.criterions;
-          this.loading = false;
-          this.initLoading = false;
-          this.total = response.total;
-        }
-      }).catch(e => {
-        this.loading = false;
       });
+
+      $.ajax({
+
+        url:`/ajax_ticket/ticket`,
+        type: 'post',
+        data:  {
+          'page': this.tickets.current_page,
+          'scope': this.selected_scope,
+          'search': this.search,
+          'clear': this.clear,
+          'criterions': [...this.criterions],
+        },
+        processData: false,
+        contentType: false,
+
+
+        success: (response) => {
+          if (response.ticket) {
+            window.location.href = `/ticket/${this.search}`;
+          } else {
+            if (!response.tickets) {
+              this.tickets = [];
+            } else {
+              this.tickets = response.tickets;
+            }
+            this.scopes = Object.keys(response.scopes).map((key) => [key, response.scopes[key]]);
+            this.selected_scope = response.scope;
+            this.criterions = response.criterions;
+            this.loading = false;
+            this.initLoading = false;
+            this.total = response.total;
+          }
+        },
+        // error: (error) => {...},
+        // complete: () => {...}
+
+      })
+      // $.post(`/ajax_ticket/ticket`, {
+      //   'page': this.tickets.current_page,
+      //   'scope': this.selected_scope,
+      //   'search': this.search,
+      //   'clear': this.clear,
+      //   'criterions': this.criterions,
+      // }).done((response) => {
+      //   if (response.ticket) {
+      //     window.location.href = `/ticket/${this.search}`;
+      //   } else {
+      //     if (!response.data.tickets) {
+      //       this.tickets = [];
+      //     } else {
+      //       this.tickets = response.data.tickets;
+      //     }
+      //     this.scopes = Object.keys(response.data.scopes).map((key) => [key, response.data.scopes[key]]);
+      //     this.selected_scope = response.data.scope;
+      //     this.criterions = response.data.criterions;
+      //     this.loading = false;
+      //     this.initLoading = false;
+      //     this.total = response.total;
+      //   }
+      // }).catch(e => {
+      //   this.loading = false;
+      // });
     },
   },
   components: {Pagination, Ticket, Filters, Criteria}
