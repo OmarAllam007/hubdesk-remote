@@ -13835,7 +13835,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.loading = spin;
 
-      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/ticket_api/ticket', {
+      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/ajax_ticket/ticket', {
         'page': this.tickets.current_page,
         'scope': this.selected_scope,
         'search': this.search,
