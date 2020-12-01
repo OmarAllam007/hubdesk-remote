@@ -209,7 +209,6 @@ export default {
           this.total = response.total;
         }
       }).catch((e) => {
-        console.log({...e})
         console.log(e)
         this.loading = false;
       });
