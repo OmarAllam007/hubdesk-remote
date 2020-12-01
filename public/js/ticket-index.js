@@ -13854,6 +13854,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           'clear': this.clear,
           'criterions': this.criterions
         } }).then(function (response) {
+        console.log(response);
         if (response.data.ticket) {
           window.location.href = '/ticket/' + _this2.search;
         } else {
