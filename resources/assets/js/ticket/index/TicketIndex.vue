@@ -1,4 +1,4 @@
-<template>
+\<template>
   <div class="flex flex-col">
     <div class="flex justify-center" v-if="initLoading">
       <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-24 w-24 mt-64"></div>
@@ -185,13 +185,13 @@ export default {
     loadTickets(spin = true) {
       this.loading = spin;
 
-      axios.post(`/api/ticket`, {
+      axios.get(`/ajax/ticket`, {params:{
         'page': this.tickets.current_page,
         'scope': this.selected_scope,
         'search': this.search,
         'clear': this.clear,
         'criterions': this.criterions,
-      }).then((response) => {
+      }}).then((response) => {
         if (response.data.ticket) {
           window.location.href = `/ticket/${this.search}`;
         } else {
