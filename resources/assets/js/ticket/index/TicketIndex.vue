@@ -185,13 +185,13 @@ export default {
     loadTickets(spin = true) {
       this.loading = spin;
 
-      axios.post(`/ajax/ticket`, {
+      axios.get(`/ajax/ticket`, {params:{
         'page': this.tickets.current_page,
         'scope': this.selected_scope,
         'search': this.search,
         'clear': this.clear,
         'criterions': this.criterions,
-      }).then((response) => {
+      }}).then((response) => {
         if (response.data.ticket) {
           window.location.href = `/ticket/${this.search}`;
         } else {

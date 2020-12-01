@@ -1444,15 +1444,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Criteria_vue__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Criteria_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Criteria_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ticket_index_TicketIndex_vue__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ticket_index_TicketIndex_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__ticket_index_TicketIndex_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ticket_index_TicketIndex__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ticket_index_TicketIndex___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__ticket_index_TicketIndex__);
 
 
 
+window.axios = __webpack_require__(43);
+
+window.axios.defaults.headers.common = {
+    'X-Requested-With': 'XMLHttpRequest',
+    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+};
 
 window.app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     el: '#TicketList',
-    components: { Criteria: __WEBPACK_IMPORTED_MODULE_1__Criteria_vue___default.a, TicketIndex: __WEBPACK_IMPORTED_MODULE_2__ticket_index_TicketIndex_vue___default.a }
+    components: { Criteria: __WEBPACK_IMPORTED_MODULE_1__Criteria_vue___default.a, TicketIndex: __WEBPACK_IMPORTED_MODULE_2__ticket_index_TicketIndex___default.a }
 });
 
 /***/ }),
@@ -14847,13 +14853,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.loading = spin;
 
-      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/ajax/ticket', {
-        'page': this.tickets.current_page,
-        'scope': this.selected_scope,
-        'search': this.search,
-        'clear': this.clear,
-        'criterions': this.criterions
-      }).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/ajax/ticket', { params: {
+          'page': this.tickets.current_page,
+          'scope': this.selected_scope,
+          'search': this.search,
+          'clear': this.clear,
+          'criterions': this.criterions
+        } }).then(function (response) {
         if (response.data.ticket) {
           window.location.href = '/ticket/' + _this2.search;
         } else {
@@ -15331,7 +15337,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "text-gray-600 text-lg sm:text-sm md:text-xl lg:text-xl xl:text-2xl "
   }, [_c('i', {
     staticClass: "fa fa-user"
-  }), _vm._v("\n                Requester")]), _vm._v(" "), _c('p', {
+  }), _vm._v("\n              Requester")]), _vm._v(" "), _c('p', {
     staticClass: "pl-4 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pr-5 text-right"
   }, [_vm._v(_vm._s(_vm.ticket.requester))])]), _vm._v(" "), _c('div', {
     staticClass: "flex  justify-between border-r-2 border-gray-400 p-2"
@@ -15347,7 +15353,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl"
   }, [_c('i', {
     staticClass: "fa fa-list"
-  }), _vm._v("\n                Category")]), _vm._v(" "), _c('p', {
+  }), _vm._v("\n              Category")]), _vm._v(" "), _c('p', {
     staticClass: "text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pr-5 text-right"
   }, [_vm._v(_vm._s(_vm.ticket.category))])])]), _vm._v(" "), _c('div', {
     staticClass: "flex flex-col"
@@ -15359,21 +15365,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "fa fa-user-secret"
   }), _vm._v(" Coordinator")]), _vm._v(" "), _c('p', {
     staticClass: "text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl text-right"
-  }, [_vm._v("\n                " + _vm._s(_vm.ticket.technician ? _vm.ticket.technician : 'Not Assigned'))])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("\n              " + _vm._s(_vm.ticket.technician ? _vm.ticket.technician : 'Not Assigned'))])]), _vm._v(" "), _c('div', {
     staticClass: "flex flex-wrap justify-between p-2"
   }, [_c('p', {
     staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pl-5 "
   }, [_c('i', {
     staticClass: "fa fa-list-alt"
-  }), _vm._v("\n                Subcategory")]), _vm._v(" "), _c('p', {
+  }), _vm._v("\n              Subcategory")]), _vm._v(" "), _c('p', {
     staticClass: "flex text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl text-right justify-end "
-  }, [_vm._v("\n                " + _vm._s(_vm.ticket.subcategory))])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("\n              " + _vm._s(_vm.ticket.subcategory))])]), _vm._v(" "), _c('div', {
     staticClass: "flex flex-wrap  justify-between  p-2"
   }, [_c('p', {
     staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pl-5"
   }, [_c('i', {
     staticClass: "fa fa-compass"
-  }), _vm._v("\n                Status")]), _vm._v(" "), _c('p', {
+  }), _vm._v("\n              Status")]), _vm._v(" "), _c('p', {
     staticClass: "flex text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl text-right justify-end "
   }, [_vm._v(_vm._s(_vm.ticket.status))])])]), _vm._v(" "), _c('div', {
     staticClass: "flex flex-col hidden"
@@ -15383,7 +15389,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pl-5 "
   }, [_c('i', {
     staticClass: "fa fa-arrow-circle-up"
-  }), _vm._v("\n                Priority")]), _vm._v(" "), _c('p', {
+  }), _vm._v("\n              Priority")]), _vm._v(" "), _c('p', {
     staticClass: "text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl"
   }, [_vm._v(_vm._s(_vm.ticket.priority))])])])])])])])
 },staticRenderFns: []}
