@@ -192,6 +192,7 @@ export default {
         'clear': this.clear,
         'criterions': this.criterions,
       }}).then((response) => {
+        console.log(response);
         if (response.data.ticket) {
           window.location.href = `/ticket/${this.search}`;
         } else {
