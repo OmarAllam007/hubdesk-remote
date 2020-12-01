@@ -601,18 +601,17 @@ class Ticket extends KModel
         return [
             'id' => $this->id,
             'subject' => $this->subject,
-            'requester' => $this->requester->name,
+            'requester' => $this->requester->name ?? 'Not Assigned',
             'employee_id' => $this->requester->employee_id ? $this->requester->employee_id : 'Not Assigned',
-            'technician' => $this->technician->name ?? '',
-            'status' => $this->status->name,
-            'category' => $this->category->name,
+            'technician' => $this->technician->name ?? 'Not Assigned',
+            'status' => $this->status->name ?? 'Not Assigned',
+            'category' => $this->category->name ?? 'Not Assigned',
             'subcategory' => $this->subcategory ? $this->subcategory->name : 'Not Assigned',
             'created_at' => $this->created_at->format('Y-m-d h:i'),
             'due_date' => $this->due_date ? $this->due_date->format('Y-m-d h:i') : 'Not Assigned',
             'type' => $this->ticket_type,
             'priority' => $this->priority->name ?? 'Not Assigned',
             'is_overdue' => $this->overdue ? 1 : 0
-
         ];
     }
   
