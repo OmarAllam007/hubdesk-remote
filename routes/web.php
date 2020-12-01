@@ -302,5 +302,5 @@ Route::get('/subcategory', 'SubcategoryController@index')->name('subcategory.ind
 
 Route::get('/subcategory/{subcategory}', 'SubcategoryController@show')->name('subcategory.show');
 
-Route::get('ajax/ticket', 'API\TicketController@index');
-Route::get('ajax/filter-tickets', 'API\TicketController@filterTickets');
+Route::post('ajax/ticket', 'API\TicketController@index');
+Route::post('ajax/filter-tickets', 'API\TicketController@filterTickets');

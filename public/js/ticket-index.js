@@ -13847,14 +13847,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.loading = spin;
 
-      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/ajax/ticket', { params: {
-          'page': this.tickets.current_page,
-          'scope': this.selected_scope,
-          'search': this.search,
-          'clear': this.clear,
-          'criterions': this.criterions
-        } }).then(function (response) {
-        console.log(response);
+      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/ajax/ticket', {
+        'page': this.tickets.current_page,
+        'scope': this.selected_scope,
+        'search': this.search,
+        'clear': this.clear,
+        'criterions': this.criterions
+      }).then(function (response) {
         if (response.data.ticket) {
           window.location.href = '/ticket/' + _this2.search;
         } else {
