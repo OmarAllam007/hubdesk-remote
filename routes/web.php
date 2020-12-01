@@ -299,9 +299,8 @@ Route::get('/category/{category}', 'CategoryController@show')->name('category.sh
 
 Route::get('/subcategory', 'SubcategoryController@index')->name('subcategory.index');
 
+
 Route::get('/subcategory/{subcategory}', 'SubcategoryController@show')->name('subcategory.show');
 
-Route::post('ajax_ticket/ticket', 'API\TicketController@index');
-Route::post('ajax_ticket/filter-tickets', 'API\TicketController@filterTickets');
-//Route::group(['prefix' => 'ticket'], function (\Illuminate\Routing\Router $r) {
-//});
+Route::get('ajax/ticket', 'API\TicketController@index');
+Route::get('ajax/filter-tickets', 'API\TicketController@filterTickets');
