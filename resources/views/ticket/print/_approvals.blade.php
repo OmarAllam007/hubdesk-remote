@@ -16,9 +16,21 @@
 
                     </div>
 
-                    <div class="p-3 flex justify-end">
-                        <span class="label label-default">Status: {{App\TicketApproval::$statuses[$approval->status]}}</span>
+                    <div class="p-3 flex">
+                        @if($approval->comment)
+                            {{--                            <div class="p-3 flex justify-end">--}}
+                            <span class="label label-default">Comment: {{$approval->comment}}</span>
+                            {{--                            </div>--}}
+                        @endif
+                        <div class="flex justify-end">
+
+                            <span class="label label-default">Status: {{App\TicketApproval::$statuses[$approval->status]}}</span>
+                        </div>
+
                     </div>
+
+
+
 
                 </div>
             @endforeach
