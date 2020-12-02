@@ -49,7 +49,7 @@ class MonthlyKPIWithApprovals extends ReportContract
             ->leftJoin('items as item', 't.item_id', '=', 'item.id')
             ->join('slas as sla', 't.sla_id', '=', 'sla.id')
             ->join('business_units as bu', 'req.business_unit_id', '=', 'bu.id')
-        ->whereIn('t.category_id',[104,56,114]);
+//        ->whereIn('t.category_id',[104,56,114]);
 
 
         $this->fields();
