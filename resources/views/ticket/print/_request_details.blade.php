@@ -1,4 +1,4 @@
-<div class="flex flex-col m-5">
+<div class="m-5 flex flex-col">
     <div class="mb-2 border-solid border-grey-light rounded border shadow-sm rounded-lg shadow-lg">
         <div class="bg-blue-600 text-white px-2 py-3 border-solid border-grey-light border-b  rounded-t-lg">
             <i class="fa fa-ticket"></i>
@@ -48,5 +48,30 @@
                 </tr>
             </table>
         </div>
+        <hr>
+        <div class="pl-3 mt-2">
+            <h4 class="panel-title"><i class="fa fa-asterisk"></i> <strong>
+                    {{t('Additional Information')}}
+                </strong>
+            </h4>
+        </div>
+        <div class="p-3">
+            <table class="min-w-full table-auto">
+                <tbody>
+                @if ($ticket->custom_fields->count())
+                    @foreach($ticket->custom_fields as $field)
+                        <tr class="w-full">
+                            <td class="text-left w-1/2"><strong>{{$field->name}}</strong></td>
+                            <td class="text-left w-1/2">
+                                {{$field->value}}
+                            </td>
+                        </tr>
+                    @endforeach
+                @endif
+                </tbody>
+            </table>
+        </div>
     </div>
+
+
 </div>
