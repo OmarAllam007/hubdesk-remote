@@ -604,22 +604,22 @@ class Ticket extends KModel
             'requester' => $this->requester->name ?? 'Not Assigned',
             'employee_id' => $this->requester ? $this->requester->employee_id : 'Not Assigned',
             'technician' => $this->technician ? $this->technician->name : 'Not Assigned',
-            'status' => t($this->status->name ?? 'Not Assigned') ,
+            'status' => t($this->status->name ?? 'Not Assigned'),
             'status_id' => $this->status_id ?? 'Not Assigned',
-            'category' => t($this->category->name ?? 'Not Assigned') ,
+            'category' => t($this->category->name ?? 'Not Assigned'),
             'subcategory' => $this->subcategory ? t($this->subcategory->name) : 'Not Assigned',
             'created_at' => $this->created_at ? $this->created_at->format('Y-m-d h:i') : 'Not Assigned',
             'due_date' => $this->due_date ? $this->due_date->format('Y-m-d h:i') : 'Not Assigned',
-            'type' => $this->ticket_type,
+            'type' => $this->ticket_type ?? 'Not Assigned',
             'priority' => $this->priority->name ?? 'Not Assigned',
             'is_overdue' => $this->overdue ? 1 : 0
         ];
     }
-  
+
     /**
      * Route notifications for the Slack channel.
      *
-     * @param  \Illuminate\Notifications\Notification  $notification
+     * @param \Illuminate\Notifications\Notification $notification
      * @return string
      */
     public function routeNotificationForSlack($notification)
