@@ -599,14 +599,14 @@ class Ticket extends KModel
     function convertToJson()
     {
         return [
-            'id' => $this->id,
-            'subject' => $this->subject,
+            'id' => $this->id ?? '',
+            'subject' => $this->subject ?? '',
             'requester' => $this->requester->name ?? 'Not Assigned',
             'employee_id' => $this->requester->employee_id ? $this->requester->employee_id : 'Not Assigned',
             'technician' => $this->technician->name ?? 'Not Assigned',
-            'status' => t($this->status->name) ?? 'Not Assigned',
+            'status' => t($this->status->name ?? 'Not Assigned') ,
             'status_id' => $this->status_id ?? 'Not Assigned',
-            'category' => t($this->category->name) ?? 'Not Assigned',
+            'category' => t($this->category->name ?? 'Not Assigned') ,
             'subcategory' => $this->subcategory ? t($this->subcategory->name) : 'Not Assigned',
             'created_at' => $this->created_at->format('Y-m-d h:i'),
             'due_date' => $this->due_date ? $this->due_date->format('Y-m-d h:i') : 'Not Assigned',
