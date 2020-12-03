@@ -157,7 +157,7 @@
                 <availability
                         :types="{{collect(\App\Availability::TYPES)->toJson()}}"
                         :business_units="{{\App\BusinessUnit::orderBy('name')->get(['name','id'])}}"
-                        :availabilities_data="{{ isset($subcategory) && $subcategory->availabilities ? $subcategory->availabilities : null }}"
+                        :availabilities_data="{{ isset($subcategory) && $subcategory->availabilities ? $subcategory->availabilities : '{}' }}"
                 >
                 </availability>
             </fieldset>
