@@ -1,13 +1,5 @@
 <template>
   <div class="flex flex-col">
-    <!--    <div class="flex">-->
-    <!--      <button-->
-    <!--          class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2-->
-    <!--          px-4 border border-blue-500 hover:border-transparent rounded"-->
-    <!--          @click="toggleFilters">-->
-    <!--        <i class="fa fa-bars"></i>-->
-    <!--      </button>-->
-    <!--    </div>-->
     <p class="flex justify-center border-b-2 pb-5 bg-gray-200 p-5  rounded-t-xl"><i class="fa fa-filter"></i> Ticket
       Filters</p>
 
@@ -19,6 +11,15 @@
                         <span class="text-lg font-bold text-left">
                             <i class="fa fa-chevron-right"></i> {{ scope[1] }}
                         </span>
+
+          <span class="flex justify-end rounded">
+            <span class="bg-indigo-800 pl-3 pr-3 rounded-2xl font-bold text-white" v-if="isSelectedScope(scope[0])">
+              <span v-if="$parent.loading">
+              <i class="fa fa-spinner fa-spin"></i>
+            </span>
+            <span v-else>{{ getTotal(scope[0]) }}</span>
+            </span>
+          </span>
         </button>
       </div>
     </article>
@@ -34,11 +35,14 @@ export default {
   data() {
     return {
       filters_visible: true,
+      loading: false,
     }
   },
   methods: {
-    selectedScope(scope) {
-      return scope == this.$parent.selected_scope;
+    getTotal(scope) {
+      if (scope == this.$parent.selected_scope) {
+        return this.$parent.tickets.total;
+      }
     },
     isSelectedScope(scope) {
       return scope == this.$parent.selected_scope ? 'bg-gray-300' : '';

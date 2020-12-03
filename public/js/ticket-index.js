@@ -13775,6 +13775,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   computed: {
+    getSelectedScope: function getSelectedScope() {
+      var _this2 = this;
+
+      // console.log(this.selected_scope)
+      // console.log(this.scopes)
+      var selected_scope = '';
+      this.scopes.forEach(function (scope) {
+        if (_this2.selected_scope == scope[0]) {
+          selected_scope = scope[1];
+        }
+      });
+      return selected_scope;
+    },
     advancedFilter: function advancedFilter() {
       return this.advanced_filter ? 'fa fa-search-minus' : 'fa fa-search-plus';
     },
@@ -13841,7 +13854,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       console.log('logged');
     },
     loadTickets: function loadTickets() {
-      var _this2 = this;
+      var _this3 = this;
 
       var spin = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
 
@@ -13855,28 +13868,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         'criterions': this.criterions
       }).then(function (response) {
         if (response.data.ticket) {
-          window.location.href = '/ticket/' + _this2.search;
+          window.location.href = '/ticket/' + _this3.search;
         } else {
           if (!response.data.tickets) {
-            _this2.tickets = [];
+            _this3.tickets = [];
           } else {
-            _this2.tickets = response.data.tickets;
+            _this3.tickets = response.data.tickets;
           }
-          _this2.scopes = Object.keys(response.data.scopes).map(function (key) {
+          _this3.scopes = Object.keys(response.data.scopes).map(function (key) {
             return [key, response.data.scopes[key]];
           });
-          _this2.selected_scope = response.data.scope;
-          _this2.criterions = response.data.criterions;
-          _this2.loading = false;
-          _this2.initLoading = false;
-          _this2.total = response.total;
+          _this3.selected_scope = response.data.scope;
+          _this3.criterions = response.data.criterions;
+          _this3.loading = false;
+          _this3.initLoading = false;
+          _this3.total = response.total;
         }
       }).catch(function (e) {
         console.log(e);
-        _this2.loading = false;
+        _this3.loading = false;
       });
     }
   },
+
   components: { Pagination: __WEBPACK_IMPORTED_MODULE_0__Pagination_vue___default.a, Ticket: __WEBPACK_IMPORTED_MODULE_1__Ticket_vue___default.a, Filters: __WEBPACK_IMPORTED_MODULE_2__Filters_vue___default.a, Criteria: __WEBPACK_IMPORTED_MODULE_4__Criteria_vue___default.a }
 });
 
@@ -14224,76 +14238,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Ticket",
-  props: ['ticket']
+  props: ['ticket'],
+  methods: {},
+  computed: {
+    getStatusColor: function getStatusColor() {
+      var open = [1, 2, 3];
+      var pending = [4, 5, 6];
+      var closed = [7, 8, 9];
+
+      if (open.indexOf(parseInt(this.ticket.status_id)) != -1) {
+        return 'bg-gray-300';
+      } else if (pending.indexOf(parseInt(this.ticket.status_id)) != -1) {
+        return 'bg-yellow-700 text-white';
+      } else {
+        return 'bg-green-700 text-white';
+      }
+    }
+  }
 });
 
 /***/ }),
@@ -14315,78 +14279,79 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       'border-t-2 border-red-300': _vm.ticket.is_overdue
     }
   }, [_c('div', {
-    staticClass: "flex flex-col border-b-2 border-gray-200 pt-4 pb-4 pr-3 pl-3 pl-5 pr-5"
+    staticClass: "flex flex-col  pt-4 pb-4 pr-3 pl-3 pl-5 pr-5"
   }, [_c('div', {
     staticClass: "flex justify-between"
+  }, [(_vm.ticket.is_overdue) ? _c('p', {
+    staticClass: "ml-2 mr-2"
+  }, [_c('i', {
+    staticClass: "fa fa-flag text-red-800  shadow-2xl"
+  })]) : _vm._e(), _vm._v(" "), _c('p', {
+    staticClass: "pr-3 text-gray-600 text-2xl font-bold border-gray-400"
+  }, [_c('span', {
+    staticClass: "font-extrabold"
+  }, [_vm._v("#" + _vm._s(_vm.ticket.id) + " -")]), _vm._v(" " + _vm._s(_vm.ticket.subject))]), _vm._v(" "), _c('div', {
+    staticClass: "flex justify-end"
+  }, [_c('div', {}, [_c('div', {
+    staticClass: "pr-2 pl-2 pt-1 pb-1 rounded-full shadow text-lg",
+    class: _vm.getStatusColor
   }, [_c('p', {
-    staticClass: "pr-3 text-gray-600 font-bold border-gray-400"
-  }, [_vm._v("#" + _vm._s(_vm.ticket.id) + " - " + _vm._s(_vm.ticket.subject))]), _vm._v(" "), (_vm.ticket.is_overdue) ? _c('p', {}, [_c('i', {
-    staticClass: "fa fa-flag text-red-800 shadow-2xl"
-  })]) : _vm._e()])]), _vm._v(" "), _c('div', {
-    staticClass: "flex justify-start bg-gray-200 border border-gray-400 rounded-b-xl pl-4 pr-4 "
+    staticClass: "font-bold text-center overflow-hidden"
+  }, [_vm._v("\n                " + _vm._s(_vm.ticket.status))])])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "flex justify-start bg-gray-200  rounded-b-xl pl-4 pr-4 shadow-inner"
   }, [_c('div', {
     staticClass: "flex flex-col"
   }, [_c('div', {
     staticClass: "flex justify-between border-r-2 border-gray-400 p-2 .flex-grow-0"
   }, [_c('p', {
-    staticClass: "text-gray-600 text-lg sm:text-sm md:text-xl lg:text-xl xl:text-2xl "
+    staticClass: "text-gray-600 text-lg sm:text-sm md:text-xl lg:text-xl xl:text-xl "
   }, [_c('i', {
     staticClass: "fa fa-user"
   }), _vm._v("\n              Requester")]), _vm._v(" "), _c('p', {
-    staticClass: "pl-4 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pr-5 text-right"
+    staticClass: "pl-4 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-xl pr-5 text-right"
   }, [_vm._v(_vm._s(_vm.ticket.requester))])]), _vm._v(" "), _c('div', {
     staticClass: "flex  justify-between border-r-2 border-gray-400 p-2"
   }, [_c('p', {
-    staticClass: "text-gray-600 pr-3 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl"
+    staticClass: "text-gray-600 pr-3 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-xl"
   }, [_c('i', {
     staticClass: "fa fa-id-card"
   }), _vm._v(" Employee ID")]), _vm._v(" "), _c('p', {
-    staticClass: "pl-4 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pr-5 text-right"
+    staticClass: "pl-4 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-xl pr-5 text-right"
   }, [_vm._v(_vm._s(_vm.ticket.employee_id))])]), _vm._v(" "), _c('div', {
     staticClass: "flex justify-between border-r-2 border-gray-400  p-2"
   }, [_c('p', {
-    staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl"
+    staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-xl"
   }, [_c('i', {
     staticClass: "fa fa-list"
-  }), _vm._v("\n              Category")]), _vm._v(" "), _c('p', {
-    staticClass: "text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pr-5 text-right"
-  }, [_vm._v(_vm._s(_vm.ticket.category))])])]), _vm._v(" "), _c('div', {
+  }), _vm._v("\n              Service")]), _vm._v(" "), _c('p', {
+    staticClass: "text-lg sm:text-lg md:text-xl lg:text-xl xl:text-xl pr-5 text-right"
+  }, [_vm._v(_vm._s(_vm.ticket.category) + " >\n              " + _vm._s(_vm.ticket.subcategory) + " ")])])]), _vm._v(" "), _c('div', {
     staticClass: "flex flex-col"
   }, [_c('div', {
     staticClass: "flex  justify-between p-2"
   }, [_c('p', {
-    staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pl-5"
+    staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-xl pl-5"
   }, [_c('i', {
     staticClass: "fa fa-user-secret"
   }), _vm._v(" Coordinator")]), _vm._v(" "), _c('p', {
-    staticClass: "text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl text-right"
+    staticClass: "text-lg sm:text-lg md:text-xl lg:text-xl xl:text-xl text-right"
   }, [_vm._v("\n              " + _vm._s(_vm.ticket.technician ? _vm.ticket.technician : 'Not Assigned'))])]), _vm._v(" "), _c('div', {
     staticClass: "flex flex-wrap justify-between p-2"
   }, [_c('p', {
-    staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pl-5 "
+    staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-xl pl-5 "
   }, [_c('i', {
     staticClass: "fa fa-list-alt"
-  }), _vm._v("\n              Subcategory")]), _vm._v(" "), _c('p', {
-    staticClass: "flex text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl text-right justify-end "
-  }, [_vm._v("\n              " + _vm._s(_vm.ticket.subcategory))])]), _vm._v(" "), _c('div', {
+  }), _vm._v("\n              Created Date")]), _vm._v(" "), _c('p', {
+    staticClass: "flex text-lg sm:text-lg md:text-xl lg:text-xl xl:text-xl text-right justify-end "
+  }, [_vm._v("\n              " + _vm._s(_vm.ticket.created_at))])]), _vm._v(" "), _c('div', {
     staticClass: "flex flex-wrap  justify-between  p-2"
   }, [_c('p', {
-    staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pl-5"
+    staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-xl pl-5"
   }, [_c('i', {
     staticClass: "fa fa-compass"
-  }), _vm._v("\n              Status")]), _vm._v(" "), _c('p', {
-    staticClass: "flex text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl text-right justify-end "
-  }, [_vm._v(_vm._s(_vm.ticket.status))])])]), _vm._v(" "), _c('div', {
-    staticClass: "flex flex-col hidden"
-  }, [_c('div', {
-    staticClass: "flex justify-between p-2"
-  }, [_c('p', {
-    staticClass: "text-gray-600 text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl pl-5 "
-  }, [_c('i', {
-    staticClass: "fa fa-arrow-circle-up"
-  }), _vm._v("\n              Priority")]), _vm._v(" "), _c('p', {
-    staticClass: "text-lg sm:text-lg md:text-xl lg:text-xl xl:text-2xl"
-  }, [_vm._v(_vm._s(_vm.ticket.priority))])])])])])])])
+  }), _vm._v("\n              Due Date")]), _vm._v(" "), _c('p', {
+    staticClass: "flex text-lg sm:text-lg md:text-xl lg:text-xl xl:text-xl text-right justify-end "
+  }, [_vm._v("\n              " + _vm._s(_vm.ticket.due_date))])])])])])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -14475,7 +14440,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -14514,6 +14479,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -14521,13 +14487,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   props: ['scopes', 'total'],
   data: function data() {
     return {
-      filters_visible: true
+      filters_visible: true,
+      loading: false
     };
   },
 
   methods: {
-    selectedScope: function selectedScope(scope) {
-      return scope == this.$parent.selected_scope;
+    getTotal: function getTotal(scope) {
+      if (scope == this.$parent.selected_scope) {
+        return this.$parent.tickets.total;
+      }
     },
     isSelectedScope: function isSelectedScope(scope) {
       return scope == this.$parent.selected_scope ? 'bg-gray-300' : '';
@@ -14567,7 +14536,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "text-lg font-bold text-left"
     }, [_c('i', {
       staticClass: "fa fa-chevron-right"
-    }), _vm._v(" " + _vm._s(scope[1]) + "\n                      ")])])])
+    }), _vm._v(" " + _vm._s(scope[1]) + "\n                      ")]), _vm._v(" "), _c('span', {
+      staticClass: "flex justify-end rounded"
+    }, [(_vm.isSelectedScope(scope[0])) ? _c('span', {
+      staticClass: "bg-indigo-800 pl-3 pr-3 rounded-2xl font-bold text-white"
+    }, [(_vm.$parent.loading) ? _c('span', [_c('i', {
+      staticClass: "fa fa-spinner fa-spin"
+    })]) : _c('span', [_vm._v(_vm._s(_vm.getTotal(scope[0])))])]) : _vm._e()])])])
   }))])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('p', {
@@ -15466,7 +15441,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   })]) : _vm._e(), _vm._v(" "), (!_vm.loading || !_vm.initLoading) ? _c('div', {
     staticClass: "flex w-full pt-5 justify-center"
   }, [_c('div', {
-    staticClass: "w-1/12  justify-start ml-5"
+    staticClass: "w-3/12  justify-start ml-5"
   }, [(_vm.scopes.length) ? _c('button', {
     staticClass: "bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 h-16 w-16\n        px-4 border border-blue-500 hover:border-transparent rounded collapse-btn",
     on: {
