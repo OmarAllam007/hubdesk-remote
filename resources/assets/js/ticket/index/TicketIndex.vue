@@ -4,7 +4,7 @@
       <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-24 w-24 mt-64"></div>
     </div>
     <div class="flex w-full pt-5 justify-center" v-if="!loading || !initLoading">
-      <div class="w-1/12  justify-start ml-5">
+      <div class="w-3/12  justify-start ml-5">
         <button
             class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 h-16 w-16
           px-4 border border-blue-500 hover:border-transparent rounded collapse-btn" v-if="scopes.length"
@@ -115,6 +115,18 @@ export default {
 
   },
   computed: {
+    getSelectedScope(){
+      // console.log(this.selected_scope)
+      // console.log(this.scopes)
+      var selected_scope = '';
+      this.scopes.forEach((scope)=>{
+        if(this.selected_scope == scope[0]){
+          selected_scope = scope[1]
+        }
+      });
+      return selected_scope;
+
+    },
     advancedFilter() {
       return this.advanced_filter ? 'fa fa-search-minus' : 'fa fa-search-plus'
     },
@@ -213,6 +225,7 @@ export default {
       });
     },
   },
+
   components: {Pagination, Ticket, Filters, Criteria}
 }
 </script>

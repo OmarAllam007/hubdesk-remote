@@ -141,11 +141,14 @@
 <div id="wrapper">
     <main class="container-fluid">
         <div class="row back-animation">
-            <div class="title-bar">
-                <div class="container-fluid title-container">
-                    @yield('header')
+
+            @hasSection('header')
+                <div class="title-bar">
+                    <div class="container-fluid title-container">
+                        @yield('header')
+                    </div>
                 </div>
-            </div>
+            @endif
             @hasSection('sidebar')
                 @yield('sidebar')
             @endif
@@ -172,7 +175,7 @@
 
     <footer class="footer">
         <div style="display: flex;">
-{{--            <a href="#"><i class="fa fa-envelope"></i>cs.alquwa@alkifah.com</a>--}}
+            {{--            <a href="#"><i class="fa fa-envelope"></i>cs.alquwa@alkifah.com</a>--}}
             <a href="https://hubtech.sa">Powered by Hubdesk from Hubtech</a>
         </div>
         <div>

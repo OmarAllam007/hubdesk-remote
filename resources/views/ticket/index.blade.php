@@ -29,52 +29,6 @@
     </style>
 @endsection
 
-@section('header')
-    {{--    <div style="display: flex; justify-content: space-around;width: 100%">--}}
-    {{--        <h4 style="flex-grow: 1">{{t('Tickets')}}</h4>--}}
-    {{--        <div style="flex-grow: 1 ;display: flex; justify-content: space-between">--}}
-    {{--            {{ Form::open(['route' => 'ticket.scope', 'class' => 'form-inline ticket-scope heading-actions flex']) }}--}}
-    {{--            <div class="btn-group" style="">--}}
-    {{--                <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">--}}
-    {{--                    {{t($scopes[$scope])}} &nbsp; <span--}}
-    {{--                            class="count">{{\App\Ticket::scopedView($scope)->count()}}</span>--}}
-    {{--                    &nbsp; <span class="caret"></span>--}}
-    {{--                </button>--}}
-
-    {{--                <ul class="dropdown-menu">--}}
-    {{--                    @foreach ($scopes as $key => $value)--}}
-    {{--                        <li>--}}
-    {{--                            <button class="btn btn-link btn-sm" type="submit" name="scope"--}}
-    {{--                                    value="{{$key}}">{{t($value)}}</button>--}}
-    {{--                        </li>--}}
-    {{--                    @endforeach--}}
-    {{--                </ul>--}}
-    {{--            </div>--}}
-
-    {{--            {{ Form::close() }}--}}
-    {{--            <form action="{{route('ticket.index')}}" class="form-inline heading-actions">--}}
-    {{--                <div class="input-group input-group-sm">--}}
-    {{--                    <input class="form-control" type="text" name="search" id="search"--}}
-    {{--                           placeholder="{{t('Ticket ID / Employee ID')}}"/>--}}
-    {{--                    <span class="input-group-btn">--}}
-    {{--            <button class="btn btn-default"><i class="fa--}}
-    {{--                         @if(\Session::get('personlized-language-ar' . \Auth::user()->id, \Config::get('app.locale'))=="ar")--}}
-    {{--                        fa-chevron-left--}}
-    {{--                        @else--}}
-    {{--                        fa-chevron-right--}}
-    {{--                        @endif--}}
-    {{--                        "></i></button>--}}
-    {{--        </span>--}}
-    {{--                </div>--}}
-    {{--                --}}{{--<a href="{{ route('ticket.create') }}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></a>--}}
-    {{--                <a href="#SearchForm" data-toggle="collapse" class="btn btn-info btn-sm searchbtn"><i--}}
-    {{--                            class="fa fa-search"></i></a>--}}
-    {{--            </form>--}}
-    {{--        </div>--}}
-    {{--    </div>--}}
-
-@endsection
-
 @section('body')
     <section id="TicketList">
         <ticket-index :criterions="{{json_encode(session('ticket.filter'))}}"></ticket-index>
