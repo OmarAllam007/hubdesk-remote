@@ -36,7 +36,15 @@ class TicketPolicy
 
     function reply(User $user, Ticket $ticket)
     {
-        $privileged = [$ticket->requester_id, $ticket->technician_id, $ticket->coordinator_id, $ticket->creator_id];
+        $isApprover = $ticket->approvals()->where('approver_id', $user->id)->exists();
+        $isInCC = false;
+
+        if ($ticket->replies->pluck('cc')->count()) {
+            $cc_users = User::whereIn('email', $ticket->replies->pluck('cc')->flatten()->filter()->toArray())->pluck('id')->toArray();
+            $isInCC = in_array($user->id, $cc_users) ? true : false;
+        }
+
+        $privileged = [$ticket->requester_id, $ticket->technician_id, $ticket->coordinator_id, $ticket->creator_id, $isApprover, $isInCC];
 
         return in_array($user->id, $privileged) ||
             $user->groups->contains($ticket->group_id) || $user->isTechnician();
@@ -122,7 +130,7 @@ class TicketPolicy
 
     public function send_to_finance(User $user, Ticket $ticket)
     {
-        $is_ticket_technician =  auth()->user()->isTechnicainSupervisor($ticket);
+        $is_ticket_technician = auth()->user()->isTechnicainSupervisor($ticket);
         $is_valid_status = in_array($ticket->status_id, [7, 8, 9]);
 
         return $is_ticket_technician && $is_valid_status;
