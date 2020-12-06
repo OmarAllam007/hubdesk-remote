@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\HomeController;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 
@@ -21,6 +22,7 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
+
     /**
      * Where to redirect users after login.
      *
@@ -40,9 +42,16 @@ class LoginController extends Controller
             return $this->sendLockoutResponse($request);
         }
 
+        $user = User::where('employee_id', $request->employee_id)->first();
+
+        if ($user && $user->is_disabled) {
+            return $this->sendFailedLoginResponse($request);
+        }
+
         if ($this->attemptLogin($request)) {
             $changeLang = new HomeController();
             $changeLang->changeLanguage($request->language);
+
 
             return $this->sendLoginResponse($request);
         }
@@ -54,7 +63,7 @@ class LoginController extends Controller
 
     protected $redirectTo = '/';
 
-    function username() 
+    function username()
     {
         return 'employee_id';
     }
