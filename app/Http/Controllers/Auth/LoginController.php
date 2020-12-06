@@ -44,7 +44,7 @@ class LoginController extends Controller
 
         $user = User::where('employee_id', $request->employee_id)->first();
 
-        if ($user->is_disabled) {
+        if ($user && $user->is_disabled) {
             return $this->sendFailedLoginResponse($request);
         }
 
