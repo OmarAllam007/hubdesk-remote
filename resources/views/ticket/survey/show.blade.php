@@ -30,7 +30,7 @@
                             @foreach($ticket->category->survey->first()->questions as $question)
                                 <div class="panel panel-primary ">
                                     <div class="panel-heading ">
-                                        <h4>{{$question->description}}</h4>
+                                        <h4>{{t($question->description)}}</h4>
                                     </div>
                                     <div class="panel-body">
                                         @foreach($question->answers as $answer)
@@ -39,7 +39,7 @@
                                                     <input type="radio" name="questions[{{$question->id}}]"
                                                            id="optionsRadios1"
                                                            value="{{$answer->id}}">
-                                                    {{$answer->description}}
+                                                    {{t($answer->description)}}
                                                 </label>
                                             </div>
                                         @endforeach
@@ -53,7 +53,7 @@
                     <h4><b>{{t('Your suggestions will help us improve our service, kindly let us know if any')}}</b></h4>
 
                     <div class="form-group">
-                        <textarea class="from-control" name="comment" rows="10" cols="100"></textarea>
+                        <textarea class="form-control border border-gray-400" name="comment" rows="10" cols="100"></textarea>
                     </div>
                     <button type="submit" class="btn btn-success">{{t('Submit')}}</button>
                 </div>
