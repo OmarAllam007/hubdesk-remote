@@ -22,10 +22,12 @@ class TicketReplyJob extends Job //implements ShouldQueue
      */
     protected $reply;
     protected $to;
+    protected $cc;
 
     public function __construct(TicketReply $reply)
     {
         $this->reply = $reply;
+        $this->cc = [];
     }
 
     public function handle()
@@ -44,7 +46,13 @@ class TicketReplyJob extends Job //implements ShouldQueue
             if (!$ticket->requester->email) {
                 return false;
             }
-            $this->to = [$ticket->requester->email];
+
+            $this->to[] = $ticket->requester->email;
+
+            if (($ticket->created_by->id != $ticket->requester->id) && $ticket->created_by->email) {
+                $this->cc[] = $ticket->created_by->email;
+            }
+
             $this->sendEmail();
 
         } elseif ($this->reply->user_id != $this->reply->ticket->technician_id && $this->reply->user->isTechnician()) {
@@ -62,9 +70,11 @@ class TicketReplyJob extends Job //implements ShouldQueue
 
     function sendEmail()
     {
-        $cc = request('reply.cc',[]);
+        $cc = request('reply.cc', []);
 
-        \Mail::to($this->to)->cc($cc)->send(new TicketReplyMail($this->reply));
+        $ccEmails = array_merge($cc, $this->cc);
+
+        \Mail::to($this->to)->cc($ccEmails)->send(new TicketReplyMail($this->reply));
         $this->sendSurvey($this->reply->ticket);
     }
 
