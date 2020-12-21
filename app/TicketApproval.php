@@ -216,9 +216,25 @@ class TicketApproval extends KModel
             'resend' => $this->resend,
             'hidden_comment' => $this->hidden_comment,
             'comment' => $this->comment,
-            'can_show' => can('approval_show', $this),
-            'can_resend'=> can('approval_resend',$this),
-            'can_delete'=> can('approval_delete', $this)
+            'can_show' => $this->can_show(),
+            'can_resend' => $this->can_resend(),
+            'can_delete' => $this->can_delete()
         ];
+    }
+
+    function can_show()
+    {
+        return $this->pending && ($this->approver_id == auth()->id()) && !$this->ticket->isClosed();
+    }
+
+    function can_resend()
+    {
+        return $this->shouldSend() && $this->pending && auth()->id() == $this->creator_id;
+    }
+
+    function can_delete()
+    {
+        return $this->pending && auth()->id() == $this->creator_id ||
+            ($this->ticket->technician && auth()->id() == $this->ticket->technician->id);
     }
 }
