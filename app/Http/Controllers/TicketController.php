@@ -201,7 +201,7 @@ class TicketController extends Controller
             return \Redirect::route('ticket.show', compact('ticket'));
         }
 
-        if (isset($request->get('reply')['template']) && $template_id = $request->get('template')) {
+        if ($request->has('template') && $template_id = $request->get('template')) {
             $request['content'] = ReplyTemplate::find($template_id)->description;
         }
 
