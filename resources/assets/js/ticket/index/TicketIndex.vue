@@ -1,4 +1,5 @@
-\<template>
+\
+<template>
   <div class="flex flex-col">
     <div class="flex justify-center" v-if="initLoading">
       <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-24 w-24 mt-64"></div>
@@ -115,12 +116,12 @@ export default {
 
   },
   computed: {
-    getSelectedScope(){
+    getSelectedScope() {
       // console.log(this.selected_scope)
       // console.log(this.scopes)
       var selected_scope = '';
-      this.scopes.forEach((scope)=>{
-        if(this.selected_scope == scope[0]){
+      this.scopes.forEach((scope) => {
+        if (this.selected_scope == scope[0]) {
           selected_scope = scope[1]
         }
       });
@@ -158,7 +159,7 @@ export default {
         per_page: 2,
         from: 1,
         to: 0,
-        current_page: 1
+        current_page: localStorage.getItem('page') ? localStorage.getItem('page') : 1
       },
       offset: 4,
     }
@@ -197,8 +198,10 @@ export default {
     loadTickets(spin = true) {
       this.loading = spin;
 
+      localStorage.setItem('page', this.tickets.current_page);
+    // console.log(localStorage.getItem('page'))
       axios.post(`/ajax/ticket`, {
-        'page': this.tickets.current_page,
+        'page': localStorage.getItem('page'),
         'scope': this.selected_scope,
         'search': this.search,
         'clear': this.clear,

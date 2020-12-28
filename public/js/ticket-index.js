@@ -13744,6 +13744,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -13818,7 +13819,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         per_page: 2,
         from: 1,
         to: 0,
-        current_page: 1
+        current_page: localStorage.getItem('page') ? localStorage.getItem('page') : 1
       },
       offset: 4
     };
@@ -13860,8 +13861,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.loading = spin;
 
+      localStorage.setItem('page', this.tickets.current_page);
+      // console.log(localStorage.getItem('page'))
       __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/ajax/ticket', {
-        'page': this.tickets.current_page,
+        'page': localStorage.getItem('page'),
         'scope': this.selected_scope,
         'search': this.search,
         'clear': this.clear,
