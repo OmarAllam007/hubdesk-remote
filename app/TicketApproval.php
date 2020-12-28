@@ -234,7 +234,7 @@ class TicketApproval extends KModel
 
     function can_delete()
     {
-        return $this->pending && auth()->id() == $this->creator_id ||
-            ($this->ticket->technician && auth()->id() == $this->ticket->technician->id);
+        return $this->pending && (auth()->id() == $this->creator_id ||
+            ($this->ticket->technician && auth()->id() == $this->ticket->technician->id));
     }
 }
