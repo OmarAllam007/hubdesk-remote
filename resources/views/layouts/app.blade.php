@@ -33,15 +33,25 @@
     @endif
 
     <style>
+        @font-face {
+            font-family: englishFont;
+            src: url('{{ asset('/fonts/english_font.ttf') }}');
+        }
+
         *:not(i), .quot-animation {
-            font-family: 'Exo2-Plain Font', Arial !important;
+            font-family: 'englishFont', Arial !important;
         }
     </style>
 
     @if(\Session::get('personalized-language' . auth()->id(), config('app.locale')) == "ar")
         <style>
+            @font-face {
+                font-family: arabic;
+                src: url('{{ asset('/fonts/arabic.otf') }}');
+
+            }
             *:not(i) {
-                font-family: "Sans-Plain Font", Arial !important;
+                font-family: "arabic", Arial !important;
             }
         </style>
     @endif
