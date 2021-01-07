@@ -53,7 +53,6 @@ class DashboardInfo
         $this->ticketsByStatus();
 
 
-
         //        $this->ticketsByCategory();
 //        $this->ticketsBySubcategory();
 //        $this->ticketsByCoordinator();
@@ -335,7 +334,7 @@ class DashboardInfo
 
     private function getPerformanceOverYear()
     {
-        $from = Carbon::now()->firstOfYear();
+        $from = Carbon::now()->subMonths(9);
         $to = Carbon::now()->subMonth()->lastOfMonth()->addHours(11)->addMinutes(59)->addSeconds(59);
 
         $onTimeTickets = Ticket::selectRaw("count(*) total , monthname(tickets.created_at) month")
@@ -354,27 +353,32 @@ class DashboardInfo
             ->where('tickets.created_at', '>=', $from)
             ->where('tickets.created_at', '<=', $to)
             ->where('ca.business_unit_id', $this->business_unit->id)
-            ->groupBy('month')->get()->keyBy('month')->map(function ($item) use ($onTimeTickets) {
+            ->groupBy('month')
+            ->get()->keyBy('month')->map(function ($item) use ($onTimeTickets) {
                 return ['total' => $item->total, 'ontime' => $onTimeTickets->get($item->month), 'month' => $item->month];
             })->toArray();
+//        dd($this->yearlyPerformance);
 //        dd($this->yearlyPerformance);
     }
 
     private function getSatisfactionOverYear()
     {
-        $from = Carbon::now()->firstOfYear();
+        $from = Carbon::now()->subMonths(9);
         $to = Carbon::now()->subMonth()->lastOfMonth()->addHours(11)->addMinutes(59)->addSeconds(59);
 
         /** @var Collection $months */
+
         $months = UserSurvey::where('is_submitted', 1)
             ->whereHas('survey.categories', function ($q) {
                 $q->where('business_unit_id', $this->business_unit->id);
             })->where('created_at', '>=', $from)
             ->where('created_at', '<=', $to)
-            ->get()->groupBy(function ($item) {
+            ->get()
+
+            ->groupBy(function ($item) {
                 return $item->created_at->englishMonth;
             });
-
+//        dd($months->split(2));
         $this->customerSatisfactionOverYear = $months->map(function ($surveys) {
             $surveys_count = $surveys->count();
             $surveys_points = $surveys->sum(function ($survey) {
@@ -383,7 +387,7 @@ class DashboardInfo
 
             return number_format($surveys_points / $surveys_count, 1);
         });
-//        dd($this->customerSatisfactionOverYear->toArray());
+
 
     }
 }

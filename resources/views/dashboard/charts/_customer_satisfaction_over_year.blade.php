@@ -4,6 +4,7 @@
     </div>
     <hr>
     <div >
+{{--        @dd($data->customerSatisfactionOverYear)--}}
         @if(!empty($data->customerSatisfactionOverYear))
             <customer-satisfaction-chart
                     :labels="{{json_encode(array_keys($data->customerSatisfactionOverYear->toArray()))}}"
