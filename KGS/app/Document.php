@@ -68,11 +68,11 @@ class Document extends Model
     function markAsShouldRenew()
     {
         $level = DocumentNotification::where('business_unit_id', $this->folder->business_unit->id)->first();
-        $isExpired = $this->end_date->lessThanOrEqualTo(Carbon::now()) || ($this->end_date->diffInDays(now()) <= $level->days);
-
         if(!$level){
             return false;
         }
+
+        $isExpired = $this->end_date->lessThanOrEqualTo(Carbon::now()) || ($this->end_date->diffInDays(now()) <= $level->days);
 
         if ($isExpired) {
             return true;
