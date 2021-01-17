@@ -248,5 +248,24 @@ class User extends Authenticatable implements CanResetPassword
         $arrayName = explode(' ', $user);
         return substr($arrayName[0], 0) . ' ' . (isset($arrayName[1]) ? substr($arrayName[1], 0) : '');
     }
+
+
+    function toRequesterJson()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'employee_id' => $this->employee_id ?? 'Not Assigned',
+            'company' => $this->business_unit->name ?? 'Not Assigned',
+            'email' => $this->email ?? 'Not Assigned',
+            'job_title' => $this->job ?? 'Not Assigned',
+            'department' => $this->department->name ?? 'Not Assigned',
+            'mobile1'=> $this->mobile1 ?? 'Not Assigned',
+            'mobile2'=> $this->mobile2 ?? 'Not Assigned',
+            'phone'=> $this->phone ?? 'Not Assigned',
+            'manager_name' => $this->manager ? $this->manager->name : 'Not Assigned',
+            'manager_email' => $this->manager ? $this->manager->email : 'Not Assigned',
+        ];
+    }
 }
   

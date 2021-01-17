@@ -1,44 +1,53 @@
 <template>
   <div>
-    <div class="form-group" v-if="can_create_note">
+    <div v-if="can_create_note">
       <button type="button" class="btn btn-primary btn-sm btn-rounded btn-outlined" title="Add Note"
               @click="addNew()">
         <i class="fa fa-sticky-note"></i> Add Note
       </button>
+      <div class="w-full mt-3">
+        <div class="flex justify-between shadow-md">
+          <table class="table table-striped table-condensed details-tbl">
+            <thead>
+            <tr>
+              <th>Created By</th>
+              <th>Note</th>
+              <th>Created at</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="(note , index) of ticket_notes" is="note" :note="note"
+                @editNote="editNote" :key="note.id" :index="index"
+                @removeNote="removeNoteRow"></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
 
-    <div class="panel panel-default panel-design" v-if="ticket_notes.length">
-      <div class="panel-heading">
-        <h4 class="panel-title"><i class="fa fa-sticky-note-o"></i> {{ 'Discussion Notes' }}</h4>
-      </div>
-      <table class="table table-striped table-condensed details-tbl">
-        <thead>
-        <tr>
-          <th>Created By</th>
-          <th>Note</th>
-          <th>Created at</th>
-          <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="(note , index) of ticket_notes" is="note" :note="note"
-            @editNote="editNote" :key="note.id" :index="index"
-            @removeNote="removeNoteRow"></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="container-fluid" v-else>
-      <div class="alert alert-warning text-center"><i class="fa fa-exclamation-circle"></i>
-        <strong>
-          {{ 'No discussion notes found!' }}
-        </strong>
-      </div>
-    </div>
-    <modal :isOpened="modalOpened"
-           @close="closeModal()"
-           v-if="modalOpened"
-           :create_form="isCreateForm"
-           :selected_note="selected_note"></modal>
+<!--    <div class="form-group" v-if="can_create_note">-->
+<!--      -->
+<!--    </div>-->
+
+<!--    <div class="panel panel-default panel-design" v-if="ticket_notes.length">-->
+<!--      <div class="panel-heading">-->
+<!--        <h4 class="panel-title"><i class="fa fa-sticky-note-o"></i> {{ 'Discussion Notes' }}</h4>-->
+<!--      </div>-->
+
+<!--    </div>-->
+<!--    <div class="container-fluid" v-else>-->
+<!--      <div class="alert alert-warning text-center"><i class="fa fa-exclamation-circle"></i>-->
+<!--        <strong>-->
+<!--          {{ 'No discussion notes found!' }}-->
+<!--        </strong>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <modal :isOpened="modalOpened"-->
+<!--           @close="closeModal()"-->
+<!--           v-if="modalOpened"-->
+<!--           :create_form="isCreateForm"-->
+<!--           :selected_note="selected_note"></modal>-->
   </div>
 </template>
 
@@ -64,7 +73,7 @@ export default {
       this.isCreateForm = true;
       this.openModal();
     },
-    closeModal(){
+    closeModal() {
       this.modalOpened = false;
       this.isCreateForm = true;
     },

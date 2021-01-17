@@ -596,6 +596,13 @@ class Ticket extends KModel
         });
     }
 
+    function getTicketAuthorizationsAttribute()
+    {
+        return [
+            'can_create_note' => \Auth::user()->isSupport() && !$this->isTask() ? 1 : 0
+        ];
+    }
+
     function convertToJson()
     {
         return [
@@ -616,6 +623,26 @@ class Ticket extends KModel
         ];
     }
 
+    function toJson($options = 0)
+    {
+        $ticket = $this->convertToJson();
+        $ticket['item'] = $this->item ? t($this->item->name) : 'Not Assigned';
+        $ticket['subItem'] = $this->subItem ? t($this->subItem->name) : 'Not Assigned';
+        $ticket['group'] = $this->group->name ?? 'Not Assigned';
+        $ticket['sla'] = $this->sla->name ?? t('Not Assigned');
+        $ticket['description'] = $this->description;
+        $ticket['service_cost'] = $this->total_service_cost ?? 'Not Assigned';
+        $ticket['fields'] = $this->fields;
+        $ticket['notes'] = $this->notes;
+        $ticket['authorizations'] = $this->ticket_authorizations;
+
+        return [
+            'ticket' => $ticket,
+            'requester' => $this->requester->toRequesterJson() ?? 'Not Assigned',
+        ];
+    }
+
+
     /**
      * Route notifications for the Slack channel.
      *
@@ -626,5 +653,6 @@ class Ticket extends KModel
     {
         return env('HUBDESK_ISSUES_SLACK');
     }
+
 
 }
