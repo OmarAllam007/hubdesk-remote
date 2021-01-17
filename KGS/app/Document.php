@@ -70,6 +70,10 @@ class Document extends Model
         $level = DocumentNotification::where('business_unit_id', $this->folder->business_unit->id)->first();
         $isExpired = $this->end_date->lessThanOrEqualTo(Carbon::now()) || ($this->end_date->diffInDays(now()) <= $level->days);
 
+        if(!$level){
+            return false;
+        }
+
         if ($isExpired) {
             return true;
         }
