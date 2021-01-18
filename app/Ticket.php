@@ -5,6 +5,7 @@ namespace App;
 use App\Behaviors\RequestConfiguration;
 use App\Helpers\Ticket\TicketFilter;
 use App\Helpers\Ticket\TicketViewScope;
+use App\Http\Resources\TicketNoteResource;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -633,7 +634,7 @@ class Ticket extends KModel
         $ticket['description'] = $this->description;
         $ticket['service_cost'] = $this->total_service_cost ?? 'Not Assigned';
         $ticket['fields'] = $this->fields;
-        $ticket['notes'] = $this->notes;
+        $ticket['notes'] = TicketNoteResource::collection($this->notes);
         $ticket['authorizations'] = $this->ticket_authorizations;
 
         return [

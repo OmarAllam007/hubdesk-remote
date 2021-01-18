@@ -1,7 +1,7 @@
 <template>
   <div>
     <p class="m-3 pt-3 pl-4 pr-4 pb-1 text-2xl font-bold text-3xl">
-      #{{ data.ticket.id }}  - {{data.requester.employee_id}} - <span v-html="data.ticket.subject"></span></p>
+      #{{ data.ticket.id }} - {{ data.requester.employee_id }} - <span v-html="data.ticket.subject"></span></p>
     <div class="flex justify-center">
       <div class="w-1/2">
         <div class="tabUI flex flex-row justify-evenly">
@@ -34,19 +34,21 @@
     </div>
 
     <div class="w-full">
-      <ticket-main :ticket="this.data.ticket" ></ticket-main>
+      <ticket-main :ticket="this.data.ticket" v-if="selectedTab == 0"></ticket-main>
+      <ticket-conversation v-if="selectedTab == 1" :ticket_id="this.data.ticket.id"></ticket-conversation>
     </div>
   </div>
 </template>
 
 <script>
 import TicketMain from "./TicketMain";
+import TicketConversation from "../conversation/TicketConversation";
 
 export default {
   name: "TicketShow",
   props: ['data'],
   data() {
-    return {selectedTab: 0,}
+    return {selectedTab: 1,}
   },
   methods: {
     changeTab(index) {
@@ -54,7 +56,7 @@ export default {
     }
   },
 
-  components: {TicketMain}
+  components: {TicketMain, TicketConversation}
 }
 </script>
 

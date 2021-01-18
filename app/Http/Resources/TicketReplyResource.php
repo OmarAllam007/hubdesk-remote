@@ -2,18 +2,38 @@
 
 namespace App\Http\Resources;
 
+use App\TicketReply;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class TicketReplyResource extends JsonResource
 {
     /**
-     * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
+
+    /**
+     * @param TicketReply $reply
+     * @return array
+     */
+    protected $reply;
+
+    public function __construct($reply)
+    {
+        $this->reply = $reply;
+    }
+
     public function toArray($request)
     {
-        return parent::toArray($request);
+
+        return [
+            'id' => $this->reply->id,
+            'name' => $this->reply->user->name,
+            'is_technician' => $this->reply->ticket->technicain_id ? $this->reply->ticket->technicain_id == $this->reply->user->id : false,
+            'content' => $this->reply->content,
+            'created_at' => $this->reply->created_at->format('d/m/Y H:i A'),
+            'class' => $this->reply->class,
+            'status' => $this->reply->status->name
+        ];
     }
 }

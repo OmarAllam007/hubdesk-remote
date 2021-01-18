@@ -13,6 +13,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class SendSurveyEscalationEmail extends Mailable
 {
     use Queueable, SerializesModels;
+
     private $survey;
     private $ticket;
 
@@ -37,8 +38,5 @@ class SendSurveyEscalationEmail extends Mailable
                     ->subject(t('Escalation of not-satisfied Survey - Ticket#' . $this->ticket->id));
             }
         }
-
-
-
     }
 }
