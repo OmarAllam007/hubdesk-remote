@@ -33,7 +33,10 @@ class TicketReplyResource extends JsonResource
             'content' => $this->reply->content,
             'created_at' => $this->reply->created_at->format('d/m/Y H:i A'),
             'class' => $this->reply->class,
-            'status' => $this->reply->status->name
+            'status' => $this->reply->status->name,
+            'status_id' => $this->reply->status->id,
+            'to' => $this->reply->to ? implode(", ", $this->reply->to) : [],
+            'cc' => $this->reply->cc ? implode(", ", $this->reply->cc) : [],
         ];
     }
 }

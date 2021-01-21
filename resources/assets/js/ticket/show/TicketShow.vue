@@ -34,8 +34,8 @@
     </div>
 
     <div class="w-full">
-      <ticket-main :ticket="this.data.ticket" v-if="selectedTab == 0"></ticket-main>
-      <ticket-conversation v-if="selectedTab == 1" :ticket_id="this.data.ticket.id"></ticket-conversation>
+      <ticket-main :ticket="this.data.ticket" v-show="selectedTab == 0"></ticket-main>
+      <ticket-conversation v-show="selectedTab == 1" :ticket_id="this.data.ticket.id"></ticket-conversation>
     </div>
   </div>
 </template>

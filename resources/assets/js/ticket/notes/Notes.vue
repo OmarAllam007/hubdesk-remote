@@ -21,7 +21,7 @@
               <tbody>
               <tr v-for="(note , index) of ticket_notes" is="note" :note="note"
                   @editNote="editNote" :key="note.id" :index="index"
-                  @removeNote="removeNoteRow" class="hover:bg-yellow-200 "></tr>
+                  @removeNote="removeNoteRow" class="hover:bg-yellow-100 "></tr>
               </tbody>
             </table>
           </div>

@@ -1,4 +1,3 @@
-\
 <template>
   <div class="flex flex-col">
     <div class="flex justify-center" v-if="initLoading">
@@ -57,9 +56,10 @@
 
 
       <div class="relative" :class="ticketsWidth">
-        <div class="flex justify-center" v-if="loading && !initLoading">
-          <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-24 w-24 mt-64"></div>
-        </div>
+        <loader v-if="loading && !initLoading"></loader>
+<!--        <div class="flex justify-center" v-if="loading && !initLoading">-->
+<!--          <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-24 w-24 mt-64"></div>-->
+<!--        </div>-->
 
 
         <div class="transition flex flex-col ease-in-out mt-3 md:mt-0 xl:mt-0 lg:mt-0 2xl:mt-0" v-else>
@@ -93,6 +93,7 @@ import Filters from './Filters.vue';
 import axios from 'axios';
 import Criteria from "../../Criteria.vue";
 import EventBus from "../../Bus";
+import Loader from "../_components/Loader";
 
 export default {
   name: "TicketIndex",
@@ -229,7 +230,7 @@ export default {
     },
   },
 
-  components: {Pagination, Ticket, Filters, Criteria}
+  components: {Pagination, Ticket, Filters, Criteria,Loader}
 }
 </script>
 
