@@ -13,10 +13,21 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\Event' => [
-            'App\Listeners\EventListener',
+        'eloquent.creating: App\Ticket' => [
+            'App\Listeners\InitCreatingTicketListener',
+        ],
+        'eloquent.created: App\Ticket' => [
+            'App\Listeners\TicketCreatedListener',
+            'App\Listeners\TaskCreatedListener',
+            'App\Listeners\TicketNotAssignedListener',
+            'App\Listeners\CreateUserTicketListener',
         ],
     ];
+
+    public function shouldDiscoverEvents()
+    {
+        return true;
+    }
 
     /**
      * Register any events for your application.
