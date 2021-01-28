@@ -2,10 +2,10 @@
 
 use App\Translation;
 
-function flash($title="",$message, $type)
+function flash($title = "", $message, $type)
 {
 
-    alert($title,$message, $type);
+    alert($title, $message, $type);
 //    Session::flash('flash-message', $message);
 //    Session::flash('flash-type', $type);
 }
@@ -32,16 +32,24 @@ function ife($condition, $true, $false = null)
 
 function t($word, $language = '')
 {
+
     if (Auth::check()) {
 
+
         $language = $language ?: \Session::get('personalized-language' . \Auth::user()->id, \Config::get('app.locale'));
+        $data = file_get_contents(public_path("json/$language.json"));
+        $fileCollection = collect(json_decode($data, true));
 
         if ($word instanceof \Illuminate\Support\Collection) {
+//            $word = $fileCollection
+//                ->where('word', $word)->where('language', $language)->first();
+//            return $word['translation'] ?? $word;
             $translate_array = collect();
             foreach ($word as $key => $item) {
-                $word_exist = Translation::where('word', 'like', $item)
-                    ->where('language', $language)->first();
-
+//                $word_exist = Translation::where('word', 'like', $item)
+//                    ->where('language', $language)->first();
+                $word_exist = $fileCollection
+                    ->where('word', $word)->where('language', $language)->first();
                 if ($word_exist) {
                     if ($word_exist->translation != '') {
                         $translate_array->put($key, $word_exist->translation);
@@ -54,12 +62,12 @@ function t($word, $language = '')
             return $translate_array;
         }
 
-        $word_exist = Translation::where('word', 'like', $word)
-            ->where('language', $language)->first();
+        $word_exist = $fileCollection
+            ->where('word',$word)->where('language', $language)->first();
 
         if ($word_exist) {
-            if ($word_exist->translation != '') {
-                return $word_exist->translation;
+            if (isset($word_exist['translation']) && $word_exist['translation'] != '') {
+                return $word_exist['translation'];
             }
             return $word_exist->word;
         }
