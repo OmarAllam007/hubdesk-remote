@@ -34,20 +34,14 @@ function t($word, $language = '')
 {
 
     if (Auth::check()) {
-
-
         $language = $language ?: \Session::get('personalized-language' . \Auth::user()->id, \Config::get('app.locale'));
         $data = file_get_contents(public_path("json/$language.json"));
         $fileCollection = collect(json_decode($data, true));
 
         if ($word instanceof \Illuminate\Support\Collection) {
-//            $word = $fileCollection
-//                ->where('word', $word)->where('language', $language)->first();
-//            return $word['translation'] ?? $word;
             $translate_array = collect();
             foreach ($word as $key => $item) {
-//                $word_exist = Translation::where('word', 'like', $item)
-//                    ->where('language', $language)->first();
+
                 $word_exist = $fileCollection
                     ->where('word', $word)->where('language', $language)->first();
                 if ($word_exist) {
@@ -69,12 +63,11 @@ function t($word, $language = '')
             if (isset($word_exist['translation']) && $word_exist['translation'] != '') {
                 return $word_exist['translation'];
             }
-            return $word_exist->word;
+            return $word_exist['word'];
         }
         return $word;
 
     }
 
     return $word;
-
 }

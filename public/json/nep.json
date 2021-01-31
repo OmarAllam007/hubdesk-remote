@@ -1,0 +1,4514 @@
+[
+  {
+    "id": 1588,
+    "word": "Medical Insurance Services",
+    "language": "nep",
+    "translation": "चिकित्सा बीमा सेवाहरू",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1589,
+    "word": "Email Services",
+    "language": "nep",
+    "translation": "ईमेल सेवाहरू",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1590,
+    "word": "Social Insurance Services",
+    "language": "nep",
+    "translation": "सामाजिक बीमा सेवाहरू",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1591,
+    "word": "Payroll Services",
+    "language": "nep",
+    "translation": "पेरोल सेवाहरू",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1592,
+    "word": "End of Service",
+    "language": "nep",
+    "translation": "सेवाको अन्त्य",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 1593,
+    "word": "Urgent Vacation Service",
+    "language": "nep",
+    "translation": "तत्काल भ्याकेसन सेवा",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1594,
+    "word": "Vacation Service",
+    "language": "nep",
+    "translation": "भ्याकेसन सेवा",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1595,
+    "word": "Advances Services",
+    "language": "nep",
+    "translation": "अग्रिम सेवाहरु",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1596,
+    "word": "Iqama Renewal Services",
+    "language": "nep",
+    "translation": "इकमा नवीकरण सेवाहरू",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1597,
+    "word": "Re-Entry Visa  Services",
+    "language": "nep",
+    "translation": "पुनः प्रवेश भिसा सेवाहरू",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 1598,
+    "word": "Business Visit Visa Service",
+    "language": "nep",
+    "translation": "व्यापार भ्रमण भिसा सेवा",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1599,
+    "word": "Letter Service",
+    "language": "nep",
+    "translation": "पत्र सेवा",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1600,
+    "word": "Work Acknowledge Service",
+    "language": "nep",
+    "translation": "कार्य स्वीकृति सेवा",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1601,
+    "word": "Business trip Service",
+    "language": "nep",
+    "translation": "व्यापार यात्रा सेवा",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1602,
+    "word": "Family Medical Insurance",
+    "language": "nep",
+    "translation": "परिवार चिकित्सा बीमा",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1603,
+    "word": "Medical Claims",
+    "language": "nep",
+    "translation": "मेडिकल दावी",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 1604,
+    "word": "CCHI - link Jawzat",
+    "language": "nep",
+    "translation": "CCHI - लिंक Jawzat",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1605,
+    "word": "Embassy Certificate",
+    "language": "nep",
+    "translation": "दूतावास प्रमाणपत्र",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1606,
+    "word": "Information Correction",
+    "language": "nep",
+    "translation": "सूचना सुधार",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1607,
+    "word": "Delete employee / family member",
+    "language": "nep",
+    "translation": "कर्मचारी / परिवारको सदस्य मेटाउनुहोस्",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1608,
+    "word": "Add New Addition employee",
+    "language": "nep",
+    "translation": "नयाँ थप कर्मचारी थप्नुहोस्",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 1609,
+    "word": "Delete Medical Insurance of Employee ",
+    "language": "nep",
+    "translation": "कर्मचारीको मेडिकल बीमा हटाउनुहोस्",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1610,
+    "word": "Delete Medical Insurance of family member",
+    "language": "nep",
+    "translation": "परिवारको सदस्यको मेडिकल बीमा मेटाउनुहोस्",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1611,
+    "word": "Pre-approval for surgery",
+    "language": "nep",
+    "translation": "शल्य चिकित्सा को लागी पूर्व अनुमोदन",
+    "created_at": "2020-04-19 09:30:58",
+    "updated_at": "2020-04-19 09:30:58"
+  },
+  {
+    "id": 1612,
+    "word": "Subcategories",
+    "language": "nep",
+    "translation": "उपश्रेणीहरू",
+    "created_at": "2020-04-19 09:30:59",
+    "updated_at": "2020-04-19 09:30:59"
+  },
+  {
+    "id": 1613,
+    "word": "Categories",
+    "language": "nep",
+    "translation": "कोटिहरू",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1614,
+    "word": "New Ticket",
+    "language": "nep",
+    "translation": "नयाँ टिकट",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1615,
+    "word": "Tickets",
+    "language": "nep",
+    "translation": "टिकटहरू",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1616,
+    "word": "Report",
+    "language": "nep",
+    "translation": "रिपोर्ट",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1617,
+    "word": "Admin",
+    "language": "nep",
+    "translation": "प्रशासन",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1618,
+    "word": "Select Subcategory",
+    "language": "nep",
+    "translation": "उपश्रेणी चयन गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 1619,
+    "word": "Delete Medical Insurance of Employee",
+    "language": "nep",
+    "translation": "कर्मचारीको मेडिकल बीमा हटाउनुहोस्",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1620,
+    "word": "Medical Card Replacement - Lost",
+    "language": "nep",
+    "translation": "मेडिकल कार्ड प्रतिस्थापन - हरायो",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1621,
+    "word": "Home",
+    "language": "nep",
+    "translation": "घर",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1622,
+    "word": "Reset Password",
+    "language": "nep",
+    "translation": "पासवर्ड रिसेट",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1623,
+    "word": "Logout",
+    "language": "nep",
+    "translation": "बाहिर निस्कनु",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 1624,
+    "word": "Advances",
+    "language": "nep",
+    "translation": "अग्रिमता",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1625,
+    "word": "Business trip\n",
+    "language": "nep",
+    "translation": "ब्यापारिक घुमघाम",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1626,
+    "word": "Others",
+    "language": "nep",
+    "translation": "अन्य",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1627,
+    "word": "Request extra mail space/attachment",
+    "language": "nep",
+    "translation": "थप मेल स्पेस / एट्याचमेन्ट अनुरोध गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1628,
+    "word": "Unable to login",
+    "language": "nep",
+    "translation": "लगइन गर्न असमर्थ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1629,
+    "word": "Unable to receive emails",
+    "language": "nep",
+    "translation": "ईमेल प्राप्त गर्न असमर्थ",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 1630,
+    "word": "Update Email Information",
+    "language": "nep",
+    "translation": "ईमेल जानकारी अपडेट गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1631,
+    "word": "Business trip\n",
+    "language": "nep",
+    "translation": "ब्यापारिक घुमघाम",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1632,
+    "word": "Delete Employee",
+    "language": "nep",
+    "translation": "कर्मचारी हटाउनुहोस्",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1633,
+    "word": "work injuries",
+    "language": "nep",
+    "translation": "काम चोटपटक",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1634,
+    "word": "Add New Employee",
+    "language": "nep",
+    "translation": "नयाँ कर्मचारी थप्नुहोस्",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 1635,
+    "word": "Ticket Inquiries",
+    "language": "nep",
+    "translation": "टिकट ईन्क्वायरीज",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1636,
+    "word": "End of Service Inquires",
+    "language": "nep",
+    "translation": "सेवा अन्वेषण अन्त",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1637,
+    "word": "Vacation Inquires",
+    "language": "nep",
+    "translation": "भ्याकेसन इनक्वायर्स",
+    "created_at": "2020-04-19 09:30:58",
+    "updated_at": "2020-04-19 09:30:58"
+  },
+  {
+    "id": 1638,
+    "word": "Salaries Inquires",
+    "language": "nep",
+    "translation": "तलब अनुसन्धान",
+    "created_at": "2020-04-19 09:30:59",
+    "updated_at": "2020-04-19 09:30:59"
+  },
+  {
+    "id": 1639,
+    "word": "Business trips",
+    "language": "nep",
+    "translation": "व्यापार यात्रा",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1640,
+    "word": "Al-Quwa Center",
+    "language": "nep",
+    "translation": "अल Quwa केन्द्र",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1641,
+    "word": "Advance fora new employee",
+    "language": "nep",
+    "translation": "अग्रिम नयाँ कर्मचारीहरु",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1642,
+    "word": "Humanity advance",
+    "language": "nep",
+    "translation": "मानवता अग्रिम",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1643,
+    "word": "Requester",
+    "language": "nep",
+    "translation": "अनुरोधकर्ता",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1644,
+    "word": "Business Unit",
+    "language": "nep",
+    "translation": "व्यवसाय एकाई",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 1645,
+    "word": "Department",
+    "language": "nep",
+    "translation": "विभाग",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1646,
+    "word": "Position",
+    "language": "nep",
+    "translation": "स्थिति",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1647,
+    "word": "Email",
+    "language": "nep",
+    "translation": "ईमेल",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1648,
+    "word": "Description",
+    "language": "nep",
+    "translation": "वर्णन",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1649,
+    "word": "Attachments",
+    "language": "nep",
+    "translation": "संलग्नकहरू",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 1650,
+    "word": "Submit",
+    "language": "nep",
+    "translation": "बुझाउनुहोस्",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1651,
+    "word": "Create Ticket",
+    "language": "nep",
+    "translation": "टिकट सिर्जना गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1652,
+    "word": "Subject",
+    "language": "nep",
+    "translation": "बिषय",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1653,
+    "word": "Mobile Number",
+    "language": "nep",
+    "translation": "मोबाइल नम्बर",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1654,
+    "word": "Employee ID",
+    "language": "nep",
+    "translation": "कर्मचारी आईडी",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1655,
+    "word": "Identity Number",
+    "language": "nep",
+    "translation": "पहिचान संख्या",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 1656,
+    "word": "Reason for exclusion",
+    "language": "nep",
+    "translation": "बहिष्कारको कारण",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1657,
+    "word": "Delete Date",
+    "language": "nep",
+    "translation": "मिति मेट्नुहोस्",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1658,
+    "word": "Nationality",
+    "language": "nep",
+    "translation": "राष्ट्रीयता",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1659,
+    "word": "Marital status",
+    "language": "nep",
+    "translation": "वैवाहिक स्थिति",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1660,
+    "word": "Actual Job",
+    "language": "nep",
+    "translation": "वास्तविक काम",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 1661,
+    "word": "Job as in residence",
+    "language": "nep",
+    "translation": "निवासमा जस्तै काम",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1662,
+    "word": "Qualification",
+    "language": "nep",
+    "translation": "योग्यता",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1663,
+    "word": "Specialization",
+    "language": "nep",
+    "translation": "विशेषज्ञता",
+    "created_at": "2020-04-19 09:30:58",
+    "updated_at": "2020-04-19 09:30:58"
+  },
+  {
+    "id": 1664,
+    "word": "Job Location",
+    "language": "nep",
+    "translation": "काम स्थान",
+    "created_at": "2020-04-19 09:30:59",
+    "updated_at": "2020-04-19 09:30:59"
+  },
+  {
+    "id": 1665,
+    "word": "Housing allowance",
+    "language": "nep",
+    "translation": "आवास भत्ता",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1666,
+    "word": "Transportation allowance",
+    "language": "nep",
+    "translation": "यातायात भत्ता",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1667,
+    "word": "Other allowances",
+    "language": "nep",
+    "translation": "अन्य भत्ता",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1668,
+    "word": "Basic Salary",
+    "language": "nep",
+    "translation": "आधारभूत तलब",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1669,
+    "word": "Joining Date",
+    "language": "nep",
+    "translation": "सम्मिलित मिति",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1670,
+    "word": "Job as in residence",
+    "language": "nep",
+    "translation": "निवासमा जस्तै काम",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 1671,
+    "word": "Identity/Iqama Number",
+    "language": "nep",
+    "translation": "परिचय / इकमा नम्बर",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1672,
+    "word": "Date of worker reporting",
+    "language": "nep",
+    "translation": "कार्यकर्ता रिपोर्टिंग को मिति",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1673,
+    "word": "Date of stop working",
+    "language": "nep",
+    "translation": "काम गर्न रोक्ने मिति",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1674,
+    "word": "Time of injury",
+    "language": "nep",
+    "translation": "चोटपटकको समय",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1675,
+    "word": "City",
+    "language": "nep",
+    "translation": "शहर",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 1676,
+    "word": "Place of injury",
+    "language": "nep",
+    "translation": "चोटपटकको ठाउँ",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1677,
+    "word": "Joint career when injury time",
+    "language": "nep",
+    "translation": "संयुक्त क्यारियर जब चोट समय",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1678,
+    "word": "Location on Map",
+    "language": "nep",
+    "translation": "नक्शामा स्थान",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1679,
+    "word": "How the injury happened",
+    "language": "nep",
+    "translation": "चोट कसरी भयो",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1680,
+    "word": "Mobile of the injured employee",
+    "language": "nep",
+    "translation": "घाइते कर्मचारीको मोबाइल",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1681,
+    "word": "Name of Employee for Insurance",
+    "language": "nep",
+    "translation": "बीमाका लागि कर्मचारीको नाम",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 1682,
+    "word": "Class of Insurance",
+    "language": "nep",
+    "translation": "बीमा को वर्ग",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1683,
+    "word": "Type of Request",
+    "language": "nep",
+    "translation": "अनुरोधको प्रकार",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1684,
+    "word": "Class of Insurance",
+    "language": "nep",
+    "translation": "बीमा को वर्ग",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1685,
+    "word": "Date of Invoice",
+    "language": "nep",
+    "translation": "चलानीको मिति",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1686,
+    "word": "Management",
+    "language": "nep",
+    "translation": "व्यवस्थापन",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 1687,
+    "word": "Department",
+    "language": "nep",
+    "translation": "विभाग",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1688,
+    "word": "Branch - Project",
+    "language": "nep",
+    "translation": "शाखा - परियोजना",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1689,
+    "word": "Salary of Month",
+    "language": "nep",
+    "translation": "महिनाको तलब",
+    "created_at": "2020-04-19 09:30:58",
+    "updated_at": "2020-04-19 09:30:58"
+  },
+  {
+    "id": 1690,
+    "word": "Date of Departure",
+    "language": "nep",
+    "translation": "प्रस्थान को मिति",
+    "created_at": "2020-04-19 09:30:59",
+    "updated_at": "2020-04-19 09:30:59"
+  },
+  {
+    "id": 1691,
+    "word": "Last working day",
+    "language": "nep",
+    "translation": "अन्तिम कार्य दिन",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1692,
+    "word": "Country of Destination",
+    "language": "nep",
+    "translation": "गन्तव्यको देश",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1693,
+    "word": "Category of Vacation",
+    "language": "nep",
+    "translation": "बिदाको कोटी",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1694,
+    "word": "Vacation Start",
+    "language": "nep",
+    "translation": "भ्याकेसन स्टार्ट",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1695,
+    "word": "First day of work after vacation",
+    "language": "nep",
+    "translation": "छुट्टी पछि कामको पहिलो दिन",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1696,
+    "word": "Hiring Date",
+    "language": "nep",
+    "translation": "भाडा मिति",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 1697,
+    "word": "Termination Type",
+    "language": "nep",
+    "translation": "समाप्ति प्रकार",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1698,
+    "word": "Employee Mobile Number In Saudi Arabia",
+    "language": "nep",
+    "translation": "साउदी अरेबियामा कर्मचारी मोबाइल नम्बर",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1699,
+    "word": "Employee Mobile Number In his country",
+    "language": "nep",
+    "translation": "उसको देशमा कर्मचारी मोबाइल नम्बर",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1700,
+    "word": "Employee Replacement Name",
+    "language": "nep",
+    "translation": "कर्मचारी बदल्ने नाम",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1701,
+    "word": "Employee Manager Name",
+    "language": "nep",
+    "translation": "कर्मचारी प्रबन्धक नाम",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 1702,
+    "word": "Employee Manager Contact Number",
+    "language": "nep",
+    "translation": "कर्मचारी प्रबन्धक सम्पर्क नम्बर",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1703,
+    "word": "KSA Airport Departure",
+    "language": "nep",
+    "translation": "KSA एयरपोर्ट प्रस्थान",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1704,
+    "word": "Airport Arrival",
+    "language": "nep",
+    "translation": "एयरपोर्ट आगमन",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1705,
+    "word": "Department or Project Name",
+    "language": "nep",
+    "translation": "विभाग वा परियोजना नाम",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1706,
+    "word": "Department Manager Name",
+    "language": "nep",
+    "translation": "विभाग प्रबन्धक नाम",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1707,
+    "word": "Department Manager Email",
+    "language": "nep",
+    "translation": "विभाग प्रबन्धक ईमेल",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 1708,
+    "word": "Area Manager Name",
+    "language": "nep",
+    "translation": "क्षेत्र प्रबन्धक नाम",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1709,
+    "word": "Leave Duration ( Days in Numbers )",
+    "language": "nep",
+    "translation": "अवधि छोड्नुहोस् (संख्याहरूमा दिन)",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1710,
+    "word": "Country of Destination",
+    "language": "nep",
+    "translation": "गन्तव्यको देश",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1711,
+    "word": "Department or Project Name",
+    "language": "nep",
+    "translation": "विभाग वा परियोजना नाम",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1712,
+    "word": "Employee Email or Project Coordinator Name",
+    "language": "nep",
+    "translation": "कर्मचारी ईमेल वा परियोजना समन्वयक नाम",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 1713,
+    "word": "Project Coordinator Name",
+    "language": "nep",
+    "translation": "परियोजना संयोजक नाम",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1714,
+    "word": "Applicant Evaluation",
+    "language": "nep",
+    "translation": "आवेदक मूल्यांकन",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1715,
+    "word": "Direct Manager Name",
+    "language": "nep",
+    "translation": "प्रत्यक्ष प्रबन्धक नाम",
+    "created_at": "2020-04-19 09:30:58",
+    "updated_at": "2020-04-19 09:30:58"
+  },
+  {
+    "id": 1716,
+    "word": "Direct Manager Email",
+    "language": "nep",
+    "translation": "प्रत्यक्ष प्रबन्धक ईमेल",
+    "created_at": "2020-04-19 09:30:59",
+    "updated_at": "2020-04-19 09:30:59"
+  },
+  {
+    "id": 1717,
+    "word": "Area Manager Email",
+    "language": "nep",
+    "translation": "क्षेत्र प्रबन्धक ईमेल",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1718,
+    "word": "Vacation Requester",
+    "language": "nep",
+    "translation": "भ्याकेसन अनुरोधकर्ता",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1719,
+    "word": "Country of Destination",
+    "language": "nep",
+    "translation": "गन्तव्यको देश",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1720,
+    "word": "First day of work after vacation",
+    "language": "nep",
+    "translation": "छुट्टी पछि कामको पहिलो दिन",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1721,
+    "word": "Leave Duration ( Days in Numbers )",
+    "language": "nep",
+    "translation": "अवधि छोड्नुहोस् (संख्याहरूमा दिन)",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1722,
+    "word": "Ticket Reservation by",
+    "language": "nep",
+    "translation": "टिकट आरक्षण द्वारा",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 1723,
+    "word": "Reason For Advance",
+    "language": "nep",
+    "translation": "अग्रिम कारण",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1724,
+    "word": "Advance Amount Required",
+    "language": "nep",
+    "translation": "अग्रिम रकम आवश्यक छ",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1725,
+    "word": "expiration date of Iqama",
+    "language": "nep",
+    "translation": "इकमा म्याद सकिने मिति",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1726,
+    "word": "Visa Duration",
+    "language": "nep",
+    "translation": "भिसा अवधि",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1727,
+    "word": "Visa type",
+    "language": "nep",
+    "translation": "भिसा प्रकार",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 1728,
+    "word": "Purpose of Visa Request",
+    "language": "nep",
+    "translation": "भिसा अनुरोधको उद्देश्य",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1729,
+    "word": "Nationality",
+    "language": "nep",
+    "translation": "राष्ट्रीयता",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1730,
+    "word": "Religion",
+    "language": "nep",
+    "translation": "धर्म",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1731,
+    "word": "Job title",
+    "language": "nep",
+    "translation": "कार्य शीर्षक",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1732,
+    "word": "Activity of a business required to visit",
+    "language": "nep",
+    "translation": "व्यवसायको गतिविधि भ्रमण गर्नु आवश्यक छ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1733,
+    "word": "Requester Kifah Company",
+    "language": "nep",
+    "translation": "अनुरोधकर्ता किफाह कम्पनी",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 1734,
+    "word": "Person required to visit according to the passport",
+    "language": "nep",
+    "translation": "व्यक्तिलाई राहदानी अनुसार हेर्न आवाश्यक छ",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1735,
+    "word": "Name of the employer required to visit",
+    "language": "nep",
+    "translation": "भ्रमण गर्नु पर्ने नियोक्ताको नाम",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1736,
+    "word": "City for the arrival destination to visit",
+    "language": "nep",
+    "translation": "भ्रमण गन्तव्य आगमनको लागि",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1737,
+    "word": "Gender",
+    "language": "nep",
+    "translation": "लि .्ग",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1738,
+    "word": "purpose from the visit",
+    "language": "nep",
+    "translation": "भ्रमणको उद्देश्य",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 1739,
+    "word": "Requester Mobile Number",
+    "language": "nep",
+    "translation": "अनुरोधकर्ता मोबाइल नम्बर",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1740,
+    "word": "Letter Type",
+    "language": "nep",
+    "translation": "पत्रको प्रकार",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1741,
+    "word": "To Whom",
+    "language": "nep",
+    "translation": "कसलाई",
+    "created_at": "2020-04-19 09:30:58",
+    "updated_at": "2020-04-19 09:30:58"
+  },
+  {
+    "id": 1742,
+    "word": "Reason",
+    "language": "nep",
+    "translation": "कारण",
+    "created_at": "2020-04-19 09:30:59",
+    "updated_at": "2020-04-19 09:30:59"
+  },
+  {
+    "id": 1743,
+    "word": "Worksite of Employee",
+    "language": "nep",
+    "translation": "कर्मचारीको वर्साइट",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1744,
+    "word": "Project Coordinator name / with email",
+    "language": "nep",
+    "translation": "परियोजना संयोजक नाम / ईमेलको साथ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1745,
+    "word": "Return to Work date",
+    "language": "nep",
+    "translation": "कार्य मितिमा फर्कनुहोस्",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1746,
+    "word": "Administration Manager",
+    "language": "nep",
+    "translation": "प्रशासन प्रबन्धक",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1747,
+    "word": "Type of work receipt",
+    "language": "nep",
+    "translation": "काम रसीद को प्रकार",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1748,
+    "word": "The Passport with",
+    "language": "nep",
+    "translation": "सँग पासपोर्ट",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 1749,
+    "word": "Total",
+    "language": "nep",
+    "translation": "कुल",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1750,
+    "word": "Travel By",
+    "language": "nep",
+    "translation": "द्वारा यात्रा",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1751,
+    "word": "Purpose of Visit",
+    "language": "nep",
+    "translation": "भ्रमणको उद्देश्य",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1752,
+    "word": "Destination city for business trip",
+    "language": "nep",
+    "translation": "व्यवसाय यात्रा को लागी गन्तव्य शहर",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1753,
+    "word": "Number of days of business trip",
+    "language": "nep",
+    "translation": "व्यापार यात्रा को दिन को संख्या",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 1754,
+    "word": "City for the arrival destination to visit",
+    "language": "nep",
+    "translation": "भ्रमण गन्तव्य आगमनको लागि",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1755,
+    "word": "ID",
+    "language": "nep",
+    "translation": "आईडी",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1756,
+    "word": "Technician",
+    "language": "nep",
+    "translation": "प्राविधिक",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1757,
+    "word": "Created At",
+    "language": "nep",
+    "translation": "सिर्जना गरिएको",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1758,
+    "word": "Due Date",
+    "language": "nep",
+    "translation": "मिति",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1759,
+    "word": "Status",
+    "language": "nep",
+    "translation": "स्थिति",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 1760,
+    "word": "Category",
+    "language": "nep",
+    "translation": "कोटि",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1761,
+    "word": "Business Units",
+    "language": "nep",
+    "translation": "व्यापार एकाइहरू",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1762,
+    "word": "Select Business Unit",
+    "language": "nep",
+    "translation": "व्यापार एकाई चयन गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1763,
+    "word": "My Open Tickets",
+    "language": "nep",
+    "translation": "मेरो खुला टिकटहरू",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1764,
+    "word": "My On-Hold Tickets",
+    "language": "nep",
+    "translation": "मेरो अन-होल्ड टिकटहरू",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 1765,
+    "word": "My Pending Tickets",
+    "language": "nep",
+    "translation": "मेरो पेन्डि Tic टिकटहरू",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1766,
+    "word": "My Completed Ticket",
+    "language": "nep",
+    "translation": "मेरो सम्पन्न टिकट",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1767,
+    "word": "Ticket waiting my approval",
+    "language": "nep",
+    "translation": "टिकट मेरो स्वीकृति पर्खाईमा छ",
+    "created_at": "2020-04-19 09:30:58",
+    "updated_at": "2020-04-19 09:30:58"
+  },
+  {
+    "id": 1768,
+    "word": "All My Tickets",
+    "language": "nep",
+    "translation": "मेरा सबै टिकटहरू",
+    "created_at": "2020-04-19 09:30:59",
+    "updated_at": "2020-04-19 09:30:59"
+  },
+  {
+    "id": 1769,
+    "word": "Ticket ID",
+    "language": "nep",
+    "translation": "टिकट आईडी",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1770,
+    "word": "Copyright © Hubtech 2019",
+    "language": "nep",
+    "translation": "प्रतिलिपि अधिकार © हबटेक २०१ 2019",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1771,
+    "word": "All Open Tickets",
+    "language": "nep",
+    "translation": "सबै खुला टिकटहरू",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1772,
+    "word": "All On-Hold Tickets",
+    "language": "nep",
+    "translation": "सबै अन-होल्ड टिकटहरू",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1773,
+    "word": "All Pending Tickets",
+    "language": "nep",
+    "translation": "सबै पेन्डि Tic टिकटहरू",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1774,
+    "word": "All Completed Tickets",
+    "language": "nep",
+    "translation": "सबै पूर्ण टिकटहरू",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 1775,
+    "word": "All My Open Assigned Tickets",
+    "language": "nep",
+    "translation": "सबै मेरो खुला असाइन गरिएका टिकटहरू",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1776,
+    "word": "All My On-Hold Assigned Tickets",
+    "language": "nep",
+    "translation": "सबै मेरो अन-होल्ड असाइन्ड टिकटहरू",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1777,
+    "word": "All My Pending Assigned Tickets",
+    "language": "nep",
+    "translation": "सबै मेरो पेन्डिंग असाइन गरिएका टिकटहरू",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1778,
+    "word": "All My Completed Assigned Tickets",
+    "language": "nep",
+    "translation": "सबै मेरो सम्पन्न टिकटहरू",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1779,
+    "word": "All My Open Assigned Tasks",
+    "language": "nep",
+    "translation": "सबै मेरो खुला असाइन गरिएका कार्यहरू",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 1780,
+    "word": "All My On-Hold Assigned Tasks",
+    "language": "nep",
+    "translation": "सबै मेरो अन-होल्ड असाइन गरिएका कार्यहरू",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1781,
+    "word": "All My Pending Assigned Tasks",
+    "language": "nep",
+    "translation": "सबै मेरो पेन्डिंग असाइन गरिएका कार्यहरू",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1782,
+    "word": "All My Completed Assigned Tasks",
+    "language": "nep",
+    "translation": "मेरो सबै सम्पन्न कार्यहरू",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1783,
+    "word": "All My Completed Assigned Tasks",
+    "language": "nep",
+    "translation": "मेरो सबै सम्पन्न कार्यहरू",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1784,
+    "word": "All My Assigned Tasks",
+    "language": "nep",
+    "translation": "मेरा सबै असाइन गरिएका कार्यहरू",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1785,
+    "word": "All Tickets due by today",
+    "language": "nep",
+    "translation": "आज द्वारा सबै टिकटहरू",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 1786,
+    "word": "All My Overdue Tickets",
+    "language": "nep",
+    "translation": "सबै मेरो ओभरडु टिकटहरू",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1787,
+    "word": "All Overdue Tickets",
+    "language": "nep",
+    "translation": "सबै ओभरडु टिकटहरू",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1788,
+    "word": "All Tickets",
+    "language": "nep",
+    "translation": "सबै टिकटहरू",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1789,
+    "word": "Helpdesk ID",
+    "language": "nep",
+    "translation": "हेल्पडेस्क आईडी",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1790,
+    "word": "First Response Due Time",
+    "language": "nep",
+    "translation": "पहिलो प्रतिक्रिया कारण समय",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 1791,
+    "word": "Urgency",
+    "language": "nep",
+    "translation": "तत्काल",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1792,
+    "word": "Group",
+    "language": "nep",
+    "translation": "समूह",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1793,
+    "word": "Subcategory",
+    "language": "nep",
+    "translation": "उपश्रेणी",
+    "created_at": "2020-04-19 09:30:58",
+    "updated_at": "2020-04-19 09:30:58"
+  },
+  {
+    "id": 1794,
+    "word": "Item",
+    "language": "nep",
+    "translation": "वस्तु",
+    "created_at": "2020-04-19 09:30:59",
+    "updated_at": "2020-04-19 09:30:59"
+  },
+  {
+    "id": 1795,
+    "word": "Due Time",
+    "language": "nep",
+    "translation": "रहेको समय",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1796,
+    "word": "SLA",
+    "language": "nep",
+    "translation": "SLA",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1797,
+    "word": "Request Details",
+    "language": "nep",
+    "translation": "अनुरोध विवरण",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1798,
+    "word": "Additional Information",
+    "language": "nep",
+    "translation": "थप जानकारी",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1799,
+    "word": "Requester Details",
+    "language": "nep",
+    "translation": "अनुरोधकर्ता विवरणहरू",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1800,
+    "word": "Location",
+    "language": "nep",
+    "translation": "स्थान",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 1801,
+    "word": "Mobile",
+    "language": "nep",
+    "translation": "मोबाइल",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1802,
+    "word": "Phone",
+    "language": "nep",
+    "translation": "फोन",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1803,
+    "word": "Name",
+    "language": "nep",
+    "translation": "नाम",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1804,
+    "word": "Request",
+    "language": "nep",
+    "translation": "अनुरोध",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1805,
+    "word": "Print",
+    "language": "nep",
+    "translation": "प्रिन्ट गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 1806,
+    "word": "Add Note",
+    "language": "nep",
+    "translation": "नोट थप्नुहोस्",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1807,
+    "word": "Duplicate",
+    "language": "nep",
+    "translation": "नक्कल",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1808,
+    "word": "Forward",
+    "language": "nep",
+    "translation": "अगाडि",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1809,
+    "word": "Reassign",
+    "language": "nep",
+    "translation": "पुनःसाइन गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1810,
+    "word": "Conversation",
+    "language": "nep",
+    "translation": "कुराकानी",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1811,
+    "word": "Resolution",
+    "language": "nep",
+    "translation": "रिजोलुसन",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 1812,
+    "word": "Approvals",
+    "language": "nep",
+    "translation": "अनुमोदन",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1813,
+    "word": "Tasks",
+    "language": "nep",
+    "translation": "कार्यहरू",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1814,
+    "word": "Ticket Log",
+    "language": "nep",
+    "translation": "टिकट लग",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1815,
+    "word": "Email ID",
+    "language": "nep",
+    "translation": "ईमेल आईडी",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1816,
+    "word": "Send approval to",
+    "language": "nep",
+    "translation": "लाई अनुमोदन पठाउनुहोस्",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 1817,
+    "word": "No approvals yet",
+    "language": "nep",
+    "translation": "अझै अनुमोदन छैन",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1818,
+    "word": "No Tasks found",
+    "language": "nep",
+    "translation": "कुनै कार्य भेटिएन",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1819,
+    "word": "Create Task",
+    "language": "nep",
+    "translation": "कार्य सिर्जना गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:58",
+    "updated_at": "2020-04-19 09:30:58"
+  },
+  {
+    "id": 1820,
+    "word": "Ticket created by",
+    "language": "nep",
+    "translation": "टिकट द्वारा बनाईएको",
+    "created_at": "2020-04-19 09:30:59",
+    "updated_at": "2020-04-19 09:30:59"
+  },
+  {
+    "id": 1821,
+    "word": "Task created by",
+    "language": "nep",
+    "translation": "द्वारा बनाईएको कार्य",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1822,
+    "word": "Ticket has been closed by the system",
+    "language": "nep",
+    "translation": "टिकट प्रणाली द्वारा बन्द गरिएको छ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1823,
+    "word": "Ticket has been Escalated to",
+    "language": "nep",
+    "translation": "टिकट एस्केलेटेड गरिएको छ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1824,
+    "word": "Technician changed from",
+    "language": "nep",
+    "translation": "टेक्निशियन बाट परिवर्तन भयो",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1825,
+    "word": "to",
+    "language": "nep",
+    "translation": "लाई",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1826,
+    "word": "Group changed from",
+    "language": "nep",
+    "translation": "समूह परिवर्तन गरियो",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 1827,
+    "word": "Category changed from",
+    "language": "nep",
+    "translation": "कोटि बाट बदलियो",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1828,
+    "word": "Ticket updated by",
+    "language": "nep",
+    "translation": "द्वारा टिकट अपडेट गरियो",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1829,
+    "word": "Re-assign",
+    "language": "nep",
+    "translation": "पुनः असाइन गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1830,
+    "word": "Not Assigned",
+    "language": "nep",
+    "translation": "नतोकिएको",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1831,
+    "word": "Change status from",
+    "language": "nep",
+    "translation": "बाट स्थिति बदल्नुहोस्",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 1832,
+    "word": "Open",
+    "language": "nep",
+    "translation": "खोल्नुहोस्",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1833,
+    "word": "Assigned",
+    "language": "nep",
+    "translation": "तोकिएको",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1834,
+    "word": "Awaiting Customer Response",
+    "language": "nep",
+    "translation": "ग्राहक प्रतिक्रियाको प्रतीक्षा गर्दै",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1835,
+    "word": "Completed without solution",
+    "language": "nep",
+    "translation": "समाधान बिना नै सम्पन्न भयो",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1836,
+    "word": "In progress",
+    "language": "nep",
+    "translation": "प्रगति हुदैछ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1837,
+    "word": "On Hold",
+    "language": "nep",
+    "translation": "होल्डमा",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 1838,
+    "word": "Resolved",
+    "language": "nep",
+    "translation": "समाधान गरियो",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1839,
+    "word": "By",
+    "language": "nep",
+    "translation": "द्वारा",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1840,
+    "word": "Add Note",
+    "language": "nep",
+    "translation": "नोट थप्नुहोस्",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1841,
+    "word": "Show this note to Requester",
+    "language": "nep",
+    "translation": "अनुरोधकर्तालाई यो नोट देखाउनुहोस्",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1842,
+    "word": "E-mail this note to the technician",
+    "language": "nep",
+    "translation": "टेक्निशियनलाई यो नोट ईमेल गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 1843,
+    "word": "Close",
+    "language": "nep",
+    "translation": "बन्द",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1844,
+    "word": "Assign Ticket",
+    "language": "nep",
+    "translation": "टिकट तोक्नुहोस्",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1845,
+    "word": "Old Password",
+    "language": "nep",
+    "translation": "पुरानो पासवर्ड",
+    "created_at": "2020-04-19 09:30:58",
+    "updated_at": "2020-04-19 09:30:58"
+  },
+  {
+    "id": 1846,
+    "word": "Password",
+    "language": "nep",
+    "translation": "पासवर्ड",
+    "created_at": "2020-04-19 09:30:59",
+    "updated_at": "2020-04-19 09:30:59"
+  },
+  {
+    "id": 1847,
+    "word": "Confirm Password",
+    "language": "nep",
+    "translation": "पासवर्ड सुनिश्चित गर्नुहोस",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1848,
+    "word": "Duplicate Ticket",
+    "language": "nep",
+    "translation": "नक्कल टिकट",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1849,
+    "word": "Are you sure to duplicate Ticket",
+    "language": "nep",
+    "translation": "के तपाई निश्चित हुनुहुन्छ टिकट नक्कल गर्न",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1850,
+    "word": "Add Notes",
+    "language": "nep",
+    "translation": "नोटहरू थप्नुहोस्",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1851,
+    "word": "Home",
+    "language": "nep",
+    "translation": "घर",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1852,
+    "word": "Select Company",
+    "language": "nep",
+    "translation": "कम्पनी छान्नुहोस्",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 1853,
+    "word": "Create/Remove Email",
+    "language": "nep",
+    "translation": "ईमेल सिर्जना गर्नुहोस् / हटाउनुहोस्",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1854,
+    "word": "Humanity loan",
+    "language": "nep",
+    "translation": "मानवता loanण",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1855,
+    "word": "Iqama Number",
+    "language": "nep",
+    "translation": "इकमा नम्बर",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1856,
+    "word": "Vacation Type",
+    "language": "nep",
+    "translation": "भ्याकेसन प्रकार",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1857,
+    "word": "Return Date",
+    "language": "nep",
+    "translation": "फिर्ती मिति",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 1858,
+    "word": "Employee Replacement ID",
+    "language": "nep",
+    "translation": "कर्मचारी प्रतिस्थापन आईडी",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1859,
+    "word": "Applicant Evaluation",
+    "language": "nep",
+    "translation": "आवेदक मूल्यांकन",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1860,
+    "word": "Direct Manager Email",
+    "language": "nep",
+    "translation": "प्रत्यक्ष प्रबन्धक ईमेल",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1861,
+    "word": "Direct Manager Contact",
+    "language": "nep",
+    "translation": "प्रत्यक्ष प्रबन्धक सम्पर्क",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1862,
+    "word": "Department Manager Email",
+    "language": "nep",
+    "translation": "विभाग प्रबन्धक ईमेल",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1863,
+    "word": "Select Company",
+    "language": "nep",
+    "translation": "कम्पनी छान्नुहोस्",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 1864,
+    "word": "Date of Return",
+    "language": "nep",
+    "translation": "फिर्ताको मिति",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1865,
+    "word": "AC Maintenance",
+    "language": "nep",
+    "translation": "AC रखरखाव",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1866,
+    "word": "Carpentary Maintenance",
+    "language": "nep",
+    "translation": "सिकर्मी मर्मत",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1867,
+    "word": "Electricity Maintenance",
+    "language": "nep",
+    "translation": "विद्युत मर्मत",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1868,
+    "word": "Pigments & Paints Maintenance",
+    "language": "nep",
+    "translation": "पिग्मेन्ट्स र पेंट्स मन्टेनेन्स",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 1869,
+    "word": "Plumbing Maintenance",
+    "language": "nep",
+    "translation": "प्लम्बिंग मर्मतसम्भार",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1870,
+    "word": "Request Office Furniture",
+    "language": "nep",
+    "translation": "कार्यालय फर्नीचर अनुरोध गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1871,
+    "word": "IT Others",
+    "language": "nep",
+    "translation": "IT IT",
+    "created_at": "2020-04-19 09:30:58",
+    "updated_at": "2020-04-19 09:30:58"
+  },
+  {
+    "id": 1872,
+    "word": "Request Communication Devices or Tools",
+    "language": "nep",
+    "translation": "संचार उपकरणहरू वा उपकरणहरू अनुरोध गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:59",
+    "updated_at": "2020-04-19 09:30:59"
+  },
+  {
+    "id": 1873,
+    "word": "Request Computer or Accessories",
+    "language": "nep",
+    "translation": "कम्प्युटर वा सहायक उपकरणहरू अनुरोध गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1874,
+    "word": "Request Display Device",
+    "language": "nep",
+    "translation": "अनुरोध प्रदर्शन उपकरण",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1875,
+    "word": "Request Maintenance",
+    "language": "nep",
+    "translation": "अनुरोध रखरखाव",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1876,
+    "word": "Request Printer or Copy Machine",
+    "language": "nep",
+    "translation": "अनुरोध प्रिन्टर वा प्रतिलिपि मेशीन",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1877,
+    "word": "Book Theater",
+    "language": "nep",
+    "translation": "पुस्तक थिएटर",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1878,
+    "word": "Others",
+    "language": "nep",
+    "translation": "अन्य",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 1879,
+    "word": "Request Banquet",
+    "language": "nep",
+    "translation": "अनुरोध भोज",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1880,
+    "word": "Request Organize Event",
+    "language": "nep",
+    "translation": "अनुरोध आयोजन आयोजन",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1881,
+    "word": "Request Promotional Materials & Prints",
+    "language": "nep",
+    "translation": "प्रचार सामग्री र प्रिन्ट अनुरोध गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1882,
+    "word": "Request SMS",
+    "language": "nep",
+    "translation": "अनुरोध एसएमएस",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1883,
+    "word": "Order buses",
+    "language": "nep",
+    "translation": "अर्डर बसहरू",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 1884,
+    "word": "Others",
+    "language": "nep",
+    "translation": "अन्य",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1885,
+    "word": "Request Stationary",
+    "language": "nep",
+    "translation": "अनुरोध स्टेशनरी",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1886,
+    "word": "Request Toners",
+    "language": "nep",
+    "translation": "अनुरोध टोनरहरू",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1887,
+    "word": "Transferring employees between Companies",
+    "language": "nep",
+    "translation": "कम्पनीहरू बीच कर्मचारीहरु स्थानान्तरण",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1888,
+    "word": "International Roaming",
+    "language": "nep",
+    "translation": "अन्तर्राष्ट्रिय रोमि।",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1889,
+    "word": "New Mobile Device from STC",
+    "language": "nep",
+    "translation": "STC बाट नयाँ मोबाइल उपकरण",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 1890,
+    "word": "Request New SIM",
+    "language": "nep",
+    "translation": "नयाँ सिम अनुरोध गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1891,
+    "word": "SIM Services",
+    "language": "nep",
+    "translation": "सिम सेवाहरू",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1892,
+    "word": "Notes",
+    "language": "nep",
+    "translation": "नोटहरू",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1893,
+    "word": "Not Certified",
+    "language": "nep",
+    "translation": "प्रमाणित छैन",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1894,
+    "word": "Certified",
+    "language": "nep",
+    "translation": "प्रमाणित",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 1895,
+    "word": "Certified by the Chamber of Commerce?",
+    "language": "nep",
+    "translation": "वाणिज्य चेम्बर द्वारा प्रमाणित?",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1896,
+    "word": "Company Name",
+    "language": "nep",
+    "translation": "कम्पनी नाम",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1897,
+    "word": "SAP ID",
+    "language": "nep",
+    "translation": "SAP आईडी",
+    "created_at": "2020-04-19 09:30:58",
+    "updated_at": "2020-04-19 09:30:58"
+  },
+  {
+    "id": 1898,
+    "word": "Project Coordinator email",
+    "language": "nep",
+    "translation": "परियोजना संयोजक ईमेल",
+    "created_at": "2020-04-19 09:30:59",
+    "updated_at": "2020-04-19 09:30:59"
+  },
+  {
+    "id": 1899,
+    "word": "Select Value",
+    "language": "nep",
+    "translation": "मान चयन गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1900,
+    "word": "Your Request will Delivered within",
+    "language": "nep",
+    "translation": "तपाईंको अनुरोध भित्र वितरित हुनेछ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1901,
+    "word": "Days",
+    "language": "nep",
+    "translation": "दिनहरू",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1902,
+    "word": "Hours",
+    "language": "nep",
+    "translation": "घण्टा",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1903,
+    "word": "Minutes",
+    "language": "nep",
+    "translation": "मिनेट",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1904,
+    "word": "Manager's Name",
+    "language": "nep",
+    "translation": "प्रबन्धकको नाम",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 1905,
+    "word": "Office Location",
+    "language": "nep",
+    "translation": "कार्यालय स्थान",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1906,
+    "word": "Employee Name",
+    "language": "nep",
+    "translation": "कर्मचारीको नाम",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1907,
+    "word": "Office Phone",
+    "language": "nep",
+    "translation": "कार्यालय फोन",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1908,
+    "word": "Branch",
+    "language": "nep",
+    "translation": "साखा",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1909,
+    "word": "Mobile No.",
+    "language": "nep",
+    "translation": "मोबाइल नम्बर।",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 1910,
+    "word": "The group to add the employee email",
+    "language": "nep",
+    "translation": "समूह ईमेल कर्मचारी जोड्न को लागी",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1911,
+    "word": "Email you need to create",
+    "language": "nep",
+    "translation": "ईमेल तपाईंले सिर्जना गर्नु आवश्यक छ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1912,
+    "word": "Official letter from government agencies",
+    "language": "nep",
+    "translation": "सरकारी एजेन्सीहरूको आधिकारिक पत्र",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1913,
+    "word": "Unofficial Letter",
+    "language": "nep",
+    "translation": "अनौपचारिक पत्र",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1914,
+    "word": "Visa extension",
+    "language": "nep",
+    "translation": "भिसा विस्तार",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1915,
+    "word": "Request a business visit",
+    "language": "nep",
+    "translation": "व्यापार भ्रमणको लागि अनुरोध गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 1916,
+    "word": "Request a family visit",
+    "language": "nep",
+    "translation": "एक परिवार यात्रा को लागी अनुरोध गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1917,
+    "word": "Letter of Engineers",
+    "language": "nep",
+    "translation": "ईन्जिनियरहरूको पत्र",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1918,
+    "word": "Visa Bank Letter",
+    "language": "nep",
+    "translation": "भिसा बैंक पत्र",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1919,
+    "word": "Letter of salary for Bank",
+    "language": "nep",
+    "translation": "बैंकका लागि तलब पत्र",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1920,
+    "word": "Letter of installation to the bank",
+    "language": "nep",
+    "translation": "बैंकमा स्थापना पत्र",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 1921,
+    "word": "Letter of Bank Loan",
+    "language": "nep",
+    "translation": "बैंक ofण को पत्र",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1922,
+    "word": "Letter of ending services",
+    "language": "nep",
+    "translation": "अन्त हुने सेवाहरूको पत्र",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1923,
+    "word": "A letter of experience and release",
+    "language": "nep",
+    "translation": "अनुभव र रिलीज को पत्र",
+    "created_at": "2020-04-19 09:30:58",
+    "updated_at": "2020-04-19 09:30:58"
+  },
+  {
+    "id": 1924,
+    "word": "letter of sickness",
+    "language": "nep",
+    "translation": "रोग को पत्र",
+    "created_at": "2020-04-19 09:30:59",
+    "updated_at": "2020-04-19 09:30:59"
+  },
+  {
+    "id": 1925,
+    "word": "Letter of opening a bank account outside the Kingdom",
+    "language": "nep",
+    "translation": "राज्य बाहिर बैंक खाता खोल्ने पत्र",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1926,
+    "word": "An official letter addressed to you outside the Kingdom",
+    "language": "nep",
+    "translation": "एक आधिकारिक पत्र तपाईलाई राज्य बाहिर सम्बोधन गरिएको थियो",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1927,
+    "word": "Official letter addressed to the consulate of other countries",
+    "language": "nep",
+    "translation": "आधिकारिक पत्र अन्य देशको वाणिज्य दूतावासलाई सम्बोधन गरियो",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1928,
+    "word": "Letter of Delegation",
+    "language": "nep",
+    "translation": "प्रत्यायोजन पत्र",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1929,
+    "word": "Recruitment Letter",
+    "language": "nep",
+    "translation": "भर्ती पत्र",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1930,
+    "word": "Letter to the Ministry of Health in Egypt",
+    "language": "nep",
+    "translation": "इजिप्टमा स्वास्थ्य मन्त्रालयलाई पत्र",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 1931,
+    "word": "Transfer the sponsership",
+    "language": "nep",
+    "translation": "प्रायोजन स्थानान्तरण गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1932,
+    "word": "Transfer the sponsership of our employee's spouse to him",
+    "language": "nep",
+    "translation": "उहाँलाई हाम्रो कर्मचारीको जीवनसाथी को प्रायोजन हस्तान्तरण",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1933,
+    "word": "Transfer the sponser of our employee's spouse to another sponser",
+    "language": "nep",
+    "translation": "हाम्रो कर्मचारीको जीवनसाथी को प्रायोजक अर्को प्रायोजकमा स्थानान्तरण गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1934,
+    "word": "Letter Renewal of the Delegator Card",
+    "language": "nep",
+    "translation": "प्रतिनिधि कार्डको पत्र नविकरण",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1935,
+    "word": "Letter of extended vacation",
+    "language": "nep",
+    "translation": "विस्तारित बिदाको पत्र",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 1936,
+    "word": "Letter of change career",
+    "language": "nep",
+    "translation": "परिवर्तन क्यारियर को पत्र",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1937,
+    "word": "Letter of extension experience period",
+    "language": "nep",
+    "translation": "विस्तार अनुभव अवधि को पत्र",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1938,
+    "word": "Letter addressed to the Embassy",
+    "language": "nep",
+    "translation": "दूतावासलाई सम्बोधन पत्र",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1939,
+    "word": "Cancel Deleting an email",
+    "language": "nep",
+    "translation": "ईमेल मेटाउने रद्द गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1940,
+    "word": "End of testing period",
+    "language": "nep",
+    "translation": "परीक्षण अवधिको अन्त्य",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1941,
+    "word": "Extended contract",
+    "language": "nep",
+    "translation": "विस्तारित सम्झौता",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 1942,
+    "word": "Letter of Movement",
+    "language": "nep",
+    "translation": "आन्दोलन को पत्र",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1943,
+    "word": "Vacation Start Date",
+    "language": "nep",
+    "translation": "बिदा सुरु मिति",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1944,
+    "word": "Request Books",
+    "language": "nep",
+    "translation": "अनुरोध पुस्तकहरु",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1945,
+    "word": "Warehouses",
+    "language": "nep",
+    "translation": "गोदामहरू",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1947,
+    "word": "Transportation",
+    "language": "nep",
+    "translation": "यातायात",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1948,
+    "word": "Building Maint. & Service",
+    "language": "nep",
+    "translation": "बिल्डिंग मेनट। र सेवा",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1949,
+    "word": "Computer & IT",
+    "language": "nep",
+    "translation": "कम्प्युटर र आईटी",
+    "created_at": "2020-04-19 09:30:58",
+    "updated_at": "2020-04-19 09:30:58"
+  },
+  {
+    "id": 1950,
+    "word": "Public Rel. & Media",
+    "language": "nep",
+    "translation": "सार्वजनिक रिल & मिडिया",
+    "created_at": "2020-04-19 09:30:59",
+    "updated_at": "2020-04-19 09:30:59"
+  },
+  {
+    "id": 1951,
+    "word": "Gov. Services",
+    "language": "nep",
+    "translation": "सरकारी सेवाहरू",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1952,
+    "word": "Car Services",
+    "language": "nep",
+    "translation": "कार सेवाहरू",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1954,
+    "word": "Chambers of Commerce",
+    "language": "nep",
+    "translation": "वाणिज्य कोठा",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1955,
+    "word": "Ministry of Foreign Affairs",
+    "language": "nep",
+    "translation": "परराष्ट्र मन्त्रालय",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1956,
+    "word": "Other Services",
+    "language": "nep",
+    "translation": "अन्य सेवाहरू",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 1957,
+    "word": "Commercial invitation",
+    "language": "nep",
+    "translation": "वाणिज्यिक निमन्त्रणा",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1958,
+    "word": "Ratification of transaction",
+    "language": "nep",
+    "translation": "लेनदेन को अनुपातिकरण",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1959,
+    "word": "Items",
+    "language": "nep",
+    "translation": "आईटमहरू",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1960,
+    "word": "Authentication of letters, transactions and authorizations",
+    "language": "nep",
+    "translation": "पत्र, लेनदेन र प्राधिकरणको प्रमाणीकरण",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1961,
+    "word": "Passport services",
+    "language": "nep",
+    "translation": "राहदानी सेवाहरु",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 1962,
+    "word": "Visa services",
+    "language": "nep",
+    "translation": "भिसा सेवाहरु",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1963,
+    "word": "Embassies Services",
+    "language": "nep",
+    "translation": "दूतावास सेवाहरू",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1964,
+    "word": "Traffic Services",
+    "language": "nep",
+    "translation": "ट्राफिक सेवाहरू",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1965,
+    "word": "Tam system",
+    "language": "nep",
+    "translation": "टम प्रणाली",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1966,
+    "word": "Internal authorization",
+    "language": "nep",
+    "translation": "आन्तरिक प्राधिकरण",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1967,
+    "word": "Renewal of Traffic License Form",
+    "language": "nep",
+    "translation": "ट्राफिक लाइसेन्स फारम को नवीकरण",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 1968,
+    "word": "Delegate a user of a car",
+    "language": "nep",
+    "translation": "कारको प्रयोगकर्ता हस्तान्तरण गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1969,
+    "word": "Query on unpaid violations and no payment is made through the bank",
+    "language": "nep",
+    "translation": "भुक्तान नगरेको उल्लंघनमा प्रश्नहरू र बैंक मार्फत कुनै भुक्तान गरिएको छैन",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1970,
+    "word": "Cancel International authorizations",
+    "language": "nep",
+    "translation": "अन्तर्राष्ट्रिय प्राधिकरण रद्द गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1971,
+    "word": "Issuing international authorizations",
+    "language": "nep",
+    "translation": "अन्तर्राष्ट्रिय प्राधिकरण जारी गर्दै",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1972,
+    "word": "Cancel an actual user on the vehicle",
+    "language": "nep",
+    "translation": "गाडीमा वास्तविक प्रयोगकर्ता रद्द गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 1973,
+    "word": "Query on irregularities paid and not payment through the bank",
+    "language": "nep",
+    "translation": "बैंकमार्फत भुक्तान गरिएको र अनियमितताको बारेमा प्रश्न",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1974,
+    "word": "Circular on stolen vehicles",
+    "language": "nep",
+    "translation": "चोरिएका सवारीहरूको सर्कुलर",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1975,
+    "word": "Issuing or replacing a lost traffic license",
+    "language": "nep",
+    "translation": "हराएको यातायात इजाजतपत्र जारी वा बदल्दै",
+    "created_at": "2020-04-19 09:30:58",
+    "updated_at": "2020-04-19 09:30:58"
+  },
+  {
+    "id": 1976,
+    "word": "Driver's license \"renewal and replacement\"",
+    "language": "nep",
+    "translation": "ड्राइभर इजाजतपत्र \"नवीकरण र प्रतिस्थापन\"",
+    "created_at": "2020-04-19 09:30:59",
+    "updated_at": "2020-04-19 09:30:59"
+  },
+  {
+    "id": 1977,
+    "word": "Transfer of Ownership",
+    "language": "nep",
+    "translation": "स्वामित्व हस्तान्तरण",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1978,
+    "word": "Claim for car accident compensation from insurance",
+    "language": "nep",
+    "translation": "बीमाबाट कार दुर्घटना क्षतिपूर्तिको लागि दावी गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1979,
+    "word": "Issuing replacement plates for damaged or lost vehicles",
+    "language": "nep",
+    "translation": "क्षतिग्रस्त वा हराएको सवारीको लागि प्रतिस्थापन प्लेटहरू जारी गर्दै",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1980,
+    "word": "Extract new plates",
+    "language": "nep",
+    "translation": "नयाँ प्लेटहरू निकाल्नुहोस्",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1981,
+    "word": "Export or drop a palette",
+    "language": "nep",
+    "translation": "प्यालेट निर्यात वा ड्रप गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1982,
+    "word": "Make a fingerprint for the employee",
+    "language": "nep",
+    "translation": "कर्मचारीका लागि औंठाछाप बनाउनुहोस्",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 1983,
+    "word": "Government Services",
+    "language": "nep",
+    "translation": "सरकारी सेवाहरू",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1984,
+    "word": "Car Services",
+    "language": "nep",
+    "translation": "कार सेवाहरू",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1985,
+    "word": "The city that the required employee is coming from",
+    "language": "nep",
+    "translation": "शहर जुन आवश्यक कर्मचारी आउँदैछ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1986,
+    "word": "Name of the Company the required employee is coming from",
+    "language": "nep",
+    "translation": "कम्पनीको नाम आवश्यक कर्मचारी आउँदैछ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1987,
+    "word": "Duration of Stay",
+    "language": "nep",
+    "translation": "बस्ने समय",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1988,
+    "word": "Chambers of Commerce",
+    "language": "nep",
+    "translation": "वाणिज्य कोठा",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 1989,
+    "word": "Subcategories",
+    "language": "nep",
+    "translation": "उपश्रेणीहरू",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 1990,
+    "word": "Admin Panel",
+    "language": "nep",
+    "translation": "प्रशासन प्यानल",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 1991,
+    "word": "Start Date",
+    "language": "nep",
+    "translation": "सुरू मिति",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 1992,
+    "word": "End Date",
+    "language": "nep",
+    "translation": "अन्त्य मिति",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 1993,
+    "word": "Document",
+    "language": "nep",
+    "translation": "कागजात",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 1994,
+    "word": "Actions",
+    "language": "nep",
+    "translation": "कार्यहरू",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 1995,
+    "word": "Edit",
+    "language": "nep",
+    "translation": "सम्पादन गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1996,
+    "word": "Delete",
+    "language": "nep",
+    "translation": "मेटाउन",
+    "created_at": "2020-04-19 09:30:58",
+    "updated_at": "2020-04-19 09:30:58"
+  },
+  {
+    "id": 1997,
+    "word": "History",
+    "language": "nep",
+    "translation": "ईतिहास",
+    "created_at": "2020-04-19 09:30:59",
+    "updated_at": "2020-04-19 09:30:59"
+  },
+  {
+    "id": 1998,
+    "word": "Documents",
+    "language": "nep",
+    "translation": "कागजात",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 1999,
+    "word": "Folder",
+    "language": "nep",
+    "translation": "फोल्डर",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2000,
+    "word": "Document Name",
+    "language": "nep",
+    "translation": "कागजात नाम",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2001,
+    "word": "Edit Document",
+    "language": "nep",
+    "translation": "कागजात सम्पादन गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2002,
+    "word": "Business Documents",
+    "language": "nep",
+    "translation": "व्यवसाय कागजात",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2003,
+    "word": "Configurations",
+    "language": "nep",
+    "translation": "कन्फिगरेसनहरू",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 2004,
+    "word": "KAF",
+    "language": "nep",
+    "translation": "KAF",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 2005,
+    "word": "Al-Quwa Center",
+    "language": "nep",
+    "translation": "अल Quwa केन्द्र",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 2006,
+    "word": "Hubtech",
+    "language": "nep",
+    "translation": "Hubtech",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 2008,
+    "word": "Consulting Engineering Office",
+    "language": "nep",
+    "translation": "परामर्श ईन्जिनियरिंग कार्यालय",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 2010,
+    "word": "Amlak",
+    "language": "nep",
+    "translation": "अमलक",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2017,
+    "word": "Kice",
+    "language": "nep",
+    "translation": "चुम्बन",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 2019,
+    "word": "Kilo",
+    "language": "nep",
+    "translation": "Kilo",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 2021,
+    "word": "Tamweel Aloula Co",
+    "language": "nep",
+    "translation": "Tamweel Aloula Co",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 2022,
+    "word": "Shore Advisory Services",
+    "language": "nep",
+    "translation": "किनारा परामर्श सेवाहरु",
+    "created_at": "2020-04-19 09:30:58",
+    "updated_at": "2020-04-19 09:30:58"
+  },
+  {
+    "id": 2025,
+    "word": "Afaq Company",
+    "language": "nep",
+    "translation": "Afaq कम्पनी",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 2029,
+    "word": "Al-Motaweroon",
+    "language": "nep",
+    "translation": "अल-मोटावरुन",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 2032,
+    "word": "Select Category",
+    "language": "nep",
+    "translation": "कोटी चयन गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2033,
+    "word": "Folders",
+    "language": "nep",
+    "translation": "फोल्डरहरू",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2034,
+    "word": "Roles",
+    "language": "nep",
+    "translation": "भूमिकाहरू",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 2035,
+    "word": "Notifications",
+    "language": "nep",
+    "translation": "सूचनाहरू",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 2036,
+    "word": "Manage Notifications",
+    "language": "nep",
+    "translation": "सूचनाहरू प्रबन्ध गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 2037,
+    "word": "Authorized Users",
+    "language": "nep",
+    "translation": "अधिकृत प्रयोगकर्ताहरू",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 2038,
+    "word": "Create",
+    "language": "nep",
+    "translation": "सिर्जना गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 2039,
+    "word": "Folder Name",
+    "language": "nep",
+    "translation": "फोल्डर नाम",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 2040,
+    "word": "Edit Folder",
+    "language": "nep",
+    "translation": "फोल्डर सम्पादन गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 2041,
+    "word": "Check for Requirements",
+    "language": "nep",
+    "translation": "आवश्यकताहरूको लागि जाँच गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 2042,
+    "word": "SAR",
+    "language": "nep",
+    "translation": "SAR",
+    "created_at": "2020-04-19 09:30:58",
+    "updated_at": "2020-04-19 09:30:58"
+  },
+  {
+    "id": 2043,
+    "word": "Control Panel\n",
+    "language": "nep",
+    "translation": "नियन्त्रण प्यानल",
+    "created_at": "2020-04-19 09:30:59",
+    "updated_at": "2020-04-19 09:30:59"
+  },
+  {
+    "id": 2044,
+    "word": "Visa issuance",
+    "language": "nep",
+    "translation": "भिसा जारी",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 2045,
+    "word": "Visa Cancellation",
+    "language": "nep",
+    "translation": "भिसा रद्द",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2046,
+    "word": "Visa Extend",
+    "language": "nep",
+    "translation": "भिसा विस्तार",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2047,
+    "word": "Visa Application Type",
+    "language": "nep",
+    "translation": "भिसा आवेदन प्रकार",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2048,
+    "word": "General Secretariat",
+    "language": "nep",
+    "translation": "सामान्य सचिवालय",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2049,
+    "word": "Ministry of Justice",
+    "language": "nep",
+    "translation": "न्याय मन्त्रालय",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 2050,
+    "word": "Civil Defense",
+    "language": "nep",
+    "translation": "नागरिक रक्षा",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 2051,
+    "word": "Ministry of Trade and Investment",
+    "language": "nep",
+    "translation": "व्यापार र लगानी मन्त्रालय",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 2052,
+    "word": "Ministry of Entertainment and Tourism",
+    "language": "nep",
+    "translation": "मनोरन्जन र पर्यटन मन्त्रालय",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 2053,
+    "word": "Ministry of Information",
+    "language": "nep",
+    "translation": "सूचना मन्त्रालय",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 2054,
+    "word": "Ministry of Electricity",
+    "language": "nep",
+    "translation": "विद्युत मन्त्रालय",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 2055,
+    "word": "Ministry Of Agriculture",
+    "language": "nep",
+    "translation": "कृषि मन्त्रालय",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 2056,
+    "word": "Ministry of education",
+    "language": "nep",
+    "translation": "शिक्षा मन्त्रालय",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2057,
+    "word": "Ministry of Interior",
+    "language": "nep",
+    "translation": "आन्तरिक मन्त्रालय",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2058,
+    "word": "Ministry of Transportation",
+    "language": "nep",
+    "translation": "यातायात मन्त्रालय",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2059,
+    "word": "Ministry of Water",
+    "language": "nep",
+    "translation": "पानी मन्त्रालय",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2060,
+    "word": "Telecommunications company",
+    "language": "nep",
+    "translation": "दूरसञ्चार कम्पनी",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 2061,
+    "word": "Post Office",
+    "language": "nep",
+    "translation": "हुलाक कार्यालय",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 2062,
+    "word": "Add a delegated signature",
+    "language": "nep",
+    "translation": "प्रत्यायोजित हस्ताक्षर थप्नुहोस्",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 2063,
+    "word": "Participation in the Chamber of Commerce or renewal",
+    "language": "nep",
+    "translation": "वाणिज्य च्याम्बर वा नविकरणमा भागीदारी",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 2064,
+    "word": "Attesting of transaction",
+    "language": "nep",
+    "translation": "लेनदेनको प्रयास",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 2065,
+    "word": "Royal Commission for Jubail",
+    "language": "nep",
+    "translation": "जुबेलको लागि शाही आयोग",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 2066,
+    "word": "Bahrain",
+    "language": "nep",
+    "translation": "बहरेन",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 2067,
+    "word": "Billing Review - Consumption Validity",
+    "language": "nep",
+    "translation": "बिलि Review समीक्षा - उपभोग मान्यता",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 2068,
+    "word": "Establishing new companies inside the Kingdom \"Establishing Contracts\"",
+    "language": "nep",
+    "translation": "किंगडम भित्र नयाँ कम्पनीहरू स्थापना गर्दै \"सम्झौता स्थापना गर्दै\"",
+    "created_at": "2020-04-19 09:30:58",
+    "updated_at": "2020-04-19 09:30:58"
+  },
+  {
+    "id": 2069,
+    "word": "Establishing new branch inside the Kingdom \"Establishing Contracts\"",
+    "language": "nep",
+    "translation": "राज्य \"नयाँ करार स्थापना गर्दै\" स्थापना गर्दै",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 2070,
+    "word": "Establishing new companies or branches outside the Kingdom \"including all required license\"",
+    "language": "nep",
+    "translation": "\"सबै आवाश्यक इजाजत सहित\" राज्य बाहिर नयाँ कम्पनी वा शाखा स्थापना गर्दै।",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 2071,
+    "word": "Issuing industrial licenses",
+    "language": "nep",
+    "translation": "औद्योगिक इजाजत पत्र जारी गर्दै",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 2072,
+    "word": "Renewing industrial licenses",
+    "language": "nep",
+    "translation": "औद्योगिक लाइसेन्स नवीकरण गर्दै",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 2073,
+    "word": "Booking of trade names",
+    "language": "nep",
+    "translation": "व्यापार नामको बुकिंग",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 2074,
+    "word": "Registration of trademarks",
+    "language": "nep",
+    "translation": "ट्रेडमार्कको पंजीकरण",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 2075,
+    "word": "CRs Issuing",
+    "language": "nep",
+    "translation": "CRs जारी गर्दै",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2076,
+    "word": "Renew CR",
+    "language": "nep",
+    "translation": "CR नवीकरण गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2077,
+    "word": "Transfer CR",
+    "language": "nep",
+    "translation": "CR हस्तान्तरण",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2078,
+    "word": "Cancellation CR",
+    "language": "nep",
+    "translation": "रद्द सीआर",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2079,
+    "word": "Query about company data",
+    "language": "nep",
+    "translation": "कम्पनी डेटा को बारे मा प्रश्न",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 2080,
+    "word": "Updating CRs information",
+    "language": "nep",
+    "translation": "CRs जानकारी अपडेट गर्दै",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 2081,
+    "word": "Update industrial license data",
+    "language": "nep",
+    "translation": "औद्योगिक इजाजत पत्र डेटा अपडेट गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 2082,
+    "word": "register on Itemad Platform",
+    "language": "nep",
+    "translation": "Itemad प्लेटफर्म मा दर्ता गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 2083,
+    "word": "Issuing Civil defense Permits",
+    "language": "nep",
+    "translation": "नागरिक रक्षा परमिट जारी गर्दै",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 2084,
+    "word": "Safety Layout approval",
+    "language": "nep",
+    "translation": "सुरक्षा लेआउट स्वीकृति",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 2085,
+    "word": "Administrative Control Certificate",
+    "language": "nep",
+    "translation": "प्रशासनिक नियन्त्रण प्रमाणपत्र",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 2086,
+    "word": "Renewing Civil defense Permits",
+    "language": "nep",
+    "translation": "नागरिक रक्षा परमिट नवीकरण गर्दै",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 2087,
+    "word": "Cancellation Civil defense Permits",
+    "language": "nep",
+    "translation": "रद्द नागरिक रक्षा परमिट",
+    "created_at": "2020-04-19 09:30:58",
+    "updated_at": "2020-04-19 09:30:58"
+  },
+  {
+    "id": 2088,
+    "word": "Issuing Authorization / Power of attorney",
+    "language": "nep",
+    "translation": "प्राधिकरण / वकीलको पावर जारी गर्दै",
+    "created_at": "2020-04-19 09:30:59",
+    "updated_at": "2020-04-19 09:30:59"
+  },
+  {
+    "id": 2089,
+    "word": "Cancellation Authorization Power of attorney",
+    "language": "nep",
+    "translation": "रद्द प्राधिकरण अधिवक्ताको शक्ति",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 2090,
+    "word": "Issuing / Renewal / Transferring  of  licenses",
+    "language": "nep",
+    "translation": "जारी / नविकरण / इजाजत पत्र हस्तान्तरण",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2091,
+    "word": "cancellation / Updating of licenses \"Professional\"",
+    "language": "nep",
+    "translation": "\"व्यावसायिक\" इजाजतपत्र रद्द गर्ने / अद्यावधिक गर्ने",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2092,
+    "word": "Issuing Building and Construction Permits",
+    "language": "nep",
+    "translation": "भवन र निर्माण अनुमति जारी गर्दै",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2093,
+    "word": "Renewal Building and Construction Permits",
+    "language": "nep",
+    "translation": "नवीकरण भवन र निर्माण अनुमतिहरू",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2094,
+    "word": "Issuing a demolition permit",
+    "language": "nep",
+    "translation": "एक विधुत अनुमति अनुमति जारी गर्दै",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 2095,
+    "word": "Engineering drawings approval",
+    "language": "nep",
+    "translation": "ईन्जिनियरि draw रेखाचित्र स्वीकृति",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 2096,
+    "word": "Billboards",
+    "language": "nep",
+    "translation": "बिलबोर्डहरू",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 2097,
+    "word": "Irregularities letters of pledge",
+    "language": "nep",
+    "translation": "प्रतिज्ञाको अनियमितता",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 2098,
+    "word": "Building and cleaning violations",
+    "language": "nep",
+    "translation": "भवन र सफाई उल्लंघन",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 2099,
+    "word": "Issuance of certificate of hygiene",
+    "language": "nep",
+    "translation": "स्वच्छताको प्रमाणपत्र जारी गर्नु",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 2100,
+    "word": "Issuing, renewing or amending investment contracts with the State",
+    "language": "nep",
+    "translation": "राज्यसँग लगानी सम्झौताहरू जारी, नवीकरण वा संशोधन गर्दै",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 2101,
+    "word": "Sort or merge existing land or buildings",
+    "language": "nep",
+    "translation": "अवस्थित भूमि वा भवनहरू क्रमबद्ध वा मर्ज गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2102,
+    "word": "Issuing and renewing the Operating licenses for the vehicles",
+    "language": "nep",
+    "translation": "सवारीका लागि अपरेटिंग इजाजतपत्र जारी र नवीकरण गर्दै",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2103,
+    "word": "Issuing or renewing school transport permits",
+    "language": "nep",
+    "translation": "स्कूल यातायात अनुमतिहरू जारी गर्दै वा नविकरण गर्दै",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2104,
+    "word": "Transport violations\" excess weights \"- Operating licenses\"",
+    "language": "nep",
+    "translation": "यातायात उल्ल \"्घन \"अधिक वजन\" - अपरेटिंग लाइसेन्स \"",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2105,
+    "word": "Issuing or renewing the license of the Industrial Security Authority",
+    "language": "nep",
+    "translation": "औद्योगिक सुरक्षा प्राधिकरणको इजाजतपत्र जारी गर्ने वा नविकरण गर्ने",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 2106,
+    "word": "Shomoos Program",
+    "language": "nep",
+    "translation": "Shomoos कार्यक्रम",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 2107,
+    "word": "Follow up or raise a communication / complaint",
+    "language": "nep",
+    "translation": "एक संचार / उजूरी अनुसरण गर्नुहोस् वा उठाउनुहोस्",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 2108,
+    "word": "Issuing Society Education License",
+    "language": "nep",
+    "translation": "समाज शिक्षा लाइसेन्स जारी गर्दै",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 2109,
+    "word": "Renewing Society Education License",
+    "language": "nep",
+    "translation": "नविकरण समाज शिक्षा लाइसेन्स",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 2110,
+    "word": "Audit of the Ministry of Agriculture on farms",
+    "language": "nep",
+    "translation": "फार्महरूमा कृषि मन्त्रालयको अडिट",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 2111,
+    "word": "Submit a new service request",
+    "language": "nep",
+    "translation": "नयाँ सेवा अनुरोध पेस गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 2112,
+    "word": "Request to strengthen electricity",
+    "language": "nep",
+    "translation": "बिजुली सुदृढ पार्न अनुरोध",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 2113,
+    "word": "Review consumption",
+    "language": "nep",
+    "translation": "खपत समीक्षा गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:58",
+    "updated_at": "2020-04-19 09:30:58"
+  },
+  {
+    "id": 2114,
+    "word": "Paying bills",
+    "language": "nep",
+    "translation": "बिल तिर्ने",
+    "created_at": "2020-04-19 09:30:59",
+    "updated_at": "2020-04-19 09:30:59"
+  },
+  {
+    "id": 2115,
+    "word": "Request a consumption bills",
+    "language": "nep",
+    "translation": "एक उपभोग बिल अनुरोध गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 2116,
+    "word": "Permit for advertising and publishing",
+    "language": "nep",
+    "translation": "विज्ञापन र प्रकाशनको लागि अनुमति",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 2117,
+    "word": "Information permit",
+    "language": "nep",
+    "translation": "सूचना अनुमति",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 2118,
+    "word": "Theater license",
+    "language": "nep",
+    "translation": "थिएटर लाइसेन्स",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 2119,
+    "word": "Renewal & Mail Website",
+    "language": "nep",
+    "translation": "नवीकरण र मेल वेबसाइट",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 2120,
+    "word": "National Address",
+    "language": "nep",
+    "translation": "राष्ट्रिय ठेगाना",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 2121,
+    "word": "Billing - service outage",
+    "language": "nep",
+    "translation": "बिलि - - सेवा आउटेज",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2122,
+    "word": "Male",
+    "language": "nep",
+    "translation": "नर",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2123,
+    "word": "Female",
+    "language": "nep",
+    "translation": "महिला",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2124,
+    "word": "Multiple",
+    "language": "nep",
+    "translation": "बहु",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2125,
+    "word": "Singular",
+    "language": "nep",
+    "translation": "एकवचन",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 2126,
+    "word": "Visit Visa commercial request",
+    "language": "nep",
+    "translation": "भिसा वाणिज्य अनुरोध मा जानुहोस्",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 2127,
+    "word": "Request a work visit visa",
+    "language": "nep",
+    "translation": "काम भ्रमण भिसा अनुरोध गर्नुहोस्",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 2128,
+    "word": "Type of visa application",
+    "language": "nep",
+    "translation": "भिसा आवेदन प्रकार",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 2129,
+    "word": "Reason of your Iqama Renewal",
+    "language": "nep",
+    "translation": "तपाईको इकमा नविकरणको कारण",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 2130,
+    "word": "Purpose of business trip",
+    "language": "nep",
+    "translation": "व्यापार यात्रा को उद्देश्य",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 2131,
+    "word": "Destination city of trip",
+    "language": "nep",
+    "translation": "गन्तव्य यात्रा को शहर",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 2132,
+    "word": "Business Trip Start Date",
+    "language": "nep",
+    "translation": "व्यापार यात्रा सुरु मिति",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 2133,
+    "word": "Destination of trip",
+    "language": "nep",
+    "translation": "यात्राको गन्तव्य",
+    "created_at": "2020-04-19 09:30:58",
+    "updated_at": "2020-04-19 09:30:58"
+  },
+  {
+    "id": 2134,
+    "word": "New Addition vehicle",
+    "language": "nep",
+    "translation": "नयाँ थप वाहन",
+    "created_at": "2020-04-19 09:30:59",
+    "updated_at": "2020-04-19 09:30:59"
+  },
+  {
+    "id": 2135,
+    "word": "Deletion  vehicle",
+    "language": "nep",
+    "translation": "हटाउने वाहन",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 2136,
+    "word": "Correction  information  vehicle",
+    "language": "nep",
+    "translation": "सुधार जानकारी वाहन",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2137,
+    "word": "Motors Claim – NAJEM report",
+    "language": "nep",
+    "translation": "मोटर्स दावी - NAJEM रिपोर्ट",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2138,
+    "word": "Motors Claim –  traffic report",
+    "language": "nep",
+    "translation": "मोटर्स दावी - ट्राफिक रिपोर्ट",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2139,
+    "word": "Motors Insurance",
+    "language": "nep",
+    "translation": "मोटर्स बीमा",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2140,
+    "word": "Mode of Transport",
+    "language": "nep",
+    "translation": "यातायातको मोड",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 2141,
+    "word": "Purpose of Visit",
+    "language": "nep",
+    "translation": "भ्रमणको उद्देश्य",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 2142,
+    "word": "Purpose of Visit",
+    "language": "nep",
+    "translation": "भ्रमणको उद्देश्य",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 2143,
+    "word": "Destination",
+    "language": "nep",
+    "translation": "गन्तव्य",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 2144,
+    "word": "Destination City",
+    "language": "nep",
+    "translation": "गन्तव्य शहर",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 2145,
+    "word": "Number of Days",
+    "language": "nep",
+    "translation": "दिनहरूको संख्या",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 2146,
+    "word": "Purpose of the Travel",
+    "language": "nep",
+    "translation": "यात्रा को उद्देश्य",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 2147,
+    "word": "Visitor's name (As in Passport)",
+    "language": "nep",
+    "translation": "आगन्तुकको नाम (राहदानी जस्तै)",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2148,
+    "word": "Visa Entry type",
+    "language": "nep",
+    "translation": "भिसा प्रविष्टि प्रकार",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2149,
+    "word": "Visitor's company name",
+    "language": "nep",
+    "translation": "आगन्तुकको कम्पनी नाम",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2150,
+    "word": "Visitor's Origin City",
+    "language": "nep",
+    "translation": "आगन्तुकको मूल शहर",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2151,
+    "word": "Requesting Company",
+    "language": "nep",
+    "translation": "अनुरोध कम्पनी",
+    "created_at": "2020-04-19 09:30:50",
+    "updated_at": "2020-04-19 09:30:50"
+  },
+  {
+    "id": 2152,
+    "word": "Transfer/Replace SIM",
+    "language": "nep",
+    "translation": "स्थानान्तरण / सिम बदल्नुहोस्",
+    "created_at": "2020-04-19 09:30:51",
+    "updated_at": "2020-04-19 09:30:51"
+  },
+  {
+    "id": 2153,
+    "word": "Cancel/Suspense SIM",
+    "language": "nep",
+    "translation": "रद्द / सस्पेंस सिम",
+    "created_at": "2020-04-19 09:30:52",
+    "updated_at": "2020-04-19 09:30:52"
+  },
+  {
+    "id": 2154,
+    "word": "Re-Entry Visa Services",
+    "language": "nep",
+    "translation": "पुनः प्रवेश भिसा सेवाहरू",
+    "created_at": "2020-04-19 09:30:53",
+    "updated_at": "2020-04-19 09:30:53"
+  },
+  {
+    "id": 2155,
+    "word": "Transfer of sponsorship",
+    "language": "nep",
+    "translation": "प्रायोजनको स्थानान्तरण",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 2156,
+    "word": "Updating new passport data / extension of validity (transfer of information)",
+    "language": "nep",
+    "translation": "नयाँ राहदानी डाटा अपडेट गर्दै / वैधताको विस्तार (जानकारीको स्थानान्तरण)",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 2157,
+    "word": "Mobile Services",
+    "language": "nep",
+    "translation": "मोबाइल सेवाहरू",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 2158,
+    "word": "Name of the employee",
+    "language": "nep",
+    "translation": "कर्मचारीको नाम",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 2159,
+    "word": "Job title & Nationality",
+    "language": "nep",
+    "translation": "रोजगार शीर्षक र राष्ट्रीयता",
+    "created_at": "2020-04-19 09:30:58",
+    "updated_at": "2020-04-19 09:30:58"
+  },
+  {
+    "id": 2160,
+    "word": "Last working date",
+    "language": "nep",
+    "translation": "अन्तिम कार्य मिति",
+    "created_at": "2020-04-19 09:30:59",
+    "updated_at": "2020-04-19 09:30:59"
+  },
+  {
+    "id": 2161,
+    "word": "New Project Name",
+    "language": "nep",
+    "translation": "नयाँ प्रोजेक्ट नाम",
+    "created_at": "2020-04-19 09:30:54",
+    "updated_at": "2020-04-19 09:30:54"
+  },
+  {
+    "id": 2162,
+    "word": "New Project manager name",
+    "language": "nep",
+    "translation": "नयाँ प्रोजेक्ट प्रबन्धक नाम",
+    "created_at": "2020-04-19 09:30:55",
+    "updated_at": "2020-04-19 09:30:55"
+  },
+  {
+    "id": 2163,
+    "word": "Employee Number",
+    "language": "nep",
+    "translation": "कर्मचारी संख्या",
+    "created_at": "2020-04-19 09:30:56",
+    "updated_at": "2020-04-19 09:30:56"
+  },
+  {
+    "id": 2164,
+    "word": "Current Project Name",
+    "language": "nep",
+    "translation": "हालको परियोजना नाम",
+    "created_at": "2020-04-19 09:30:57",
+    "updated_at": "2020-04-19 09:30:57"
+  },
+  {
+    "id": 2165,
+    "word": "Current Project manager Name",
+    "language": "nep",
+    "translation": "वर्तमान परियोजना प्रबन्धक नाम",
+    "created_at": "2020-04-19 09:30:58",
+    "updated_at": "2020-04-19 09:30:58"
+  },
+  {
+    "id": 2166,
+    "word": "Transfer Reason",
+    "language": "nep",
+    "translation": "स्थानान्तरण कारण",
+    "created_at": "2020-04-19 09:30:59",
+    "updated_at": "2020-04-19 09:30:59"
+  },
+  {
+    "id": 2167,
+    "word": "Coordinator",
+    "language": "nep",
+    "translation": "संयोजक",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2168,
+    "word": "Vacation Services",
+    "language": "nep",
+    "translation": "संयोभ्याकेसन सेवाहरू",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2169,
+    "word": "KCC Services",
+    "language": "nep",
+    "translation": "सम्झौता सेवाहरू",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2170,
+    "word": "Recruitment Requisition",
+    "language": "nep",
+    "translation": "भर्ती अनुरोध",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  }
+]

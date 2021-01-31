@@ -2,13 +2,6 @@
 
 use Illuminate\Routing\Router;
 
-Route::get('translate',function (){
-   $language = 'ar';
-   $data = file_get_contents(public_path('json/translations.json'));
-   $datac = collect(json_decode($data, true))
-       ->where('word','Medical Insurance Services')->first();
-   dd($datac);
-});
 //
 //Route::get('SAP_API', function () {
 //    $url = 'http://alkfeccdev.alkifah.com:8000/sap/bc/srt/wsdl/flv_10002A101AD1/bndg_url/sap/bc/srt/rfc/sap/zhcm_payroll/900/zhcm_payroll/zhcm?sap-client=900';
