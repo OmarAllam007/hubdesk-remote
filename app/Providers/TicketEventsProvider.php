@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Attachment;
+use App\Events\TicketCreated;
 use App\ExtractImages;
 use App\Jobs\ApplyBusinessRules;
 use App\Jobs\ApplySLA;
@@ -24,27 +25,27 @@ class TicketEventsProvider extends ServiceProvider
 
     public function boot()
     {
-        Ticket::created(function (Ticket $ticket) {
-//            dispatch(new ApplyBusinessRules($ticket));
-            dispatch(new ApplySLA($ticket));
-
-            if ($ticket->type == Ticket::TASK_TYPE) {
-                Attachment::uploadFiles(Attachment::TASK_TYPE, $ticket->id);
-
-                if ($ticket->technician) {
-                    \Mail::send(new NewTaskMail($ticket));
-                }
-
-            } else {
-                Attachment::uploadFiles(Attachment::TICKET_TYPE, $ticket->id);
-            }
-
-            dispatch(new ApprovalLevels($ticket));
-
-            if ($ticket->category->business_service_type != 2 && (!$ticket->technician_id || !$ticket->group_id)) {
-                $ticket->notify((new TicketNotAssignedNotification($ticket)));
-            }
-        });
+//        Ticket::created(function (Ticket $ticket) {
+////            dispatch(new ApplyBusinessRules($ticket));
+////            dispatch(new ApplySLA($ticket));
+////
+////            if ($ticket->type == Ticket::TASK_TYPE) {
+////                Attachment::uploadFiles(Attachment::TASK_TYPE, $ticket->id);
+////
+////                if ($ticket->technician) {
+////                    \Mail::send(new NewTaskMail($ticket));
+////                }
+////
+////            } else {
+////                Attachment::uploadFiles(Attachment::TICKET_TYPE, $ticket->id);
+////            }
+////
+////            dispatch(new ApprovalLevels($ticket));
+////
+////            if ($ticket->category->business_service_type != 2 && (!$ticket->technician_id || !$ticket->group_id)) {
+////                $ticket->notify((new TicketNotAssignedNotification($ticket)));
+////            }
+//        });
 
         Ticket::updated(function (Ticket $ticket) {
             dispatch(new ApplySLA($ticket));
@@ -56,18 +57,9 @@ class TicketEventsProvider extends ServiceProvider
             }
         });
 
-        Ticket::creating(function (Ticket $ticket) {
-            $request = request();
-            if (!$request->get('requester_id')) {
-                $ticket->requester_id = $request->user()->id;
-            }
-            $ticket->location_id = $ticket->requester->location_id;
-//            $ticket->business_unit_id = $ticket->requester->business_unit_id;
-            $ticket->status_id = 1;
-            $ticket->is_opened = 0;
-            $ticket->creator_id = $request->user()->id;
-
-        });
+//        Ticket::creating(function (Ticket $ticket) {
+//            \App\Services\TicketCreated::fire($ticket);
+//        });
 
         Ticket::saving(function (Ticket $ticket) {
             $extract_image = new ExtractImages($ticket->description);
