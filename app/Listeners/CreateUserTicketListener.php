@@ -31,7 +31,6 @@ class CreateUserTicketListener
      */
     public function handle($ticket)
     {
-
         if ($ticket->subcategory_id == 662) {
             $request = request();
             $fields = collect();
