@@ -1,0 +1,4258 @@
+[
+  {
+    "id": 580,
+    "word": "Medical Insurance Services",
+    "language": "ur",
+    "translation": "کوآرڈینیٹر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 1088,
+    "word": "Email Services",
+    "language": "ur",
+    "translation": "ای میل کی خدمات",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1089,
+    "word": "Social Insurance Services",
+    "language": "ur",
+    "translation": "سوشل انشورنس خدمات",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1090,
+    "word": "Payroll Services",
+    "language": "ur",
+    "translation": "پے رول خدمات",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1091,
+    "word": "End of Service",
+    "language": "ur",
+    "translation": "خدمت کا اختتام",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1092,
+    "word": "Urgent Vacation Service",
+    "language": "ur",
+    "translation": "ارجنٹ ویکیشن سروس",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1093,
+    "word": "Vacation Service",
+    "language": "ur",
+    "translation": "تعطیلات کی خدمت",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1094,
+    "word": "Advances Services",
+    "language": "ur",
+    "translation": "ایڈوانس سروسز",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1095,
+    "word": "Iqama Renewal Services",
+    "language": "ur",
+    "translation": "اقامہ تجدید خدمات",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1096,
+    "word": "Re-Entry Visa  Services",
+    "language": "ur",
+    "translation": "دوبارہ انٹری ویزا خدمات",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1097,
+    "word": "Business Visit Visa Service",
+    "language": "ur",
+    "translation": "بزنس وزٹ ویزا سروس",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1098,
+    "word": "Letter Service",
+    "language": "ur",
+    "translation": "خط کی خدمت",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1099,
+    "word": "Work Acknowledge Service",
+    "language": "ur",
+    "translation": "کام کی منظوری کی خدمت",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1100,
+    "word": "Business trip Service",
+    "language": "ur",
+    "translation": "بزنس ٹرپ سروس",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1101,
+    "word": "Family Medical Insurance",
+    "language": "ur",
+    "translation": "فیملی میڈیکل انشورنس",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1102,
+    "word": "Medical Claims",
+    "language": "ur",
+    "translation": "میڈیکل دعوے",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1103,
+    "word": "CCHI - link Jawzat",
+    "language": "ur",
+    "translation": "سی سی ایچ آئی - لنک جوزت",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1104,
+    "word": "Embassy Certificate",
+    "language": "ur",
+    "translation": "ایمبیسی کا سرٹیفکیٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1105,
+    "word": "Information Correction",
+    "language": "ur",
+    "translation": "معلومات کی اصلاح",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1106,
+    "word": "Delete employee / family member",
+    "language": "ur",
+    "translation": "ملازم / کنبہ کے ممبر کو حذف کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1107,
+    "word": "Add New Addition employee",
+    "language": "ur",
+    "translation": "نیا اضافی ملازم شامل کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1108,
+    "word": "Delete Medical Insurance of Employee ",
+    "language": "ur",
+    "translation": "ملازمین کا میڈیکل انشورنس حذف کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1109,
+    "word": "Delete Medical Insurance of family member",
+    "language": "ur",
+    "translation": "فیملی ممبر کا میڈیکل انشورنس ڈیلیٹ کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1110,
+    "word": "Pre-approval for surgery",
+    "language": "ur",
+    "translation": "سرجری کے لئے پہلے سے منظوری",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1111,
+    "word": "Subcategories",
+    "language": "ur",
+    "translation": "زمرہ جات",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1112,
+    "word": "Categories",
+    "language": "ur",
+    "translation": "اقسام",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1113,
+    "word": "New Ticket",
+    "language": "ur",
+    "translation": "نیا ٹکٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1114,
+    "word": "Tickets",
+    "language": "ur",
+    "translation": "ٹکٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1115,
+    "word": "Report",
+    "language": "ur",
+    "translation": "رپورٹ کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1116,
+    "word": "Arabic",
+    "language": "ur",
+    "translation": "عربی",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1117,
+    "word": "Select Subcategory",
+    "language": "ur",
+    "translation": "ذیلی زمرہ منتخب کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1118,
+    "word": "Delete Medical Insurance of Employee",
+    "language": "ur",
+    "translation": "ملازمین کا میڈیکل انشورنس حذف کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1119,
+    "word": "Medical Card Replacement - Lost",
+    "language": "ur",
+    "translation": "میڈیکل کارڈ کی تبدیلی - کھو گیا",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1120,
+    "word": "Home",
+    "language": "ur",
+    "translation": "گھر",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1121,
+    "word": "Reset Password",
+    "language": "ur",
+    "translation": "پاس ورڈ ری سیٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1122,
+    "word": "Logout",
+    "language": "ur",
+    "translation": "لاگ آوٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1123,
+    "word": "Advances",
+    "language": "ur",
+    "translation": "پیش قدمی",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1124,
+    "word": "Business trip\n",
+    "language": "ur",
+    "translation": "تجارتی سفر",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1125,
+    "word": "Others",
+    "language": "ur",
+    "translation": "دوسرے",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1126,
+    "word": "Request extra mail space/attachment",
+    "language": "ur",
+    "translation": "اضافی میل کی جگہ / ملحق کی درخواست کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1127,
+    "word": "Unable to login",
+    "language": "ur",
+    "translation": "لاگ ان کرنے سے قاصر",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1128,
+    "word": "Unable to receive emails",
+    "language": "ur",
+    "translation": "ای میلز موصول کرنے سے قاصر",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1129,
+    "word": "Update Email Information",
+    "language": "ur",
+    "translation": "ای میل کی معلومات کو اپ ڈیٹ کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1130,
+    "word": "Business trip\n",
+    "language": "ur",
+    "translation": "تجارتی سفر",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1131,
+    "word": "Delete Employee",
+    "language": "ur",
+    "translation": "ملازم کو حذف کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1132,
+    "word": "work injuries",
+    "language": "ur",
+    "translation": "کام کی چوٹیں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1133,
+    "word": "Add New Employee",
+    "language": "ur",
+    "translation": "نیا ملازم شامل کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1134,
+    "word": "Ticket Inquiries",
+    "language": "ur",
+    "translation": "ٹکٹ سے متعلق پوچھ گچھ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1135,
+    "word": "End of Service Inquires",
+    "language": "ur",
+    "translation": "خدمت کا اختتام",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1136,
+    "word": "Vacation Inquires",
+    "language": "ur",
+    "translation": "تعطیل پوچھ گچھ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1137,
+    "word": "Salaries Inquires",
+    "language": "ur",
+    "translation": "تنخواہوں سے پوچھ گچھ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1138,
+    "word": "Business trips",
+    "language": "ur",
+    "translation": "کاروباری دورے",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1139,
+    "word": "Advance fora new employee",
+    "language": "ur",
+    "translation": "ایڈوانس نئے ملازم",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1140,
+    "word": "Humanity advance",
+    "language": "ur",
+    "translation": "انسانیت کی پیش قدمی",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1141,
+    "word": "Requester",
+    "language": "ur",
+    "translation": "درخواست گزار",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1142,
+    "word": "Business Unit",
+    "language": "ur",
+    "translation": "کاروباری اکائی",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1143,
+    "word": "Department",
+    "language": "ur",
+    "translation": "شعبہ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1144,
+    "word": "Position",
+    "language": "ur",
+    "translation": "پوزیشن",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1145,
+    "word": "Email",
+    "language": "ur",
+    "translation": "ای میل",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1146,
+    "word": "Description",
+    "language": "ur",
+    "translation": "تفصیل",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1147,
+    "word": "Attachments",
+    "language": "ur",
+    "translation": "اٹیچمنٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1148,
+    "word": "Submit",
+    "language": "ur",
+    "translation": "جمع کرائیں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1149,
+    "word": "Create Ticket",
+    "language": "ur",
+    "translation": "ٹکٹ بنائیں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1150,
+    "word": "Subject",
+    "language": "ur",
+    "translation": "مضمون",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1151,
+    "word": "Mobile Number",
+    "language": "ur",
+    "translation": "موبائل فون کانمبر",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1152,
+    "word": "Employee ID",
+    "language": "ur",
+    "translation": "ملازم کی ID",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1153,
+    "word": "Identity Number",
+    "language": "ur",
+    "translation": "شناخت نمبر",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1154,
+    "word": "Reason for exclusion",
+    "language": "ur",
+    "translation": "خارج ہونے کی وجہ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1155,
+    "word": "Delete Date",
+    "language": "ur",
+    "translation": "تاریخ حذف کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1156,
+    "word": "Nationality",
+    "language": "ur",
+    "translation": "قومیت",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1157,
+    "word": "Marital status",
+    "language": "ur",
+    "translation": "ازدواجی حیثیت",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1158,
+    "word": "Actual Job",
+    "language": "ur",
+    "translation": "اصل نوکری",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1159,
+    "word": "Job as in residence",
+    "language": "ur",
+    "translation": "رہائش میں جیسا ملازمت",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1160,
+    "word": "Qualification",
+    "language": "ur",
+    "translation": "اہلیت",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1161,
+    "word": "Specialization",
+    "language": "ur",
+    "translation": "تخصص",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1162,
+    "word": "Job Location",
+    "language": "ur",
+    "translation": "ملازمت کی جگہ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1163,
+    "word": "Housing allowance",
+    "language": "ur",
+    "translation": "گھرکےلیےالاونس",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1164,
+    "word": "Transportation allowance",
+    "language": "ur",
+    "translation": "نقل و حمل الاؤنس",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1165,
+    "word": "Other allowances",
+    "language": "ur",
+    "translation": "دوسرے بھتے",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1166,
+    "word": "Basic Salary",
+    "language": "ur",
+    "translation": "بنیادی تنخواہ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1167,
+    "word": "Joining Date",
+    "language": "ur",
+    "translation": "شامل ہونے کی تاریخ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1168,
+    "word": "Job as in residence",
+    "language": "ur",
+    "translation": "رہائش میں جیسا ملازمت",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1169,
+    "word": "Identity/Iqama Number",
+    "language": "ur",
+    "translation": "شناخت / اقامہ نمبر",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1170,
+    "word": "Date of worker reporting",
+    "language": "ur",
+    "translation": "کارکنوں کی اطلاع دہندگی کی تاریخ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1171,
+    "word": "Date of stop working",
+    "language": "ur",
+    "translation": "کام کرنا چھوڑنے کی تاریخ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1172,
+    "word": "Time of injury",
+    "language": "ur",
+    "translation": "چوٹ کا وقت",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1173,
+    "word": "City",
+    "language": "ur",
+    "translation": "شہر",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1174,
+    "word": "Place of injury",
+    "language": "ur",
+    "translation": "چوٹ کی جگہ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1175,
+    "word": "Joint career when injury time",
+    "language": "ur",
+    "translation": "مشترکہ کیریئر جب چوٹ کے وقت",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1176,
+    "word": "Location on Map",
+    "language": "ur",
+    "translation": "نقشہ پر جگہ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1177,
+    "word": "How the injury happened",
+    "language": "ur",
+    "translation": "چوٹ کیسے آئی",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1178,
+    "word": "Mobile of the injured employee",
+    "language": "ur",
+    "translation": "زخمی ملازم کا موبائل",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1179,
+    "word": "Name of Employee for Insurance",
+    "language": "ur",
+    "translation": "انشورنس کے لئے ملازم کا نام",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1180,
+    "word": "Class of Insurance",
+    "language": "ur",
+    "translation": "انشورنس کی کلاس",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1181,
+    "word": "Type of Request",
+    "language": "ur",
+    "translation": "درخواست کی قسم",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1182,
+    "word": "Class of Insurance",
+    "language": "ur",
+    "translation": "انشورنس کی کلاس",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1183,
+    "word": "Date of Invoice",
+    "language": "ur",
+    "translation": "انوائس کی تاریخ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1184,
+    "word": "Management",
+    "language": "ur",
+    "translation": "مینجمنٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1185,
+    "word": "Department",
+    "language": "ur",
+    "translation": "شعبہ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1186,
+    "word": "Branch - Project",
+    "language": "ur",
+    "translation": "برانچ - پروجیکٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1187,
+    "word": "Salary of Month",
+    "language": "ur",
+    "translation": "ماہ کی تنخواہ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1188,
+    "word": "Date of Departure",
+    "language": "ur",
+    "translation": "روانگی کی تاریخ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1189,
+    "word": "Last working day",
+    "language": "ur",
+    "translation": "آخری کام کا دن",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1190,
+    "word": "Country of Destination",
+    "language": "ur",
+    "translation": "منزل مقصود",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1191,
+    "word": "Category of Vacation",
+    "language": "ur",
+    "translation": "تعطیلات کا زمرہ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1192,
+    "word": "Vacation Start",
+    "language": "ur",
+    "translation": "تعطیلات شروع کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1193,
+    "word": "First day of work after vacation",
+    "language": "ur",
+    "translation": "چھٹی کے بعد کام کا پہلا دن",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1194,
+    "word": "Hiring Date",
+    "language": "ur",
+    "translation": "ملازمت کی تاریخ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1195,
+    "word": "Termination Type",
+    "language": "ur",
+    "translation": "ختم ہونے کی قسم",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1196,
+    "word": "Employee Mobile Number In Saudi Arabia",
+    "language": "ur",
+    "translation": "سعودی عرب میں ملازم موبائل نمبر",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1197,
+    "word": "Employee Mobile Number In his country",
+    "language": "ur",
+    "translation": "اپنے ملک میں ملازم موبائل نمبر",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1198,
+    "word": "Employee Replacement Name",
+    "language": "ur",
+    "translation": "ملازم کی تبدیلی کا نام",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1199,
+    "word": "Employee Manager Name",
+    "language": "ur",
+    "translation": "ملازم مینیجر کا نام",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1200,
+    "word": "Employee Manager Contact Number",
+    "language": "ur",
+    "translation": "ملازم مینیجر سے رابطہ نمبر",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1201,
+    "word": "KSA Airport Departure",
+    "language": "ur",
+    "translation": "سعودی عرب کا ہوائی اڈہ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1202,
+    "word": "Airport Arrival",
+    "language": "ur",
+    "translation": "ہوائی اڈے کی آمد",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1203,
+    "word": "Department or Project Name",
+    "language": "ur",
+    "translation": "محکمہ یا پروجیکٹ کا نام",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1204,
+    "word": "Department Manager Name",
+    "language": "ur",
+    "translation": "ڈپارٹمنٹ منیجر کا نام",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1205,
+    "word": "Department Manager Email",
+    "language": "ur",
+    "translation": "ڈیپارٹمنٹ منیجر ای میل",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1206,
+    "word": "Area Manager Name",
+    "language": "ur",
+    "translation": "ایریا منیجر کا نام",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1207,
+    "word": "Leave Duration ( Days in Numbers )",
+    "language": "ur",
+    "translation": "دوری چھوڑیں (دن میں دن)",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1208,
+    "word": "Country of Destination",
+    "language": "ur",
+    "translation": "منزل مقصود",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1209,
+    "word": "Department or Project Name",
+    "language": "ur",
+    "translation": "محکمہ یا پروجیکٹ کا نام",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1210,
+    "word": "Employee Email or Project Coordinator Name",
+    "language": "ur",
+    "translation": "ملازم ای میل یا پروجیکٹ کوآرڈینیٹر کا نام",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1211,
+    "word": "Project Coordinator Name",
+    "language": "ur",
+    "translation": "پروجیکٹ کوآرڈینیٹر کا نام",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1212,
+    "word": "Applicant Evaluation",
+    "language": "ur",
+    "translation": "درخواست گزار کی تشخیص",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1213,
+    "word": "Direct Manager Name",
+    "language": "ur",
+    "translation": "براہ راست منیجر کا نام",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1214,
+    "word": "Direct Manager Email",
+    "language": "ur",
+    "translation": "براہ راست مینیجر ای میل",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1215,
+    "word": "Area Manager Email",
+    "language": "ur",
+    "translation": "ایریا منیجر ای میل",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1216,
+    "word": "Vacation Requester",
+    "language": "ur",
+    "translation": "تعطیل کا درخواست گزار",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1217,
+    "word": "Country of Destination",
+    "language": "ur",
+    "translation": "منزل مقصود",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1218,
+    "word": "First day of work after vacation",
+    "language": "ur",
+    "translation": "چھٹی کے بعد کام کا پہلا دن",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1219,
+    "word": "Leave Duration ( Days in Numbers )",
+    "language": "ur",
+    "translation": "دوری چھوڑیں (دن میں دن)",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1220,
+    "word": "Ticket Reservation by",
+    "language": "ur",
+    "translation": "بذریعہ ٹکٹ ریزرویشن",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1221,
+    "word": "Reason For Advance",
+    "language": "ur",
+    "translation": "پیشگی وجہ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1222,
+    "word": "Advance Amount Required",
+    "language": "ur",
+    "translation": "ایڈوانس رقم کی ضرورت ہے",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1223,
+    "word": "expiration date of Iqama",
+    "language": "ur",
+    "translation": "اقامت کی میعاد ختم ہونے کی تاریخ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1224,
+    "word": "Visa Duration",
+    "language": "ur",
+    "translation": "ویزا کا دورانیہ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1225,
+    "word": "Visa type",
+    "language": "ur",
+    "translation": "ویزا کی قسم",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1226,
+    "word": "Purpose of Visa Request",
+    "language": "ur",
+    "translation": "ویزا کی درخواست کا مقصد",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1227,
+    "word": "Nationality",
+    "language": "ur",
+    "translation": "قومیت",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1228,
+    "word": "Religion",
+    "language": "ur",
+    "translation": "مذہب",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1229,
+    "word": "Job title",
+    "language": "ur",
+    "translation": "کام کا عنوان",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1230,
+    "word": "Activity of a business required to visit",
+    "language": "ur",
+    "translation": "کسی کاروبار کی سرگرمی جس کا دورہ کرنا ضروری ہے",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1231,
+    "word": "Requester Kifah Company",
+    "language": "ur",
+    "translation": "درخواست گزار کیفاہ کمپنی",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1232,
+    "word": "Person required to visit according to the passport",
+    "language": "ur",
+    "translation": "پاسپورٹ کے مطابق فرد کو جانے کی ضرورت ہے",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1233,
+    "word": "Name of the employer required to visit",
+    "language": "ur",
+    "translation": "ملاحظہ کرنے والے آجر کا نام",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1234,
+    "word": "City for the arrival destination to visit",
+    "language": "ur",
+    "translation": "دیکھنے کیلئے آنے والی منزل کیلئے شہر",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1235,
+    "word": "Gender",
+    "language": "ur",
+    "translation": "صنف",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1236,
+    "word": "purpose from the visit",
+    "language": "ur",
+    "translation": "دورے کا مقصد",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1237,
+    "word": "Requester Mobile Number",
+    "language": "ur",
+    "translation": "درخواست کنندہ کا موبائل نمبر",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1238,
+    "word": "Letter Type",
+    "language": "ur",
+    "translation": "خط کی قسم",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1239,
+    "word": "To Whom",
+    "language": "ur",
+    "translation": "جس کو",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1240,
+    "word": "Reason",
+    "language": "ur",
+    "translation": "وجہ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1241,
+    "word": "Worksite of Employee",
+    "language": "ur",
+    "translation": "ملازم کی ورکسائٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1242,
+    "word": "Project Coordinator name / with email",
+    "language": "ur",
+    "translation": "پروجیکٹ کوآرڈینیٹر کا نام / ای میل کے ساتھ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1243,
+    "word": "Return to Work date",
+    "language": "ur",
+    "translation": "کام کی تاریخ پر واپس جائیں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1244,
+    "word": "Administration Manager",
+    "language": "ur",
+    "translation": "ایڈمنسٹریشن مینیجر",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1245,
+    "word": "Type of work receipt",
+    "language": "ur",
+    "translation": "کام کی رسید کی قسم",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1246,
+    "word": "The Passport with",
+    "language": "ur",
+    "translation": "پاسپورٹ کے ساتھ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1247,
+    "word": "Total",
+    "language": "ur",
+    "translation": "کل",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1248,
+    "word": "Travel By",
+    "language": "ur",
+    "translation": "سے سفر کرنا",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1249,
+    "word": "Purpose of Visit",
+    "language": "ur",
+    "translation": "دورے کا مقصد",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1250,
+    "word": "Destination city for business trip",
+    "language": "ur",
+    "translation": "کاروباری سفر کے لئے منزل مقصود",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1251,
+    "word": "Number of days of business trip",
+    "language": "ur",
+    "translation": "کاروباری سفر کے دنوں کی تعداد",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1252,
+    "word": "City for the arrival destination to visit",
+    "language": "ur",
+    "translation": "دیکھنے کیلئے آنے والی منزل کیلئے شہر",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1253,
+    "word": "ID",
+    "language": "ur",
+    "translation": "ID",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1254,
+    "word": "Technician",
+    "language": "ur",
+    "translation": "ٹیکنیشن",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1255,
+    "word": "Created At",
+    "language": "ur",
+    "translation": "پر پیدا کیا",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1256,
+    "word": "Due Date",
+    "language": "ur",
+    "translation": "واجب الادا تاریخ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1257,
+    "word": "Status",
+    "language": "ur",
+    "translation": "حالت",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1258,
+    "word": "Category",
+    "language": "ur",
+    "translation": "قسم",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1259,
+    "word": "Business Units",
+    "language": "ur",
+    "translation": "کاروباری یونٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1260,
+    "word": "Select Business Unit",
+    "language": "ur",
+    "translation": "بزنس یونٹ منتخب کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1261,
+    "word": "My Open Tickets",
+    "language": "ur",
+    "translation": "میرے اوپن ٹکٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1262,
+    "word": "My On-Hold Tickets",
+    "language": "ur",
+    "translation": "میرے آن ہولڈ ٹکٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1263,
+    "word": "My Pending Tickets",
+    "language": "ur",
+    "translation": "میرے زیر التواء ٹکٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1264,
+    "word": "My Completed Ticket",
+    "language": "ur",
+    "translation": "میرا مکمل ٹکٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1265,
+    "word": "Ticket waiting my approval",
+    "language": "ur",
+    "translation": "ٹکٹ میری منظوری کا انتظار کر رہا ہے",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1266,
+    "word": "All My Tickets",
+    "language": "ur",
+    "translation": "میرے تمام ٹکٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1267,
+    "word": "Ticket ID",
+    "language": "ur",
+    "translation": "ٹکٹ کی شناخت",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1268,
+    "word": "Copyright © Hubtech 2019",
+    "language": "ur",
+    "translation": "کاپی رائٹ ub ہبٹیک 2019",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1269,
+    "word": "All Open Tickets",
+    "language": "ur",
+    "translation": "تمام اوپن ٹکٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1270,
+    "word": "All On-Hold Tickets",
+    "language": "ur",
+    "translation": "تمام ہولڈ ٹکٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1271,
+    "word": "All Pending Tickets",
+    "language": "ur",
+    "translation": "تمام زیر التواء ٹکٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1272,
+    "word": "All Completed Tickets",
+    "language": "ur",
+    "translation": "تمام مکمل ٹکٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1273,
+    "word": "All My Open Assigned Tickets",
+    "language": "ur",
+    "translation": "میرے تمام اوپن تفویض کردہ ٹکٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1274,
+    "word": "All My On-Hold Assigned Tickets",
+    "language": "ur",
+    "translation": "میرے تمام ہولڈ تفویض کردہ ٹکٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1275,
+    "word": "All My Pending Assigned Tickets",
+    "language": "ur",
+    "translation": "میرے تمام زیر التواء تفویض کردہ ٹکٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1276,
+    "word": "All My Completed Assigned Tickets",
+    "language": "ur",
+    "translation": "میرے تمام مکمل تفویض کردہ ٹکٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1277,
+    "word": "All My Open Assigned Tasks",
+    "language": "ur",
+    "translation": "میرے تمام اوپن تفویض کردہ کام",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1278,
+    "word": "All My On-Hold Assigned Tasks",
+    "language": "ur",
+    "translation": "میرے تمام ہولڈ تفویض کردہ ٹاسک",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1279,
+    "word": "All My Pending Assigned Tasks",
+    "language": "ur",
+    "translation": "میرے تمام زیر التوا تفویض کردہ کام",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1280,
+    "word": "All My Completed Assigned Tasks",
+    "language": "ur",
+    "translation": "میرے تمام تفویض کردہ ٹاسک",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1281,
+    "word": "All My Completed Assigned Tasks",
+    "language": "ur",
+    "translation": "میرے تمام تفویض کردہ ٹاسک",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1282,
+    "word": "All My Assigned Tasks",
+    "language": "ur",
+    "translation": "میرے تمام تفویض کردہ کام",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1283,
+    "word": "All Tickets due by today",
+    "language": "ur",
+    "translation": "آج تک کے تمام ٹکٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1284,
+    "word": "All My Overdue Tickets",
+    "language": "ur",
+    "translation": "میرے سب سے زیادہ اخراجات کے ٹکٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1285,
+    "word": "All Overdue Tickets",
+    "language": "ur",
+    "translation": "تمام زائد المیعاد ٹکٹیں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1286,
+    "word": "All Tickets",
+    "language": "ur",
+    "translation": "تمام ٹکٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1287,
+    "word": "Helpdesk ID",
+    "language": "ur",
+    "translation": "ہیلپ ڈیسک ID",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1288,
+    "word": "First Response Due Time",
+    "language": "ur",
+    "translation": "پہلا رسپانس مقررہ وقت",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1289,
+    "word": "Urgency",
+    "language": "ur",
+    "translation": "ہنگامی",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1290,
+    "word": "Group",
+    "language": "ur",
+    "translation": "گروپ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1291,
+    "word": "Subcategory",
+    "language": "ur",
+    "translation": "ذیلی زمرہ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1292,
+    "word": "Item",
+    "language": "ur",
+    "translation": "آئٹم",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1293,
+    "word": "Due Time",
+    "language": "ur",
+    "translation": "آخری تاریخ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1294,
+    "word": "SLA",
+    "language": "ur",
+    "translation": "سروس کی سطح کے معاہدے",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1295,
+    "word": "Request Details",
+    "language": "ur",
+    "translation": "تفصیلات کی درخواست کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1296,
+    "word": "Additional Information",
+    "language": "ur",
+    "translation": "اضافی معلومات",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1297,
+    "word": "Requester Details",
+    "language": "ur",
+    "translation": "درخواست گزار کی تفصیلات",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1298,
+    "word": "Location",
+    "language": "ur",
+    "translation": "مقام",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1299,
+    "word": "Mobile",
+    "language": "ur",
+    "translation": "موبائل",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1300,
+    "word": "Phone",
+    "language": "ur",
+    "translation": "فون",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1301,
+    "word": "Name",
+    "language": "ur",
+    "translation": "نام",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1302,
+    "word": "Request",
+    "language": "ur",
+    "translation": "درخواست کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1303,
+    "word": "Print",
+    "language": "ur",
+    "translation": "پرنٹ کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1304,
+    "word": "Add Note",
+    "language": "ur",
+    "translation": "نوٹ شامل",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1305,
+    "word": "Duplicate",
+    "language": "ur",
+    "translation": "ڈپلیکیٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1306,
+    "word": "Forward",
+    "language": "ur",
+    "translation": "آگے",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1307,
+    "word": "Reassign",
+    "language": "ur",
+    "translation": "دوبارہ تفویض کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1308,
+    "word": "Conversation",
+    "language": "ur",
+    "translation": "گفتگو",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1309,
+    "word": "Resolution",
+    "language": "ur",
+    "translation": "قرارداد",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1310,
+    "word": "Approvals",
+    "language": "ur",
+    "translation": "منظوری",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1311,
+    "word": "Tasks",
+    "language": "ur",
+    "translation": "ٹاسک",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1312,
+    "word": "Ticket Log",
+    "language": "ur",
+    "translation": "ٹکٹ لاگ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1313,
+    "word": "Email ID",
+    "language": "ur",
+    "translation": "ای میل کا پتہ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1314,
+    "word": "Send approval to",
+    "language": "ur",
+    "translation": "کو منظوری بھیجیں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1315,
+    "word": "No approvals yet",
+    "language": "ur",
+    "translation": "ابھی تک کوئی منظوری نہیں ہے",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1316,
+    "word": "No Tasks found",
+    "language": "ur",
+    "translation": "کوئی ٹاسک نہیں ملا",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1317,
+    "word": "Create Task",
+    "language": "ur",
+    "translation": "ٹاسک بنائیں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1318,
+    "word": "Ticket created by",
+    "language": "ur",
+    "translation": "بذریعہ ٹکٹ تیار کیا گیا",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1319,
+    "word": "Task created by",
+    "language": "ur",
+    "translation": "کے ذریعہ تیار کردہ ٹاسک",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1320,
+    "word": "Ticket has been closed by the system",
+    "language": "ur",
+    "translation": "سسٹم کے ذریعہ ٹکٹ بند کردیا گیا ہے",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1321,
+    "word": "Ticket has been Escalated to",
+    "language": "ur",
+    "translation": "ٹکٹ بڑھا دیا گیا ہے",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1322,
+    "word": "Technician changed from",
+    "language": "ur",
+    "translation": "ٹیکنیشن سے بدلا",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1323,
+    "word": "to",
+    "language": "ur",
+    "translation": "کرنے کے لئے",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1324,
+    "word": "Group changed from",
+    "language": "ur",
+    "translation": "گروپ سے تبدیل ہوا",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1325,
+    "word": "Category changed from",
+    "language": "ur",
+    "translation": "زمرہ بدلا گیا",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1326,
+    "word": "Ticket updated by",
+    "language": "ur",
+    "translation": "ٹکٹ کی تازہ کاری",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1327,
+    "word": "Re-assign",
+    "language": "ur",
+    "translation": "دوبارہ تفویض کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1328,
+    "word": "Not Assigned",
+    "language": "ur",
+    "translation": "تفویض نہیں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1329,
+    "word": "Change status from",
+    "language": "ur",
+    "translation": "سے حیثیت تبدیل کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1330,
+    "word": "Open",
+    "language": "ur",
+    "translation": "کھولو",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1331,
+    "word": "Assigned",
+    "language": "ur",
+    "translation": "تفویض",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1332,
+    "word": "Awaiting Customer Response",
+    "language": "ur",
+    "translation": "گاہک کے جواب کا انتظار ہے",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1333,
+    "word": "Completed without solution",
+    "language": "ur",
+    "translation": "حل کے بغیر مکمل کیا گیا",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1334,
+    "word": "In progress",
+    "language": "ur",
+    "translation": "کام جاری ہے",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1335,
+    "word": "On Hold",
+    "language": "ur",
+    "translation": "ہولڈ پر",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1336,
+    "word": "Resolved",
+    "language": "ur",
+    "translation": "حل ہوگیا",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1337,
+    "word": "By",
+    "language": "ur",
+    "translation": "بذریعہ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1338,
+    "word": "Add Note",
+    "language": "ur",
+    "translation": "نوٹ شامل",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1339,
+    "word": "Show this note to Requester",
+    "language": "ur",
+    "translation": "یہ نوٹ درخواست گزار کو دکھائیں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1340,
+    "word": "E-mail this note to the technician",
+    "language": "ur",
+    "translation": "یہ نوٹ ٹیکنیشن کو ای میل کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1341,
+    "word": "Close",
+    "language": "ur",
+    "translation": "بند کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1342,
+    "word": "Assign Ticket",
+    "language": "ur",
+    "translation": "ٹکٹ تفویض کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1343,
+    "word": "Old Password",
+    "language": "ur",
+    "translation": "پرانا پاسورڈ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1344,
+    "word": "Password",
+    "language": "ur",
+    "translation": "پاس ورڈ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1345,
+    "word": "Confirm Password",
+    "language": "ur",
+    "translation": "پاس ورڈ کی تصدیق کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1346,
+    "word": "Duplicate Ticket",
+    "language": "ur",
+    "translation": "ڈپلیکیٹ ٹکٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1347,
+    "word": "Are you sure to duplicate Ticket",
+    "language": "ur",
+    "translation": "کیا آپ کو یقینی ہے کہ ٹکٹ کی نقل تیار کی جائے؟",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1348,
+    "word": "Add Notes",
+    "language": "ur",
+    "translation": "نوٹ شامل کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1349,
+    "word": "Home",
+    "language": "ur",
+    "translation": "گھر",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1350,
+    "word": "Select Company",
+    "language": "ur",
+    "translation": "کمپنی منتخب کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1351,
+    "word": "Create/Remove Email",
+    "language": "ur",
+    "translation": "ای میل بنائیں / ہٹائیں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1352,
+    "word": "Humanity loan",
+    "language": "ur",
+    "translation": "انسانیت لون",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1353,
+    "word": "Iqama Number",
+    "language": "ur",
+    "translation": "اقامہ نمبر",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1354,
+    "word": "Vacation Type",
+    "language": "ur",
+    "translation": "تعطیل کی قسم",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1355,
+    "word": "Return Date",
+    "language": "ur",
+    "translation": "واپسی کی تاریخ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1356,
+    "word": "Employee Replacement ID",
+    "language": "ur",
+    "translation": "ملازم کی تبدیلی کی شناخت",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1357,
+    "word": "Applicant Evaluation",
+    "language": "ur",
+    "translation": "درخواست گزار کی تشخیص",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1358,
+    "word": "Direct Manager Email",
+    "language": "ur",
+    "translation": "براہ راست مینیجر ای میل",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1359,
+    "word": "Direct Manager Contact",
+    "language": "ur",
+    "translation": "براہ راست مینیجر سے رابطہ کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1360,
+    "word": "Department Manager Email",
+    "language": "ur",
+    "translation": "ڈیپارٹمنٹ منیجر ای میل",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1361,
+    "word": "Select Company",
+    "language": "ur",
+    "translation": "کمپنی منتخب کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1362,
+    "word": "Date of Return",
+    "language": "ur",
+    "translation": "واپسی کی تاریخ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1363,
+    "word": "AC Maintenance",
+    "language": "ur",
+    "translation": "AC بحالی",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1364,
+    "word": "Carpentary Maintenance",
+    "language": "ur",
+    "translation": "بڑھئی کی بحالی",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1365,
+    "word": "Electricity Maintenance",
+    "language": "ur",
+    "translation": "بجلی کی بحالی",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1366,
+    "word": "Pigments & Paints Maintenance",
+    "language": "ur",
+    "translation": "روغن اور رنگوں کی بحالی",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1367,
+    "word": "Plumbing Maintenance",
+    "language": "ur",
+    "translation": "پلمبنگ بحالی",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1368,
+    "word": "Request Office Furniture",
+    "language": "ur",
+    "translation": "آفس فرنیچر سے درخواست کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1369,
+    "word": "IT Others",
+    "language": "ur",
+    "translation": "یہ دوسروں کو",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1370,
+    "word": "Request Communication Devices or Tools",
+    "language": "ur",
+    "translation": "مواصلاتی آلات یا اوزار کی درخواست کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1371,
+    "word": "Request Computer or Accessories",
+    "language": "ur",
+    "translation": "کمپیوٹر یا لوازمات کی درخواست کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1372,
+    "word": "Request Display Device",
+    "language": "ur",
+    "translation": "ڈسپلے ڈیوائس کی درخواست کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1373,
+    "word": "Request Maintenance",
+    "language": "ur",
+    "translation": "بحالی کی درخواست کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1374,
+    "word": "Request Printer or Copy Machine",
+    "language": "ur",
+    "translation": "پرنٹر یا کاپی مشین کی درخواست کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1375,
+    "word": "Book Theater",
+    "language": "ur",
+    "translation": "کتاب تھیٹر",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1376,
+    "word": "Others",
+    "language": "ur",
+    "translation": "دوسرے",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1377,
+    "word": "Request Banquet",
+    "language": "ur",
+    "translation": "ضیافت کی درخواست کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1378,
+    "word": "Request Organize Event",
+    "language": "ur",
+    "translation": "واقعہ کو منظم کرنے کی درخواست کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1379,
+    "word": "Request Promotional Materials & Prints",
+    "language": "ur",
+    "translation": "تشہیری سامان اور پرنٹس کی درخواست کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1380,
+    "word": "Request SMS",
+    "language": "ur",
+    "translation": "ایس ایم ایس کی درخواست کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1381,
+    "word": "Order buses",
+    "language": "ur",
+    "translation": "بسوں کا آرڈر دیں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1382,
+    "word": "Others",
+    "language": "ur",
+    "translation": "دوسرے",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1383,
+    "word": "Request Stationary",
+    "language": "ur",
+    "translation": "درخواست اسٹیشنری",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1384,
+    "word": "Request Toners",
+    "language": "ur",
+    "translation": "ٹونرز سے درخواست کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1385,
+    "word": "Transferring employees between Companies",
+    "language": "ur",
+    "translation": "کمپنیوں کے مابین ملازمین کی منتقلی",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1386,
+    "word": "International Roaming",
+    "language": "ur",
+    "translation": "بین الاقوامی رومنگ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1387,
+    "word": "New Mobile Device from STC",
+    "language": "ur",
+    "translation": "ایس ٹی سی سے نیا موبائل ڈیوائس",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1388,
+    "word": "Request New SIM",
+    "language": "ur",
+    "translation": "نئی سم کی درخواست کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1389,
+    "word": "SIM Services",
+    "language": "ur",
+    "translation": "سم خدمات",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1390,
+    "word": "Notes",
+    "language": "ur",
+    "translation": "نوٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1391,
+    "word": "Not Certified",
+    "language": "ur",
+    "translation": "سند یافتہ نہیں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1392,
+    "word": "Certified",
+    "language": "ur",
+    "translation": "سند یافتہ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1393,
+    "word": "Certified by the Chamber of Commerce?",
+    "language": "ur",
+    "translation": "چیمبر آف کامرس کے ذریعہ تصدیق شدہ؟",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1394,
+    "word": "Company Name",
+    "language": "ur",
+    "translation": "کمپنی کا نام",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1396,
+    "word": "Project Coordinator email",
+    "language": "ur",
+    "translation": "پروجیکٹ کوآرڈینیٹر ای میل",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1397,
+    "word": "Select Value",
+    "language": "ur",
+    "translation": "قدر منتخب کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1398,
+    "word": "Your Request will Delivered within",
+    "language": "ur",
+    "translation": "آپ کی درخواست کے اندر اندر نجات مل جائے گی",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1399,
+    "word": "Days",
+    "language": "ur",
+    "translation": "دن",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1400,
+    "word": "Hours",
+    "language": "ur",
+    "translation": "اوقات",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1401,
+    "word": "Minutes",
+    "language": "ur",
+    "translation": "منٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1402,
+    "word": "اللغة العربية",
+    "language": "ur",
+    "translation": "الغغة العربية",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1403,
+    "word": "Manager's Name",
+    "language": "ur",
+    "translation": "منیجر کا نام",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1404,
+    "word": "Office Location",
+    "language": "ur",
+    "translation": "دفتر کا مقام",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1405,
+    "word": "Employee Name",
+    "language": "ur",
+    "translation": "ملازم کا نام",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1406,
+    "word": "Office Phone",
+    "language": "ur",
+    "translation": "دفتر فون",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1407,
+    "word": "Branch",
+    "language": "ur",
+    "translation": "شاخ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1408,
+    "word": "Mobile No.",
+    "language": "ur",
+    "translation": "موبائل نمبر.",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1409,
+    "word": "The group to add the employee email",
+    "language": "ur",
+    "translation": "ملازم ای میل شامل کرنے کے لئے گروپ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1410,
+    "word": "Email you need to create",
+    "language": "ur",
+    "translation": "آپ کو ای میل بنانے کی ضرورت ہے",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1411,
+    "word": "Official letter from government agencies",
+    "language": "ur",
+    "translation": "سرکاری اداروں کا سرکاری خط",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1412,
+    "word": "Unofficial Letter",
+    "language": "ur",
+    "translation": "غیر سرکاری خط",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1413,
+    "word": "Visa extension",
+    "language": "ur",
+    "translation": "ویزا توسیع",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1414,
+    "word": "Request a business visit",
+    "language": "ur",
+    "translation": "کاروباری دورے کی درخواست کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1415,
+    "word": "Request a family visit",
+    "language": "ur",
+    "translation": "خاندانی دورے کی درخواست کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1416,
+    "word": "Letter of Engineers",
+    "language": "ur",
+    "translation": "انجینئرز کا خط",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1417,
+    "word": "Visa Bank Letter",
+    "language": "ur",
+    "translation": "ویزا بینک لیٹر",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1418,
+    "word": "Letter of salary for Bank",
+    "language": "ur",
+    "translation": "بینک کے لئے تنخواہ کا خط",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1419,
+    "word": "Letter of installation to the bank",
+    "language": "ur",
+    "translation": "بینک کو تنصیب کا خط",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1420,
+    "word": "Letter of Bank Loan",
+    "language": "ur",
+    "translation": "بینک لون کا خط",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1421,
+    "word": "Letter of ending services",
+    "language": "ur",
+    "translation": "خدمات کو ختم کرنے کا خط",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1422,
+    "word": "A letter of experience and release",
+    "language": "ur",
+    "translation": "تجربے اور رہائی کا خط",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1423,
+    "word": "letter of sickness",
+    "language": "ur",
+    "translation": "بیماری کا خط",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1424,
+    "word": "Letter of opening a bank account outside the Kingdom",
+    "language": "ur",
+    "translation": "مملکت کے باہر بینک اکاؤنٹ کھولنے کا خط",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1425,
+    "word": "An official letter addressed to you outside the Kingdom",
+    "language": "ur",
+    "translation": "ریاست کے باہر آپ کو ایک سرکاری خط",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1426,
+    "word": "Official letter addressed to the consulate of other countries",
+    "language": "ur",
+    "translation": "سرکاری خط دوسرے ممالک کے قونصل خانے کو خطاب کیا",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1427,
+    "word": "Letter of Delegation",
+    "language": "ur",
+    "translation": "وفد کا خط",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1428,
+    "word": "Recruitment Letter",
+    "language": "ur",
+    "translation": "بھرتی کا خط",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1429,
+    "word": "Letter to the Ministry of Health in Egypt",
+    "language": "ur",
+    "translation": "مصر میں وزارت صحت کو خط",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1430,
+    "word": "Transfer of sponsorship",
+    "language": "ur",
+    "translation": "کفالت کی منتقلی",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1431,
+    "word": "Transfer the sponsership of our employee's spouse to him",
+    "language": "ur",
+    "translation": "ہمارے ملازم کی شریک حیات کی کفالت اسے منتقل کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1432,
+    "word": "Transfer the sponser of our employee's spouse to another sponser",
+    "language": "ur",
+    "translation": "ہمارے ملازم کی شریک حیات کے کفیل کو کسی دوسرے اسپانسر میں منتقل کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1433,
+    "word": "Letter Renewal of the Delegator Card",
+    "language": "ur",
+    "translation": "ڈیلیگیٹر کارڈ کا خط تجدید",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1434,
+    "word": "Letter of extended vacation",
+    "language": "ur",
+    "translation": "توسیعی چھٹی کا خط",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1435,
+    "word": "Letter of change career",
+    "language": "ur",
+    "translation": "کیریئر کا خط",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1436,
+    "word": "Letter of extension experience period",
+    "language": "ur",
+    "translation": "توسیع کے تجربے کی مدت کا خط",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1437,
+    "word": "Letter addressed to the Embassy",
+    "language": "ur",
+    "translation": "سفارتخانے کو خط لکھا",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1438,
+    "word": "Cancel Deleting an email",
+    "language": "ur",
+    "translation": "ای میل کو حذف کرنا منسوخ کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1439,
+    "word": "End of testing period",
+    "language": "ur",
+    "translation": "جانچ کی مدت کا اختتام",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1440,
+    "word": "Extended contract",
+    "language": "ur",
+    "translation": "توسیعی معاہدہ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1441,
+    "word": "Letter of Movement",
+    "language": "ur",
+    "translation": "تحریک کا خط",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1442,
+    "word": "Vacation Start Date",
+    "language": "ur",
+    "translation": "تعطیلات شروع ہونے کی تاریخ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1443,
+    "word": "Request Books",
+    "language": "ur",
+    "translation": "کتابوں سے درخواست کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1444,
+    "word": "Warehouses",
+    "language": "ur",
+    "translation": "گوداموں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1445,
+    "word": "Transportation",
+    "language": "ur",
+    "translation": "نقل و حمل",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1446,
+    "word": "Building Maint. & Service",
+    "language": "ur",
+    "translation": "بلڈنگ مینٹ۔ اور خدمت",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1447,
+    "word": "Computer & IT",
+    "language": "ur",
+    "translation": "کمپیوٹر اور آئی ٹی",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1448,
+    "word": "Public Rel. & Media",
+    "language": "ur",
+    "translation": "عوامی ریل اور میڈیا",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1449,
+    "word": "Gov. Services",
+    "language": "ur",
+    "translation": "گورنمنٹ سروسز",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1450,
+    "word": "Car Services",
+    "language": "ur",
+    "translation": "کار خدمات",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1452,
+    "word": "Chambers of Commerce",
+    "language": "ur",
+    "translation": "چیمبر آف کامرس",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1453,
+    "word": "Ministry of Foreign Affairs",
+    "language": "ur",
+    "translation": "وزارت خارجہ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1454,
+    "word": "Other Services",
+    "language": "ur",
+    "translation": "دیگر خدمات",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1455,
+    "word": "Commercial invitation",
+    "language": "ur",
+    "translation": "تجارتی دعوت",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1456,
+    "word": "Ratification of transaction",
+    "language": "ur",
+    "translation": "لین دین کی توثیق",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1457,
+    "word": "Items",
+    "language": "ur",
+    "translation": "اشیاء",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1458,
+    "word": "Authentication of letters, transactions and authorizations",
+    "language": "ur",
+    "translation": "خطوط ، لین دین اور اختیارات کی توثیق",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1459,
+    "word": "Passport services",
+    "language": "ur",
+    "translation": "پاسپورٹ خدمات",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1460,
+    "word": "Visa services",
+    "language": "ur",
+    "translation": "ویزا خدمات",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1461,
+    "word": "Embassies Services",
+    "language": "ur",
+    "translation": "سفارت خانوں کی خدمات",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1462,
+    "word": "Traffic Services",
+    "language": "ur",
+    "translation": "ٹریفک خدمات",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1463,
+    "word": "Internal authorization",
+    "language": "ur",
+    "translation": "داخلی اجازت",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1464,
+    "word": "Renewal of Traffic License Form",
+    "language": "ur",
+    "translation": "ٹریفک لائسنس فارم کی تجدید",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1465,
+    "word": "Delegate a user of a car",
+    "language": "ur",
+    "translation": "کار کا صارف ڈیلیٹ کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1466,
+    "word": "Query on unpaid violations and no payment is made through the bank",
+    "language": "ur",
+    "translation": "بلا معاوضہ خلاف ورزیوں پر سوال اٹھائیں اور بینک کے ذریعے ادائیگی نہیں کی جاتی ہے",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1467,
+    "word": "Cancel International authorizations",
+    "language": "ur",
+    "translation": "بین الاقوامی اختیارات منسوخ کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1468,
+    "word": "Issuing international authorizations",
+    "language": "ur",
+    "translation": "بین الاقوامی اجازت جاری کرنا",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1469,
+    "word": "Cancel an actual user on the vehicle",
+    "language": "ur",
+    "translation": "گاڑی پر موجود صارف کو منسوخ کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1470,
+    "word": "Query on irregularities paid and not payment through the bank",
+    "language": "ur",
+    "translation": "بینک کے ذریعے ادائیگی اور ادائیگی نہ ہونے پر بے ضابطگیوں پر سوال",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1471,
+    "word": "Circular on stolen vehicles",
+    "language": "ur",
+    "translation": "چوری شدہ گاڑیوں کا سرکلر",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1472,
+    "word": "Issuing or replacing a lost traffic license",
+    "language": "ur",
+    "translation": "گم شدہ ٹریفک لائسنس جاری کرنا یا اس کی جگہ لے لینا",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1473,
+    "word": "Driver's license \"renewal and replacement\"",
+    "language": "ur",
+    "translation": "ڈرائیور کا لائسنس \"تجدید اور متبادل\"",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1474,
+    "word": "Transfer of Ownership",
+    "language": "ur",
+    "translation": "ملکیت کی منتقلی",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1475,
+    "word": "Claim for car accident compensation from insurance",
+    "language": "ur",
+    "translation": "انشورنس سے کار حادثے کے معاوضے کا دعوی",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1476,
+    "word": "Issuing replacement plates for damaged or lost vehicles",
+    "language": "ur",
+    "translation": "خراب یا گمشدہ گاڑیوں کے متبادل پلیٹیں جاری کرنا",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1477,
+    "word": "Extract new plates",
+    "language": "ur",
+    "translation": "نئی پلیٹیں نکالیں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1478,
+    "word": "Export or drop a palette",
+    "language": "ur",
+    "translation": "پیلیٹ ایکسپورٹ یا ڈراپ کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1479,
+    "word": "Make a fingerprint for the employee",
+    "language": "ur",
+    "translation": "ملازم کے لئے فنگر پرنٹ بنائیں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1480,
+    "word": "Government Services",
+    "language": "ur",
+    "translation": "سرکاری خدمات",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1481,
+    "word": "Car Services",
+    "language": "ur",
+    "translation": "کار خدمات",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1482,
+    "word": "The city that the required employee is coming from",
+    "language": "ur",
+    "translation": "وہ شہر جہاں سے مطلوبہ ملازم آرہا ہے",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1483,
+    "word": "Name of the Company the required employee is coming from",
+    "language": "ur",
+    "translation": "کمپنی کا نام مطلوبہ ملازم آتا ہے",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1484,
+    "word": "Duration of Stay",
+    "language": "ur",
+    "translation": "قیام کی مدت",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1485,
+    "word": "Chambers of Commerce",
+    "language": "ur",
+    "translation": "چیمبر آف کامرس",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1486,
+    "word": "Subcategories",
+    "language": "ur",
+    "translation": "زمرہ جات",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1487,
+    "word": "Admin Panel",
+    "language": "ur",
+    "translation": "ایڈمن پینل",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1488,
+    "word": "Start Date",
+    "language": "ur",
+    "translation": "شروع کرنے کی تاریخ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1489,
+    "word": "End Date",
+    "language": "ur",
+    "translation": "آخری تاریخ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1490,
+    "word": "Document",
+    "language": "ur",
+    "translation": "دستاویز",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1491,
+    "word": "Actions",
+    "language": "ur",
+    "translation": "عمل",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1492,
+    "word": "Edit",
+    "language": "ur",
+    "translation": "ترمیم",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1493,
+    "word": "Delete",
+    "language": "ur",
+    "translation": "حذف کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1494,
+    "word": "History",
+    "language": "ur",
+    "translation": "تاریخ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1495,
+    "word": "Documents",
+    "language": "ur",
+    "translation": "دستاویزات",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1496,
+    "word": "Folder",
+    "language": "ur",
+    "translation": "فولڈر",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1497,
+    "word": "Document Name",
+    "language": "ur",
+    "translation": "دستاویز کا نام",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1498,
+    "word": "Edit Document",
+    "language": "ur",
+    "translation": "دستاویز میں ترمیم کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1499,
+    "word": "Business Documents",
+    "language": "ur",
+    "translation": "کاروباری دستاویزات",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1500,
+    "word": "Configurations",
+    "language": "ur",
+    "translation": "تشکیلات",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1501,
+    "word": "Select Category",
+    "language": "ur",
+    "translation": "زمرہ منتخب کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1502,
+    "word": "Folders",
+    "language": "ur",
+    "translation": "فولڈرز",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1503,
+    "word": "Roles",
+    "language": "ur",
+    "translation": "کردار",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1504,
+    "word": "Notifications",
+    "language": "ur",
+    "translation": "اطلاعات",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1505,
+    "word": "Manage Notifications",
+    "language": "ur",
+    "translation": "اطلاعات کا نظم کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1506,
+    "word": "Authorized Users",
+    "language": "ur",
+    "translation": "مجاز صارفین",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1507,
+    "word": "Create",
+    "language": "ur",
+    "translation": "بنانا",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1508,
+    "word": "Folder Name",
+    "language": "ur",
+    "translation": "فولڈر کا نام",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1509,
+    "word": "Edit Folder",
+    "language": "ur",
+    "translation": "فولڈر میں ترمیم کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1510,
+    "word": "Check for Requirements",
+    "language": "ur",
+    "translation": "ضروریات کی جانچ پڑتال کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1511,
+    "word": "SAR",
+    "language": "ur",
+    "translation": "SAR",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1512,
+    "word": "Control Panel\n",
+    "language": "ur",
+    "translation": "کنٹرول پینل",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1513,
+    "word": "Visa issuance",
+    "language": "ur",
+    "translation": "ویزا جاری کرنا",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1514,
+    "word": "Visa Cancellation",
+    "language": "ur",
+    "translation": "ویزا منسوخی",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1515,
+    "word": "Visa Extend",
+    "language": "ur",
+    "translation": "ویزا توسیع",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1516,
+    "word": "Visa Application Type",
+    "language": "ur",
+    "translation": "ویزا درخواست کی قسم",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1517,
+    "word": "General Secretariat",
+    "language": "ur",
+    "translation": "جنرل سیکرٹریٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1518,
+    "word": "Ministry of Justice",
+    "language": "ur",
+    "translation": "وزارت انصاف",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1519,
+    "word": "Civil Defense",
+    "language": "ur",
+    "translation": "شہری دفاع",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1520,
+    "word": "Ministry of Trade and Investment",
+    "language": "ur",
+    "translation": "تجارت اور سرمایہ کاری کی وزارت",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1521,
+    "word": "Ministry of Entertainment and Tourism",
+    "language": "ur",
+    "translation": "وزارت تفریح \u200B\u200Bو سیاحت",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1522,
+    "word": "Ministry of Information",
+    "language": "ur",
+    "translation": "وزارت اطلاعات",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1523,
+    "word": "Ministry of Electricity",
+    "language": "ur",
+    "translation": "بجلی کی وزارت",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1524,
+    "word": "Ministry Of Agriculture",
+    "language": "ur",
+    "translation": "وزارت زراعت",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1525,
+    "word": "Ministry of education",
+    "language": "ur",
+    "translation": "وزارت تعلیم",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1526,
+    "word": "Ministry of Interior",
+    "language": "ur",
+    "translation": "وزارت داخلہ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1527,
+    "word": "Ministry of Transportation",
+    "language": "ur",
+    "translation": "وزارت ٹرانسپورٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1528,
+    "word": "Ministry of Water",
+    "language": "ur",
+    "translation": "وزارت پانی",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1529,
+    "word": "Telecommunications company",
+    "language": "ur",
+    "translation": "ٹیلی مواصلات کی کمپنی",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1530,
+    "word": "Post Office",
+    "language": "ur",
+    "translation": "ڈاک خانہ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1531,
+    "word": "Add a delegated signature",
+    "language": "ur",
+    "translation": "ایک نمائندہ دستخط شامل کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1532,
+    "word": "Participation in the Chamber of Commerce or renewal",
+    "language": "ur",
+    "translation": "چیمبر آف کامرس یا تجدید میں شرکت",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1533,
+    "word": "Attesting of transaction",
+    "language": "ur",
+    "translation": "لین دین کی تصدیق",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1534,
+    "word": "Royal Commission for Jubail",
+    "language": "ur",
+    "translation": "رائل کمیشن برائے جوبل",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1535,
+    "word": "Billing Review - Consumption Validity",
+    "language": "ur",
+    "translation": "بل کا جائزہ - استعمال کی درستگی",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1536,
+    "word": "Establishing new companies inside the Kingdom \"Establishing Contracts\"",
+    "language": "ur",
+    "translation": "\"معاہدے قائم کرنا\" بادشاہی کے اندر نئی کمپنیاں قائم کرنا",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1537,
+    "word": "Establishing new branch inside the Kingdom \"Establishing Contracts\"",
+    "language": "ur",
+    "translation": "\"معاہدہ قائم کرنا\" بادشاہی کے اندر نئی شاخ کا قیام",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1538,
+    "word": "Establishing new companies or branches outside the Kingdom \"including all required license\"",
+    "language": "ur",
+    "translation": "\"تمام مطلوبہ لائسنس سمیت\" برطانیہ سے باہر نئی کمپنیاں یا شاخیں قائم کرنا",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1539,
+    "word": "Issuing industrial licenses",
+    "language": "ur",
+    "translation": "صنعتی لائسنس جاری کرنا",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1540,
+    "word": "Renewing industrial licenses",
+    "language": "ur",
+    "translation": "صنعتی لائسنسوں کی تجدید",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1541,
+    "word": "Booking of trade names",
+    "language": "ur",
+    "translation": "تجارتی ناموں کی بکنگ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1542,
+    "word": "Registration of trademarks",
+    "language": "ur",
+    "translation": "ٹریڈ مارک کی رجسٹریشن",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1543,
+    "word": "CRs Issuing",
+    "language": "ur",
+    "translation": "سی آر جاری کررہے ہیں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1544,
+    "word": "Renew CR",
+    "language": "ur",
+    "translation": "CR کی تجدید کرو",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1545,
+    "word": "Transfer CR",
+    "language": "ur",
+    "translation": "منتقلی سی آر",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1546,
+    "word": "Cancellation CR",
+    "language": "ur",
+    "translation": "منسوخی CR",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1547,
+    "word": "Query about company data",
+    "language": "ur",
+    "translation": "کمپنی کے اعداد و شمار کے بارے میں سوالات",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1548,
+    "word": "Updating CRs information",
+    "language": "ur",
+    "translation": "سی آر کی معلومات کو اپ ڈیٹ کرنا",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1549,
+    "word": "Update industrial license data",
+    "language": "ur",
+    "translation": "صنعتی لائسنس کا ڈیٹا اپ ڈیٹ کریں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1550,
+    "word": "Issuing Civil defense Permits",
+    "language": "ur",
+    "translation": "سول ڈیفنس پرمٹ جاری کرنا",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1551,
+    "word": "Safety Layout approval",
+    "language": "ur",
+    "translation": "سیفٹی لے آؤٹ کی منظوری",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1552,
+    "word": "Administrative Control Certificate",
+    "language": "ur",
+    "translation": "انتظامی کنٹرول سرٹیفکیٹ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1553,
+    "word": "Passport is with",
+    "language": "ur",
+    "translation": "پاسپورٹ ساتھ ہے",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1554,
+    "word": "Departure Airport (in KSA)",
+    "language": "ur",
+    "translation": "سعودی عرب کا ہوائی اڈہ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1555,
+    "word": "Arrival airport",
+    "language": "ur",
+    "translation": "آمد ہوائی اڈ .ہ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1556,
+    "word": "Vacation End",
+    "language": "ur",
+    "translation": "تعطیل ختم",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1557,
+    "word": "Employee Number",
+    "language": "ur",
+    "translation": "ملازم کا نمبر",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1558,
+    "word": "Return Date from your country",
+    "language": "ur",
+    "translation": "اپنے ملک سے تاریخ لوٹائیں",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1559,
+    "word": "Priority",
+    "language": "ur",
+    "translation": "ترجیح",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1560,
+    "word": "Medical Insurance Services",
+    "language": "ur",
+    "translation": "میڈیکل انشورنس خدمات",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 1562,
+    "word": "Mobile Services",
+    "language": "ur",
+    "translation": "موبائل سروسز",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 1563,
+    "word": "Transfer/Replace SIM",
+    "language": "ur",
+    "translation": "سم منتقل کریں / تبدیل کریں",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 1568,
+    "word": "Cancel/Suspense SIM",
+    "language": "ur",
+    "translation": "منسوخ کریں / سسپنس سم",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 1569,
+    "word": "Re-Entry Visa Services",
+    "language": "ur",
+    "translation": "دوبارہ انٹری ویزا خدمات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 1574,
+    "word": "Transfer of sponsorship",
+    "language": "ur",
+    "translation": "کفالت کی منتقلی",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 1576,
+    "word": "Updating new passport data / extension of validity (transfer of information)",
+    "language": "ur",
+    "translation": "پاسپورٹ کا نیا ڈیٹا / سند میں توسیع (معلومات کی منتقلی)",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2250,
+    "word": "Coordinator",
+    "language": "ur",
+    "translation": "ذمہ دار",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2252,
+    "word": "SAP ID",
+    "language": "ur",
+    "translation": "درخواست نمبر",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2253,
+    "word": "Arrival Country",
+    "language": "ur",
+    "translation": "ملک آمد کا ہوائی اڈے",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2254,
+    "word": "Airport in Saudi Arabia",
+    "language": "ur",
+    "translation": "سعودی عرب کا ہوائی اڈہ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2255,
+    "word": "Date of Travel",
+    "language": "ur",
+    "translation": "سفر کی تاریخ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2256,
+    "word": "No. of tickets",
+    "language": "ur",
+    "translation": "ٹکٹوں کی تعداد",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2257,
+    "word": "ID number",
+    "language": "ur",
+    "translation": "اقامہ نمبر",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2258,
+    "word": "KSA Airport Departure",
+    "language": "ur",
+    "translation": "سعودی عرب کا ہوائی اڈہ",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2259,
+    "word": "Mode of Transport",
+    "language": "ur",
+    "translation": "سفر کا طریقہ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2260,
+    "word": "Destination City",
+    "language": "ur",
+    "translation": "منزل شہر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2261,
+    "word": "Destination",
+    "language": "ur",
+    "translation": "منزل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2262,
+    "word": "Number of Days",
+    "language": "ur",
+    "translation": "دنوں کی تعداد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2263,
+    "word": "Purpose of the Travel",
+    "language": "ur",
+    "translation": "سفرکا مقصد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2264,
+    "word": "Job No",
+    "language": "ur",
+    "translation": "نوکری نمبر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2265,
+    "word": "Requesting Company",
+    "language": "ur",
+    "translation": "کمپنی سے درخواست کی جا رہی ہے",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2266,
+    "word": "Visa Entry type",
+    "language": "ur",
+    "translation": "ویزا اندراج کی قسم",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2267,
+    "word": "Visitor's company name",
+    "language": "ur",
+    "translation": "وزیٹر کی کمپنی کا نام",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2268,
+    "word": "Visitor's Origin City",
+    "language": "ur",
+    "translation": "زائرین کا اصل شہر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2269,
+    "word": "Visitor's company name",
+    "language": "ur",
+    "translation": "وزیٹر کی کمپنی کا نام",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2270,
+    "word": "Type of visa application",
+    "language": "ur",
+    "translation": "ویزا درخواست کی قسم",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2271,
+    "word": "Visitor's name (As in Passport)",
+    "language": "ur",
+    "translation": "وزیٹر کا نام (پاسپورٹ کی طرح)",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2272,
+    "word": "Application of passport",
+    "language": "ur",
+    "translation": "پاسپورٹ کی درخواست",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2273,
+    "word": "Date of issue of passport",
+    "language": "ur",
+    "translation": "پاسپورٹ جاری کرنے کی تاریخ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2274,
+    "word": "Date of expiry of passport",
+    "language": "ur",
+    "translation": "پاسپورٹ کی میعاد ختم ہونے کی تاریخ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2275,
+    "word": "Place of issue",
+    "language": "ur",
+    "translation": "مسئلے کی جگہ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2276,
+    "word": "Passport No.",
+    "language": "ur",
+    "translation": "پاسپورٹ نمبر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2277,
+    "word": "Name of the previous sponsor",
+    "language": "ur",
+    "translation": "پچھلے کفیل کا نام",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2278,
+    "word": "Name of the new Sponsor",
+    "language": "ur",
+    "translation": "نئے کفیل کا نام",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2279,
+    "word": "Iqama's Expiry Date",
+    "language": "ur",
+    "translation": "اقامہ ختم ہونے کی تاریخ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2280,
+    "word": "Reason of your Iqama Renewal",
+    "language": "ur",
+    "translation": "آپ کے اقامہ تجدید کی وجہ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2281,
+    "word": "Name of sponsor",
+    "language": "ur",
+    "translation": "کفیل کا نام",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2282,
+    "word": "Iqama Expiry",
+    "language": "ur",
+    "translation": "اقامہ ختم ہونے والا",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2283,
+    "word": "Direct Manager Mobile",
+    "language": "ur",
+    "translation": "ڈائریکٹ منیجر موبائل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2284,
+    "word": "Visa Entry",
+    "language": "ur",
+    "translation": "ویزا انٹری",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2285,
+    "word": "Period",
+    "language": "ur",
+    "translation": "مدت",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2286,
+    "word": "Create Group / Remove Group",
+    "language": "ur",
+    "translation": "گروپ بنائیں / گروپ ہٹائیں",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2287,
+    "word": "Add to Group",
+    "language": "ur",
+    "translation": "گروپ میں شامل کریں",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2288,
+    "word": "Edit signature",
+    "language": "ur",
+    "translation": "دستخط میں ترمیم کریں",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2289,
+    "word": "Change Domain",
+    "language": "ur",
+    "translation": "ڈومین تبدیل کریں",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2290,
+    "word": "Rename Email",
+    "language": "ur",
+    "translation": "ای میل کا نام تبدیل کریں",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2291,
+    "word": "Suspend / Remove suspend",
+    "language": "ur",
+    "translation": "معطل / خارج کرنا معطل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2292,
+    "word": "Transfer email data and drive data to another email",
+    "language": "ur",
+    "translation": "ای میل ڈیٹا اور ڈرائیو ڈیٹا کو دوسرے ای میل میں منتقل کریں",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2293,
+    "word": "Current Co. Name",
+    "language": "ur",
+    "translation": "موجودہ کمپنی کا نام",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2294,
+    "word": "Current Div Manager Name",
+    "language": "ur",
+    "translation": "موجودہ ڈویژن منیجر کا نام",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2295,
+    "word": "Current HR Manager Name",
+    "language": "ur",
+    "translation": "موجودہ ایچ آر منیجر کا نام",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2296,
+    "word": "Current CEO Name",
+    "language": "ur",
+    "translation": "موجودہ سی ای او کا نام",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2297,
+    "word": "New CO Name",
+    "language": "ur",
+    "translation": "نیا کومپی نام",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2298,
+    "word": "New HR Manager Name",
+    "language": "ur",
+    "translation": "نیا ایچ آر منیجر نام",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2299,
+    "word": "New CEO Name",
+    "language": "ur",
+    "translation": "نیا سی ای او نام",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2300,
+    "word": "New Position Name",
+    "language": "ur",
+    "translation": "نیا مقام نام",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2301,
+    "word": "New Department Name",
+    "language": "ur",
+    "translation": "نیا محکمہ نام",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2302,
+    "word": "New Cost Center",
+    "language": "ur",
+    "translation": "نیا لاگت سنٹر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2303,
+    "word": "New Position No.",
+    "language": "ur",
+    "translation": "نئی پوزیشن نمبر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2304,
+    "word": "New Direct Manager Name",
+    "language": "ur",
+    "translation": "نیا براہ راست منیجر کا نام",
+    "created_at": null,
+    "updated_at": null
+  }
+]
