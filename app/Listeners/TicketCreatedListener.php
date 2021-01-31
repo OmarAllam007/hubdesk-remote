@@ -37,11 +37,10 @@ class TicketCreatedListener
             Attachment::uploadFiles(Attachment::TICKET_TYPE, $ticket->id);
         }
 
-
         dispatch(new ApprovalLevels($ticket));
 
-        if ($ticket->category->business_service_type != 2 && (!$ticket->technician_id || !$ticket->group_id)) {
-            $ticket->notify((new TicketNotAssignedNotification($ticket)));
-        }
+//        if ($ticket->category->business_service_type != 2 && (!$ticket->technician_id || !$ticket->group_id)) {
+//            $ticket->notify((new TicketNotAssignedNotification($ticket)));
+//        }
     }
 }

@@ -74,7 +74,7 @@ class TicketReplyJob extends Job //implements ShouldQueue
 
         $ccEmails = array_merge($cc, $this->cc);
 
-        \Mail::to($this->to)->cc($ccEmails)->send(new TicketReplyMail($this->reply));
+        \Mail::to($this->to)->cc($ccEmails)->queue(new TicketReplyMail($this->reply));
         $this->sendSurvey($this->reply->ticket);
     }
 
@@ -90,7 +90,7 @@ class TicketReplyJob extends Job //implements ShouldQueue
             ]);
 
             if ($survey->ticket->requester->email) {
-                \Mail::send(new SendSurveyEmail($survey));
+                \Mail::queue(new SendSurveyEmail($survey));
             }
             TicketLog::addReminderOnSurvey($ticket);
         }

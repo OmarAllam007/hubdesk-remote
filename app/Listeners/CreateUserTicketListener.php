@@ -10,6 +10,7 @@ use App\Ticket;
 use App\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Collection;
 
 class CreateUserTicketListener
 {
@@ -54,7 +55,7 @@ class CreateUserTicketListener
         $user = User::where('employee_id', $fields->get('Employee ID'))
             ->orWhere('email', $fields->get('Email'))->first();
 
-        if (!$user) {
+        if (!$user && $this->userValidEmail($fields->get('Email'))) {
 
             if (!$this->getBusinessUnitId($fields->get('Company'))) {
                 return;
@@ -112,6 +113,15 @@ class CreateUserTicketListener
 
         // Fires creating event in \App\Providers\TicketReplyEventProvider
         $reply = $ticket->replies()->create($data);
-        dispatch(new TicketReplyJob($reply));
     }
+
+    private function userValidEmail($email): bool
+    {
+        $validator = \Validator::make(['email' => $email], [
+            'email' => 'required|email'
+        ]);
+
+        return !$validator->fails();
+    }
+
 }
