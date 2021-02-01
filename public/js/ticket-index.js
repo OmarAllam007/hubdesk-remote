@@ -15260,6 +15260,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Ticket",
@@ -15317,13 +15318,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "flex justify-end"
   }, [_c('div', {
-    staticClass: "pr-2 pl-2 pt-1 pb-1 rounded-full shadow text-lg",
-    class: _vm.getStatusColor
-  }, [_c('p', {
-    staticClass: "font-bold text-center overflow-hidden"
-  }, [_vm._v("\n                " + _vm._s(_vm.ticket.status))])]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.ticket.survey_submitted),
+      expression: "ticket.survey_submitted"
+    }],
     staticClass: "pr-2 pl-2 pb-1"
-  }, [(_vm.ticket.survey_submitted) ? _c('button', {
+  }, [_c('button', {
     attrs: {
       "data-toggle": "tooltip",
       "data-placement": "left",
@@ -15331,7 +15333,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('i', {
     staticClass: "fa fa-check-circle text-green-700"
-  })]) : _vm._e()])])])])]), _vm._v(" "), _c('div', {
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "pr-2 pl-2 pt-1 pb-1 rounded-full shadow text-lg",
+    class: _vm.getStatusColor
+  }, [_c('p', {
+    staticClass: "font-bold text-center overflow-hidden"
+  }, [_vm._v("\n                " + _vm._s(_vm.ticket.status))])])])])])]), _vm._v(" "), _c('div', {
     staticClass: "flex justify-start bg-gray-200  rounded-b-xl pl-4 pr-4 shadow-inner"
   }, [_c('div', {
     staticClass: "flex flex-col"
