@@ -612,7 +612,8 @@ class Ticket extends KModel
             'due_date' => $this->due_date ? $this->due_date->format('Y-m-d h:i') : 'Not Assigned',
             'type' => $this->ticket_type ?? 'Not Assigned',
             'priority' => $this->priority->name ?? 'Not Assigned',
-            'is_overdue' => $this->overdue ? 1 : 0
+            'is_overdue' => $this->overdue ? 1 : 0,
+            'survey_submitted'=> $this->isClosed() && ($this->user_survey && $this->user_survey->is_submitted)
         ];
     }
 
