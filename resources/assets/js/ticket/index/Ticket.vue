@@ -14,15 +14,16 @@
 
             <div class="flex justify-end">
               <div class="flex justify-end">
-                <div class="pr-2 pl-2 pt-1 pb-1 rounded-full shadow text-lg" :class="getStatusColor"><p
-                    class="font-bold text-center overflow-hidden">
-                  {{ ticket.status }}</p>
-                </div>
 
                 <div class="pr-2 pl-2 pb-1" v-show="ticket.survey_submitted">
                   <button data-toggle="tooltip" data-placement="left" title="Survey Submitted" >
-                  <i class="fa fa-check-circle text-green-700"></i>
+                    <i class="fa fa-check-circle text-green-700"></i>
                   </button>
+                </div>
+
+                <div class="pr-2 pl-2 pt-1 pb-1 rounded-full shadow text-lg" :class="getStatusColor"><p
+                    class="font-bold text-center overflow-hidden">
+                  {{ ticket.status }}</p>
                 </div>
               </div>
 
