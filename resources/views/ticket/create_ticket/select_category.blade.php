@@ -55,8 +55,21 @@
 
     <div class="col-sm-8">
         <div class="main">
-        @foreach($business_unit->categories()->active()->individual()->ticketType()->orderBy('order')->get() as $category)
-            @if($category->canDisplay(\App\ServiceUserGroup::$CATEGORY) && $category->available())
+            @if($business_unit->id == 6)
+                @can('show_business_document')
+                    <div class="view view-seventh">
+                        <img src="/images/23.png">
+                        <div class="info"><p>{{t('Government relation services')}}</p></div>
+                        <div class="mask">
+                            <a href="{{route('kgs.business_document.select_division')}}">
+                                <h2>{{t('Government relation services')}}</h2></a>
+                        </div>
+                    </div>
+                @endcan
+            @endif
+
+            @foreach($business_unit->categories()->active()->individual()->ticketType()->orderBy('order')->get() as $category)
+                @if($category->canDisplay(\App\ServiceUserGroup::$CATEGORY) && $category->available())
                 <!-- SEVENTH EXAMPLE -->
                     <div class="view view-seventh">
                         <img src="{{$category->logo ? $category->url : '/images/23.png'}}">
