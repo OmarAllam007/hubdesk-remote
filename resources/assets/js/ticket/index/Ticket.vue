@@ -13,10 +13,19 @@
               }} -</span> {{ ticket.subject }}</p>
 
             <div class="flex justify-end">
-              <div class="">
-                <div class="pr-2 pl-2 pt-1 pb-1 rounded-full shadow text-lg" :class="getStatusColor"><p class="font-bold text-center overflow-hidden">
-                  {{ ticket.status }}</p></div>
+              <div class="flex justify-end">
+                <div class="pr-2 pl-2 pt-1 pb-1 rounded-full shadow text-lg" :class="getStatusColor"><p
+                    class="font-bold text-center overflow-hidden">
+                  {{ ticket.status }}</p>
+                </div>
+
+                <div class="pr-2 pl-2 pb-1">
+                  <button data-toggle="tooltip" data-placement="left" title="Survey Submitted" v-if="ticket.survey_submitted">
+                  <i class="fa fa-check-circle text-green-700"></i>
+                  </button>
+                </div>
               </div>
+
 
             </div>
           </div>
@@ -99,7 +108,7 @@ export default {
         return 'bg-gray-300';
       } else if (pending.indexOf(parseInt(this.ticket.status_id)) != -1) {
         return 'bg-yellow-700 text-white';
-      }else{
+      } else {
         return 'bg-green-700 text-white';
       }
     }
