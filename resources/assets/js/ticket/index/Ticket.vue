@@ -19,8 +19,8 @@
                   {{ ticket.status }}</p>
                 </div>
 
-                <div class="pr-2 pl-2 pb-1">
-                  <button data-toggle="tooltip" data-placement="left" title="Survey Submitted" v-if="ticket.survey_submitted">
+                <div class="pr-2 pl-2 pb-1" v-show="ticket.survey_submitted">
+                  <button data-toggle="tooltip" data-placement="left" title="Survey Submitted" >
                   <i class="fa fa-check-circle text-green-700"></i>
                   </button>
                 </div>
