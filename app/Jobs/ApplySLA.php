@@ -11,10 +11,10 @@ class ApplySLA extends MatchCriteria
     /** @var Ticket */
     protected $ticket;
 
-    /** @var Carbon  */
+    /** @var Carbon */
     protected $workStartTime;
 
-    /** @var Carbon  */
+    /** @var Carbon */
     protected $workEndTime;
 
     public function __construct(Ticket $ticket)
@@ -65,8 +65,14 @@ class ApplySLA extends MatchCriteria
         $workStart = config('worktime.start');
         $workEnd = config('worktime.end');
 
+
         /** @var Carbon $date */
-        $date->addWeekdays($days);
+        if ($critical) {
+            $date->addDays($days);
+        } else {
+            $date->addWeekdays($days);
+        }
+
         $date->addHours($hours);
         $date->addMinute($minutes);
 
