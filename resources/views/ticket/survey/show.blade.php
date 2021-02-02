@@ -1,16 +1,14 @@
 @extends('layouts.app')
 
 @section('stylesheets')
-    <style>
-        #wrapper {
-            background: #eaeaea;
-        }
-    </style>
-    @if(isset($business_unit))
+
+    @if(isset($ticket->category->business_unit->business_unit_bgd))
         <style>
             body {
-                background: #f9f9f9 url(../images/white_texture.png) repeat top left;
-                background-image: url({{url('/storage'.$business_unit->business_unit_bgd ?? '')}});
+                @if($ticket->category->business_unit->business_unit_bgd)
+                 background: #f9f9f9 url(../images/white_texture.png) repeat top left;
+                @endif
+                 background-image: url({{url('/storage'.$ticket->category->business_unit->business_unit_bgd ?? '')}});
                 background-position: top center;
                 background-repeat: no-repeat;
                 background-attachment: fixed;
@@ -20,8 +18,16 @@
                 font-size: 13px;
             }
         </style>
+    @else
+        <style>
+            #wrapper {
+                background: #eaeaea;
+            }
+        </style>
     @endif
+
 @endsection
+
 @section('body')
 
     @if(can('show_survey',$ticket))
@@ -45,13 +51,20 @@
                             <h4><b>{{t('Welcome')}} {{$ticket->requester->name}}</b>,</h4>
                             <h4 class="pt-5 ">{{t('Survey sent for request')}} " {{$ticket->subject}} "</h4>
                             <div class="pt-5 flex justify-between ">
-                                <div><b>{{t('Request ID')}}</b>: <a class="text-blue-700 underline" target="_blank" href="{{route('ticket.show',$ticket->id)}}">{{$ticket->id}}</a></div>
-                                <div><b>{{t('Created On')}}</b>: {{$ticket->created_at ? $ticket->created_at->format('d-M-Y h:m a') : ''}} </div>
-                                <div><b>{{t('Closed On')}} </b>: {{$ticket->close_date ? $ticket->close_date->format('d-M-Y h:m a') : ''}}</div>
+                                <div><b>{{t('Request ID')}}</b>: <a class="text-blue-700 underline" target="_blank"
+                                                                    href="{{route('ticket.show',$ticket->id)}}">{{$ticket->id}}</a>
+                                </div>
+                                <div>
+                                    <b>{{t('Created On')}}</b>: {{$ticket->created_at ? $ticket->created_at->format('d-M-Y h:m a') : ''}}
+                                </div>
+                                <div>
+                                    <b>{{t('Closed On')}} </b>: {{$ticket->close_date ? $ticket->close_date->format('d-M-Y h:m a') : ''}}
+                                </div>
                             </div>
                         </div>
                         <div class=" p-5 break-words mb-6 flex justify-center underline text-2xl ">
-                            <p><b>{{t('Please help us to improve our service by participating in this brief survey')}}.</b></p>
+                            <p><b>{{t('Please help us to improve our service by participating in this brief survey')}}
+                                    .</b></p>
                         </div>
                         <hr>
                         @if($ticket->category->survey->first())
@@ -81,7 +94,8 @@
                         <hr>
                         <br>
                         <div class="pb-5">
-                            <h4><b>{{t('Your suggestions will help us improve our service, kindly let us know if any')}}</b>
+                            <h4>
+                                <b>{{t('Your suggestions will help us improve our service, kindly let us know if any')}}</b>
                             </h4>
                         </div>
 
