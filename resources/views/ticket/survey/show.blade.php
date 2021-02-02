@@ -66,7 +66,7 @@
                             <p><b>{{t('Please help us to improve our service by participating in this brief survey')}}
                                     .</b></p>
                         </div>
-                        <hr>
+
                         @if($ticket->category->survey->first())
                             @if($ticket->category->survey->first()->questions->count())
                                 @foreach($ticket->category->survey->first()->questions as $key=>$question)
@@ -91,7 +91,7 @@
                                 @endforeach
                             @endif
                         @endif
-                        <hr>
+
                         <br>
                         <div class="pb-5">
                             <h4>
