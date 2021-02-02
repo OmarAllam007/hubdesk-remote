@@ -28,7 +28,10 @@
                             <p><strong>Attachments</strong></p>
                             @foreach($reply->attachments as $attachment)
                                 <ul class="list-unstyled">
-                                    <li><a href="{{$attachment->url}}" target="_blank">{{$attachment->display_name}}</a>
+
+                                    <li>
+                                        <a href="{{route('ticket.attachment.download',$attachment)}}" target="_blank"><i class="fa fa-download"></i> {{$attachment->display_name}}</a>
+{{--                                        <a href="{{$attachment->url}}" target="_blank"></a>--}}
                                     </li>
                                 </ul>
                             @endforeach
