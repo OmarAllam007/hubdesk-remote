@@ -65,7 +65,7 @@ class ApprovalLevels extends Job
             $roles = $bu->roles()->whereIn('role_id', $this->levels->toArray())->get()->keyBy('role_id');
 
             foreach ($this->levels as $key => $level) {
-                dd($this->levels);
+//                dd($this->levels);
                 $role = $roles->get($level);
 
                 $this->ticket->approvals()->create([
