@@ -1,10 +1,22 @@
 <template>
   <div>
-    <div  style="height: 40px; display: block">
-      <div class="m-3 mt-10">
+    <div>
+      <div class="m-3 mt-10 flex flex-col">
         <loader v-show="loading"></loader>
+        <p class="text-3xl font-bold  pb-5 " v-if="replies.length">Conversation</p>
         <div v-for="reply in replies" v-show="!loading">
           <reply :reply="reply"></reply>
+        </div>
+
+        <div class="pt-10 ">
+          <p class="text-3xl font-bold  pb-5 " v-if="approvals.length">Approvals</p>
+          <div v-for="approval in approvals" v-show="!loading">
+            <approval :approval="approval"></approval>
+          </div>
+        </div>
+
+        <div class="pt-10 ">
+          <reply-form :ticket_id="ticket_id" :approvers="users" :templates="templates" :statuses="statuses" v-show="!loading"></reply-form>
         </div>
       </div>
     </div>
@@ -15,6 +27,8 @@
 import axios from 'axios';
 import Reply from "./Reply";
 import Loader from "../_components/Loader";
+import Approval from "./Approval";
+import ReplyForm from "./ReplyForm";
 
 export default {
   name: "TicketConversation",
@@ -22,6 +36,10 @@ export default {
   data() {
     return {
       replies: {},
+      approvals: {},
+      users: {},
+      statuses: {},
+      templates: {},
       loading: false,
     }
   },
@@ -33,13 +51,26 @@ export default {
       this.loading = true;
       axios.get(`/list/replies/${this.ticket_id}`).then((response) => {
         this.replies = response.data.replies
+        this.approvals = response.data.approvals
+        this.users = response.data.approvers
+        this.statuses = response.data.statuses
+        this.templates = response.data.templates
         this.loading = false;
       }).catch((response) => {
         this.loading = false;
       })
-    }
+    },
+    // getTicketApprovals() {
+    //   this.loading = true;
+    //   axios.get(`/list/approvals/${this.ticket_id}`).then((response) => {
+    //     this.approvals = response.data.approvals
+    //     this.loading = false;
+    //   }).catch((response) => {
+    //     this.loading = false;
+    //   })
+    // }
   },
-  components: {Reply, Loader}
+  components: {ReplyForm, Approval, Reply, Loader}
 }
 </script>
 

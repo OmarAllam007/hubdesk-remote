@@ -15,21 +15,31 @@
 
               <!--              <div class="flex flex-col justify-items-end"> &lt;!&ndash;       date       &ndash;&gt;-->
               <div class="flex justify-end">
+                <i class="fa fa-paperclip p-2 m-2 " v-if="reply.attachments.length"></i>
                 <p class="text-gray-800 p-2 m-2 text-sm  md:text-xl text-right ">{{ reply.created_at }}</p>
+
               </div>
               <!--              </div>-->
             </div>
           </div>
-          <transition name="fade" mode="out-in">
+          <transition name="fade" mode="out-in" v-if="!isCollapsed" >
             <div class="flex flex-col ">
-              <div class="p-5 bg-gray-200 shadow-inner shadow-2xl" v-if="!isCollapsed">
+              <div class="p-5 bg-gray-200 shadow-inner shadow-2xl" >
                 <p class="text-black text-center " v-html="reply.content"></p>
                 <div class="flex justify-end">
                   <p class="p-2 m-2 rounded-2xl text-center text-base font-bold w-64"
                      :class="getStatusColor">{{ reply.status }}</p>
                 </div>
+                <div class="flex flex-col" v-if="reply.attachments.length">
+                  <p class="text-black"><strong>Attachments</strong></p>
+                      <a :href="`download-attach/${attachment.id}`" @click.stop="()=>{}"
+                         target="_blank"  v-for="attachment in reply.attachments"
+                         class="hover:bg-white  flex z-50 pt-5 pb-5 pl-1 pr-1  rounded-xl ">
+                        <i class="fa fa-download pl-1 pr-1"></i>
+                        {{ attachment.display_name }}
+                      </a>
+                </div>
               </div>
-
             </div>
           </transition>
         </div>
@@ -66,6 +76,10 @@ export default {
 </script>
 
 <style scoped>
+a, a:hover, a:active, a:visited, a:focus {
+  text-decoration:none;
+}
+
 a:hover {
   text-decoration: none;
 }

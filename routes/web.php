@@ -40,6 +40,8 @@ Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
     $r->get('/group', 'ListController@supportGroup');
     $r->get('/approvers', 'ListController@approvers');
 
+    $r->get('/list-statuses/{ticket}', 'ListController@getStatus');
+
 //    KGS LIST Routes
     $r->get('kgs_category', 'ListController@kgs_category');
     $r->get('kgs_subcategory', 'ListController@kgs_subcategory');
@@ -48,6 +50,11 @@ Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
 
 
     $r->get('replies/{ticket}','API\TicketReplyController@index');
+    $r->get('approvals/{ticket}','API\TicketApprovalController@index');
+    $r->get('/approvers-list', 'ListController@approversList');
+    $r->get('/reply-templates', 'ListController@reply_templates');
+
+
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'admin.'], function (\Illuminate\Routing\Router $r) {

@@ -37,6 +37,7 @@ class TicketReplyResource extends JsonResource
             'status_id' => $this->reply->status->id,
             'to' => $this->reply->to ? implode(", ", $this->reply->to) : [],
             'cc' => $this->reply->cc ? implode(", ", $this->reply->cc) : [],
+            'attachments' => AttachmentsResource::collection($this->reply->attachments),
         ];
     }
 }
