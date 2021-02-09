@@ -16,7 +16,7 @@
         </div>
 
         <div class="pt-10 ">
-          <reply-form :ticket_id="ticket_id" :approvers="users" :templates="templates" :statuses="statuses" v-show="!loading"></reply-form>
+          <reply-form :ticket="ticket" :approvers="users" :templates="templates" :statuses="statuses" v-show="!loading"></reply-form>
         </div>
       </div>
     </div>
@@ -32,7 +32,7 @@ import ReplyForm from "./ReplyForm";
 
 export default {
   name: "TicketConversation",
-  props: ['ticket_id'],
+  props: ['ticket'],
   data() {
     return {
       replies: {},
@@ -49,7 +49,7 @@ export default {
   methods: {
     getTicketConversation() {
       this.loading = true;
-      axios.get(`/list/replies/${this.ticket_id}`).then((response) => {
+      axios.get(`/list/replies/${this.ticket.id}`).then((response) => {
         this.replies = response.data.replies
         this.approvals = response.data.approvals
         this.users = response.data.approvers
@@ -60,15 +60,7 @@ export default {
         this.loading = false;
       })
     },
-    // getTicketApprovals() {
-    //   this.loading = true;
-    //   axios.get(`/list/approvals/${this.ticket_id}`).then((response) => {
-    //     this.approvals = response.data.approvals
-    //     this.loading = false;
-    //   }).catch((response) => {
-    //     this.loading = false;
-    //   })
-    // }
+
   },
   components: {ReplyForm, Approval, Reply, Loader}
 }

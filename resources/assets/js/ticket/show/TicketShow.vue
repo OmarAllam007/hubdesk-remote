@@ -35,7 +35,7 @@
 
     <div class="w-full">
       <ticket-main :ticket="this.data.ticket" v-show="selectedTab == 0"></ticket-main>
-      <ticket-conversation v-show="selectedTab == 1" :ticket_id="this.data.ticket.id"></ticket-conversation>
+      <ticket-conversation v-show="selectedTab == 1" :ticket="this.data.ticket"></ticket-conversation>
     </div>
   </div>
 </template>

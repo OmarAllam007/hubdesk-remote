@@ -16441,7 +16441,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "TicketConversation",
-  props: ['ticket_id'],
+  props: ['ticket'],
   data: function data() {
     return {
       replies: {},
@@ -16461,7 +16461,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       this.loading = true;
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/list/replies/" + this.ticket_id).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/list/replies/" + this.ticket.id).then(function (response) {
         _this.replies = response.data.replies;
         _this.approvals = response.data.approvals;
         _this.users = response.data.approvers;
@@ -16659,14 +16659,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }, [_c('div', {
-    staticClass: "flex  shadow-lg rounded-2xl mb-3 w-full"
+    staticClass: "flex  shadow-md  rounded-2xl mb-3 w-full"
   }, [_c('div', {
     staticClass: "w-2 ",
     class: _vm.getStatusColor
   }), _vm._v(" "), _c('div', {
     staticClass: "flex flex-col"
   }, [_c('div', {
-    staticClass: "shadow-md"
+    staticClass: "shadow-sm "
   }, [_c('div', {
     staticClass: "flex w-full px-2 py-3 "
   }, [_c('div', {
@@ -16910,7 +16910,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "!loading"
     }],
     attrs: {
-      "ticket_id": _vm.ticket_id,
+      "ticket": _vm.ticket,
       "approvers": _vm.users,
       "templates": _vm.templates,
       "statuses": _vm.statuses
@@ -17034,7 +17034,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "selectedTab == 1"
     }],
     attrs: {
-      "ticket_id": this.data.ticket.id
+      "ticket": this.data.ticket
     }
   })], 1)])
 },staticRenderFns: []}
@@ -17233,14 +17233,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }, [_c('div', {
-    staticClass: "flex  shadow-lg rounded-2xl mb-3 w-full"
+    staticClass: "flex  shadow-md  rounded-2xl mb-3 w-full"
   }, [_c('div', {
     staticClass: "w-2 ",
     class: _vm.getStatusColor
   }), _vm._v(" "), _c('div', {
     staticClass: "flex flex-col"
   }, [_c('div', {
-    staticClass: "shadow-md"
+    staticClass: "shadow-sm "
   }, [_c('div', {
     staticClass: "flex w-full px-2 py-3 "
   }, [_c('div', {
@@ -17426,6 +17426,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -17433,57 +17459,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ReplyForm",
-  props: ["ticket_id", 'statuses', 'approvers', 'templates'],
+  props: ["ticket", 'statuses', 'approvers', 'templates'],
   data: function data() {
     return {
       cc: [],
       selected_template: '',
       selected_status: 0,
-      description: ''
+      description: '',
+      attachments: ''
     };
   },
-  created: function created() {
-    // this.getStatus();
-    // this.getUsers();
-    // this.getReplyTemplates();
-  },
+  created: function created() {},
   mounted: function mounted() {},
 
   methods: {
-    getStatus: function getStatus() {
+    updateDescription: function updateDescription() {
       var _this = this;
 
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/list/list-statuses/' + this.ticket_id).then(function (response) {
-        _this.statuses = response.data;
-        _this.loading = false;
-      });
-    },
-    getUsers: function getUsers() {
-      var _this2 = this;
-
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/list/approvers-list').then(function (response) {
-        _this2.users = response.data;
-        _this2.loading = false;
-      });
-    },
-    getReplyTemplates: function getReplyTemplates() {
-      var _this3 = this;
-
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/list/reply-templates').then(function (response) {
-        _this3.templates = response.data;
-        _this3.loading = false;
-      });
-    },
-    updateDescription: function updateDescription() {
-      var _this4 = this;
-
       this.templates.forEach(function (template) {
-        if (_this4.selected_template == template.id) {
-          _this4.description = template.description;
+        if (_this.selected_template == template.id) {
+          _this.description = template.description;
           return;
         }
-        _this4.description = '';
+        _this.description = '';
       });
+    },
+    attachFiles: function attachFiles(event) {
+      var files = event.target.files;
+
+      for (var i = 0, file; file = files[i]; i++) {
+        this.attachments.push(file);
+      }
+    }
+  },
+  computed: {
+    canSubmit: function canSubmit() {
+      return this.description.length > 0;
+    },
+    replyStyle: function replyStyle() {
+      if (this.canSubmit) {
+        return 'border border-blue-600 text-blue-600 max-w-max shadow-sm hover:shadow-lg hover:bg-blue-600 hover:text-white';
+      }
+      return 'border border-gray-500';
     }
   },
   components: { Select2: __WEBPACK_IMPORTED_MODULE_1_v_select2_component__["a" /* default */], Editor: __WEBPACK_IMPORTED_MODULE_2__tinymce_tinymce_vue__["a" /* default */] }
@@ -17499,7 +17516,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [(_vm.approvers.length) ? _c('div', {
     staticClass: "flex w-full"
   }, [_c('div', {
-    staticClass: "flex flex-col w-1/2"
+    staticClass: "flex flex-col w-1/2 "
   }, [_c('label', {
     attrs: {
       "for": "cc"
@@ -17565,8 +17582,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     })
   })], 2)])]) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "flex flex-col w-full  pt-5 "
-  }, [_c('editor', {
+  }, [_c('label', {
     attrs: {
+      "for": "description"
+    }
+  }, [_vm._v("Description")]), _vm._v(" "), _c('editor', {
+    attrs: {
+      "id": "description",
       "init": {
         paste_data_images: true,
         height: 300,
@@ -17585,11 +17607,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       expression: "description"
     }
-  })], 1), _vm._v(" "), _c('label', {
+  })], 1), _vm._v(" "), _c('div', {
+    staticClass: "flex"
+  }, [_c('div', {
+    staticClass: "flex flex-col w-1/2  pt-5 "
+  }, [_c('label', {
     attrs: {
       "for": "status"
     }
-  }, [_vm._v("Status:")]), _vm._v(" "), _c('select', {
+  }, [_vm._v("Change Status from ( " + _vm._s(_vm.ticket.status) + " ) to:")]), _vm._v(" "), _c('select', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -17618,8 +17644,41 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       domProps: {
         "value": statusKey
       }
-    }, [_vm._v(_vm._s(status) + "\n      ")])
-  }), 0)])])
+    }, [_vm._v(_vm._s(status) + "\n          ")])
+  }), 0)]), _vm._v(" "), _c('div', {
+    staticClass: "flex flex-col w-1/2  pt-5 pl-5  "
+  }, [_c('label', {
+    attrs: {
+      "for": "attachments"
+    }
+  }, [_vm._v("Attachments: ")]), _vm._v(" "), _c('div', {
+    staticClass: "form-group",
+    attrs: {
+      "id": "attachments"
+    }
+  }, [_c('input', {
+    staticClass: "form-control input-xs",
+    attrs: {
+      "type": "file",
+      "name": "attachments[]",
+      "multiple": ""
+    },
+    on: {
+      "change": function($event) {
+        return _vm.attachFiles($event)
+      }
+    }
+  })])])]), _vm._v(" "), _c('div', {
+    staticClass: "flex w-full  "
+  }, [_c('button', {
+    staticClass: "uppercase px-8 py-2 rounded\n       rounded-xl",
+    class: _vm.replyStyle,
+    attrs: {
+      "disabled": !_vm.canSubmit
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-send"
+  }), _vm._v(" Reply\n      ")])])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

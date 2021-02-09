@@ -1,10 +1,10 @@
 <template>
   <div>
     <a :href="`#${approval.id}`" class="hover:bg-yellow-100 bg-white block " @click="isCollapsed = !isCollapsed">
-      <div class="flex  shadow-lg rounded-2xl mb-3 w-full">
+      <div class="flex  shadow-md  rounded-2xl mb-3 w-full">
         <div class="w-2 " :class="getStatusColor"></div>
         <div class="flex flex-col">
-          <div class="shadow-md">
+          <div class="shadow-sm ">
             <div class="flex w-full px-2 py-3 ">
               <div class="flex w-1/2"> <!--       name       -->
                 <i class="fa fa-chevron-right  p-2 m-2 hover:text-orange-700" v-if="isCollapsed"></i>
