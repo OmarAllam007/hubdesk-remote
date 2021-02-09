@@ -23,8 +23,12 @@ $options = $options->prepend(t('Select Value'), '');
 <div class="form-group {{$errors->first("cf.{$field['id']}", 'has-error')}}">
     {{ Form::label($name = "cf[{$field['id']}]", t($field['name']), ['class' => 'control-label']) }}
     @if($field['required'])<strong class="text-danger">*</strong> @endif
-
-    {{ Form::select($name, t($options) , null, ['class' => 'form-control select2 cf', 'id' => "cf-{$field['id']}"]) }}
+{{--<!-- to be configured->--}}
+    @if($options->count() >= 20)
+        {{ Form::select($name, $options , null, ['class' => 'form-control select2 cf', 'id' => "cf-{$field['id']}"]) }}
+    @else
+        {{ Form::select($name, t($options) , null, ['class' => 'form-control select2 cf', 'id' => "cf-{$field['id']}"]) }}
+    @endif
     {{--    {!! $errors->first("cf.{$field['id']}", '<div class="error-message">:message</div>') !!}--}}
     {{--    @if ($errors->has('cf.'.$field['id'].''))--}}
     <div class="error-message">{{$errors->first('cf.'.$field['id'].'')}}</div>
