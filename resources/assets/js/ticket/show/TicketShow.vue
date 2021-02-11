@@ -36,13 +36,17 @@
     <div class="w-full">
       <ticket-main :ticket="this.data.ticket" v-show="selectedTab == 0"></ticket-main>
       <ticket-conversation v-show="selectedTab == 1" :ticket="this.data.ticket"></ticket-conversation>
+      <tasks v-show="selectedTab == 2" :ticket="this.data.ticket"></tasks>
     </div>
   </div>
+
+
 </template>
 
 <script>
 import TicketMain from "./TicketMain";
 import TicketConversation from "../conversation/TicketConversation";
+import Tasks from "../tasks/Tasks";
 
 export default {
   name: "TicketShow",
@@ -56,7 +60,7 @@ export default {
     }
   },
 
-  components: {TicketMain, TicketConversation}
+  components: {TicketMain, TicketConversation, Tasks}
 }
 </script>
 

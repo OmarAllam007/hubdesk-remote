@@ -33,7 +33,7 @@ class TicketReplyRequest extends Request
 
 //        dd($this->request->all());
         return [
-            'reply.content' => 'required_without:reply.template',
+            'reply.content' => 'required',
             'reply.status' => 'check_status',
         ];
     }
@@ -45,6 +45,7 @@ class TicketReplyRequest extends Request
 
     protected function addCustomRules()
     {
+
         \Validator::extend('check_status', function () {
             if ($this->status_id == 6) {
                 return false;

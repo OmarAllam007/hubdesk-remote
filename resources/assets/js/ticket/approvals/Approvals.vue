@@ -179,8 +179,6 @@ export default {
         }
       }
 
-      console.log(formData);
-
       axios.post(`/approval/approval/${this.ticket_id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'

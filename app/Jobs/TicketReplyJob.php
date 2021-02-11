@@ -12,6 +12,7 @@ use Illuminate\Mail\Message;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Mail\TicketReplyMail;
+use League\OAuth1\Client\Server\User;
 
 class TicketReplyJob extends Job //implements ShouldQueue
 {
@@ -70,11 +71,12 @@ class TicketReplyJob extends Job //implements ShouldQueue
 
     function sendEmail()
     {
-        $cc = request('reply.cc', []);
+        $ccEmails = array_merge($this->reply->cc ?? [], $this->cc ?? []);
 
-        $ccEmails = array_merge($cc, $this->cc);
+        $toUsers = \App\User::whereIn('email', $this->to)->get()->pluck('email', 'email')->toArray();
+        $ccUsers = \App\User::whereIn('email', $ccEmails)->get()->pluck('email', 'email')->toArray();
 
-        \Mail::to($this->to)->cc($ccEmails)->send(new TicketReplyMail($this->reply));
+        \Mail::to($toUsers)->cc($ccUsers)->queue(new TicketReplyMail($this->reply));
         $this->sendSurvey($this->reply->ticket);
     }
 

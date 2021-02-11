@@ -1,8 +1,8 @@
 <template>
   <div>
-    <a :href="`#${reply.id}`" class="hover:bg-yellow-100 bg-white block " @click="isCollapsed = !isCollapsed">
+    <a :href="`#${reply.id}`" class="hover:bg-yellow-100 bg-white block rounded-md  " @click="isCollapsed = !isCollapsed">
       <div class="flex  shadow-md  rounded-2xl mb-3 w-full">
-        <div class="w-2 " :class="getStatusColor"></div>
+        <div class="w-2 rounded-l-md " :class="getStatusColor"></div>
         <div class="flex flex-col">
           <div class="shadow-sm ">
             <div class="flex w-full px-2 py-3 ">
@@ -22,9 +22,13 @@
               <!--              </div>-->
             </div>
           </div>
-          <transition name="fade" mode="out-in" v-if="!isCollapsed" >
-            <div class="flex flex-col ">
+          <transition name="fade" mode="out-in" >
+            <div class="flex flex-col" v-if="!isCollapsed" >
+
               <div class="p-5 bg-gray-200 shadow-inner shadow-2xl" >
+                <div class="flex w-full" v-if="reply.cc.length">
+                  <p class="p-1 rounded-2xl text-center text-md font-bold ">Cc: {{ reply.cc }}</p>
+                </div>
                 <p class="text-black text-center " v-html="reply.content"></p>
                 <div class="flex justify-end">
                   <p class="p-2 m-2 rounded-2xl text-center text-base font-bold w-64"
@@ -78,6 +82,7 @@ export default {
 <style scoped>
 a, a:hover, a:active, a:visited, a:focus {
   text-decoration:none;
+
 }
 
 a:hover {
@@ -85,7 +90,7 @@ a:hover {
 }
 
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .1s;
+  transition: opacity .1s ;
 }
 
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
