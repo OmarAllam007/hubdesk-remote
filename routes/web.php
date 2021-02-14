@@ -54,6 +54,7 @@ Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
     $r->get('/approvers-list', 'ListController@approversList');
     $r->get('/reply-templates', 'ListController@reply_templates');
 
+    $r->get('tasks/{ticket}','API\TaskController@index');
 
 });
 

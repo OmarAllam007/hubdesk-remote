@@ -52,7 +52,10 @@ export default {
   name: "TicketShow",
   props: ['data'],
   data() {
-    return {selectedTab: 1,}
+    return {
+      selectedTab: 2,
+      templates: {},
+    }
   },
   methods: {
     changeTab(index) {

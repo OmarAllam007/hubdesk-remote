@@ -66,6 +66,7 @@ export default {
         this.users = response.data.approvers;
         this.statuses = response.data.statuses;
         this.templates = response.data.templates;
+        this.$parent.templates = response.data.templates;
         this.show_approvals = response.data.show_approvals;
         this.show_templates = response.data.show_templates;
 
