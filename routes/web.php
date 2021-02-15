@@ -178,6 +178,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', 'HomeController@index');
 
     Route::get('/custom-fields', 'CustomFieldsController@render');
+    Route::get('/custom_fields', 'CustomFieldsController@getFields');
     Route::get('/get-requester-info/{requester}', 'UserController@getUserInfo');
 
     Route::get('/report', 'ReportController@index');

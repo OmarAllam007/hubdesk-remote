@@ -28,4 +28,29 @@ class CustomFieldsController extends Controller
 
         return view('custom-fields.render', compact('category', 'subcategory', 'item'));
     }
+
+    function getFields(Request $request)
+    {
+        $category = $subcategory = $item = null;
+        $categories = collect();
+        $subcategories = collect();
+        $items = collect();
+
+        if ($request->has('category')) {
+            $category = Category::find($request->get('category'));
+            $categories = $category->custom_fields->sortBy('label')->groupBy('label');
+        }
+
+        if ($request->has('subcategory') && $request->get('subcategory') != '') {
+            $subcategory = Subcategory::find($request->get('subcategory'));
+            $subcategories = $subcategory->custom_fields->sortBy('label')->groupBy('label');
+        }
+
+        if ($request->has('item') && $request->get('item') != '') {
+            $item = Item::find($request->get('item'));
+            $items = $item->custom_fields->sortBy('label')->groupBy('label');
+        }
+
+        return $categories->toBase()->merge($subcategories->toBase())->merge($items->toBase())->toArray();
+    }
 }
