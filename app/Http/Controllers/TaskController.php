@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Attachment;
 use App\CustomField;
+use App\Http\Resources\TaskResource;
 use App\Jobs\ApplyBusinessRules;
 use App\Jobs\ApplySLA;
 use App\Jobs\NewTaskJob;
@@ -35,34 +36,32 @@ class TaskController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, ['subject' => 'required', 'category' => 'required']);
+
+        $this->validate($request, ['task.subject' => 'required', 'task.category_id' => 'required']);
 
         Ticket::flushEventListeners();
 
-        if ($request->template) {
-            $request['description'] = ReplyTemplate::find($request->template)->description;
-        }
-
+        $requestTask = $request->get('task');
         $task = Ticket::create([
-            'subject' => $request['subject'],
-            'description' => $request['description'] ?? '',
+            'subject' => $requestTask['subject'],
+            'description' => $requestTask['description'] ?? '',
             'type' => Ticket::TASK_TYPE,
-            'request_id' => $request['ticket_id'],
+            'request_id' => $requestTask['ticket_id'],
             'requester_id' => \Auth::id(),
             'creator_id' => \Auth::id(),
             'status_id' => 1,
-            'category_id' => $request['category'],
-            'subcategory_id' => $request['subcategory'],
-            'item_id' => $request['item'],
-            'group_id' => $request['group'],
-            'technician_id' => $request['technician'],
+            'category_id' => $requestTask['category_id'],
+            'subcategory_id' => $requestTask['subcategory_id'],
+            'item_id' => $requestTask['item_id'],
+            'group_id' => $requestTask['group'],
+            'technician_id' => $requestTask['technician_id'],
         ]);
 
         if (!empty($request->attachments)) {
             Attachment::uploadFiles(Attachment::TASK_TYPE, $task->id);
         }
 
-        $items = json_decode($request->input('cf'), true);
+        $items = json_decode($request->input('task.fields'), true);
 
         if (!empty($items)) {
             foreach ($items as $key => $item) {
@@ -87,9 +86,9 @@ class TaskController extends Controller
         dispatch(new ApplyBusinessRules($task));
 
         if ($request['technician'] || $task->technician_id) {
-            \Mail::send(new NewTaskMail($task));
+            \Mail::queue(new NewTaskMail($task));
         }
-
+        $task = TaskResource::make($task);
         return response()->json($task);
     }
 

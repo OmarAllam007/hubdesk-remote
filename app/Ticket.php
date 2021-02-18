@@ -600,7 +600,8 @@ class Ticket extends KModel
     function getTicketAuthorizationsAttribute()
     {
         return [
-            'can_create_note' => \Auth::user()->isSupport() && !$this->isTask() ? 1 : 0
+            'can_create_note' => \Auth::user()->isSupport() && !$this->isTask() ? 1 : 0,
+            'can_resolve' => can('resolve', $this),
         ];
     }
 
@@ -620,7 +621,9 @@ class Ticket extends KModel
             'due_date' => $this->due_date ? $this->due_date->format('Y-m-d h:i') : 'Not Assigned',
             'type' => $this->ticket_type ?? 'Not Assigned',
             'priority' => $this->priority->name ?? 'Not Assigned',
-            'is_overdue' => $this->overdue ? 1 : 0
+            'is_overdue' => $this->overdue ? 1 : 0,
+            'resolution' => $this->resoultion,
+
         ];
     }
 
@@ -633,7 +636,7 @@ class Ticket extends KModel
         $ticket['sla'] = $this->sla->name ?? t('Not Assigned');
         $ticket['description'] = $this->description;
         $ticket['service_cost'] = $this->total_service_cost ?? 'Not Assigned';
-        $ticket['fields'] = $this->fields;
+        $ticket['fields'] = $this->custom_fields;
         $ticket['notes'] = TicketNoteResource::collection($this->notes);
         $ticket['authorizations'] = $this->ticket_authorizations;
 

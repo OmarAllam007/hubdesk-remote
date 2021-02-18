@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\TicketReplyRequest;
 use App\Http\Resources\TicketApprovalResource;
 use App\Http\Resources\TicketReplyResource;
+use App\Jobs\TicketReplyJob;
 use App\Status;
 use App\Ticket;
 use App\TicketReply;
@@ -26,7 +27,7 @@ class TicketReplyController extends Controller
             'templates' => auth()->user()->reply_templates,
             'ticket' => $ticket->convertToJson(),
             'show_approvals' => can('show_approvals', $ticket),
-            'show_templates'=> auth()->user()->isSupport() && auth()->user()->reply_templates->count(),
+            'show_templates' => auth()->user()->isSupport() && auth()->user()->reply_templates->count(),
         ];
     }
 
@@ -37,12 +38,14 @@ class TicketReplyController extends Controller
         $reply->user_id = $request->user()->id;
 
         $emails = null;
+
         if (isset($request->get("reply")["cc"])) {
             $emails = User::whereIn('id', $request->get("reply")["cc"])->get()->pluck('email')->toArray();
         }
         $reply->cc = $emails;
 
         $replyAttachments = [];
+
         $files = $request->allFiles();
         $attachments = data_get($files, "reply.attachments");
 
@@ -69,4 +72,24 @@ class TicketReplyController extends Controller
                 'reply' => TicketReplyResource::make($reply)], 200);
         }
     }
+
+    function resolve(Request $request, Ticket $ticket)
+    {
+        $data = [
+            'content' => $request->get('content'),
+            'status_id' => 7,
+            'user_id' => $request->user()->id];
+
+        if($request->get('update')){
+
+        }else{
+
+        }
+        $reply = $ticket->replies()->create($data);
+        $this->dispatch(new TicketReplyJob($reply));
+
+        return response()->json(['message' => t('Reply has been added'),
+        'reply' => TicketReplyResource::make($reply)], 200);
+    }
+
 }

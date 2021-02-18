@@ -7,7 +7,7 @@
         }
     </style>
     <div id="ticketShow">
-        <ticket-show :data="{{json_encode($ticket->toJson())}}"></ticket-show>
+        <ticket-show :data="{{json_encode(\App\Http\Resources\TicketResource::make($ticket))}}"></ticket-show>
     </div>
 @endsection
 

@@ -11,7 +11,7 @@
     <td> {{ task.requester }}</td>
     <td> {{ task.technician }}</td>
     <td>
-      <a v-if="task.can_show || task.can_show" class="bg-blue-500  hover:bg-blue-700 hover:text-white text-white font-bold py-2 px-4 rounded-full mr-2  " v-bind:href="'/ticket/'+ task.id">
+      <a v-if="task.can_show" class="bg-blue-500  hover:bg-blue-700 hover:text-white text-white font-bold py-2 px-4 rounded-full mr-2  " v-bind:href="'/ticket/'+ task.id">
         <i class="fa fa-eye"></i>
         Show
       </a>

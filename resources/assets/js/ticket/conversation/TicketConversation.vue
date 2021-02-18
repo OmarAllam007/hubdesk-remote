@@ -16,7 +16,8 @@
         </div>
 
         <div class="pt-10 ">
-          <reply-form :ticket="ticketData" :approvers="users" :templates="templates" :statuses="statuses" :show_templates="show_templates"
+          <reply-form :ticket="ticketData" :approvers="users" :templates="templates" :statuses="statuses"
+                      :show_templates="show_templates"
                       v-show="!loading"></reply-form>
         </div>
       </div>
@@ -44,8 +45,8 @@ export default {
       users: {},
       statuses: {},
       templates: {},
-      show_approvals:false,
-      show_templates:false,
+      show_approvals: false,
+      show_templates: false,
       loading: false,
       ticketData,
     }
@@ -54,7 +55,10 @@ export default {
     this.getTicketConversation();
     EventBus.$on('ticket-reply-saved', () => {
       this.getTicketConversation(false);
-    })
+    });
+    EventBus.$on('add_resolution', (reply) => {
+      this.replies.unshift(reply.reply);
+    });
   },
   methods: {
     getTicketConversation(loading = true) {

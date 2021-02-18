@@ -24,4 +24,8 @@ class TaskController extends Controller
             'categories' => $task_categories,
         ];
     }
+
+    function store(Request $request){
+
+    }
 }

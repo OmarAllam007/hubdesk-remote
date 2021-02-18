@@ -48,13 +48,14 @@ Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
     $r->get('kgs_item', 'ListController@kgs_item');
     $r->get('kgs_subitem', 'ListController@kgs_subitem');
 
-
-    $r->get('replies/{ticket}','API\TicketReplyController@index');
-    $r->get('approvals/{ticket}','API\TicketApprovalController@index');
+// Ajax List
+    $r->get('replies/{ticket}', 'API\TicketReplyController@index');
+    $r->get('approvals/{ticket}', 'API\TicketApprovalController@index');
     $r->get('/approvers-list', 'ListController@approversList');
     $r->get('/reply-templates', 'ListController@reply_templates');
 
-    $r->get('tasks/{ticket}','API\TaskController@index');
+    $r->get('tasks/{ticket}', 'API\TaskController@index');
+//    $r->post('tasks/{ticket}','API\TaskController@store');
 
 });
 
@@ -132,7 +133,6 @@ Route::group(['middleware' => ['auth']], function () {
         $r->get('create-new/business-unit/{business_unit}/category/{category}', 'TicketController@selectSubcategory')->name('ticket.create.select_subcategory');
         $r->get('create-new/business-unit/{business_unit}/subcategory/{subcategory}', 'TicketController@selectItem')->name('ticket.create.select_item');
         $r->get('create-new/business-unit/{business_unit}/item/{item}', 'TicketController@selectSubItem')->name('ticket.create.select_subItem');
-        $r->post('resolution/{ticket}', ['as' => 'ticket.resolution', 'uses' => 'TicketController@resolution']);
         $r->post('edit-resolution/{ticket}', ['as' => 'ticket.edit-resolution', 'uses' => 'TicketController@editResolution']);
         $r->post('note/{ticket}', ['as' => 'ticket.note', 'uses' => 'TicketNoteController@store']);
         $r->post('note/update/{note}', ['as' => 'note.edit', 'uses' => 'TicketNoteController@update']);
@@ -159,6 +159,9 @@ Route::group(['middleware' => ['auth']], function () {
         $r->get('user_survey/display/{user_survey}', ['as' => 'user_survey.show', 'uses' => 'SurveyController@displayUserSurvey']);
 
         $r->get('download-attach/{attachment}', 'TicketController@downloadAttachment')->name('ticket.attachment.download');
+
+        $r->post('resolution/{ticket}',
+            ['as' => 'ticket.resolution', 'uses' => 'API\TicketReplyController@resolve']);
     });
 
 

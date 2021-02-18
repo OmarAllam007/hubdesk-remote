@@ -24,7 +24,8 @@ class TaskResource extends JsonResource
             'request_id' => $this->request_id ?? '',
             'can_edit' => can('task_edit', $this),
             'can_show' => can('task_show', $this),
-            'can_delete' => can('task_destroy', $this)
+            'can_delete' => can('task_destroy', $this),
+            'fields'=> $this->custom_fields
         ];
     }
 }

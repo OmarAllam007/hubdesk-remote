@@ -1,5 +1,6 @@
 <template>
   <div>
+    <notifications-component></notifications-component>
     <p class="m-3 pt-3 pl-4 pr-4 pb-1 text-2xl font-bold text-3xl">
       #{{ data.ticket.id }} - {{ data.requester.employee_id }} - <span v-html="data.ticket.subject"></span></p>
     <div class="flex justify-center">
@@ -37,6 +38,7 @@
       <ticket-main :ticket="this.data.ticket" v-show="selectedTab == 0"></ticket-main>
       <ticket-conversation v-show="selectedTab == 1" :ticket="this.data.ticket"></ticket-conversation>
       <tasks v-show="selectedTab == 2" :ticket="this.data.ticket"></tasks>
+      <resolution v-show="selectedTab == 3"></resolution>
     </div>
   </div>
 
@@ -47,13 +49,15 @@
 import TicketMain from "./TicketMain";
 import TicketConversation from "../conversation/TicketConversation";
 import Tasks from "../tasks/Tasks";
+import NotificationsComponent from "./NotificationsComponent";
+import Resolution from "../resolution/Resolution";
 
 export default {
   name: "TicketShow",
   props: ['data'],
   data() {
     return {
-      selectedTab: 2,
+      selectedTab: 3,
       templates: {},
     }
   },
@@ -63,7 +67,7 @@ export default {
     }
   },
 
-  components: {TicketMain, TicketConversation, Tasks}
+  components: {Resolution, TicketMain, TicketConversation, Tasks, NotificationsComponent}
 }
 </script>
 

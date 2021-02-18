@@ -5,16 +5,15 @@
       <div v-show="!loading">
         <div class="flex justify-end pb-5 ">
           <button
-              class="bg-green-500  hover:bg-green-700  text-white font-bold py-2 px-4 rounded-full hover:shadow-md ">
+              class="bg-green-500  hover:bg-green-700  text-white font-bold py-2 px-4 rounded-full hover:shadow-md" @click="showModal">
             <i class="fa fa-plus"></i> Create Task
           </button>
-          <!--          <button data-toggle="modal" data-target="#TaskForm" type="button"-->
-          <!--                  class="btn btn-sm btn-success" title="Create Task">-->
-          <!--             Create Task-->
-          <!--          </button>-->
         </div>
-
-        <table class="table pt-5 ">
+        <div class="flex w-3/2 bg-blue-600 justify-center text-white font-bold p-5 rounded-2xl shadow-md "
+             v-if="!tasks.length">
+          <p class="text-center "><i class="fa fa-warning"></i> No Tasks Found</p>
+        </div>
+        <table class="table pt-5 " v-if="tasks.length">
           <thead>
           <tr class=" p-3 bg-viola bg-opacity-75 text-white rounded-tl-xl font-bold">
             <th>ID</th>
@@ -34,7 +33,7 @@
       </div>
 
     </div>
-    <task-modal :showing="true"></task-modal>
+    <task-modal :showing="true" ></task-modal>
   </div>
 </template>
 
@@ -43,6 +42,7 @@ import Loader from "../_components/Loader";
 import Task from './Task.vue'
 import axios from 'axios';
 import TaskModal from "./TaskModal";
+import {EventBus} from "../../EventBus";
 
 export default {
   name: "Tasks",
@@ -63,6 +63,9 @@ export default {
 
   },
   methods: {
+    showModal(){
+      EventBus.$emit('show-tasks-modal');
+    },
     getTasks() {
       this.loading = true;
       axios.get(`/list/tasks/${this.ticket.id}`)

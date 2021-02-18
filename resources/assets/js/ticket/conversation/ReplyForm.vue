@@ -1,9 +1,9 @@
 <template>
   <div>
     <loader v-show="loading"></loader>
-    <div class="pt-10 ">
-      <notifications group="replies" position="top right" width="40%" classes="notification-alert-style"/>
-    </div>
+<!--    <div class="pt-10 ">-->
+<!--      <notifications group="replies" position="top right" width="40%" classes="notification-alert-style"/>-->
+<!--    </div>-->
     <div class="flex flex-col" v-if="!loading">
 
       <div class="flex w-full" v-if="approvers.length">
@@ -13,9 +13,10 @@
                    :settings="{ multiple:true ,placeholder:'Select User'}"/>
         </div>
 
-        <div class="flex flex-col w-1/2 pl-5 " >
+        <div class="flex flex-col w-1/2 pl-5 ">
           <label for="template" v-show="show_templates">Reply Template:</label>
-          <select v-model="selected_template" class="border bg-white rounded px-3 py-2 outline-none" id="template" v-show="show_templates"
+          <select v-model="selected_template" class="border bg-white rounded px-3 py-2 outline-none" id="template"
+                  v-show="show_templates"
                   name="template" @change="updateDescription">
             <option value="" class="py-1">Select Template</option>
             <option :value="template.id" v-for="template in templates" v-html="template.title"
@@ -129,28 +130,17 @@ export default {
           .then((response) => {
             if (response.status == 200) {
               this.$parent.replies.unshift(response.data.reply);
-              EventBus.$emit('ticket-reply-saved')
-              this.$notify({
-                group: 'replies',
-                title: 'Ticket Info',
-                text: 'Ticket reply has been added',
-                type: 'success',
-                duration: 4000,
-                image: 'https://www.alkifah.com.sa/wp-content/uploads/hub.png'
-              });
-
+              // EventBus.$emit('ticket-reply-saved')
+              EventBus.$emit('send_notification', 'replies',
+                  'Ticket Info', `Ticket reply has been added`, 'success');
               this.resetForm();
             }
 
             this.loading = false;
           }).catch((error) => {
-        this.loading = false;
-        this.$notify({
-          group: 'replies',
-          title: 'Ticket Error',
-          text: 'An error occurred while trying to send the reply',
-          type: 'error',
-        });
+          this.loading = false;
+        EventBus.$emit('send_notification', 'replies',
+            'Ticket Error', `An error occurred while trying to send the reply`, 'error');
       });
     },
     resetForm() {

@@ -50,18 +50,6 @@
             createTask() {
                 this.getCustomFields()
 
-
-                // this.saving = true;
-
-                // let formData = new FormData();
-                // for( let i = 0; i < this.files.length; i++ ) {
-                //     formData.append('files[]', this.files[i]);
-                // }
-                // formData.append('category_id',this.category);
-                // console.log(formData)
-                // var cs = [];
-
-                //Creates a formdata object for the upload, appends a CSRF token, the file itself and its respective name
                 var formData = new FormData;
                 formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
 

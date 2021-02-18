@@ -7,37 +7,22 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class TicketReplyResource extends JsonResource
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return array
-     */
-
-    /**
-     * @param TicketReply $reply
-     * @return array
-     */
-    protected $reply;
-
-    public function __construct($reply)
-    {
-        $this->reply = $reply;
-    }
-
     public function toArray($request)
     {
 
         return [
-            'id' => $this->reply->id,
-            'name' => $this->reply->user->name,
-            'is_technician' => $this->reply->ticket->technicain_id ? $this->reply->ticket->technicain_id == $this->reply->user->id : false,
-            'content' => $this->reply->content,
-            'created_at' => $this->reply->created_at->format('d/m/Y H:i A'),
-            'class' => $this->reply->class,
-            'status' => $this->reply->status->name,
-            'status_id' => $this->reply->status->id,
-            'to' => $this->reply->to ? implode(", ", $this->reply->to) : [],
-            'cc' => $this->reply->cc ? implode(", ", $this->reply->cc) : [],
-            'attachments' => AttachmentsResource::collection($this->reply->attachments),
+            'id' => $this->id,
+            'name' => $this->user->name,
+            'user_id' => $this->user,
+            'is_technician' => $this->ticket->technicain_id ? $this->ticket->technicain_id == $this->user->id : false,
+            'content' => $this->content,
+            'created_at' => $this->created_at->format('d/m/Y H:i A'),
+            'class' => $this->class,
+            'status' => $this->status->name,
+            'status_id' => $this->status->id,
+            'to' => $this->to ? implode(", ", $this->to) : [],
+            'cc' => $this->cc ? implode(", ", $this->cc) : [],
+            'attachments' => AttachmentsResource::collection($this->attachments),
         ];
     }
 }

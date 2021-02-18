@@ -10,7 +10,7 @@
         <p class="font-bold text-2xl ">Request Details</p>
         <div class="w-full mt-3 shadow-md">
           <div class="flex justify-between">
-            <div class="w-1/4 p-3 bg-viola bg-opacity-75 text-white rounded-tl-xl font-bold">Category</div>
+            <div class="w-1/4 p-3 bg-viola bg-opacity-75 text-white rounded-tl-sm   font-bold">Category</div>
             <div class="w-1/4 p-3 bg-white hover:bg-yellow-100">{{ ticket.category }}</div>
             <div class="w-1/4 p-3 bg-viola bg-opacity-75 text-white font-bold">Group</div>
             <div class="w-1/4 p-3 bg-white rounded-tr-xl hover:bg-yellow-100">{{ ticket.group }}</div>
@@ -64,7 +64,7 @@
         <p class="font-bold text-2xl ">Requester Details</p>
         <div class="w-full mt-3 shadow-md">
           <div class="flex justify-between">
-            <div class="w-1/4 p-3 bg-viola bg-opacity-75 text-white rounded-tl-xl font-bold">Name</div>
+            <div class="w-1/4 p-3 bg-viola bg-opacity-75 text-white rounded-tl-sm   font-bold">Name</div>
             <div class="w-1/4 p-3 bg-white hover:bg-yellow-100">{{ ticket.requester }}</div>
             <div class="w-1/4 p-3 bg-viola bg-opacity-75 text-white font-bold">Business Unit</div>
             <div class="w-1/4 p-3 bg-white rounded-tr-xl hover:bg-yellow-100">{{ $parent.data.requester.company }}</div>
