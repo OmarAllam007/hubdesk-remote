@@ -47,8 +47,9 @@ class StatusDashboard
             $finalData->put($key, ['created' => $value, 'closed' => $closedTickets->get($key) ?? 0]);
         });
 
-
-        dd($finalData->sortKeys());
+        $finalData->put('total', ['created' => $finalData->sum('created'),
+            'closed' => $finalData->sum('closed')]);
+        dd($finalData);
 //        $finalData =
 
 
