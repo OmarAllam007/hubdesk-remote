@@ -89,6 +89,10 @@
                                             class="fa fa-dashboard"></i> {{t('Dashboard')}}</a></li>
                         @endcan
 
+                        @can('dashboard')
+                            <li class="nav-item"><a href="{{route('dashboard.select_business_unit')}}"><i
+                                            class="fa fa-dashboard"></i> {{t('Dashboard2')}}</a></li>
+                        @endcan
 
 
                         @can('reports')
