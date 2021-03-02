@@ -94,6 +94,7 @@ Route::group(['prefix' => 'dashboard'], function (Router $r) {
         ->name('dashboard.display');
 
     $r->get('status-dashboard','StatusDashboardController@index');
+    $r->get('status-dashboard-data','StatusDashboardController@getData');
 });
 
 Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {

@@ -9,7 +9,10 @@ class StatusDashboardController extends Controller
 {
     function index()
     {
-        $data = new StatusDashboard();
-        dd($data);
+        return view('dashboard.status_dashboard.display');
+    }
+
+    function getData(){
+        return  response()->json(new StatusDashboard());
     }
 }

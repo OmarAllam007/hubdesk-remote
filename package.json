@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "apexcharts": "^3.22.0",
+    "moment": "^2.29.1",
     "puppeteer": "^3.0.4",
     "tailwindcss": "^1.9.5",
     "vue-apexcharts": "^1.6.0",
