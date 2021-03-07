@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <div class="flex justify-center">
+  <div class="flex flex-col w-full  bg-white shadow-md">
+
+  <div class="flex justify-center">
       <table class="shadow-md ">
         <thead>
         <tr>

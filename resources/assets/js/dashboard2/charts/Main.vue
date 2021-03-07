@@ -3,8 +3,10 @@
     <i class="fa fa-spin fa-spinner fa-2x"></i>
   </div>
   <div v-else>
-    <tickets-created-vs-closed :ticketsCreatedClosed="ticketsCreatedClosed"></tickets-created-vs-closed>
-    <ticket-priority :ticketsPriority="ticketsPriority"></ticket-priority>
+    <div class="flex flex-col w-full">
+      <tickets-created-vs-closed :ticketsCreatedClosed="ticketsCreatedClosed" class="pb-5 mb-5 "></tickets-created-vs-closed>
+      <ticket-priority :ticketsPriority="ticketsPriority" class="pt-5 "></ticket-priority>
+    </div>
   </div>
 </template>
 
@@ -18,7 +20,7 @@ export default {
   data() {
     return {
       ticketsPriority: [],
-      ticketsCreatedClosed:[],
+      ticketsCreatedClosed: [],
       loading: false,
     }
   },
@@ -27,9 +29,6 @@ export default {
     axios.get('/dashboard/status-dashboard-data').then((response) => {
       this.ticketsPriority = response.data.ticketsPriority;
       this.ticketsCreatedClosed = response.data.ticketsCreatedClosed;
-      _.toArray(this.ticketsCreatedClosed).forEach((item)=>{
-        console.log(item)
-      })
 
       this.loading = false;
     }).catch(e => console.log(e));

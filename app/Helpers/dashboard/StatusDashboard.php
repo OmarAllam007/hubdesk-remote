@@ -39,8 +39,9 @@ class StatusDashboard
 
     function getTicketCreatedVsClosed()
     {
+
         $createdTickets = $this->rowData->whereBetween('created_at', [$this->from, $this->to])->groupBy(function ($ticket) {
-            return Carbon::parse($ticket->created_at)->format('m-Y');
+            return Carbon::parse($ticket->created_at)->format('m/Y');
         })->map(function ($item, $key) {
 
             return $item->count();
@@ -48,21 +49,30 @@ class StatusDashboard
 
 
         $closedTickets = $this->rowData->whereBetween('close_date', [$this->from, $this->to])->groupBy(function ($ticket) {
-            return Carbon::parse($ticket->close_date)->format('m-Y');
+            return Carbon::parse($ticket->close_date)->format('m/Y');
         })->map(function ($item, $key) {
             return $item->count();
         });
         $finalData = collect();
 
         $createdTickets->each(function ($value, $key) use ($finalData, $closedTickets) {
-            $finalData->put($key, ['created' => $value, 'closed' => $closedTickets->get($key) ?? 0, 'month' => "" . $key]);
-        })->sortBy('created');
+            $finalData->push(['created' => $value, 'closed' => $closedTickets->get($key) ?? 0, 'month' => $key]);
+        });
 
 //        $finalData->put('total', ['created' => $finalData->sum('created'),
 //            'closed' => $finalData->sum('closed')]);
 
+
         $this->ticketsCreatedClosed = [];
-        $this->ticketsCreatedClosed['rows'] = $finalData->toArray();
+//        @todo sort array with a date :(
+        $this->ticketsCreatedClosed['rows'] = $finalData->sortBy(function ($col) {
+            $dateMonthArray = explode('/', $col['month']);
+            $month = $dateMonthArray[0];
+            $year = $dateMonthArray[1];
+
+            return Carbon::createFromDate($year, $month, 1);
+        }, SORT_REGULAR, true)->values()->all();
+
         $this->ticketsCreatedClosed['total'] = ['created' => $finalData->sum('created'),
             'closed' => $finalData->sum('closed')];
     }
