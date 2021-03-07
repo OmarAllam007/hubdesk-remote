@@ -92,6 +92,12 @@ class ListController extends Controller
         return BusinessUnit::orderBy('name')->get(['name', 'id']);
     }
 
+    public function dashboardBusinessUnit()
+    {
+        return BusinessUnit::whereNotNull('code')->whereNotIn('id', [34, 53, 54])
+            ->orderBy('code')->get(['name', 'code', 'id']);
+    }
+
     public function priority()
     {
         return Priority::orderBy('name')->get(['name', 'id']);

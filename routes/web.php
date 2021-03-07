@@ -105,6 +105,7 @@ Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
     $r->get('/folders/{business_unit}', 'ListController@folders');
     $r->get('/location', 'ListController@location');
     $r->get('/business-unit', 'ListController@businessUnit');
+    $r->get('/dashboard-business-unit', 'ListController@dashboardBusinessUnit');
     $r->get('/priority', 'ListController@priority');
     $r->get('/urgency', 'ListController@urgency');
     $r->get('/impact', 'ListController@impact');

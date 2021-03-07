@@ -1,22 +1,22 @@
 <template>
-  <div class="flex flex-col w-1/2 bg-white shadow-md">
+  <div class="flex flex-col  bg-white shadow-md">
     <div class="flex">
       <table class=" w-full ">
         <thead>
         <tr>
           <th
-              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-sm
+              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md
             font-semibold text-gray-600 uppercase tracking-wider">
             Month
           </th>
           <th
-              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-sm
+              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md
             font-semibold text-gray-600 uppercase tracking-wider text-center">
             Tickets Created
           </th>
 
           <th
-              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-sm
+              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md
             font-semibold text-gray-600 uppercase tracking-wider text-center">
             Tickets Closed
           </th>
@@ -24,13 +24,13 @@
         </thead>
         <tbody>
         <tr class="bg-white hover:bg-yellow-100  " v-for="(date , dateKey) in rows">
-          <td class="px-5 py-5 border-b border-gray-200 text-sm">
+          <td class="px-5 py-5 border-b border-gray-200 text-md ">
             {{ date.month }}
           </td>
-          <td class="px-5 py-5 border-b border-gray-200 text-sm  text-center">
+          <td class="px-5 py-5 border-b border-gray-200 text-md   text-center">
             {{ date.created }}
           </td>
-          <td class="px-5 py-5 border-b border-gray-200 text-sm  text-center">
+          <td class="px-5 py-5 border-b border-gray-200 text-md   text-center">
             {{ date.closed }}
           </td>
         </tr>
@@ -40,10 +40,10 @@
         </tbody>
         <tfoot>
         <tr>
-          <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-sm
+          <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md
             font-semibold text-gray-600 uppercase tracking-wider">Total
           </td>
-          <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-sm
+          <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md
             font-semibold text-gray-600 uppercase tracking-wider text-center"
               v-for="number in total ">
             {{ number }}

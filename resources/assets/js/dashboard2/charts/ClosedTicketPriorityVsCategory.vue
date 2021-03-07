@@ -21,7 +21,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr class="bg-white hover:bg-yellow-100  " v-for="(priority , priorityName) in ticketsPriority.priorities">
+        <tr class="bg-white hover:bg-yellow-100  "
+            v-for="(priority , priorityName) in closedTicketPriorityCategory.priorities">
           <td class="px-5 py-5 border-b border-gray-200 text-md  ">
             {{ priorityName }}
           </td>
@@ -39,25 +40,25 @@
             font-semibold text-gray-600 uppercase tracking-wider">Total
           </td>
           <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md
-            font-semibold text-gray-600 uppercase tracking-wider text-center" v-for="number in ticketsPriority.footer">
+                      font-semibold text-gray-600 uppercase tracking-wider text-center"
+              v-for="number in closedTicketPriorityCategory.footer">
             {{ number }}
           </td>
         </tr>
         </tfoot>
       </table>
     </div>
-    <div class="pie-chart flex justify-center" id="PieChart"></div>
+    <div class="pie-chart flex justify-center" id="closedPriorityCategoryChart"></div>
   </div>
 </template>
 
 <script>
-import c3 from 'c3';
-import 'c3/c3.css';
-import _ from 'lodash'
+import c3 from "c3";
 
 export default {
-  name: "TicketPriority",
-  props: ['ticketsPriority'],
+  name: "ClosedTicketPriorityVsCategory",
+  props: ['closedTicketPriorityCategory'],
+
   data() {
     return {
       header: []
@@ -65,14 +66,14 @@ export default {
   },
   mounted() {
     const data = [];
-    this.header = Object.values(this.ticketsPriority.header);
+    this.header = Object.values(this.closedTicketPriorityCategory.header);
 
-    for (let i in this.ticketsPriority.chartData) {
-      data.push([i != "" ? i : "Not Assigned", this.ticketsPriority.chartData[i]]);
+    for (let i in this.closedTicketPriorityCategory.chartData) {
+      data.push([i != "" ? i : "Not Assigned", this.closedTicketPriorityCategory.chartData[i]]);
     }
 
     c3.generate({
-      bindto: '#PieChart',
+      bindto: '#closedPriorityCategoryChart',
       data: {
         type: 'pie',
         columns: data,
@@ -80,18 +81,10 @@ export default {
       },
       label: {
         format: function (value, ratio) {
-          return value ;
+          return value;
         }
       }
     });
-  },
-  methods: {
-    keyExists(key) {
-      for (const [key, value] of Object.entries(this.header)) {
-        console.log(key, value);
-      }
-      return _.includes(this.header, key);
-    },
   }
 }
 </script>

@@ -5,6 +5,9 @@ namespace App\Helpers\dashboard;
 
 
 use App\Category;
+use App\Dashboard\Status\TicketPriorityVsCategory;
+use App\Dashboard\Status\TicketsPriority;
+use App\Dashboard\Status\TicketsStatusVsCategory;
 use App\Ticket;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
@@ -21,20 +24,40 @@ class StatusDashboard
 
     public $ticketsPriority;
     public $ticketsCreatedClosed;
+    public $ticketsStatusVsCategory;
+    public $ticketsPriorityVsCategory;
+    public $closedTicketsStatusVsCategory;
+    public $closedTicketsPriorityVsCategory;
 
     public function __construct($filters = [])
     {
+        $this->prepareQuery();
+
+        $this->getTicketCreatedVsClosed();
+        $this->ticketsPriority();
+        $this->ticketsStatusVsCategory();
+        $this->ticketsPriorityVsCategory();
+        $this->closedTicketsStatusVsCategory();
+        $this->closedTicketsPriorityVsCategory();
+
+//        dd($this->ticketsPriority);
+
+    }
+
+    private function prepareQuery()
+    {
+        $this->categories = Category::orderBy('name')->where('business_unit_id', 2)
+            ->get()->pluck('name')->unique();
+
         $this->to = Carbon::now()->format('Y-m-d h:m:s');
         $this->from = Carbon::now()->subYear()->format('Y-m-d h:m:s');
+
 
         $this->rowData = Ticket::query();
         $this->join();
         $this->condition();
         $this->select();
         $this->rowData = $this->rowData->get();
-
-        $this->getTicketCreatedVsClosed();
-        $this->ticketsPriority();
     }
 
     function getTicketCreatedVsClosed()
@@ -43,24 +66,22 @@ class StatusDashboard
         $createdTickets = $this->rowData->whereBetween('created_at', [$this->from, $this->to])->groupBy(function ($ticket) {
             return Carbon::parse($ticket->created_at)->format('m/Y');
         })->map(function ($item, $key) {
-
             return $item->count();
         });
 
 
-        $closedTickets = $this->rowData->whereBetween('close_date', [$this->from, $this->to])->groupBy(function ($ticket) {
-            return Carbon::parse($ticket->close_date)->format('m/Y');
-        })->map(function ($item, $key) {
-            return $item->count();
-        });
+        $closedTickets = $this->rowData->whereNotNull('close_date')
+            ->whereBetween('close_date', [$this->from, $this->to])->whereIn('StatusID', [7, 8, 9])->groupBy(function ($ticket) {
+                return Carbon::parse($ticket->close_date)->format('m/Y');
+            })->map(function ($item, $key) {
+                return $item->count();
+            });
+
         $finalData = collect();
 
         $createdTickets->each(function ($value, $key) use ($finalData, $closedTickets) {
             $finalData->push(['created' => $value, 'closed' => $closedTickets->get($key) ?? 0, 'month' => $key]);
         });
-
-//        $finalData->put('total', ['created' => $finalData->sum('created'),
-//            'closed' => $finalData->sum('closed')]);
 
 
         $this->ticketsCreatedClosed = [];
@@ -91,7 +112,8 @@ class StatusDashboard
         $this->rowData->where(function ($q) {
             $q->whereBetween('tickets.created_at', [$this->from, $this->to])
                 ->orWhereBetween('tickets.close_date', [$this->from, $this->to]);
-        })->where('c.business_unit_id', 2);
+        })->where('c.business_unit_id', 2)
+            ->where('req.business_unit_id', 2);
     }
 
     private function select()
@@ -102,6 +124,7 @@ class StatusDashboard
                 'tickets.created_at',
                 'tickets.close_date',
                 'st.name as Status',
+                'st.id as StatusID',
                 'c.name as Category',
                 'req.name as Requester',
                 'p.name as Priority',
@@ -110,68 +133,37 @@ class StatusDashboard
 
     private function ticketsPriority()
     {
-
-        $data = $this->ticketsPriorityFillData();
-
-        $footerRow = $this->ticketsPriorityFillFooter($data)['footerRow'];
-        $chartData = $this->ticketsPriorityFillFooter($data)['chartData'];
-
-        $footerRow->put('Total', $footerRow->values()->sum());
-
-        $ticketPriorityData = collect();
-        $ticketPriorityData->put('priorities', $data);
-        $ticketPriorityData->put('chartData', $chartData);
-        $ticketPriorityData->put('header', $this->categories);
-        $ticketPriorityData->put('footer', $footerRow);
-
-        $this->ticketsPriority = $ticketPriorityData;
+        $ticketsStatusVsCategory = new TicketsPriority($this->rowData, $this->from, $this->to, $this->categories);
+        $this->ticketsPriority = $ticketsStatusVsCategory->process();
     }
 
-    private function ticketsPriorityFillData()
+
+    private function ticketsStatusVsCategory()
     {
-        $this->categories = Category::orderBy('name')->where('business_unit_id', 2)
-            ->get()->pluck('name')->unique();
-
-        return $this->rowData->whereBetween('created_at', [$this->from, $this->to])
-            ->groupBy(function ($ticket) {
-                return $ticket->Priority ? $ticket->Priority : 'Not Assigned';
-            })->sortKeys()->map(function (Collection $items, $key) {
-                $itemsArr = collect();
-
-                foreach ($this->categories as $category) {
-                    $itemsArr->put($category, 0);
-                }
-
-                $items->each(function ($item) use ($itemsArr) {
-                    $itemsArr->put($item->Category, $itemsArr->get($item->Category) + 1);
-                });
-
-                return [
-                    'Total' => $items->count(),
-                    'items' => $itemsArr
-                ];
-            });
+        $ticketsStatusVsCategory = new TicketsStatusVsCategory($this->rowData, $this->from, $this->to, $this->categories, 'created_at', [1, 2, 3, 4, 5, 6]);
+        $this->ticketsStatusVsCategory = $ticketsStatusVsCategory->process();
     }
 
-    private function ticketsPriorityFillFooter($data)
+    private function ticketsPriorityVsCategory()
     {
-        $footerRow = collect();
-        $chartData = collect();
-        foreach ($this->categories as $category) {
-            $footerRow->put($category, 0);
-        }
-
-        $data->each(function ($priority, $key) use ($chartData, $footerRow) {
-            $chartData->put($key, $priority['Total']);
-
-            $priority['items']->each(function ($item, $itemKey) use ($footerRow) {
-                $footerRow->put($itemKey, $footerRow->get($itemKey) + $item);
-            });
-
-        });
-        $data = collect(['footerRow' => $footerRow, 'chartData' => $chartData]);
-
-        return $data;
+        $ticketsPriorityVsCategory = new TicketPriorityVsCategory($this->rowData, $this->from, $this->to, $this->categories,
+            'created_at', [1, 2, 3, 4, 5, 6]);
+        $this->ticketsPriorityVsCategory = $ticketsPriorityVsCategory->process();
     }
+
+    private function closedTicketsStatusVsCategory()
+    {
+        $closedTicketsStatusVsCategory = new TicketsStatusVsCategory($this->rowData, $this->from, $this->to, $this->categories,
+            'close_date', [7, 8, 9]);
+        $this->closedTicketsStatusVsCategory = $closedTicketsStatusVsCategory->process();
+    }
+
+    private function closedTicketsPriorityVsCategory()
+    {
+        $closedTicketsPriorityVsCategory = new TicketPriorityVsCategory($this->rowData, $this->from, $this->to, $this->categories,
+            'close_date', [7, 8, 9]);
+        $this->closedTicketsPriorityVsCategory = $closedTicketsPriorityVsCategory->process();
+    }
+
 
 }
