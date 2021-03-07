@@ -77,9 +77,9 @@ $exceedNoOfTickets = $requester_bu->isExceedNoOfLimitedTickets($category,$subcat
                         </span>
                         @if(env('BALANCE_SERVICES') && in_array($category->id , explode(',',env('BALANCE_SERVICES'))))
                             <span style="padding-right: 10px"
-                                  v-if="requester.extra_fields && requester.extra_fields.leave_balance">
+                                  v-if="requester.extra_fields && requester.extra_fields.balance_an_lv_ent">
                             <small><strong>{{t('Leave Balance')}}</strong></small> : <small
-                                        v-text="requester.extra_fields.leave_balance"></small> <strong></strong>
+                                        v-text="requester.extra_fields.balance_an_lv_ent"></small> <strong></strong>
                         </span>
                         @endif
                     </div>
