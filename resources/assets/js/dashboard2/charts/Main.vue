@@ -1,42 +1,27 @@
 <template>
-  <div v-if="loading">
-    <i class="fa fa-spin fa-spinner fa-2x"></i>
-  </div>
-  <div v-else>
-    <div class="flex">
-      <div class="flex flex-col w-2/12 bg-white shadow-md p-5 mr-5 rounded-xl ">
+
+  <div>
+    <button @click="generateReport">Click Please</button>
+    <div class="flex flex-col md:flex-row lg-flex-row xl:flex-row ">
+      <div
+          class="h-full justify-start  w-full lg:w-2/12   md:w-2/12   xl:w-2/12   bg-white shadow-md p-5 mr-5 rounded-xl">
         <p class="text-2xl font-bold"><i class="fa fa-filter"></i> Filters</p>
         <div class="pt-5"></div>
         <hr>
         <div class="pt-5"></div>
 
         <div class="flex flex-col">
-          <p class="text-xl font-bold">Created Date</p>
+          <p class="text-xl font-bold">Date</p>
           <div class="pt-5"></div>
           <label>
             From
             <input type="date" class="w-full pl-10 pr-3 py-2
-          rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
+          rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" v-model="filters.date_from">
           </label>
           <label>
             To
             <input type="date" class="w-full pl-10 pr-3 py-2
-          rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
-          </label>
-        </div>
-
-        <div class="flex flex-col">
-          <p class="text-xl font-bold">Created Date</p>
-          <div class="pt-5"></div>
-          <label>
-            From
-            <input type="date" class="w-full pl-10 pr-3 py-2
-          rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
-          </label>
-          <label>
-            To
-            <input type="date" class="w-full pl-10 pr-3 py-2
-          rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
+          rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" v-model="filters.date_to">
           </label>
         </div>
 
@@ -48,8 +33,8 @@
         <div class="flex flex-col w-full ">
           <div class="p-5 hover:bg-yellow-100  rounded-2xl text-md" v-for="company in businessUnits">
             <label class="inline-flex items-center">
-              <input type="checkbox" class="form-checkbox">
-              <span class="ml-2 font-medium  ">{{ company.code + ' - ' + company.name }}</span>
+              <input type="checkbox" class="form-checkbox" @change="addToBusinessUnit(company.id)">
+              <span class="ml-2 text-md font-medium ">{{ company.code + ' - ' + company.name }}</span>
             </label>
           </div>
 
@@ -57,8 +42,7 @@
 
 
         <div class="w-full px-3 mb-5">
-          <button class="block w-full bg-green-500 hover:bg-green-700 focus:bg-green-700
-            text-white rounded-lg px-3 py-3 font-semibold"><i class="fa fa-filter"></i> Filter
+          <button :class="getFilterClass" :disabled="!can_filter" @click="fillData"><i class="fa fa-filter"></i> Filter
           </button>
         </div>
 
@@ -70,31 +54,61 @@
         <!--          </select>-->
         <!--        </label>-->
       </div>
-      <div class="flex">
-        <div class="flex flex-col w-10/12 ">
+
+      <div v-if="loading">
+        <i class="fa fa-spin fa-spinner fa-2x"></i>
+      </div>
+      <div
+          v-else class="h-full justify-start  w-full lg:w-10/12  md:w-10/12  xl:w-10/12  p-5 mr-5 rounded-xl "
+          id="printMe"
+          ref="content">
+
+        <div class="flex flex-col">
           <p class="text-3xl font-bold  pb-5 text-center">Tickets Overview</p>
           <p class="text-2xl font-bold pb-5">Tickets Created Vs. Closed</p>
           <tickets-created-vs-closed :ticketsCreatedClosed="ticketsCreatedClosed"></tickets-created-vs-closed>
+        </div>
+        <div class="page-break">
+          <div class="flex flex-col">
+            <p class="text-2xl  font-bold pb-5 pt-5 ">Tickets Priority - YTD</p>
+            <ticket-priority :ticketsPriority="ticketsPriority"></ticket-priority>
+          </div>
+        </div>
+        <div class="page-break">
+          <div class="flex flex-col">
+            <p class="text-3xl font-bold  pb-5 pt-5 text-center">Open Tickets Analysis - YTD</p>
+            <p class="text-2xl font-bold pb-5">Tickets Status Vs. Category</p>
+            <ticket-status-vs-category :ticketStatus="ticketsStatus"></ticket-status-vs-category>
+          </div>
+        </div>
 
-          <p class="text-2xl  font-bold pb-5 pt-5 ">Tickets Priority - YTD</p>
-          <ticket-priority :ticketsPriority="ticketsPriority"></ticket-priority>
-
-          <p class="text-3xl font-bold  pb-5 pt-5 text-center">Open Tickets Analysis - YTD</p>
-          <p class="text-2xl font-bold pb-5">Tickets Status Vs. Category</p>
-          <ticket-status-vs-category :ticketStatus="ticketsStatus"></ticket-status-vs-category>
-          <p class="text-2xl font-bold pb-5 pt-5 ">Tickets Priority Vs. Category</p>
-          <ticket-priority-vs-category :ticketPriorityCategory="ticketPriorityCategory"></ticket-priority-vs-category>
+        <div class="page-break">
+          <div class="flex flex-col">
+            <p class="text-2xl font-bold pb-5 pt-5 ">Tickets Priority Vs. Category</p>
+            <ticket-priority-vs-category :ticketPriorityCategory="ticketPriorityCategory"></ticket-priority-vs-category>
+          </div>
+        </div>
 
 
-          <p class="text-3xl font-bold  pb-5 pt-5 text-center">Closed Tickets Analysis - YTD</p>
-          <p class="text-2xl font-bold pb-5">Tickets Status Vs. Category</p>
-          <ticket-closed-status-vs-category
-              :closedTicketsStatusVsCategory="closedTicketsStatusVsCategory"></ticket-closed-status-vs-category>
-          <p class="text-2xl font-bold pb-5 pt-5">Tickets Priority Vs. Category</p>
-          <closed-ticket-priority-vs-category
-              :closedTicketPriorityCategory="closedTicketPriorityCategory"></closed-ticket-priority-vs-category>
+        <div class="page-break">
+          <div class="flex flex-col">
+            <p class="text-3xl font-bold  pb-5 pt-5 text-center">Closed Tickets Analysis - YTD</p>
+            <p class="text-2xl font-bold pb-5">Tickets Status Vs. Category</p>
+            <ticket-closed-status-vs-category
+                :closedTicketsStatusVsCategory="closedTicketsStatusVsCategory"></ticket-closed-status-vs-category>
+          </div>
+        </div>
+
+
+        <div class="page-break">
+          <div class="flex flex-col">
+            <p class="text-2xl font-bold pb-5 pt-5">Tickets Priority Vs. Category</p>
+            <closed-ticket-priority-vs-category
+                :closedTicketPriorityCategory="closedTicketPriorityCategory"></closed-ticket-priority-vs-category>
+          </div>
         </div>
       </div>
+
     </div>
   </div>
 </template>
@@ -107,10 +121,16 @@ import TicketStatusVsCategory from "./TicketStatusVsCategory";
 import TicketPriorityVsCategory from "./TicketPriorityVsCategory";
 import TicketClosedStatusVsCategory from "./TicketClosedStatusVsCategory";
 import ClosedTicketPriorityVsCategory from "./ClosedTicketPriorityVsCategory";
+import _ from 'lodash';
+import {stringify} from "querystring";
+import VueHtml2pdf from 'vue-html2pdf'
+
 
 export default {
   name: "Main",
+
   data() {
+
     return {
       ticketsPriority: [],
       ticketsCreatedClosed: [],
@@ -119,28 +139,74 @@ export default {
       closedTicketsStatusVsCategory: [],
       loading: false,
       businessUnits: [],
+      filters: {
+        date_from: '',
+        date_to: '',
+        business_units: [],
+      }
     }
   },
   mounted() {
     $('.select2').select2({width: '100%', allowClear: true});
   },
   created() {
-    this.loading = true;
 
     axios.get('/list/dashboard-business-unit').then((response) => {
       this.businessUnits = response.data;
     });
 
-    axios.get('/dashboard/status-dashboard-data').then((response) => {
-      this.ticketsPriority = response.data.ticketsPriority;
-      this.ticketsCreatedClosed = response.data.ticketsCreatedClosed;
-      this.ticketsStatus = response.data.ticketsStatusVsCategory;
-      this.ticketPriorityCategory = response.data.ticketsPriorityVsCategory;
-      this.closedTicketsStatusVsCategory = response.data.closedTicketsStatusVsCategory;
-      this.closedTicketPriorityCategory = response.data.closedTicketsPriorityVsCategory;
+    this.fillData();
+  },
+  methods: {
+    generateReport() {
+      this.$htmlToPaper('printMe');
+    },
 
-      this.loading = false;
-    }).catch(e => console.log(e));
+    fillData(loading = true) {
+      this.loading = loading;
+
+
+      axios.get('/dashboard/status-dashboard-data', {
+        params: {
+          filters: this.filters,
+          paramsSerializer: params => {
+            return stringify(params)
+          }
+        },
+      }).then((response) => {
+        this.ticketsPriority = response.data.ticketsPriority;
+        this.ticketsCreatedClosed = response.data.ticketsCreatedClosed;
+        this.ticketsStatus = response.data.ticketsStatusVsCategory;
+        this.ticketPriorityCategory = response.data.ticketsPriorityVsCategory;
+        this.closedTicketsStatusVsCategory = response.data.closedTicketsStatusVsCategory;
+        this.closedTicketPriorityCategory = response.data.closedTicketsPriorityVsCategory;
+
+        this.loading = false;
+      }).catch(e => console.log(e));
+    },
+    addToBusinessUnit(id) {
+      if (!this.filters.business_units.includes(id)) {
+        this.filters.business_units.push(id);
+      } else {
+        const index = this.filters.business_units.indexOf(id);
+        if (index > -1) {
+          this.filters.business_units.splice(index, 1);
+        }
+      }
+    },
+  },
+  computed: {
+    getFilterClass() {
+      if (this.can_filter) {
+        return 'block w-full bg-green-500 hover:bg-green-700 focus:bg-green-700 text-white rounded-lg px-3 py-3 font-semibold';
+      }
+
+      return 'block w-full bg-gray-500 hover:bg-gray-700 focus:bg-gray-700 text-white rounded-lg px-3 py-3 font-semibold';
+    },
+    can_filter() {
+      return this.filters.date_from != '' || this.filters.date_to != ''
+          || this.filters.business_units.length > 0;
+    }
   },
   components: {
     ClosedTicketPriorityVsCategory,

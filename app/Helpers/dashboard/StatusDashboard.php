@@ -28,11 +28,13 @@ class StatusDashboard
     public $ticketsPriorityVsCategory;
     public $closedTicketsStatusVsCategory;
     public $closedTicketsPriorityVsCategory;
+    const DEFAULT_BUSINESS_UNIT = 11;
+    private $request;
 
-    public function __construct($filters = [])
+    public function __construct()
     {
+        $this->request = json_decode(request('filters'));
         $this->prepareQuery();
-
         $this->getTicketCreatedVsClosed();
         $this->ticketsPriority();
         $this->ticketsStatusVsCategory();
@@ -49,8 +51,14 @@ class StatusDashboard
         $this->categories = Category::orderBy('name')->where('business_unit_id', 2)
             ->get()->pluck('name')->unique();
 
-        $this->to = Carbon::now()->format('Y-m-d h:m:s');
-        $this->from = Carbon::now()->subYear()->format('Y-m-d h:m:s');
+        $this->from = $this->request->date_from ? Carbon::parse($this->request->date_from)->format('Y-m-d h:m:s')
+            : Carbon::now()->subYear()->format('Y-m-d h:m:s');
+
+        $this->to = $this->request->date_to ? Carbon::parse($this->request->date_to)->format('Y-m-d h:m:s')
+            : Carbon::now()->format('Y-m-d h:m:s');
+//        dd($this->from , $this->to);
+
+//        $this->from = Carbon::now()->subYear()->format('Y-m-d h:m:s');
 
 
         $this->rowData = Ticket::query();
@@ -113,7 +121,7 @@ class StatusDashboard
             $q->whereBetween('tickets.created_at', [$this->from, $this->to])
                 ->orWhereBetween('tickets.close_date', [$this->from, $this->to]);
         })->where('c.business_unit_id', 2)
-            ->where('req.business_unit_id', 2);
+            ->whereIn('req.business_unit_id', count($this->request->business_units) ? $this->request->business_units : [self::DEFAULT_BUSINESS_UNIT]);
     }
 
     private function select()

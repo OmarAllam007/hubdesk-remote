@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col w-full  bg-white shadow-md">
+  <div class="flex flex-col bg-white shadow-md">
 
     <div class="flex overflow-x-scroll">
       <table class="w-full shadow-md">
@@ -7,15 +7,15 @@
         <tr>
           <th
               class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md
-            font-semibold text-gray-600 uppercase tracking-wider">
+            font-semibold text-gray-600 uppercase ">
             Priority
           </th>
           <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200  text-center  text-md
-            font-semibold text-gray-600 uppercase tracking-wider" v-for="th in header">
+            font-semibold text-gray-600 uppercase " v-for="th in header">
             {{ th }}
           </th>
           <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200  text-center  text-md
-            font-semibold text-gray-600 uppercase tracking-wider">
+            font-semibold text-gray-600 uppercase ">
             Total
           </th>
         </tr>
@@ -36,10 +36,10 @@
         <tfoot>
         <tr>
           <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md
-            font-semibold text-gray-600 uppercase tracking-wider">Total
+            font-semibold text-gray-600 uppercase ">Total
           </td>
           <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md
-            font-semibold text-gray-600 uppercase tracking-wider text-center" v-for="number in ticketsPriority.footer">
+            font-semibold text-gray-600 uppercase  text-center" v-for="number in ticketsPriority.footer">
             {{ number }}
           </td>
         </tr>
@@ -82,7 +82,7 @@ export default {
         format: function (value, ratio) {
           return value ;
         }
-      }
+      },
     });
   },
   methods: {

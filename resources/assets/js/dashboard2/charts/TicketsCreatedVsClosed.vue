@@ -1,23 +1,23 @@
 <template>
   <div class="flex flex-col  bg-white shadow-md">
     <div class="flex">
-      <table class=" w-full ">
+      <table class="w-full ">
         <thead>
         <tr>
           <th
               class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md
-            font-semibold text-gray-600 uppercase tracking-wider">
+            font-semibold text-gray-600 uppercase">
             Month
           </th>
           <th
               class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md
-            font-semibold text-gray-600 uppercase tracking-wider text-center">
+            font-semibold text-gray-600 uppercase text-center">
             Tickets Created
           </th>
 
           <th
               class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md
-            font-semibold text-gray-600 uppercase tracking-wider text-center">
+            font-semibold text-gray-600 uppercase text-center">
             Tickets Closed
           </th>
         </tr>
@@ -41,10 +41,10 @@
         <tfoot>
         <tr>
           <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md
-            font-semibold text-gray-600 uppercase tracking-wider">Total
+            font-semibold text-gray-600 uppercase">Total
           </td>
           <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md
-            font-semibold text-gray-600 uppercase tracking-wider text-center"
+            font-semibold text-gray-600 uppercase text-center"
               v-for="number in total ">
             {{ number }}
           </td>
@@ -53,7 +53,7 @@
       </table>
     </div>
     <div class="pt-5 pb-5 "></div>
-    <div class="flex">
+    <div class="flex justify-center ">
       <div class="BarChart" id="BarChart"></div>
     </div>
   </div>
