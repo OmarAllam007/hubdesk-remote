@@ -92,6 +92,9 @@ Route::group(['prefix' => 'dashboard'], function (Router $r) {
         ->name('dashboard.select_business_unit');
     $r->get('display/{businessUnit}', 'DashboardController@display')
         ->name('dashboard.display');
+
+    $r->get('status-dashboard/{businessUnit}','StatusDashboardController@index')->name('dashboard.select_status_dashboard');
+    $r->get('status-dashboard-data','StatusDashboardController@getData');
 });
 
 Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
@@ -102,6 +105,7 @@ Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
     $r->get('/folders/{business_unit}', 'ListController@folders');
     $r->get('/location', 'ListController@location');
     $r->get('/business-unit', 'ListController@businessUnit');
+    $r->get('/dashboard-business-unit', 'ListController@dashboardBusinessUnit');
     $r->get('/priority', 'ListController@priority');
     $r->get('/urgency', 'ListController@urgency');
     $r->get('/impact', 'ListController@impact');

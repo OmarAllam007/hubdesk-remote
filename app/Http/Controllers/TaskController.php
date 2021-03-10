@@ -43,6 +43,8 @@ class TaskController extends Controller
             $request['description'] = ReplyTemplate::find($request->template)->description;
         }
 
+        $parentTicket = Ticket::find($request['ticket_id']);
+
         $task = Ticket::create([
             'subject' => $request['subject'],
             'description' => $request['description'] ?? '',
@@ -56,6 +58,7 @@ class TaskController extends Controller
             'item_id' => $request['item'],
             'group_id' => $request['group'],
             'technician_id' => $request['technician'],
+            'priority_id' => $parentTicket->priority_id,
         ]);
 
         if (!empty($request->attachments)) {

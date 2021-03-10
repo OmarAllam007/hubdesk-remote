@@ -1,6 +1,5 @@
 <template>
-  <div class="c3-chart">
-  </div>
+  <div class="c3-chart"></div>
 </template>
 
 <script>

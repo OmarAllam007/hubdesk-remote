@@ -90,7 +90,6 @@
                         @endcan
 
 
-
                         @can('reports')
                             <li class="nav-item"><a href="{{url('/reports')}}"><i
                                             class="fa fa-bar-chart"></i> {{t('Report')}}</a></li>
