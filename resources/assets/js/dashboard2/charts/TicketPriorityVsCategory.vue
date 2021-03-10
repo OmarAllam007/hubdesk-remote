@@ -1,21 +1,21 @@
 <template>
-  <div class="flex flex-col w-full  bg-white shadow-md">
+  <div class="flex flex-col w-full  bg-white shadow-md print:shadow-none">
 
-    <div class="flex overflow-x-scroll">
+    <div class="flex overflow-x-scroll print:overflow-visible">
       <table class="w-full shadow-md">
         <thead>
         <tr>
           <th
-              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md
+              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md print:text-sm
             font-semibold text-gray-600 uppercase tracking-wider">
             Priority
           </th>
           <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200  text-center  text-md
-            font-semibold text-gray-600 uppercase tracking-wider" v-for="th in header">
+print:text-sm             font-semibold text-gray-600 uppercase tracking-wider" v-for="th in header">
             {{ th }}
           </th>
           <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200  text-center  text-md
-            font-semibold text-gray-600 uppercase tracking-wider">
+print:text-sm             font-semibold text-gray-600 uppercase tracking-wider">
             Total
           </th>
         </tr>
@@ -23,13 +23,13 @@
         <tbody>
         <tr class="bg-white hover:bg-yellow-100  "
             v-for="(priority , priorityName) in ticketPriorityCategory.priorities">
-          <td class="px-5 py-5 border-b border-gray-200 text-md  ">
+          <td class="px-5 py-5 border-b border-gray-200 text-md print:text-sm  ">
             {{ priorityName }}
           </td>
-          <td class="px-5 py-5 border-b border-gray-200 text-md   text-center" v-for="(item,key) in priority.items">
+          <td class="px-5 py-5 border-b border-gray-200 text-md print:text-sm   text-center" v-for="(item,key) in priority.items">
             {{ item }}
           </td>
-          <td class="px-5 py-5 border-b border-gray-200 text-md   text-center">
+          <td class="px-5 py-5 border-b border-gray-200 text-md print:text-sm   text-center">
             {{ priority.Total }}
           </td>
         </tr>
@@ -37,10 +37,10 @@
         <tfoot>
         <tr>
           <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md
-            font-semibold text-gray-600 uppercase tracking-wider">Total
+print:text-sm             font-semibold text-gray-600 uppercase tracking-wider">Total
           </td>
           <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md
-                      font-semibold text-gray-600 uppercase tracking-wider text-center"
+print:text-sm                       font-semibold text-gray-600 uppercase tracking-wider text-center"
               v-for="number in ticketPriorityCategory.footer">
             {{ number }}
           </td>

@@ -1,44 +1,45 @@
 <template>
-  <div class="flex flex-col bg-white shadow-md">
+  <div class="flex flex-col bg-white shadow-md print:shadow-none">
 
-    <div class="flex overflow-x-scroll">
-      <table class="w-full shadow-md">
+    <div class="flex overflow-x-scroll print:overflow-visible ">
+      <table class="w-full shadow-md" id="ticketPriorityTable">
         <thead>
         <tr>
           <th
               class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md
-            font-semibold text-gray-600 uppercase ">
+            font-semibold text-gray-600 uppercase print:text-sm">
             Priority
           </th>
           <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200  text-center  text-md
-            font-semibold text-gray-600 uppercase " v-for="th in header">
+            font-semibold text-gray-600 uppercase print:text-sm" v-for="th in header">
             {{ th }}
           </th>
           <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200  text-center  text-md
-            font-semibold text-gray-600 uppercase ">
+            font-semibold text-gray-600 uppercase print:text-sm">
             Total
           </th>
         </tr>
         </thead>
         <tbody>
         <tr class="bg-white hover:bg-yellow-100  " v-for="(priority , priorityName) in ticketsPriority.priorities">
-          <td class="px-5 py-5 border-b border-gray-200 text-md  ">
+          <td class="px-5 py-5 border-b border-gray-200 text-md  print:text-sm">
             {{ priorityName }}
           </td>
-          <td class="px-5 py-5 border-b border-gray-200 text-md   text-center" v-for="(item,key) in priority.items">
+          <td class="px-5 py-5 border-b border-gray-200 text-md   text-center print:text-sm"
+              v-for="(item,key) in priority.items">
             {{ item }}
           </td>
-          <td class="px-5 py-5 border-b border-gray-200 text-md   text-center">
+          <td class="px-5 py-5 border-b border-gray-200 text-md   text-center print:text-sm">
             {{ priority.Total }}
           </td>
         </tr>
         </tbody>
         <tfoot>
         <tr>
-          <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md
+          <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md print:text-sm
             font-semibold text-gray-600 uppercase ">Total
           </td>
-          <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md
+          <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md print:text-sm
             font-semibold text-gray-600 uppercase  text-center" v-for="number in ticketsPriority.footer">
             {{ number }}
           </td>
@@ -46,7 +47,7 @@
         </tfoot>
       </table>
     </div>
-    <div class="pie-chart flex justify-center" id="PieChart"></div>
+    <div class="pie-chart flex justify-center w-auto" id="PieChart"></div>
   </div>
 </template>
 
@@ -80,7 +81,7 @@ export default {
       },
       label: {
         format: function (value, ratio) {
-          return value ;
+          return value;
         }
       },
     });
@@ -96,6 +97,12 @@ export default {
 }
 </script>
 
-<style scoped>
 
+<style scoped>
+@media print {
+  #PieChart{
+    width: 120%;
+    height: 250px;
+  }
+}
 </style>

@@ -1,7 +1,14 @@
 @extends(request()->has('print') ? 'layouts.print' : 'layouts.app')
 
 @section('header')
-    <h4> {{$businessUnit->name}} > Dashboard</h4>
+    <div class="flex justify-between">
+        <h4> {{$businessUnit->name}} > Dashboard</h4>
+        @if($businessUnit->id == 2)
+            <a href="{{route('dashboard.select_status_dashboard',compact('businessUnit'))}}"
+               class="btn btn-success btn-sm" target="_blank"><i
+                        class="fa fa-bar-chart"></i> {{ t('Status Dashboard') }}</a>
+        @endif
+    </div>
 @endsection
 
 @section('stylesheets')

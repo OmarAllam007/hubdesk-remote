@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-col  bg-white shadow-md">
+  <div class="flex flex-col  bg-white shadow-md print:shadow-none">
     <div class="flex">
-      <table class="w-full ">
+      <table class="w-full print:overflow-visible">
         <thead>
         <tr>
           <th

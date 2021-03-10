@@ -30,10 +30,14 @@ class StatusDashboard
     public $closedTicketsPriorityVsCategory;
     const DEFAULT_BUSINESS_UNIT = 11;
     private $request;
+    private $filters;
+    private $businessUnit;
 
-    public function __construct()
+    public function __construct($filters, $businessUnit)
     {
-        $this->request = json_decode(request('filters'));
+        $this->businessUnit = $businessUnit;
+        $this->filters = is_array($filters) ? $filters : json_decode($filters);
+
         $this->prepareQuery();
         $this->getTicketCreatedVsClosed();
         $this->ticketsPriority();
@@ -42,25 +46,18 @@ class StatusDashboard
         $this->closedTicketsStatusVsCategory();
         $this->closedTicketsPriorityVsCategory();
 
-//        dd($this->ticketsPriority);
-
     }
 
     private function prepareQuery()
     {
-        $this->categories = Category::orderBy('name')->where('business_unit_id', 2)
+        $this->categories = Category::orderBy('name')->where('business_unit_id', $this->businessUnit->id)
             ->get()->pluck('name')->unique();
 
-        $this->from = $this->request->date_from ? Carbon::parse($this->request->date_from)->format('Y-m-d h:m:s')
+        $this->from = isset($this->filters->date_from) && $this->filters->date_from ? Carbon::parse($this->filters->date_from)->format('Y-m-d h:m:s')
             : Carbon::now()->subYear()->format('Y-m-d h:m:s');
 
-        $this->to = $this->request->date_to ? Carbon::parse($this->request->date_to)->format('Y-m-d h:m:s')
+        $this->to = isset($this->filters->date_to) && $this->filters->date_to ? Carbon::parse($this->filters->date_to)->format('Y-m-d h:m:s')
             : Carbon::now()->format('Y-m-d h:m:s');
-//        dd($this->from , $this->to);
-
-//        $this->from = Carbon::now()->subYear()->format('Y-m-d h:m:s');
-
-
         $this->rowData = Ticket::query();
         $this->join();
         $this->condition();
@@ -117,11 +114,13 @@ class StatusDashboard
 
     private function condition()
     {
+
         $this->rowData->where(function ($q) {
             $q->whereBetween('tickets.created_at', [$this->from, $this->to])
                 ->orWhereBetween('tickets.close_date', [$this->from, $this->to]);
-        })->where('c.business_unit_id', 2)
-            ->whereIn('req.business_unit_id', count($this->request->business_units) ? $this->request->business_units : [self::DEFAULT_BUSINESS_UNIT]);
+        })->where('c.business_unit_id', $this->businessUnit->id)
+            ->whereIn('req.business_unit_id', isset($this->filters->business_units) && count($this->filters->business_units) ?
+                $this->filters->business_units : [self::DEFAULT_BUSINESS_UNIT]);
     }
 
     private function select()

@@ -1,10 +1,10 @@
 <template>
 
   <div>
-    <button @click="generateReport">Click Please</button>
     <div class="flex flex-col md:flex-row lg-flex-row xl:flex-row ">
       <div
-          class="h-full justify-start  w-full lg:w-2/12   md:w-2/12   xl:w-2/12   bg-white shadow-md p-5 mr-5 rounded-xl">
+          class="h-full justify-start  w-full lg:w-2/12   md:w-2/12   xl:w-2/12   bg-white shadow-md p-5 mr-5 rounded-xl"
+          id="filterBar">
         <p class="text-2xl font-bold"><i class="fa fa-filter"></i> Filters</p>
         <div class="pt-5"></div>
         <hr>
@@ -33,7 +33,8 @@
         <div class="flex flex-col w-full ">
           <div class="p-5 hover:bg-yellow-100  rounded-2xl text-md" v-for="company in businessUnits">
             <label class="inline-flex items-center">
-              <input type="checkbox" class="form-checkbox" @change="addToBusinessUnit(company.id)">
+              <input type="checkbox" class="form-checkbox" @change="addToBusinessUnit(company.id)"
+                     :checked="checkTheBox(company.id)">
               <span class="ml-2 text-md font-medium ">{{ company.code + ' - ' + company.name }}</span>
             </label>
           </div>
@@ -43,6 +44,13 @@
 
         <div class="w-full px-3 mb-5">
           <button :class="getFilterClass" :disabled="!can_filter" @click="fillData"><i class="fa fa-filter"></i> Filter
+          </button>
+        </div>
+
+        <div class="w-full px-3 mb-5">
+          <button
+              class="block w-full bg-red-500 hover:bg-red-700 focus:bg-red-700 text-white rounded-lg px-3 py-3 font-semibold"
+              @click="clearFilters"><i class="fa fa-times"></i> Clear
           </button>
         </div>
 
@@ -59,14 +67,16 @@
         <i class="fa fa-spin fa-spinner fa-2x"></i>
       </div>
       <div
-          v-else class="h-full justify-start  w-full lg:w-10/12  md:w-10/12  xl:w-10/12  p-5 mr-5 rounded-xl "
-          id="printMe"
-          ref="content">
+          v-else
+          class="h-full justify-start  w-full lg:w-10/12  md:w-10/12  xl:w-10/12  p-5 mr-5 rounded-xl print:w-full "
+      >
 
-        <div class="flex flex-col">
-          <p class="text-3xl font-bold  pb-5 text-center">Tickets Overview</p>
-          <p class="text-2xl font-bold pb-5">Tickets Created Vs. Closed</p>
-          <tickets-created-vs-closed :ticketsCreatedClosed="ticketsCreatedClosed"></tickets-created-vs-closed>
+        <div class="page-break">
+          <div class="flex flex-col">
+            <p class="text-3xl font-bold  pb-5 text-center">Tickets Overview</p>
+            <p class="text-2xl font-bold pb-5">Tickets Created Vs. Closed</p>
+            <tickets-created-vs-closed :ticketsCreatedClosed="ticketsCreatedClosed"></tickets-created-vs-closed>
+          </div>
         </div>
         <div class="page-break">
           <div class="flex flex-col">
@@ -123,11 +133,11 @@ import TicketClosedStatusVsCategory from "./TicketClosedStatusVsCategory";
 import ClosedTicketPriorityVsCategory from "./ClosedTicketPriorityVsCategory";
 import _ from 'lodash';
 import {stringify} from "querystring";
-import VueHtml2pdf from 'vue-html2pdf'
 
 
 export default {
   name: "Main",
+  props: ['data','business'],
 
   data() {
 
@@ -150,17 +160,19 @@ export default {
     $('.select2').select2({width: '100%', allowClear: true});
   },
   created() {
-
+    this.loading = false;
     axios.get('/list/dashboard-business-unit').then((response) => {
       this.businessUnits = response.data;
     });
 
-    this.fillData();
+    this.ticketsPriority = this.data.ticketsPriority;
+    this.ticketsCreatedClosed = this.data.ticketsCreatedClosed;
+    this.ticketsStatus = this.data.ticketsStatusVsCategory;
+    this.ticketPriorityCategory = this.data.ticketsPriorityVsCategory;
+    this.closedTicketsStatusVsCategory = this.data.closedTicketsStatusVsCategory;
+    this.closedTicketPriorityCategory = this.data.closedTicketsPriorityVsCategory;
   },
   methods: {
-    generateReport() {
-      this.$htmlToPaper('printMe');
-    },
 
     fillData(loading = true) {
       this.loading = loading;
@@ -169,6 +181,7 @@ export default {
       axios.get('/dashboard/status-dashboard-data', {
         params: {
           filters: this.filters,
+          businessUnit: this.business,
           paramsSerializer: params => {
             return stringify(params)
           }
@@ -194,6 +207,17 @@ export default {
         }
       }
     },
+    checkTheBox(id) {
+      return _.includes(this.filters.business_units, id);
+    },
+    clearFilters() {
+      this.filters = {
+        date_from: '',
+        date_to: '',
+        business_units: [],
+      }
+      this.fillData(true);
+    }
   },
   computed: {
     getFilterClass() {

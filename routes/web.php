@@ -93,7 +93,7 @@ Route::group(['prefix' => 'dashboard'], function (Router $r) {
     $r->get('display/{businessUnit}', 'DashboardController@display')
         ->name('dashboard.display');
 
-    $r->get('status-dashboard','StatusDashboardController@index');
+    $r->get('status-dashboard/{businessUnit}','StatusDashboardController@index')->name('dashboard.select_status_dashboard');
     $r->get('status-dashboard-data','StatusDashboardController@getData');
 });
 
