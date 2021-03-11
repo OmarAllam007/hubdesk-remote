@@ -602,6 +602,7 @@ class Ticket extends KModel
         return [
             'can_create_note' => \Auth::user()->isSupport() && !$this->isTask() ? 1 : 0,
             'can_resolve' => can('resolve', $this),
+            'submit_approval' => can('submit_approval', $this) ? 1 : 0
         ];
     }
 

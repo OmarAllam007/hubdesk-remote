@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Ticket;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class TicketResource extends JsonResource
@@ -9,6 +10,7 @@ class TicketResource extends JsonResource
 
     public function toArray($request)
     {
+        /** @var Ticket $this */
         $ticket = [
             'id' => $this->id ?? '',
             'subject' => $this->subject ?? '',
@@ -24,6 +26,8 @@ class TicketResource extends JsonResource
             'type' => $this->ticket_type ?? 'Not Assigned',
             'priority' => $this->priority->name ?? 'Not Assigned',
             'is_overdue' => $this->overdue ? 1 : 0,
+            'is_task' => $this->isTask() ? 1 : 0,
+
         ];
 
         $ticket['item'] = $this->item ? t($this->item->name) : 'Not Assigned';
@@ -36,6 +40,11 @@ class TicketResource extends JsonResource
         $ticket['notes'] = TicketNoteResource::collection($this->notes);
         $ticket['authorizations'] = $this->ticket_authorizations;
         $ticket['resolution'] = TicketReplyResource::make($this->resolution);
+        $ticket['approvals'] = $this->isTask() ? $this->ticket->ticket_approvals : $this->ticket_approvals;
+        $ticket['task_approvals'] = $this->isTask() ? $this->ticket_approvals : [];
+
+
+
 
         return [
             'ticket' => $ticket,

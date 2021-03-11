@@ -17,7 +17,6 @@
                 <div class="pr-2 pl-2 pt-1 pb-1 rounded-full shadow text-lg" :class="getStatusColor"><p class="font-bold text-center overflow-hidden">
                   {{ ticket.status }}</p></div>
               </div>
-
             </div>
           </div>
           <!--          <p class="pt-3">}</p>-->

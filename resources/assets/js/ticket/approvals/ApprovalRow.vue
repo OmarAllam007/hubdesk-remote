@@ -1,5 +1,5 @@
 <template>
-  <tr>
+  <tr class="hover:bg-yellow-100 bg-white">
     <td>{{ approval_data.approver }}</td>
     <td>{{ approval_data.creator }}</td>
     <td>{{ approval_data.created_at }}</td>

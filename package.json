@@ -22,7 +22,6 @@
     "jquery": "^3.1.1",
     "laravel-mix": "1.0.*",
     "lodash": "^4.17.4",
-    "node-sass": "^4.13.1",
     "select2": "^4.0.3",
     "sweetalert2": "^7.26.28",
     "vue": "^2.4.4"
@@ -30,6 +29,7 @@
   "dependencies": {
     "apexcharts": "^3.22.0",
     "puppeteer": "^3.0.4",
+    "sass": "^1.17.3",
     "tailwindcss": "^1.9.5",
     "v-rich-text-editor": "^0.1.7",
     "v-select2-component": "^0.4.3",

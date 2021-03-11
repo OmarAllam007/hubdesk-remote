@@ -1,9 +1,5 @@
 <template>
-  <!--  <div v-if="loading" class="text-center">-->
-  <!--    <i class="fa fa-spin fa-2x fa-spinner"></i>-->
-  <!--  </div>-->
-
-  <div class="">
+  <div class="m-3 mt-10 flex flex-col">
     <div v-if="is_task">
       <h5>
         <strong>
@@ -50,9 +46,9 @@
           Task Approvals
         </strong>
       </h5>
-      <table class="listing-table">
-        <thead class="table-design">
-        <tr>
+      <table class="table pt-5 ">
+        <thead>
+        <tr class=" p-3 bg-viola bg-opacity-75 text-white rounded-tl-xl font-bold">
           <th>Sent to</th>
           <th>By</th>
           <th>Sent at</th>
@@ -71,24 +67,25 @@
         </tbody>
       </table>
     </div>
+    <div class="flex justify-start pb-5 pt-5 ">
+      <button @click.prevent="addNewLevel" class="bg-transparent hover:bg-blue-500 text-blue-700
+      font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-2xl "><i
+          class="fa fa-plus"></i> Add New Approval
+      </button>
+    </div>
     <!--    @can('submit_approval',$ticket)-->
-
-    <div class="col-md-10" v-if="submit_approval">
-      <div class="form-group">
-        <button @click.prevent="addNewLevel" class="btn btn-sm btn-primary btn-rounded btn-outlined"><i
-            class="fa fa-plus"></i> Add New Approval
-        </button>
-      </div>
-      <div v-for="(level, key) of levels">
+    <div class="mt-5 flex flex-col  w-3/4  " v-if="submit_approval">
+      <div v-for="(level, key) of levels" class="bg-white shadow-md rounded-2xl mt-5  ">
         <approval-item :level="level" :users="users" :index="key" :key="key" :stages="stages_count"></approval-item>
+
       </div>
 
-      <div class="form-group">
-        <button type="submit" class="btn btn-success" @click="sendApproval()" :disabled="!can_submit">
-          <i class="fa fa-spin fa-spinner" v-if="loading"></i>
-          <i class="fa fa-check-circle" v-else></i> Send
-        </button>
-      </div>
+    </div>
+    <div class=" mt-10 ">
+      <button type="submit" class="btn btn-success" @click="sendApproval()" :disabled="!can_submit">
+        <i class="fa fa-spin fa-spinner" v-if="loading"></i>
+        <i class="fa fa-check-circle" v-else></i> Send
+      </button>
     </div>
   </div>
 </template>
@@ -102,7 +99,7 @@ import _ from "lodash";
 
 export default {
   name: "Approvals",
-  props: ["ticket_id", "is_task", "approvals", 'task_approvals', 'submit_approval', 'templates'],
+  props: ["ticket_id", "is_task", "approvals", 'task_approvals', 'submit_approval'],
 
   data() {
     return {
@@ -111,6 +108,7 @@ export default {
       loading: false,
       approvals_data: [],
       approval_stages: '',
+      templates: [],
     }
   },
   created() {
@@ -121,6 +119,10 @@ export default {
   },
   mounted() {
     this.init()
+    setTimeout(() => {
+      this.templates = this.$parent.templates;
+    }, 500)
+
   },
 
   methods: {
