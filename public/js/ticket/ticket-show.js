@@ -54352,6 +54352,11 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('v-select', __WEBPACK_IMPO
     }, 500);
   },
   mounted: function mounted() {
+    // tinymce.init({
+    //   selector: 'textarea',  // change this value according to your HTML, you can be more specific
+    //   auto_focus: 'element',
+    //   // add your configuration
+    // });
     // this.getApprovalStages();
   },
 
@@ -54652,7 +54657,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "w-1/2"
   }, [_c('div', {
     staticClass: "form-group"
-  }, [_c('label', [_vm._v("\n              Send Approval to:\n              "), _c('v-select', {
+  }, [_c('label', [_vm._v("\n            Send Approval to:\n            "), _c('v-select', {
     staticClass: "selection-list",
     attrs: {
       "options": _vm.users,
@@ -54670,7 +54675,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "w-1/2"
   }, [_c('div', {
     staticClass: "form-group"
-  }, [_c('label', [_vm._v("\n              Template:\n            ")]), _vm._v(" "), _c('select', {
+  }, [_c('label', [_vm._v("\n            Template:\n          ")]), _vm._v(" "), _c('select', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -54707,7 +54712,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "flex w-full justify-between pt-5"
   }, [_c('section', {
     staticClass: "table-container w-6/12 mr-2"
-  }, [_c('label', [_vm._v("\n            Questions\n          ")]), _vm._v(" "), _c('table', {
+  }, [_c('label', [_vm._v("\n          Questions\n        ")]), _vm._v(" "), _c('table', {
     staticClass: "listing-table table-bordered"
   }, [_c('thead', {
     staticClass: "question-header"
@@ -54743,9 +54748,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "w-6/12"
   }, [_c('div', {
     staticClass: "form-group"
-  }, [_c('label', [_vm._v("\n              Description\n            ")]), _vm._v(" "), _c('editor', {
+  }, [_c('label', [_vm._v("\n            Description\n          ")]), _vm._v(" "), _c('editor', {
     attrs: {
-      "id": "approvaldesc",
       "init": {
         paste_data_images: true,
         height: 300,
@@ -54772,7 +54776,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "w-1/2"
   }, [_c('div', {
     staticClass: "form-group"
-  }, [_c('label', [_vm._v("\n              Stage:\n            ")]), _vm._v(" "), _c('select', {
+  }, [_c('label', [_vm._v("\n            Stage:\n          ")]), _vm._v(" "), _c('select', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -54839,7 +54843,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  }), _vm._v(" Add as a new stage\n            ")])]) : _vm._e()]), _vm._v(" "), _c('div', {
+  }), _vm._v(" Add as a new stage\n          ")])]) : _vm._e()]), _vm._v(" "), _c('div', {
     staticClass: "w-1/2"
   }, [_c('div', {
     staticClass: "form-group"

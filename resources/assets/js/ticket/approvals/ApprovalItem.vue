@@ -61,22 +61,22 @@
             <label>
               Description
             </label>
-            <editor v-model="level.description" id="approvaldesc"
+            <editor v-model="level.description"
                     :init="{
           paste_data_images: true,
          height: 300,
          menubar: false,
          plugins: [
             'advlist autolink lists link image imagetools charmap print preview anchor',
-        'insertdatetime media table paste directionality textcolor colorpicker'
-         ],
+            'insertdatetime media table paste directionality textcolor colorpicker'
+            ],
          toolbar:
            'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent table | link | fontselect fontsizeselect | rtl | forecolor'
        }"
 
             ></editor>
-<!--            <textarea class="form-control select2 " v-model="level.description"-->
-<!--                      name="content" cols="30" rows="8" v-html="level.description"></textarea>-->
+            <!--            <textarea class="form-control select2 " v-model="level.description"-->
+            <!--                      name="content" cols="30" rows="8" v-html="level.description"></textarea>-->
           </div>
         </section>
       </div>
@@ -144,6 +144,11 @@ export default {
     }, 500)
   },
   mounted() {
+    // tinymce.init({
+    //   selector: 'textarea',  // change this value according to your HTML, you can be more specific
+    //   auto_focus: 'element',
+    //   // add your configuration
+    // });
     // this.getApprovalStages();
   },
   methods: {
@@ -184,7 +189,7 @@ export default {
       return this.description.length !== '' && this.approver !== 0;
     }
   },
-  components: {ApprovalQuestionRow, vSelect,Editor}
+  components: {ApprovalQuestionRow, vSelect, Editor}
 
 }
 </script>
