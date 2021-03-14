@@ -141,7 +141,8 @@ export default {
   created() {
     setTimeout(() => {
       this.templates = this.$parent.templates;
-    }, 500)
+    }, 500);
+    
   },
   mounted() {
     // tinymce.init({
