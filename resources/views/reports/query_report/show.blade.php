@@ -4,8 +4,7 @@
     <h2>{{ $report->title }}</h2>
     <a href=""></a>
     <div class="btn-toolbar">
-
-        <a href="?excel" class="btn btn-success btn-sm"><i class="fa fa-file-excel-o"></i> {{ t('Excel') }}</a>
+        <a id="exportToExcel" class="btn btn-success btn-sm"><i class="fa fa-file-excel-o"></i> {{ t('Excel') }}</a>
         <a href="/reports" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i> {{ t('Back') }}</a>
     </div>
 @endsection
@@ -41,7 +40,7 @@
                         <tr>
                             @foreach($columns as $key=>$column)
                                 <td>{{str_replace('&nbsp;','',strip_tags(collect($item)->toArray()[$column])) ?? '' }}</td>
-{{--                                <td>{!! html_entity_decode(collect($item)->toArray()[$column] )?? ''   !!}</td>--}}
+                                {{--                                <td>{!! html_entity_decode(collect($item)->toArray()[$column] )?? ''   !!}</td>--}}
                             @endforeach
                         </tr>
                     @endforeach
@@ -56,7 +55,14 @@
 
         </div>
     @endif
+@endsection
 
-
-
+@section('javascript')
+    <script>
+        $('#exportToExcel').on('click', () => {
+            var url = new URL(window.location.href);
+            url.searchParams.set('excel', '');
+            window.location.href = url;
+        })
+    </script>
 @endsection
