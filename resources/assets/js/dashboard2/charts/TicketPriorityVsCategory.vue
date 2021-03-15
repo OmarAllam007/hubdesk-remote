@@ -48,7 +48,9 @@ print:text-sm                       font-semibold text-gray-600 uppercase tracki
         </tfoot>
       </table>
     </div>
-    <div class="pie-chart flex justify-center" id="priorityCategoryChart"></div>
+
+    <div class="pt-5 pb-5 "></div>
+    <div class="pie-chart flex justify-center " id="priorityCategoryChart"></div>
   </div>
 </template>
 

@@ -47,7 +47,9 @@
         </tfoot>
       </table>
     </div>
-    <div class="pie-chart flex justify-center w-auto" id="PieChart"></div>
+    <div class="flex justify-center pt-10">
+      <div class="PieChart" id="PieChart"></div>
+    </div>
   </div>
 </template>
 
@@ -99,10 +101,10 @@ export default {
 
 
 <style scoped>
-@media print {
-  #PieChart{
-    width: 120%;
-    height: 250px;
-  }
-}
+/*@media print {*/
+/*  #PieChart{*/
+/*    width: 120%;*/
+/*    height: 250px;*/
+/*  }*/
+/*}*/
 </style>

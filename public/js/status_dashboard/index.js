@@ -51650,7 +51650,7 @@ exports = module.exports = __webpack_require__(14)(false);
 
 
 // module
-exports.push([module.i, "\n@media print {\n#PieChart[data-v-5fe44139]{\n    width: 120%;\n    height: 250px;\n}\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*@media print {*/\n/*  #PieChart{*/\n/*    width: 120%;*/\n/*    height: 250px;*/\n/*  }*/\n/*}*/\n", ""]);
 
 // exports
 
@@ -51669,6 +51669,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_lodash__);
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
+//
+//
 //
 //
 //
@@ -67450,13 +67452,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     return _c('td', {
       staticClass: "px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md print:text-sm\n          font-semibold text-gray-600 uppercase  text-center"
     }, [_vm._v("\n          " + _vm._s(number) + "\n        ")])
-  })], 2)])])]), _vm._v(" "), _c('div', {
-    staticClass: "pie-chart flex justify-center w-auto",
+  })], 2)])])]), _vm._v(" "), _vm._m(0)])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "flex justify-center pt-10"
+  }, [_c('div', {
+    staticClass: "PieChart",
     attrs: {
       "id": "PieChart"
     }
   })])
-},staticRenderFns: []}
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -68589,7 +68595,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("\n          Tickets Closed\n        ")])])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "flex justify-center "
+    staticClass: "flex justify-center pt-10"
   }, [_c('div', {
     staticClass: "BarChart",
     attrs: {
@@ -68684,7 +68690,7 @@ exports = module.exports = __webpack_require__(14)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -68697,6 +68703,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_c3__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_c3___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_c3__);
+//
 //
 //
 //
@@ -68822,7 +68829,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md\n                    font-semibold text-gray-600 uppercase tracking-wider text-center"
     }, [_vm._v("\n                    " + _vm._s(number) + "\n                  ")])
   })], 2)])])]), _vm._v(" "), _c('div', {
-    staticClass: "pie-chart flex justify-center",
+    staticClass: "pt-5 pb-5"
+  }), _vm._v(" "), _c('div', {
+    staticClass: "pie-chart flex justify-center ",
     attrs: {
       "id": "statusChart"
     }
@@ -68915,7 +68924,7 @@ exports = module.exports = __webpack_require__(14)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -68928,6 +68937,8 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_c3__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_c3___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_c3__);
+//
+//
 //
 //
 //
@@ -69056,7 +69067,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md\nprint:text-sm                       font-semibold text-gray-600 uppercase tracking-wider text-center"
     }, [_vm._v("\n            " + _vm._s(number) + "\n          ")])
   })], 2)])])]), _vm._v(" "), _c('div', {
-    staticClass: "pie-chart flex justify-center",
+    staticClass: "pt-5 pb-5 "
+  }), _vm._v(" "), _c('div', {
+    staticClass: "pie-chart flex justify-center ",
     attrs: {
       "id": "priorityCategoryChart"
     }
@@ -69149,7 +69162,7 @@ exports = module.exports = __webpack_require__(14)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -69162,6 +69175,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_c3__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_c3___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_c3__);
+//
 //
 //
 //
@@ -69288,7 +69302,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md\n                    font-semibold text-gray-600 uppercase tracking-wider text-center"
     }, [_vm._v("\n          " + _vm._s(number) + "\n        ")])
   })], 2)])])]), _vm._v(" "), _c('div', {
-    staticClass: "pie-chart flex justify-center",
+    staticClass: "pt-5 pb-5"
+  }), _vm._v(" "), _c('div', {
+    staticClass: "pie-chart flex justify-center ",
     attrs: {
       "id": "closedStatusVsCategory"
     }
@@ -69381,7 +69397,7 @@ exports = module.exports = __webpack_require__(14)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -69394,6 +69410,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_c3__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_c3___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_c3__);
+//
 //
 //
 //
@@ -69522,6 +69539,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md\n                    font-semibold text-gray-600 uppercase tracking-wider text-center"
     }, [_vm._v("\n          " + _vm._s(number) + "\n        ")])
   })], 2)])])]), _vm._v(" "), _c('div', {
+    staticClass: "pt-5 pb-5 "
+  }), _vm._v(" "), _c('div', {
     staticClass: "pie-chart flex justify-center",
     attrs: {
       "id": "closedPriorityCategoryChart"

@@ -53,7 +53,7 @@
       </table>
     </div>
     <div class="pt-5 pb-5 "></div>
-    <div class="flex justify-center ">
+    <div class="flex justify-center pt-10">
       <div class="BarChart" id="BarChart"></div>
     </div>
   </div>
