@@ -47,7 +47,8 @@
         </tfoot>
       </table>
     </div>
-    <div class="pie-chart flex justify-center" id="closedStatusVsCategory"></div>
+    <div class="pt-5 pb-5"></div>
+    <div class="pie-chart flex justify-center " id="closedStatusVsCategory"></div>
   </div>
 </template>
 

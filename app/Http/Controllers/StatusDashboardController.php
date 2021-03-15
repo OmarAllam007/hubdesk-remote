@@ -21,7 +21,7 @@ class StatusDashboardController extends Controller
             $print = new ChromePrint($filepath);
             $file = $print->print();
 
-            return response()->download($file, null, [], 'inline');
+            return response()->download($file, 'status_dashboard', [], 'inline');
         }
 
 
