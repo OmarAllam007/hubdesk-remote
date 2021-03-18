@@ -51,10 +51,11 @@ Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
 // Ajax List
     $r->get('replies/{ticket}', 'API\TicketReplyController@index');
     $r->get('approvals/{ticket}', 'API\TicketApprovalController@index');
-    $r->get('/approvers-list', 'ListController@approversList');
+//    $r->get('/approvers-list', 'ListController@approversList');
     $r->get('/reply-templates', 'ListController@reply_templates');
 
     $r->get('tasks/{ticket}', 'API\TaskController@index');
+    $r->get('logs/{ticket}', 'API\LogController@index');
 //    $r->post('tasks/{ticket}','API\TaskController@store');
 
 });

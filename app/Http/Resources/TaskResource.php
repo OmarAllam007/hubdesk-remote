@@ -11,6 +11,7 @@ class TaskResource extends JsonResource
     public function toArray($request)
     {
 
+        /** @var Ticket $this */
         return [
             'id' => $this->id,
             'subject' => $this->subject ?? '',

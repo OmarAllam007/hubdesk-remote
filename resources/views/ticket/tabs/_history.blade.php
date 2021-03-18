@@ -8,7 +8,7 @@
 </li>
 </ul>
 @foreach ($ticket->history as $date=>$logs)
-    <div class="panel panel-default history-panel" >
+    <div class="panel panel-default history-panel">
         <!-- Default panel contents -->
         <div class="panel-heading history-panel-heading" >
            <strong>
@@ -34,7 +34,8 @@
                             {{$log->approval_log_description}} {{t('at')}} {{$log->created_at->format('d/m/Y H:i')}}
                         </strong>
                     @else
-                        <strong>{{t($ticket->isTask() ? 'Task '.$log->type_action.' by' :'Ticket '.$log->type_action.' by')}}   {{$log->user->name}}
+                        <strong>{{t($ticket->isTask() ? 'Task '.$log->type_action.' by' :'Ticket '.$log->type_action.' by')}}
+                            {{$log->user->name}}
                             {{t('at')}} {{$log->created_at->format('d/m/Y H:i')}}</strong>
                         <ul>
 {{--                            @dd($log)--}}

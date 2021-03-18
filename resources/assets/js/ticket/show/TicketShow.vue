@@ -36,7 +36,7 @@
 
     <div class="w-full">
       <ticket-main :ticket="this.data.ticket" v-show="selectedTab == 0"></ticket-main>
-      <ticket-conversation v-show="selectedTab == 1" :ticket="this.data.ticket"></ticket-conversation>
+      <ticket-conversation v-show="selectedTab == 1" :ticket="this.data.ticket" ></ticket-conversation>
       <tasks v-show="selectedTab == 2" :ticket="this.data.ticket"></tasks>
       <resolution v-show="selectedTab == 3"></resolution>
 
@@ -47,6 +47,8 @@
                  :submit_approval="data.ticket.authorizations.submit_approval"
                  :templates="templates"
       ></approvals>
+
+      <ticket-log :ticket_id="this.data.ticket.id" v-show="selectedTab == 5"> </ticket-log>
     </div>
   </div>
 
@@ -60,13 +62,14 @@ import Tasks from "../tasks/Tasks";
 import NotificationsComponent from "./NotificationsComponent";
 import Resolution from "../resolution/Resolution";
 import Approvals from "../approvals/Approvals";
+import TicketLog from "../log/TicketLog";
 
 export default {
   name: "TicketShow",
   props: ['data'],
   data() {
     return {
-      selectedTab: 4 ,
+      selectedTab: 0  ,
       templates: {},
     }
   },
@@ -76,7 +79,7 @@ export default {
     }
   },
 
-  components: {Approvals, Resolution, TicketMain, TicketConversation, Tasks, NotificationsComponent}
+  components: {TicketLog, Approvals, Resolution, TicketMain, TicketConversation, Tasks, NotificationsComponent}
 }
 </script>
 

@@ -41,6 +41,7 @@
 
 <script>
 import axios from "axios";
+import {EventBus} from "../../EventBus";
 
 export default {
   name: "ApprovalRow",
@@ -67,6 +68,10 @@ export default {
       axios.get(`/approval/resend/${id}`).then((response) => {
         this.approval_data['resend']++
         this.loading = false;
+        EventBus.$emit('send_notification', 'approvals',
+            'Ticket Info', `The approval has been resubmitted successfully`, 'success');
+
+        EventBus.$emit('ticket_updated');
       });
     },
   }

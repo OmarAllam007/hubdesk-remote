@@ -191,7 +191,13 @@ export default {
           this.approvals_data.push(approval);
           this.approvals_data = _.orderBy(this.approvals_data, ['stage'], ['asc'])
         })
+
         this.clearForm();
+
+        EventBus.$emit('send_notification', 'approvals',
+            'Ticket Info', `Approval/s sent successfully`, 'success');
+
+        EventBus.$emit('ticket_updated');
       }).catch((e) => {
         this.loading = false;
       });

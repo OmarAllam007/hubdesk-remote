@@ -252,6 +252,7 @@ export default {
                   'Ticket Info', `Task #${response.data.id} has been created`, 'success');
               this.resetForm();
               this.hideModal();
+              EventBus.$emit('ticket_updated');
             }
             this.loading = false;
           }).catch((error) => {

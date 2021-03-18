@@ -49,6 +49,7 @@
 import Note from "./Note";
 import Modal from "./Modal";
 import axios from "axios";
+import {EventBus} from "../../EventBus";
 
 export default {
   name: "Notes",
@@ -83,6 +84,9 @@ export default {
     removeNoteRow(value, id) {
       axios.post(`/ticket/remove-note/${id}`).then((response) => {
         this.ticket_notes.splice(value, 1);
+
+        EventBus.$emit('send_notification', 'notes',
+            'Ticket Info', `The Note has been deleted successfully`, 'error');
       })
     }
 

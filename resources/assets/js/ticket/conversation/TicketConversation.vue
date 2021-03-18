@@ -18,7 +18,7 @@
         <div class="pt-10 ">
           <reply-form :ticket="ticketData" :approvers="users" :templates="templates" :statuses="statuses"
                       :show_templates="show_templates"
-                      v-show="!loading"></reply-form>
+                      v-show="!loading" v-cloak></reply-form>
         </div>
       </div>
     </div>

@@ -1,16 +1,20 @@
 <template>
   <div>
     <loader v-show="loading"></loader>
-<!--    <div class="pt-10 ">-->
-<!--      <notifications group="replies" position="top right" width="40%" classes="notification-alert-style"/>-->
-<!--    </div>-->
+    <!--    <div class="pt-10 ">-->
+    <!--      <notifications group="replies" position="top right" width="40%" classes="notification-alert-style"/>-->
+    <!--    </div>-->
     <div class="flex flex-col" v-if="!loading">
 
-      <div class="flex w-full" v-if="approvers.length">
+      <div class="flex w-full" v-if="approvers.length" v-cloak>
         <div class="flex flex-col w-1/2 ">
           <label for="cc">Cc:</label>
-          <Select2 v-model="cc" :options="approvers" id="cc" name="cc"
-                   :settings="{ multiple:true ,placeholder:'Select User'}"/>
+          <select name="cc" id="cc" class="select2 form-control" multiple>
+            <option value=""></option>
+            <option :value="approver.id" v-for="approver in approvers">{{ approver.text }}</option>
+          </select>
+          <!--          <Select2 v-model="cc" :options="approvers"-->
+          <!--                   :settings="{ multiple:true ,placeholder:'Select User'}" class="selection-list"/>-->
         </div>
 
         <div class="flex flex-col w-1/2 pl-5 ">
@@ -88,6 +92,30 @@ import {EventBus} from "../../EventBus";
 export default {
   name: "ReplyForm",
   props: ["ticket", 'statuses', 'approvers', 'templates', 'show_templates'],
+  mounted() {
+
+    setTimeout(() => {
+      $('.select2').select2({
+        width: 'element',
+        minimumResultsForSearch: Infinity
+      }).on('select2:select', (e) => {
+        var data = e.params.data;
+        this.cc.push(data.id);
+      });
+    }, 2000);
+
+  },
+  created() {
+    setTimeout(() => {
+      $('.select2').select2({
+        width: 'element',
+        minimumResultsForSearch: Infinity
+      }).on('select2:select', (e) => {
+        var data = e.params.data;
+        this.cc.push(data.id);
+      });
+    }, 2000);
+  },
   data() {
     return {
       loading: false,
@@ -133,12 +161,14 @@ export default {
               // EventBus.$emit('ticket-reply-saved')
               EventBus.$emit('send_notification', 'replies',
                   'Ticket Info', `Ticket reply has been added`, 'success');
+
+              EventBus.$emit('ticket_updated');
               this.resetForm();
             }
 
             this.loading = false;
           }).catch((error) => {
-          this.loading = false;
+        this.loading = false;
         EventBus.$emit('send_notification', 'replies',
             'Ticket Error', `An error occurred while trying to send the reply`, 'error');
       });
@@ -149,6 +179,15 @@ export default {
       this.cc = [];
       this.description = '';
       this.attachments = [];
+      setTimeout(() => {
+        $('.select2').select2({
+          width: 'element',
+          minimumResultsForSearch: Infinity
+        }).on('select2:select', (e) => {
+          var data = e.params.data;
+          this.cc.push(data.id);
+        });
+      }, 1000);
     },
     prepareData() {
       var reply = new FormData;
@@ -190,11 +229,15 @@ export default {
 </script>
 
 <style scoped>
+[v-cloak] {
+  display: none;
+}
+
 .cross-float {
   float: right
 }
 
 .selection-list {
-  width: 500px !important;
+  width: 100% !important;
 }
 </style>

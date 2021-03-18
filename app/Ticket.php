@@ -227,6 +227,12 @@ class Ticket extends KModel
         return Ticket::where('id', $this->request_id)->first();
     }
 
+//    public function getHistoryAttribute()
+//    {
+//        return TicketLog::select('*', \DB::raw('DATE(created_at) as date_created'))
+//            ->where('ticket_id', $this->id)->get()->groupBy('date_created');
+//
+//    }
     public function getHistoryAttribute()
     {
         return TicketLog::select('*', \DB::raw('DATE(created_at) as date_created'))

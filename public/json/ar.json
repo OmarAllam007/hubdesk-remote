@@ -1,0 +1,8554 @@
+[
+  {
+    "id": 1,
+    "word": "Medical Insurance Services",
+    "language": "ar",
+    "translation": "التأمين الطبي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2,
+    "word": "Email Services",
+    "language": "ar",
+    "translation": "خدمات البريد الإلكتروني",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 3,
+    "word": "Social Insurance Services",
+    "language": "ar",
+    "translation": "التأمينات الإجتماعية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 4,
+    "word": "Payroll Services",
+    "language": "ar",
+    "translation": "الرواتب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 5,
+    "word": "End of Service",
+    "language": "ar",
+    "translation": "نهاية الخدمة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 6,
+    "word": "Urgent Vacation Service",
+    "language": "ar",
+    "translation": "اجازة عاجلة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 7,
+    "word": "Vacation Service",
+    "language": "ar",
+    "translation": "طلب اجازة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 8,
+    "word": "Advances Services",
+    "language": "ar",
+    "translation": "السلف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 9,
+    "word": "Iqama Renewal Services",
+    "language": "ar",
+    "translation": "تجديد الاقامات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 10,
+    "word": "Re-Entry Visa  Services",
+    "language": "ar",
+    "translation": "خروج وعودة لغير الإجازات النظامية ورحلات العمل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 11,
+    "word": "Business Visit Visa Service",
+    "language": "ar",
+    "translation": "تأشيرة زيارة تجارية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 12,
+    "word": "Letter Service",
+    "language": "ar",
+    "translation": "طلب خطاب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 13,
+    "word": "Work Acknowledge Service",
+    "language": "ar",
+    "translation": "إستلام العمل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 14,
+    "word": "Business trip Service",
+    "language": "ar",
+    "translation": "رحلة العمل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 15,
+    "word": "Family Medical Insurance",
+    "language": "ar",
+    "translation": "إضافة عائلة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 16,
+    "word": "Medical Claims",
+    "language": "ar",
+    "translation": "تعويض نقدي لمطالبة طبية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 17,
+    "word": "CCHI - link Jawzat",
+    "language": "ar",
+    "translation": "مجلس الضمان الصحي - ربط جوازات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 18,
+    "word": "Embassy Certificate",
+    "language": "ar",
+    "translation": "شهادة للسفارة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 20,
+    "word": "Information Correction",
+    "language": "ar",
+    "translation": "تعديل معلومات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 21,
+    "word": "Delete employee / family member",
+    "language": "ar",
+    "translation": "إلغاء موظف أو فرد من العائلة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 22,
+    "word": "Add New Addition employee",
+    "language": "ar",
+    "translation": "إضافة موظف جديد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 23,
+    "word": "Delete Medical Insurance of Employee ",
+    "language": "ar",
+    "translation": "الغاء التأمين الطبي لموظف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 24,
+    "word": "Delete Medical Insurance of family member",
+    "language": "ar",
+    "translation": "الغاء التأمين الطبي لفرد من العائلة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 25,
+    "word": "Pre-approval for surgery",
+    "language": "ar",
+    "translation": "موافقة مسبقة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 26,
+    "word": "Subcategories",
+    "language": "ar",
+    "translation": "الفئات الفرعية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 27,
+    "word": "Categories",
+    "language": "ar",
+    "translation": "الفئات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 28,
+    "word": "New Ticket",
+    "language": "ar",
+    "translation": "طلب جديد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 29,
+    "word": "Tickets",
+    "language": "ar",
+    "translation": "الطلبات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 30,
+    "word": "Report",
+    "language": "ar",
+    "translation": "التقارير",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 31,
+    "word": "Admin",
+    "language": "ar",
+    "translation": "إدارة النظام",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 33,
+    "word": "Select Subcategory",
+    "language": "ar",
+    "translation": "اختر الفئة الفرعية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 34,
+    "word": "Delete Medical Insurance of Employee",
+    "language": "ar",
+    "translation": "حذف التأمين الطبي لموظف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 35,
+    "word": "Medical Card Replacement - Lost",
+    "language": "ar",
+    "translation": "بدل فاقد لبطاقة التأمين",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 36,
+    "word": "Home",
+    "language": "ar",
+    "translation": "البداية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 37,
+    "word": "Reset Password",
+    "language": "ar",
+    "translation": "استعادة كلمة المرور",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 38,
+    "word": "Logout",
+    "language": "ar",
+    "translation": "تسجيل الخروج",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 39,
+    "word": "Advances",
+    "language": "ar",
+    "translation": "السلف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 40,
+    "word": "Business trip\n",
+    "language": "ar",
+    "translation": "رحلات العمل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 41,
+    "word": "Others",
+    "language": "ar",
+    "translation": "أخرى",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 42,
+    "word": "Request extra mail space/attachment",
+    "language": "ar",
+    "translation": "طلب مساحة إضافية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 43,
+    "word": "Unable to login",
+    "language": "ar",
+    "translation": "غير قادر على الدخول",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 44,
+    "word": "Unable to receive emails",
+    "language": "ar",
+    "translation": "مشكلة استلام الايميل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 45,
+    "word": "Update Email Information",
+    "language": "ar",
+    "translation": "تحديث بيانات الايميل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 46,
+    "word": "Business trip\n",
+    "language": "ar",
+    "translation": "رحلات العمل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 47,
+    "word": "Delete Employee",
+    "language": "ar",
+    "translation": "حذف موظف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 48,
+    "word": "work injuries",
+    "language": "ar",
+    "translation": "إصابات العمل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 49,
+    "word": "Add New Employee",
+    "language": "ar",
+    "translation": "إضافة موظف جديد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 50,
+    "word": "Ticket Inquiries",
+    "language": "ar",
+    "translation": "استفسار عن التذاكر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 51,
+    "word": "End of Service Inquires",
+    "language": "ar",
+    "translation": "استفسار عن نهاية الخدمة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 52,
+    "word": "Vacation Inquires",
+    "language": "ar",
+    "translation": "استفسار عن الاجازات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 53,
+    "word": "Salaries Inquires",
+    "language": "ar",
+    "translation": "استفسار عن الرواتب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 54,
+    "word": "Business trips",
+    "language": "ar",
+    "translation": "رحلات العمل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 56,
+    "word": "Advance fora new employee",
+    "language": "ar",
+    "translation": "سلفة لموظف جديد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 57,
+    "word": "Humanity advance",
+    "language": "ar",
+    "translation": "سلفة انسانية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 58,
+    "word": "Requester",
+    "language": "ar",
+    "translation": "صاحب الطلب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 59,
+    "word": "Business Unit",
+    "language": "ar",
+    "translation": "الشركة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 60,
+    "word": "Department",
+    "language": "ar",
+    "translation": "القسم",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 61,
+    "word": "Position",
+    "language": "ar",
+    "translation": "المسمى الوظيفي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 62,
+    "word": "Email",
+    "language": "ar",
+    "translation": "البريد الالكتروني",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 63,
+    "word": "Description",
+    "language": "ar",
+    "translation": "الوصف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 64,
+    "word": "Attachments",
+    "language": "ar",
+    "translation": "المرفقات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 65,
+    "word": "Submit",
+    "language": "ar",
+    "translation": "حفظ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 66,
+    "word": "Create Ticket",
+    "language": "ar",
+    "translation": "انشاء الطلب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 74,
+    "word": "Subject",
+    "language": "ar",
+    "translation": "العنوان",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 75,
+    "word": "Mobile Number",
+    "language": "ar",
+    "translation": "رقم الجوال",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 76,
+    "word": "Employee ID",
+    "language": "ar",
+    "translation": "الرقم الوظيفي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 77,
+    "word": "Identity Number",
+    "language": "ar",
+    "translation": "رقم الهوية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 78,
+    "word": "Reason for exclusion",
+    "language": "ar",
+    "translation": "سبب الاستبعاد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 79,
+    "word": "Delete Date",
+    "language": "ar",
+    "translation": "تاريخ الحذف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 80,
+    "word": "Nationality",
+    "language": "ar",
+    "translation": "الجنسية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 81,
+    "word": "Marital status",
+    "language": "ar",
+    "translation": "الحالة الإجتماعية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 82,
+    "word": "Actual Job",
+    "language": "ar",
+    "translation": "المهنة الفعلية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 83,
+    "word": "Job as in residence",
+    "language": "ar",
+    "translation": "المهنة بالإقامة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 84,
+    "word": "Qualification",
+    "language": "ar",
+    "translation": "المؤهل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 85,
+    "word": "Specialization",
+    "language": "ar",
+    "translation": "التخصص",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 86,
+    "word": "Job Location",
+    "language": "ar",
+    "translation": "موقع العمل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 87,
+    "word": "Housing allowance",
+    "language": "ar",
+    "translation": "بدل السكن",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 88,
+    "word": "Transportation allowance",
+    "language": "ar",
+    "translation": "بدل النقل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 89,
+    "word": "Other allowances",
+    "language": "ar",
+    "translation": "البدلات الأخرى",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 90,
+    "word": "Basic Salary",
+    "language": "ar",
+    "translation": "الراتب الأساسي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 91,
+    "word": "Joining Date",
+    "language": "ar",
+    "translation": "تاريخ الإلتحاق",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 92,
+    "word": "Job as in residence",
+    "language": "ar",
+    "translation": "المهنة بالإقامة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 93,
+    "word": "Identity/Iqama Number",
+    "language": "ar",
+    "translation": "رقم الاقامة / الهوية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 94,
+    "word": "Date of worker reporting",
+    "language": "ar",
+    "translation": "تاريخ ابلاغ العامل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 95,
+    "word": "Date of stop working",
+    "language": "ar",
+    "translation": "تاريخ التوقف عن العمل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 96,
+    "word": "Time of injury",
+    "language": "ar",
+    "translation": "وقت الإصابة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 97,
+    "word": "City",
+    "language": "ar",
+    "translation": "المدينة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 98,
+    "word": "Place of injury",
+    "language": "ar",
+    "translation": "مكان وقوع الإصابة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 99,
+    "word": "Joint career when injury time",
+    "language": "ar",
+    "translation": "مهنة المشترك وقت الإصابة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 100,
+    "word": "Location on Map",
+    "language": "ar",
+    "translation": "الموقع بالخريطة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 101,
+    "word": "How the injury happened",
+    "language": "ar",
+    "translation": "كيفية وقوع الإصابة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 102,
+    "word": "Mobile of the injured employee",
+    "language": "ar",
+    "translation": "رقم جوال الموظف المصاب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 103,
+    "word": "Name of Employee for Insurance",
+    "language": "ar",
+    "translation": "اسم الموظف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 104,
+    "word": "Class of Insurance",
+    "language": "ar",
+    "translation": "فئة التأمين",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 105,
+    "word": "Type of Request",
+    "language": "ar",
+    "translation": "نوع طلب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 106,
+    "word": "Class of Insurance",
+    "language": "ar",
+    "translation": "فئة التأمين",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 107,
+    "word": "Date of Invoice",
+    "language": "ar",
+    "translation": "تاريخ الفاتورة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 108,
+    "word": "Management",
+    "language": "ar",
+    "translation": "الإدارة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 109,
+    "word": "Department",
+    "language": "ar",
+    "translation": "القسم",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 110,
+    "word": "Branch - Project",
+    "language": "ar",
+    "translation": "الفرع - المشروع",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 111,
+    "word": "Salary of Month",
+    "language": "ar",
+    "translation": "راتب شهر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 112,
+    "word": "Date of Departure",
+    "language": "ar",
+    "translation": "يوم المغادرة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 113,
+    "word": "Last working day",
+    "language": "ar",
+    "translation": "آخر يوم عمل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 114,
+    "word": "Country of Destination",
+    "language": "ar",
+    "translation": "مكان الوصول",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 115,
+    "word": "Category of Vacation",
+    "language": "ar",
+    "translation": "نوع الإجازة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 116,
+    "word": "Vacation Start",
+    "language": "ar",
+    "translation": "بداية الإجازة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 117,
+    "word": "First day of work after vacation",
+    "language": "ar",
+    "translation": "تاريخ استلام العمل عند العوده من الاجازة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 118,
+    "word": "Hiring Date",
+    "language": "ar",
+    "translation": "تاريخ التعيين",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 119,
+    "word": "Termination Type",
+    "language": "ar",
+    "translation": "نوع الطلب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 120,
+    "word": "Employee Mobile Number In Saudi Arabia",
+    "language": "ar",
+    "translation": "رقم الجوال في المملكة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 121,
+    "word": "Employee Mobile Number In his country",
+    "language": "ar",
+    "translation": "رقم جوال الموظف في بلده",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 122,
+    "word": "Employee Replacement Name",
+    "language": "ar",
+    "translation": "اسم الموظف البديل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 123,
+    "word": "Employee Manager Name",
+    "language": "ar",
+    "translation": "اسم المدير المباشر لصاحب الطلب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 124,
+    "word": "Employee Manager Contact Number",
+    "language": "ar",
+    "translation": "رقم التواصل للمدير المباشر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 125,
+    "word": "KSA Airport Departure",
+    "language": "ar",
+    "translation": "مطار السفر من المملكة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 126,
+    "word": "Airport Arrival",
+    "language": "ar",
+    "translation": "مطار الوصول إلى بلد الموظف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 127,
+    "word": "Department or Project Name",
+    "language": "ar",
+    "translation": "اسم القسم أو المشروع",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 128,
+    "word": "Department Manager Name",
+    "language": "ar",
+    "translation": "اسم مدير الادارة التابع للموظف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 129,
+    "word": "Department Manager Email",
+    "language": "ar",
+    "translation": "ايميل مدير الادارة التابع للموظف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 130,
+    "word": "Area Manager Name",
+    "language": "ar",
+    "translation": "اسم مدير المنطقة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 131,
+    "word": "Leave Duration ( Days in Numbers )",
+    "language": "ar",
+    "translation": "مدة الإجازة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 132,
+    "word": "Country of Destination",
+    "language": "ar",
+    "translation": "مكان الوصول",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 133,
+    "word": "Department or Project Name",
+    "language": "ar",
+    "translation": "اسم القسم أو المشروع",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 134,
+    "word": "Employee Email or Project Coordinator Name",
+    "language": "ar",
+    "translation": "إيميل الموظف أو منسق المشروع",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 135,
+    "word": "Project Coordinator Name",
+    "language": "ar",
+    "translation": "اسم منسق المشروع",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 136,
+    "word": "Applicant Evaluation",
+    "language": "ar",
+    "translation": "تقييم الموظف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 137,
+    "word": "Direct Manager Name",
+    "language": "ar",
+    "translation": "اسم المدير المباشر لصاحب الطلب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 138,
+    "word": "Direct Manager Email",
+    "language": "ar",
+    "translation": "إيميل المدير المباشر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 139,
+    "word": "Area Manager Email",
+    "language": "ar",
+    "translation": "إيميل مدير المنطقة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 140,
+    "word": "Vacation Requester",
+    "language": "ar",
+    "translation": "طالب الإجازة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 141,
+    "word": "Country of Destination",
+    "language": "ar",
+    "translation": "مكان الوصول",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 142,
+    "word": "First day of work after vacation",
+    "language": "ar",
+    "translation": "تاريخ استلام العمل عند العوده من الاجازة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 143,
+    "word": "Leave Duration ( Days in Numbers )",
+    "language": "ar",
+    "translation": "مدة الإجازة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 144,
+    "word": "Ticket Reservation by",
+    "language": "ar",
+    "translation": "حجز التذكرة بواسطة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 145,
+    "word": "Reason For Advance",
+    "language": "ar",
+    "translation": "سبب السلفة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 146,
+    "word": "Advance Amount Required",
+    "language": "ar",
+    "translation": "قيمة السلفة المطلوبة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 147,
+    "word": "expiration date of Iqama",
+    "language": "ar",
+    "translation": "تاريخ إنتهاء الإقامة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 148,
+    "word": "Visa Duration",
+    "language": "ar",
+    "translation": "مدة التأشيرة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 149,
+    "word": "Visa type",
+    "language": "ar",
+    "translation": "نوع التأشيرة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 150,
+    "word": "Purpose of Visa Request",
+    "language": "ar",
+    "translation": "الغرض من طلب التأشيرة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 151,
+    "word": "Nationality",
+    "language": "ar",
+    "translation": "الجنسية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 152,
+    "word": "Religion",
+    "language": "ar",
+    "translation": "الديانة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 153,
+    "word": "Job title",
+    "language": "ar",
+    "translation": "المسمى الوظيفي/المهنة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 154,
+    "word": "Activity of a business required to visit",
+    "language": "ar",
+    "translation": "نشاط جهة عمل المطلوب للزيارة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 155,
+    "word": "Requester Kifah Company",
+    "language": "ar",
+    "translation": "اسم شركة الكفاح الطالبة للزائر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 156,
+    "word": "Person required to visit according to the passport",
+    "language": "ar",
+    "translation": "اسم المطلوب للزيارة حسب جواز السفر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 157,
+    "word": "Name of the employer required to visit",
+    "language": "ar",
+    "translation": "اسم جهة العمل المطلوب للزيارة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 158,
+    "word": "City for the arrival destination to visit",
+    "language": "ar",
+    "translation": "اسم المدينة لوجهة قدوم المطلوب للزيارة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 159,
+    "word": "Gender",
+    "language": "ar",
+    "translation": "الجنس",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 160,
+    "word": "purpose from the visit",
+    "language": "ar",
+    "translation": "الغرض من الزيارة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 161,
+    "word": "Requester Mobile Number",
+    "language": "ar",
+    "translation": "رقم جوال صاحب الطلب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 162,
+    "word": "Letter Type",
+    "language": "ar",
+    "translation": "نوع الخطاب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 163,
+    "word": "To Whom",
+    "language": "ar",
+    "translation": "إلى أي جهة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 164,
+    "word": "Reason",
+    "language": "ar",
+    "translation": "السبب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 166,
+    "word": "Worksite of Employee",
+    "language": "ar",
+    "translation": "موقع عمل الموظف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 167,
+    "word": "Project Coordinator name / with email",
+    "language": "ar",
+    "translation": "اسم منسق المشروع / مع ذكر الايميل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 168,
+    "word": "Return to Work date",
+    "language": "ar",
+    "translation": "تاريخ مباشرة العمل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 169,
+    "word": "Administration Manager",
+    "language": "ar",
+    "translation": "مدير الإدارة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 170,
+    "word": "Type of work receipt",
+    "language": "ar",
+    "translation": "نوع إستلام العمل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 171,
+    "word": "The Passport with",
+    "language": "ar",
+    "translation": "جواز السفر لدى",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 172,
+    "word": "Total",
+    "language": "ar",
+    "translation": "المجموع",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 173,
+    "word": "Travel By",
+    "language": "ar",
+    "translation": "السفر بواسطة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 174,
+    "word": "Purpose of Visit",
+    "language": "ar",
+    "translation": "نوع رحلة العمل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 175,
+    "word": "Destination city for business trip",
+    "language": "ar",
+    "translation": "وجهة المدينة لرحلة العمل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 176,
+    "word": "Number of days of business trip",
+    "language": "ar",
+    "translation": "عدد أيام رحلة العمل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 177,
+    "word": "City for the arrival destination to visit",
+    "language": "ar",
+    "translation": "اسم المدينة لوجهة قدوم المطلوب للزيارة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 178,
+    "word": "ID",
+    "language": "ar",
+    "translation": "رقم الطلب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 179,
+    "word": "Technician",
+    "language": "ar",
+    "translation": "المنسق",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 180,
+    "word": "Created At",
+    "language": "ar",
+    "translation": "وقت إنشاء الطلب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 181,
+    "word": "Due Date",
+    "language": "ar",
+    "translation": "وقت استحقاق الطلب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 182,
+    "word": "Status",
+    "language": "ar",
+    "translation": "حالة الطلب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 183,
+    "word": "Category",
+    "language": "ar",
+    "translation": "الفئة الرئيسية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 184,
+    "word": "Business Units",
+    "language": "ar",
+    "translation": "الشركات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 185,
+    "word": "Select Business Unit",
+    "language": "ar",
+    "translation": "اختر الشركة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 186,
+    "word": "My Open Tickets",
+    "language": "ar",
+    "translation": "الطلبات المفتوحة الخاصة بي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 187,
+    "word": "My On-Hold Tickets",
+    "language": "ar",
+    "translation": "الطلبات المعلقة الخاصة بي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 188,
+    "word": "My Pending Tickets",
+    "language": "ar",
+    "translation": "الطلبات قيد الانتظار الخاصة بي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 189,
+    "word": "My Completed Ticket",
+    "language": "ar",
+    "translation": "الطلبات المكتملة الخاصة بي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 190,
+    "word": "Ticket waiting my approval",
+    "language": "ar",
+    "translation": "الطلبات المعلقة بإنتظار الموافقة الخاصة بي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 191,
+    "word": "All My Tickets",
+    "language": "ar",
+    "translation": "كافة الطلبات الخاصة بي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 192,
+    "word": "Ticket ID",
+    "language": "ar",
+    "translation": "رقم الطلب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 193,
+    "word": "Copyright © Hubtech 2019",
+    "language": "ar",
+    "translation": "جميع الحقوق محفوظة لدى شركة Hubtech @ ٢٠١٩",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 194,
+    "word": "All Open Tickets",
+    "language": "ar",
+    "translation": "كافة الطلبات المفتوحة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 195,
+    "word": "All On-Hold Tickets",
+    "language": "ar",
+    "translation": "كافة الطلبات المعلقة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 196,
+    "word": "All Pending Tickets",
+    "language": "ar",
+    "translation": "كافة الطلبات قيد الانتظار",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 197,
+    "word": "All Completed Tickets",
+    "language": "ar",
+    "translation": "كافة الطلبات المكتملة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 198,
+    "word": "All My Open Assigned Tickets",
+    "language": "ar",
+    "translation": "كافة الطلبات المفتوحة المسندة إلي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 199,
+    "word": "All My On-Hold Assigned Tickets",
+    "language": "ar",
+    "translation": "كافة الطلبات المعلقة المسندة إلي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 200,
+    "word": "All My Pending Assigned Tickets",
+    "language": "ar",
+    "translation": " كافة الطلبات قيد الانتظار المسندة إلي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 201,
+    "word": "All My Completed Assigned Tickets",
+    "language": "ar",
+    "translation": "كافة الطلبات المكتملة المسندة إلي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 202,
+    "word": "All My Open Assigned Tasks",
+    "language": "ar",
+    "translation": " كافة المهام المفتوحة المسندة إلي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 203,
+    "word": "All My On-Hold Assigned Tasks",
+    "language": "ar",
+    "translation": "كافة المهام المعلقة المسندة إلي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 204,
+    "word": "All My Pending Assigned Tasks",
+    "language": "ar",
+    "translation": "كافة المهام قيد الانتظار المسندة إلي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 205,
+    "word": "All My Completed Assigned Tasks",
+    "language": "ar",
+    "translation": "كافة المهام المكتملة المسندة إلي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 206,
+    "word": "All My Completed Assigned Tasks",
+    "language": "ar",
+    "translation": "كافة المهام المكتملة المسندة إلي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 207,
+    "word": "All My Assigned Tasks",
+    "language": "ar",
+    "translation": "كافة المهام المسندة إلي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 208,
+    "word": "All Tickets due by today",
+    "language": "ar",
+    "translation": "جميع الطلبات المستحقة اليوم",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 209,
+    "word": "All My Overdue Tickets",
+    "language": "ar",
+    "translation": "جميع الطلبات المتأخرة الخاصة بي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 210,
+    "word": "All Overdue Tickets",
+    "language": "ar",
+    "translation": "جميع الطلبات المتأخرة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 211,
+    "word": "All Tickets",
+    "language": "ar",
+    "translation": "جميع الطلبات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 212,
+    "word": "Helpdesk ID",
+    "language": "ar",
+    "translation": "رقم الهيلب ديسك",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 213,
+    "word": "First Response Due Time",
+    "language": "ar",
+    "translation": "الوقت المستحق للإستجابة على الطلب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 214,
+    "word": "Urgency",
+    "language": "ar",
+    "translation": "الأهمية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 215,
+    "word": "Group",
+    "language": "ar",
+    "translation": "المجموعة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 218,
+    "word": "Subcategory",
+    "language": "ar",
+    "translation": "الفئة الفرعية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 219,
+    "word": "Item",
+    "language": "ar",
+    "translation": "الفئة الثانوية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 220,
+    "word": "Due Time",
+    "language": "ar",
+    "translation": "الوقت المستحق",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 221,
+    "word": "SLA",
+    "language": "ar",
+    "translation": "اتفاقية مستوى الخدمة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 222,
+    "word": "Request Details",
+    "language": "ar",
+    "translation": "معلومات الطلب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 223,
+    "word": "Additional Information",
+    "language": "ar",
+    "translation": "معلومات إضافية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 224,
+    "word": "Requester Details",
+    "language": "ar",
+    "translation": "معلومات صاحب الطلب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 225,
+    "word": "Location",
+    "language": "ar",
+    "translation": "الموقع",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 226,
+    "word": "Mobile",
+    "language": "ar",
+    "translation": "الجوال",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 227,
+    "word": "Phone",
+    "language": "ar",
+    "translation": "الهاتف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 228,
+    "word": "Name",
+    "language": "ar",
+    "translation": "الاسم",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 229,
+    "word": "Request",
+    "language": "ar",
+    "translation": "الطلب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 230,
+    "word": "Print",
+    "language": "ar",
+    "translation": "طباعة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 231,
+    "word": "Add Note",
+    "language": "ar",
+    "translation": "إضافة ملاحظة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 232,
+    "word": "Duplicate",
+    "language": "ar",
+    "translation": "نسخ الطلب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 233,
+    "word": "Forward",
+    "language": "ar",
+    "translation": "توجيه الطلب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 234,
+    "word": "Reassign",
+    "language": "ar",
+    "translation": "إعادة تعيين",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 235,
+    "word": "Conversation",
+    "language": "ar",
+    "translation": "المحادثات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 236,
+    "word": "Resolution",
+    "language": "ar",
+    "translation": "حل الطلب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 237,
+    "word": "Approvals",
+    "language": "ar",
+    "translation": "الموافقات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 238,
+    "word": "Tasks",
+    "language": "ar",
+    "translation": "المهام",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 239,
+    "word": "Ticket Log",
+    "language": "ar",
+    "translation": "سجل الطلب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 240,
+    "word": "Email ID",
+    "language": "ar",
+    "translation": "البريد الالكتروني",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 241,
+    "word": "Send approval to",
+    "language": "ar",
+    "translation": "إرسال الموافقة إلى",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 242,
+    "word": "No approvals yet",
+    "language": "ar",
+    "translation": "لاتوجد موافقات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 243,
+    "word": "No Tasks found",
+    "language": "ar",
+    "translation": "لاتوجد مهام",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 244,
+    "word": "Create Task",
+    "language": "ar",
+    "translation": "إنشاء مهمة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 245,
+    "word": "Ticket created by",
+    "language": "ar",
+    "translation": "تم انشاء الطلب بواسطة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 246,
+    "word": "Task created by",
+    "language": "ar",
+    "translation": "تم انشاء المهمة بواسطة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 247,
+    "word": "Ticket has been closed by the system",
+    "language": "ar",
+    "translation": "تم إغلاق الطلب بواسطة النظام",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 248,
+    "word": "Ticket has been Escalated to",
+    "language": "ar",
+    "translation": "تم تصعيد الطلب إلى",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 249,
+    "word": "Technician changed from",
+    "language": "ar",
+    "translation": "تم تغيير المنسق من",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 250,
+    "word": "to",
+    "language": "ar",
+    "translation": "إلى",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 251,
+    "word": "Group changed from",
+    "language": "ar",
+    "translation": "تم تغيير المجموعة من",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 252,
+    "word": "Category changed from",
+    "language": "ar",
+    "translation": "تم تغيير الفئة من",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 253,
+    "word": "Ticket updated by",
+    "language": "ar",
+    "translation": "تم تحديث الطلب بواسطة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 254,
+    "word": "Re-assign",
+    "language": "ar",
+    "translation": "إعادة تعيين",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 255,
+    "word": "Not Assigned",
+    "language": "ar",
+    "translation": "لم يتم التعيين",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 256,
+    "word": "Change status from",
+    "language": "ar",
+    "translation": "تغيير الحالة من",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 257,
+    "word": "Open",
+    "language": "ar",
+    "translation": "مفتوح",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 258,
+    "word": "Assigned",
+    "language": "ar",
+    "translation": "معين",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 259,
+    "word": "Awaiting Customer Response",
+    "language": "ar",
+    "translation": "في انتظار رد من صاحب الطلب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 260,
+    "word": "Completed without solution",
+    "language": "ar",
+    "translation": "الإغلاق بدون وجود حل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 261,
+    "word": "In progress",
+    "language": "ar",
+    "translation": "جاري العمل على الطلب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 262,
+    "word": "On Hold",
+    "language": "ar",
+    "translation": "معلق",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 263,
+    "word": "Resolved",
+    "language": "ar",
+    "translation": "تم الحل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 264,
+    "word": "By",
+    "language": "ar",
+    "translation": "بواسطة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 265,
+    "word": "Add Note",
+    "language": "ar",
+    "translation": "إضافة ملاحظة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 266,
+    "word": "Show this note to Requester",
+    "language": "ar",
+    "translation": "إظهار الملاحظة لصاحب الطلب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 267,
+    "word": "E-mail this note to the technician",
+    "language": "ar",
+    "translation": "إرسال بريد الكتروني للمنسق",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 268,
+    "word": "Close",
+    "language": "ar",
+    "translation": "إغلاق",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 269,
+    "word": "Assign Ticket",
+    "language": "ar",
+    "translation": "تعيين الطلب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 271,
+    "word": "Old Password",
+    "language": "ar",
+    "translation": "كلمة المرور القديمة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 272,
+    "word": "Password",
+    "language": "ar",
+    "translation": "كلمة المرور الجديدة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 273,
+    "word": "Confirm Password",
+    "language": "ar",
+    "translation": "تكرار كلمة المرور الجديدة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 274,
+    "word": "Duplicate Ticket",
+    "language": "ar",
+    "translation": "نسخ الطلب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 275,
+    "word": "Are you sure to duplicate Ticket",
+    "language": "ar",
+    "translation": "هل أنت متأكد من نسخ الطلب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 276,
+    "word": "Add Notes",
+    "language": "ar",
+    "translation": "إضافة ملاحظات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 277,
+    "word": "Home",
+    "language": "ar",
+    "translation": "البداية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 278,
+    "word": "Select Company",
+    "language": "ar",
+    "translation": "اختيار الشركة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 279,
+    "word": "Create/Remove Email",
+    "language": "ar",
+    "translation": "انشاء / حذف بريد الكتروني",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 280,
+    "word": "Humanity loan",
+    "language": "ar",
+    "translation": "سلفة انسانية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 281,
+    "word": "Iqama Number",
+    "language": "ar",
+    "translation": "رقم الإقامة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 282,
+    "word": "Vacation Type",
+    "language": "ar",
+    "translation": "نوع الاجازة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 283,
+    "word": "Return Date",
+    "language": "ar",
+    "translation": "تاريخ العودة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 284,
+    "word": "Employee Replacement ID",
+    "language": "ar",
+    "translation": "الرقم الوظيفي للبديل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 285,
+    "word": "Applicant Evaluation",
+    "language": "ar",
+    "translation": "التقييم",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 286,
+    "word": "Direct Manager Email",
+    "language": "ar",
+    "translation": "البريد الالكتروني للمدير المباشر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 287,
+    "word": "Direct Manager Contact",
+    "language": "ar",
+    "translation": "رقم التواصل مع المدير المباشر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 288,
+    "word": "Department Manager Email",
+    "language": "ar",
+    "translation": "البريد الالكتروني لمدير القسم",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 289,
+    "word": "Select Company",
+    "language": "ar",
+    "translation": "اختيار الشركة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 290,
+    "word": "Date of Return",
+    "language": "ar",
+    "translation": "تاريخ العودة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 291,
+    "word": "AC Maintenance",
+    "language": "ar",
+    "translation": "صيانة مكيفات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 292,
+    "word": "Carpentary Maintenance",
+    "language": "ar",
+    "translation": "صيانة نجارة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 293,
+    "word": "Electricity Maintenance",
+    "language": "ar",
+    "translation": "صيانة وأعمال كهرباء",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 294,
+    "word": "Pigments & Paints Maintenance",
+    "language": "ar",
+    "translation": "صيانة أصباغ ودهانات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 295,
+    "word": "Plumbing Maintenance",
+    "language": "ar",
+    "translation": "صيانة السباكة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 296,
+    "word": "Request Office Furniture",
+    "language": "ar",
+    "translation": "طلب الاثاث المكتبي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 297,
+    "word": "IT Others",
+    "language": "ar",
+    "translation": "أخرى",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 298,
+    "word": "Request Communication Devices or Tools",
+    "language": "ar",
+    "translation": "طلب أدوات وأجهزة إتصال",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 299,
+    "word": "Request Computer or Accessories",
+    "language": "ar",
+    "translation": "طلب الكمبيوتر أو الملحقات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 300,
+    "word": "Request Display Device",
+    "language": "ar",
+    "translation": "طلب جهاز عرض",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 301,
+    "word": "Request Maintenance",
+    "language": "ar",
+    "translation": "طلب صيانة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 302,
+    "word": "Request Printer or Copy Machine",
+    "language": "ar",
+    "translation": "طلب طابعة أو آلة تصویر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 303,
+    "word": "Book Theater",
+    "language": "ar",
+    "translation": "حجز المسرح",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 304,
+    "word": "Others",
+    "language": "ar",
+    "translation": "اخرى",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 305,
+    "word": "Request Banquet",
+    "language": "ar",
+    "translation": "طلب مأدبة طعام",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 306,
+    "word": "Request Organize Event",
+    "language": "ar",
+    "translation": "طلب تنظيم حدث",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 307,
+    "word": "Request Promotional Materials & Prints",
+    "language": "ar",
+    "translation": "طلب مواد دعائية ومطبوعات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 308,
+    "word": "Request SMS",
+    "language": "ar",
+    "translation": "طلب خدمة الرسائل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 309,
+    "word": "Order buses",
+    "language": "ar",
+    "translation": "طلب باصات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 310,
+    "word": "Others",
+    "language": "ar",
+    "translation": "أخرى",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 311,
+    "word": "Request Stationary",
+    "language": "ar",
+    "translation": "طلب قرطاسية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 312,
+    "word": "Request Toners",
+    "language": "ar",
+    "translation": "طلب حبر طابعة أو آلة تصویر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 313,
+    "word": "Transferring employees between Companies",
+    "language": "ar",
+    "translation": "نقل الموظفين بين الشركات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 314,
+    "word": "International Roaming",
+    "language": "ar",
+    "translation": "التجوال الدولي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 315,
+    "word": "New Mobile Device from STC",
+    "language": "ar",
+    "translation": "جهاز محمول جديد من STC",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 316,
+    "word": "Request New SIM",
+    "language": "ar",
+    "translation": "طلب شريحة جديدة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 317,
+    "word": "SIM Services",
+    "language": "ar",
+    "translation": "خدمات الشريحة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 318,
+    "word": "Notes",
+    "language": "ar",
+    "translation": "ملاحظات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 319,
+    "word": "Not Certified",
+    "language": "ar",
+    "translation": "غير مصدق",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 320,
+    "word": "Certified",
+    "language": "ar",
+    "translation": "مصدق",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 321,
+    "word": "Certified by the Chamber of Commerce?",
+    "language": "ar",
+    "translation": "مصدق من الغرفة التجارية ؟",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 322,
+    "word": "Company Name",
+    "language": "ar",
+    "translation": "اسم الشركة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 323,
+    "word": "SAP ID",
+    "language": "ar",
+    "translation": "الرقم الوظيفي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 324,
+    "word": "Project Coordinator email",
+    "language": "ar",
+    "translation": "اسم منسق المشروع",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 325,
+    "word": "Select Value",
+    "language": "ar",
+    "translation": "اختر القيمة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 326,
+    "word": "Your Request will Delivered within",
+    "language": "ar",
+    "translation": "سيتم الانتهاء من طلبك في خلال",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 327,
+    "word": "Days",
+    "language": "ar",
+    "translation": "أيام",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 328,
+    "word": "Hours",
+    "language": "ar",
+    "translation": "ساعات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 329,
+    "word": "Minutes",
+    "language": "ar",
+    "translation": "دقائق",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 331,
+    "word": "Manager's Name",
+    "language": "ar",
+    "translation": "اسم المدير المباشر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 332,
+    "word": "Office Location",
+    "language": "ar",
+    "translation": "موقع المكتب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 333,
+    "word": "Employee Name",
+    "language": "ar",
+    "translation": "اسم الموظف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 334,
+    "word": "Office Phone",
+    "language": "ar",
+    "translation": "هاتف المكتب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 335,
+    "word": "Branch",
+    "language": "ar",
+    "translation": "الفرع",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 336,
+    "word": "Mobile No.",
+    "language": "ar",
+    "translation": "رقم الجوال",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 337,
+    "word": "The group to add the employee email",
+    "language": "ar",
+    "translation": "اسم المجموعة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 338,
+    "word": "Email you need to create",
+    "language": "ar",
+    "translation": "الايميل المقترح",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 339,
+    "word": "Official letter from government agencies",
+    "language": "ar",
+    "translation": "خطاب رسمي جهات حكومية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 340,
+    "word": "Unofficial Letter",
+    "language": "ar",
+    "translation": "خطاب غير رسمي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 341,
+    "word": "Visa extension",
+    "language": "ar",
+    "translation": "تمديد تأشيرة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 342,
+    "word": "Request a business visit",
+    "language": "ar",
+    "translation": "طلب زيارة تجارية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 343,
+    "word": "Request a family visit",
+    "language": "ar",
+    "translation": "طلب زيارة عائلية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 344,
+    "word": "Letter of Engineers",
+    "language": "ar",
+    "translation": "خطاب هيئة المهندسين",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 345,
+    "word": "Visa Bank Letter",
+    "language": "ar",
+    "translation": "خطاب فيزا بنك",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 346,
+    "word": "Letter of salary for Bank",
+    "language": "ar",
+    "translation": "خطاب تعريف راتب ل بنك",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 347,
+    "word": "Letter of installation to the bank",
+    "language": "ar",
+    "translation": "خطاب تعريف وتثبيت لبنك",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 348,
+    "word": "Letter of Bank Loan",
+    "language": "ar",
+    "translation": "خطاب قرض البنك",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 349,
+    "word": "Letter of ending services",
+    "language": "ar",
+    "translation": "خطاب انهاء خدمات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 350,
+    "word": "A letter of experience and release",
+    "language": "ar",
+    "translation": "خطاب شهاده خبرة وإخلاء طرف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 351,
+    "word": "letter of sickness",
+    "language": "ar",
+    "translation": "خطاب مرضي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 352,
+    "word": "Letter of opening a bank account outside the Kingdom",
+    "language": "ar",
+    "translation": "خطاب فتح حساب بنك خارج المملكة ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 353,
+    "word": "An official letter addressed to you outside the Kingdom",
+    "language": "ar",
+    "translation": "خطاب رسمي موجه الي خارج المملكة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 354,
+    "word": "Official letter addressed to the consulate of other countries",
+    "language": "ar",
+    "translation": "خطاب رسمي موجه الي قنصلية دوله اخري ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 355,
+    "word": "Letter of Delegation",
+    "language": "ar",
+    "translation": "خطاب تفويض",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 356,
+    "word": "Recruitment Letter",
+    "language": "ar",
+    "translation": "خطاب استقدام",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 357,
+    "word": "Letter to the Ministry of Health in Egypt",
+    "language": "ar",
+    "translation": "خطاب موجه الي وزارة الصحة بمصر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 358,
+    "word": "Transfer the sponsership",
+    "language": "ar",
+    "translation": "نقل كفالة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 359,
+    "word": "Transfer the sponsership of our employee's spouse to him",
+    "language": "ar",
+    "translation": "نقل كفالة زوجة الي موظفنا ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 360,
+    "word": "Transfer the sponser of our employee's spouse to another sponser",
+    "language": "ar",
+    "translation": "نقل كفالة زوجه الي كفيل اخر ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 361,
+    "word": "Letter Renewal of the Delegator Card",
+    "language": "ar",
+    "translation": "خطاب تجديد بطاقة معقب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 362,
+    "word": "Letter of extended vacation",
+    "language": "ar",
+    "translation": "خطاب تمديد اجازه ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 363,
+    "word": "Letter of change career",
+    "language": "ar",
+    "translation": "خطاب تغير مهنة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 364,
+    "word": "Letter of extension experience period",
+    "language": "ar",
+    "translation": "خطاب تمديد فترة تجربة ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 365,
+    "word": "Letter addressed to the Embassy",
+    "language": "ar",
+    "translation": "خطاب موجه الي السفارة ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 366,
+    "word": "Cancel Deleting an email",
+    "language": "ar",
+    "translation": "الغاء حذف ايميل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 367,
+    "word": "End of testing period",
+    "language": "ar",
+    "translation": "انتهاء فترة تجربه",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 368,
+    "word": "Extended contract",
+    "language": "ar",
+    "translation": "تمديد عقد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 369,
+    "word": "Letter of Movement",
+    "language": "ar",
+    "translation": "خطاب تنقل\u200E",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 370,
+    "word": "Vacation Start Date",
+    "language": "ar",
+    "translation": "تاريخ بداية الإجازة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 371,
+    "word": "Request Books",
+    "language": "ar",
+    "translation": " طلب كتب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 372,
+    "word": "Warehouses",
+    "language": "ar",
+    "translation": "المستودعات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 374,
+    "word": "Transportation",
+    "language": "ar",
+    "translation": "المواصلات والنقل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 375,
+    "word": "Building Maint. & Service",
+    "language": "ar",
+    "translation": "الصيانة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 376,
+    "word": "Computer & IT",
+    "language": "ar",
+    "translation": "تقنية المعلومات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 377,
+    "word": "Public Rel. & Media",
+    "language": "ar",
+    "translation": "العلاقات العامة و وسائل الإعلام",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 378,
+    "word": "Gov. Services",
+    "language": "ar",
+    "translation": "الخدمات الحكومية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 379,
+    "word": "Car Services",
+    "language": "ar",
+    "translation": "خدمات السيارات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 381,
+    "word": "Chambers of Commerce",
+    "language": "ar",
+    "translation": "الغرفة التجارية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 382,
+    "word": "Ministry of Foreign Affairs",
+    "language": "ar",
+    "translation": "وزارة الخارجية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 383,
+    "word": "Other Services",
+    "language": "ar",
+    "translation": "خدمات أخرى",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 384,
+    "word": "Commercial invitation",
+    "language": "ar",
+    "translation": "استخراج تاشيرات زيارة تجارية خطابات دعوي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 385,
+    "word": "Ratification of transaction",
+    "language": "ar",
+    "translation": "التصديق على المعاملات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 386,
+    "word": "Items",
+    "language": "ar",
+    "translation": "العناصر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 387,
+    "word": "Authentication of letters, transactions and authorizations",
+    "language": "ar",
+    "translation": "التصديق على الخطابات والمعاملات و التفاويض",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 388,
+    "word": "Passport services",
+    "language": "ar",
+    "translation": "خدمات جوازات السفر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 389,
+    "word": "Visa services",
+    "language": "ar",
+    "translation": "خدمات التأشيرة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 390,
+    "word": "Embassies Services",
+    "language": "ar",
+    "translation": "خدمات السفارات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 391,
+    "word": "Traffic Services",
+    "language": "ar",
+    "translation": "خدمات المرور",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 392,
+    "word": "Tam system",
+    "language": "ar",
+    "translation": "نظام تم",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 393,
+    "word": "Internal authorization",
+    "language": "ar",
+    "translation": "تفويض داخلي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 394,
+    "word": "Renewal of Traffic License Form",
+    "language": "ar",
+    "translation": "تجديد رخصة سير \"استمارة\"",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 395,
+    "word": "Delegate a user of a car",
+    "language": "ar",
+    "translation": "تفويض مستخدم للسيارة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 396,
+    "word": "Query on unpaid violations and no payment is made through the bank",
+    "language": "ar",
+    "translation": " الاستعلام على المخالفات غير المدفوعة وليس السداد يتم من خلال البنك",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 397,
+    "word": "Cancel International authorizations",
+    "language": "ar",
+    "translation": "الغاء التفاويض الدولية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 398,
+    "word": "Issuing international authorizations",
+    "language": "ar",
+    "translation": "اصدار التفاويض الدولية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 399,
+    "word": "Cancel an actual user on the vehicle",
+    "language": "ar",
+    "translation": "الغاء مستخدم فعلى على المركبة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 400,
+    "word": "Query on irregularities paid and not payment through the bank",
+    "language": "ar",
+    "translation": " الاستعلام على المخالفات المدفوعة وليس السداد يتم من خلال البنك",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 401,
+    "word": "Circular on stolen vehicles",
+    "language": "ar",
+    "translation": "التعميم على المركبات المسروقة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 402,
+    "word": "Issuing or replacing a lost traffic license",
+    "language": "ar",
+    "translation": "اصدار او بدل فاقد رخصة سير",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 403,
+    "word": "Driver's license \"renewal and replacement\"",
+    "language": "ar",
+    "translation": "رخصة القيادة \"تجديداو بدل فاقد\"",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 404,
+    "word": "Transfer of Ownership",
+    "language": "ar",
+    "translation": "نقل ملكية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 405,
+    "word": "Claim for car accident compensation from insurance",
+    "language": "ar",
+    "translation": "مطالبة تعويض حوادث السيارات من التامين ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 406,
+    "word": "Issuing replacement plates for damaged or lost vehicles",
+    "language": "ar",
+    "translation": "اصدار لوحات بدل تالف او فاقد للمركبات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 407,
+    "word": "Extract new plates",
+    "language": "ar",
+    "translation": "استخراج لوحات جديدة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 408,
+    "word": "Export or drop a palette",
+    "language": "ar",
+    "translation": "تصدير او اسقاط لوح ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 409,
+    "word": "Make a fingerprint for the employee",
+    "language": "ar",
+    "translation": "إنشاء بصمة لموظف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 410,
+    "word": "Government Services",
+    "language": "ar",
+    "translation": "الخدمات الحكومية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 411,
+    "word": "Car Services",
+    "language": "ar",
+    "translation": "خدمات السيارات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 412,
+    "word": "The city that the required employee is coming from",
+    "language": "ar",
+    "translation": "المدينة التي يأتي منها الموظف ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 413,
+    "word": "Name of the Company the required employee is coming from",
+    "language": "ar",
+    "translation": "الشركة التي يأتي منها الموظف ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 414,
+    "word": "Duration of Stay",
+    "language": "ar",
+    "translation": "مدة الإقامة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 415,
+    "word": "Chambers of Commerce",
+    "language": "ar",
+    "translation": "الغرفة التجارية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 416,
+    "word": "Subcategories",
+    "language": "ar",
+    "translation": "الخدمات الفرعية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 417,
+    "word": "Admin Panel",
+    "language": "ar",
+    "translation": "الإعدادات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 418,
+    "word": "Start Date",
+    "language": "ar",
+    "translation": "تاريخ البداية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 419,
+    "word": "End Date",
+    "language": "ar",
+    "translation": "تاريخ النهاية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 420,
+    "word": "Document",
+    "language": "ar",
+    "translation": "الملف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 421,
+    "word": "Actions",
+    "language": "ar",
+    "translation": "الإجراءات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 422,
+    "word": "Edit",
+    "language": "ar",
+    "translation": "تعديل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 423,
+    "word": "Delete",
+    "language": "ar",
+    "translation": "حذف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 424,
+    "word": "History",
+    "language": "ar",
+    "translation": "السجل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 425,
+    "word": "Documents",
+    "language": "ar",
+    "translation": "الملفات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 426,
+    "word": "Folder",
+    "language": "ar",
+    "translation": "المجلد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 427,
+    "word": "Document Name",
+    "language": "ar",
+    "translation": "اسم الملف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 428,
+    "word": "Edit Document",
+    "language": "ar",
+    "translation": "تعديل الملف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 429,
+    "word": "Business Documents",
+    "language": "ar",
+    "translation": "إدارة الملفات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 430,
+    "word": "Configurations",
+    "language": "ar",
+    "translation": "الإعدادات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 459,
+    "word": "Select Category",
+    "language": "ar",
+    "translation": "إختر الفئة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 460,
+    "word": "Folders",
+    "language": "ar",
+    "translation": "المجلدات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 461,
+    "word": "Roles",
+    "language": "ar",
+    "translation": "الصلاحيات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 462,
+    "word": "Notifications",
+    "language": "ar",
+    "translation": "التنبيهات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 463,
+    "word": "Manage Notifications",
+    "language": "ar",
+    "translation": "إدارة التنبيهات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 464,
+    "word": "Authorized Users",
+    "language": "ar",
+    "translation": "الصلاحيات لـ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 465,
+    "word": "Create",
+    "language": "ar",
+    "translation": "إنشاء",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 466,
+    "word": "Folder Name",
+    "language": "ar",
+    "translation": "اسم المجلد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 467,
+    "word": "Edit Folder",
+    "language": "ar",
+    "translation": "تعديل المجلد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 468,
+    "word": "Check for Requirements",
+    "language": "ar",
+    "translation": "التأكد من متطلبات الخدمة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 469,
+    "word": "SAR",
+    "language": "ar",
+    "translation": "ريال سعودي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 470,
+    "word": "Control Panel\n",
+    "language": "ar",
+    "translation": "لوحة التحكم",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 471,
+    "word": "Visa issuance",
+    "language": "ar",
+    "translation": "إصدار تأشيرة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 472,
+    "word": "Visa Cancellation",
+    "language": "ar",
+    "translation": "إلغاء تأشيرة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 473,
+    "word": "Visa Extend",
+    "language": "ar",
+    "translation": "تمديد تأشيرة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 474,
+    "word": "Visa Application Type",
+    "language": "ar",
+    "translation": "نوع الطلب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 475,
+    "word": "General Secretariat",
+    "language": "ar",
+    "translation": "الأمانة العامة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 476,
+    "word": "Ministry of Justice",
+    "language": "ar",
+    "translation": "وزارة العدل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 477,
+    "word": "Civil Defense",
+    "language": "ar",
+    "translation": "وزارة الدفاع",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 478,
+    "word": "Ministry of Trade and Investment",
+    "language": "ar",
+    "translation": "وزارة التجارة والإستثمار",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 479,
+    "word": "Ministry of Entertainment and Tourism",
+    "language": "ar",
+    "translation": "وزارة الترفيه والسياحة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 480,
+    "word": "Ministry of Information",
+    "language": "ar",
+    "translation": "وزارة الإعلام",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 481,
+    "word": "Ministry of Electricity",
+    "language": "ar",
+    "translation": "وزارة الكهرباء",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 482,
+    "word": "Ministry Of Agriculture",
+    "language": "ar",
+    "translation": "وزارة الزراعة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 483,
+    "word": "Ministry of education",
+    "language": "ar",
+    "translation": "وزارة التعليم",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 484,
+    "word": "Ministry of Interior",
+    "language": "ar",
+    "translation": "وزارة الداخلية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 485,
+    "word": "Ministry of Transportation",
+    "language": "ar",
+    "translation": "وزارة النقل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 486,
+    "word": "Ministry of Water",
+    "language": "ar",
+    "translation": "وزارة المياه",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 487,
+    "word": "Telecommunications company",
+    "language": "ar",
+    "translation": "شركة الإتصالات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 488,
+    "word": "Post Office",
+    "language": "ar",
+    "translation": "مكتب البريد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 489,
+    "word": "Add a delegated signature",
+    "language": "ar",
+    "translation": "إضافة توقيع مفوض",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 490,
+    "word": "Participation in the Chamber of Commerce or renewal",
+    "language": "ar",
+    "translation": "المشاركة في الغرفة التجارية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 491,
+    "word": "Attesting of transaction",
+    "language": "ar",
+    "translation": "التصديق على المعاملة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 492,
+    "word": "Royal Commission for Jubail",
+    "language": "ar",
+    "translation": "الهيئة الملكية في الجبيل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 493,
+    "word": "Bahrain",
+    "language": "ar",
+    "translation": "البحرين",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 494,
+    "word": "Billing Review - Consumption Validity",
+    "language": "ar",
+    "translation": "مراجعة الفواتير",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 495,
+    "word": "Establishing new companies inside the Kingdom \"Establishing Contracts\"",
+    "language": "ar",
+    "translation": "تأسيس شركات جديدة داخل المملكة \"تأسيس العقود\".\n",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 496,
+    "word": "Establishing new branch inside the Kingdom \"Establishing Contracts\"",
+    "language": "ar",
+    "translation": "إنشاء فرع جديد داخل المملكة \"إنشاء العقود\"\n",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 497,
+    "word": "Establishing new companies or branches outside the Kingdom \"including all required license\"",
+    "language": "ar",
+    "translation": "تأسيس شركات أو فروع جديدة خارج المملكة \"بما في ذلك جميع التراخيص المطلوبة\"",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 498,
+    "word": "Issuing industrial licenses",
+    "language": "ar",
+    "translation": "اصدار التراخيص الصناعية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 499,
+    "word": "Renewing industrial licenses",
+    "language": "ar",
+    "translation": "تجديد الرخص الصناعية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 500,
+    "word": "Booking of trade names",
+    "language": "ar",
+    "translation": "حجز الأسماء التجارية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 501,
+    "word": "Registration of trademarks",
+    "language": "ar",
+    "translation": "تسجيل العلامات التجارية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 502,
+    "word": "CRs Issuing",
+    "language": "ar",
+    "translation": "إصدار سجل تجاري",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 503,
+    "word": "Renew CR",
+    "language": "ar",
+    "translation": "تجديد سجل تجاري",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 504,
+    "word": "Transfer CR",
+    "language": "ar",
+    "translation": "نقل سجل تجاري",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 505,
+    "word": "Cancellation CR",
+    "language": "ar",
+    "translation": "حذف سجل تجاري",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 506,
+    "word": "Query about company data",
+    "language": "ar",
+    "translation": "استعلام عن بيانات الشركة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 507,
+    "word": "Updating CRs information",
+    "language": "ar",
+    "translation": "تحديث معلومات السجل التجاري",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 508,
+    "word": "Update industrial license data",
+    "language": "ar",
+    "translation": "تحديث بيانات التراخيص الصناعية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 509,
+    "word": "register on Itemad Platform",
+    "language": "ar",
+    "translation": "التسجيل في منصة إعتماد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 510,
+    "word": "Issuing Civil defense Permits",
+    "language": "ar",
+    "translation": "اصدار تصاريح الدفاع المدني",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 511,
+    "word": "Safety Layout approval",
+    "language": "ar",
+    "translation": "موافقة تخطيط السلامة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 512,
+    "word": "Administrative Control Certificate",
+    "language": "ar",
+    "translation": "شهادة الرقابة الإدارية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 513,
+    "word": "Renewing Civil defense Permits",
+    "language": "ar",
+    "translation": "تجديد تصاريح الدفاع المدني",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 514,
+    "word": "Cancellation Civil defense Permits",
+    "language": "ar",
+    "translation": "إلغاء تصريح الدفاع المدني",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 515,
+    "word": "Issuing Authorization / Power of attorney",
+    "language": "ar",
+    "translation": "إصدار التفويض / التوكيل الرسمي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 516,
+    "word": "Cancellation Authorization Power of attorney",
+    "language": "ar",
+    "translation": "الغاء التفويض / التوكيل الرسمي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 517,
+    "word": "Issuing / Renewal / Transferring  of  licenses",
+    "language": "ar",
+    "translation": "إصدار / تجديد / نقل التراخيص",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 518,
+    "word": "cancellation / Updating of licenses \"Professional\"",
+    "language": "ar",
+    "translation": "إلغاء / تحديث التراخيص",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 519,
+    "word": "Issuing Building and Construction Permits",
+    "language": "ar",
+    "translation": "اصدار تصاريح البناء والإنشاءات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 520,
+    "word": "Renewal Building and Construction Permits",
+    "language": "ar",
+    "translation": "تجديد رخص البناء والإنشاءات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 521,
+    "word": "Issuing a demolition permit",
+    "language": "ar",
+    "translation": "اصدار تصريح هدم",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 522,
+    "word": "Engineering drawings approval",
+    "language": "ar",
+    "translation": "موافقة الرسومات الهندسية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 523,
+    "word": "Billboards",
+    "language": "ar",
+    "translation": "اللوحات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 524,
+    "word": "\"Irregularities\" letters of pledge",
+    "language": "ar",
+    "translation": "خطابات \"المخالفات\"",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 525,
+    "word": "Building and cleaning violations",
+    "language": "ar",
+    "translation": "مخالفات البناء والتنظيف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 526,
+    "word": "Issuance of certificate of hygiene",
+    "language": "ar",
+    "translation": "إصدار شهادة النظافة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 527,
+    "word": "Issuing, renewing or amending investment contracts with the State",
+    "language": "ar",
+    "translation": "إصدار أو تجديد أو تعديل عقود الاستثمار مع الدولة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 528,
+    "word": "Sort or merge existing land or buildings",
+    "language": "ar",
+    "translation": "فرز أو دمج الأراضي أو المباني الحالية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 529,
+    "word": "Issuing and renewing the Operating licenses for the vehicles",
+    "language": "ar",
+    "translation": "إصدار وتجديد رخص التشغيل للمركبات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 530,
+    "word": "Issuing or renewing school transport permits",
+    "language": "ar",
+    "translation": "إصدار أو تجديد تصاريح النقل المدرسي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 531,
+    "word": "Transport violations\" excess weights \"- Operating licenses\"",
+    "language": "ar",
+    "translation": "انتهاكات النقل \"الأوزان الزائدة\" - تراخيص التشغيل \"",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 532,
+    "word": "Issuing or renewing the license of the Industrial Security Authority",
+    "language": "ar",
+    "translation": "إصدار أو تجديد ترخيص هيئة الأمن الصناعي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 533,
+    "word": "Shomoos Program",
+    "language": "ar",
+    "translation": "برنامج شموس",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 534,
+    "word": "Follow up or raise a communication / complaint",
+    "language": "ar",
+    "translation": "متابعة أو رفع اتصال / شكوى",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 535,
+    "word": "Issuing Society Education License",
+    "language": "ar",
+    "translation": "اصدار رخصة تعليم المجتمع",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 536,
+    "word": "Renewing Society Education License",
+    "language": "ar",
+    "translation": "تجديد رخصة تعليم المجتمع",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 537,
+    "word": "Audit of the Ministry of Agriculture on farms",
+    "language": "ar",
+    "translation": "تدقيق وزارة الزراعة في المزارع",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 538,
+    "word": "Submit a new service request",
+    "language": "ar",
+    "translation": "إرسال طلب خدمة جديد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 539,
+    "word": "Request to strengthen electricity",
+    "language": "ar",
+    "translation": "طلب لتعزيز الكهرباء",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 540,
+    "word": "Review consumption",
+    "language": "ar",
+    "translation": "مراجعة الاستهلاك",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 541,
+    "word": "Paying bills",
+    "language": "ar",
+    "translation": "دفع الفواتير",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 542,
+    "word": "Request a consumption bills",
+    "language": "ar",
+    "translation": "طلب فواتير الاستهلاك",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 543,
+    "word": "Permit for advertising and publishing",
+    "language": "ar",
+    "translation": "تصريح للدعاية والنشر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 544,
+    "word": "Information permit",
+    "language": "ar",
+    "translation": "تصريح إعلامي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 545,
+    "word": "Theater license",
+    "language": "ar",
+    "translation": "رخصة المسرح",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 546,
+    "word": "Renewal & Mail Website",
+    "language": "ar",
+    "translation": "تجديد موقع البريد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 547,
+    "word": "National Address",
+    "language": "ar",
+    "translation": "العنوان الوطني",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 548,
+    "word": "Billing - service outage",
+    "language": "ar",
+    "translation": "الفواتير - انقطاع الخدمة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 549,
+    "word": "Male",
+    "language": "ar",
+    "translation": "ذكر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 550,
+    "word": "Female",
+    "language": "ar",
+    "translation": "أنثى",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 551,
+    "word": "Multiple",
+    "language": "ar",
+    "translation": "متعددة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 552,
+    "word": "Singular",
+    "language": "ar",
+    "translation": "مفردة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 553,
+    "word": "Visit Visa commercial request",
+    "language": "ar",
+    "translation": "تأشيرة زيارة تجارية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 554,
+    "word": "Request a work visit visa",
+    "language": "ar",
+    "translation": "تأشيرة زيارة عمل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 555,
+    "word": "Type of visa application",
+    "language": "ar",
+    "translation": "نوع طلب الزيارة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 556,
+    "word": "Reason of your Iqama Renewal",
+    "language": "ar",
+    "translation": "سبب طلب تجديد الإقامة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 557,
+    "word": "Purpose of business trip",
+    "language": "ar",
+    "translation": "الغرض من رحلة العمل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 558,
+    "word": "Destination city of trip",
+    "language": "ar",
+    "translation": "مدينة وجهة رحلة العمل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 559,
+    "word": "Business Trip Start Date",
+    "language": "ar",
+    "translation": "تاريخ بداية رحلة العمل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 560,
+    "word": "Destination of trip",
+    "language": "ar",
+    "translation": "وجهة الرحلة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 561,
+    "word": "New Addition vehicle",
+    "language": "ar",
+    "translation": "إضافة مركبة جديده",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 562,
+    "word": "Deletion  vehicle",
+    "language": "ar",
+    "translation": "إلغاء  مركبة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 563,
+    "word": "Correction  information  vehicle",
+    "language": "ar",
+    "translation": "تعديل بيانات  مركبة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 564,
+    "word": "Motors Claim – NAJEM report",
+    "language": "ar",
+    "translation": "مطالبة حادث – تغطية نجم",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 565,
+    "word": "Motors Claim –  traffic report",
+    "language": "ar",
+    "translation": "مطالبة حادث – تغطية المرور",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 566,
+    "word": "Motors Insurance",
+    "language": "ar",
+    "translation": "تأمين المركبات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 567,
+    "word": "Mode of Transport",
+    "language": "ar",
+    "translation": "وسيلة التنقل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 568,
+    "word": "Purpose of Visit",
+    "language": "ar",
+    "translation": "غرض الزيارة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 569,
+    "word": "Purpose of Visit",
+    "language": "ar",
+    "translation": "غرض الزيارة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 570,
+    "word": "Destination",
+    "language": "ar",
+    "translation": "الجهة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 571,
+    "word": "Destination City",
+    "language": "ar",
+    "translation": "مدينة الوجهة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 572,
+    "word": "Number of Days",
+    "language": "ar",
+    "translation": "عدد الأيام",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 573,
+    "word": "Purpose of the Travel",
+    "language": "ar",
+    "translation": "الغرض من السفر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 574,
+    "word": "Visitor's name (As in Passport)",
+    "language": "ar",
+    "translation": "اسم الزائر (كما في جواز السفر)",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 575,
+    "word": "Visa Entry type",
+    "language": "ar",
+    "translation": "نوع تأشيرة الدخول",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 576,
+    "word": "Visitor's company name",
+    "language": "ar",
+    "translation": "اسم شركة الزائر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 577,
+    "word": "Visitor's Origin City",
+    "language": "ar",
+    "translation": "مدينة المنشأ للزائر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 578,
+    "word": "Requesting Company",
+    "language": "ar",
+    "translation": "الشركة الطالبة للزائر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 1565,
+    "word": "Transfer/Replace SIM",
+    "language": "ar",
+    "translation": "نقل / تبديل الشريحة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 1566,
+    "word": "Cancel/Suspense SIM",
+    "language": "ar",
+    "translation": "إلغاء /إيقاف الشريحة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 1571,
+    "word": "Re-Entry Visa Services",
+    "language": "ar",
+    "translation": "خدمات تأشيرت الدخول",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 1572,
+    "word": "Transfer of sponsorship",
+    "language": "ar",
+    "translation": "نقل الكفالة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 1575,
+    "word": "Updating new passport data / extension of validity (transfer of information)",
+    "language": "ar",
+    "translation": "تحديث بيانات جواز السفر الجديد / تمديد الصلاحية (نقل المعلومات)",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 1578,
+    "word": "Mobile Services",
+    "language": "ar",
+    "translation": "خدمات الجوال",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 1579,
+    "word": "Name of the employee",
+    "language": "ar",
+    "translation": "اسم الموظف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 1580,
+    "word": "Job title & Nationality",
+    "language": "ar",
+    "translation": "المسمى الوظيفي والجنسية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 1581,
+    "word": "Last working date",
+    "language": "ar",
+    "translation": "آخر يوم عمل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 1582,
+    "word": "New Project Name",
+    "language": "ar",
+    "translation": "إسم المشروع الجديد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 1583,
+    "word": "New Project manager name",
+    "language": "ar",
+    "translation": "إسم مدير المشروع الجديد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 1584,
+    "word": "Employee Number",
+    "language": "ar",
+    "translation": "رقم الموظف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 1585,
+    "word": "Current Project Name",
+    "language": "ar",
+    "translation": "المشروع الحالي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 1586,
+    "word": "Current Project manager Name",
+    "language": "ar",
+    "translation": "مدير المشروع الحالي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 1587,
+    "word": "Transfer Reason",
+    "language": "ar",
+    "translation": "سبب النقل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2305,
+    "word": "Recruitment Requisition",
+    "language": "ar",
+    "translation": "طلب توظيف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2306,
+    "word": "Recruitment Requisition",
+    "language": "ar",
+    "translation": "طلب توظيف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2307,
+    "word": "Saudi",
+    "language": "ar",
+    "translation": "سعودي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2308,
+    "word": "Non-Saudi",
+    "language": "ar",
+    "translation": "غير سعودي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2309,
+    "word": "1. Company Information",
+    "language": "ar",
+    "translation": "معلومات الشركة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2310,
+    "word": "2. Position Details",
+    "language": "ar",
+    "translation": "تفاصيل الوظيفة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2311,
+    "word": "Company",
+    "language": "ar",
+    "translation": "الشركه",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2312,
+    "word": "Department",
+    "language": "ar",
+    "translation": "القسم",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2313,
+    "word": "Section",
+    "language": "ar",
+    "translation": "الفرع",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2314,
+    "word": "Sub Section",
+    "language": "ar",
+    "translation": "القسم الفرعي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2315,
+    "word": "Sub Section 1",
+    "language": "ar",
+    "translation": "القسم الفرعي ١",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2316,
+    "word": "Sub Section 2",
+    "language": "ar",
+    "translation": "تفاصيل القسم الفرعي ٢",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2317,
+    "word": "Cost Center",
+    "language": "ar",
+    "translation": "مركز التكلفه",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2318,
+    "word": "Reporting to (SAP ID)",
+    "language": "ar",
+    "translation": "المسؤول المباشر ( رقم الوظيفي)",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2319,
+    "word": "Reporting to Name",
+    "language": "ar",
+    "translation": "أسم المسؤول المباشر ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2320,
+    "word": "Position Title English",
+    "language": "ar",
+    "translation": "المسمى الوظيفي بالانجليزي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2321,
+    "word": "No. Required",
+    "language": "ar",
+    "translation": "العدد المطلوب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2322,
+    "word": "Position Title Arabic",
+    "language": "ar",
+    "translation": "المسمى الوظيفي بالعربي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2323,
+    "word": "Position Location",
+    "language": "ar",
+    "translation": "موقع الوظيفه",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2324,
+    "word": "Date Required",
+    "language": "ar",
+    "translation": "تاريخ المطلوب للتوظيف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2325,
+    "word": "Hiring type",
+    "language": "ar",
+    "translation": "نوع التوظيف ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2326,
+    "word": "New",
+    "language": "ar",
+    "translation": "جديد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2327,
+    "word": "Replacement",
+    "language": "ar",
+    "translation": "بديل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2328,
+    "word": "Gender",
+    "language": "ar",
+    "translation": "الجنس",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2329,
+    "word": "Male",
+    "language": "ar",
+    "translation": "ذكر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2330,
+    "word": "Female",
+    "language": "ar",
+    "translation": "أنثى",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2331,
+    "word": "Any",
+    "language": "ar",
+    "translation": "غير محدد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2332,
+    "word": "Replacement Id",
+    "language": "ar",
+    "translation": "الرقم الوظيفي للموظف السابق",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2333,
+    "word": "Contract Type",
+    "language": "ar",
+    "translation": "نوع العقد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2334,
+    "word": "3.Salary",
+    "language": "ar",
+    "translation": "الراتب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2335,
+    "word": "Maximum Basic Salary",
+    "language": "ar",
+    "translation": "الحد الأعلى للراتب الاساسي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2336,
+    "word": "OT eligibility",
+    "language": "ar",
+    "translation": "الأهليه للعمل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2337,
+    "word": "Housing Allowance",
+    "language": "ar",
+    "translation": "بدل السكن ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2338,
+    "word": "Trans. Allowance",
+    "language": "ar",
+    "translation": "بدل المواصلات ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2339,
+    "word": "Other Allowance 1",
+    "language": "ar",
+    "translation": "بدلات أخرى 1",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2340,
+    "word": "Allowance 1  Amount",
+    "language": "ar",
+    "translation": "مقدار البدل 1",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2341,
+    "word": "Allowance 2 Amount",
+    "language": "ar",
+    "translation": "مقدار البدل 2",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2342,
+    "word": "Other Allowance 3",
+    "language": "ar",
+    "translation": "بدلات أخرى 3",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2343,
+    "word": "Allowance 3 Amount",
+    "language": "ar",
+    "translation": "مقدار البدل 3",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2344,
+    "word": "Commission",
+    "language": "ar",
+    "translation": "العمولة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2345,
+    "word": "Annual Bonus",
+    "language": "ar",
+    "translation": "المكافأة السنويه ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2346,
+    "word": "Medical Insurance Class",
+    "language": "ar",
+    "translation": "مستوى التأمين الطبي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2347,
+    "word": "Silver",
+    "language": "ar",
+    "translation": "فضي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2348,
+    "word": "5.Assets & Services",
+    "language": "ar",
+    "translation": "أصول / خدمات ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2349,
+    "word": "Sim Card",
+    "language": "ar",
+    "translation": "شريحة جوال ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2350,
+    "word": "Mobile Device",
+    "language": "ar",
+    "translation": "جهاز جوال ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2351,
+    "word": "Email",
+    "language": "ar",
+    "translation": "بريد ألكتروني ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2352,
+    "word": "Computer",
+    "language": "ar",
+    "translation": "كمبيوتر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2353,
+    "word": "Laptop",
+    "language": "ar",
+    "translation": "جهاز محمول",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2354,
+    "word": "IP Phone",
+    "language": "ar",
+    "translation": "تليفون مكتبي ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2355,
+    "word": "Ext.",
+    "language": "ar",
+    "translation": "تحويلة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2356,
+    "word": "Company Car",
+    "language": "ar",
+    "translation": "سيارة الشركه ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2357,
+    "word": "Others",
+    "language": "ar",
+    "translation": "اخرى ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2358,
+    "word": "6. Qualification & Skills",
+    "language": "ar",
+    "translation": "المؤهلات / المهارات ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2359,
+    "word": "Qualification",
+    "language": "ar",
+    "translation": "المؤهل العلمي ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2360,
+    "word": "Minimum basic salary",
+    "language": "ar",
+    "translation": "الحد الادنى للراتب الاساسي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2361,
+    "word": "Other Allowance 2",
+    "language": "ar",
+    "translation": "بدلات أخرى ٢",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2362,
+    "word": "Preferred Age",
+    "language": "ar",
+    "translation": "العمر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2363,
+    "word": "Preferred Age",
+    "language": "ar",
+    "translation": "العمر المفضل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2364,
+    "word": "Priority",
+    "language": "ar",
+    "translation": "الأهمية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2365,
+    "word": "Max Experience (years)",
+    "language": "ar",
+    "translation": "الحد الأعلى لسنوات الخبره ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2366,
+    "word": "Type of Test",
+    "language": "ar",
+    "translation": "رخصه / اختبار ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2367,
+    "word": "Training Certificates",
+    "language": "ar",
+    "translation": "شهادات التدريب ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2368,
+    "word": "English proficiency",
+    "language": "ar",
+    "translation": "اللغة الأنجليزية ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2369,
+    "word": "No need",
+    "language": "ar",
+    "translation": "غير مهم",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2370,
+    "word": "Basic",
+    "language": "ar",
+    "translation": "أساسي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2371,
+    "word": "Gold",
+    "language": "ar",
+    "translation": "ذهبي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2372,
+    "word": "Platinum",
+    "language": "ar",
+    "translation": "بلاتيني",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2373,
+    "word": "Min Experience (years)",
+    "language": "ar",
+    "translation": "الحد الأدنى لسنوات الخبره",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2374,
+    "word": "Yes",
+    "language": "ar",
+    "translation": "نعم",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2375,
+    "word": "No",
+    "language": "ar",
+    "translation": "لا",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2376,
+    "word": "Desktop",
+    "language": "ar",
+    "translation": "جهاز مكتبي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2377,
+    "word": "Chromebook",
+    "language": "ar",
+    "translation": "كرومبوك",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2378,
+    "word": "Intermediate",
+    "language": "ar",
+    "translation": "متوسط",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2379,
+    "word": "Fluent",
+    "language": "ar",
+    "translation": "بطلاقة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2380,
+    "word": "4.Other Benefits",
+    "language": "ar",
+    "translation": "الإضافات الأخرى",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2381,
+    "word": "Preferred Gender",
+    "language": "ar",
+    "translation": "الجنس المطلوب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2382,
+    "word": "Position Title English",
+    "language": "ar",
+    "translation": "المسمى الوظيفي بالانجليزي ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2383,
+    "word": "No. Required",
+    "language": "ar",
+    "translation": "العدد المطلوب ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2384,
+    "word": "Position Title Arabic",
+    "language": "ar",
+    "translation": "المسمى الوظيفي بالعربي ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2385,
+    "word": "Position Location",
+    "language": "ar",
+    "translation": "موقع الوظيفه ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2386,
+    "word": "Date Required",
+    "language": "ar",
+    "translation": "تاريخ المطلوب للتوظيف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2387,
+    "word": "Hiring type",
+    "language": "ar",
+    "translation": "نوع التوظيف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2388,
+    "word": "Replacement Id",
+    "language": "ar",
+    "translation": "الرقم الوظيفي للموظف السابق ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2389,
+    "word": "Preferred Age",
+    "language": "ar",
+    "translation": "العمر ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2390,
+    "word": "Gender",
+    "language": "ar",
+    "translation": "الجنس",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2391,
+    "word": "Contract Type",
+    "language": "ar",
+    "translation": "نوع العقد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2392,
+    "word": "Full time",
+    "language": "ar",
+    "translation": "دوام كامل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2393,
+    "word": "Perferred Nationality",
+    "language": "ar",
+    "translation": "الجنسيه المطلوبه ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2394,
+    "word": "All Anglophone countries",
+    "language": "ar",
+    "translation": "جميع الدول الناطقة باللغة الإنجليزية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2395,
+    "word": "3.Salary",
+    "language": "ar",
+    "translation": "الراتب ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2396,
+    "word": "Minimum basic salary",
+    "language": "ar",
+    "translation": "الحد الادنى للراتب الاساسي ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2397,
+    "word": "Maximum Basic Salary",
+    "language": "ar",
+    "translation": "الحد الأعلى للراتب الاساسي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2398,
+    "word": "OT eligibility ",
+    "language": "ar",
+    "translation": "الأهليه للعمل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2399,
+    "word": "Housing Allowance ",
+    "language": "ar",
+    "translation": "بدل السكن ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2400,
+    "word": "Provided by company",
+    "language": "ar",
+    "translation": "مقدم من الشركه",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2401,
+    "word": "Trans. Allowance",
+    "language": "ar",
+    "translation": "بدل المواصلات ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2402,
+    "word": "Other Allowance 1",
+    "language": "ar",
+    "translation": "بدلات أخرى 1",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2403,
+    "word": "Allowance 1 Amount",
+    "language": "ar",
+    "translation": "مقدار البدل 1",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2404,
+    "word": "Other Allowance 2",
+    "language": "ar",
+    "translation": "بدلات أخرى 2",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2405,
+    "word": "Allowance 2 Amount",
+    "language": "ar",
+    "translation": "مقدار البدل 2",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2406,
+    "word": "Other Allowance 3",
+    "language": "ar",
+    "translation": "بدلات أخرى 3",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2407,
+    "word": "Allowance 3 Amount",
+    "language": "ar",
+    "translation": "مقدار البدل 3",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2408,
+    "word": "Commission",
+    "language": "ar",
+    "translation": "العموله",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2409,
+    "word": "Annual Bonus",
+    "language": "ar",
+    "translation": "المكافئه السنوية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2410,
+    "word": "Working days",
+    "language": "ar",
+    "translation": "ايام العمل ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2411,
+    "word": "8hrs +6 days",
+    "language": "ar",
+    "translation": "٨ ساعات +٦ أيام",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2412,
+    "word": "4.Other Benefits",
+    "language": "ar",
+    "translation": "مميزات أخرى",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2413,
+    "word": "Family Status",
+    "language": "ar",
+    "translation": "حالة العائله",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2414,
+    "word": "Visa Status",
+    "language": "ar",
+    "translation": "نوع الفيزا",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2415,
+    "word": "Fulltime",
+    "language": "ar",
+    "translation": "دوام كامل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2416,
+    "word": "PartTime",
+    "language": "ar",
+    "translation": "دوام جزئي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2417,
+    "word": "Rental",
+    "language": "ar",
+    "translation": "تأجير",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2418,
+    "word": "Temporary",
+    "language": "ar",
+    "translation": "عفد مؤقت",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2419,
+    "word": "All Arab Countries",
+    "language": "ar",
+    "translation": "جميع  الدول العربية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2420,
+    "word": "All Eastern Countries",
+    "language": "ar",
+    "translation": "جميع  الدول الشرقية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2421,
+    "word": "All GCC Countries",
+    "language": "ar",
+    "translation": "جميع دول مجلس التعاون الخليجي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2422,
+    "word": "All Western European Countries",
+    "language": "ar",
+    "translation": "جميع دول أوروبا الغربية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2423,
+    "word": "Central Asia",
+    "language": "ar",
+    "translation": "آسيا الوسطى",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2424,
+    "word": "East Asia",
+    "language": "ar",
+    "translation": "شرق آسيا",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2425,
+    "word": "South Asia",
+    "language": "ar",
+    "translation": "جنوب آسيا",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2426,
+    "word": "South east Asia",
+    "language": "ar",
+    "translation": "جنوب شرق آسيا",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2427,
+    "word": "West Asia",
+    "language": "ar",
+    "translation": "غرب آسيا",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2428,
+    "word": "25% basic salary",
+    "language": "ar",
+    "translation": "25% من الراتب الأساسي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2429,
+    "word": "Other",
+    "language": "ar",
+    "translation": "أخرى",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2430,
+    "word": "8hrs + 5 days",
+    "language": "ar",
+    "translation": "٨ ساعات +٥ أيام",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2431,
+    "word": "10 hrs + 6 days",
+    "language": "ar",
+    "translation": "١٠ ساعات + ٦ أيام",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2432,
+    "word": "10 hrs + 5days",
+    "language": "ar",
+    "translation": "١٠ ساعات +٥ أيام",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2433,
+    "word": "Half-Yearly",
+    "language": "ar",
+    "translation": "نصف تذكرة سنوية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2434,
+    "word": "Annually",
+    "language": "ar",
+    "translation": "تذكرة سنوية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2435,
+    "word": "18 Months",
+    "language": "ar",
+    "translation": "تذكرة سنوية كل ١٨ شهر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2436,
+    "word": "24 Months",
+    "language": "ar",
+    "translation": "تذكرة سنوية كل ٢٤ شهر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2437,
+    "word": "Quarterly",
+    "language": "ar",
+    "translation": "تذكرة كل ٣ أشهر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2438,
+    "word": "Language",
+    "language": "ar",
+    "translation": "اللغة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2439,
+    "word": "Insurance Card Qty.",
+    "language": "ar",
+    "translation": "عدد بطاقات التأمين",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2440,
+    "word": "Ticket Eligibility",
+    "language": "ar",
+    "translation": "أهلية التذكرة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2441,
+    "word": "Ticket Class",
+    "language": "ar",
+    "translation": "مستوى التذكره",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2442,
+    "word": "Tickets Qty.",
+    "language": "ar",
+    "translation": "عدد التذاكر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2443,
+    "word": "Economy",
+    "language": "ar",
+    "translation": "إقتصادي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2444,
+    "word": "Business Class",
+    "language": "ar",
+    "translation": "مستوى اعمال",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2445,
+    "word": "Annual Vacation Eligible days",
+    "language": "ar",
+    "translation": "عدد ايام الاجازه السنوية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2446,
+    "word": "Family Ticket Eligibility",
+    "language": "ar",
+    "translation": "اهلية تذاكر العائله",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2447,
+    "word": "Wife only",
+    "language": "ar",
+    "translation": "زوجة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2448,
+    "word": "W+1 kid",
+    "language": "ar",
+    "translation": "زوجة و 1 طفل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2449,
+    "word": "W+2 Kids",
+    "language": "ar",
+    "translation": "زوجة و طفلين",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2450,
+    "word": "W+3 Kids",
+    "language": "ar",
+    "translation": "زوجة و 3 أطفال",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2451,
+    "word": "W+4 Kids",
+    "language": "ar",
+    "translation": "زوجة و 4 أطفال",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2452,
+    "word": "W+5 Kids",
+    "language": "ar",
+    "translation": "زوجة و 5 أطفال",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2453,
+    "word": "High Priority",
+    "language": "ar",
+    "translation": "مهم جدا",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2454,
+    "word": "Medium Priority",
+    "language": "ar",
+    "translation": "متوسط",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2455,
+    "word": "Low Priority",
+    "language": "ar",
+    "translation": "قليل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2456,
+    "word": "W+2 kid",
+    "language": "ar",
+    "translation": "زوجة و طفلين",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2457,
+    "word": "W+3 kid",
+    "language": "ar",
+    "translation": "زوجة و 3 أطفال",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2458,
+    "word": "W+4 kid",
+    "language": "ar",
+    "translation": "زوجة و 4 أطفال",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2459,
+    "word": "W+5 kid",
+    "language": "ar",
+    "translation": "زوجة و 5 أطفال",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2460,
+    "word": "Southeast Asia",
+    "language": "ar",
+    "translation": "جنوب شرق آسيا",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2461,
+    "word": "No preference",
+    "language": "ar",
+    "translation": "غير مهتم",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2462,
+    "word": "High sc",
+    "language": "ar",
+    "translation": "ثانوي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2463,
+    "word": "diploma",
+    "language": "ar",
+    "translation": "دبلوم",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2464,
+    "word": "graudation",
+    "language": "ar",
+    "translation": "بكالوريوس",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2465,
+    "word": "masters",
+    "language": "ar",
+    "translation": "ماستر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2466,
+    "word": "doctorate",
+    "language": "ar",
+    "translation": "دكتوراه",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2467,
+    "word": "Arabic",
+    "language": "ar",
+    "translation": "اللغة العربية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2469,
+    "word": "Available",
+    "language": "ar",
+    "translation": "متاح",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2470,
+    "word": "Local Transfer only",
+    "language": "ar",
+    "translation": "النقل المحلي فقط",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2471,
+    "word": "Both",
+    "language": "ar",
+    "translation": "الإثنان معا",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2472,
+    "word": "Employee",
+    "language": "ar",
+    "translation": "الموظف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2473,
+    "word": "Date of departure from KSA",
+    "language": "ar",
+    "translation": "تاريخ المغادرة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2474,
+    "word": "Vacation End date",
+    "language": "ar",
+    "translation": "تاريخ نهاية الإجازة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2475,
+    "word": "Type of vacation",
+    "language": "ar",
+    "translation": "نوع الإجازة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2476,
+    "word": "Return date from your Country",
+    "language": "ar",
+    "translation": "تاريخ العودة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2477,
+    "word": "Contract Type",
+    "language": "ar",
+    "translation": "نوع العقد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2478,
+    "word": "Over Time eligibility",
+    "language": "ar",
+    "translation": "ساعات عمل إضافية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2479,
+    "word": "Al Quwa Services",
+    "language": "ar",
+    "translation": "خدمات شئون الموظفين",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2480,
+    "word": "Vacation Services",
+    "language": "ar",
+    "translation": "خدمات الإجازات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2481,
+    "word": "Confidentiality",
+    "language": "ar",
+    "translation": "السرية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2482,
+    "word": "Adding actual user on the vehicle",
+    "language": "ar",
+    "translation": "إضافة مستخدم فعلي على السيارة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2483,
+    "word": "Holding",
+    "language": "ar",
+    "translation": "الكفاح القابضة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2484,
+    "word": "KCS",
+    "language": "ar",
+    "translation": "قطاع حلول الانشاء",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2485,
+    "word": "KCC",
+    "language": "ar",
+    "translation": "الكفاح المقاولات العامة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2486,
+    "word": "DSS",
+    "language": "ar",
+    "translation": "قطاع دعم للاعمال المشتركة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2487,
+    "word": "Paper Product",
+    "language": "ar",
+    "translation": "الكفاح للمنتجات الورقية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2488,
+    "word": "Financial",
+    "language": "ar",
+    "translation": "المالي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2489,
+    "word": "Enrich Society",
+    "language": "ar",
+    "translation": "اكاديمية الكفاح",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2490,
+    "word": "PDD",
+    "language": "ar",
+    "translation": "قطاع التطوير العقارى",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2491,
+    "word": "AMLAK",
+    "language": "ar",
+    "translation": "المُّلَّاك",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2492,
+    "word": "Afaq Company",
+    "language": "ar",
+    "translation": "شركة افاق للطاقة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2493,
+    "word": "GulfBoost",
+    "language": "ar",
+    "translation": "شركة جولف بوست",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2494,
+    "word": "AVECO",
+    "language": "ar",
+    "translation": "الرؤية الهندسية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2495,
+    "word": "KPP",
+    "language": "ar",
+    "translation": "مصنع الكفاح لعلب الكرتون",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2496,
+    "word": "KCP",
+    "language": "ar",
+    "translation": "مطابع الكفاح",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2497,
+    "word": "Tamweel Aloula Co",
+    "language": "ar",
+    "translation": "تمويل الأولى",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2498,
+    "word": "Al Kifah Academy",
+    "language": "ar",
+    "translation": "مدارس الكفاح",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2499,
+    "word": "KPH",
+    "language": "ar",
+    "translation": "دار النشر ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2500,
+    "word": "AMLAK",
+    "language": "ar",
+    "translation": "المُّلَّاك",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2501,
+    "word": "KICS",
+    "language": "ar",
+    "translation": "الكفاح لكافحة العدوى",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2502,
+    "word": "Kifah Holding Co.",
+    "language": "ar",
+    "translation": "الكفاح القابضة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2503,
+    "word": "Kifah Contracting",
+    "language": "ar",
+    "translation": "المقاولات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2504,
+    "word": "Kifah Paper Product",
+    "language": "ar",
+    "translation": "الكفاح للمنتجات الورقية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2505,
+    "word": "Kifah Ready Mix & Block",
+    "language": "ar",
+    "translation": "الكفاح للخرسانة و مواد البناء",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2506,
+    "word": "Kice",
+    "language": "ar",
+    "translation": "الكفاح لمعدات البناء",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2507,
+    "word": "Kifah Precast",
+    "language": "ar",
+    "translation": "الكفاح للخرسانة مسبقة الصنع",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2508,
+    "word": "Kilo",
+    "language": "ar",
+    "translation": "الكفاح للنقليات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2509,
+    "word": "Hubtech",
+    "language": "ar",
+    "translation": "مدار التقنية للاتصالات  والمعلومات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2510,
+    "word": "Kifah General Services",
+    "language": "ar",
+    "translation": "الخدمات العامة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2511,
+    "word": "Al-Quwa Center",
+    "language": "ar",
+    "translation": "القوى المتميزة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2512,
+    "word": "KAF",
+    "language": "ar",
+    "translation": "الدعايا والإعلان",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2513,
+    "word": "Kifah Motors",
+    "language": "ar",
+    "translation": "السيارات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2514,
+    "word": "Kifah Travel Agency",
+    "language": "ar",
+    "translation": "السفر والسياحة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2515,
+    "word": "Kifah Real Estate",
+    "language": "ar",
+    "translation": "الكفاح العقارية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2516,
+    "word": "Consulting Engineering Office",
+    "language": "ar",
+    "translation": "المكتب الهندسى",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2517,
+    "word": "Kifah Farms",
+    "language": "ar",
+    "translation": "المزارع",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2518,
+    "word": "AL-Kifah Security Services",
+    "language": "ar",
+    "translation": "الحراسات الامنية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2519,
+    "word": "Al-Motaweroon",
+    "language": "ar",
+    "translation": "المطورون",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2520,
+    "word": "IMDAAD CATERING SERVICES",
+    "language": "ar",
+    "translation": "امداد الامثل لخدمات الاعاشة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2521,
+    "word": "Takamul Aloula",
+    "language": "ar",
+    "translation": "تكامل الاولى",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2522,
+    "word": "Unidentified services",
+    "language": "ar",
+    "translation": "خدمات غير مصنفة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2523,
+    "word": "Issuing License",
+    "language": "ar",
+    "translation": "إصدار رخصة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2524,
+    "word": "Cancellation / Updating of license",
+    "language": "ar",
+    "translation": "إلغاء / تحديث رخصة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2525,
+    "word": "Business Services",
+    "language": "ar",
+    "translation": "خدمات الأعمال",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2526,
+    "word": "Application Services",
+    "language": "ar",
+    "translation": "خدمات التطبيقات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2527,
+    "word": "Request for issuance of family tickets to the beneficiary only",
+    "language": "ar",
+    "translation": "طلب إصدار تذاكر السفر العائلة لمن يستحق",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2528,
+    "word": "Transferring inside company between departments  and branches",
+    "language": "ar",
+    "translation": "نقل داخل الشركة بين الإدارات والفروع",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2529,
+    "word": "Escape from Company",
+    "language": "ar",
+    "translation": "بلاغ هروب من الشركة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2530,
+    "word": "Cancel Escape Request",
+    "language": "ar",
+    "translation": "إلغاء بلاغ الهروب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2531,
+    "word": "Change in position",
+    "language": "ar",
+    "translation": "تغيير المسمى الوظيفي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2532,
+    "word": "Current Company Name",
+    "language": "ar",
+    "translation": "أسم الشركة الحالية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2533,
+    "word": "Current Divisional Manager Name",
+    "language": "ar",
+    "translation": "أسم رئيس القطاع الحالي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2534,
+    "word": "New Company Name",
+    "language": "ar",
+    "translation": "أسم الشركة الجديدة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2535,
+    "word": "New Direct Manager Name",
+    "language": "ar",
+    "translation": "أسم المدير المباشر الجديد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2536,
+    "word": "New Position Name",
+    "language": "ar",
+    "translation": "المسمى الوظيفي الجديد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2537,
+    "word": "New Department Name",
+    "language": "ar",
+    "translation": "أسم القسم الجديد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2538,
+    "word": "New Cost Center",
+    "language": "ar",
+    "translation": "مركز التكلفة بالشركة الجديده",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2539,
+    "word": "New Position Number",
+    "language": "ar",
+    "translation": "رقم الوظيفة بالشركة الجديده",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2540,
+    "word": "Last salary received",
+    "language": "ar",
+    "translation": "آخر راتب تم إستلامه",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2541,
+    "word": "Reason for escape request",
+    "language": "ar",
+    "translation": "سبب الهروب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2542,
+    "word": "Current Position Title",
+    "language": "ar",
+    "translation": "المسمى الوظيفي الحالي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2543,
+    "word": "Cost Center Amendments",
+    "language": "ar",
+    "translation": "تعديل مركز التكلفة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2544,
+    "word": "Reporting Structure Amendments",
+    "language": "ar",
+    "translation": "تعديل التابعية بالهيكل التنظيمي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2545,
+    "word": "Position Text Amendment (not promotion action)",
+    "language": "ar",
+    "translation": "تصحيح المسمى الوظيفي ( ليست للترقية )",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2546,
+    "word": "Structure Amendments (Department / Section Amendments)",
+    "language": "ar",
+    "translation": "تعديل الهيكل التنظيمي ( القسم / الإدارة )",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2547,
+    "word": "Creation of position in sap (new hire / replacement)",
+    "language": "ar",
+    "translation": "إنشاء وظيفة بالساب ( موظف جديد / موظف بديل )",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2548,
+    "word": "Personnel Area/Sub Area Amendments",
+    "language": "ar",
+    "translation": "تعديل اسم المنطقة / الفرع",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2549,
+    "word": "Employee SAP Number",
+    "language": "ar",
+    "translation": "الرقم الوظيفي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2550,
+    "word": "Cost Center Number (The cost center number should be filled as X100-5020 ONLY)",
+    "language": "ar",
+    "translation": "رقم مركز التكلفة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2551,
+    "word": "Effective Date",
+    "language": "ar",
+    "translation": "تاريخ التفعيل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2552,
+    "word": "Number of Changes Submitted",
+    "language": "ar",
+    "translation": "عدد التغييرات المقدمة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2553,
+    "word": "Manager SAP Number",
+    "language": "ar",
+    "translation": "الرقم الوظيفي للمدير",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2554,
+    "word": "New Position Text (This Position Should Be Available On The Approved Organization Structure)",
+    "language": "ar",
+    "translation": "الوظيفة الجديده ( يجب أن تكون الوظيفة معتمدة بالهيكل التنظيمي )",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2555,
+    "word": "(from the last approval)",
+    "language": "ar",
+    "translation": "(من تاريخ آخر موافقة على الطلب)",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2556,
+    "word": "Position Request",
+    "language": "ar",
+    "translation": "طلب الوظيفه",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2557,
+    "word": "Replacement SAP ID (Replacement SAP ID is mandatory if the request is replacement)",
+    "language": "ar",
+    "translation": "الرقم الوظيفي للموظف البديل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2558,
+    "word": "Date of Hire / Transfer",
+    "language": "ar",
+    "translation": "تاريخ التعيين / تاريخ النقل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2559,
+    "word": "Current Company Code and Name",
+    "language": "ar",
+    "translation": "أسم ورمز الشركة الحالية ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2560,
+    "word": "Payroll Area",
+    "language": "ar",
+    "translation": "منطقة الرواتب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2561,
+    "word": "Reporting Manager SAP ID",
+    "language": "ar",
+    "translation": "الرقم الوظيفي للمدير المباشر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2562,
+    "word": "Personnel Area",
+    "language": "ar",
+    "translation": "منطقة الوظيفة ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2563,
+    "word": "Personnel SubArea",
+    "language": "ar",
+    "translation": "منطقة الوظيفة الفرعية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2564,
+    "word": "Uploading Picture on successfactors",
+    "language": "ar",
+    "translation": "رفع الصوره على successfactors",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2565,
+    "word": "Activating / Deactivating Employees in SuccessFactors",
+    "language": "ar",
+    "translation": "تفعيل / إلغاء تفعيل الموظف على successfactors",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2566,
+    "word": "Issues In SuccessFactor",
+    "language": "ar",
+    "translation": "إنشاء successfactors",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2567,
+    "word": "Service Requested",
+    "language": "ar",
+    "translation": "طلب الخدمة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2568,
+    "word": "Activate",
+    "language": "ar",
+    "translation": "تفعيل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2569,
+    "word": "Deactivate",
+    "language": "ar",
+    "translation": "إلغاء التفعيل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2570,
+    "word": "Issue is",
+    "language": "ar",
+    "translation": "الإصدار يكون",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2571,
+    "word": "Employee is not Visible on SF",
+    "language": "ar",
+    "translation": "الموظف غير مرئي على SF",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2572,
+    "word": "Employee Reporting Manager is not visible on SF",
+    "language": "ar",
+    "translation": "المدير المباشر غير مرئي على SF",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2573,
+    "word": "Others",
+    "language": "ar",
+    "translation": "غير ذلك",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2574,
+    "word": "Type of Transport",
+    "language": "ar",
+    "translation": "نوع وسيلة النقل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2575,
+    "word": "Departure Date",
+    "language": "ar",
+    "translation": "تاريخ السفر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2576,
+    "word": "Date of joining the work after trip",
+    "language": "ar",
+    "translation": "تاريخ مباشرة العمل بعد رحلة العمل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2577,
+    "word": "Ticket required ?",
+    "language": "ar",
+    "translation": "هل بحاجة للتذكرة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2578,
+    "word": "Job No",
+    "language": "ar",
+    "translation": "Job No",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2579,
+    "word": "Airplane",
+    "language": "ar",
+    "translation": "طيران",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2580,
+    "word": "Train",
+    "language": "ar",
+    "translation": "قطار",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2581,
+    "word": "Personal Car",
+    "language": "ar",
+    "translation": "السيارة الشخصية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2582,
+    "word": "Meeting",
+    "language": "ar",
+    "translation": "إجتماع",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2583,
+    "word": "Business Trip",
+    "language": "ar",
+    "translation": "مهمة عمل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2584,
+    "word": "Training",
+    "language": "ar",
+    "translation": "تدريب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2585,
+    "word": "Inside KSA",
+    "language": "ar",
+    "translation": "داخل المملكة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2586,
+    "word": "Outside KSA",
+    "language": "ar",
+    "translation": "خارج المملكة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2587,
+    "word": "Business Nature of the Visitor's Company",
+    "language": "ar",
+    "translation": "طبيعة عمل شركة الزائر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2588,
+    "word": "Requester name in Kifah",
+    "language": "ar",
+    "translation": "أسم رافع الطلب في الكفاح",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2589,
+    "word": "Purpose of the visit",
+    "language": "ar",
+    "translation": "الغرض من الزيارة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2590,
+    "word": "Type of visa application",
+    "language": "ar",
+    "translation": "نوع طلب الزيارة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2591,
+    "word": "Work Visit Visa",
+    "language": "ar",
+    "translation": "زيارة عمل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2592,
+    "word": "Commercial Visit Visa",
+    "language": "ar",
+    "translation": "زياره تجارية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2593,
+    "word": "Application of passport",
+    "language": "ar",
+    "translation": "طلب الجواز",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2594,
+    "word": "Date of issue of passport",
+    "language": "ar",
+    "translation": "تاريخ إصدار الجواز",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2595,
+    "word": "Date of expiry of passport",
+    "language": "ar",
+    "translation": "تاريخ إنتهاء الجواز",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2596,
+    "word": "Place of issue",
+    "language": "ar",
+    "translation": "مكان إصدار الجواز",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2597,
+    "word": "For a New Passport",
+    "language": "ar",
+    "translation": "لجواز جديد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2598,
+    "word": "<p><strong>Attach a copy of the old and the new passport,</strong></p>\n<p><strong>and mention&nbsp;the passport number and date of issue and expiration.</strong></p>\n<div id=\"gtx-trans\" style=\"position: absolute; left: -99px; top: -19px;\">&nbsp;</div>",
+    "language": "ar",
+    "translation": "إرفاق صور من الجواز الجديد والقديم مع توضيح رقم الجواز وتاريخ الإصدار وتاريخ الإنتهاء ومكان الإصدار للجواز الجديد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2599,
+    "word": "For Extension of passport's validity on the same passport",
+    "language": "ar",
+    "translation": "لتمديد صلاحية الجواز على نفس الجواز الحالي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2600,
+    "word": "Name of the previous sponsor",
+    "language": "ar",
+    "translation": "أسم الكفيل السابق",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2601,
+    "word": "Name of the new Sponsor",
+    "language": "ar",
+    "translation": "أسم الكفيل الجديد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2602,
+    "word": "Iqama's Expiry Date",
+    "language": "ar",
+    "translation": "تاريخ إنتهاء الإقامة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2603,
+    "word": "Name of sponsor",
+    "language": "ar",
+    "translation": "اسم الكفيل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2604,
+    "word": "Direct Manager Mobile",
+    "language": "ar",
+    "translation": "رقم جوال المدير المباشر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2605,
+    "word": "Iqama Expiry",
+    "language": "ar",
+    "translation": "تاريخ إنتهاء الإقامة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2606,
+    "word": "Period",
+    "language": "ar",
+    "translation": "المدة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2607,
+    "word": "Visa Entry",
+    "language": "ar",
+    "translation": "نوع التأشيرة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2608,
+    "word": "Visa Application Type",
+    "language": "ar",
+    "translation": "نوع طلب التأشيرة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2609,
+    "word": "Multiple",
+    "language": "ar",
+    "translation": "متعددة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2610,
+    "word": "Issue Visa",
+    "language": "ar",
+    "translation": "إصدار",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2611,
+    "word": "Cancel Visa",
+    "language": "ar",
+    "translation": "إلغاء",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2612,
+    "word": "Extend Visa",
+    "language": "ar",
+    "translation": "تمديد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2613,
+    "word": "Current Name English (as per Iqama)",
+    "language": "ar",
+    "translation": "الأسم الحالي بالإنجليزي حسب الإقامة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2614,
+    "word": "Current Name Arabic (as per Iqama)",
+    "language": "ar",
+    "translation": "الأسم الحالي بالعربي حسب الإقامة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2615,
+    "word": "Iqama",
+    "language": "ar",
+    "translation": "إقامة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2616,
+    "word": "New Name as per passport (English)",
+    "language": "ar",
+    "translation": "الأسم الجديد بالإنجليزي حسب الجواز",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2617,
+    "word": "New Name as per passport (Arabic)",
+    "language": "ar",
+    "translation": "الأسم الجديد بالعربي حسب الجواز",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2618,
+    "word": "New profession name",
+    "language": "ar",
+    "translation": "مسمى المهنة الجديده",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2619,
+    "word": "Current profession name",
+    "language": "ar",
+    "translation": "مسمى المهنة الحالية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2620,
+    "word": "Educational Certificates",
+    "language": "ar",
+    "translation": "الشهادة التعليمية / الدراسية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2621,
+    "word": "purpose of profession change",
+    "language": "ar",
+    "translation": "الغرض من تغيير المهنة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2622,
+    "word": "Employee SAP ID",
+    "language": "ar",
+    "translation": "الرقم الوظيفي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2623,
+    "word": "Employee Manager Email",
+    "language": "ar",
+    "translation": "إيميل المدير المباشر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2624,
+    "word": "Exit type",
+    "language": "ar",
+    "translation": "نوع الخروج",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2625,
+    "word": "Final Exit",
+    "language": "ar",
+    "translation": "خروج نهائي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2626,
+    "word": "Local Transfer",
+    "language": "ar",
+    "translation": "نقل كفالة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2627,
+    "word": "General Letter",
+    "language": "ar",
+    "translation": "خطاب عام",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2628,
+    "word": "Warning letter",
+    "language": "ar",
+    "translation": "خطاب إنذار",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2629,
+    "word": "Termination Letter",
+    "language": "ar",
+    "translation": "خطاب إنهاء خدمات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2630,
+    "word": "Need a stamp from Chamber of Commerce ?",
+    "language": "ar",
+    "translation": "هل بحاجة للتصديق من الغرفة التجارية؟",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2631,
+    "word": "Employee Location",
+    "language": "ar",
+    "translation": "موقع الموظف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2632,
+    "word": "Requester Phone",
+    "language": "ar",
+    "translation": "رقم جوال صاحب الطلب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2633,
+    "word": "To (Addressed to)",
+    "language": "ar",
+    "translation": "إلى",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2634,
+    "word": "Reason for termination",
+    "language": "ar",
+    "translation": "سبب الإنهاء",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2635,
+    "word": "Department Name",
+    "language": "ar",
+    "translation": "أسم القسم",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2636,
+    "word": "Employee Location",
+    "language": "ar",
+    "translation": "موقع الموظف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2637,
+    "word": "Last working day",
+    "language": "ar",
+    "translation": "آخر يوم عمل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2638,
+    "word": "Type of exit",
+    "language": "ar",
+    "translation": "نوع الخروج",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2639,
+    "word": "Company where he works",
+    "language": "ar",
+    "translation": "أسم الشركة التي يعمل بها الموظف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2640,
+    "word": "The location of the fingerprint for the employee",
+    "language": "ar",
+    "translation": "موقع البصمة التي سيتم عملها للموظف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2641,
+    "word": "Monthly Payroll Approval",
+    "language": "ar",
+    "translation": "موافقة الرواتب الشهرية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2642,
+    "word": "Date of Travel",
+    "language": "ar",
+    "translation": "تاريخ السفر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2643,
+    "word": "Airport in Saudi Arabia",
+    "language": "ar",
+    "translation": "أسم المطار بالسعودية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2644,
+    "word": "Arrival Country",
+    "language": "ar",
+    "translation": "دولة الوصول",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2645,
+    "word": "Arrival Airport",
+    "language": "ar",
+    "translation": "مطار الوصول",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2646,
+    "word": "No. of tickets",
+    "language": "ar",
+    "translation": "عدد التذاكر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2647,
+    "word": "No. of tickets",
+    "language": "ar",
+    "translation": "إرفاق صورة من جواز السفر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2648,
+    "word": "Current Company Code and Name",
+    "language": "ar",
+    "translation": "أسم وزمر الشركة الحالية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2649,
+    "word": "Current Payroll Area",
+    "language": "ar",
+    "translation": "منطقة الرواتب الحالية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2650,
+    "word": "Position Request",
+    "language": "ar",
+    "translation": "الطلب الوظيفي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2651,
+    "word": "Current Direct Manager Email ID",
+    "language": "ar",
+    "translation": "إيميل المدير المباشر الحالي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2652,
+    "word": "Current HR Manager Email ID",
+    "language": "ar",
+    "translation": "إيميل مدير الموارد البشرية الحالي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2653,
+    "word": "Current ER Officer Email ID",
+    "language": "ar",
+    "translation": "إيميل منسق علاقات الموظفين الحالي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2654,
+    "word": "Number of Changes Submitted",
+    "language": "ar",
+    "translation": "عدد التغييرات المقدمة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2655,
+    "word": "Replacement SAP ID",
+    "language": "ar",
+    "translation": "الرقم الوظيفي للموظف البديل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2656,
+    "word": "Current Position Title",
+    "language": "ar",
+    "translation": "المسمى الوظيفي الحالي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2657,
+    "word": "Current Payroll Area",
+    "language": "ar",
+    "translation": "منطقة الرواتب الحالية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2658,
+    "word": "New Payroll Area",
+    "language": "ar",
+    "translation": "منطقة الرواتب الجديدة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2659,
+    "word": "New Company Code and Name",
+    "language": "ar",
+    "translation": "أسم وزمر الشركة الجديده",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2660,
+    "word": "New HR Manager Email ID",
+    "language": "ar",
+    "translation": "إيميل مدير الموارد البشرية الجديد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2661,
+    "word": "New Direct Manager Email ID",
+    "language": "ar",
+    "translation": "إيميل المدير المباشر الجديد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2662,
+    "word": "Date of Transfer",
+    "language": "ar",
+    "translation": "تاريخ النقل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2663,
+    "word": "New Position Title",
+    "language": "ar",
+    "translation": "المسمى الوظيفي الجديد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2664,
+    "word": "New Department",
+    "language": "ar",
+    "translation": "أسم الإدارة الجديدة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2665,
+    "word": "New Section",
+    "language": "ar",
+    "translation": "أسم القسم الجديد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2666,
+    "word": "New Sub-Section 1",
+    "language": "ar",
+    "translation": "أسم القسم الفرعي الجديد 1",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2667,
+    "word": "New Sub-Section 2",
+    "language": "ar",
+    "translation": "أسم القسم الفرعي الجديد 2",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2668,
+    "word": "Reporting Manager SAP ID",
+    "language": "ar",
+    "translation": "الرقم الوظيفي للمدير المباشر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2669,
+    "word": "New Position Creation",
+    "language": "ar",
+    "translation": "وظيفة جديده",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2670,
+    "word": "Replacement Position",
+    "language": "ar",
+    "translation": "وظيفة موظف بديل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2671,
+    "word": "1.Current Employee Details",
+    "language": "ar",
+    "translation": "١.بيانات الموظف الحالية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2672,
+    "word": "2.New Company Details",
+    "language": "ar",
+    "translation": "٢. تفاصيل الشركة الجديدة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2673,
+    "word": "3.New Structure Details",
+    "language": "ar",
+    "translation": "٣. تفاصيل الهيكل\n الجديد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2674,
+    "word": "Renewing License",
+    "language": "ar",
+    "translation": "تجديد رخصة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2675,
+    "word": "Current Company Code",
+    "language": "ar",
+    "translation": "رمز الشركة الحالي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2676,
+    "word": "Date of Transfer",
+    "language": "ar",
+    "translation": "تاريخ النقل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2677,
+    "word": "New Payroll Area",
+    "language": "ar",
+    "translation": "منطقة الرواتب الجديدة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2678,
+    "word": "New Company Code",
+    "language": "ar",
+    "translation": "رمز الشركة الجديدة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2679,
+    "word": "Issuing National Address",
+    "language": "ar",
+    "translation": "اصدار العنوان الوطنى",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2680,
+    "word": "Renew National Address",
+    "language": "ar",
+    "translation": "تجديد العنوان الوطنى",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2681,
+    "word": "Custom Clearance Services",
+    "language": "ar",
+    "translation": "خدمات التخليص الجمركي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2682,
+    "word": "Customs Exemption",
+    "language": "ar",
+    "translation": "الإعفاء الجمركي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2683,
+    "word": "Custom Clearance",
+    "language": "ar",
+    "translation": "التخليص الجمركي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2684,
+    "word": "Participation in the Chamber of Commerce",
+    "language": "ar",
+    "translation": "الاشتراك فى الغرفة التجارية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2685,
+    "word": "Renewal participation chamber of commerce",
+    "language": "ar",
+    "translation": "تجديد الاشتراك ف الغرفة التجارية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2686,
+    "word": "Attestations",
+    "language": "ar",
+    "translation": "التصديق",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2687,
+    "word": "Periodic Inspection",
+    "language": "ar",
+    "translation": "الفحص الدورى",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2688,
+    "word": "Corporate Services",
+    "language": "ar",
+    "translation": "خدمات الشركات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2689,
+    "word": "Individual Services",
+    "language": "ar",
+    "translation": "خدمات الأفراد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2690,
+    "word": "Add Delegated on ETIMAD",
+    "language": "ar",
+    "translation": "إضافة مفوض على منصة إعتماد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2692,
+    "word": "KCC Services",
+    "language": "ar",
+    "translation": "خدمات المقاولات",
+    "created_at": "2020-09-23 15:22:00",
+    "updated_at": "2020-09-23 15:22:00"
+  },
+  {
+    "id": 2693,
+    "word": "Change Bank Account",
+    "language": "ar",
+    "translation": "تغيير الحساب البنكي",
+    "created_at": "2020-09-24 15:23:27",
+    "updated_at": "2020-09-24 15:23:27"
+  },
+  {
+    "id": 2694,
+    "word": "Letter Services",
+    "language": "ar",
+    "translation": "خدمات الخطابات",
+    "created_at": "2020-09-24 15:24:01",
+    "updated_at": "2020-09-24 15:24:01"
+  },
+  {
+    "id": 2695,
+    "word": "Transferring Employees between Departments in same company",
+    "language": "ar",
+    "translation": "نقل الموظف بين إدارات نفس الشركة",
+    "created_at": "2020-09-24 15:25:31",
+    "updated_at": "2020-09-24 15:25:31"
+  },
+  {
+    "id": 2696,
+    "word": "Salary Increment",
+    "language": "ar",
+    "translation": "زيادة الراتب",
+    "created_at": "2020-09-24 15:26:14",
+    "updated_at": "2020-09-24 15:26:14"
+  },
+  {
+    "id": 2697,
+    "word": "Employee Relations",
+    "language": "ar",
+    "translation": "علاقات الموظفين",
+    "created_at": "2020-09-24 15:29:09",
+    "updated_at": "2020-09-24 15:29:09"
+  },
+  {
+    "id": 2698,
+    "word": "Insurance Services",
+    "language": "ar",
+    "translation": "خدمات التأمين",
+    "created_at": "2020-09-24 15:29:42",
+    "updated_at": "2020-09-24 15:29:42"
+  },
+  {
+    "id": 2699,
+    "word": "Training Services",
+    "language": "ar",
+    "translation": "خدمات التدريب",
+    "created_at": "2020-09-24 15:30:54",
+    "updated_at": "2020-09-24 15:30:54"
+  },
+  {
+    "id": 2700,
+    "word": "Communication Services",
+    "language": "ar",
+    "translation": "خدمات التواصل",
+    "created_at": "2020-09-24 15:31:23",
+    "updated_at": "2020-09-24 15:31:23"
+  },
+  {
+    "id": 2701,
+    "word": "Complaints",
+    "language": "ar",
+    "translation": "الشكاوي",
+    "created_at": "2020-09-24 16:07:47",
+    "updated_at": "2020-09-24 16:07:47"
+  },
+  {
+    "id": 2702,
+    "word": "Employee transfer between Projects or department",
+    "language": "ar",
+    "translation": "نقل الموظف بين المشاريع أو الإدارات",
+    "created_at": "2020-09-24 16:08:43",
+    "updated_at": "2020-09-24 16:08:43"
+  },
+  {
+    "id": 2703,
+    "word": "Manpower Solutions",
+    "language": "ar",
+    "translation": "خدمات التوظيف",
+    "created_at": "2020-09-24 16:16:55",
+    "updated_at": "2020-09-24 16:16:55"
+  },
+  {
+    "id": 2704,
+    "word": "Error In Position Number (99999999 Error)",
+    "language": "ar",
+    "translation": "خطأ في رقم الوظيفه",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2705,
+    "word": "Position Text Amendments (Not Promotion Action)",
+    "language": "ar",
+    "translation": "تعديل مسمى الوظيفه ( ليس ترقيه )",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2706,
+    "word": "Organization Structure Amendments (Department / Section Amendments)",
+    "language": "ar",
+    "translation": "تعديل في الهيكل التنظيمي ( الإدارة / تعديل القسم )",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2707,
+    "word": "Issue In Employee Visiblity On Successfactors",
+    "language": "ar",
+    "translation": "مشكلة في رؤية الموظف على السكسس فاكتور",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2708,
+    "word": "Uploading Employee Profile Picture On Successfactors",
+    "language": "ar",
+    "translation": "رفع صورة الموظف على السكسس فاكتور",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2709,
+    "word": "Enable/Disable Employee On Successfactors",
+    "language": "ar",
+    "translation": "تفعيل / تعطيل الموظف على السكسس فاكتور",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2710,
+    "word": "Normal Vacation (Vacation For More Than 15 Days)",
+    "language": "ar",
+    "translation": "إجازة نظامية ( إجازة مدة 15 يوم وأكثر )",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2711,
+    "word": "Urgent Vacation (Vacation For Less Than 15 Days)",
+    "language": "ar",
+    "translation": "إجازة عاجلة ( إجازة مدة 14 يوم وأقل )",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2712,
+    "word": "Direct Manager Contact Number",
+    "language": "ar",
+    "translation": "رقم إتصال المدير المباشر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2713,
+    "word": "Passport is with",
+    "language": "ar",
+    "translation": "جواز السفر مع",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2714,
+    "word": "Direct Manager Contact Number",
+    "language": "ar",
+    "translation": "رقم إتصال المدير المباشر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2715,
+    "word": "General Letter",
+    "language": "ar",
+    "translation": "خطاب عام",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2716,
+    "word": "Warning Letter",
+    "language": "ar",
+    "translation": "خطاب انذار / اشعار عقوبة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2717,
+    "word": "Termination Letter",
+    "language": "ar",
+    "translation": "خطاب انهاء خدمات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2718,
+    "word": "Stamped by the Chamber of Commerce?",
+    "language": "ar",
+    "translation": "هل ترغب / ترغبين بتصديق الخطاب من الغرفة التجارية ؟",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2719,
+    "word": "International Roaming",
+    "language": "ar",
+    "translation": "التجوال  الدولي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2720,
+    "word": "New Mobile Device From STC",
+    "language": "ar",
+    "translation": "جهاز جوال جديد من STC",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2721,
+    "word": "Request New SIM",
+    "language": "ar",
+    "translation": "طلب شريحة جوال جديدة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2722,
+    "word": "SIM Services",
+    "language": "ar",
+    "translation": "خدمات الشريحة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2723,
+    "word": "Issue SIM",
+    "language": "ar",
+    "translation": "مشكلة  بالشريحة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2724,
+    "word": "Cancel/Suspense SIM",
+    "language": "ar",
+    "translation": "ايقاف او إلغاء الشريحة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2725,
+    "word": "Transfer/Replace SIM",
+    "language": "ar",
+    "translation": "نقل او استبدال الشريحة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2726,
+    "word": "Create/Remove Email",
+    "language": "ar",
+    "translation": "إنشاء أو إلغاء إيميل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2727,
+    "word": "Others",
+    "language": "ar",
+    "translation": "اخرى ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2728,
+    "word": "Request Extra Mail Space/Attachment",
+    "language": "ar",
+    "translation": "طلب زيادة مساحة للبريد الإلكتروني",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2729,
+    "word": "Unable To Login",
+    "language": "ar",
+    "translation": "عدم القدرة على تسجيل الدخول للبريد الإلكتروني",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2730,
+    "word": "Update Email Information",
+    "language": "ar",
+    "translation": "تحديث بيانات مستخدم البريد الإلكتروني",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2731,
+    "word": "Create Group / Remove Group",
+    "language": "ar",
+    "translation": "إنشاء مجموعة / حذف مجموعة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2732,
+    "word": "Add To Group",
+    "language": "ar",
+    "translation": "إضافة بريد الإلكتروني الى مجموعة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2733,
+    "word": "Edit Signature",
+    "language": "ar",
+    "translation": "تحديث التوقيع",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2734,
+    "word": "Reset Password",
+    "language": "ar",
+    "translation": "إعادة تعيين كلمة المرور",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2735,
+    "word": "Change Domain",
+    "language": "ar",
+    "translation": "تغيير نطاق ( الدومين ) للبريد الإلكتروني",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2736,
+    "word": "Rename Email",
+    "language": "ar",
+    "translation": "إعادة تسمية البريد الإلكتروني",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2737,
+    "word": "Suspend / Remove Suspend",
+    "language": "ar",
+    "translation": "إيقاف / إلغاء الإيقاف",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2738,
+    "word": "Transfer email data and",
+    "language": "ar",
+    "translation": "نقل بيانات ومحرك بريد الإلكتروني إلى آخر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2739,
+    "word": "Employee Addition/Deletion For Medical Insurance",
+    "language": "ar",
+    "translation": "إضافة موظف / إلغاء موظف ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2740,
+    "word": "Family Medical Insurance",
+    "language": "ar",
+    "translation": "التأمين الطبي للعائلة ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2741,
+    "word": "Medical Claims",
+    "language": "ar",
+    "translation": "مطالبات - التعويض النقدي ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2742,
+    "word": "CCHI - Link Jawzat",
+    "language": "ar",
+    "translation": "ربط التأمين ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2743,
+    "word": "Embassy Certificate",
+    "language": "ar",
+    "translation": "شهادة للسفارة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2744,
+    "word": "Information Correction",
+    "language": "ar",
+    "translation": "تعديل معلومات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2745,
+    "word": "Pre approval for Surgery",
+    "language": "ar",
+    "translation": "موافقة مسبقة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2746,
+    "word": "Saudi",
+    "language": "ar",
+    "translation": "سعودي ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2747,
+    "word": "Non-Saudi",
+    "language": "ar",
+    "translation": "غير سعودي ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2748,
+    "word": "Job Advertisement *",
+    "language": "ar",
+    "translation": "اعلان الوظيفه",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2749,
+    "word": "Contract Duration *",
+    "language": "ar",
+    "translation": "مدة العقد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2750,
+    "word": "Educational Specialization",
+    "language": "ar",
+    "translation": "التخصص العلمي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2751,
+    "word": "Stakeholders (CVs should be sent to)",
+    "language": "ar",
+    "translation": "Stakeholders (CVs should be sent to)",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2752,
+    "word": "Other Location",
+    "language": "ar",
+    "translation": "مواقع اخرى ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2753,
+    "word": "Escape Request",
+    "language": "ar",
+    "translation": "طلب بلاغ هروب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2754,
+    "word": "Iqama Name Update",
+    "language": "ar",
+    "translation": "تحديث الأسم بالإقامة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2755,
+    "word": "Profession Change In Iqama",
+    "language": "ar",
+    "translation": "تغيير المهنة بالإقامة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2756,
+    "word": "Request For New Training",
+    "language": "ar",
+    "translation": "طلب تدريب جديد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2757,
+    "word": "Employee Evaluation After Training",
+    "language": "ar",
+    "translation": "تقييم الموظف بعد حضور التدريب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2758,
+    "word": "OJT Training Report",
+    "language": "ar",
+    "translation": "تقرير التدريب أثناء العمل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2759,
+    "word": "Internship And Summer Training",
+    "language": "ar",
+    "translation": "التدريب التعاوني و التدريب الصيفي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2760,
+    "word": "Tamheer Service",
+    "language": "ar",
+    "translation": "تمهير",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2761,
+    "word": "SAP Services",
+    "language": "ar",
+    "translation": "خدمات ساب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2762,
+    "word": "Coordinator",
+    "language": "ar",
+    "translation": "المنسق",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2763,
+    "word": "Hubdesk",
+    "language": "ar",
+    "translation": "الهب ديسك",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2764,
+    "word": "New Hardware Supply",
+    "language": "ar",
+    "translation": "توريد أجهزة جديدة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2765,
+    "word": "Computer Issues",
+    "language": "ar",
+    "translation": "مشاكل الأجهزة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2766,
+    "word": "Internet",
+    "language": "ar",
+    "translation": "الإنترنت",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2767,
+    "word": "IP Phone",
+    "language": "ar",
+    "translation": "الهاتف المكتبي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2768,
+    "word": "Network",
+    "language": "ar",
+    "translation": "الشبكة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2769,
+    "word": "IT Transfer Assets",
+    "language": "ar",
+    "translation": "نقل الأصول",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2770,
+    "word": "Domain Users",
+    "language": "ar",
+    "translation": "مستخدمي النطاق ( الدومين )",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2771,
+    "word": "Google Services",
+    "language": "ar",
+    "translation": "خدمات جوجل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2772,
+    "word": "Attendance Terminal",
+    "language": "ar",
+    "translation": "أجهزة البصمة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2773,
+    "word": "Call Center",
+    "language": "ar",
+    "translation": "الدعم الفني",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2774,
+    "word": "Printer/Copier/Scanner",
+    "language": "ar",
+    "translation": "الطابعات / الماسحات الضوئية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2775,
+    "word": "Surveillance Cameras",
+    "language": "ar",
+    "translation": "كاميرات المراقبة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2776,
+    "word": "IT Hardware Rent",
+    "language": "ar",
+    "translation": "تأجير الأجهزة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2777,
+    "word": "Software License",
+    "language": "ar",
+    "translation": "تراخيص البرامج",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2778,
+    "word": "Troubleshooting",
+    "language": "ar",
+    "translation": "حل المشاكل",
+    "created_at": "2020-04-19 09:30:49",
+    "updated_at": "2020-04-19 09:30:49"
+  },
+  {
+    "id": 2779,
+    "word": "New Report",
+    "language": "ar",
+    "translation": "تقرير جديد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2780,
+    "word": "Create / Delete User",
+    "language": "ar",
+    "translation": "إنشاء / حذف المستخدم\r",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2781,
+    "word": "Update User Information",
+    "language": "ar",
+    "translation": "تحديث معلومات المستخدم\r",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2782,
+    "word": "Accessories",
+    "language": "ar",
+    "translation": "مستلزمات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2783,
+    "word": "Computers",
+    "language": "ar",
+    "translation": "أجهزة الكمبيوتر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2784,
+    "word": "Printers",
+    "language": "ar",
+    "translation": "طابعات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2785,
+    "word": "Monitor",
+    "language": "ar",
+    "translation": "شاشات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2786,
+    "word": "Install New Software",
+    "language": "ar",
+    "translation": "تثبيت برنامج جديد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2787,
+    "word": "Cannot Login",
+    "language": "ar",
+    "translation": "لا يمكن تسجيل الدخول",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2788,
+    "word": "Copy Data To Another Computer",
+    "language": "ar",
+    "translation": "نسخ البيانات إلى كمبيوتر آخر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2789,
+    "word": "External Repair",
+    "language": "ar",
+    "translation": "إصلاح خارجي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2790,
+    "word": "Setup Existing Device",
+    "language": "ar",
+    "translation": "إعداد الجهاز الحالي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2791,
+    "word": "Connect PC To Network",
+    "language": "ar",
+    "translation": "قم بتوصيل الكمبيوتر بالشبكة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2792,
+    "word": "System Hang / Restart",
+    "language": "ar",
+    "translation": "توقف النظام / إعادة التشغيل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2793,
+    "word": "System Slow",
+    "language": "ar",
+    "translation": "النظام بطيء",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2794,
+    "word": "Reinstall Software",
+    "language": "ar",
+    "translation": "إعادة تثبيت برنامج",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2795,
+    "word": "Internet Access",
+    "language": "ar",
+    "translation": "خدمة الإنترنت",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2796,
+    "word": "Guest Access",
+    "language": "ar",
+    "translation": "صلاحية للزائر",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2797,
+    "word": "Device Problem",
+    "language": "ar",
+    "translation": "مشكلة الجهاز",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2798,
+    "word": "Calling Problem",
+    "language": "ar",
+    "translation": "مشكلة في الإتصال",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2799,
+    "word": "Troubleshoot",
+    "language": "ar",
+    "translation": "حل المشاكل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2800,
+    "word": "Add / Remove Feature",
+    "language": "ar",
+    "translation": "إضافة / إزالة ميزة جديدة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2801,
+    "word": "Change Display Name",
+    "language": "ar",
+    "translation": "تغيير اسم العرض",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2802,
+    "word": "Disable/Stop Extension",
+    "language": "ar",
+    "translation": "تعطيل / إيقاف التحويلة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2803,
+    "word": "International Access",
+    "language": "ar",
+    "translation": "صلاحية المكالمات الدولية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2804,
+    "word": "New Extension",
+    "language": "ar",
+    "translation": "تحويلة جديدة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2805,
+    "word": "Install Softphone",
+    "language": "ar",
+    "translation": "تثبيت برنامج التحويلة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2806,
+    "word": "Call Forwarding",
+    "language": "ar",
+    "translation": "تحويل المكالمات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2807,
+    "word": "Saudi Employee",
+    "language": "ar",
+    "translation": "الموظف سعودي",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2808,
+    "word": "Ministry of Industry and Mineral Resources",
+    "language": "ar",
+    "translation": "وزارة الصناعة والثروة المعدنية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2809,
+    "word": "Saudi Food and Drug Authority",
+    "language": "ar",
+    "translation": "الهيئة العامة للغذاء والدواء",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2810,
+    "word": "MODON Authority",
+    "language": "ar",
+    "translation": "هيئة مدن",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2811,
+    "word": "How well are you satisfied in term of creativity of our design?",
+    "language": "ar",
+    "translation": "ما مدى رضاك عن الإبداع في تصميمنا؟",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2812,
+    "word": "How well are you satisfied in term of Product quality?",
+    "language": "ar",
+    "translation": "ما مدى رضاك عن جودة المنتج؟",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2813,
+    "word": "to guarantee  a full understating  of your perception  of your business  when implementing  it, what do you think of the marketing team follow up and communication system?",
+    "language": "ar",
+    "translation": "لضمان فهم كامل لتصورك لعملك عند تنفيذه ، ما رأيك في نظام متابعة واتصالات فريق التسويق؟",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2814,
+    "word": "what is your opinion regarding the delivery commitment and business accomplishment in terms of timetable?",
+    "language": "ar",
+    "translation": "ما هو رأيك فيما يتعلق بالتزام التسليم وإنجاز الأعمال من حيث الجدول الزمني؟",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2815,
+    "word": "How is your total satisfaction about the job delivered?",
+    "language": "ar",
+    "translation": "ماهو مستوى رضاك التام عن الخدمة المقدمة؟",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2816,
+    "word": "Excellent",
+    "language": "ar",
+    "translation": "ممتاز",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2817,
+    "word": "Very Good",
+    "language": "ar",
+    "translation": "جيد جدا",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2818,
+    "word": "Good",
+    "language": "ar",
+    "translation": "جيد",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2819,
+    "word": "Bad",
+    "language": "ar",
+    "translation": "سئ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2820,
+    "word": "Very Dis Satisfied",
+    "language": "ar",
+    "translation": "غير راض تماما",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2821,
+    "word": "Not Satisfied",
+    "language": "ar",
+    "translation": "غير راض",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2822,
+    "word": "Neither nor",
+    "language": "ar",
+    "translation": "متعادل",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2823,
+    "word": "Satisfied",
+    "language": "ar",
+    "translation": "راضٍ",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2824,
+    "word": "Very Satisfied",
+    "language": "ar",
+    "translation": "راضٍ جدا",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2825,
+    "word": "Your suggestions will help us improve our service, kindly let us know if any",
+    "language": "ar",
+    "translation": "ستساعدنا اقتراحاتك على تحسين خدماتنا ، يرجى إعلامنا إن وجدت",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2826,
+    "word": "Waiting for Approval",
+    "language": "ar",
+    "translation": "في انتظار الموافقة",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2827,
+    "word": "Is the trip overnight?",
+    "language": "ar",
+    "translation": "هل الرحلة تتضمن مبيت ؟",
+    "created_at": null,
+    "updated_at": null
+  }
+]

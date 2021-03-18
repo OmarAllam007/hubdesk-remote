@@ -138,6 +138,8 @@ export default {
                 'Ticket Info', `Ticket has been resolved`, 'success');
 
             EventBus.$emit('add_resolution', {'reply': response.data.reply});
+            EventBus.$emit('ticket_updated');
+
             this.resetForm();
           }).catch((e) => {
         this.submit_loading = false;

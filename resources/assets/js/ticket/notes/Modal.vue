@@ -61,6 +61,7 @@
 <script>
 import Editor from '@tinymce/tinymce-vue'
 import axios from "axios";
+import {EventBus} from "../../EventBus";
 
 export default {
   name: "Modal",
@@ -78,6 +79,7 @@ export default {
   methods: {
     closeModal() {
       this.$emit('close');
+      EventBus.$emit('ticket_updated');
     },
     createOrUpdate() {
 

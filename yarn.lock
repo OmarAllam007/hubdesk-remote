@@ -4734,6 +4734,11 @@
   "resolved" "https://registry.npmjs.org/ipaddr.js/-/ipaddr.js-1.8.0.tgz"
   "version" "1.8.0"
 
+"is_js@^0.9.0":
+  "integrity" "sha1-CrlFQFArp6+iTIVqqYVWFmnpxS0="
+  "resolved" "https://registry.npmjs.org/is_js/-/is_js-0.9.0.tgz"
+  "version" "0.9.0"
+
 "is-absolute-url@^2.0.0":
   "integrity" "sha1-UFMN+4T8yap9vnhS6Do3uTufKqY="
   "resolved" "https://registry.npmjs.org/is-absolute-url/-/is-absolute-url-2.1.0.tgz"
@@ -9304,6 +9309,11 @@
   "integrity" "sha512-2j/t+wIbyVMP5NvctQoSUvLkYKoWAAk2QlQiilrM2a6/ulzFgdcLUJfTvs4XQ/3eZhHiBmmEojbjmM4AzZj8JA=="
   "resolved" "https://registry.npmjs.org/vue-hot-reload-api/-/vue-hot-reload-api-2.3.0.tgz"
   "version" "2.3.0"
+
+"vue-i18n@^8.24.1":
+  "integrity" "sha512-iqM+npjvI9SGOAYkw1Od/y4O74gpvn5WOHeb3K125TmDJssvR62tDMMLIasPmKNbePZ1BMZ6d5jOBsrB/cK8Lw=="
+  "resolved" "https://registry.npmjs.org/vue-i18n/-/vue-i18n-8.24.1.tgz"
+  "version" "8.24.1"
 
 "vue-loader@^12.1.1":
   "integrity" "sha512-DD+sYaWQ1esYL/tEwJpoEGE/PFUu32fp7iOuMf4Sra3dgxqr4haTOkVam2VY0/5D4LG8eAcB94ruXKeQW2/ikw=="
