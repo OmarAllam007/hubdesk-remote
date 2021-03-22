@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Http\Resources\TicketFieldResource;
 use App\Item;
 use App\Subcategory;
 use Illuminate\Http\Request;
@@ -38,17 +39,17 @@ class CustomFieldsController extends Controller
 
         if ($request->has('category')) {
             $category = Category::find($request->get('category'));
-            $categories = $category->custom_fields->sortBy('label')->groupBy('label');
+            $categories = TicketFieldResource::collection($category->custom_fields)->collection->sortBy('label')->groupBy('label');
         }
 
         if ($request->has('subcategory') && $request->get('subcategory') != '') {
             $subcategory = Subcategory::find($request->get('subcategory'));
-            $subcategories = $subcategory->custom_fields->sortBy('label')->groupBy('label');
+            $subcategories = TicketFieldResource::collection($subcategory->custom_fields)->collection->sortBy('label')->groupBy('label');
         }
 
         if ($request->has('item') && $request->get('item') != '') {
             $item = Item::find($request->get('item'));
-            $items = $item->custom_fields->sortBy('label')->groupBy('label');
+            $items = TicketFieldResource::collection($item->custom_fields)->collection->sortBy('label')->groupBy('label');
         }
 
         return $categories->toBase()->merge($subcategories->toBase())->merge($items->toBase())->toArray();

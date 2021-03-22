@@ -1,21 +1,21 @@
 <template>
   <div>
-    <p class="font-bold text-2xl mb-3 ">Discussion Notes</p>
+    <p class="font-bold text-2xl mb-3 ">{{ $root.t('Discussion Notes') }}</p>
     <div class="shadow-md bg-white p-3 rounded-2xl">
       <div v-if="can_create_note">
         <button type="button" class="btn btn-primary btn-sm btn-rounded btn-outlined" title="Add Note"
                 @click="addNew()">
-          <i class="fa fa-sticky-note"></i> Add Note
+          <i class="fa fa-sticky-note"></i> {{ $root.t('Add Note') }}
         </button>
         <div class="w-full mt-3" v-if="ticket_notes.length">
           <div class="flex justify-between">
             <table class="table">
               <thead>
               <tr class="bg-viola bg-opacity-75 text-white  font-bold">
-                <th>Created By</th>
-                <th>Note</th>
-                <th>Created at</th>
-                <th>Actions</th>
+                <th>{{ $root.t('Created By') }}</th>
+                <th>{{ $root.t('Note') }}</th>
+                <th>{{ $root.t('Created at') }}</th>
+                <th>{{ $root.t('Actions') }}</th>
               </tr>
               </thead>
               <tbody>
@@ -27,9 +27,10 @@
           </div>
         </div>
         <div v-else class="mt-3">
-          <div class="alert alert-warning text-center rounded-xl"><i class="fa fa-exclamation-circle"></i>
-            <strong>
-              {{ 'No discussion notes found!' }}
+          <div class="flex bg-yellow-100 shadow-sm  p-5 justify-center text-center rounded-xl"><i
+              class="fa fa-exclamation-circle"></i>
+            <strong class="pl-2 ">
+              {{ $root.t('No discussion notes found') }}
             </strong>
           </div>
         </div>

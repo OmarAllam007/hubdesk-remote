@@ -29,13 +29,13 @@
                     </div>
                     <div class="checkbox">
                       <label><input type="checkbox" v-model="note.display_to_requester"
-                                    name="display_to_requester">{{ 'Show this note to Requester' }}
+                                    name="display_to_requester">{{ $root.t('Show this note to Requester') }}
                       </label>
                     </div>
                     <div class="checkbox">
                       <label><input type="checkbox" v-model="note.email_to_technician" name="email_to_technician"
                                     id="email_to_technician">
-                        {{ 'E-mail this note to the technician' }}</label>
+                        {{ $root.t('E-mail this note to the technician') }}</label>
                     </div>
                   </div>
                 </div>
@@ -43,10 +43,10 @@
               <div class="modal-footer">
                 <button type="submit" class="btn btn-success submitNote" @click="createOrUpdate">
                   <i class="fa fa-check-circle"></i>
-                  {{ create_form ? 'Add Note' : 'Update Note' }}
+                  {{ create_form ? $root.t('Add Note') : $root.t('Update Note') }}
                 </button>
                 <button type="button" class="btn btn-default" data-dismiss="modal" @click="closeModal()">{{
-                    'Close'
+                    $root.t('Close')
                   }}
                 </button>
               </div>
@@ -79,7 +79,6 @@ export default {
   methods: {
     closeModal() {
       this.$emit('close');
-      EventBus.$emit('ticket_updated');
     },
     createOrUpdate() {
 
@@ -94,6 +93,7 @@ export default {
       axios.post(`/ticket/note/${this.note.ticket_id}`, this.note).then((response) => {
         this.loading = false
         this.$parent.ticket_notes.push(response.data);
+        EventBus.$emit('ticket_updated');
         this.closeModal();
       }).catch((e) => {
         this.loading = false;

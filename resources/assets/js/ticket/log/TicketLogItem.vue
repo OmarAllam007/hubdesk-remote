@@ -21,57 +21,40 @@
             <div class="pl-5  bg-gray-200 shadow-md ">
               <div v-for="(logItem,i) in log.logs" class="pt-3   pb-3  ">
                 <p class="text-black text-left text-gray-700  " v-if="logItem.type == 10">
-                  {{ $translate('Ticket has been closed by the system') }} {{ $translate('at') }} {{
+                  {{ $root.t('Ticket has been closed by the system') }} {{ $root.t('at') }} {{
                     logItem.created_at
                   }}
                 </p>
 
                 <p class="text-black text-left text-gray-700  " v-if="logItem.type == 16">
-                  {{ $translate('Send email to submit the survey by the system') }} {{ $translate('at') }}
+                  {{ $root.t('Send email to submit the survey by the system') }} {{ $root.t('at') }}
                   {{ log.created_at }}
                 </p>
 
                 <p class="text-black text-left text-gray-700  " v-if="isApprovalLog(logItem.type)">
-                  {{ $translate(log.approval_log_description) }} {{ $translate('at') }}
+                  {{ $root.t(log.approval_log_description) }} {{ $root.t('at') }}
                   {{ log.created_at }}
                 </p>
 
                 <p class="text-black text-left text-gray-700  " v-else>
                   {{
-                    $translate($parent.log_data.is_task ? 'Task ' + logItem.type_action + ' by'
+                    $root.t($parent.log_data.is_task ? 'Task ' + logItem.type_action + ' by'
                         : 'Ticket ' + logItem.type_action + ' by ')
-                  }} {{ logItem.user }} {{ $translate('at') }} {{ logItem.created_at }}
+                  }} {{ logItem.user }} {{ $root.t('at') }} {{ logItem.created_at }}
                 </p>
 
                 <ul v-if="logItem.entries" class="pl-5 ">
                   <li v-for="entry in logItem.entries" class="text-gray-700 ">
                     <i class="fa fa-caret-right"></i>
-                    <small>{{ $translate(entry.label + ' changed from') }}
-                      <strong>{{ $translate(entry.old_Value ? entry.old_Value  : 'None') }}</strong>
-                      {{ $translate('to') }}
-                      <strong>{{ $translate(entry.new_value ? entry.new_value : 'None') }}</strong></small>
+                    <small>{{ $root.t(entry.label + ' changed from') }}
+                      <strong>{{ $root.t(entry.old_Value ? entry.old_Value  : 'None') }}</strong>
+                      {{ $root.t('to') }}
+                      <strong>{{ $root.t(entry.new_value ? entry.new_value : 'None') }}</strong></small>
                   </li>
                 </ul>
-
-<!--                <p class=" pt-2 pb-5   "></p>-->
                 <p class="border-b-2 border-gray-200  m-3" v-if="i < (log.logs.length - 1)"></p>
 
               </div>
-
-
-              <!--              <div class="flex justify-end">-->
-              <!--                <p class="p-2 m-2 rounded-2xl text-center text-base font-bold w-64"-->
-              <!--                   :class="getStatusColor">{{ reply.status }}</p>-->
-              <!--              </div>-->
-              <!--              <div class="flex flex-col" v-if="reply.attachments.length">-->
-              <!--                <p class="text-black"><strong>Attachments</strong></p>-->
-              <!--                <a :href="`download-attach/${attachment.id}`" @click.stop="()=>{}"-->
-              <!--                   target="_blank" v-for="attachment in reply.attachments"-->
-              <!--                   class="hover:bg-white  flex z-50 pt-5 pb-5 pl-1 pr-1  rounded-xl ">-->
-              <!--                  <i class="fa fa-download pl-1 pr-1"></i>-->
-              <!--                  {{ attachment.display_name }}-->
-              <!--                </a>-->
-              <!--              </div>-->
             </div>
           </div>
         </transition>
@@ -86,7 +69,7 @@ export default {
   props: ['log'],
   data() {
     return {
-      isCollapsed: false
+      isCollapsed: true
     }
   },
   methods: {

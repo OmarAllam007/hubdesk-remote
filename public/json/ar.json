@@ -7,6 +7,7 @@
     "created_at": null,
     "updated_at": null
   },
+
   {
     "id": 2,
     "word": "Email Services",
@@ -8548,6 +8549,38 @@
     "word": "Is the trip overnight?",
     "language": "ar",
     "translation": "هل الرحلة تتضمن مبيت ؟",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2828,
+    "word": "No discussion notes found",
+    "language": "ar",
+    "translation": "لا توجد ملاحظات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2828,
+    "word": "Ticket",
+    "language": "ar",
+    "translation": "الطلب",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2828,
+    "word": "Discussion Notes",
+    "language": "ar",
+    "translation": "الملاحظات",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2830,
+    "word": "SubItem",
+    "language": "ar",
+    "translation": "الفئة الثانوية",
     "created_at": null,
     "updated_at": null
   }

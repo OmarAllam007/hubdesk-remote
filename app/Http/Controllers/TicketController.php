@@ -13,6 +13,7 @@ use App\Http\Requests\ReassignRequest;
 use App\Http\Requests\TicketReplyRequest;
 use App\Http\Requests\TicketRequest;
 use App\Http\Requests\TicketResolveRequest;
+use App\Http\Resources\TicketResource;
 use App\Item;
 use App\Jobs\ApplyBusinessRules;
 use App\Jobs\ApplySLA;
@@ -268,12 +269,13 @@ class TicketController extends Controller
         $ticket->update($request->only(['group_id', 'technician_id', 'category_id', 'subcategory_id', 'item_id', 'subitem_id']));
 
         if ($request->get('technician_id') != $current_technician) {
-            \Mail::send(new TicketAssignedMail($ticket));
+            \Mail::queue(new TicketAssignedMail($ticket));
         }
 
-        flash(t('Ticket Info'), t('Ticket has been re-assigned'), 'success');
+        return \response()->json(['message' => 'Ticket reassigned successfully', 'ticket' => TicketResource::make($ticket)]);
+//        flash(t('Ticket Info'), t('Ticket has been re-assigned'), 'success');
 
-        return \Redirect::route('ticket.show', $ticket);
+//        return \Redirect::route('ticket.show', $ticket);
     }
 
     public function scope(Request $request)

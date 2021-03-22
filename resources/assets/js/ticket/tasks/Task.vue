@@ -11,24 +11,32 @@
     <td> {{ task.requester }}</td>
     <td> {{ task.technician }}</td>
     <td>
-      <a v-if="task.can_show" class="bg-blue-500  hover:bg-blue-700 hover:text-white text-white font-bold py-2 px-4 rounded-full mr-2  " v-bind:href="'/ticket/'+ task.id">
+      <a v-if="task.can_show"
+         class="bg-blue-500  hover:bg-blue-700 hover:text-white text-white font-bold py-2 px-4 rounded-full mr-2  "
+         v-bind:href="'/ticket/'+ task.id">
         <i class="fa fa-eye"></i>
-        Show
+        {{ $root.t('Show') }}
       </a>
-      <a v-if="task.can_edit" class="bg-orange-500  hover:bg-orange-700  text-white  hover:text-white font-bold py-2 px-4 rounded-full mr-2  "
+      <a v-if="task.can_edit"
+         class="bg-orange-500  hover:bg-orange-700  text-white  hover:text-white font-bold py-2 px-4 rounded-full mr-2  "
          :href="'/ticket/tasks/edit/'+ task.id">
         <i class="fa fa-edit"></i>
-        Edit
+        {{ $root.t('Edit') }}
       </a>
-      <button class="bg-red-600   hover:bg-red-700  text-white font-bold py-2 px-4  hover:text-white rounded-full mr-2   " v-on:click="deleteTask(task.id)" v-if="task.can_delete">
+      <button
+          class="bg-red-600   hover:bg-red-700  text-white font-bold py-2 px-4  hover:text-white rounded-full mr-2   "
+          v-on:click="deleteTask(task.id)" v-if="task.can_delete">
         <i class="fa fa-trash "></i>
-        Delete
+        {{ $root.t('Delete') }}
       </button>
     </td>
   </tr>
 </template>
 
 <script>
+import axios from 'axios'
+import {EventBus} from "../../EventBus";
+
 export default {
   name: "Task",
   props: ['task'],
@@ -37,6 +45,14 @@ export default {
   },
   methods: {
     deleteTask(id) {
+      axios.delete(`/ticket/tasks/${id}`).then(() => {
+        EventBus.$emit('task_deleted');
+
+        EventBus.$emit('send_notification', 'tasks',
+            'Ticket Info', `The task has been removed`, 'error');
+
+        EventBus.$emit('ticket_updated');
+      });
     }
   }
 }

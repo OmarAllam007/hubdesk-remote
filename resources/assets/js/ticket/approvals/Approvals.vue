@@ -3,21 +3,21 @@
     <div v-if="is_task">
       <h5>
         <strong>
-          Main Ticket Approvals
+          {{ $root.t('Main Ticket Approvals') }}
         </strong>
       </h5>
       <table class="listing-table">
         <thead class="table-design">
         <tr>
-          <th>Sent to</th>
-          <th>By</th>
-          <th>Sent at</th>
-          <th>Stage</th>
-          <th>Status</th>
-          <th>Comment</th>
-          <th>Action Date</th>
-          <th>Resend</th>
-          <th colspan="3" class="text-center">Actions</th>
+          <th>{{ $root.t('Sent to') }}</th>
+          <th>{{ $root.t('By') }}</th>
+          <th>{{ $root.t('Sent at') }}</th>
+          <th>{{ $root.t('Stage') }}</th>
+          <th>{{ $root.t('Status') }}</th>
+          <th>{{ $root.t('Comment') }}</th>
+          <th>{{ $root.t('Action Date') }}</th>
+          <th>{{ $root.t('Resend') }}</th>
+          <th colspan="3" class="text-center">{{ $root.t('Actions') }}</th>
         </tr>
         </thead>
         <tbody>
@@ -43,21 +43,21 @@
     <div v-if="approvals_data.length">
       <h5>
         <strong v-if="this.is_task">
-          Task Approvals
+          {{ $root.t('Task Approvals') }}
         </strong>
       </h5>
       <table class="table pt-5 ">
         <thead>
         <tr class=" p-3 bg-viola bg-opacity-75 text-white rounded-tl-xl font-bold">
-          <th>Sent to</th>
-          <th>By</th>
-          <th>Sent at</th>
-          <th>Stage</th>
-          <th>Status</th>
-          <th>Comment</th>
-          <th>Action Date</th>
-          <th>Resend</th>
-          <th colspan="3" class="text-center">Actions</th>
+          <th>{{ $root.t('Sent to') }}</th>
+          <th>{{ $root.t('By') }}</th>
+          <th>{{ $root.t('Sent at') }}</th>
+          <th>{{ $root.t('Stage') }}</th>
+          <th>{{ $root.t('Status') }}</th>
+          <th>{{ $root.t('Comment') }}</th>
+          <th>{{ $root.t('Action Date') }}</th>
+          <th>{{ $root.t('Resend') }}</th>
+          <th colspan="3" class="text-center">{{ $root.t('Actions') }}</th>
         </tr>
         </thead>
         <tbody>
@@ -70,7 +70,7 @@
     <div class="flex justify-start pb-5 pt-5 ">
       <button @click.prevent="addNewLevel" class="bg-transparent hover:bg-blue-500 text-blue-700
       font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-2xl "><i
-          class="fa fa-plus"></i> Add New Approval
+          class="fa fa-plus"></i> {{ $root.t('Add New Approval') }}
       </button>
     </div>
     <!--    @can('submit_approval',$ticket)-->
@@ -190,6 +190,8 @@ export default {
         response.data.forEach((approval) => {
           this.approvals_data.push(approval);
           this.approvals_data = _.orderBy(this.approvals_data, ['stage'], ['asc'])
+          EventBus.$emit('approval_created', this.approvals_data);
+
         })
 
         this.clearForm();
@@ -198,6 +200,8 @@ export default {
             'Ticket Info', `Approval/s sent successfully`, 'success');
 
         EventBus.$emit('ticket_updated');
+
+        EventBus.$emit('status_updated', {status: 'Waiting for Approval', status_id: 6});
       }).catch((e) => {
         this.loading = false;
       });

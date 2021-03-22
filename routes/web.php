@@ -26,6 +26,7 @@ Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
     $r->get('/item/{subcat_id?}', 'ListController@item');
     $r->get('/subitem/{item_id?}', 'ListController@subitem');
     $r->get('/category', 'ListController@category');
+    $r->get('/individual-category', 'ListController@individualCategory');
     $r->get('/folders/{business_unit}', 'ListController@folders');
     $r->get('/location', 'ListController@location');
     $r->get('/business-unit', 'ListController@businessUnit');
@@ -33,6 +34,7 @@ Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
     $r->get('/urgency', 'ListController@urgency');
     $r->get('/impact', 'ListController@impact');
     $r->get('/support-groups', 'ListController@supportGroup');
+    $r->get('/technician-groups', 'ListController@technicianGroup');
     $r->get('/technician', 'ListController@technician');
     $r->get('/group-technicians/{group?}', 'ListController@technicians');
     $r->get('/status', 'ListController@status');
@@ -56,7 +58,7 @@ Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
 
     $r->get('tasks/{ticket}', 'API\TaskController@index');
     $r->get('logs/{ticket}', 'API\LogController@index');
-//    $r->post('tasks/{ticket}','API\TaskController@store');
+
 
 });
 
@@ -150,7 +152,7 @@ Route::group(['middleware' => ['auth']], function () {
         $r->get('tasks/edit/{task}', ['as' => 'tasks.edit', 'uses' => 'TaskController@edit']);
         $r->post('tasks/{ticket}', ['as' => 'tasks.store', 'uses' => 'TaskController@store']);
         $r->patch('tasks/{ticket}', ['as' => 'tasks.update', 'uses' => 'TaskController@update']);
-        $r->delete('tasks/{ticket}/{task}', ['as' => 'tasks.delete', 'uses' => 'TaskController@destroy']);
+        $r->delete('tasks/{task}', ['as' => 'tasks.delete', 'uses' => 'API\TaskController@destroy']);
         $r->get('print/{ticket}', ['as' => 'ticket.print', 'uses' => 'TicketPrintController@show']);
         $r->post('forward/{ticket}', ['as' => 'ticket.forward', 'uses' => 'TicketController@forward']);
         $r->post('complaint/{ticket}', ['as' => 'ticket.complaint', 'uses' => 'TicketController@complaint']);
@@ -163,6 +165,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         $r->post('resolution/{ticket}',
             ['as' => 'ticket.resolution', 'uses' => 'API\TicketReplyController@resolve']);
+
     });
 
 

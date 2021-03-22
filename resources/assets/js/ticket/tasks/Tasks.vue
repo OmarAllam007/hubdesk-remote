@@ -5,25 +5,26 @@
       <div v-show="!loading">
         <div class="flex justify-end pb-5 ">
           <button
-              class="bg-green-500  hover:bg-green-700  text-white font-bold py-2 px-4 rounded-full hover:shadow-md" @click="showModal">
-            <i class="fa fa-plus"></i> Create Task
+              class="bg-green-500  hover:bg-green-700  text-white font-bold py-2 px-4 rounded-full hover:shadow-md"
+              @click="showModal">
+            <i class="fa fa-plus"></i> {{ $root.t('Create Task') }}
           </button>
         </div>
         <div class="flex w-3/2 bg-blue-600 justify-center text-white font-bold p-5 rounded-2xl shadow-md "
              v-if="!tasks.length">
-          <p class="text-center "><i class="fa fa-warning"></i> No Tasks Found</p>
+          <p class="text-center "><i class="fa fa-warning"></i> {{ $root.t('No Tasks Found') }}</p>
         </div>
         <table class="table pt-5 " v-if="tasks.length">
           <thead>
           <tr class=" p-3 bg-viola bg-opacity-75 text-white rounded-tl-xl font-bold">
-            <th>ID</th>
-            <th>Subject</th>
-            <th>Category</th>
-            <th>Status</th>
-            <th>Created At</th>
-            <th>Created By</th>
-            <th>Assigned To</th>
-            <th>Actions</th>
+            <th>{{ $root.t('ID') }}</th>
+            <th>{{ $root.t('Subject') }}</th>
+            <th>{{ $root.t('Category') }}</th>
+            <th>{{ $root.t('Status') }}</th>
+            <th>{{ $root.t('Created At') }}</th>
+            <th>{{ $root.t('Created By') }}</th>
+            <th>{{ $root.t('Assigned To') }}</th>
+            <th>{{ $root.t('Actions') }}</th>
           </tr>
           </thead>
           <tbody>
@@ -33,7 +34,7 @@
       </div>
 
     </div>
-    <task-modal :showing="true" ></task-modal>
+    <task-modal :showing="true"></task-modal>
   </div>
 </template>
 
@@ -58,12 +59,16 @@ export default {
   },
   created() {
     this.getTasks();
+
+    EventBus.$on('task_deleted', () => {
+      this.getTasks();
+    })
   },
   mounted() {
 
   },
   methods: {
-    showModal(){
+    showModal() {
       EventBus.$emit('show-tasks-modal');
     },
     getTasks() {

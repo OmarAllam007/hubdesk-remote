@@ -8,7 +8,7 @@
 
       <div class="flex w-full" v-if="approvers.length" v-cloak>
         <div class="flex flex-col w-1/2 ">
-          <label for="cc">Cc:</label>
+          <label for="cc">{{ $root.t('Cc') }}:</label>
           <select name="cc" id="cc" class="select2 form-control" multiple>
             <option value=""></option>
             <option :value="approver.id" v-for="approver in approvers">{{ approver.text }}</option>
@@ -18,11 +18,11 @@
         </div>
 
         <div class="flex flex-col w-1/2 pl-5 ">
-          <label for="template" v-show="show_templates">Reply Template:</label>
+          <label for="template" v-show="show_templates">{{ $root.t('Reply Template') }}:</label>
           <select v-model="selected_template" class="border bg-white rounded px-3 py-2 outline-none" id="template"
                   v-show="show_templates"
                   name="template" @change="updateDescription">
-            <option value="" class="py-1">Select Template</option>
+            <option value="" class="py-1">{{ $root.t('Select Template') }}</option>
             <option :value="template.id" v-for="template in templates" v-html="template.title"
                     class="py-1"></option>
           </select>
@@ -30,7 +30,7 @@
       </div>
 
       <div class="flex flex-col w-full  pt-5 ">
-        <label for="description">Description <span class="text-red-600 ">*</span></label>
+        <label for="description">{{ $root.t('Description') }} <span class="text-red-600 ">*</span></label>
 
         <editor v-model="description" id="description"
                 :init="{
@@ -51,18 +51,19 @@
       <div class="flex">
         <div class="flex flex-col w-1/2  pt-5 ">
           <!--        <div class="w-1/2">-->
-          <label for="status">Change Status from ( {{ ticket.status }} ) to:</label>
+          <label for="status">{{ $root.t('Change Status from') }} ( {{ $root.t(ticket.status) }} )
+            {{ $root.t('to') }}:</label>
           <select v-model="selected_status" class="border bg-white rounded px-3 py-2 outline-none" id="status"
                   name="status">
             <option :value="statusKey" v-for="(status, statusKey) in statuses"
-                    class="py-1">{{ status }}
+                    class="py-1">{{ $root.t(status) }}
             </option>
           </select>
           <!--        </div>-->
         </div>
 
         <div class="flex flex-col w-1/2  pt-5 pl-5  ">
-          <label for="attachments">Attachments: </label>
+          <label for="attachments">{{ $root.t('Attachments') }} : </label>
           <div class="form-group" id="attachments">
             <input type="file" class="form-control input-xs" name="attachments[]" @change="attachFiles"
                    multiple>
@@ -75,7 +76,7 @@
          rounded-xl" @click="submitReply"
                 :class="replyStyle"
                 :disabled="!canSubmit">
-          <i class="fa fa-send"></i> Reply
+          <i class="fa fa-send"></i> {{ $root.t('Reply') }}
         </button>
       </div>
     </div>
@@ -163,6 +164,8 @@ export default {
                   'Ticket Info', `Ticket reply has been added`, 'success');
 
               EventBus.$emit('ticket_updated');
+              EventBus.$emit('status_updated', response.data.reply);
+
               this.resetForm();
             }
 

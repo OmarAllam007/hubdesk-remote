@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a :href="`#${reply.id}`" class="hover:bg-yellow-100 bg-white block rounded-md  " @click="isCollapsed = !isCollapsed">
+    <a class="hover:bg-yellow-100 bg-white block rounded-md  cursor-pointer" @click="isCollapsed = !isCollapsed">
       <div class="flex  shadow-md  rounded-2xl mb-3 w-full">
         <div class="w-2 rounded-l-md " :class="getStatusColor"></div>
         <div class="flex flex-col">
@@ -9,7 +9,8 @@
               <div class="flex w-1/2"> <!--       name       -->
                 <i class="fa fa-chevron-right  p-2 m-2 hover:text-orange-700" v-if="isCollapsed"></i>
                 <i class="fa fa-chevron-down  p-2 m-2 hover:text-orange-700" v-if="!isCollapsed"></i>
-                <p class="font-semibold p-2 m-2 text-gray-800 w-full text-lg md:text-xl">By: {{ reply.name }}</p>
+                <p class="font-semibold p-2 m-2 text-gray-800 w-full text-lg md:text-xl">{{ $root.t('By') }}:
+                  {{ reply.name }}</p>
               </div>
 
 
@@ -22,26 +23,26 @@
               <!--              </div>-->
             </div>
           </div>
-          <transition name="fade" mode="out-in" >
-            <div class="flex flex-col" v-if="!isCollapsed" >
+          <transition name="fade" mode="out-in">
+            <div class="flex flex-col" v-if="!isCollapsed">
 
-              <div class="p-5 bg-gray-200 shadow-inner shadow-2xl" >
+              <div class="p-5 bg-gray-200 shadow-inner shadow-2xl">
                 <div class="flex w-full" v-if="reply.cc.length">
-                  <p class="p-1 rounded-2xl text-center text-md font-bold ">Cc: {{ reply.cc }}</p>
+                  <p class="p-1 rounded-2xl text-center text-md font-bold ">{{ $root.t('Cc') }}: {{ reply.cc }}</p>
                 </div>
                 <p class="text-black text-center " v-html="reply.content"></p>
                 <div class="flex justify-end">
                   <p class="p-2 m-2 rounded-2xl text-center text-base font-bold w-64"
-                     :class="getStatusColor">{{ reply.status }}</p>
+                     :class="getStatusColor">{{ $root.t(reply.status) }}</p>
                 </div>
                 <div class="flex flex-col" v-if="reply.attachments.length">
                   <p class="text-black"><strong>Attachments</strong></p>
-                      <a :href="`download-attach/${attachment.id}`" @click.stop="()=>{}"
-                         target="_blank"  v-for="attachment in reply.attachments"
-                         class="hover:bg-white  flex z-50 pt-5 pb-5 pl-1 pr-1  rounded-xl ">
-                        <i class="fa fa-download pl-1 pr-1"></i>
-                        {{ attachment.display_name }}
-                      </a>
+                  <a :href="`download-attach/${attachment.id}`" @click.stop="()=>{}"
+                     target="_blank" v-for="attachment in reply.attachments"
+                     class="hover:bg-white  flex z-50 pt-5 pb-5 pl-1 pr-1  rounded-xl ">
+                    <i class="fa fa-download pl-1 pr-1"></i>
+                    {{ attachment.display_name }}
+                  </a>
                 </div>
               </div>
             </div>
@@ -81,7 +82,7 @@ export default {
 
 <style scoped>
 a, a:hover, a:active, a:visited, a:focus {
-  text-decoration:none;
+  text-decoration: none;
 
 }
 
@@ -90,7 +91,7 @@ a:hover {
 }
 
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .1s ;
+  transition: opacity .1s;
 }
 
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */

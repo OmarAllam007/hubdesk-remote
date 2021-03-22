@@ -59,7 +59,12 @@ export default {
     removeApproval() {
       this.$emit('remove');
 
-      axios.delete(`/approval/delete/${this.approval.id}`);
+      axios.delete(`/approval/delete/${this.approval.id}`).then(() => {
+        EventBus.$emit('send_notification', 'approvals',
+            'Ticket Info', `The approval has been removed`, 'error');
+        
+        EventBus.$emit('ticket_updated');
+      });
     },
 
     resendApproval(id) {

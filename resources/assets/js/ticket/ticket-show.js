@@ -13,20 +13,28 @@ import translate from '../translation';
 import translation from "../translation";
 import _ from 'lodash';
 import Session from "../helpers/Session";
-Vue.prototype.$translate = translate.t;
+// Vue.prototype.$translate = this.t;
 
 window.app = new Vue({
     el: '#ticketShow',
     data() {
         return {
-            translations: []
+            translations: [],
+            loading: false
         }
     },
-    created() {
-       translate.load_file('en')
+    beforeCreate() {
     },
     methods: {
+        t(word) {
+            let translation = _.find(this.translations, {'word': word});
 
+            if (translation) {
+                return translation.translation;
+            }
+
+            return word;
+        }
     },
     components: {TicketShow}
 });

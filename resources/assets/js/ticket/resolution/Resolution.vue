@@ -6,7 +6,7 @@
                 class="bg-orange-500  hover:bg-orange-700  text-white
                 hover:text-white font-bold py-2 px-4 rounded-full mr-2 ml-5 w-64 "
                 @click="editResolution">
-          <i class="fa fa-edit"></i> Edit
+          <i class="fa fa-edit"></i> {{ $root.t('Edit') }}
         </button>
       </div>
       <reply :reply="resolution"></reply>
@@ -16,7 +16,7 @@
       <div class="flex flex-col" v-if="!loading">
         <div class="flex w-1/2" v-if="templates.length">
           <div class="flex flex-col w-1/2">
-            <label for="template">Reply Template:</label>
+            <label for="template">{{ $root.t('Reply Template') }}:</label>
             <select v-model="selected_template" class="border bg-white rounded px-3 py-2 outline-none" id="template"
                     name="template" @change="updateDescription">
               <option value="" class="py-1">Select Template</option>
@@ -27,7 +27,7 @@
         </div>
 
         <div class="flex flex-col w-full  pt-5">
-          <label for="resolution_description">Description <span class="text-red-600">*</span></label>
+          <label for="resolution_description">{{ $root.t('Description') }} <span class="text-red-600">*</span></label>
           <editor trigger="#" v-model="resolution_description" id="resolution_description"
                   :init="{
           paste_data_images: true,
@@ -43,7 +43,7 @@
         </div>
         <div class="flex">
           <div class="flex flex-col w-1/2  pt-5 ">
-            <label for="attachments">Attachments: </label>
+            <label for="attachments">{{ $root.t('Attachments') }}: </label>
             <div class="form-group" id="attachments">
               <input type="file" class="form-control input-xs" name="attachments[]" @change="attachFiles"
                      multiple>
@@ -58,7 +58,7 @@
                   :disabled="!canSubmit">
             <i class="fa fa-send" v-if="!submit_loading"></i> <i class="fa fa-spin fa-spinner"
                                                                  v-if="submit_loading"></i>
-            {{ edit_resolution ? 'Update' : 'Resolve' }}
+            {{ edit_resolution ? $root.t('Update') : $root.t('Resolve') }}
           </button>
         </div>
       </div>
@@ -122,8 +122,9 @@ export default {
       })
     },
     editResolution() {
-     this.selected_template = this.resolution.content;
+      // this.selected_template = this.resolution.content;
       this.edit_resolution = !this.edit_resolution;
+      this.resolution_description = this.resolution.content;
     },
     submitResolution() {
       let ticket = this.$parent.data.ticket;
@@ -139,6 +140,7 @@ export default {
 
             EventBus.$emit('add_resolution', {'reply': response.data.reply});
             EventBus.$emit('ticket_updated');
+            EventBus.$emit('status_updated', response.data.reply);
 
             this.resetForm();
           }).catch((e) => {
@@ -149,6 +151,7 @@ export default {
       this.resolution_description = '';
       this.attachments = [];
       this.selected_template = '';
+      this.edit_resolution = false;
     }
   },
   computed: {

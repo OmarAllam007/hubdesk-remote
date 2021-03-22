@@ -7,7 +7,8 @@
         }
     </style>
     <div id="ticketShow">
-        <ticket-show :data="{{json_encode(\App\Http\Resources\TicketResource::make($ticket))}}"></ticket-show>
+        <ticket-show :data="{{json_encode(\App\Http\Resources\TicketResource::make($ticket))}}"
+                     :translations="{{json_encode(\App\Translation::where('language','en')->get(['word','translation']))}}"></ticket-show>
     </div>
 @endsection
 

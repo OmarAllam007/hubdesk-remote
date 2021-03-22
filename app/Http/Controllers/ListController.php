@@ -51,7 +51,6 @@ class ListController extends Controller
         return $query->canonicalList();
     }
 
-
     public function category($service_type = null)
     {
         $categories = Category::query()->active();
@@ -112,6 +111,11 @@ class ListController extends Controller
         return Group::support()->orderBy('name')->get(['name', 'id']);
     }
 
+    public function technicianGroup()
+    {
+        return Group::active()->technician()->orderBy('name')->get(['name', 'id']);
+    }
+
     public function technician()
     {
         return User::active()->technicians()->orderBy('name')->get(['name', 'id']);
@@ -131,6 +135,11 @@ class ListController extends Controller
     {
         $user_ids = \DB::table('group_user')->where('group_id', $group)->pluck('user_id');
         return User::active()->technicians()->whereIn('id', $user_ids)->orderBy('name')->get(['name', 'id']);
+    }
+
+    public function individualCategory()
+    {
+        return Category::active()->individual()->ticketType()->orderBy('name')->get(['name', 'id']);
     }
 
 

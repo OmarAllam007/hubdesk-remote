@@ -10,7 +10,7 @@
         <div class="w-1/2">
           <div class="form-group">
             <label>
-              Send Approval to:
+              {{ $root.t('Send Approval to') }}:
               <v-select :options="users" label="name" v-model="level.approver" placeholder="Select Approver"
                         class="selection-list"></v-select>
             </label>
@@ -21,7 +21,7 @@
         <div class="w-1/2" v-if="templates.length">
           <div class="form-group">
             <label>
-              Template:
+              {{ $root.t('Template') }}:
             </label>
             <select name="" id="" v-model="level.template_id" class="form-control" @change="updateDescription">
               <option value="0">Select Template</option>
@@ -34,12 +34,12 @@
       <div class="flex w-full justify-between pt-5">
         <section class="table-container w-6/12 mr-2">
           <label>
-            Questions
+            {{ $root.t('Questions') }}
           </label>
           <table class="listing-table table-bordered">
             <thead class="question-header">
             <tr>
-              <th>Description</th>
+              <th>{{ $root.t('Description') }}</th>
               <th>
                 <a class="btn btn-sm btn-primary btn-xs" @click="addQuestion(index)"
                    type="button"><i
@@ -59,7 +59,7 @@
         <section class="w-6/12">
           <div class="form-group">
             <label>
-              Description
+              {{ $root.t('Description') }}
             </label>
             <editor v-model="level.description"
                     :init="{
@@ -86,10 +86,10 @@
         <div class="w-1/2">
           <div class="form-group">
             <label>
-              Stage:
+              {{ $root.t('Stage') }}:
             </label>
             <select v-model="level.stage" class="form-control">
-              <option value="" selected>Select Stage</option>
+              <option value="" selected>{{ $root.t('Select Stage') }}</option>
               <option v-for="stage of stages" :value="stage">{{ stage }}</option>
             </select>
           </div>
@@ -100,7 +100,7 @@
         <div class="w-1/2">
           <div class="checkbox" v-if="index + 1 > 1 || hasApprovals()">
             <label>
-              <input type="checkbox" v-model="level.new_stage"> Add as a new stage
+              <input type="checkbox" v-model="level.new_stage"> {{ $root.t('Add as a new stage') }}
             </label>
           </div>
         </div>
@@ -142,7 +142,7 @@ export default {
     setTimeout(() => {
       this.templates = this.$parent.templates;
     }, 500);
-    
+
   },
   mounted() {
     // tinymce.init({

@@ -4,12 +4,12 @@
     <div class="flex flex-col" v-else>
       <div class="flex bg-green-200 p-5 m-5 rounded-lg shadow-md ">
         <strong v-if="log_data.is_task">
-          {{ $translate('Ticket created by') }} {{ log_data.created_by }} {{ $translate('at') }} {{
+          {{ $root.t('Ticket created by') }} {{ log_data.created_by }} {{ $root.t('at') }} {{
             log_data.created_at
           }}
         </strong>
         <strong v-else>
-          {{ $translate('Task created by') }} {{ log_data.created_by }} {{ $translate('at') }} {{ log_data.created_at }}
+          {{ $root.t('Task created by') }} {{ log_data.created_by }} {{ $root.t('at') }} {{ log_data.created_at }}
         </strong>
       </div>
       <div class="pt-5 "></div>
@@ -43,8 +43,8 @@ export default {
   created() {
     this.getTicketLog();
     EventBus.$on('ticket_updated', () => {
-      console.log('updated');
       this.getTicketLog()
+      console.log('updated');
     })
   },
   methods: {

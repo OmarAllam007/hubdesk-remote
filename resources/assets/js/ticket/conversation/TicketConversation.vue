@@ -3,13 +3,13 @@
     <div>
       <div class="m-3 mt-10 flex flex-col">
         <loader v-show="loading"></loader>
-        <p class="text-3xl font-bold  pb-5 " v-if="replies.length" v-show="!loading">Conversation</p>
+        <p class="text-3xl font-bold  pb-5 " v-if="replies.length" v-show="!loading">{{ $root.t('Conversation') }}</p>
         <div v-for="reply in replies" v-show="!loading">
           <reply :reply="reply"></reply>
         </div>
 
         <div class="pt-10" v-if="show_approvals">
-          <p class="text-3xl font-bold  pb-5 " v-if="approvals.length" v-show="!loading">Approvals</p>
+          <p class="text-3xl font-bold  pb-5 " v-if="approvals.length" v-show="!loading">{{ $root.t('Approvals') }}</p>
           <div v-for="approval in approvals" v-show="!loading">
             <approval :approval="approval"></approval>
           </div>
@@ -58,6 +58,10 @@ export default {
     });
     EventBus.$on('add_resolution', (reply) => {
       this.replies.unshift(reply.reply);
+    });
+
+    EventBus.$on('approval_created', (approvals) => {
+      this.approvals = approvals;
     });
   },
   methods: {

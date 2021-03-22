@@ -28,4 +28,14 @@ class TaskController extends Controller
     function store(Request $request){
 
     }
+
+    public function destroy($task)
+    {
+        $task = Ticket::find($task);
+
+        if (can('task_destroy', $task)) {
+            $task->delete();
+//            flash(t('Task Info'), t('Task deleted successfully'), 'success');
+        }
+    }
 }

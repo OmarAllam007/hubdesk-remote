@@ -17,11 +17,13 @@
 <script>
 import Date from "./Date";
 import TextField from "./TextField";
+import Select from "./Select";
+
 
 export default {
   name: "Fields",
   props: ['fields'],
-  components: {Date, TextField}
+  components: {Date, TextField , Select}
 }
 </script>
 

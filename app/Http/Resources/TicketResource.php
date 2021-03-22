@@ -21,13 +21,18 @@ class TicketResource extends JsonResource
             'status_id' => $this->status_id ?? 'Not Assigned',
             'category' => t($this->category->name ?? 'Not Assigned'),
             'subcategory' => $this->subcategory ? t($this->subcategory->name) : 'Not Assigned',
-            'created_at' => $this->created_at ? $this->created_at->format('Y-m-d h:i') : 'Not Assigned',
-            'due_date' => $this->due_date ? $this->due_date->format('Y-m-d h:i') : 'Not Assigned',
+            'created_at' => $this->created_at ? $this->created_at->format('Y/m/d h:i') : 'Not Assigned',
+            'due_date' => $this->due_date ? $this->due_date->format('Y/m/d h:i') : 'Not Assigned',
             'type' => $this->ticket_type ?? 'Not Assigned',
             'priority' => $this->priority->name ?? 'Not Assigned',
             'is_overdue' => $this->overdue ? 1 : 0,
             'is_task' => $this->isTask() ? 1 : 0,
-
+            'category_id' => $this->category_id ?? '',
+            'subcategory_id' => $this->subcategory_id ?? '',
+            'item_id' => $this->item_id ?? '',
+            'subitem_id' => $this->subitem_id ?? '',
+            'technician_id' => $this->technician_id ?? '',
+            'group_id' => $this->group_id ?? '',
         ];
 
         $ticket['item'] = $this->item ? t($this->item->name) : 'Not Assigned';
@@ -42,8 +47,6 @@ class TicketResource extends JsonResource
         $ticket['resolution'] = TicketReplyResource::make($this->resolution);
         $ticket['approvals'] = $this->isTask() ? $this->ticket->ticket_approvals : $this->ticket_approvals;
         $ticket['task_approvals'] = $this->isTask() ? $this->ticket_approvals : [];
-
-
 
 
         return [

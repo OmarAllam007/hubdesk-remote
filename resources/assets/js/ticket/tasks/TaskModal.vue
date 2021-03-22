@@ -109,8 +109,8 @@
                   <div v-for="(item,key) in items">
                     <!--          <text-field :label="item.name" v-if="item.type == 'textfield'"></text-field>-->
                     <component :is="item.type" :label="item.name"
-                               :name="`cf[${item.id}]`" :id="`cf[${item.id}]`"
-                               class="pt-3" v-model="custom_fields[item.id]">
+                               :name="`cf[${item.id}]`" :id="`cf[${item.id}]`"h
+                               class="pt-3" v-model="custom_fields[item.id]" :options="item.options">
                     </component>
                   </div>
                 </div>
@@ -144,6 +144,7 @@ import axios from "axios";
 
 import Date from "../custom_fields/Date";
 import TextField from "../custom_fields/TextField";
+import SelectField from "../custom_fields/SelectField";
 import {EventBus} from "../../EventBus";
 
 export default {
@@ -308,7 +309,7 @@ export default {
     }
   },
 
-  components: {Editor, Date, TextField},
+  components: {Editor, Date, TextField, SelectField},
 }
 </script>
 
