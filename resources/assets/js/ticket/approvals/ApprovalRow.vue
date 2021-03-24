@@ -1,5 +1,5 @@
 <template>
-  <tr>
+  <tr class="hover:bg-yellow-100 bg-white">
     <td>{{ approval_data.approver }}</td>
     <td>{{ approval_data.creator }}</td>
     <td>{{ approval_data.created_at }}</td>
@@ -41,6 +41,7 @@
 
 <script>
 import axios from "axios";
+import {EventBus} from "../../EventBus";
 
 export default {
   name: "ApprovalRow",
@@ -58,7 +59,12 @@ export default {
     removeApproval() {
       this.$emit('remove');
 
-      axios.delete(`/approval/delete/${this.approval.id}`);
+      axios.delete(`/approval/delete/${this.approval.id}`).then(() => {
+        EventBus.$emit('send_notification', 'approvals',
+            'Ticket Info', `The approval has been removed`, 'error');
+        
+        EventBus.$emit('ticket_updated');
+      });
     },
 
     resendApproval(id) {
@@ -67,6 +73,10 @@ export default {
       axios.get(`/approval/resend/${id}`).then((response) => {
         this.approval_data['resend']++
         this.loading = false;
+        EventBus.$emit('send_notification', 'approvals',
+            'Ticket Info', `The approval has been resubmitted successfully`, 'success');
+
+        EventBus.$emit('ticket_updated');
       });
     },
   }

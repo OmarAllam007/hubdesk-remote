@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Observers\TicketReplyObserver;
 use App\TicketReply;
 use Carbon\Carbon;
+use Illuminate\Queue\Events\JobFailed;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

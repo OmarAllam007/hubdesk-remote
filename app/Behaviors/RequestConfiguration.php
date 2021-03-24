@@ -10,7 +10,6 @@ trait RequestConfiguration {
     function getRequestCcEmails(){
         $applyBr =  new ApplyBusinessRules($this);
         $applyBr->fetchBusinessRule();
-        dd($applyBr->business_rule);
         $cc = collect();
 
         $rules = BusinessRule::with('criterions')->with('rules')->get();

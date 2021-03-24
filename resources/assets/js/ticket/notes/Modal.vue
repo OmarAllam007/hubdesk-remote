@@ -13,7 +13,7 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
-                      <editor v-model="note.note"
+                      <editor trigger="#" v-model="note.note" id="note-editor" name="note-editor"
                               :init="{
          height: 300,
          menubar: false,
@@ -29,13 +29,13 @@
                     </div>
                     <div class="checkbox">
                       <label><input type="checkbox" v-model="note.display_to_requester"
-                                    name="display_to_requester">{{ 'Show this note to Requester' }}
+                                    name="display_to_requester">{{ $root.t('Show this note to Requester') }}
                       </label>
                     </div>
                     <div class="checkbox">
                       <label><input type="checkbox" v-model="note.email_to_technician" name="email_to_technician"
                                     id="email_to_technician">
-                        {{ 'E-mail this note to the technician' }}</label>
+                        {{ $root.t('E-mail this note to the technician') }}</label>
                     </div>
                   </div>
                 </div>
@@ -43,10 +43,10 @@
               <div class="modal-footer">
                 <button type="submit" class="btn btn-success submitNote" @click="createOrUpdate">
                   <i class="fa fa-check-circle"></i>
-                  {{ create_form ? 'Add Note' : 'Update Note' }}
+                  {{ create_form ? $root.t('Add Note') : $root.t('Update Note') }}
                 </button>
                 <button type="button" class="btn btn-default" data-dismiss="modal" @click="closeModal()">{{
-                    'Close'
+                    $root.t('Close')
                   }}
                 </button>
               </div>
@@ -61,6 +61,7 @@
 <script>
 import Editor from '@tinymce/tinymce-vue'
 import axios from "axios";
+import {EventBus} from "../../EventBus";
 
 export default {
   name: "Modal",
@@ -92,6 +93,7 @@ export default {
       axios.post(`/ticket/note/${this.note.ticket_id}`, this.note).then((response) => {
         this.loading = false
         this.$parent.ticket_notes.push(response.data);
+        EventBus.$emit('ticket_updated');
         this.closeModal();
       }).catch((e) => {
         this.loading = false;

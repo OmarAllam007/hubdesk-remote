@@ -2,6 +2,7 @@
 
 use Illuminate\Routing\Router;
 
+
 if (env('LOGIN_AS')) {
     Auth::loginUsingId(env('LOGIN_AS'));
 }
@@ -13,14 +14,11 @@ Route::get('auth/google', 'Auth\AuthController@googleRedirect');
 Route::get('auth/google/continue', 'Auth\AuthController@googleHandle');
 
 
-Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function (Router $r) {
+Route::group(['prefix' => 'dashboard'], function (Router $r) {
     $r->get('select_business_unit', 'DashboardController@selectServiceUnit')
         ->name('dashboard.select_business_unit');
     $r->get('display/{businessUnit}', 'DashboardController@display')
         ->name('dashboard.display');
-
-    $r->get('status-dashboard/{businessUnit}', 'StatusDashboardController@index')->name('dashboard.select_status_dashboard');
-    $r->get('status-dashboard-data', 'StatusDashboardController@getData');
 });
 
 Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
@@ -28,14 +26,15 @@ Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
     $r->get('/item/{subcat_id?}', 'ListController@item');
     $r->get('/subitem/{item_id?}', 'ListController@subitem');
     $r->get('/category', 'ListController@category');
+    $r->get('/individual-category', 'ListController@individualCategory');
     $r->get('/folders/{business_unit}', 'ListController@folders');
     $r->get('/location', 'ListController@location');
     $r->get('/business-unit', 'ListController@businessUnit');
-    $r->get('/dashboard-business-unit', 'ListController@dashboardBusinessUnit');
     $r->get('/priority', 'ListController@priority');
     $r->get('/urgency', 'ListController@urgency');
     $r->get('/impact', 'ListController@impact');
     $r->get('/support-groups', 'ListController@supportGroup');
+    $r->get('/technician-groups', 'ListController@technicianGroup');
     $r->get('/technician', 'ListController@technician');
     $r->get('/group-technicians/{group?}', 'ListController@technicians');
     $r->get('/status', 'ListController@status');
@@ -43,12 +42,23 @@ Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
     $r->get('/group', 'ListController@supportGroup');
     $r->get('/approvers', 'ListController@approvers');
 
-//    KGS LIST Routes
+    $r->get('/list-statuses/{ticket}', 'ListController@getStatus');
 
+//    KGS LIST Routes
     $r->get('kgs_category', 'ListController@kgs_category');
     $r->get('kgs_subcategory', 'ListController@kgs_subcategory');
     $r->get('kgs_item', 'ListController@kgs_item');
     $r->get('kgs_subitem', 'ListController@kgs_subitem');
+
+// Ajax List
+    $r->get('replies/{ticket}', 'API\TicketReplyController@index');
+    $r->get('approvals/{ticket}', 'API\TicketApprovalController@index');
+//    $r->get('/approvers-list', 'ListController@approversList');
+    $r->get('/reply-templates', 'ListController@reply_templates');
+
+    $r->get('tasks/{ticket}', 'API\TaskController@index');
+    $r->get('logs/{ticket}', 'API\LogController@index');
+
 
 });
 
@@ -126,12 +136,11 @@ Route::group(['middleware' => ['auth']], function () {
         $r->get('create-new/business-unit/{business_unit}/category/{category}', 'TicketController@selectSubcategory')->name('ticket.create.select_subcategory');
         $r->get('create-new/business-unit/{business_unit}/subcategory/{subcategory}', 'TicketController@selectItem')->name('ticket.create.select_item');
         $r->get('create-new/business-unit/{business_unit}/item/{item}', 'TicketController@selectSubItem')->name('ticket.create.select_subItem');
-        $r->post('resolution/{ticket}', ['as' => 'ticket.resolution', 'uses' => 'TicketController@resolution']);
         $r->post('edit-resolution/{ticket}', ['as' => 'ticket.edit-resolution', 'uses' => 'TicketController@editResolution']);
         $r->post('note/{ticket}', ['as' => 'ticket.note', 'uses' => 'TicketNoteController@store']);
         $r->post('note/update/{note}', ['as' => 'note.edit', 'uses' => 'TicketNoteController@update']);
         $r->post('remove-note/{note}', ['as' => 'note.remove', 'uses' => 'TicketNoteController@destroy']);
-        $r->post('reply/{ticket}', ['as' => 'ticket.reply', 'uses' => 'TicketController@reply']);
+        $r->post('reply/{ticket}', ['as' => 'ticket.reply', 'uses' => 'API\TicketReplyController@store']);
         $r->post('jump', ['as' => 'ticket.jump', 'uses' => 'TicketController@jump']);
         $r->post('reassign/{ticket}', ['as' => 'ticket.reassign', 'uses' => 'TicketController@reassign']);
         $r->post('scope', ['as' => 'ticket.scope', 'uses' => 'TicketController@scope']);
@@ -143,7 +152,7 @@ Route::group(['middleware' => ['auth']], function () {
         $r->get('tasks/edit/{task}', ['as' => 'tasks.edit', 'uses' => 'TaskController@edit']);
         $r->post('tasks/{ticket}', ['as' => 'tasks.store', 'uses' => 'TaskController@store']);
         $r->patch('tasks/{ticket}', ['as' => 'tasks.update', 'uses' => 'TaskController@update']);
-        $r->delete('tasks/{ticket}/{task}', ['as' => 'tasks.delete', 'uses' => 'TaskController@destroy']);
+        $r->delete('tasks/{task}', ['as' => 'tasks.delete', 'uses' => 'API\TaskController@destroy']);
         $r->get('print/{ticket}', ['as' => 'ticket.print', 'uses' => 'TicketPrintController@show']);
         $r->post('forward/{ticket}', ['as' => 'ticket.forward', 'uses' => 'TicketController@forward']);
         $r->post('complaint/{ticket}', ['as' => 'ticket.complaint', 'uses' => 'TicketController@complaint']);
@@ -153,6 +162,10 @@ Route::group(['middleware' => ['auth']], function () {
         $r->get('user_survey/display/{user_survey}', ['as' => 'user_survey.show', 'uses' => 'SurveyController@displayUserSurvey']);
 
         $r->get('download-attach/{attachment}', 'TicketController@downloadAttachment')->name('ticket.attachment.download');
+
+        $r->post('resolution/{ticket}',
+            ['as' => 'ticket.resolution', 'uses' => 'API\TicketReplyController@resolve']);
+
     });
 
 
@@ -172,6 +185,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', 'HomeController@index');
 
     Route::get('/custom-fields', 'CustomFieldsController@render');
+    Route::get('/custom_fields', 'CustomFieldsController@getFields');
     Route::get('/get-requester-info/{requester}', 'UserController@getUserInfo');
 
     Route::get('/report', 'ReportController@index');

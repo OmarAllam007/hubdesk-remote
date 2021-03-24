@@ -206,11 +206,11 @@ class TicketLog extends KModel
         }
         if ($this->type == self::APPROVED) {
             return 'alert-success';
-        } elseif (in_array($this->type,[self::DENIED,self::DELETE_APPROVAL])) {
+        } elseif (in_array($this->type, [self::DENIED, self::DELETE_APPROVAL])) {
             return 'alert-danger';
-        }elseif (in_array($this->type, [self::REPLY_TYPE,self::UPDATED_TYPE])) {
+        } elseif (in_array($this->type, [self::REPLY_TYPE, self::UPDATED_TYPE])) {
             return 'alert-info';
-        }elseif ($this->type == self::RESEND_APPROVAL) {
+        } elseif ($this->type == self::RESEND_APPROVAL) {
             return 'alert-warning';
         }
 
@@ -225,7 +225,7 @@ class TicketLog extends KModel
 
     function getApprovalLogDescriptionAttribute()
     {
-        if(!isset($this->new_data['approval_id']) && in_array($this->type,$this->approval_logs)){
+        if (!isset($this->new_data['approval_id']) && in_array($this->type, $this->approval_logs)) {
             return $this->type_action;
         }
 

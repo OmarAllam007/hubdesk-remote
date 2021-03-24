@@ -1,17 +1,17 @@
 <template>
   <div>
-    <div class="flex flex-col shadow-lg p-8 mb-5 rounded-xl border-t-2">
+    <div class="flex flex-col  p-8 mb-5 rounded-xl border-t-2">
       <div class="flex justify-end">
-        <a href="#" class="text-danger cross-float" type="button" @click.prevent="deleteMe(index)" >
-          <i class="fa fa-2x  fa-times"></i>
+        <a href="#" class="text-danger cross-float" type="button" @click.prevent="deleteMe(index)">
+          <i class="fa fa-lg  fa-times"></i>
         </a>
       </div>
       <div class="flex justify-between">
         <div class="w-1/2">
           <div class="form-group">
             <label>
-              Send Approval to:
-              <v-select :options="users" label="name" v-model="level.approver" placeholder="Select Approver"
+              {{ $root.t('Send Approval to') }}:
+              <v-select :options="users" label="text"  v-model="level.approver" placeholder="Select Approver"
                         class="selection-list"></v-select>
             </label>
           </div>
@@ -21,9 +21,9 @@
         <div class="w-1/2" v-if="templates.length">
           <div class="form-group">
             <label>
-              Template:
+              {{ $root.t('Template') }}:
             </label>
-            <select name="" id="" v-model="level.template_id" class="form-control">
+            <select name="" id="" v-model="level.template_id" class="form-control" @change="updateDescription">
               <option value="0">Select Template</option>
               <option v-for="template of templates" :value="template.id">{{ template.title }}</option>
             </select>
@@ -34,12 +34,12 @@
       <div class="flex w-full justify-between pt-5">
         <section class="table-container w-6/12 mr-2">
           <label>
-            Questions
+            {{ $root.t('Questions') }}
           </label>
           <table class="listing-table table-bordered">
             <thead class="question-header">
             <tr>
-              <th>Description</th>
+              <th>{{ $root.t('Description') }}</th>
               <th>
                 <a class="btn btn-sm btn-primary btn-xs" @click="addQuestion(index)"
                    type="button"><i
@@ -59,10 +59,26 @@
         <section class="w-6/12">
           <div class="form-group">
             <label>
-              Description
+              {{ $root.t('Description') }}
             </label>
-            <textarea class="form-control" v-model="level.description"
-                      name="content" cols="30" rows="8"></textarea>
+
+            <editor trigger="#" v-model="level.description"
+
+                    :init="{
+          paste_data_images: true,
+         height: 300,
+         menubar: false,
+         plugins: [
+            'advlist autolink lists link image imagetools charmap print preview anchor',
+            'insertdatetime media table paste directionality textcolor colorpicker'
+            ],
+         toolbar:
+           'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent table | link | fontselect fontsizeselect | rtl | forecolor'
+       }"
+
+            ></editor>
+            <!--            <textarea class="form-control select2 " v-model="level.description"-->
+            <!--                      name="content" cols="30" rows="8" v-html="level.description"></textarea>-->
           </div>
         </section>
       </div>
@@ -72,10 +88,10 @@
         <div class="w-1/2">
           <div class="form-group">
             <label>
-              Stage:
+              {{ $root.t('Stage') }}:
             </label>
             <select v-model="level.stage" class="form-control">
-              <option value="" selected>Select Stage</option>
+              <option value="" selected>{{ $root.t('Select Stage') }}</option>
               <option v-for="stage of stages" :value="stage">{{ stage }}</option>
             </select>
           </div>
@@ -86,7 +102,7 @@
         <div class="w-1/2">
           <div class="checkbox" v-if="index + 1 > 1 || hasApprovals()">
             <label>
-              <input type="checkbox" v-model="level.new_stage"> Add as a new stage
+              <input type="checkbox" v-model="level.new_stage"> {{ $root.t('Add as a new stage')}}
             </label>
           </div>
         </div>
@@ -97,87 +113,8 @@
                    multiple>
           </div>
         </div>
-
-
       </div>
-
     </div>
-
-    <!--              <div class="panel shadow-lg ">-->
-    <!--      <div class="panel-heading">-->
-    <!--        <div class="flex justify-between ">-->
-    <!--         -->
-
-    <!--          <div class="col-md-2">-->
-    <!--            <a href="#" class="text-danger cross-float" type="button" @click.prevent="deleteMe(index)">-->
-    <!--              <i class="fa fa-2x  fa-times"></i>-->
-    <!--            </a>-->
-    <!--          </div>-->
-
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--      <hr>-->
-    <!--      <div class="panel-body">-->
-    <!--        <section class="table-container col-md-6">-->
-    <!--          <table class="listing-table table-bordered">-->
-    <!--            <thead class="question-header">-->
-    <!--            <tr>-->
-    <!--              <th class="col-md-10">Questions</th>-->
-    <!--              <th>-->
-    <!--                <a class="btn btn-sm btn-primary btn-xs" @click="addQuestion(index)"-->
-    <!--                   type="button"><i-->
-    <!--                    class="fa fa-plus-circle"></i></a>-->
-    <!--              </th>-->
-    <!--            </tr>-->
-    <!--            </thead>-->
-    <!--            <tbody>-->
-
-    <!--            <tr is="approval-question-row" v-for="(question, qIndex) in level.questions" :index="index" :key="qIndex"-->
-    <!--                :qIndex="qIndex"-->
-    <!--                :row="qIndex" :question="question"-->
-    <!--                @remove="removeQuestion(qIndex)">-->
-    <!--            </tr>-->
-
-    <!--            </tbody>-->
-    <!--          </table>-->
-    <!--        </section>-->
-    <!--        <div class="form-group  col-md-6">-->
-    <!--          <label>-->
-    <!--            Description-->
-    <!--          </label>-->
-    <!--          <textarea class="form-control" v-model="level.description"-->
-    <!--                    name="content" cols="30" rows="8"></textarea>-->
-
-    <!--        </div>-->
-    <!--        <div class="flex">-->
-    <!--          <div class="form-group col-md-4">-->
-    <!--            <label>-->
-    <!--              Stage:-->
-    <!--            </label>-->
-    <!--            <select  v-model="level.stage" class="form-control">-->
-    <!--              <option value="0">Select Stage</option>-->
-    <!--              <option v-for="stage of approval_stages" :value="stage">{{ stage }}</option>-->
-    <!--            </select>-->
-
-    <!--          </div>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--      <hr>-->
-    <!--      <div class="panel-footer">-->
-    <!--        <div style="display: flex; justify-content: space-between">-->
-    <!--          <div class="form-group">-->
-    <!--            <input type="file" class="form-control input-xs" name="attachments[]" @change="attachFiles($event)"-->
-    <!--                   multiple >-->
-    <!--          </div>-->
-
-    <!--          <div class="checkbox" v-if="index + 1 > 1 || hasApprovals()">-->
-    <!--            <label>-->
-    <!--              <input type="checkbox" v-model="level.new_stage"> Add as a new stage-->
-    <!--            </label>-->
-    <!--          </div>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--    </div>-->
   </div>
 </template>
 
@@ -188,6 +125,7 @@ import {EventBus} from "../../EventBus";
 import vSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css';
 
+import Editor from '@tinymce/tinymce-vue'
 
 Vue.component('v-select', vSelect.VueSelect);
 export default {
@@ -200,15 +138,28 @@ export default {
       attachments: [],
       questions: [],
       templates: [],
+      selected_template: '',
     }
   },
   created() {
-    this.templates = this.$parent.templates;
+    setTimeout(() => {
+      this.templates = this.$parent.templates;
+    }, 500);
+
   },
   mounted() {
-    // this.getApprovalStages();
+
   },
   methods: {
+    updateDescription() {
+      this.templates.forEach((template) => {
+        if (this.level.template_id == template.id) {
+          this.level.description = template.description;
+          return;
+        }
+        this.level.description = ''
+      })
+    },
     addQuestion(index) {
       this.level.questions.push({description: ''});
     },
@@ -237,7 +188,7 @@ export default {
       return this.description.length !== '' && this.approver !== 0;
     }
   },
-  components: {ApprovalQuestionRow, vSelect}
+  components: {ApprovalQuestionRow, vSelect, Editor}
 
 }
 </script>
