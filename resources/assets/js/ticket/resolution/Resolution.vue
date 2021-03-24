@@ -28,7 +28,7 @@
 
         <div class="flex flex-col w-full  pt-5">
           <label for="resolution_description">{{ $root.t('Description') }} <span class="text-red-600">*</span></label>
-          <editor trigger="#" v-model="resolution_description" id="resolution_description"
+          <editor  v-model="resolution_description" id="resolution_description" name="resolution_description"
                   :init="{
           paste_data_images: true,
          height: 300,
@@ -67,7 +67,6 @@
 </template>
 
 <script>
-import Editor from '@tinymce/tinymce-vue'
 import Select2 from 'v-select2-component';
 import Loader from "../_components/Loader";
 import Reply from "../conversation/Reply";
@@ -76,6 +75,7 @@ import _ from 'lodash';
 import axios from "axios";
 import {EventBus} from "../../EventBus";
 
+import Editor from '@tinymce/tinymce-vue'
 export default {
   name: "Resolution",
   data() {
@@ -103,7 +103,7 @@ export default {
       }
       this.can_resolve = this.$parent.data.ticket.authorizations.can_resolve
       this.templates = this.$parent.templates;
-    }, 1000);
+    }, 500);
   },
   methods: {
     attachFiles(event) {
@@ -138,7 +138,7 @@ export default {
             EventBus.$emit('send_notification', 'replies',
                 'Ticket Info', `Ticket has been resolved`, 'success');
 
-            EventBus.$emit('add_resolution', {'reply': response.data.reply});
+            EventBus.$emit('add_to_replies', {'reply': response.data.reply});
             EventBus.$emit('ticket_updated');
             EventBus.$emit('status_updated', response.data.reply);
 

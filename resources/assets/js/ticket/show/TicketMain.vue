@@ -54,18 +54,21 @@
 
         <div class="mt-10"></div>
 
-        <p class="font-bold text-2xl ">{{ $root.t('Additional Information') }}</p>
-        <div class="w-full mt-3 ">
-          <div class="flex flex-col shadow-md">
-            <div v-for="(field , key) in ticket.fields">
-              <div class="flex">
-                <div class="w-1/2 p-3 bg-gray-800     bg-opacity-75 text-white  font-bold">{{ $root.t(field.name) }}
+        <div v-if="ticket.fields.length">
+          <p class="font-bold text-2xl ">{{ $root.t('Additional Information') }}</p>
+          <div class="w-full mt-3 ">
+            <div class="flex flex-col shadow-md">
+              <div v-for="(field , key) in ticket.fields">
+                <div class="flex">
+                  <div class="w-1/2 p-3 bg-gray-800     bg-opacity-75 text-white  font-bold">{{ $root.t(field.name) }}
+                  </div>
+                  <div class="w-1/2 p-3 bg-white ">{{ field.value }}</div>
                 </div>
-                <div class="w-1/2 p-3 bg-white ">{{ field.value }}</div>
               </div>
             </div>
           </div>
         </div>
+
 
         <div class="mt-10"></div>
 
@@ -123,6 +126,7 @@
         <notes :notes="ticket.notes"
                :can_create_note="ticket.authorizations.can_create_note"
                :ticket_id="ticket.id"
+               v-if="ticket.notes.length "
         ></notes>
 
       </div>

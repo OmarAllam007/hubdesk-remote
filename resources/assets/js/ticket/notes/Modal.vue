@@ -13,7 +13,7 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
-                      <editor v-model="note.note"
+                      <editor trigger="#" v-model="note.note" id="note-editor" name="note-editor"
                               :init="{
          height: 300,
          menubar: false,

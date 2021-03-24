@@ -56,8 +56,10 @@ export default {
     EventBus.$on('ticket-reply-saved', () => {
       this.getTicketConversation(false);
     });
-    EventBus.$on('add_resolution', (reply) => {
+    EventBus.$on('add_to_replies', (reply) => {
+      this.loading = true;
       this.replies.unshift(reply.reply);
+      this.loading = false;
     });
 
     EventBus.$on('approval_created', (approvals) => {
@@ -72,6 +74,7 @@ export default {
         this.replies = response.data.replies;
         this.approvals = response.data.approvals;
         this.users = response.data.approvers;
+        this.$parent.users = response.data.approvers;
         this.statuses = response.data.statuses;
         this.templates = response.data.templates;
         this.$parent.templates = response.data.templates;

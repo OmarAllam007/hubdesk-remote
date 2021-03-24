@@ -33,6 +33,9 @@ class TicketResource extends JsonResource
             'subitem_id' => $this->subitem_id ?? '',
             'technician_id' => $this->technician_id ?? '',
             'group_id' => $this->group_id ?? '',
+            'request_id' => $this->request_id ?? '',
+            'is_duplicated' => $this->isDuplicated(),
+            'is_support' => \Auth::user()->isSupport(),
         ];
 
         $ticket['item'] = $this->item ? t($this->item->name) : 'Not Assigned';
@@ -47,7 +50,7 @@ class TicketResource extends JsonResource
         $ticket['resolution'] = TicketReplyResource::make($this->resolution);
         $ticket['approvals'] = $this->isTask() ? $this->ticket->ticket_approvals : $this->ticket_approvals;
         $ticket['task_approvals'] = $this->isTask() ? $this->ticket_approvals : [];
-
+        $ticket['attachments'] = AttachmentsResource::collection($this->files);
 
         return [
             'ticket' => $ticket,

@@ -27,6 +27,9 @@
             <div class="flex flex-col" v-if="!isCollapsed">
 
               <div class="p-5 bg-gray-200 shadow-inner shadow-2xl">
+                <div class="flex w-full" v-if="reply.to.length">
+                  <p class="p-1 rounded-2xl text-center text-md font-bold ">{{ $root.t('To') }}: {{ reply.to }}</p>
+                </div>
                 <div class="flex w-full" v-if="reply.cc.length">
                   <p class="p-1 rounded-2xl text-center text-md font-bold ">{{ $root.t('Cc') }}: {{ reply.cc }}</p>
                 </div>

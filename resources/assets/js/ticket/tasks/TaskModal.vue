@@ -31,7 +31,7 @@
             </div>
             <div class="flex flex-col pt-5">
               <label for="task_description">Description <span class="text-red-600 ">*</span></label>
-              <editor v-model="description" id="task_description"
+              <editor trigger="#" v-model="description" id="task_description"
                       :init="{
           paste_data_images: true,
          height: 300,

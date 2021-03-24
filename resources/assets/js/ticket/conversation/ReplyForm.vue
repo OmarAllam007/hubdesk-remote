@@ -9,12 +9,9 @@
       <div class="flex w-full" v-if="approvers.length" v-cloak>
         <div class="flex flex-col w-1/2 ">
           <label for="cc">{{ $root.t('Cc') }}:</label>
-          <select name="cc" id="cc" class="select2 form-control" multiple>
-            <option value=""></option>
-            <option :value="approver.id" v-for="approver in approvers">{{ approver.text }}</option>
-          </select>
-          <!--          <Select2 v-model="cc" :options="approvers"-->
-          <!--                   :settings="{ multiple:true ,placeholder:'Select User'}" class="selection-list"/>-->
+          <v-select :options="approvers" label="text" name="cc" id="cc"
+                    v-model="cc" placeholder="Select Approver" multiple
+                    class="selection-list bg-white"></v-select>
         </div>
 
         <div class="flex flex-col w-1/2 pl-5 ">
@@ -30,9 +27,9 @@
       </div>
 
       <div class="flex flex-col w-full  pt-5 ">
-        <label for="description">{{ $root.t('Description') }} <span class="text-red-600 ">*</span></label>
+        <label for="reply-description">{{ $root.t('Description') }} <span class="text-red-600 ">*</span></label>
 
-        <editor v-model="description" id="description"
+        <editor trigger="#" v-model="description" id="reply-description"
                 :init="{
           paste_data_images: true,
          height: 300,
@@ -89,6 +86,8 @@ import Select2 from 'v-select2-component';
 import Editor from '@tinymce/tinymce-vue'
 import Loader from "../_components/Loader";
 import {EventBus} from "../../EventBus";
+import vSelect from "vue-select";
+import 'vue-select/dist/vue-select.css';
 
 export default {
   name: "ReplyForm",
@@ -157,6 +156,13 @@ export default {
             },
           })
           .then((response) => {
+            if (response.data.error) {
+              EventBus.$emit('send_notification', 'replies',
+                  'Ticket Info', response.data.error, 'error');
+              this.loading = false;
+              return;
+            }
+
             if (response.status == 200) {
               this.$parent.replies.unshift(response.data.reply);
               // EventBus.$emit('ticket-reply-saved')
@@ -207,7 +213,7 @@ export default {
       let ccEmails = this.cc;
 
       for (var c = 0; c < ccEmails.length; c++) {
-        reply.append(`reply[cc][${c}]`, ccEmails[c]);
+        reply.append(`reply[cc][${c}]`, ccEmails[c].id );
       }
       reply.append('status_id', parseInt(this.selected_status));
 
@@ -227,7 +233,7 @@ export default {
       return 'border border-gray-500';
     }
   },
-  components: {Select2, Editor, Loader}
+  components: {Select2, Editor, Loader, vSelect}
 }
 </script>
 

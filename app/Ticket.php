@@ -607,8 +607,15 @@ class Ticket extends KModel
     {
         return [
             'can_create_note' => \Auth::user()->isSupport() && !$this->isTask() ? 1 : 0,
-            'can_resolve' => can('resolve', $this),
-            'submit_approval' => can('submit_approval', $this) ? 1 : 0
+            'can_resolve' => can('resolve', $this) ? 1 : 0,
+            'submit_approval' => can('submit_approval', $this) ? 1 : 0,
+            'reassign' => can('reassign', $this) ? 1 : 0,
+            'forward' => can('forward', $this) ? 1 : 0,
+            'task_edit' => can('task_edit', $this) ? 1 : 0,
+            'send_to_finance' => can('send_to_finance', $this) ? 1 : 0,
+            'send_complaint' => can('send_complaint', $this) ? 1 : 0,
+            'display_ticket' => can('show', $this) ? 1 : 0,
+            'is_support' => \Auth::user()->isSupport()
         ];
     }
 
@@ -630,7 +637,6 @@ class Ticket extends KModel
             'priority' => $this->priority->name ?? 'Not Assigned',
             'is_overdue' => $this->overdue ? 1 : 0,
             'resolution' => $this->resoultion,
-
         ];
     }
 

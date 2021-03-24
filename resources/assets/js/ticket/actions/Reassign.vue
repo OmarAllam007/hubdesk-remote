@@ -1,6 +1,5 @@
 <template>
-  <div v-if="isOpened ">
-
+  <div v-if="isReassignOpened">
     <transition name="modal">
       <div class="modal-mask ">
         <div class="modal-wrapper">
@@ -116,7 +115,7 @@ import Loader from "../_components/Loader";
 export default {
   name: "Reassign",
   components: {Loader},
-  props: ['isOpened'],
+  props: ['isReassignOpened'],
 
   data() {
     return {

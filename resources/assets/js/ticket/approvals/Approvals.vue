@@ -1,6 +1,6 @@
 <template>
   <div class="m-3 mt-10 flex flex-col">
-    <div v-if="is_task">
+    <div v-if="is_task && approvals.length">
       <h5>
         <strong>
           {{ $root.t('Main Ticket Approvals') }}
@@ -67,9 +67,9 @@
         </tbody>
       </table>
     </div>
-    <div class="flex justify-start pb-5 pt-5 ">
+    <div class="flex justify-start pb-5 pt-5 " v-if="submit_approval">
       <button @click.prevent="addNewLevel" class="bg-transparent hover:bg-blue-500 text-blue-700
-      font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-2xl "><i
+      font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-2xl " ><i
           class="fa fa-plus"></i> {{ $root.t('Add New Approval') }}
       </button>
     </div>
@@ -81,7 +81,7 @@
       </div>
 
     </div>
-    <div class=" mt-10 ">
+    <div class=" mt-10 " v-if="submit_approval">
       <button type="submit" class="btn btn-success" @click="sendApproval()" :disabled="!can_submit">
         <i class="fa fa-spin fa-spinner" v-if="loading"></i>
         <i class="fa fa-check-circle" v-else></i> Send
@@ -121,7 +121,10 @@ export default {
     this.init()
     setTimeout(() => {
       this.templates = this.$parent.templates;
-    }, 500)
+      this.users = this.$parent.users;
+
+    }, 1000)
+
 
   },
 
@@ -130,10 +133,9 @@ export default {
       this.loading = true;
       this.addNewLevel();
 
-      axios.get('/list/approvers').then((response) => {
-        this.users = response.data;
+      // axios.get('/list/approvers').then((response) => {
         this.loading = false;
-      });
+      // });
 
       this.approvals_data = this.is_task ? this.task_approvals : this.approvals;
     },

@@ -11,7 +11,7 @@
           <div class="form-group">
             <label>
               {{ $root.t('Send Approval to') }}:
-              <v-select :options="users" label="name" v-model="level.approver" placeholder="Select Approver"
+              <v-select :options="users" label="text"  v-model="level.approver" placeholder="Select Approver"
                         class="selection-list"></v-select>
             </label>
           </div>
@@ -61,7 +61,9 @@
             <label>
               {{ $root.t('Description') }}
             </label>
-            <editor v-model="level.description"
+
+            <editor trigger="#" v-model="level.description"
+
                     :init="{
           paste_data_images: true,
          height: 300,
@@ -100,7 +102,7 @@
         <div class="w-1/2">
           <div class="checkbox" v-if="index + 1 > 1 || hasApprovals()">
             <label>
-              <input type="checkbox" v-model="level.new_stage"> {{ $root.t('Add as a new stage') }}
+              <input type="checkbox" v-model="level.new_stage"> {{ $root.t('Add as a new stage')}}
             </label>
           </div>
         </div>
@@ -122,6 +124,7 @@ import ApprovalQuestionRow from "./questions/ApprovalQuestionRow";
 import {EventBus} from "../../EventBus";
 import vSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css';
+
 import Editor from '@tinymce/tinymce-vue'
 
 Vue.component('v-select', vSelect.VueSelect);
@@ -145,12 +148,7 @@ export default {
 
   },
   mounted() {
-    // tinymce.init({
-    //   selector: 'textarea',  // change this value according to your HTML, you can be more specific
-    //   auto_focus: 'element',
-    //   // add your configuration
-    // });
-    // this.getApprovalStages();
+
   },
   methods: {
     updateDescription() {
