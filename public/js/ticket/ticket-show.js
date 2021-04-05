@@ -54353,6 +54353,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -55092,7 +55094,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "task_description",
       "init": {
         paste_data_images: true,
-        height: 300,
+        height: 200,
         menubar: false,
         plugins: [
           'advlist autolink lists link image imagetools charmap print preview anchor',
@@ -55344,8 +55346,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       })], 1)
     })], 2)
-  }), 0)])])]), _vm._v(" "), _c('div', {
-    staticClass: "flex flex-col w-1/2  pt-5 pl-5  "
+  }), 0), _vm._v(" "), _c('div', {
+    staticClass: "flex flex-col pt-5"
   }, [_c('label', {
     attrs: {
       "for": "attachments"
@@ -55365,7 +55367,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "change": _vm.attachFiles
     }
-  })])]), _vm._v(" "), _c('div', {
+  })])])])])]), _vm._v(" "), _c('div', {
     staticClass: "flex justify-end items-center w-100 border-t p-3 "
   }, [_c('div', {
     staticClass: "cursor-not-allowed"
@@ -56547,7 +56549,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*.select2 {*/\n/*  width: 50%;*/\n/*}*/\n.cross-float[data-v-55d472c8] {\n  float: right\n}\n.selection-list[data-v-55d472c8] {\n  width: 500px !important;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*.select2 {*/\n/*  width: 50%;*/\n/*}*/\n.cross-float[data-v-55d472c8] {\n  float: right\n}\n.selection-list[data-v-55d472c8] {\n  width: 500px !important;\n}\n", ""]);
 
 // exports
 
@@ -56714,9 +56716,11 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('v-select', __WEBPACK_IMPO
   created: function created() {
     var _this = this;
 
-    setTimeout(function () {
-      _this.templates = _this.$parent.templates;
-    }, 500);
+    if (!this.templates.length) {
+      setTimeout(function () {
+        _this.templates = _this.$parent.templates;
+      }, 1000);
+    }
   },
   mounted: function mounted() {},
 
@@ -57061,7 +57065,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "trigger": "#",
       "init": {
         paste_data_images: true,
-        height: 300,
+        height: 200,
         menubar: false,
         plugins: [
           'advlist autolink lists link image imagetools charmap print preview anchor',
@@ -57475,7 +57479,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('i', {
     staticClass: "fa fa-plus"
   }), _vm._v(" " + _vm._s(_vm.$root.t('Add New Approval')) + "\n    ")])]) : _vm._e(), _vm._v(" "), (_vm.submit_approval) ? _c('div', {
-    staticClass: "mt-5 flex flex-col  w-3/4  "
+    staticClass: "mt-5 flex flex-col  "
   }, _vm._l((_vm.levels), function(level, key) {
     return _c('div', {
       staticClass: "bg-white shadow-md rounded-2xl mt-5  "
@@ -57843,7 +57847,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   props: ['log'],
   data: function data() {
     return {
-      isCollapsed: true
+      isCollapsed: false
     };
   },
 
@@ -58912,7 +58916,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "modal-wrapper"
   }, [_c('div', {
-    staticClass: "modal-dialog modal-lg"
+    staticClass: "modal-dialog modal-xl"
   }, [_c('div', {
     staticClass: "modal-content"
   }, [_c('div', {
@@ -58991,7 +58995,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "trigger": "#",
       "init": {
         paste_data_images: true,
-        height: 300,
+        height: 200,
         menubar: false,
         plugins: [
           'advlist autolink lists link image imagetools charmap print preview anchor',
@@ -60101,7 +60105,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "flex flex-col m-5 "
   }, _vm._l((_vm.files), function(file) {
     return _c('a', {
-      staticClass: "flex p-5 bg-white   rounded-2xl  shadow-sm  hover:shadow-md hover:bg-gray-200  ",
+      staticClass: "flex p-5 bg-white   rounded-2xl  shadow-sm  hover:shadow-md hover:bg-gray-200  mb-5   ",
       attrs: {
         "href": ("/ticket/download-attach/" + (file.id)),
         "target": "_blank"
@@ -60236,9 +60240,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "p-3 pl-5 pr-5  rounded-full shadow-md",
     class: _vm.getStatusColor
   }, [_vm._v(_vm._s(_vm.$root.t(_vm.status_name)))])])])])]), _vm._v(" "), _c('div', {
-    staticClass: "flex justify-center"
+    staticClass: "flex justify-center pt-5 "
   }, [_c('div', {
-    staticClass: "w-full md:w-full  lg:w-full  xl:w-2/3 2xl:w-2/3 "
+    staticClass: "w-full md:w-full  lg:w-full  xl:full  2xl:w-2/3 "
   }, [_c('div', {
     staticClass: "tabUI flex flex-row justify-center"
   }, [_c('button', {

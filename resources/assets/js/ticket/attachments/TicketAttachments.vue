@@ -2,7 +2,7 @@
   <div>
     <div class="flex flex-col m-5 ">
       <a :href="`/ticket/download-attach/${file.id}`" target="_blank"
-         class="flex p-5 bg-white   rounded-2xl  shadow-sm  hover:shadow-md hover:bg-gray-200  "
+         class="flex p-5 bg-white   rounded-2xl  shadow-sm  hover:shadow-md hover:bg-gray-200  mb-5   "
          v-for="file in files">
         <div class="flex justify-start p-2 m-2">
           <i class="fa fa-download "></i>

@@ -3,7 +3,7 @@
     <transition name="forward-modal">
       <div class="modal-mask ">
         <div class="modal-wrapper">
-          <div class="modal-dialog modal-lg">
+          <div class="modal-dialog modal-xl" >
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" @click="closeModal()"><i class="fa  fa-times"></i></button>
@@ -38,7 +38,7 @@
 
                               :init="{
           paste_data_images: true,
-         height: 300,
+         height: 200,
          menubar: false,
          plugins: [
             'advlist autolink lists link image imagetools charmap print preview anchor',

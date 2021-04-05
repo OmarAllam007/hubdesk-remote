@@ -41,6 +41,7 @@ class TicketReplyJob extends Job //implements ShouldQueue
             }
             $this->to = [$ticket->technician->email];
             $this->sendEmail();
+            return true;
 
         } elseif ($this->reply->user_id == $this->reply->ticket->technician_id) {
             if (!$ticket->requester->email) {
@@ -54,6 +55,7 @@ class TicketReplyJob extends Job //implements ShouldQueue
             }
 
             $this->sendEmail();
+            return true;
 
         } elseif ($this->reply->user_id != $this->reply->ticket->technician_id && $this->reply->user->isTechnician()) {
             if ($ticket->requester->email) {
@@ -65,6 +67,7 @@ class TicketReplyJob extends Job //implements ShouldQueue
             }
 
             $this->sendEmail();
+            return true;
         }
     }
 
@@ -75,7 +78,9 @@ class TicketReplyJob extends Job //implements ShouldQueue
         $toUsers = \App\User::whereIn('email', $this->to)->get()->pluck('email', 'email')->toArray();
         $ccUsers = \App\User::whereIn('email', $ccEmails)->get()->pluck('email', 'email')->toArray();
 
-        \Mail::to($toUsers)->cc($ccUsers)->queue(new TicketReplyMail($this->reply));
+        if ($toUsers) {
+            \Mail::to($toUsers)->cc($ccUsers)->queue(new TicketReplyMail($this->reply));
+        }
         $this->sendSurvey($this->reply->ticket);
     }
 
@@ -91,7 +96,7 @@ class TicketReplyJob extends Job //implements ShouldQueue
             ]);
 
             if ($survey->ticket->requester->email) {
-                \Mail::send(new SendSurveyEmail($survey));
+                \Mail::queue(new SendSurveyEmail($survey));
             }
             TicketLog::addReminderOnSurvey($ticket);
         }

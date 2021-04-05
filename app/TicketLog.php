@@ -142,15 +142,15 @@ class TicketLog extends KModel
     {
         $actions = [
             self::REPLY_TYPE => 'replied',
-            self::APPROVAL_TYPE => 'Ticket submitted for approval',
-            self::APPROVED => 'Ticket approved',
+            self::APPROVAL_TYPE => 'submitted for approval',
+            self::APPROVED => 'approved',
             self::DENIED => 'denied',
             self::NOTE_TYPE => 'Updated by a note',
-            self::RESEND_APPROVAL => 'Ticket updated by resend an approval ',
-            self::SENT_TO_FINANCE => 'Ticket updated by sent to finance ',
+            self::RESEND_APPROVAL => 'updated by resend an approval ',
+            self::SENT_TO_FINANCE => 'updated by sent to finance ',
             self::New_TASK => 'Updated, New Task has been created',
             self::REMINDER_ON_SURVEY => "Updated by Send Reminder On Pending Survey ",
-            self::DELETE_APPROVAL => "Ticket Updated by delete approval"
+            self::DELETE_APPROVAL => " Updated by delete approval"
         ];
 
         if (isset($actions[$this->type])) {

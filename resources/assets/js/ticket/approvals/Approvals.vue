@@ -74,7 +74,7 @@
       </button>
     </div>
     <!--    @can('submit_approval',$ticket)-->
-    <div class="mt-5 flex flex-col  w-3/4  " v-if="submit_approval">
+    <div class="mt-5 flex flex-col  " v-if="submit_approval">
       <div v-for="(level, key) of levels" class="bg-white shadow-md rounded-2xl mt-5  ">
         <approval-item :level="level" :users="users" :index="key" :key="key" :stages="stages_count"></approval-item>
 

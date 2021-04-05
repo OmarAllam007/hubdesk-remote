@@ -95,8 +95,8 @@
           </div>
         </div>
       </div>
-      <div class="flex justify-center">
-        <div class="w-full md:w-full  lg:w-full  xl:w-2/3 2xl:w-2/3 ">
+      <div class="flex justify-center pt-5 ">
+        <div class="w-full md:w-full  lg:w-full  xl:full  2xl:w-2/3 ">
           <div class="tabUI flex flex-row justify-center">
             <button class="w-1/6 bg-white rounded-xl p-3 m-3 tabUIButton border"
                     :class="{tabUIButtonSelected : selectedTab == 0}" @click="changeTab(0)"><i class="fa fa-ticket"></i>

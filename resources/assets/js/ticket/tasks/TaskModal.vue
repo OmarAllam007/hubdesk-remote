@@ -34,7 +34,7 @@
               <editor trigger="#" v-model="description" id="task_description"
                       :init="{
           paste_data_images: true,
-         height: 300,
+         height: 200,
          menubar: false,
          plugins: [
             'advlist autolink lists link image imagetools charmap print preview anchor',
@@ -115,17 +115,19 @@
                   </div>
                 </div>
               </div>
+
+              <div class="flex flex-col pt-5">
+                <label for="attachments">Attachments: </label>
+                <div class="form-group" id="attachments">
+                  <input type="file" class="form-control input-xs" name="attachments[]" @change="attachFiles"
+                         multiple>
+                </div>
+              </div>
               <!--              <fields :fields="fields"></fields>-->
             </div>
           </div>
         </div>
-        <div class="flex flex-col w-1/2  pt-5 pl-5  ">
-          <label for="attachments">Attachments: </label>
-          <div class="form-group" id="attachments">
-            <input type="file" class="form-control input-xs" name="attachments[]" @change="attachFiles"
-                   multiple>
-          </div>
-        </div>
+
         <div class="flex justify-end items-center w-100 border-t p-3 ">
           <div class="cursor-not-allowed">
             <button :class="submitStyle"
