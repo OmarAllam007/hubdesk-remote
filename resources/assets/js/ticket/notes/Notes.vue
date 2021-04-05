@@ -1,8 +1,8 @@
 <template>
   <div>
-    <p class="font-bold text-2xl mb-3 ">{{ $root.t('Discussion Notes') }}</p>
-    <div class="shadow-md bg-white p-3 rounded-2xl">
-      <div v-if="can_create_note">
+    <p class="font-bold text-2xl mb-3 " v-if="can_create_note">{{ $root.t('Discussion Notes') }}</p>
+    <div class="shadow-md bg-white p-3 rounded-2xl" v-if="can_create_note">
+      <div >
         <button type="button" class="btn btn-primary btn-sm btn-rounded btn-outlined" title="Add Note"
                 @click="addNew()">
           <i class="fa fa-sticky-note"></i> {{ $root.t('Add Note') }}
