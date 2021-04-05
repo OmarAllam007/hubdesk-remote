@@ -4,7 +4,6 @@
     <style>
         #wrapper {
             background: #eaeaea;
-            z-index: -1
         }
 
         .ticket-card {
