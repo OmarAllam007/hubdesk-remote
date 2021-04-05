@@ -126,7 +126,6 @@
         <notes :notes="ticket.notes"
                :can_create_note="ticket.authorizations.can_create_note"
                :ticket_id="ticket.id"
-               v-if="ticket.notes.length "
         ></notes>
 
       </div>
