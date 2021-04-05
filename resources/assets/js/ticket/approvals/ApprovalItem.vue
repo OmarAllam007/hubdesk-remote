@@ -11,7 +11,7 @@
           <div class="form-group">
             <label>
               {{ $root.t('Send Approval to') }}:
-              <v-select :options="users" label="text"  v-model="level.approver" placeholder="Select Approver"
+              <v-select :options="users" label="text" v-model="level.approver" placeholder="Select Approver"
                         class="selection-list"></v-select>
             </label>
           </div>
@@ -66,7 +66,7 @@
 
                     :init="{
           paste_data_images: true,
-         height: 300,
+         height: 200,
          menubar: false,
          plugins: [
             'advlist autolink lists link image imagetools charmap print preview anchor',
@@ -102,7 +102,7 @@
         <div class="w-1/2">
           <div class="checkbox" v-if="index + 1 > 1 || hasApprovals()">
             <label>
-              <input type="checkbox" v-model="level.new_stage"> {{ $root.t('Add as a new stage')}}
+              <input type="checkbox" v-model="level.new_stage"> {{ $root.t('Add as a new stage') }}
             </label>
           </div>
         </div>
@@ -142,10 +142,11 @@ export default {
     }
   },
   created() {
-    setTimeout(() => {
-      this.templates = this.$parent.templates;
-    }, 500);
-
+    if (!this.templates.length) {
+      setTimeout(() => {
+        this.templates = this.$parent.templates;
+      }, 1000);
+    }
   },
   mounted() {
 

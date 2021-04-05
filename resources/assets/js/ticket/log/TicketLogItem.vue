@@ -69,7 +69,7 @@ export default {
   props: ['log'],
   data() {
     return {
-      isCollapsed: true
+      isCollapsed: false
     }
   },
   methods: {
