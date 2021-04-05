@@ -15,6 +15,8 @@ class TicketReplyMail extends Mailable
 
     protected $reply;
     protected $ticket;
+    public $to;
+    public $cc;
 
     public function __construct(TicketReply $reply)
     {
@@ -31,11 +33,13 @@ class TicketReplyMail extends Mailable
     {
         $subject = 'Re: Ticket #' . $this->ticket->id;
 
-        if($this->ticket->requester->employee_id){
-            $subject .= ' / '. $this->ticket->requester->employee_id;
+        if ($this->ticket->requester->employee_id) {
+            $subject .= ' / ' . $this->ticket->requester->employee_id;
         }
-        $subject .= '- '. $this->ticket->subject;
+        $subject .= '- ' . $this->ticket->subject;
 
-        return $this->markdown('emails.ticket.reply', ['ticket' => $this->ticket, 'reply' => $this->reply])->subject($subject);
+//        dd($this->to, $this->cc);
+        return $this->markdown('emails.ticket.reply', ['ticket' => $this->ticket, 'reply' => $this->reply])
+            ->subject($subject);
     }
 }

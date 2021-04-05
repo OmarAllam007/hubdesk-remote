@@ -70,11 +70,12 @@ class TicketReplyJob extends Job //implements ShouldQueue
 
     function sendEmail()
     {
-        $cc = request('reply.cc', []);
+        $ccEmails = array_merge($this->reply->cc ?? [], $this->cc ?? []);
 
-        $ccEmails = array_merge($cc, $this->cc);
+        $toUsers = \App\User::whereIn('email', $this->to)->get()->pluck('email', 'email')->toArray();
+        $ccUsers = \App\User::whereIn('email', $ccEmails)->get()->pluck('email', 'email')->toArray();
 
-        \Mail::to($this->to)->cc($ccEmails)->queue(new TicketReplyMail($this->reply));
+        \Mail::to($toUsers)->cc($ccUsers)->queue(new TicketReplyMail($this->reply));
         $this->sendSurvey($this->reply->ticket);
     }
 
@@ -90,7 +91,7 @@ class TicketReplyJob extends Job //implements ShouldQueue
             ]);
 
             if ($survey->ticket->requester->email) {
-                \Mail::queue(new SendSurveyEmail($survey));
+                \Mail::send(new SendSurveyEmail($survey));
             }
             TicketLog::addReminderOnSurvey($ticket);
         }

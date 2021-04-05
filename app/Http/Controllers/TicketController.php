@@ -13,6 +13,8 @@ use App\Http\Requests\ReassignRequest;
 use App\Http\Requests\TicketReplyRequest;
 use App\Http\Requests\TicketRequest;
 use App\Http\Requests\TicketResolveRequest;
+use App\Http\Resources\TicketReplyResource;
+use App\Http\Resources\TicketResource;
 use App\Item;
 use App\Jobs\ApplyBusinessRules;
 use App\Jobs\ApplySLA;
@@ -125,9 +127,11 @@ class TicketController extends Controller
     public function show(Ticket $ticket)
     {
         Ticket::flushEventListeners();
+
         if (\Auth::user()->id == $ticket->technician_id) {
             $ticket->update(['is_opened' => 1]);
         }
+
 
         return view('ticket.show', compact('ticket'));
     }
@@ -266,12 +270,13 @@ class TicketController extends Controller
         $ticket->update($request->only(['group_id', 'technician_id', 'category_id', 'subcategory_id', 'item_id', 'subitem_id']));
 
         if ($request->get('technician_id') != $current_technician) {
-            \Mail::send(new TicketAssignedMail($ticket));
+            \Mail::queue(new TicketAssignedMail($ticket));
         }
 
-        flash(t('Ticket Info'), t('Ticket has been re-assigned'), 'success');
+        return \response()->json(['message' => 'Ticket reassigned successfully', 'ticket' => TicketResource::make($ticket)]);
+//        flash(t('Ticket Info'), t('Ticket has been re-assigned'), 'success');
 
-        return \Redirect::route('ticket.show', $ticket);
+//        return \Redirect::route('ticket.show', $ticket);
     }
 
     public function scope(Request $request)
@@ -283,6 +288,7 @@ class TicketController extends Controller
     public function duplicate(Ticket $ticket, Request $request)
     {
         Ticket::flushEventListeners();
+
         if ($request->tickets_count > 0 && $request->tickets_count <= 10) {
             for ($i = 1; $i <= $request->tickets_count; $i++) {
                 $data = $ticket->toArray();
@@ -296,11 +302,10 @@ class TicketController extends Controller
                 $newTicket->save();
                 $this->duplicateTicketDetails($ticket, $newTicket);
                 dispatch(new ApplySLA($newTicket));
-//                $this->dispatch(new NewTicketJob($newTicket));
             }
-            return \Redirect::route('ticket.show', $newTicket);
+            return \response()->json(['message' => 'Ticket Created successfully', 'ticket' => $newTicket]);
         }
-        return \Redirect::back();
+        return \response()->json(['message' => 'Number of tickets exceed 10 copies']);
 
     }
 
@@ -399,41 +404,45 @@ class TicketController extends Controller
 
     function forward(Ticket $ticket, Request $request)
     {
-        if ($request->get('to')) {
+        $to = collect($request->get('to'))->pluck('id')->toArray();
+        $cc = collect($request->get('cc'))->pluck('id')->toArray();
 
-            $this->validate($request, ['to.*' => 'email'], ['email' => 'Please enter valid email.']);
+        $toUsers = User::whereIn('id', $to)->get(['email'])->pluck('email', 'email')->toArray();
+        $ccUsers = User::whereIn('id', $cc)->get(['email'])->pluck('email', 'email')->toArray();
+        TicketReply::flushEventListeners();
 
-            TicketReply::flushEventListeners();
+        $message = $request->get('description') ?? $ticket->description;
 
-            TicketReply::create([
-                'user_id' => \Auth::id(),
-                'ticket_id' => $ticket->id,
-                'content' => $request["forward"]["description"] ?? $ticket->description,
-                'status_id' => $ticket->status_id,
-                'cc' => $request->cc ?? null,
-                'to' => $request->to ?? null
-            ]);
+        $reply = TicketReply::create([
+            'user_id' => \Auth::id(),
+            'ticket_id' => $ticket->id,
+            'content' => $message,
+            'status_id' => $ticket->status_id,
+            'to' => $toUsers ?? null,
+            'cc' => $ccUsers ?? null,
+        ]);
 
-            \Mail::to($request->to)->cc($request->cc ?? [])->send(new TicketForwardJob($ticket));
+        \Mail::to($toUsers)->cc($ccUsers ?? [])->queue(new TicketForwardJob($ticket, $message));
 
-            flash(t('Forward Info'), 'Forward the ticket has been sent', 'success');
-            return \Redirect::route('ticket.show', $ticket);
+        return \response()->json(['message' => 'Email send successfully', 'reply' => TicketReplyResource::make($reply)]);
+//        flash(t('Forward Info'), 'Forward the ticket has been sent', 'success');
+//        return \Redirect::route('ticket.show', $ticket);
 
-        }
+//        }
 
-        flash(t('Forward Info'), 'Can\'t forward the ticket', 'danger');
-        return \Redirect::route('ticket.show', $ticket);
+//        flash(t('Forward Info'), 'Can\'t forward the ticket', 'danger');
+//        return \Redirect::route('ticket.show', $ticket);
     }
 
     function complaint(Ticket $ticket, Request $request)
     {
-        $this->validate($request, ['complaint.description' => 'required'],
-            ['complaint.description.required' => 'The description field is required']);
+//        $this->validate($request, ['complaint.description' => 'required'],
+//            ['complaint.description.required' => 'The description field is required']);
 
         UserComplaint::create([
             'ticket_id' => $ticket->id,
             'user_id' => auth()->user()->id,
-            'description' => $request->complaint['description'] ?? '',
+            'description' => $request->get('description') ?? '',
         ]);
 
         $complaint = $ticket->complaint;
@@ -442,11 +451,10 @@ class TicketController extends Controller
             $to = User::whereIn('id', $complaint->to)->get(['email']);
             $cc = User::whereIn('id', $complaint->cc)->get(['email']);
 
-            \Mail::to($to)->cc($cc)->send(new TicketComplaint($ticket));
+            \Mail::to($to)->cc($cc)->queue(new TicketComplaint($ticket));
         }
 
-        flash(t('Complaint Info'), 'Complaint has been sent', 'success');
-        return \Redirect::route('ticket.show', $ticket);
+        return \response()->json(['message' => 'Complaint sent successfully']);
     }
 
 

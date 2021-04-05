@@ -9,6 +9,7 @@
 @import "~tailwindcss/components";
 
 @import "~tailwindcss/utilities";
+@import "~tailwindcss/screens";
 
 
 // Layout styles
@@ -485,7 +486,7 @@ option.empty {
   line-height: 16px;
   font-size: 16px;
   text-transform: capitalize;
-  z-index: 9999;
+  //z-index: 9999;
   box-shadow: 1px 0px 2px #000;
 
   .nav li a {
@@ -927,4 +928,32 @@ p.quot-animation {
 
 .print-only {
   display: none;
+}
+
+
+.notification-alert-style {
+  padding: 10px;
+  margin: 0 5px 5px;
+
+  font-size: 14px;
+
+
+  color: #ffffff;
+  background: #44A4FC;
+  border-left: 5px solid #187FE7;
+
+  &.warn {
+    background: #ffb648;
+    border-left-color: #f48a06;
+  }
+
+  &.error {
+    background: #E54D42;
+    border-left-color: #B82E24;
+  }
+
+  &.success {
+    background: #5fb577;
+    border-left-color: #3a9152;
+  }
 }

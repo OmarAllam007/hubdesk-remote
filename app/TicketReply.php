@@ -51,13 +51,13 @@ class TicketReply extends KModel
     public function getClassAttribute()
     {
         if ($this->status_id == 7) {
-            return 'success';
+            return 'bg-green-600';
         } elseif ($this->user_id == $this->ticket->requester_id) {
-            return 'info';
+            return 'bg-orange-600';
         } elseif ($this->user_id == $this->ticket->technician_id) {
-            return 'primary';
+            return 'bg-blue-600';
         } else {
-            return 'default';
+            return 'bg-gray-600';
         }
     }
 

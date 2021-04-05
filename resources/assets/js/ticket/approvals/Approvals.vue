@@ -1,27 +1,23 @@
 <template>
-  <!--  <div v-if="loading" class="text-center">-->
-  <!--    <i class="fa fa-spin fa-2x fa-spinner"></i>-->
-  <!--  </div>-->
-
-  <div class="">
-    <div v-if="is_task">
+  <div class="m-3 mt-10 flex flex-col">
+    <div v-if="is_task && approvals.length">
       <h5>
         <strong>
-          Main Ticket Approvals
+          {{ $root.t('Main Ticket Approvals') }}
         </strong>
       </h5>
       <table class="listing-table">
         <thead class="table-design">
         <tr>
-          <th>Sent to</th>
-          <th>By</th>
-          <th>Sent at</th>
-          <th>Stage</th>
-          <th>Status</th>
-          <th>Comment</th>
-          <th>Action Date</th>
-          <th>Resend</th>
-          <th colspan="3" class="text-center">Actions</th>
+          <th>{{ $root.t('Sent to') }}</th>
+          <th>{{ $root.t('By') }}</th>
+          <th>{{ $root.t('Sent at') }}</th>
+          <th>{{ $root.t('Stage') }}</th>
+          <th>{{ $root.t('Status') }}</th>
+          <th>{{ $root.t('Comment') }}</th>
+          <th>{{ $root.t('Action Date') }}</th>
+          <th>{{ $root.t('Resend') }}</th>
+          <th colspan="3" class="text-center">{{ $root.t('Actions') }}</th>
         </tr>
         </thead>
         <tbody>
@@ -47,21 +43,21 @@
     <div v-if="approvals_data.length">
       <h5>
         <strong v-if="this.is_task">
-          Task Approvals
+          {{ $root.t('Task Approvals') }}
         </strong>
       </h5>
-      <table class="listing-table">
-        <thead class="table-design">
-        <tr>
-          <th>Sent to</th>
-          <th>By</th>
-          <th>Sent at</th>
-          <th>Stage</th>
-          <th>Status</th>
-          <th>Comment</th>
-          <th>Action Date</th>
-          <th>Resend</th>
-          <th colspan="3" class="text-center">Actions</th>
+      <table class="table pt-5 ">
+        <thead>
+        <tr class=" p-3 bg-viola bg-opacity-75 text-white rounded-tl-xl font-bold">
+          <th>{{ $root.t('Sent to') }}</th>
+          <th>{{ $root.t('By') }}</th>
+          <th>{{ $root.t('Sent at') }}</th>
+          <th>{{ $root.t('Stage') }}</th>
+          <th>{{ $root.t('Status') }}</th>
+          <th>{{ $root.t('Comment') }}</th>
+          <th>{{ $root.t('Action Date') }}</th>
+          <th>{{ $root.t('Resend') }}</th>
+          <th colspan="3" class="text-center">{{ $root.t('Actions') }}</th>
         </tr>
         </thead>
         <tbody>
@@ -71,24 +67,25 @@
         </tbody>
       </table>
     </div>
+    <div class="flex justify-start pb-5 pt-5 " v-if="submit_approval">
+      <button @click.prevent="addNewLevel" class="bg-transparent hover:bg-blue-500 text-blue-700
+      font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-2xl " ><i
+          class="fa fa-plus"></i> {{ $root.t('Add New Approval') }}
+      </button>
+    </div>
     <!--    @can('submit_approval',$ticket)-->
-
-    <div class="col-md-10" v-if="submit_approval">
-      <div class="form-group">
-        <button @click.prevent="addNewLevel" class="btn btn-sm btn-primary btn-rounded btn-outlined"><i
-            class="fa fa-plus"></i> Add New Approval
-        </button>
-      </div>
-      <div v-for="(level, key) of levels">
+    <div class="mt-5 flex flex-col  w-3/4  " v-if="submit_approval">
+      <div v-for="(level, key) of levels" class="bg-white shadow-md rounded-2xl mt-5  ">
         <approval-item :level="level" :users="users" :index="key" :key="key" :stages="stages_count"></approval-item>
+
       </div>
 
-      <div class="form-group">
-        <button type="submit" class="btn btn-success" @click="sendApproval()" :disabled="!can_submit">
-          <i class="fa fa-spin fa-spinner" v-if="loading"></i>
-          <i class="fa fa-check-circle" v-else></i> Send
-        </button>
-      </div>
+    </div>
+    <div class=" mt-10 " v-if="submit_approval">
+      <button type="submit" class="btn btn-success" @click="sendApproval()" :disabled="!can_submit">
+        <i class="fa fa-spin fa-spinner" v-if="loading"></i>
+        <i class="fa fa-check-circle" v-else></i> Send
+      </button>
     </div>
   </div>
 </template>
@@ -102,7 +99,7 @@ import _ from "lodash";
 
 export default {
   name: "Approvals",
-  props: ["ticket_id", "is_task", "approvals", 'task_approvals', 'submit_approval', 'templates'],
+  props: ["ticket_id", "is_task", "approvals", 'task_approvals', 'submit_approval'],
 
   data() {
     return {
@@ -111,6 +108,7 @@ export default {
       loading: false,
       approvals_data: [],
       approval_stages: '',
+      templates: [],
     }
   },
   created() {
@@ -121,6 +119,13 @@ export default {
   },
   mounted() {
     this.init()
+    setTimeout(() => {
+      this.templates = this.$parent.templates;
+      this.users = this.$parent.users;
+
+    }, 1000)
+
+
   },
 
   methods: {
@@ -128,10 +133,9 @@ export default {
       this.loading = true;
       this.addNewLevel();
 
-      axios.get('/list/approvers').then((response) => {
-        this.users = response.data;
+      // axios.get('/list/approvers').then((response) => {
         this.loading = false;
-      });
+      // });
 
       this.approvals_data = this.is_task ? this.task_approvals : this.approvals;
     },
@@ -179,8 +183,6 @@ export default {
         }
       }
 
-      console.log(formData);
-
       axios.post(`/approval/approval/${this.ticket_id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -190,8 +192,18 @@ export default {
         response.data.forEach((approval) => {
           this.approvals_data.push(approval);
           this.approvals_data = _.orderBy(this.approvals_data, ['stage'], ['asc'])
+          EventBus.$emit('approval_created', this.approvals_data);
+
         })
+
         this.clearForm();
+
+        EventBus.$emit('send_notification', 'approvals',
+            'Ticket Info', `Approval/s sent successfully`, 'success');
+
+        EventBus.$emit('ticket_updated');
+
+        EventBus.$emit('status_updated', {status: 'Waiting for Approval', status_id: 6});
       }).catch((e) => {
         this.loading = false;
       });

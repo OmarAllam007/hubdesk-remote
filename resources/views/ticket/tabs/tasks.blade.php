@@ -1,7 +1,6 @@
 <tasks :ticket_id="{{$ticket->id}}" inline-template>
     <div>
         <div>
-
             @can('task_create',$ticket)
                 <button data-toggle="modal" data-target="#TaskForm" type="button" @click="resetTask"
                         class="btn btn-sm btn-success pull-right" title="{{t('Create Task')}}">

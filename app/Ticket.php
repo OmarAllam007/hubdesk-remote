@@ -5,6 +5,7 @@ namespace App;
 use App\Behaviors\RequestConfiguration;
 use App\Helpers\Ticket\TicketFilter;
 use App\Helpers\Ticket\TicketViewScope;
+use App\Http\Resources\TicketNoteResource;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -226,6 +227,12 @@ class Ticket extends KModel
         return Ticket::where('id', $this->request_id)->first();
     }
 
+//    public function getHistoryAttribute()
+//    {
+//        return TicketLog::select('*', \DB::raw('DATE(created_at) as date_created'))
+//            ->where('ticket_id', $this->id)->get()->groupBy('date_created');
+//
+//    }
     public function getHistoryAttribute()
     {
         return TicketLog::select('*', \DB::raw('DATE(created_at) as date_created'))
@@ -596,6 +603,22 @@ class Ticket extends KModel
         });
     }
 
+    function getTicketAuthorizationsAttribute()
+    {
+        return [
+            'can_create_note' => \Auth::user()->isSupport() && !$this->isTask() ? 1 : 0,
+            'can_resolve' => can('resolve', $this) ? 1 : 0,
+            'submit_approval' => can('submit_approval', $this) ? 1 : 0,
+            'reassign' => can('reassign', $this) ? 1 : 0,
+            'forward' => can('forward', $this) ? 1 : 0,
+            'task_edit' => can('task_edit', $this) ? 1 : 0,
+            'send_to_finance' => can('send_to_finance', $this) ? 1 : 0,
+            'send_complaint' => can('send_complaint', $this) ? 1 : 0,
+            'display_ticket' => can('show', $this) ? 1 : 0,
+            'is_support' => \Auth::user()->isSupport()
+        ];
+    }
+
     function convertToJson()
     {
         return [
@@ -613,9 +636,29 @@ class Ticket extends KModel
             'type' => $this->ticket_type ?? 'Not Assigned',
             'priority' => $this->priority->name ?? 'Not Assigned',
             'is_overdue' => $this->overdue ? 1 : 0,
-            'survey_submitted'=> $this->isClosed() && ($this->user_survey && $this->user_survey->is_submitted)
+            'resolution' => $this->resoultion,
         ];
     }
+
+    function toJson($options = 0)
+    {
+        $ticket = $this->convertToJson();
+        $ticket['item'] = $this->item ? t($this->item->name) : 'Not Assigned';
+        $ticket['subItem'] = $this->subItem ? t($this->subItem->name) : 'Not Assigned';
+        $ticket['group'] = $this->group->name ?? 'Not Assigned';
+        $ticket['sla'] = $this->sla->name ?? t('Not Assigned');
+        $ticket['description'] = $this->description;
+        $ticket['service_cost'] = $this->total_service_cost ?? 'Not Assigned';
+        $ticket['fields'] = $this->custom_fields;
+        $ticket['notes'] = TicketNoteResource::collection($this->notes);
+        $ticket['authorizations'] = $this->ticket_authorizations;
+
+        return [
+            'ticket' => $ticket,
+            'requester' => $this->requester->toRequesterJson() ?? 'Not Assigned',
+        ];
+    }
+
 
     /**
      * Route notifications for the Slack channel.
@@ -627,5 +670,6 @@ class Ticket extends KModel
     {
         return env('HUBDESK_ISSUES_SLACK');
     }
+
 
 }

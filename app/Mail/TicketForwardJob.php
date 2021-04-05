@@ -13,9 +13,12 @@ class TicketForwardJob extends Mailable
     use Queueable, SerializesModels;
 
     private $ticket;
-    public function __construct(Ticket $ticket)
+    private $message;
+
+    public function __construct(Ticket $ticket , $message)
     {
         $this->ticket = $ticket;
+        $this->message = $message;
     }
 
     
@@ -23,7 +26,7 @@ class TicketForwardJob extends Mailable
     {
         $ticket = $this->ticket;
         $subject = $ticket->sdp_id ? '[Fwd: ##'.$ticket->sdp_id.'## : '.$ticket->subject.']' : '[Fwd: ##'.$ticket->id.'## : '.$ticket->subject.']';
-        $description = request()->get('forward')["description"] ?? '';
+        $description = $this->message ?? '';
 
         return $this->subject($subject)->markdown('emails.ticket.forward',compact('ticket','description'));
     }
