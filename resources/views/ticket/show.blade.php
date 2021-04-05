@@ -7,8 +7,11 @@
         }
     </style>
     <div id="ticketShow">
+        @php
+            $language =\Session::get('personalized-language' . \Auth::user()->id, \Config::get('app.locale'));
+        @endphp
         <ticket-show :data="{{json_encode(\App\Http\Resources\TicketResource::make($ticket))}}"
-                     :translations="{{json_encode(\App\Translation::where('language','en')->get(['word','translation']))}}"></ticket-show>
+                     :translations="{{json_encode(\App\Translation::where('language',$language)->get(['word','translation']))}}"></ticket-show>
     </div>
 @endsection
 

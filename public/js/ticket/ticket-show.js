@@ -30182,25 +30182,14 @@ var translations = [];
 
 /* unused harmony default export */ var _unused_webpack_default_export = ({
     load_file: function load_file(language) {
-
         if (language == 'en') {
             return;
         }
         var trans = '';
         __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/json/" + language + ".json").then(function (response) {
+            console.log(response.data);
             return response.data;
         });
-
-        // Session.set('hubdesk_lang', language);
-        //
-        // if (!Session.get(`translation_${language}`)) {
-        //     axios.get(`/json/${language}.json`)
-        //         .then(response => {
-        //             Session.set(`translation_${language}`, response.data)
-        //         })
-        // }
-
-        // return Session.get(`translation_${language}`)
     },
     t: function t(word) {
         translations = __WEBPACK_IMPORTED_MODULE_1__js_helpers_Session_js__["a" /* default */].get("translation_" + __WEBPACK_IMPORTED_MODULE_1__js_helpers_Session_js__["a" /* default */].get('hubdesk_lang'));
@@ -30298,7 +30287,6 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_3_vue_
 
 
 
-
 // Vue.prototype.$translate = this.t;
 window.axios = __WEBPACK_IMPORTED_MODULE_5_axios___default.a;
 window.app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
@@ -30308,6 +30296,16 @@ window.app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             translations: [],
             loading: false
         };
+    },
+    created: function created() {
+        // this.loading = true;
+        // setTimeout(()=>{
+        //     this.translations = translation.load_file('ar');
+        //     this.loading = false;
+        // }, 2000)
+
+        // this.translations = translation.load_file('ar');
+        // console.log('here');
     },
 
     methods: {

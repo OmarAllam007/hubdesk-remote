@@ -9,7 +9,6 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 import axios from 'axios';
 Vue.use(VueSweetalert2)
 
-import translate from '../translation';
 import translation from "../translation";
 import _ from 'lodash';
 import Session from "../helpers/Session";
@@ -22,6 +21,16 @@ window.app = new Vue({
             translations: [],
             loading: false
         }
+    },
+    created(){
+        // this.loading = true;
+        // setTimeout(()=>{
+        //     this.translations = translation.load_file('ar');
+        //     this.loading = false;
+        // }, 2000)
+
+        // this.translations = translation.load_file('ar');
+        // console.log('here');
     },
     methods: {
         t(word) {
