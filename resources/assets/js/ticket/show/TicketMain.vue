@@ -10,44 +10,44 @@
         <p class="font-bold text-2xl ">{{ $root.t('Request Details') }}</p>
         <div class="w-full mt-3 shadow-md">
           <div class="flex justify-between">
-            <div class="w-1/4 p-3 bg-viola  bg-opacity-75 text-white rounded-tl-sm   font-bold">
+            <div class="w-1/4 p-3 border-viola border-l-4 bg-gray-300  bg-opacity-75  rounded-tl-sm   font-bold">
               {{ $root.t('Category') }}
             </div>
             <div class="w-1/4 p-3 bg-white ">{{ $root.t(ticket.category) }}</div>
-            <div class="w-1/4 p-3 bg-viola   bg-opacity-75 text-white font-bold">{{ $root.t('Group') }}</div>
+            <div class="w-1/4 p-3 border-viola border-l-4 bg-gray-300  bg-opacity-75  font-bold">{{ $root.t('Group') }}</div>
             <div class="w-1/4 p-3 bg-white rounded-tr-xl ">{{ $root.t(ticket.group) }}</div>
           </div>
           <div class="flex justify-between">
-            <div class="w-1/4 p-3 bg-viola   bg-opacity-75 text-white  font-bold">{{
+            <div class="w-1/4 p-3 border-viola border-l-4 bg-gray-300  bg-opacity-75   font-bold">{{
                 $root.t('Subcategory')
               }}
             </div>
             <div class="w-1/4 p-3 bg-white ">{{ $root.t(ticket.subcategory) }}</div>
-            <div class="w-1/4 p-3 bg-viola      bg-opacity-75 text-white font-bold"> {{ $root.t('Technician') }}
+            <div class="w-1/4 p-3 border-viola border-l-4 bg-gray-300     bg-opacity-75  font-bold"> {{ $root.t('Technician') }}
             </div>
             <div class="w-1/4 p-3 bg-white ">{{ $root.t(ticket.technician) }}</div>
           </div>
 
           <div class="flex justify-between">
-            <div class="w-1/4 p-3 bg-viola  bg-opacity-75 text-white  font-bold"> {{ $root.t('Item') }}</div>
+            <div class="w-1/4 p-3 border-viola border-l-4 bg-gray-300  bg-opacity-75   font-bold"> {{ $root.t('Item') }}</div>
             <div class="w-1/4 p-3 bg-white ">{{ $root.t(ticket.item) }}</div>
-            <div class="w-1/4 p-3 bg-viola      bg-opacity-75 text-white font-bold"> {{ $root.t('Priority') }}
+            <div class="w-1/4 p-3 border-viola border-l-4 bg-gray-300     bg-opacity-75  font-bold"> {{ $root.t('Priority') }}
             </div>
             <div class="w-1/4 p-3 bg-white ">{{ $root.t(ticket.priority) }}</div>
           </div>
 
           <div class="flex justify-between">
-            <div class="w-1/4 p-3 bg-viola   bg-opacity-75 text-white  font-bold">{{ $root.t('SubItem') }}</div>
+            <div class="w-1/4 p-3 border-viola border-l-4 bg-gray-300  bg-opacity-75   font-bold">{{ $root.t('SubItem') }}</div>
             <div class="w-1/4 p-3 bg-white ">{{ $root.t(ticket.subItem) }}</div>
-            <div class="w-1/4 p-3 bg-viola      bg-opacity-75 text-white font-bold">{{ $root.t('Service Cost') }}
+            <div class="w-1/4 p-3 border-viola border-l-4 bg-gray-300     bg-opacity-75  font-bold">{{ $root.t('Service Cost') }}
             </div>
             <div class="w-1/4 p-3 bg-white ">{{ $root.t(ticket.service_cost) }}</div>
           </div>
 
           <div class="flex justify-between">
-            <div class="w-1/4 p-3 bg-viola   bg-opacity-75 text-white  font-bold">{{ $root.t('SLA') }}</div>
+            <div class="w-1/4 p-3 border-viola border-l-4 bg-gray-300  bg-opacity-75   font-bold">{{ $root.t('SLA') }}</div>
             <div class="w-1/4 p-3 bg-white ">{{ $root.t(ticket.sla) }}</div>
-            <div class="w-1/4 p-3 bg-viola   bg-opacity-75 text-white font-bold">{{ $root.t('Due Time') }}</div>
+            <div class="w-1/4 p-3 border-viola border-l-4 bg-gray-300  bg-opacity-75  font-bold">{{ $root.t('Due Time') }}</div>
             <div class="w-1/4 p-3 bg-white ">{{ ticket.due_date }}</div>
           </div>
         </div>
@@ -60,7 +60,7 @@
             <div class="flex flex-col shadow-md">
               <div v-for="(field , key) in ticket.fields">
                 <div class="flex">
-                  <div class="w-1/2 p-3 bg-viola      bg-opacity-75 text-white  font-bold">{{ $root.t(field.name) }}
+                  <div class="w-1/2 p-3 border-viola border-l-4 bg-gray-300     bg-opacity-75   font-bold">{{ $root.t(field.name) }}
                   </div>
                   <div class="w-1/2 p-3 bg-white ">{{ field.value }}</div>
                 </div>
@@ -75,48 +75,48 @@
         <p class="font-bold text-2xl ">{{ $root.t('Requester Details') }}</p>
         <div class="w-full mt-3 shadow-md">
           <div class="flex justify-between">
-            <div class="w-1/4 p-3 bg-viola      bg-opacity-75 text-white rounded-tl-sm   font-bold">
+            <div class="w-1/4 p-3 border-viola border-l-4 bg-gray-300     bg-opacity-75  rounded-tl-sm   font-bold">
               {{ $root.t('Name') }}
             </div>
             <div class="w-1/4 p-3 bg-white ">{{ ticket.requester }}</div>
-            <div class="w-1/4 p-3 bg-viola      bg-opacity-75 text-white font-bold">
+            <div class="w-1/4 p-3 border-viola border-l-4 bg-gray-300     bg-opacity-75  font-bold">
               {{ $root.t('Business Unit') }}
             </div>
             <div class="w-1/4 p-3 bg-white rounded-tr-xl ">{{ $parent.data.requester.company }}</div>
           </div>
 
           <div class="flex justify-between">
-            <div class="w-1/4 p-3 bg-viola      bg-opacity-75 text-white  font-bold">{{ $root.t('Department') }}
+            <div class="w-1/4 p-3 border-viola border-l-4 bg-gray-300     bg-opacity-75   font-bold">{{ $root.t('Department') }}
             </div>
             <div class="w-1/4 p-3 bg-white ">{{ $parent.data.requester.department }}</div>
-            <div class="w-1/4 p-3 bg-viola      bg-opacity-75 text-white font-bold">{{ $root.t('Job title') }}
+            <div class="w-1/4 p-3 border-viola border-l-4 bg-gray-300     bg-opacity-75  font-bold">{{ $root.t('Job title') }}
             </div>
             <div class="w-1/4 p-3 bg-white ">{{ $parent.data.requester.job_title }}</div>
           </div>
 
           <div class="flex justify-between">
-            <div class="w-1/4 p-3 bg-viola      bg-opacity-75 text-white  font-bold">{{ $root.t('Email') }}</div>
+            <div class="w-1/4 p-3 border-viola border-l-4 bg-gray-300     bg-opacity-75   font-bold">{{ $root.t('Email') }}</div>
             <div class="w-1/4 p-3 bg-white ">{{ $parent.data.requester.email }}</div>
-            <div class="w-1/4 p-3 bg-viola      bg-opacity-75 text-white font-bold">{{ $root.t('Employee ID') }}
+            <div class="w-1/4 p-3 border-viola border-l-4 bg-gray-300     bg-opacity-75  font-bold">{{ $root.t('Employee ID') }}
             </div>
             <div class="w-1/4 p-3 bg-white ">{{ $parent.data.requester.employee_id }}</div>
           </div>
 
           <div class="flex justify-between">
-            <div class="w-1/4 p-3 bg-viola   bg-opacity-75 text-white  font-bold">
+            <div class="w-1/4 p-3 border-viola border-l-4 bg-gray-300  bg-opacity-75   font-bold">
               {{ $root.t('Direct Manager Name') }}
             </div>
             <div class="w-1/4 p-3 bg-white ">{{ $parent.data.requester.manager_name }}</div>
-            <div class="w-1/4 p-3 bg-viola      bg-opacity-75 text-white font-bold">
+            <div class="w-1/4 p-3 border-viola border-l-4 bg-gray-300     bg-opacity-75  font-bold">
               {{ $root.t('Direct Manager Email') }}
             </div>
             <div class="w-1/4 p-3 bg-white ">{{ $parent.data.requester.manager_email }}</div>
           </div>
 
           <div class="flex justify-between">
-            <div class="w-1/4 p-3 bg-viola      bg-opacity-75 text-white  font-bold">{{ $root.t('Mobile') }}</div>
+            <div class="w-1/4 p-3 border-viola border-l-4 bg-gray-300     bg-opacity-75   font-bold">{{ $root.t('Mobile') }}</div>
             <div class="w-1/4 p-3 bg-white ">{{ $parent.data.requester.mobile1 }}</div>
-            <div class="w-1/4 p-3 bg-viola      bg-opacity-75 text-white font-bold">{{ $root.t('Phone') }}</div>
+            <div class="w-1/4 p-3 border-viola border-l-4 bg-gray-300     bg-opacity-75  font-bold">{{ $root.t('Phone') }}</div>
             <div class="w-1/4 p-3 bg-white ">{{ $parent.data.requester.phone }}</div>
           </div>
         </div>

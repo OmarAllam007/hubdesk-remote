@@ -45236,51 +45236,51 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "flex justify-between"
   }, [_c('div', {
-    staticClass: "w-1/4 p-3 bg-viola  bg-opacity-75 text-white rounded-tl-sm   font-bold"
+    staticClass: "w-1/4 p-3 border-viola border-l-4 bg-gray-300  bg-opacity-75  rounded-tl-sm   font-bold"
   }, [_vm._v("\n            " + _vm._s(_vm.$root.t('Category')) + "\n          ")]), _vm._v(" "), _c('div', {
     staticClass: "w-1/4 p-3 bg-white "
   }, [_vm._v(_vm._s(_vm.$root.t(_vm.ticket.category)))]), _vm._v(" "), _c('div', {
-    staticClass: "w-1/4 p-3 bg-viola   bg-opacity-75 text-white font-bold"
+    staticClass: "w-1/4 p-3 border-viola border-l-4 bg-gray-300  bg-opacity-75  font-bold"
   }, [_vm._v(_vm._s(_vm.$root.t('Group')))]), _vm._v(" "), _c('div', {
     staticClass: "w-1/4 p-3 bg-white rounded-tr-xl "
   }, [_vm._v(_vm._s(_vm.$root.t(_vm.ticket.group)))])]), _vm._v(" "), _c('div', {
     staticClass: "flex justify-between"
   }, [_c('div', {
-    staticClass: "w-1/4 p-3 bg-viola   bg-opacity-75 text-white  font-bold"
+    staticClass: "w-1/4 p-3 border-viola border-l-4 bg-gray-300  bg-opacity-75   font-bold"
   }, [_vm._v(_vm._s(_vm.$root.t('Subcategory')) + "\n          ")]), _vm._v(" "), _c('div', {
     staticClass: "w-1/4 p-3 bg-white "
   }, [_vm._v(_vm._s(_vm.$root.t(_vm.ticket.subcategory)))]), _vm._v(" "), _c('div', {
-    staticClass: "w-1/4 p-3 bg-viola      bg-opacity-75 text-white font-bold"
+    staticClass: "w-1/4 p-3 border-viola border-l-4 bg-gray-300     bg-opacity-75  font-bold"
   }, [_vm._v(" " + _vm._s(_vm.$root.t('Technician')) + "\n          ")]), _vm._v(" "), _c('div', {
     staticClass: "w-1/4 p-3 bg-white "
   }, [_vm._v(_vm._s(_vm.$root.t(_vm.ticket.technician)))])]), _vm._v(" "), _c('div', {
     staticClass: "flex justify-between"
   }, [_c('div', {
-    staticClass: "w-1/4 p-3 bg-viola  bg-opacity-75 text-white  font-bold"
+    staticClass: "w-1/4 p-3 border-viola border-l-4 bg-gray-300  bg-opacity-75   font-bold"
   }, [_vm._v(" " + _vm._s(_vm.$root.t('Item')))]), _vm._v(" "), _c('div', {
     staticClass: "w-1/4 p-3 bg-white "
   }, [_vm._v(_vm._s(_vm.$root.t(_vm.ticket.item)))]), _vm._v(" "), _c('div', {
-    staticClass: "w-1/4 p-3 bg-viola      bg-opacity-75 text-white font-bold"
+    staticClass: "w-1/4 p-3 border-viola border-l-4 bg-gray-300     bg-opacity-75  font-bold"
   }, [_vm._v(" " + _vm._s(_vm.$root.t('Priority')) + "\n          ")]), _vm._v(" "), _c('div', {
     staticClass: "w-1/4 p-3 bg-white "
   }, [_vm._v(_vm._s(_vm.$root.t(_vm.ticket.priority)))])]), _vm._v(" "), _c('div', {
     staticClass: "flex justify-between"
   }, [_c('div', {
-    staticClass: "w-1/4 p-3 bg-viola   bg-opacity-75 text-white  font-bold"
+    staticClass: "w-1/4 p-3 border-viola border-l-4 bg-gray-300  bg-opacity-75   font-bold"
   }, [_vm._v(_vm._s(_vm.$root.t('SubItem')))]), _vm._v(" "), _c('div', {
     staticClass: "w-1/4 p-3 bg-white "
   }, [_vm._v(_vm._s(_vm.$root.t(_vm.ticket.subItem)))]), _vm._v(" "), _c('div', {
-    staticClass: "w-1/4 p-3 bg-viola      bg-opacity-75 text-white font-bold"
+    staticClass: "w-1/4 p-3 border-viola border-l-4 bg-gray-300     bg-opacity-75  font-bold"
   }, [_vm._v(_vm._s(_vm.$root.t('Service Cost')) + "\n          ")]), _vm._v(" "), _c('div', {
     staticClass: "w-1/4 p-3 bg-white "
   }, [_vm._v(_vm._s(_vm.$root.t(_vm.ticket.service_cost)))])]), _vm._v(" "), _c('div', {
     staticClass: "flex justify-between"
   }, [_c('div', {
-    staticClass: "w-1/4 p-3 bg-viola   bg-opacity-75 text-white  font-bold"
+    staticClass: "w-1/4 p-3 border-viola border-l-4 bg-gray-300  bg-opacity-75   font-bold"
   }, [_vm._v(_vm._s(_vm.$root.t('SLA')))]), _vm._v(" "), _c('div', {
     staticClass: "w-1/4 p-3 bg-white "
   }, [_vm._v(_vm._s(_vm.$root.t(_vm.ticket.sla)))]), _vm._v(" "), _c('div', {
-    staticClass: "w-1/4 p-3 bg-viola   bg-opacity-75 text-white font-bold"
+    staticClass: "w-1/4 p-3 border-viola border-l-4 bg-gray-300  bg-opacity-75  font-bold"
   }, [_vm._v(_vm._s(_vm.$root.t('Due Time')))]), _vm._v(" "), _c('div', {
     staticClass: "w-1/4 p-3 bg-white "
   }, [_vm._v(_vm._s(_vm.ticket.due_date))])])]), _vm._v(" "), _c('div', {
@@ -45295,7 +45295,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     return _c('div', [_c('div', {
       staticClass: "flex"
     }, [_c('div', {
-      staticClass: "w-1/2 p-3 bg-viola      bg-opacity-75 text-white  font-bold"
+      staticClass: "w-1/2 p-3 border-viola border-l-4 bg-gray-300     bg-opacity-75   font-bold"
     }, [_vm._v(_vm._s(_vm.$root.t(field.name)) + "\n                ")]), _vm._v(" "), _c('div', {
       staticClass: "w-1/2 p-3 bg-white "
     }, [_vm._v(_vm._s(field.value))])])])
@@ -45308,51 +45308,51 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "flex justify-between"
   }, [_c('div', {
-    staticClass: "w-1/4 p-3 bg-viola      bg-opacity-75 text-white rounded-tl-sm   font-bold"
+    staticClass: "w-1/4 p-3 border-viola border-l-4 bg-gray-300     bg-opacity-75  rounded-tl-sm   font-bold"
   }, [_vm._v("\n            " + _vm._s(_vm.$root.t('Name')) + "\n          ")]), _vm._v(" "), _c('div', {
     staticClass: "w-1/4 p-3 bg-white "
   }, [_vm._v(_vm._s(_vm.ticket.requester))]), _vm._v(" "), _c('div', {
-    staticClass: "w-1/4 p-3 bg-viola      bg-opacity-75 text-white font-bold"
+    staticClass: "w-1/4 p-3 border-viola border-l-4 bg-gray-300     bg-opacity-75  font-bold"
   }, [_vm._v("\n            " + _vm._s(_vm.$root.t('Business Unit')) + "\n          ")]), _vm._v(" "), _c('div', {
     staticClass: "w-1/4 p-3 bg-white rounded-tr-xl "
   }, [_vm._v(_vm._s(_vm.$parent.data.requester.company))])]), _vm._v(" "), _c('div', {
     staticClass: "flex justify-between"
   }, [_c('div', {
-    staticClass: "w-1/4 p-3 bg-viola      bg-opacity-75 text-white  font-bold"
+    staticClass: "w-1/4 p-3 border-viola border-l-4 bg-gray-300     bg-opacity-75   font-bold"
   }, [_vm._v(_vm._s(_vm.$root.t('Department')) + "\n          ")]), _vm._v(" "), _c('div', {
     staticClass: "w-1/4 p-3 bg-white "
   }, [_vm._v(_vm._s(_vm.$parent.data.requester.department))]), _vm._v(" "), _c('div', {
-    staticClass: "w-1/4 p-3 bg-viola      bg-opacity-75 text-white font-bold"
+    staticClass: "w-1/4 p-3 border-viola border-l-4 bg-gray-300     bg-opacity-75  font-bold"
   }, [_vm._v(_vm._s(_vm.$root.t('Job title')) + "\n          ")]), _vm._v(" "), _c('div', {
     staticClass: "w-1/4 p-3 bg-white "
   }, [_vm._v(_vm._s(_vm.$parent.data.requester.job_title))])]), _vm._v(" "), _c('div', {
     staticClass: "flex justify-between"
   }, [_c('div', {
-    staticClass: "w-1/4 p-3 bg-viola      bg-opacity-75 text-white  font-bold"
+    staticClass: "w-1/4 p-3 border-viola border-l-4 bg-gray-300     bg-opacity-75   font-bold"
   }, [_vm._v(_vm._s(_vm.$root.t('Email')))]), _vm._v(" "), _c('div', {
     staticClass: "w-1/4 p-3 bg-white "
   }, [_vm._v(_vm._s(_vm.$parent.data.requester.email))]), _vm._v(" "), _c('div', {
-    staticClass: "w-1/4 p-3 bg-viola      bg-opacity-75 text-white font-bold"
+    staticClass: "w-1/4 p-3 border-viola border-l-4 bg-gray-300     bg-opacity-75  font-bold"
   }, [_vm._v(_vm._s(_vm.$root.t('Employee ID')) + "\n          ")]), _vm._v(" "), _c('div', {
     staticClass: "w-1/4 p-3 bg-white "
   }, [_vm._v(_vm._s(_vm.$parent.data.requester.employee_id))])]), _vm._v(" "), _c('div', {
     staticClass: "flex justify-between"
   }, [_c('div', {
-    staticClass: "w-1/4 p-3 bg-viola   bg-opacity-75 text-white  font-bold"
+    staticClass: "w-1/4 p-3 border-viola border-l-4 bg-gray-300  bg-opacity-75   font-bold"
   }, [_vm._v("\n            " + _vm._s(_vm.$root.t('Direct Manager Name')) + "\n          ")]), _vm._v(" "), _c('div', {
     staticClass: "w-1/4 p-3 bg-white "
   }, [_vm._v(_vm._s(_vm.$parent.data.requester.manager_name))]), _vm._v(" "), _c('div', {
-    staticClass: "w-1/4 p-3 bg-viola      bg-opacity-75 text-white font-bold"
+    staticClass: "w-1/4 p-3 border-viola border-l-4 bg-gray-300     bg-opacity-75  font-bold"
   }, [_vm._v("\n            " + _vm._s(_vm.$root.t('Direct Manager Email')) + "\n          ")]), _vm._v(" "), _c('div', {
     staticClass: "w-1/4 p-3 bg-white "
   }, [_vm._v(_vm._s(_vm.$parent.data.requester.manager_email))])]), _vm._v(" "), _c('div', {
     staticClass: "flex justify-between"
   }, [_c('div', {
-    staticClass: "w-1/4 p-3 bg-viola      bg-opacity-75 text-white  font-bold"
+    staticClass: "w-1/4 p-3 border-viola border-l-4 bg-gray-300     bg-opacity-75   font-bold"
   }, [_vm._v(_vm._s(_vm.$root.t('Mobile')))]), _vm._v(" "), _c('div', {
     staticClass: "w-1/4 p-3 bg-white "
   }, [_vm._v(_vm._s(_vm.$parent.data.requester.mobile1))]), _vm._v(" "), _c('div', {
-    staticClass: "w-1/4 p-3 bg-viola      bg-opacity-75 text-white font-bold"
+    staticClass: "w-1/4 p-3 border-viola border-l-4 bg-gray-300     bg-opacity-75  font-bold"
   }, [_vm._v(_vm._s(_vm.$root.t('Phone')))]), _vm._v(" "), _c('div', {
     staticClass: "w-1/4 p-3 bg-white "
   }, [_vm._v(_vm._s(_vm.$parent.data.requester.phone))])])]), _vm._v(" "), _c('div', {
