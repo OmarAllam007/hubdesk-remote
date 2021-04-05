@@ -28,7 +28,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr is="task" :task="task" v-for="task in tasks"></tr>
+          <tr is="task" :task="task" :key="task.id" v-for="task in tasks"></tr>
           </tbody>
         </table>
       </div>

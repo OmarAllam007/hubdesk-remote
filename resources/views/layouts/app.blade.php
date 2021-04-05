@@ -61,7 +61,7 @@
 
 
 <header>
-    <nav class="navbar navbar-default navbar-static-top navbar-style exto-bold">
+    <nav class="navbar navbar-default navbar-static-top navbar-style exto-bold" style="z-index: 0;">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">

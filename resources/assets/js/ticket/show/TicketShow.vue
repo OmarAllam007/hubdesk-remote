@@ -17,7 +17,7 @@
 
     <div v-if="authorizations.display_ticket">
       <div class="flex m-5 ">
-        <div class="w-full md:w-1/2  lg:w-1/2  xl:w-1/2  ">
+        <div class="w-full ">
           <button
               class="flex-grow bg-gray-600    hover:bg-viola  text-white font-bold py-2 px-4  hover:text-white rounded-xl  mr-2 shadow-md pb-2 mb-2 "
               @click="showReassignModal" v-if="authorizations.reassign">
@@ -96,7 +96,7 @@
         </div>
       </div>
       <div class="flex justify-center">
-        <div class="w-full md:w-full  lg:w-full  xl:w-1/2 2xl:w-1/2">
+        <div class="w-full md:w-full  lg:w-full  xl:w-2/3 2xl:w-2/3 ">
           <div class="tabUI flex flex-row justify-center">
             <button class="w-1/6 bg-white rounded-xl p-3 m-3 tabUIButton border"
                     :class="{tabUIButtonSelected : selectedTab == 0}" @click="changeTab(0)"><i class="fa fa-ticket"></i>

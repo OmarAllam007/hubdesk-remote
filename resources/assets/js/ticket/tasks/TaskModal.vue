@@ -1,9 +1,9 @@
 <template>
   <div>
     <div
-        class="modal h-screen w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-50 hidden">
+        class="modal w-full  fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-50 hidden">
       <!-- modal -->
-      <div class="bg-white h-auto  rounded shadow-lg w-full md:w-full  lg:w-2/3  ">
+      <div class="bg-white h-auto rounded shadow-lg w-full md:w-full  lg:w-1/2 ">
         <!-- modal header -->
         <div class="border-b px-4 py-2 flex justify-between items-center bg-viola bg-opacity-75 ">
           <h2 class="font-semibold text-2xl py-5 text-white">Create Task</h2>

@@ -10,7 +10,7 @@
         <div class="flex flex-col w-1/2 ">
           <label for="cc">{{ $root.t('Cc') }}:</label>
           <v-select :options="approvers" label="text" name="cc" id="cc"
-                    v-model="cc" placeholder="Select Approver" multiple
+                    v-model="cc" placeholder="Select User" multiple
                     class="selection-list bg-white"></v-select>
         </div>
 
