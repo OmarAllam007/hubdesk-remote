@@ -23,8 +23,6 @@ window.app = new Vue({
             loading: false
         }
     },
-    beforeCreate() {
-    },
     methods: {
         t(word) {
             let translation = _.find(this.translations, {'word': word});
