@@ -7,27 +7,15 @@ var translations = [];
 export default {
 
     load_file(language) {
-
         if (language == 'en') {
             return;
         }
         let trans = '';
         axios.get(`/json/${language}.json`)
             .then(response => {
+                console.log(response.data)
               return  response.data;
-            })
-
-
-        // Session.set('hubdesk_lang', language);
-        //
-        // if (!Session.get(`translation_${language}`)) {
-        //     axios.get(`/json/${language}.json`)
-        //         .then(response => {
-        //             Session.set(`translation_${language}`, response.data)
-        //         })
-        // }
-
-        // return Session.get(`translation_${language}`)
+            });
     },
 
     t(word) {
