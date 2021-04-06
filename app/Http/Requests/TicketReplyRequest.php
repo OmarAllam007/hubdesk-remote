@@ -34,7 +34,7 @@ class TicketReplyRequest extends Request
 //        dd($this->request->all());
         return [
             'reply.content' => 'required',
-            'reply.status' => 'check_status',
+//            'reply.status' => 'check_status',
         ];
     }
 
@@ -47,21 +47,21 @@ class TicketReplyRequest extends Request
     {
 
         \Validator::extend('check_status', function () {
-            if ($this->status_id == 6) {
+            if ($this->reply['status'] == 6) {
                 return false;
             }
 
-            if (!Status::where('id', $this->status_id)->exists()) {
+            if (!Status::where('id',$this->reply['status'])->exists()) {
                 return false;
             }
 
-            if (!$this->user()->isTechnician() && in_array($this->status_id, [2, 3, 5])) {
+            if (!$this->user()->isTechnician() && in_array($this->reply['status'], [2, 3, 5])) {
 
             }
 
             /** @var Ticket $ticket */
             $ticket = $this->route()->parameter('ticket');
-            if ($this->user()->id == $ticket->technician_id && $this->status_id == 8) {
+            if ($this->user()->id == $ticket->technician_id && $this->reply['status'] == 8) {
                 return false;
             }
 

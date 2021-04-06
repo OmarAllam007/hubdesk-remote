@@ -88,6 +88,7 @@ import Loader from "../_components/Loader";
 import {EventBus} from "../../EventBus";
 import vSelect from "vue-select";
 import 'vue-select/dist/vue-select.css';
+import _ from "lodash";
 
 export default {
   name: "ReplyForm",
@@ -128,13 +129,8 @@ export default {
   },
   methods: {
     updateDescription() {
-      this.templates.forEach((template) => {
-        if (this.selected_template == template.id) {
-          this.description = template.description;
-          return;
-        }
-        this.description = ''
-      })
+      let template = _.find(this.templates, {'id': this.selected_template});
+      this.description = template ? template.description : '';
     },
     attachFiles(event) {
       var files = event.target.files;
@@ -162,6 +158,7 @@ export default {
               this.loading = false;
               return;
             }
+
 
             if (response.status == 200) {
               this.$parent.replies.unshift(response.data.reply);
@@ -213,7 +210,7 @@ export default {
       let ccEmails = this.cc;
 
       for (var c = 0; c < ccEmails.length; c++) {
-        reply.append(`reply[cc][${c}]`, ccEmails[c].id );
+        reply.append(`reply[cc][${c}]`, ccEmails[c].id);
       }
       reply.append('status_id', parseInt(this.selected_status));
 
