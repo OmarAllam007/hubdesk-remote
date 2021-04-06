@@ -1,7 +1,7 @@
 <template>
-  <tr class="hover:bg-yellow-100 bg-white">
+  <tr class="hover:bg-yellow-100 bg-white" :class="approval_data.color">
     <td>{{ approval_data.approver }}</td>
-    <td>{{ approval_data.creator }}</td>
+    <td>{{ approval_data.created_by }}</td>
     <td>{{ approval_data.created_at }}</td>
     <td>{{ approval_data.stage }}</td>
     <td>

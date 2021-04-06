@@ -189,9 +189,9 @@ class TicketApproval extends KModel
     function getApprovalColorAttribute()
     {
         if ($this->status == self::APPROVED) {
-            return 'success';
+            return 'bg-green-200 ';
         } elseif ($this->status == self::DENIED) {
-            return 'danger';
+            return 'bg-red-200 ';
         }
         return '';
     }
