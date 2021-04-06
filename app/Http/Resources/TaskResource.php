@@ -10,7 +10,6 @@ class TaskResource extends JsonResource
 
     public function toArray($request)
     {
-
         /** @var Ticket $this */
         return [
             'id' => $this->id,
@@ -23,10 +22,8 @@ class TaskResource extends JsonResource
             'technician' => $this->technician->name ?? '',
             'technician_id' => $this->technician->id ?? '',
             'request_id' => $this->request_id ?? '',
-            'can_edit' => can('task_edit', $this),
-            'can_show' => can('task_show', $this),
-            'can_delete' => can('task_destroy', $this),
-            'fields'=> $this->custom_fields
+            'authorization'=> $this->task_authorizations,
+            'fields' => $this->custom_fields
         ];
     }
 }
