@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a  class="hover:bg-yellow-100 bg-white block rounded-md cursor-pointer "
+    <a class="hover:bg-yellow-100 bg-white block rounded-md cursor-pointer "
        @click="isCollapsed = !isCollapsed">
       <div class="flex  shadow-md  rounded-2xl mb-3 w-full">
         <div class="w-2 rounded-l-md " :class="getStatusColor"></div>
@@ -22,34 +22,40 @@
               <!--              </div>-->
             </div>
           </div>
-          <transition name="fade" mode="out-in" v-if="!isCollapsed">
-            <div class="flex flex-col ">
-              <div class="p-5 bg-gray-200 shadow-inner shadow-2xl">
-                <p class="text-black text-center " v-html="approval.content"></p>
-                <div class="flex justify-end">
-                  <p class="p-2 m-2 rounded-2xl text-center text-base font-bold w-64"
-                     :class="getStatusColor">{{ $root.t(approval.status) }}</p>
-                </div>
-                <!--                <div class="flex flex-col" v-if="reply.attachments.length">-->
-                <!--                  <p><strong>Attachments</strong></p>-->
-                <!--                  &lt;!&ndash;                  <ul class="list-unstyled">&ndash;&gt;-->
-
-                <!--                  <a :href="`download-attach/${attachment.id}`" @click.stop="()=>{}"-->
-                <!--                     target="_blank" v-for="attachment in reply.attachments"-->
-                <!--                     class="hover:bg-white  flex z-50 pt-5 pb-5 pl-1 pr-1  rounded-xl ">-->
-                <!--                    <i class="fa fa-download pl-1 pr-1"></i>-->
-                <!--                    {{ attachment.display_name }}-->
-                <!--                  </a>-->
-                <!--                  &lt;!&ndash;                  <a href="download-attach/" target="_blank"><i class="fa fa-download"></i> {{$attachment->display_name}}</a>&ndash;&gt;-->
-
-                <!--                  &lt;!&ndash;                  </ul>&ndash;&gt;-->
-                <!--                </div>-->
-              </div>
-            </div>
-          </transition>
         </div>
       </div>
     </a>
+    <transition name="fade" mode="out-in" v-if="!isCollapsed">
+      <div class="flex flex-col shadow-md mb-5 ">
+        <div class="p-5 bg-gray-200 shadow-inner shadow-2xl">
+          <p class="text-black text-center " v-html="approval.content"></p>
+          <div class="flex justify-end pb-5 ">
+            <p class="p-2 m-2 rounded-2xl text-center text-base font-bold w-64"
+               :class="getStatusColor">{{ $root.t(approval.status) }}</p>
+          </div>
+
+          <table class="table p-5 shadow-md " v-if="approval.questions.length">
+            <thead>
+            <tr class="bg-gray-300  shadow-md">
+              <td>
+                Question
+              </td>
+              <td>
+                Answer
+              </td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="question in approval.questions" :class="question.color">
+              <td>{{ question.description }}</td>
+              <td>{{ question.answer }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </transition>
   </div>
 </template>
 

@@ -72,6 +72,9 @@
               <strong class="pl-4 pr-4 m-3" v-if="data.ticket.due_date">{{ $root.t('Due date') }} :
                 {{ $root.t(data.ticket.due_date) }}</strong>
 
+              <strong class="pl-4 pr-4 m-3" v-if="data.ticket.close_date">{{ $root.t('Closed Date') }} :
+                {{ data.ticket.close_date }}</strong>
+
             </div>
           </div>
           <div class="flex" v-if="data.ticket.is_duplicated">

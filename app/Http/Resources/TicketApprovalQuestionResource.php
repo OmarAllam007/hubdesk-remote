@@ -8,17 +8,13 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class TicketApprovalQuestionResource extends JsonResource
 {
-    /**
-     * @param ApprovalQuestion $question
-     * @return array
-     */
-    public function toArray($question)
+    public function toArray($request)
     {
         return [
-            'description' => $question->description,
-            'color' => $question->color,
-            'answer' => $question->answer_str ?? 'Not Assigned',
-
+            'description' => $this->description,
+            'color' => $this->color,
+            'answer' => $this->answer_str ?? 'Not Assigned',
+            'answer_id' => $this->answer
         ];
     }
 }

@@ -25,9 +25,9 @@ class ApprovalQuestion extends Model
     function getColorAttribute()
     {
         if ($this->answer == self::APPROVED) {
-            return 'success';
+            return 'bg-green-300 ';
         } elseif ($this->answer == self::DENIED) {
-            return 'danger';
+            return 'bg-red-300 ';
         }
         return '';
     }

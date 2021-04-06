@@ -23,6 +23,7 @@ class TicketResource extends JsonResource
             'subcategory' => $this->subcategory ? t($this->subcategory->name) : 'Not Assigned',
             'created_at' => $this->created_at ? $this->created_at->format('Y/m/d h:i') : 'Not Assigned',
             'due_date' => $this->due_date ? $this->due_date->format('Y/m/d h:i') : 'Not Assigned',
+            'close_date' => $this->close_date ? $this->close_date->format('Y/m/d h:i') : '',
             'type' => $this->ticket_type ?? 'Not Assigned',
             'priority' => $this->priority->name ?? 'Not Assigned',
             'is_overdue' => $this->overdue ? 1 : 0,
@@ -48,7 +49,8 @@ class TicketResource extends JsonResource
         $ticket['notes'] = TicketNoteResource::collection($this->notes);
         $ticket['authorizations'] = $this->ticket_authorizations;
         $ticket['resolution'] = TicketReplyResource::make($this->resolution);
-        $ticket['approvals'] = $this->isTask() ? $this->ticket->ticket_approvals : $this->ticket_approvals;
+        $ticket['approvals'] = $this->isTask() ? TicketApprovalResource::collection($this->ticket->approvals()->latest()->get())
+            : TicketApprovalResource::collection($this->approvals()->latest()->get());
         $ticket['task_approvals'] = $this->isTask() ? $this->ticket_approvals : [];
         $ticket['attachments'] = AttachmentsResource::collection($this->files);
 

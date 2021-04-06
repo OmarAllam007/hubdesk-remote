@@ -23,36 +23,36 @@
               <!--              </div>-->
             </div>
           </div>
-          <transition name="fade" mode="out-in">
-            <div class="flex flex-col" v-if="!isCollapsed">
-
-              <div class="p-5 bg-gray-200 shadow-inner shadow-2xl">
-                <div class="flex w-full" v-if="reply.to.length">
-                  <p class="p-1 rounded-2xl text-center text-md font-bold ">{{ $root.t('To') }}: {{ reply.to }}</p>
-                </div>
-                <div class="flex w-full" v-if="reply.cc.length">
-                  <p class="p-1 rounded-2xl text-center text-md font-bold ">{{ $root.t('Cc') }}: {{ reply.cc }}</p>
-                </div>
-                <p class="text-black text-center " v-html="reply.content"></p>
-                <div class="flex justify-end">
-                  <p class="p-2 m-2 rounded-2xl text-center text-base font-bold w-64"
-                     :class="getStatusColor">{{ $root.t(reply.status) }}</p>
-                </div>
-                <div class="flex flex-col" v-if="reply.attachments.length">
-                  <p class="text-black"><strong>Attachments</strong></p>
-                  <a :href="`download-attach/${attachment.id}`" @click.stop="()=>{}"
-                     target="_blank" v-for="attachment in reply.attachments"
-                     class="hover:bg-white  flex z-50 pt-5 pb-5 pl-1 pr-1  rounded-xl ">
-                    <i class="fa fa-download pl-1 pr-1"></i>
-                    {{ attachment.display_name }}
-                  </a>
-                </div>
-              </div>
-            </div>
-          </transition>
         </div>
       </div>
     </a>
+    <transition name="fade" mode="out-in">
+      <div class="flex flex-col shadow-md mb-5 " v-if="!isCollapsed">
+
+        <div class="p-5 bg-gray-200 shadow-inner shadow-2xl">
+          <div class="flex w-full" v-if="reply.to.length">
+            <p class="p-1 rounded-2xl text-center text-md font-bold ">{{ $root.t('To') }}: {{ reply.to }}</p>
+          </div>
+          <div class="flex w-full" v-if="reply.cc.length">
+            <p class="p-1 rounded-2xl text-center text-md font-bold ">{{ $root.t('Cc') }}: {{ reply.cc }}</p>
+          </div>
+          <p class="text-black text-center " v-html="reply.content"></p>
+          <div class="flex justify-end">
+            <p class="p-2 m-2 rounded-2xl text-center text-base font-bold w-64"
+               :class="getStatusColor">{{ $root.t(reply.status) }}</p>
+          </div>
+          <div class="flex flex-col" v-if="reply.attachments.length">
+            <p class="text-black"><strong>Attachments</strong></p>
+            <a :href="`download-attach/${attachment.id}`" @click.stop="()=>{}"
+               target="_blank" v-for="attachment in reply.attachments"
+               class="hover:bg-white  flex z-50 pt-5 pb-5 pl-1 pr-1  rounded-xl ">
+              <i class="fa fa-download pl-1 pr-1"></i>
+              {{ attachment.display_name }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
