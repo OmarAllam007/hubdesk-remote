@@ -23,7 +23,7 @@
         <tbody>
         <tr v-for="approval_row of approvals">
           <td>{{ approval_row.approver }}</td>
-          <td>{{ approval_row.creator }}</td>
+          <td>{{ approval_row.approver }}</td>
           <td>{{ approval_row.created_at }}</td>
           <td>{{ approval_row.stage }}</td>
           <td>

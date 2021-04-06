@@ -10,7 +10,7 @@
               <div class="flex w-1/2"> <!--       name       -->
                 <i class="fa fa-chevron-right  p-2 m-2 hover:text-orange-700" v-if="isCollapsed"></i>
                 <i class="fa fa-chevron-down  p-2 m-2 hover:text-orange-700" v-if="!isCollapsed"></i>
-                <p class="font-semibold p-2 m-2 text-gray-800 w-full text-lg md:text-xl">{{ $root.t('By') }}:
+                <p class="font-semibold p-2 m-2 text-gray-800 w-full text-lg md:text-xl">{{ $root.t('To') }}:
                   {{ approval.approver }}</p>
               </div>
 
@@ -53,6 +53,7 @@
             </tbody>
           </table>
         </div>
+
 
       </div>
     </transition>
