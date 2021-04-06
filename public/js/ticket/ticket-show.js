@@ -41218,6 +41218,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -44063,13 +44066,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "fa fa-paperclip p-2 m-2 "
   }) : _vm._e(), _vm._v(" "), _c('p', {
     staticClass: "text-gray-800 p-2 m-2 text-sm  md:text-xl text-right "
-  }, [_vm._v(_vm._s(_vm.reply.created_at))])])])]), _vm._v(" "), _c('transition', {
+  }, [_vm._v(_vm._s(_vm.reply.created_at))])])])])])])]), _vm._v(" "), _c('transition', {
     attrs: {
       "name": "fade",
       "mode": "out-in"
     }
   }, [(!_vm.isCollapsed) ? _c('div', {
-    staticClass: "flex flex-col"
+    staticClass: "flex flex-col shadow-md mb-5 "
   }, [_c('div', {
     staticClass: "p-5 bg-gray-200 shadow-inner shadow-2xl"
   }, [(_vm.reply.to.length) ? _c('div', {
@@ -44109,8 +44112,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [_c('i', {
       staticClass: "fa fa-download pl-1 pr-1"
-    }), _vm._v("\n                  " + _vm._s(attachment.display_name) + "\n                ")])
-  })], 2) : _vm._e()])]) : _vm._e()])], 1)])])])
+    }), _vm._v("\n            " + _vm._s(attachment.display_name) + "\n          ")])
+  })], 2) : _vm._e()])]) : _vm._e()])], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -44343,6 +44346,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Approval",
@@ -44406,13 +44415,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "flex justify-end"
   }, [_c('p', {
     staticClass: "text-gray-800 p-2 m-2 text-sm  md:text-xl text-right "
-  }, [_vm._v(_vm._s(_vm.approval.created_at))])])])]), _vm._v(" "), (!_vm.isCollapsed) ? _c('transition', {
+  }, [_vm._v(_vm._s(_vm.approval.created_at))])])])])])])]), _vm._v(" "), (!_vm.isCollapsed) ? _c('transition', {
     attrs: {
       "name": "fade",
       "mode": "out-in"
     }
   }, [_c('div', {
-    staticClass: "flex flex-col "
+    staticClass: "flex flex-col shadow-md mb-5 "
   }, [_c('div', {
     staticClass: "p-5 bg-gray-200 shadow-inner shadow-2xl"
   }, [_c('p', {
@@ -44421,11 +44430,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "innerHTML": _vm._s(_vm.approval.content)
     }
   }), _vm._v(" "), _c('div', {
-    staticClass: "flex justify-end"
+    staticClass: "flex justify-end pb-5 "
   }, [_c('p', {
     staticClass: "p-2 m-2 rounded-2xl text-center text-base font-bold w-64",
     class: _vm.getStatusColor
-  }, [_vm._v(_vm._s(_vm.$root.t(_vm.approval.status)))])])])])]) : _vm._e()], 1)])])])
+  }, [_vm._v(_vm._s(_vm.$root.t(_vm.approval.status)))])]), _vm._v(" "), (_vm.approval.questions.length) ? _c('table', {
+    staticClass: "table p-5 shadow-md "
+  }, [_c('thead', [_c('tr', {
+    staticClass: "bg-gray-300  shadow-md"
+  }, [_c('td', [_vm._v("\n              Question\n            ")]), _vm._v(" "), _c('td', [_vm._v("\n              Answer\n            ")])])]), _vm._v(" "), _c('tbody', _vm._l((_vm.approval.questions), function(question) {
+    return _c('tr', {
+      class: question.color
+    }, [_c('td', [_vm._v(_vm._s(question.description))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(question.answer))])])
+  }))]) : _vm._e()])])]) : _vm._e()], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -44536,8 +44553,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_vue_select__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vue_select_dist_vue_select_css__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vue_select_dist_vue_select_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_vue_select_dist_vue_select_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_lodash__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_lodash__);
 //
 //
 //
@@ -44620,7 +44635,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
 
 
 
@@ -44672,8 +44686,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     updateDescription: function updateDescription() {
-      var template = __WEBPACK_IMPORTED_MODULE_7_lodash___default.a.find(this.templates, { 'id': this.selected_template });
-      this.description = template ? template.description : '';
+      var _this3 = this;
+
+      this.templates.forEach(function (template) {
+        if (_this3.selected_template == template.id) {
+          _this3.description = template.description;
+          return;
+        }
+        _this3.description = '';
+      });
     },
     attachFiles: function attachFiles(event) {
       var files = event.target.files;
@@ -44682,7 +44703,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     },
     submitReply: function submitReply() {
-      var _this3 = this;
+      var _this4 = this;
 
       this.loading = true;
       if (!this.description.length > 0) {
@@ -44697,29 +44718,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).then(function (response) {
         if (response.data.error) {
           __WEBPACK_IMPORTED_MODULE_4__EventBus__["a" /* EventBus */].$emit('send_notification', 'replies', 'Ticket Info', response.data.error, 'error');
-          _this3.loading = false;
+          _this4.loading = false;
           return;
         }
 
         if (response.status == 200) {
-          _this3.$parent.replies.unshift(response.data.reply);
+          _this4.$parent.replies.unshift(response.data.reply);
           // EventBus.$emit('ticket-reply-saved')
           __WEBPACK_IMPORTED_MODULE_4__EventBus__["a" /* EventBus */].$emit('send_notification', 'replies', 'Ticket Info', 'Ticket reply has been added', 'success');
 
           __WEBPACK_IMPORTED_MODULE_4__EventBus__["a" /* EventBus */].$emit('ticket_updated');
           __WEBPACK_IMPORTED_MODULE_4__EventBus__["a" /* EventBus */].$emit('status_updated', response.data.reply);
 
-          _this3.resetForm();
+          _this4.resetForm();
         }
 
-        _this3.loading = false;
+        _this4.loading = false;
       }).catch(function (error) {
-        _this3.loading = false;
+        _this4.loading = false;
         __WEBPACK_IMPORTED_MODULE_4__EventBus__["a" /* EventBus */].$emit('send_notification', 'replies', 'Ticket Error', 'An error occurred while trying to send the reply', 'error');
       });
     },
     resetForm: function resetForm() {
-      var _this4 = this;
+      var _this5 = this;
 
       this.selected_status = 0;
       this.selected_template = '';
@@ -44732,7 +44753,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           minimumResultsForSearch: Infinity
         }).on('select2:select', function (e) {
           var data = e.params.data;
-          _this4.cc.push(data.id);
+          _this5.cc.push(data.id);
         });
       }, 1000);
     },
@@ -58529,7 +58550,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "pl-4 pr-4 m-3"
   }, [_vm._v(_vm._s(_vm.$root.t('Created at')) + " : " + _vm._s(_vm.data.ticket.created_at))]), _vm._v(" "), (_vm.data.ticket.due_date) ? _c('strong', {
     staticClass: "pl-4 pr-4 m-3"
-  }, [_vm._v(_vm._s(_vm.$root.t('Due date')) + " :\n              " + _vm._s(_vm.$root.t(_vm.data.ticket.due_date)))]) : _vm._e()])]), _vm._v(" "), (_vm.data.ticket.is_duplicated) ? _c('div', {
+  }, [_vm._v(_vm._s(_vm.$root.t('Due date')) + " :\n              " + _vm._s(_vm.$root.t(_vm.data.ticket.due_date)))]) : _vm._e(), _vm._v(" "), (_vm.data.ticket.close_date) ? _c('strong', {
+    staticClass: "pl-4 pr-4 m-3"
+  }, [_vm._v(_vm._s(_vm.$root.t('Closed Date')) + " :\n              " + _vm._s(_vm.data.ticket.close_date))]) : _vm._e()])]), _vm._v(" "), (_vm.data.ticket.is_duplicated) ? _c('div', {
     staticClass: "flex"
   }, [_c('strong', {
     staticClass: "pl-4 pr-4 m-3"
