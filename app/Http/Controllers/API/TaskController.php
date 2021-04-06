@@ -16,7 +16,9 @@ class TaskController extends Controller
         $task_categories = $list->category(\App\KModel::TASK_TYPE);
 
         return [
-            'tasks' => TaskResource::collection($ticket->tasks),
+            'tasks' => $ticket->tasks()->get()->map(function ($task){
+                return TaskResource::make($task);
+            }),
             'task_create' => can('task_create', $ticket),
             'templates' => auth()->user()->reply_templates,
             'is_support' => auth()->user()->isSupport(),

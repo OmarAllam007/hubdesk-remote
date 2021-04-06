@@ -52439,25 +52439,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('tr', {
     staticClass: "hover:bg-yellow-100 bg-white"
-  }, [_c('td', [(_vm.task.can_show) ? _c('a', {
+  }, [_c('td', [(_vm.task.authorization.can_show) ? _c('a', {
     attrs: {
       "href": '/ticket/' + _vm.task.id
     }
-  }, [_vm._v(_vm._s(_vm.task.id))]) : _c('p', [_vm._v(_vm._s(_vm.task.id))])]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.task.subject))]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.task.category))]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.task.status))]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.task.created_at))]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.task.requester))]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.task.technician))]), _vm._v(" "), _c('td', [(_vm.task.can_show) ? _c('a', {
+  }, [_vm._v(_vm._s(_vm.task.id))]) : _c('p', [_vm._v(_vm._s(_vm.task.id))])]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.task.subject))]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.task.category))]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.task.status))]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.task.created_at))]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.task.requester))]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.task.technician))]), _vm._v(" "), _c('td', [(_vm.task.authorization.can_show) ? _c('a', {
     staticClass: "bg-blue-500  hover:bg-blue-700 hover:text-white text-white font-bold py-2 px-4 rounded-full mr-2  ",
     attrs: {
       "href": '/ticket/' + _vm.task.id
     }
   }, [_c('i', {
     staticClass: "fa fa-eye"
-  }), _vm._v("\n      " + _vm._s(_vm.$root.t('Show')) + "\n    ")]) : _vm._e(), _vm._v(" "), (_vm.task.can_edit) ? _c('a', {
+  }), _vm._v("\n      " + _vm._s(_vm.$root.t('Show')) + "\n    ")]) : _vm._e(), _vm._v(" "), (_vm.task.authorization.can_edit) ? _c('a', {
     staticClass: "bg-orange-500  hover:bg-orange-700  text-white  hover:text-white font-bold py-2 px-4 rounded-full mr-2  ",
     attrs: {
       "href": '/ticket/tasks/edit/' + _vm.task.id
     }
   }, [_c('i', {
     staticClass: "fa fa-edit"
-  }), _vm._v("\n      " + _vm._s(_vm.$root.t('Edit')) + "\n    ")]) : _vm._e(), _vm._v(" "), (_vm.task.can_delete) ? _c('button', {
+  }), _vm._v("\n      " + _vm._s(_vm.$root.t('Edit')) + "\n    ")]) : _vm._e(), _vm._v(" "), (_vm.task.authorization.can_delete) ? _c('button', {
     staticClass: "bg-red-600   hover:bg-red-700  text-white font-bold py-2 px-4  hover:text-white rounded-full mr-2   ",
     on: {
       "click": function($event) {

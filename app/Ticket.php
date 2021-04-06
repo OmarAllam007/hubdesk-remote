@@ -619,6 +619,15 @@ class Ticket extends KModel
         ];
     }
 
+    function getTaskAuthorizationsAttribute()
+    {
+        return [
+            'can_edit' => can('task_edit', $this) ? 1 : 0 ,
+            'can_show' => can('task_show', $this) ? 1 : 0 ,
+            'can_delete' => can('task_destroy', $this) ? 1 : 0 ,
+        ];
+    }
+
     function convertToJson()
     {
         return [
