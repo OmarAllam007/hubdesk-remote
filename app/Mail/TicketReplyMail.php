@@ -15,31 +15,25 @@ class TicketReplyMail extends Mailable
 
     protected $reply;
     protected $ticket;
-    public $to;
-    public $cc;
 
     public function __construct(TicketReply $reply)
     {
         $this->reply = $reply;
-        $this->ticket = $reply->ticket;
+//        $this->ticket = $reply->ticket;
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
     public function build()
     {
-        $subject = 'Re: Ticket #' . $this->ticket->id;
+//        $subject = 'Re: Ticket #' . $this->ticket->id;
+//
+//        if ($this->ticket->requester->employee_id) {
+//            $subject .= ' / ' . $this->ticket->requester->employee_id;
+//        }
+//        $subject .= '- ' . $this->ticket->subject;
 
-        if ($this->ticket->requester->employee_id) {
-            $subject .= ' / ' . $this->ticket->requester->employee_id;
-        }
-        $subject .= '- ' . $this->ticket->subject;
+        $ticket = $this->reply->ticket;
 
-//        dd($this->to, $this->cc);
-        return $this->markdown('emails.ticket.reply', ['ticket' => $this->ticket, 'reply' => $this->reply])
-            ->subject($subject);
+        return $this->markdown('emails.ticket.assigned', compact('reply'))
+            ->subject('here');
     }
 }

@@ -50,7 +50,10 @@ class TicketReplyObserver
     public function created(TicketReply $reply)
     {
         Attachment::uploadFiles(Attachment::TICKET_REPLY_TYPE, $reply->id);
+
         dispatch(new TicketReplyJob($reply));
+
+
         if ($reply->user_id == $reply->ticket->technician_id) {
             if ($reply->attachments->count()) {
                 \Mail::queue(new AttachmentsReplyJob($reply->attachments));
