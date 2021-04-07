@@ -19,6 +19,10 @@ Route::group(['prefix' => 'dashboard'], function (Router $r) {
         ->name('dashboard.select_business_unit');
     $r->get('display/{businessUnit}', 'DashboardController@display')
         ->name('dashboard.display');
+
+
+    $r->get('status-dashboard/{businessUnit}', 'StatusDashboardController@index')->name('dashboard.select_status_dashboard');
+    $r->get('status-dashboard-data', 'StatusDashboardController@getData');
 });
 
 Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
@@ -43,6 +47,7 @@ Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
     $r->get('/approvers', 'ListController@approvers');
 
     $r->get('/list-statuses/{ticket}', 'ListController@getStatus');
+    $r->get('/dashboard-business-unit', 'ListController@dashboardBusinessUnit');
 
 //    KGS LIST Routes
     $r->get('kgs_category', 'ListController@kgs_category');
