@@ -7,11 +7,14 @@ use App\Http\Requests\TicketReplyRequest;
 use App\Http\Resources\TicketApprovalResource;
 use App\Http\Resources\TicketReplyResource;
 use App\Jobs\TicketReplyJob;
+use App\Mail\TicketAssignedMail;
+use App\Mail\TicketReplyMail;
 use App\Status;
 use App\Ticket;
 use App\TicketReply;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class TicketReplyController extends Controller
 {

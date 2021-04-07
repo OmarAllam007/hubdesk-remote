@@ -1,8 +1,8 @@
 @component('mail::message')
-# The ticket #{{$ticket->id}} has a new reply.
+# The ticket #{{$ticket['id']}} has a new reply.
 
 <div style="font-size: 13px; font-family: 'Helvetica Neue', Helvetica, Arial,sans-serif">
-Ticket ID: #{{link_to_route('ticket.show', $ticket->id, $ticket->id)}}<br/>
+Ticket ID: #{{link_to_route('ticket.show', $ticket['id'], $ticket['id'])}}<br/>
 By: {{$reply->user->name}}<br/>
 At: {{$reply->created_at->format('d/m/Y H:i')}}<br/>
 Content:<br/><br />
@@ -13,7 +13,7 @@ Content:<br/><br />
 <br><br>
 </div>
 <div style="padding-left: 15px;">
-@component('mail::button', ['url' => route('ticket.show',$ticket->id)])
+@component('mail::button', ['url' => route('ticket.show',$ticket['id'])])
 <b class="center-block">Display Ticket</b>
 @endcomponent
 <div class="alert alert-info" role="alert">

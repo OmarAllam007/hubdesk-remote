@@ -3,19 +3,24 @@
 namespace App\Jobs;
 
 use App\Jobs\Job;
+use App\Mail\ReplyTicketMail;
 use App\Mail\SendSurveyEmail;
+use App\Mail\TicketAssignedMail;
 use App\TicketLog;
 use App\TicketReply;
+use App\User;
 use App\UserSurvey;
+use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Mail\Message;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Mail\TicketReplyMail;
 
-class TicketReplyJob extends Job //implements ShouldQueue
+class TicketReplyJob implements ShouldQueue
 {
-    //use InteractsWithQueue, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * @var TicketReply
@@ -41,7 +46,6 @@ class TicketReplyJob extends Job //implements ShouldQueue
             }
             $this->to = [$ticket->technician->email];
             $this->sendEmail();
-            return true;
 
         } elseif ($this->reply->user_id == $this->reply->ticket->technician_id) {
             if (!$ticket->requester->email) {
@@ -55,7 +59,6 @@ class TicketReplyJob extends Job //implements ShouldQueue
             }
 
             $this->sendEmail();
-            return true;
 
         } elseif ($this->reply->user_id != $this->reply->ticket->technician_id && $this->reply->user->isTechnician()) {
             if ($ticket->requester->email) {
@@ -67,7 +70,6 @@ class TicketReplyJob extends Job //implements ShouldQueue
             }
 
             $this->sendEmail();
-            return true;
         }
     }
 
@@ -79,9 +81,10 @@ class TicketReplyJob extends Job //implements ShouldQueue
         $ccUsers = \App\User::whereIn('email', $ccEmails)->get()->pluck('email', 'email')->toArray();
 
         if ($toUsers) {
-            \Mail::to($toUsers)->cc($ccUsers)->queue(new TicketReplyMail($this->reply));
+
+            \Mail::to($toUsers)->cc($ccUsers)->send(new ReplyTicketMail($this->reply));
         }
-        $this->sendSurvey($this->reply->ticket);
+//        $this->sendSurvey($this->reply->ticket);
     }
 
     private function sendSurvey($ticket)
@@ -96,7 +99,7 @@ class TicketReplyJob extends Job //implements ShouldQueue
             ]);
 
             if ($survey->ticket->requester->email) {
-                \Mail::queue(new SendSurveyEmail($survey));
+                \Mail::send(new SendSurveyEmail($survey));
             }
             TicketLog::addReminderOnSurvey($ticket);
         }
