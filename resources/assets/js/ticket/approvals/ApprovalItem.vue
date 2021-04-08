@@ -11,7 +11,7 @@
           <div class="form-group">
             <label>
               {{ $root.t('Send Approval to') }}:
-              <v-select :options="users" label="text" v-model="level.approver" placeholder="Select Approver"
+              <v-select :options="users" label="name" v-model="level.approver" placeholder="Select Approver"
                         class="selection-list"></v-select>
             </label>
           </div>

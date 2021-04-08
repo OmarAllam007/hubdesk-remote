@@ -54510,7 +54510,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -54530,7 +54530,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__EventBus__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lodash__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_lodash__);
-//
 //
 //
 //
@@ -54649,15 +54648,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     __WEBPACK_IMPORTED_MODULE_3__EventBus__["a" /* EventBus */].$on('remove-approval-item', function (index) {
       _this.removeLevel(index);
     });
+    console.log('asd');
+    this.loading = true;
+    __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/list/approvers').then(function (resposne) {
+      _this.users = resposne.data;
+      _this.loading = false;
+    });
   },
   mounted: function mounted() {
-    var _this2 = this;
-
     this.init();
-    setTimeout(function () {
-      _this2.templates = _this2.$parent.templates;
-      _this2.users = _this2.$parent.users;
-    }, 1000);
+
+    // setTimeout(() => {
+    //   this.templates = this.$parent.templates;
+    //   this.users = this.$parent.users;
+    //
+    // }, 1000)
+
   },
 
 
@@ -54692,7 +54698,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     },
     sendApproval: function sendApproval() {
-      var _this3 = this;
+      var _this2 = this;
 
       this.loading = true;
       var formData = new FormData();
@@ -54722,14 +54728,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           'Content-Type': 'multipart/form-data'
         }
       }).then(function (response) {
-        _this3.loading = false;
+        _this2.loading = false;
         response.data.forEach(function (approval) {
-          _this3.approvals_data.push(approval);
-          _this3.approvals_data = __WEBPACK_IMPORTED_MODULE_4_lodash___default.a.orderBy(_this3.approvals_data, ['stage'], ['asc']);
-          __WEBPACK_IMPORTED_MODULE_3__EventBus__["a" /* EventBus */].$emit('approval_created', _this3.approvals_data);
+          _this2.approvals_data.push(approval);
+          _this2.approvals_data = __WEBPACK_IMPORTED_MODULE_4_lodash___default.a.orderBy(_this2.approvals_data, ['stage'], ['asc']);
+          __WEBPACK_IMPORTED_MODULE_3__EventBus__["a" /* EventBus */].$emit('approval_created', _this2.approvals_data);
         });
 
-        _this3.clearForm();
+        _this2.clearForm();
 
         __WEBPACK_IMPORTED_MODULE_3__EventBus__["a" /* EventBus */].$emit('send_notification', 'approvals', 'Ticket Info', "Approval/s sent successfully", 'success');
 
@@ -54737,7 +54743,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         __WEBPACK_IMPORTED_MODULE_3__EventBus__["a" /* EventBus */].$emit('status_updated', { status: 'Waiting for Approval', status_id: 6 });
       }).catch(function (e) {
-        _this3.loading = false;
+        _this2.loading = false;
       });
     },
     clearForm: function clearForm() {
@@ -55308,7 +55314,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "selection-list",
     attrs: {
       "options": _vm.users,
-      "label": "text",
+      "label": "name",
       "placeholder": "Select Approver"
     },
     model: {
