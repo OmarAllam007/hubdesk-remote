@@ -77,7 +77,6 @@
     <div class="mt-5 flex flex-col  " v-if="submit_approval">
       <div v-for="(level, key) of levels" class="bg-white shadow-md rounded-2xl mt-5  ">
         <approval-item :level="level" :users="users" :index="key" :key="key" :stages="stages_count"></approval-item>
-
       </div>
 
     </div>
@@ -115,15 +114,21 @@ export default {
     EventBus.$on('remove-approval-item', (index) => {
       this.removeLevel(index);
     });
-
+console.log('asd')
+    this.loading = true;
+    axios.get('/list/approvers').then((resposne) => {
+      this.users = resposne.data
+      this.loading = false;
+    })
   },
   mounted() {
-    this.init()
-    setTimeout(() => {
-      this.templates = this.$parent.templates;
-      this.users = this.$parent.users;
+    this.init();
 
-    }, 1000)
+    // setTimeout(() => {
+    //   this.templates = this.$parent.templates;
+    //   this.users = this.$parent.users;
+    //
+    // }, 1000)
 
 
   },
