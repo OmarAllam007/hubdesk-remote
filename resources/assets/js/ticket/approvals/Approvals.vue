@@ -124,11 +124,11 @@ console.log('asd')
   mounted() {
     this.init();
 
-    // setTimeout(() => {
-    //   this.templates = this.$parent.templates;
-    //   this.users = this.$parent.users;
-    //
-    // }, 1000)
+    setTimeout(() => {
+      this.templates = this.$parent.templates;
+      // this.users = this.$parent.users;
+
+    }, 1000)
 
 
   },

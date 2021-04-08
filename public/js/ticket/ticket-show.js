@@ -54656,14 +54656,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     });
   },
   mounted: function mounted() {
+    var _this2 = this;
+
     this.init();
 
-    // setTimeout(() => {
-    //   this.templates = this.$parent.templates;
-    //   this.users = this.$parent.users;
-    //
-    // }, 1000)
-
+    setTimeout(function () {
+      _this2.templates = _this2.$parent.templates;
+      // this.users = this.$parent.users;
+    }, 1000);
   },
 
 
@@ -54698,7 +54698,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     },
     sendApproval: function sendApproval() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.loading = true;
       var formData = new FormData();
@@ -54728,14 +54728,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           'Content-Type': 'multipart/form-data'
         }
       }).then(function (response) {
-        _this2.loading = false;
+        _this3.loading = false;
         response.data.forEach(function (approval) {
-          _this2.approvals_data.push(approval);
-          _this2.approvals_data = __WEBPACK_IMPORTED_MODULE_4_lodash___default.a.orderBy(_this2.approvals_data, ['stage'], ['asc']);
-          __WEBPACK_IMPORTED_MODULE_3__EventBus__["a" /* EventBus */].$emit('approval_created', _this2.approvals_data);
+          _this3.approvals_data.push(approval);
+          _this3.approvals_data = __WEBPACK_IMPORTED_MODULE_4_lodash___default.a.orderBy(_this3.approvals_data, ['stage'], ['asc']);
+          __WEBPACK_IMPORTED_MODULE_3__EventBus__["a" /* EventBus */].$emit('approval_created', _this3.approvals_data);
         });
 
-        _this2.clearForm();
+        _this3.clearForm();
 
         __WEBPACK_IMPORTED_MODULE_3__EventBus__["a" /* EventBus */].$emit('send_notification', 'approvals', 'Ticket Info', "Approval/s sent successfully", 'success');
 
@@ -54743,7 +54743,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         __WEBPACK_IMPORTED_MODULE_3__EventBus__["a" /* EventBus */].$emit('status_updated', { status: 'Waiting for Approval', status_id: 6 });
       }).catch(function (e) {
-        _this2.loading = false;
+        _this3.loading = false;
       });
     },
     clearForm: function clearForm() {
