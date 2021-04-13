@@ -63,6 +63,7 @@ class TicketWithApprovals extends ReportContract
             ->selectRaw('cat.name as category, subcat.name as subcategory, item.name as item')
             ->selectRaw('st.name as status')
             ->selectRaw('bu.name as business_unit')
+            ->selectRaw('MONTHNAME(t.created_at) as month')
             ->selectRaw(' @sla := format((sla.due_days) + (sla.due_hours / 8) + (sla.due_minutes / (8 * 60)),
                                1)                                                      \'SLA Delivery time\',
 
@@ -157,9 +158,9 @@ class TicketWithApprovals extends ReportContract
 
 
         $header = [
-            'ID',
+            'ID', 'Category',
             'Technician', 'Created Date', 'Due Date',
-            'Resolved Date', 'First Approval Sent Date', 'Last Approval Action Date', 'Business Unit',
+            'Resolved Date', 'First Approval Sent Date', 'Last Approval Action Date', 'Business Unit', 'Month'
         ];
 
         $approvals_header = $approvals_header->flatten()->toArray();
@@ -187,9 +188,9 @@ class TicketWithApprovals extends ReportContract
             $first_approval = $approvals->count() > 0 && $approvals->last()[1] ?
                 $approvals->last()[1]->format('Y-m-d H:m') : 'Not Assigned';
             $rowData = [
-                $ticket->id,  $ticket->technician,
+                $ticket->id, $ticket->category, $ticket->technician,
                 $ticket->created_at,
-                $ticket->due_date, $ticket->resolve_date, $first_approval, $last_approval, $ticket->business_unit
+                $ticket->due_date, $ticket->resolve_date, $first_approval, $last_approval, $ticket->business_unit , $ticket->month
             ];
             $sheet->fromArray(array_merge($rowData, $approvals->flatten()->toArray()), NULL, 'A' . $row, true);
         }
