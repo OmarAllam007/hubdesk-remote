@@ -14,6 +14,10 @@ class TicketController
 {
     function index()
     {
+        if (\request('clear')) {
+            \Session::remove('ticket.filter');
+        }
+
         $ticketScope = $this->handleTicketsScope();
         $query = $ticketScope['query'];
         $scope = $ticketScope['scope'];
@@ -21,9 +25,7 @@ class TicketController
         $criterions = $ticketScope['criterions'];
 
 
-        if (\request('clear')) {
-            \Session::remove('ticket.filter');
-        }
+
 
         if ($search = \request('search')) {
             $ticket = Ticket::where('id', intval($search))->first();

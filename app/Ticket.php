@@ -646,6 +646,7 @@ class Ticket extends KModel
             'priority' => $this->priority->name ?? 'Not Assigned',
             'is_overdue' => $this->overdue ? 1 : 0,
             'resolution' => $this->resoultion,
+            'has_submitted_survey'=> $this->user_survey && $this->user_survey->is_submitted ? 1 : 0
         ];
     }
 

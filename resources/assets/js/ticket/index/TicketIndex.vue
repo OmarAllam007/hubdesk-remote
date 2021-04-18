@@ -5,13 +5,21 @@
     </div>
     <div class="flex w-full pt-5 justify-center" v-if="!loading || !initLoading">
       <div class="w-3/12  justify-start ml-5">
-        <button
-            class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 h-16 w-16
+        <div class="flex">
+          <button
+              class=" bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 h-16 w-16
           px-4 border border-blue-500 hover:border-transparent rounded collapse-btn" v-if="scopes.length"
-            @click="sidebar_visibility = !sidebar_visibility">
-          <i class="fa fa-bars transform "
-             :class="{'rotate-90': sidebar_visibility , 'animate-pulse':!sidebar_visibility}"></i>
-        </button>
+              @click="sidebar_visibility = !sidebar_visibility">
+            <i class="fa fa-bars transform "
+               :class="{'rotate-90': sidebar_visibility , 'animate-pulse':!sidebar_visibility}"></i>
+
+          </button>
+          <div class="bg-transparent text-blue-700 font-semibold hover:text-white py-2
+          px-4  rounded scopeArea  pt-4 ">
+            <p v-text="selected_scope_str">
+            </p>
+          </div>
+        </div>
       </div>
 
       <div class="w-8/12 flex justify-end pr-3">
@@ -57,9 +65,9 @@
 
       <div class="relative" :class="ticketsWidth">
         <loader v-if="loading && !initLoading"></loader>
-<!--        <div class="flex justify-center" v-if="loading && !initLoading">-->
-<!--          <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-24 w-24 mt-64"></div>-->
-<!--        </div>-->
+        <!--        <div class="flex justify-center" v-if="loading && !initLoading">-->
+        <!--          <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-24 w-24 mt-64"></div>-->
+        <!--        </div>-->
 
 
         <div class="transition flex flex-col ease-in-out mt-3 md:mt-0 xl:mt-0 lg:mt-0 2xl:mt-0" v-else>
@@ -94,14 +102,39 @@ import axios from 'axios';
 import Criteria from "../../Criteria.vue";
 import EventBus from "../../Bus";
 import Loader from "../_components/Loader";
+import _ from "lodash";
 
 export default {
   name: "TicketIndex",
-
+  data() {
+    return {
+      loading: false,
+      advanced_filter: false,
+      initLoading: false,
+      clear: false,
+      criterions: [],
+      scopes: {},
+      requirements: [],
+      selected_scope: '',
+      selected_scope_str: '',
+      sidebar_visibility: false,
+      search: '',
+      tickets: {
+        total: 0,
+        per_page: 2,
+        from: 1,
+        to: 0,
+        current_page: localStorage.getItem('page') ? localStorage.getItem('page') : 1
+      },
+      offset: 4,
+    }
+  },
   created() {
     this.initLoading = true;
     this.selected_scope = sessionStorage.getItem('scope') ? sessionStorage.getItem('scope') : '';
+
     this.loadTickets();
+    // this.getSelectedScope();
   },
 
   mounted() {
@@ -109,26 +142,17 @@ export default {
       this.selected_scope = scope;
       this.tickets.current_page = 1;
       this.loadTickets();
+
     });
 
     this.$on('toggle-sidebar', (sidebar_visibility) => {
       this.sidebar_visibility = sidebar_visibility;
     });
 
+
   },
   computed: {
-    getSelectedScope() {
-      // console.log(this.selected_scope)
-      // console.log(this.scopes)
-      var selected_scope = '';
-      this.scopes.forEach((scope) => {
-        if (this.selected_scope == scope[0]) {
-          selected_scope = scope[1]
-        }
-      });
-      return selected_scope;
 
-    },
     advancedFilter() {
       return this.advanced_filter ? 'fa fa-search-minus' : 'fa fa-search-plus'
     },
@@ -143,35 +167,14 @@ export default {
     }
 
   },
-  data() {
-    return {
-      loading: false,
-      advanced_filter: false,
-      initLoading: false,
-      clear: false,
-      criterions: [],
-      scopes: {},
-      requirements: [],
-      selected_scope: '',
-      sidebar_visibility: false,
-      search: '',
-      tickets: {
-        total: 0,
-        per_page: 2,
-        from: 1,
-        to: 0,
-        current_page: localStorage.getItem('page') ? localStorage.getItem('page') : 1
-      },
-      offset: 4,
-    }
-  },
+
   methods: {
 
     clearFilter() {
       this.$refs.criteria.$data.requirements = [];
-      this.criterions = [];
       this.clear = true;
-      this.loadTickets()
+      this.criterions = [];
+      this.loadTickets(true, true)
     },
     applyAdvancedFilter() {
       let requirements = [];
@@ -193,14 +196,14 @@ export default {
       this.advanced_filter = !this.advanced_filter;
     },
     selectValues() {
-      console.log('logged');
+      // console.log('logged');
     },
 
-    loadTickets(spin = true) {
+    loadTickets(spin = true, clearFilter = false) {
       this.loading = spin;
 
       localStorage.setItem('page', this.tickets.current_page);
-    // console.log(localStorage.getItem('page'))
+      // console.log(localStorage.getItem('page'))
       axios.post(`/ajax/ticket`, {
         'page': localStorage.getItem('page'),
         'scope': this.selected_scope,
@@ -222,15 +225,29 @@ export default {
           this.loading = false;
           this.initLoading = false;
           this.total = response.total;
+
+          this.getSelectedScope();
         }
       }).catch((e) => {
         console.log(e)
         this.loading = false;
       });
     },
+
+    getSelectedScope() {
+      // setTimeout(() => {
+      //   console.log(this.scopes)
+
+        for (let item in this.scopes) {
+          if (this.scopes[item][0] == this.selected_scope) {
+            this.selected_scope_str = this.scopes[item][1];
+          }
+        }
+      // }, 1000)
+    }
   },
 
-  components: {Pagination, Ticket, Filters, Criteria,Loader}
+  components: {Pagination, Ticket, Filters, Criteria, Loader}
 }
 </script>
 
@@ -263,6 +280,9 @@ export default {
   background: rgba(26, 29, 80, 0.9);
 }
 
+.scopeArea{
+  color: rgba(26, 29, 80, 0.9);
+}
 .collapse-btn {
   color: rgba(26, 29, 80, 0.9);
   border-color: rgba(26, 29, 80, 0.9);
