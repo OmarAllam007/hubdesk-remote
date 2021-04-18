@@ -13,7 +13,10 @@
               }} -</span> {{ ticket.subject }}</p>
 
             <div class="flex justify-end">
-              <div class="">
+              <div class="flex justify-end">
+                <div class="pr-2 pl-2 pt-1 pb-1 text-lg" v-if="ticket.has_submitted_survey">
+                    <i class="fa fa-lg  fa-check-circle text-green-800  " title="Survey Submitted"></i>
+                </div>
                 <div class="pr-2 pl-2 pt-1 pb-1 rounded-full shadow text-lg" :class="getStatusColor"><p class="font-bold text-center overflow-hidden">
                   {{ ticket.status }}</p></div>
               </div>

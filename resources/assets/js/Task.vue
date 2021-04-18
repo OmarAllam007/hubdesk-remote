@@ -287,7 +287,7 @@
         }
         ,
         mounted() {
-            console.log('asd')
+
         },
         computed: {
             can_submit(){
