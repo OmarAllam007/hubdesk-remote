@@ -1,17 +1,14 @@
 <template>
   <tr class="hover:bg-yellow-100 bg-white" :class="approval_data.color">
     <td>{{ approval_data.approver }}</td>
-    <td>{{ approval_data.created_by }}</td>
+    <td>{{ approval_data.creator }}</td>
     <td>{{ approval_data.created_at }}</td>
     <td>{{ approval_data.stage }}</td>
     <td>
       {{ approval_data.status }}
     </td>
-    <td>
-      <i class="fa fa-lg"
-         :class="`fa-${approval_data.approval_icon} text-${approval_data.approval_color}`"
-         aria-hidden="true"></i>
-      <strong v-if="approval_data.hidden_comment === '0'">{{ approval_data.comment }}</strong>
+    <td >
+      <strong  v-if="approval_data.hidden_comment === '0'" v-html="approval_data.comment"></strong>
     </td>
     <td>{{ approval_data.action_date }}</td>
     <td>{{ approval_data.resend }}</td>
