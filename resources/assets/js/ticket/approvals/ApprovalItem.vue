@@ -130,23 +130,18 @@ import Editor from '@tinymce/tinymce-vue'
 Vue.component('v-select', vSelect.VueSelect);
 export default {
   name: "ApprovalItem",
-  props: ['level', 'users', 'index', 'stages'],
+  props: ['level', 'users', 'index', 'stages','templates'],
   data() {
     return {
       approver: 0,
       description: '',
       attachments: [],
       questions: [],
-      templates: [],
       selected_template: '',
     }
   },
   created() {
-    if (!this.templates.length) {
-      setTimeout(() => {
-        this.templates = this.$parent.templates;
-      }, 1000);
-    }
+
   },
   mounted() {
 
