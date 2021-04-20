@@ -1,6 +1,12 @@
 import Vue from 'vue';
 import ApprovalShow from "./approvals/ApprovalShow";
+import NotificationsComponent from "./show/NotificationsComponent";
+import Notifications from 'vue-notification';
 import _ from "lodash";
+
+
+Vue.use(Notifications);
+
 window.axios = require('axios');
 
 window.axios.defaults.headers.common = {
@@ -27,7 +33,7 @@ window.app = new Vue({
             return word;
         }
     },
-    components: { ApprovalShow }
+    components: { ApprovalShow,NotificationsComponent }
 });
 
 

@@ -27,15 +27,13 @@ class ApprovalController extends Controller
 {
     public function send(Ticket $ticket, ApprovalRequest $request)
     {
-//        dd($request->all());
         $approvals = collect();
-
         $files = $request->allFiles();
-//        $request->attachments = [];
         $ticketAttachments = [];
+
         foreach ($request->input('approvals', []) as $i => $approval) {
             $attachments = data_get($files, "approvals.$i.attachments");
-//            dd($attachments);
+
             if ($attachments) {
                 foreach ($attachments as $attachment) {
                     array_push($ticketAttachments, $attachment);
@@ -48,18 +46,6 @@ class ApprovalController extends Controller
             $newApproval->approver_id = $approval['approver_id'];
             $newApproval->status = 0;
             $newApproval->stage = isset($approval['stage']) ? $approval['stage'] : $ticket->approvals()->max('stage');
-
-//            if ($approval['new_stage']) {
-////                $newApproval->stage = $i + 1;
-////                $newApproval->stage = $ticket->nextApprovalStage();
-//                $newApproval->stage = $ticket->approvals()->max('stage') + 1;
-//            } else {
-//                if ($ticket->hasApprovalStages()) {
-//                    $newApproval->stage = $ticket->approvals()->max('stage');
-//                } else {
-//                    $newApproval->stage = 1;
-//                }
-//            }
 
             if ($approval['new_stage']) {
                 $newApproval->stage = $ticket->nextApprovalStage();
@@ -95,16 +81,11 @@ class ApprovalController extends Controller
 
         }
         return $approvals;
-
-//        if ($template_id = $request->get('template')) {
-//        }
-
     }
 
     public function resend(TicketApproval $ticketApproval, Request $request)
     {
         \Mail::to($ticketApproval->approver->email)->queue(new SendNewApproval($ticketApproval));
-//        $this->dispatch(new SendNewApproval($ticketApproval));
         TicketLog::approvalLog($ticketApproval, TicketLog::RESEND_APPROVAL);
 
         flash(t('Approval Info'), t('Approval has been sent successfully'), 'success');
@@ -135,15 +116,15 @@ class ApprovalController extends Controller
 
 //        if ($request->get('questions',[]) && count($request->questions)) {
         foreach ($request->get('questions', []) as $key => $answer) {
-            ApprovalQuestion::find($key)->update([
-                'answer' => $answer
+            ApprovalQuestion::find($answer['question_id'])->update([
+                'answer' => $answer['answer']
             ]);
-//            }
 
-            $request['status'] = $ticketApproval->approval_questions_status;
         }
 
-        $request['hidden_comment'] = isset($request->hidden_comment);
+        $request['status'] = count($request->get('questions')) ? $ticketApproval->approval_questions_status : $request->get('status');
+        $request['hidden_comment'] = $request->hide_the_comment;
+
         $ticketApproval->update($request->all());
 
         if (!$ticketApproval->ticket->isClosed() && !$ticketApproval->ticket->hasPendingApprovals()) {
@@ -153,16 +134,14 @@ class ApprovalController extends Controller
 
         if ($ticketApproval->ticket->technician_id) {
             \Mail::queue(new UpdateApprovalMail($ticketApproval));
-//            $this->dispatch(new UpdateApprovalJob($ticketApproval));
         }
 
         if ($ticketApproval->status != -1 && $ticketApproval->hasNext()) {
             $approvals = $ticketApproval->getNextStageApprovals();
             foreach ($approvals as $approval) {
-                \Mail::to($approval->approver->email)->send(new SendNewApproval($approval));
+                \Mail::to($approval->approver->email)->queue(new SendNewApproval($approval));
             }
         }
-
 
         if ($ticketApproval->status == 1 && !$ticketApproval->hasNext() && !$ticketApproval->ticket->technician_id) {//KGS
             dispatch(new ApplyBusinessRules($ticketApproval->ticket));
@@ -173,20 +152,15 @@ class ApprovalController extends Controller
             }
         }
 
-
         TicketLog::approvalLog($ticketApproval, $ticketApproval->status == TicketApproval::APPROVED ?
             TicketLog::APPROVED : TicketLog::DENIED);
 
-        flash(t('Approval Info'), 'Ticket has been ' . ($ticketApproval->status == TicketApproval::APPROVED ? 'approved' : 'rejected'), 'info');
-
-        return Redirect::route('ticket.show', $ticketApproval->ticket_id);
+        return response()->json(['message' => 'Approval has been updated successfully', 'approval_status' => ($ticketApproval->status == TicketApproval::APPROVED ? 'approved' : 'rejected')]);
     }
 
     public function destroy(TicketApproval $ticketApproval, Request $request)
     {
         if (!can('delete', $ticketApproval) || $ticketApproval->status != TicketApproval::PENDING_APPROVAL) {
-//            flash(t('Approval Sent'), t('Action not authorized'), 'error');
-//            return Redirect::back();
             return;
         }
 
@@ -198,8 +172,6 @@ class ApprovalController extends Controller
             $ticketApproval->ticket->update(['status_id' => 3]);
         }
 
-//        flash(t('Approval Info'), 'Approval has been deleted', 'info');
-//        return Redirect::route('ticket.show', $ticketApproval->ticket_id);
     }
 
     /**

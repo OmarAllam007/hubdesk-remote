@@ -1,5 +1,7 @@
 <template>
   <div>
+    <notifications-component></notifications-component>
+
     <div class="p-5 m-5">
       <div class="flex justify-between ">
         <h4 class="text-3xl ">
@@ -65,6 +67,26 @@
       </div>
     </div>
 
+    <div class="p-5 m-5 flex-col " v-else>
+      <div class="flex pt-5 ">
+        <div>
+          <label class="radio-online p-5  bg-green-100  hover:bg-green-200 rounded-2xl ">
+            <input type="radio" name="questions[]" @change="approvalForm.status = 1">
+            Approve
+            <i class="fa fa-thumbs-o-up"></i>
+          </label>
+        </div>
+        <div class="pl-5">
+          <label class="radio-online p-5 bg-red-100  hover:bg-red-200  rounded-2xl  "
+                 @change="approvalForm.status = -1">
+            <input type="radio" name="questions[]">
+            Deny
+            <i class="fa fa-thumbs-o-down"></i>
+          </label>
+        </div>
+      </div>
+    </div>
+
     <div class="p-5 m-5">
       <p class="font-bold text-2xl pb-2 ">Comment</p>
       <editor trigger="#" v-model="approvalForm.comment"
@@ -108,6 +130,9 @@
 import Editor from '@tinymce/tinymce-vue';
 import _ from 'lodash';
 import ApprovalShowTicketDetails from "./ApprovalShowTicketDetails";
+import axios from 'axios';
+import {EventBus} from "../../EventBus";
+import NotificationsComponent from "../show/NotificationsComponent";
 
 export default {
   name: "ApprovalShow",
@@ -118,6 +143,7 @@ export default {
         comment: '',
         questions: [],
         hide_the_comment: false,
+        status: ''
       }
     }
   },
@@ -129,6 +155,10 @@ export default {
   },
   computed: {
     can_submit() {
+      if (!this.approvalForm.questions.length) {
+        return this.approvalForm.status != '';
+      }
+
       var answer = true;
 
       _.each(this.approvalForm.questions, (aQuestion) => {
@@ -154,12 +184,18 @@ export default {
       })
     },
     submitApproval() {
-      console.log(this.approvalForm)
+      axios.post(`/approval/${this.approval.id}`, this.approvalForm).then((response) => {
+        EventBus.$emit('send_notification', 'approvals',
+            'Ticket Approval', `Approval has been submitted successfully 👍`, 'success');
+
+        window.location.href = `/ticket/${this.approval.ticket_id}`;
+      })
+
     }
   },
 
 
-  components: {ApprovalShowTicketDetails, Editor}
+  components: {ApprovalShowTicketDetails, Editor, NotificationsComponent}
 }
 </script>
 
