@@ -55678,7 +55678,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -55698,6 +55698,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__EventBus__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lodash__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_lodash__);
+//
 //
 //
 //
@@ -55816,34 +55817,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     __WEBPACK_IMPORTED_MODULE_3__EventBus__["a" /* EventBus */].$on('remove-approval-item', function (index) {
       _this.removeLevel(index);
     });
-    console.log('asd');
+
     this.loading = true;
-    __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/list/approvers').then(function (resposne) {
-      _this.users = resposne.data;
+    __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/list/approvers').then(function (response) {
+      _this.users = response.data;
       _this.loading = false;
     });
   },
   mounted: function mounted() {
-    var _this2 = this;
-
     this.init();
-
-    setTimeout(function () {
-      _this2.templates = _this2.$parent.templates;
-      // this.users = this.$parent.users;
-    }, 1000);
   },
 
 
   methods: {
     init: function init() {
-      this.loading = true;
       this.addNewLevel();
-
-      // axios.get('/list/approvers').then((response) => {
-      this.loading = false;
-      // });
-
       this.approvals_data = this.is_task ? this.task_approvals : this.approvals;
     },
     removeApproval: function removeApproval(approvalIndex) {
@@ -55866,7 +55854,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     },
     sendApproval: function sendApproval() {
-      var _this3 = this;
+      var _this2 = this;
 
       this.loading = true;
       var formData = new FormData();
@@ -55896,14 +55884,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           'Content-Type': 'multipart/form-data'
         }
       }).then(function (response) {
-        _this3.loading = false;
+        _this2.loading = false;
         response.data.forEach(function (approval) {
-          _this3.approvals_data.push(approval);
-          _this3.approvals_data = __WEBPACK_IMPORTED_MODULE_4_lodash___default.a.orderBy(_this3.approvals_data, ['stage'], ['asc']);
-          __WEBPACK_IMPORTED_MODULE_3__EventBus__["a" /* EventBus */].$emit('approval_created', _this3.approvals_data);
+          _this2.approvals_data.push(approval);
+          _this2.approvals_data = __WEBPACK_IMPORTED_MODULE_4_lodash___default.a.orderBy(_this2.approvals_data, ['stage'], ['asc']);
+          __WEBPACK_IMPORTED_MODULE_3__EventBus__["a" /* EventBus */].$emit('approval_created', _this2.approvals_data);
         });
 
-        _this3.clearForm();
+        _this2.clearForm();
 
         __WEBPACK_IMPORTED_MODULE_3__EventBus__["a" /* EventBus */].$emit('send_notification', 'approvals', 'Ticket Info', "Approval/s sent successfully", 'success');
 
@@ -55911,7 +55899,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         __WEBPACK_IMPORTED_MODULE_3__EventBus__["a" /* EventBus */].$emit('status_updated', { status: 'Waiting for Approval', status_id: 6 });
       }).catch(function (e) {
-        _this3.loading = false;
+        _this2.loading = false;
       });
     },
     clearForm: function clearForm() {
@@ -56058,7 +56046,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*.select2 {*/\n/*  width: 50%;*/\n/*}*/\n.cross-float[data-v-55d472c8] {\n  float: right\n}\n.selection-list[data-v-55d472c8] {\n  width: 500px !important;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*.select2 {*/\n/*  width: 50%;*/\n/*}*/\n.cross-float[data-v-55d472c8] {\n  float: right\n}\n.selection-list[data-v-55d472c8] {\n  width: 500px !important;\n}\n", ""]);
 
 // exports
 
@@ -56079,6 +56067,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_select_dist_vue_select_css__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_select_dist_vue_select_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_vue_select_dist_vue_select_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__tinymce_tinymce_vue__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_axios__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_Loader__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_Loader___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_Loader__);
 //
 //
 //
@@ -56199,6 +56191,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+
+
 
 
 
@@ -56211,29 +56207,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('v-select', __WEBPACK_IMPORTED_MODULE_3_vue_select___default.a.VueSelect);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ApprovalItem",
-  props: ['level', 'users', 'index', 'stages', 'templates'],
+  props: ['level', 'users', 'index', 'stages'],
   data: function data() {
     return {
       approver: 0,
       description: '',
       attachments: [],
       questions: [],
-      selected_template: ''
+      selected_template: '',
+      templates: [],
+      loading: false
     };
   },
-  created: function created() {},
+  created: function created() {
+    var _this = this;
+
+    this.loading = true;
+    __WEBPACK_IMPORTED_MODULE_6_axios___default.a.get('/list/templates').then(function (response) {
+      _this.templates = response.data;
+      _this.loading = false;
+    });
+  },
   mounted: function mounted() {},
 
   methods: {
     updateDescription: function updateDescription() {
-      var _this = this;
+      var _this2 = this;
 
       this.templates.forEach(function (template) {
-        if (_this.level.template_id == template.id) {
-          _this.level.description = template.description;
+        if (_this2.level.template_id == template.id) {
+          _this2.level.description = template.description;
           return;
         }
-        _this.level.description = '';
+        _this2.level.description = '';
       });
     },
     addQuestion: function addQuestion(index) {
@@ -56262,7 +56268,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('v-select', __WEBPACK_IMPO
       return this.description.length !== '' && this.approver !== 0;
     }
   },
-  components: { ApprovalQuestionRow: __WEBPACK_IMPORTED_MODULE_1__questions_ApprovalQuestionRow___default.a, vSelect: __WEBPACK_IMPORTED_MODULE_3_vue_select___default.a, Editor: __WEBPACK_IMPORTED_MODULE_5__tinymce_tinymce_vue__["a" /* default */] }
+  components: { Loader: __WEBPACK_IMPORTED_MODULE_7__components_Loader___default.a, ApprovalQuestionRow: __WEBPACK_IMPORTED_MODULE_1__questions_ApprovalQuestionRow___default.a, vSelect: __WEBPACK_IMPORTED_MODULE_3_vue_select___default.a, Editor: __WEBPACK_IMPORTED_MODULE_5__tinymce_tinymce_vue__["a" /* default */] }
 
 });
 
@@ -56445,7 +56451,21 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('div', {
+  return _c('div', [_c('loader', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.loading),
+      expression: "loading"
+    }],
+    staticClass: "flex justify-center  p-8 mb-5 rounded-xl border-t-2"
+  }), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (!_vm.loading),
+      expression: "!loading"
+    }],
     staticClass: "flex flex-col  p-8 mb-5 rounded-xl border-t-2"
   }, [_c('div', {
     staticClass: "flex justify-end"
@@ -56672,7 +56692,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.attachFiles($event)
       }
     }
-  })])])])])])
+  })])])])])], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

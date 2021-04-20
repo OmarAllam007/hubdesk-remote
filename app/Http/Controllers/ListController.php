@@ -10,6 +10,7 @@ use App\Impact;
 use App\Item;
 use App\Location;
 use App\Priority;
+use App\ReplyTemplate;
 use App\Status;
 use App\Subcategory;
 use App\SubItem;
@@ -216,6 +217,11 @@ class ListController extends Controller
         })->values()->toJson();
 
         return $data;
+    }
+
+    function templates()
+    {
+        return ReplyTemplate::where('user_id', auth()->id())->get();
     }
 
 }

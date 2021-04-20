@@ -69,14 +69,15 @@
     </div>
     <div class="flex justify-start pb-5 pt-5 " v-if="submit_approval">
       <button @click.prevent="addNewLevel" class="bg-transparent hover:bg-blue-500 text-blue-700
-      font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-2xl " ><i
+      font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-2xl "><i
           class="fa fa-plus"></i> {{ $root.t('Add New Approval') }}
       </button>
     </div>
     <!--    @can('submit_approval',$ticket)-->
     <div class="mt-5 flex flex-col  " v-if="submit_approval">
       <div v-for="(level, key) of levels" class="bg-white shadow-md rounded-2xl mt-5  ">
-        <approval-item :level="level" :users="users" :index="key" :key="key" :stages="stages_count" :templates="templates"></approval-item>
+        <approval-item :level="level" :users="users" :index="key" :key="key" :stages="stages_count"
+                       :templates="templates"></approval-item>
       </div>
 
     </div>
@@ -114,34 +115,20 @@ export default {
     EventBus.$on('remove-approval-item', (index) => {
       this.removeLevel(index);
     });
-console.log('asd')
+
     this.loading = true;
-    axios.get('/list/approvers').then((resposne) => {
-      this.users = resposne.data
+    axios.get('/list/approvers').then((response) => {
+      this.users = response.data
       this.loading = false;
     })
   },
   mounted() {
-    this.init();
-
-    setTimeout(() => {
-      this.templates = this.$parent.templates;
-      // this.users = this.$parent.users;
-
-    }, 1000)
-
-
+    this.init()
   },
 
   methods: {
     init() {
-      this.loading = true;
       this.addNewLevel();
-
-      // axios.get('/list/approvers').then((response) => {
-        this.loading = false;
-      // });
-
       this.approvals_data = this.is_task ? this.task_approvals : this.approvals;
     },
     removeApproval(approvalIndex) {
