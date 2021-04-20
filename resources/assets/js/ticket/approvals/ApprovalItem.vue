@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div class="flex flex-col  p-8 mb-5 rounded-xl border-t-2">
+    <loader class="flex justify-center  p-8 mb-5 rounded-xl border-t-2" v-show="loading"></loader>
+
+    <div v-show="!loading" class="flex flex-col  p-8 mb-5 rounded-xl border-t-2">
       <div class="flex justify-end">
         <a href="#" class="text-danger cross-float" type="button" @click.prevent="deleteMe(index)">
           <i class="fa fa-lg  fa-times"></i>
@@ -126,11 +128,13 @@ import vSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css';
 
 import Editor from '@tinymce/tinymce-vue'
+import axios from "axios";
+import Loader from "../_components/Loader";
 
 Vue.component('v-select', vSelect.VueSelect);
 export default {
   name: "ApprovalItem",
-  props: ['level', 'users', 'index', 'stages','templates'],
+  props: ['level', 'users', 'index', 'stages'],
   data() {
     return {
       approver: 0,
@@ -138,10 +142,16 @@ export default {
       attachments: [],
       questions: [],
       selected_template: '',
+      templates:[],
+      loading:false
     }
   },
   created() {
-
+    this.loading = true;
+    axios.get('/list/templates').then((response) => {
+      this.templates = response.data
+      this.loading = false;
+    })
   },
   mounted() {
 
@@ -184,7 +194,7 @@ export default {
       return this.description.length !== '' && this.approver !== 0;
     }
   },
-  components: {ApprovalQuestionRow, vSelect, Editor}
+  components: {Loader, ApprovalQuestionRow, vSelect, Editor}
 
 }
 </script>

@@ -45,6 +45,7 @@ Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
     $r->get('/requester', 'ListController@requester');
     $r->get('/group', 'ListController@supportGroup');
     $r->get('/approvers', 'ListController@approvers');
+    $r->get('/templates', 'ListController@templates');
 
     $r->get('/list-statuses/{ticket}', 'ListController@getStatus');
     $r->get('/dashboard-business-unit', 'ListController@dashboardBusinessUnit');
