@@ -109,7 +109,7 @@
                   <div v-for="(item,key) in items">
                     <!--          <text-field :label="item.name" v-if="item.type == 'textfield'"></text-field>-->
                     <component :is="item.type" :label="item.name"
-                               :name="`cf[${item.id}]`" :id="`cf[${item.id}]`"h
+                               :name="`cf[${item.id}]`" :id="`cf[${item.id}]`" h
                                class="pt-3" v-model="custom_fields[item.id]" :options="item.options">
                     </component>
                   </div>
@@ -148,6 +148,7 @@ import Date from "../custom_fields/Date";
 import TextField from "../custom_fields/TextField";
 import SelectField from "../custom_fields/SelectField";
 import {EventBus} from "../../EventBus";
+import _ from "lodash";
 
 export default {
   name: "TaskModal",
@@ -224,13 +225,8 @@ export default {
     },
 
     getTemplateDescription() {
-      this.$parent.templates.filter((template) => {
-        if (this.template_id == template.id) {
-          this.description = template.description;
-        } else {
-          this.description = '';
-        }
-      })
+      let template = _.find(this.$parent.templates, {'id': this.template_id});
+      this.description = template ? template.description : '';
     },
     attachFiles(event) {
       this.attachments = [];
@@ -242,7 +238,7 @@ export default {
 
     submitTask() {
       let task = this.prepareData();
-      axios.post(`/ticket/tasks/${this.ticket_id}`,
+      axios.post(`/ticket/tasks/${this.$parent.ticket.id}`,
           task, {
             headers: {
               'Content-Type': 'multipart/form-data'
@@ -273,9 +269,11 @@ export default {
       this.category_id = '';
       this.subcategory_id = '';
       this.item_id = '';
-      this.custom_fields = {}
+      this.custom_fields = {};
+      this.template_id = ''
     },
     prepareData() {
+      console.log(this.$parent.ticket)
       var task = new FormData;
       task.append('_token', $('meta[name="csrf-token"]').attr('content'));
 

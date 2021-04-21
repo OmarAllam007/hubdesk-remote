@@ -3,11 +3,11 @@
     <div v-if="is_task && approvals.length">
       <h5>
         <strong>
-          {{ $root.t('Main Ticket Approvals') }}
+          {{ $root.t('Main Request Approvals') }}
         </strong>
       </h5>
-      <table class="listing-table">
-        <thead class="table-design">
+      <table class="table pt-5 ">
+        <thead class="p-3 bg-viola bg-opacity-75 text-white rounded-tl-xl font-bold">
         <tr>
           <th>{{ $root.t('Sent to') }}</th>
           <th>{{ $root.t('By') }}</th>
@@ -21,7 +21,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for="approval_row of approvals">
+        <tr v-for="approval_row of approvals" class="hover:bg-yellow-100 bg-white">
           <td>{{ approval_row.approver }}</td>
           <td>{{ approval_row.approver }}</td>
           <td>{{ approval_row.created_at }}</td>
@@ -30,7 +30,7 @@
             {{ approval_row.status }}
           </td>
           <td>
-            <strong>{{ approval_row.comment }}</strong>
+            <strong v-html="approval_row.comment" v-if="approval_row.hidden_comment === '0'"></strong>
           </td>
           <td>{{ approval_row.action_date }}</td>
           <td></td>
@@ -43,7 +43,7 @@
     <div v-if="approvals_data.length">
       <h5>
         <strong v-if="this.is_task">
-          {{ $root.t('Task Approvals') }}
+          {{ $root.t('Request Approvals') }}
         </strong>
       </h5>
       <table class="table pt-5 ">

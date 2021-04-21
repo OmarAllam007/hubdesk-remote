@@ -130,6 +130,7 @@ import 'vue-select/dist/vue-select.css';
 import Editor from '@tinymce/tinymce-vue'
 import axios from "axios";
 import Loader from "../_components/Loader";
+import _ from "lodash";
 
 Vue.component('v-select', vSelect.VueSelect);
 export default {
@@ -158,13 +159,8 @@ export default {
   },
   methods: {
     updateDescription() {
-      this.templates.forEach((template) => {
-        if (this.level.template_id == template.id) {
-          this.level.description = template.description;
-          return;
-        }
-        this.level.description = ''
-      })
+      let template = _.find(this.templates, {'id': this.level.template_id});
+      this.level.description = template ? template.description : '';
     },
     addQuestion(index) {
       this.level.questions.push({description: ''});
