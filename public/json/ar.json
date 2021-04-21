@@ -7,7 +7,6 @@
     "created_at": null,
     "updated_at": null
   },
-
   {
     "id": 2,
     "word": "Email Services",
@@ -8581,6 +8580,22 @@
     "word": "SubItem",
     "language": "ar",
     "translation": "الفئة الثانوية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2831,
+    "word": "Add or Remove a delegated signature",
+    "language": "ar",
+    "translation": "اضافة او حذف توقيع مفوض فى الغرفة التجارية",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2832,
+    "word": "Activation of Electronic Services",
+    "language": "ar",
+    "translation": "تفعيل الخدمات الالكترونية",
     "created_at": null,
     "updated_at": null
   }
