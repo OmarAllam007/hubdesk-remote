@@ -113,13 +113,9 @@ export default {
       }
     },
     updateDescription() {
-      this.templates.forEach((template) => {
-        if (this.selected_template == template.id) {
-          this.resolution_description = template.description;
-          return;
-        }
-        this.resolution_description = ''
-      })
+
+      let template = _.find(this.templates, {'id': this.selected_template});
+      this.resolution_description = template ? template.description : '';
     },
     editResolution() {
       // this.selected_template = this.resolution.content;
