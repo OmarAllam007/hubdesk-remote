@@ -34,6 +34,10 @@ class TicketReplyObserver
             $this->handleTechnician($reply);
         }
 
+        if ($reply->user->isTechnician() && $reply->user_id != $reply->ticket->technician_id && !$reply->status_id) {
+            $reply->status_id = $reply->ticket->status_id;
+        }
+
         if ($reply->status_id == 8) {
             $reply->ticket->close_date = Carbon::now();
             if (!$reply->ticket->resolve_date) {

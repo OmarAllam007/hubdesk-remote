@@ -220,8 +220,7 @@ export default {
   computed: {
     canSubmit() {
       return this.description.length > 0
-          && this.description != "<p>&nbsp;</p>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 605px; top: 26px;\">&nbsp;</div>"
-          && this.selected_status;
+          && this.description != "<p>&nbsp;</p>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 605px; top: 26px;\">&nbsp;</div>";
     },
     replyStyle() {
       if (this.canSubmit) {
