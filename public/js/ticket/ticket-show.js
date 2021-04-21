@@ -45790,7 +45790,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   computed: {
     canSubmit: function canSubmit() {
-      return this.description.length > 0 && this.description != "<p>&nbsp;</p>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 605px; top: 26px;\">&nbsp;</div>" && this.selected_status;
+      return this.description.length > 0 && this.description != "<p>&nbsp;</p>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 605px; top: 26px;\">&nbsp;</div>";
     },
     replyStyle: function replyStyle() {
       if (this.canSubmit) {
