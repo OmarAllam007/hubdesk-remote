@@ -70,6 +70,10 @@ class TicketReplyJob implements ShouldQueue
             }
 
             $this->sendEmail();
+        } else {
+            if ($ticket->technician->email) {
+                $this->to[] = $ticket->technician->email;
+            }
         }
     }
 
@@ -84,7 +88,7 @@ class TicketReplyJob implements ShouldQueue
 
             \Mail::to($toUsers)->cc($ccUsers)->send(new ReplyTicketMail($this->reply));
         }
-//        $this->sendSurvey($this->reply->ticket);
+        $this->sendSurvey($this->reply->ticket);
     }
 
     private function sendSurvey($ticket)
