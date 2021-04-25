@@ -2,19 +2,19 @@
   <div class="flex flex-col w-full  bg-white shadow-md print:shadow-none">
 
     <div class="flex overflow-x-scroll print:overflow-visible">
-      <table class="w-full shadow-md">
+      <table class="w-full shadow-md" id="ticketClosedVsCategory">
         <thead>
         <tr>
           <th
-              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md
+              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-2xl
             font-semibold text-gray-600 uppercase tracking-wider">
             Status
           </th>
-          <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200  text-center  text-md
+          <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200  text-center  text-2xl
             font-semibold text-gray-600 uppercase tracking-wider" v-for="th in header">
             {{ th }}
           </th>
-          <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200  text-center  text-md
+          <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200  text-center  text-2xl
             font-semibold text-gray-600 uppercase tracking-wider">
             Total
           </th>
@@ -22,23 +22,23 @@
         </thead>
         <tbody>
         <tr class="bg-white hover:bg-yellow-100  " v-for="(status , statusName) in closedTicketsStatusVsCategory.statuses">
-          <td class="px-5 py-5 border-b border-gray-200 text-md  ">
+          <td class="px-5 py-5 border-b border-gray-200 text-2xl   ">
             {{ statusName }}
           </td>
-          <td class="px-5 py-5 border-b border-gray-200 text-md   text-center" v-for="(item,key) in status.items">
+          <td class="px-5 py-5 border-b border-gray-200 text-2xl    text-center" v-for="(item,key) in status.items">
             {{ item }}
           </td>
-          <td class="px-5 py-5 border-b border-gray-200 text-md   text-center">
+          <td class="px-5 py-5 border-b border-gray-200 text-2xl    text-center">
             {{ status.Total }}
           </td>
         </tr>
         </tbody>
         <tfoot>
         <tr>
-          <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md
+          <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-2xl
             font-semibold text-gray-600 uppercase tracking-wider">Total
           </td>
-          <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md
+          <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-2xl
                       font-semibold text-gray-600 uppercase tracking-wider text-center"
               v-for="number in closedTicketsStatusVsCategory.footer">
             {{ number }}

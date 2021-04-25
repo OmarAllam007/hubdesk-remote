@@ -1,11 +1,27 @@
 <template>
 
   <div>
+    <div class="flex pb-5 " v-if="!displayFilters">
+      <button
+          class=" bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 h-16 w-16
+          px-4 border border-blue-500 hover:border-transparent rounded collapse-btn"
+          @click="displayFilters = !displayFilters">
+        <i class="fa fa-bars transform "
+           :class="{'rotate-90': displayFilters , 'animate-pulse':!displayFilters}"></i>
+
+      </button>
+    </div>
+
     <div class="flex flex-col md:flex-row lg-flex-row xl:flex-row ">
-      <div
-          class="h-full justify-start  w-full lg:w-2/12   md:w-2/12   xl:w-2/12   bg-white shadow-md p-5 mr-5 rounded-xl"
-          id="filterBar">
-        <p class="text-2xl font-bold"><i class="fa fa-filter"></i> Filters</p>
+      <div class="h-full justify-start w-full lg:w-2/12 md:w-2/12 xl:w-2/12 bg-white shadow-md p-5 mr-5 rounded-xl"
+          v-if="displayFilters">
+        <div class="flex justify-between  ">
+          <p class="text-3xl  font-bold">
+            <i class="fa fa-filter"></i>
+            Filters</p>
+          <button @click="displayFilters = !displayFilters"><i class="fa fa-minus-circle"></i> Hide</button>
+        </div>
+
         <div class="pt-5"></div>
         <hr>
         <div class="pt-5"></div>
@@ -53,48 +69,38 @@
               @click="clearFilters"><i class="fa fa-times"></i> Clear
           </button>
         </div>
-
-
-        <!--        <label>-->
-        <!--          Business Unit-->
-        <!--          <select name="business_units" id="business_units" class="form-control select2">-->
-        <!--            <option value="">1</option>-->
-        <!--          </select>-->
-        <!--        </label>-->
       </div>
 
       <div v-if="loading">
         <i class="fa fa-spin fa-spinner fa-2x"></i>
       </div>
       <div
-          v-else
-          class="h-full justify-start  w-full lg:w-10/12  md:w-10/12  xl:w-10/12  p-5 mr-5 rounded-xl print:w-full "
-      >
+          v-else class="h-full justify-start  p-5 mr-5 rounded-xl " :class="responseTheWide">
 
         <div class="page-break">
           <div class="flex flex-col">
             <p class="text-3xl font-bold  pb-5 text-center">Tickets Overview</p>
-            <p class="text-2xl font-bold pb-5">Tickets Created Vs. Closed</p>
+            <p class="text-3xl  font-bold pb-5">Tickets Created Vs. Closed</p>
             <tickets-created-vs-closed :ticketsCreatedClosed="ticketsCreatedClosed"></tickets-created-vs-closed>
           </div>
         </div>
         <div class="page-break">
           <div class="flex flex-col">
-            <p class="text-2xl  font-bold pb-5 pt-5 ">Tickets Priority - YTD</p>
+            <p class="text-3xl  font-bold pb-5 pt-20 ">Tickets Priority - YTD</p>
             <ticket-priority :ticketsPriority="ticketsPriority"></ticket-priority>
           </div>
         </div>
         <div class="page-break">
           <div class="flex flex-col">
-            <p class="text-3xl font-bold  pb-5 pt-5 text-center">Open Tickets Analysis - YTD</p>
-            <p class="text-2xl font-bold pb-5">Tickets Status Vs. Category</p>
+            <p class="text-3xl font-bold  pb-5 pt-20  text-center">Open Tickets Analysis - YTD</p>
+            <p class="text-3xl font-bold pb-5">Tickets Status Vs. Category</p>
             <ticket-status-vs-category :ticketStatus="ticketsStatus"></ticket-status-vs-category>
           </div>
         </div>
 
         <div class="page-break">
           <div class="flex flex-col">
-            <p class="text-2xl font-bold pb-5 pt-5 ">Tickets Priority Vs. Category</p>
+            <p class="text-3xl font-bold pb-5 pt-20  ">Tickets Priority Vs. Category</p>
             <ticket-priority-vs-category :ticketPriorityCategory="ticketPriorityCategory"></ticket-priority-vs-category>
           </div>
         </div>
@@ -102,8 +108,8 @@
 
         <div class="page-break">
           <div class="flex flex-col">
-            <p class="text-3xl font-bold  pb-5 pt-5 text-center">Closed Tickets Analysis - YTD</p>
-            <p class="text-2xl font-bold pb-5">Tickets Status Vs. Category</p>
+            <p class="text-3xl font-bold  pb-5 pt-20  text-center">Closed Tickets Analysis - YTD</p>
+            <p class="text-3xl  font-bold pb-5">Tickets Status Vs. Category</p>
             <ticket-closed-status-vs-category
                 :closedTicketsStatusVsCategory="closedTicketsStatusVsCategory"></ticket-closed-status-vs-category>
           </div>
@@ -112,13 +118,12 @@
 
         <div class="page-break">
           <div class="flex flex-col">
-            <p class="text-2xl font-bold pb-5 pt-5">Tickets Priority Vs. Category</p>
+            <p class="text-3xl  font-bold pb-5 pt-20 ">Tickets Priority Vs. Category</p>
             <closed-ticket-priority-vs-category
                 :closedTicketPriorityCategory="closedTicketPriorityCategory"></closed-ticket-priority-vs-category>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </template>
@@ -137,11 +142,12 @@ import {stringify} from "querystring";
 
 export default {
   name: "Main",
-  props: ['data','business'],
+  props: ['data', 'business'],
 
   data() {
 
     return {
+      displayFilters: true,
       ticketsPriority: [],
       ticketsCreatedClosed: [],
       ticketsStatus: [],
@@ -176,8 +182,6 @@ export default {
 
     fillData(loading = true) {
       this.loading = loading;
-
-
       axios.get('/dashboard/status-dashboard-data', {
         params: {
           filters: this.filters,
@@ -195,6 +199,7 @@ export default {
         this.closedTicketPriorityCategory = response.data.closedTicketsPriorityVsCategory;
 
         this.loading = false;
+        location.reload();
       }).catch(e => console.log(e));
     },
     addToBusinessUnit(id) {
@@ -220,6 +225,12 @@ export default {
     }
   },
   computed: {
+    responseTheWide() {
+      if (this.displayFilters) {
+        return 'w-full lg:w-10/12  md:w-10/12  xl:w-10/12 print:w-full'
+      }
+      return 'w-full lg:w-full  md:w-full  xl:w-full print:w-full'
+    },
     getFilterClass() {
       if (this.can_filter) {
         return 'block w-full bg-green-500 hover:bg-green-700 focus:bg-green-700 text-white rounded-lg px-3 py-3 font-semibold';

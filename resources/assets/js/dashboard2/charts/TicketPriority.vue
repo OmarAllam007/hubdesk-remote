@@ -6,40 +6,40 @@
         <thead>
         <tr>
           <th
-              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md
-            font-semibold text-gray-600 uppercase print:text-sm">
+              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-2xl
+            font-semibold text-gray-600 uppercase print:text-2xl ">
             Priority
           </th>
-          <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200  text-center  text-md
-            font-semibold text-gray-600 uppercase print:text-sm" v-for="th in header">
+          <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200  text-center  text-2xl
+            font-semibold text-gray-600 uppercase print:text-2xl " v-for="th in header">
             {{ th }}
           </th>
-          <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200  text-center  text-md
-            font-semibold text-gray-600 uppercase print:text-sm">
+          <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200  text-center  text-2xl
+            font-semibold text-gray-600 uppercase print:text-2xl ">
             Total
           </th>
         </tr>
         </thead>
         <tbody>
         <tr class="bg-white hover:bg-yellow-100  " v-for="(priority , priorityName) in ticketsPriority.priorities">
-          <td class="px-5 py-5 border-b border-gray-200 text-md  print:text-sm">
+          <td class="px-5 py-5 border-b border-gray-200 text-2xl   print:text-2xl ">
             {{ priorityName }}
           </td>
-          <td class="px-5 py-5 border-b border-gray-200 text-md   text-center print:text-sm"
+          <td class="px-5 py-5 border-b border-gray-200 text-2xl    text-center print:text-2xl "
               v-for="(item,key) in priority.items">
             {{ item }}
           </td>
-          <td class="px-5 py-5 border-b border-gray-200 text-md   text-center print:text-sm">
+          <td class="px-5 py-5 border-b border-gray-200 text-2xl    text-center print:text-2xl ">
             {{ priority.Total }}
           </td>
         </tr>
         </tbody>
         <tfoot>
-        <tr>
-          <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md print:text-sm
+        <tr id="Total">
+          <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-2xl  print:text-2xl
             font-semibold text-gray-600 uppercase ">Total
           </td>
-          <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md print:text-sm
+          <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-2xl  print:text-2xl
             font-semibold text-gray-600 uppercase  text-center" v-for="number in ticketsPriority.footer">
             {{ number }}
           </td>
@@ -67,6 +67,7 @@ export default {
     }
   },
   mounted() {
+
     const data = [];
     this.header = Object.values(this.ticketsPriority.header);
 

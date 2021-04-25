@@ -67,7 +67,6 @@ class StatusDashboard
 
     function getTicketCreatedVsClosed()
     {
-
         $createdTickets = $this->rowData->whereBetween('created_at', [$this->from, $this->to])->groupBy(function ($ticket) {
             return Carbon::parse($ticket->created_at)->format('m/Y');
         })->map(function ($item, $key) {

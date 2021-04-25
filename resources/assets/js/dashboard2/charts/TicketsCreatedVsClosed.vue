@@ -5,18 +5,18 @@
         <thead>
         <tr>
           <th
-              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md
+              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-2xl
             font-semibold text-gray-600 uppercase">
             Month
           </th>
           <th
-              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md
+              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-2xl
             font-semibold text-gray-600 uppercase text-center">
             Tickets Created
           </th>
 
           <th
-              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md
+              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-2xl
             font-semibold text-gray-600 uppercase text-center">
             Tickets Closed
           </th>
@@ -24,13 +24,13 @@
         </thead>
         <tbody>
         <tr class="bg-white hover:bg-yellow-100  " v-for="(date , dateKey) in rows">
-          <td class="px-5 py-5 border-b border-gray-200 text-md ">
+          <td class="px-5 py-5 border-b border-gray-200 text-2xl    ">
             {{ date.month }}
           </td>
-          <td class="px-5 py-5 border-b border-gray-200 text-md   text-center">
+          <td class="px-5 py-5 border-b border-gray-200 text-2xl      text-center">
             {{ date.created }}
           </td>
-          <td class="px-5 py-5 border-b border-gray-200 text-md   text-center">
+          <td class="px-5 py-5 border-b border-gray-200 text-2xl      text-center">
             {{ date.closed }}
           </td>
         </tr>
@@ -40,10 +40,10 @@
         </tbody>
         <tfoot>
         <tr>
-          <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md
+          <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-2xl
             font-semibold text-gray-600 uppercase">Total
           </td>
-          <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-md
+          <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-2xl
             font-semibold text-gray-600 uppercase text-center"
               v-for="number in total ">
             {{ number }}
