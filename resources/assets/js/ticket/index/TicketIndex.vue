@@ -65,11 +65,6 @@
 
       <div class="relative" :class="ticketsWidth">
         <loader v-if="loading && !initLoading"></loader>
-        <!--        <div class="flex justify-center" v-if="loading && !initLoading">-->
-        <!--          <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-24 w-24 mt-64"></div>-->
-        <!--        </div>-->
-
-
         <div class="transition flex flex-col ease-in-out mt-3 md:mt-0 xl:mt-0 lg:mt-0 2xl:mt-0" v-else>
           <div v-if="!loading && !tickets.data.length" class="flex justify-center pt-10">
             <div class="p-4 w-2/3  bg-blue-600 font-bold text-white rounded-2xl text-center shadow-md">

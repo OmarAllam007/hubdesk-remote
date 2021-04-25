@@ -12,6 +12,7 @@
                 margin: 5px;
                 padding: 5px;
             }
+
             table {
                 zoom: 0.5;
             }
@@ -50,4 +51,115 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
     <script src="{{ asset('js/status_dashboard/index.js') }}"></script>
 
+    <script>
+        // setTimeout(()=>{
+        $('#ticketPriorityTable > tfoot > tr > td').each(function (pindex, td) {
+            if ($(this).html() == 0) {
+                // console.log(pindex)
+                var table = document.getElementById("ticketPriorityTable");
+                for (let i in table.rows) {
+                    let row = table.rows[i]
+                    //rows would be accessed using the "row" variable assigned in the for loop
+                    for (let j in row.cells) {
+                        let col = row.cells[j]
+                        if (j == pindex) {
+                            $(col).css({'display': 'none'})
+                        }
+
+                    }
+                }
+            }
+        });
+
+$('#ticketStatusVsCategory > tfoot > tr > td').each(function (pindex, td) {
+            if ($(this).html() == 0) {
+                // console.log(pindex)
+                var table = document.getElementById("ticketStatusVsCategory");
+                for (let i in table.rows) {
+                    let row = table.rows[i]
+                    //rows would be accessed using the "row" variable assigned in the for loop
+                    for (let j in row.cells) {
+                        let col = row.cells[j]
+                        if (j == pindex) {
+                            $(col).css({'display': 'none'})
+                        }
+
+                    }
+                }
+            }
+        });
+
+$('#ticketPriorityVsCategory > tfoot > tr > td').each(function (pindex, td) {
+            if ($(this).html() == 0) {
+                // console.log(pindex)
+                var table = document.getElementById("ticketPriorityVsCategory");
+                for (let i in table.rows) {
+                    let row = table.rows[i]
+                    //rows would be accessed using the "row" variable assigned in the for loop
+                    for (let j in row.cells) {
+                        let col = row.cells[j]
+                        if (j == pindex) {
+                            $(col).css({'display': 'none'})
+                        }
+
+                    }
+                }
+            }
+        });
+
+$('#ticketClosedVsCategory > tfoot > tr > td').each(function (pindex, td) {
+            if ($(this).html() == 0) {
+                // console.log(pindex)
+                var table = document.getElementById("ticketClosedVsCategory");
+                for (let i in table.rows) {
+                    let row = table.rows[i]
+                    //rows would be accessed using the "row" variable assigned in the for loop
+                    for (let j in row.cells) {
+                        let col = row.cells[j]
+                        if (j == pindex) {
+                            $(col).css({'display': 'none'})
+                        }
+
+                    }
+                }
+            }
+        });
+
+$('#ticketClosedVsCategory > tfoot > tr > td').each(function (pindex, td) {
+            if ($(this).html() == 0) {
+                // console.log(pindex)
+                var table = document.getElementById("ticketClosedVsCategory");
+                for (let i in table.rows) {
+                    let row = table.rows[i]
+                    //rows would be accessed using the "row" variable assigned in the for loop
+                    for (let j in row.cells) {
+                        let col = row.cells[j]
+                        if (j == pindex) {
+                            $(col).css({'display': 'none'})
+                        }
+
+                    }
+                }
+            }
+        });
+
+$('#closedTicketPriorityVsCategory > tfoot > tr > td').each(function (pindex, td) {
+            if ($(this).html() == 0) {
+                // console.log(pindex)
+                var table = document.getElementById("closedTicketPriorityVsCategory");
+                for (let i in table.rows) {
+                    let row = table.rows[i]
+                    //rows would be accessed using the "row" variable assigned in the for loop
+                    for (let j in row.cells) {
+                        let col = row.cells[j]
+                        if (j == pindex) {
+                            $(col).css({'display': 'none'})
+                        }
+
+                    }
+                }
+            }
+        });
+        // },5000)
+    </script>
 @endsection
