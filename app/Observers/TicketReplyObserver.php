@@ -34,7 +34,7 @@ class TicketReplyObserver
             $this->handleTechnician($reply);
         }
 
-        if ($reply->user->isTechnician() && $reply->user_id != $reply->ticket->technician_id && !$reply->status_id) {
+        if (can('show', $reply->ticket) && $reply->user_id != $reply->ticket->technician_id && !$reply->status_id) {
             $reply->status_id = $reply->ticket->status_id;
         }
 
