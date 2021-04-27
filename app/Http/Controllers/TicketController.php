@@ -270,13 +270,10 @@ class TicketController extends Controller
         $ticket->update($request->only(['group_id', 'technician_id', 'category_id', 'subcategory_id', 'item_id', 'subitem_id']));
 
         if ($request->get('technician_id') != $current_technician) {
-            \Mail::queue(new TicketAssignedMail($ticket));
+            \Mail::send(new TicketAssignedMail($ticket));
         }
-
+//        1432006
         return \response()->json(['message' => 'Ticket reassigned successfully', 'ticket' => TicketResource::make($ticket)]);
-//        flash(t('Ticket Info'), t('Ticket has been re-assigned'), 'success');
-
-//        return \Redirect::route('ticket.show', $ticket);
     }
 
     public function scope(Request $request)
