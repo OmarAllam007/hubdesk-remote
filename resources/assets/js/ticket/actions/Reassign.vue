@@ -199,7 +199,7 @@ export default {
         EventBus.$emit('send_notification', 'ticket',
             'Ticket Info', `Ticket Reassigned Successfully`, 'success');
 
-        this.$parent.ticketData = response.data.ticket;
+        this.$parent.ticketData = response.data.new_ticket;
         this.assigned_loading = false;
         this.resetForm();
         this.closeModal();
