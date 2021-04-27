@@ -267,13 +267,11 @@ class TicketController extends Controller
     {
         Ticket::flushEventListeners();
 
-        $current_technician = $ticket->technician_id;
+//        $current_technician = $ticket->technician_id;
 
         $ticket->update($request->only(['group_id', 'technician_id', 'category_id', 'subcategory_id', 'item_id', 'subitem_id']));
 
-        if ($request->get('technician_id') != $current_technician) {
-            \Mail::queue(new TicketAssignedMail($ticket));
-        }
+        \Mail::queue(new TicketAssignedMail($ticket));
 
         return \response()->json(['message' => 'Ticket reassigned successfully', 'new_ticket' => TicketResource::make($ticket)]);
     }
