@@ -57611,7 +57611,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).then(function (response) {
         __WEBPACK_IMPORTED_MODULE_0__EventBus__["a" /* EventBus */].$emit('send_notification', 'ticket', 'Ticket Info', "Ticket Reassigned Successfully", 'success');
 
-        _this3.$parent.ticketData = response.data.ticket;
+        _this3.$parent.ticketData = response.data.new_ticket;
         _this3.assigned_loading = false;
         _this3.resetForm();
         _this3.closeModal();
