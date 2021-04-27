@@ -57519,6 +57519,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -57545,7 +57546,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       subitem_id: '',
       ticket_id: '',
       creationState: true,
-      loading: false
+      loading: false,
+      assigned_loading: false
     };
   },
   created: function created() {
@@ -57598,6 +57600,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     reassign: function reassign() {
       var _this3 = this;
 
+      this.assigned_loading = true;
       __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post("reassign/" + this.ticket_id, {
         'group_id': this.group_id,
         'technician_id': this.technician_id,
@@ -57609,6 +57612,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         __WEBPACK_IMPORTED_MODULE_0__EventBus__["a" /* EventBus */].$emit('send_notification', 'ticket', 'Ticket Info', "Ticket Reassigned Successfully", 'success');
 
         _this3.$parent.ticketData = response.data.ticket;
+        _this3.assigned_loading = false;
         _this3.resetForm();
         _this3.closeModal();
       });
@@ -57685,7 +57689,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   computed: {
     can_reassign: function can_reassign() {
-      return this.group_id != '' && this.technician_id != '' && this.category_id != '';
+      return this.group_id != '' && this.technician_id != '' && this.category_id != '' && !this.assigned_loading;
     },
     submitClass: function submitClass() {
       if (this.can_reassign) {
@@ -57993,8 +57997,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": _vm.reassign
     }
-  }, [_c('i', {
+  }, [(!_vm.assigned_loading) ? _c('i', {
     staticClass: "fa fa-check-circle"
+  }) : _c('i', {
+    staticClass: "fa fa-spin fa-spinner"
   }), _vm._v("\n                " + _vm._s(_vm.$root.t('Reassign')) + "\n              ")]), _vm._v(" "), _c('button', {
     staticClass: "bg-white hover:text-gray-800    font-bold py-2 px-4  hover:text-white rounded-xl  mr-2 pb-2 mb-2 ",
     attrs: {

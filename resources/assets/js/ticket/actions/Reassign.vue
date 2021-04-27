@@ -90,7 +90,8 @@
                     :class="submitClass"
                     class="text-white font-bold py-2 px-4  hover:text-white rounded-xl  mr-2 shadow-md pb-2 mb-2 "
                     @click="reassign">
-                  <i class="fa fa-check-circle"></i>
+                  <i class="fa fa-check-circle" v-if="!assigned_loading"></i>
+                  <i class="fa fa-spin fa-spinner" v-else></i>
                   {{ $root.t('Reassign') }}
                 </button>
                 <button type="button"
@@ -134,6 +135,7 @@ export default {
       ticket_id: '',
       creationState: true,
       loading: false,
+      assigned_loading:false,
     }
   },
   created() {
@@ -185,6 +187,7 @@ export default {
     },
 
     reassign() {
+      this.assigned_loading = true;
       axios.post(`reassign/${this.ticket_id}`, {
         'group_id': this.group_id,
         'technician_id': this.technician_id,
@@ -197,6 +200,7 @@ export default {
             'Ticket Info', `Ticket Reassigned Successfully`, 'success');
 
         this.$parent.ticketData = response.data.ticket;
+        this.assigned_loading = false;
         this.resetForm();
         this.closeModal();
       })
@@ -268,10 +272,10 @@ export default {
   },
   computed: {
     can_reassign() {
-      return this.group_id != '' && this.technician_id != '' && this.category_id != '';
+      return this.group_id != '' && this.technician_id != '' && this.category_id != '' && !this.assigned_loading
     },
     submitClass() {
-      if (this.can_reassign) {
+      if (this.can_reassign ) {
         return 'bg-green-600 hover:bg-green-800 cursor-pointer';
       }
       return 'bg-gray-500 hover:bg-gray-500 cursor-not-allowed'
