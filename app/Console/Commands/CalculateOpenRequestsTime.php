@@ -15,7 +15,7 @@ class CalculateOpenRequestsTime extends Command
     public function handle()
     {
         Ticket::open()->get()->each(function(Ticket $ticket) {
-            dispatch(new CalculateTicketTime($ticket));
+            dispatch(new CalculateTicketTime($ticket))->onQueue('ticket_calculations');
         });
     }
 }
