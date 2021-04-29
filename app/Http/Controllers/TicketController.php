@@ -143,11 +143,6 @@ class TicketController extends Controller
 
     public function update(Ticket $ticket, TicketRequest $request)
     {
-        // Fires updated event in \App\Providers\TicketEventsProvider
-//        $ticket->update($request->all());
-//
-//        flash('Ticket has been saved', 'success');
-
         return \Redirect::route('ticket.index');
     }
 
@@ -265,10 +260,6 @@ class TicketController extends Controller
 
     public function reassign(Ticket $ticket, ReassignRequest $request)
     {
-        Ticket::flushEventListeners();
-
-//        $current_technician = $ticket->technician_id;
-
         $ticket->update($request->only(['group_id', 'technician_id', 'category_id', 'subcategory_id', 'item_id', 'subitem_id']));
 
         \Mail::queue(new TicketAssignedMail($ticket));
