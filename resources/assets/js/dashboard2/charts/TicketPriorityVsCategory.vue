@@ -2,19 +2,19 @@
   <div class="flex flex-col w-full  bg-white shadow-md print:shadow-none">
 
     <div class="flex overflow-x-scroll print:overflow-visible">
-      <table class="w-full shadow-md" id="ticketPriorityVsCategory">
+      <table class="w-full shadow-md table-striped " id="ticketPriorityVsCategory">
         <thead>
         <tr>
           <th
-              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-2xl  print:text-sm
+              class="px-5 py-3 border-b-2 border-gray-200 th-hubtech-color   text-2xl  print:text-sm
             font-semibold text-gray-600 uppercase tracking-wider">
             Priority
           </th>
-          <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200  text-center  text-2xl
+          <th class="px-5 py-3 border-b-2 border-gray-200 th-hubtech-color  text-center  text-2xl
 print:text-sm             font-semibold text-gray-600 uppercase tracking-wider" v-for="th in header">
             {{ th }}
           </th>
-          <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200  text-center  text-2xl
+          <th class="px-5 py-3 border-b-2 border-gray-200 th-hubtech-color  text-center  text-2xl
 print:text-sm             font-semibold text-gray-600 uppercase tracking-wider">
             Total
           </th>
@@ -36,10 +36,10 @@ print:text-sm             font-semibold text-gray-600 uppercase tracking-wider">
         </tbody>
         <tfoot>
         <tr>
-          <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-2xl
+          <td class="px-5 py-3 border-b-2 border-gray-200 th-hubtech-color   text-2xl
 print:text-sm             font-semibold text-gray-600 uppercase tracking-wider">Total
           </td>
-          <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-2xl
+          <td class="px-5 py-3 border-b-2 border-gray-200 th-hubtech-color   text-2xl
 print:text-sm                       font-semibold text-gray-600 uppercase tracking-wider text-center"
               v-for="number in ticketPriorityCategory.footer">
             {{ number }}
@@ -92,5 +92,8 @@ export default {
 </script>
 
 <style scoped>
-
+.th-hubtech-color {
+  background: rgb(14, 63, 129);
+  color: rgb(33, 254, 254);
+}
 </style>

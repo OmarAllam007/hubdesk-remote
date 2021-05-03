@@ -1,23 +1,23 @@
 <template>
   <div class="flex flex-col  bg-white shadow-md print:shadow-none">
     <div class="flex">
-      <table class="w-full print:overflow-visible">
+      <table class="w-full print:overflow-visible table-striped">
         <thead>
         <tr>
           <th
-              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-2xl
-            font-semibold text-gray-600 uppercase">
+              class="px-5 py-3 border-b-2 border-gray-200    text-2xl
+            font-semibold text-gray-600 uppercase th-hubtech-color">
             Month
           </th>
           <th
-              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-2xl
-            font-semibold text-gray-600 uppercase text-center">
+              class="px-5 py-3 border-b-2 border-gray-200    text-2xl
+            font-semibold text-gray-600 uppercase text-center th-hubtech-color">
             Tickets Created
           </th>
 
           <th
               class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-2xl
-            font-semibold text-gray-600 uppercase text-center">
+            font-semibold text-gray-600 uppercase text-center th-hubtech-color">
             Tickets Closed
           </th>
         </tr>
@@ -41,10 +41,10 @@
         <tfoot>
         <tr>
           <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-2xl
-            font-semibold text-gray-600 uppercase">Total
+            font-semibold text-gray-600 uppercase th-hubtech-color">Total
           </td>
           <td class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200   text-2xl
-            font-semibold text-gray-600 uppercase text-center"
+            font-semibold text-gray-600 uppercase text-center th-hubtech-color"
               v-for="number in total ">
             {{ number }}
           </td>
@@ -109,5 +109,8 @@ export default {
 </script>
 
 <style scoped>
-
+.th-hubtech-color {
+  background: rgb(14, 63, 129);
+  color: rgb(33, 254, 254);
+}
 </style>
