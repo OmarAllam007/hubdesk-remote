@@ -209,7 +209,7 @@ class TicketApproval extends KModel
             'icon' => $this->approval_icon,
             'approver' => $this->approver->name,
             'status' => $this->approval_status,
-            'creator' => $this->created_by->name,
+            'created_by' => $this->created_by->name,
             'created_at' => $this->created_at->format('d/m/Y H:i'),
             'stage' => $this->stage,
             'action_date' => $this->action_date,

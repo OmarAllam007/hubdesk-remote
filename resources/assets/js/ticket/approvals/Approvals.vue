@@ -1,7 +1,7 @@
 <template>
   <div class="m-3 mt-10 flex flex-col">
     <div v-if="is_task && approvals.length">
-      <h5>
+      <h5 class="pb-3">
         <strong>
           {{ $root.t('Main Request Approvals') }}
         </strong>
@@ -23,7 +23,7 @@
         <tbody>
         <tr v-for="approval_row of approvals" class="hover:bg-yellow-100 bg-white">
           <td>{{ approval_row.approver }}</td>
-          <td>{{ approval_row.approver }}</td>
+          <td>{{ approval_row.created_by }}</td>
           <td>{{ approval_row.created_at }}</td>
           <td>{{ approval_row.stage }}</td>
           <td>
@@ -41,7 +41,7 @@
     </div>
 
     <div v-if="approvals_data.length">
-      <h5>
+      <h5 class="pb-3">
         <strong v-if="this.is_task">
           {{ $root.t('Request Approvals') }}
         </strong>
