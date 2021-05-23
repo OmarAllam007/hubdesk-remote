@@ -427,10 +427,11 @@ class TicketController extends Controller
 //        $this->validate($request, ['complaint.description' => 'required'],
 //            ['complaint.description.required' => 'The description field is required']);
 
-        UserComplaint::create([
+        $userComplaint = UserComplaint::create([
             'ticket_id' => $ticket->id,
             'user_id' => auth()->user()->id,
             'description' => $request->get('description') ?? '',
+            'type' => $request->get('type')
         ]);
 
         $complaint = $ticket->complaint;
@@ -439,7 +440,8 @@ class TicketController extends Controller
             $to = User::whereIn('id', $complaint->to)->get(['email']);
             $cc = User::whereIn('id', $complaint->cc)->get(['email']);
 
-            \Mail::to($to)->cc($cc)->queue(new TicketComplaint($ticket));
+
+            \Mail::to($to)->cc($cc)->queue(new TicketComplaint($ticket , $userComplaint));
         }
 
         return \response()->json(['message' => 'Complaint sent successfully']);

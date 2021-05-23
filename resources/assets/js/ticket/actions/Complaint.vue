@@ -10,6 +10,22 @@
                 <h3 class="modal-title text-2xl ">{{ $root.t('Complaint') }}</h3>
               </div>
               <div class="modal-body">
+
+                <div class="flex">
+                  <div class="w-full ">
+                    <div class="flex">
+                      <select v-model="type" class="w-1/2  rounded-md border-2 p-3 ">
+                        <option value>{{ $root.t('Select Type') }}</option>
+                        <option :value="1">{{ $root.t('Approval Rejection') }}</option>
+                        <option :value="2">{{ $root.t('Quality of Service') }}</option>
+                        <option :value="3">{{ $root.t('Quality of Technician') }}</option>
+                        <option :value="4">{{ $root.t('Time Taken') }}</option>
+                        <option :value="5">{{ $root.t('Other') }}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
                 <div class="flex">
                   <div class="w-full">
                     <div class="flex flex-col pt-5 ">
@@ -72,7 +88,8 @@ export default {
   props: ["isComplaintOpened"],
   data() {
     return {
-      description: ''
+      description: '',
+      type: ''
     }
   },
   methods: {
@@ -82,6 +99,7 @@ export default {
     complaint() {
       axios.post(`/ticket/complaint/${this.$parent.ticketData.ticket.id}`, {
         description: this.description,
+        type: this.type
       }).then((response) => {
         EventBus.$emit('add_to_replies', {'reply': response.data.reply});
 
@@ -94,7 +112,7 @@ export default {
   },
   computed: {
     can_complaint() {
-      return this.description != '';
+      return this.description != '' && this.type != '';
     },
     submitClass() {
       if (this.can_complaint) {

@@ -10,9 +10,9 @@ Content: <br/><br/>
 <div>
 {!! $ticket->description !!}
 </div><br><br>
-Message:<br><br>
+Type:<br><br>
 <div>
-    {!! $description !!}
+    {{$complaint->type_str}}
 </div>
 <br><br>
 </div>
