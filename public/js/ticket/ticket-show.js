@@ -57335,7 +57335,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('tr', {
     staticClass: "hover:bg-yellow-100 bg-white",
     class: _vm.approval_data.color
-  }, [_c('td', [_vm._v(_vm._s(_vm.approval_data.approver))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm.approval_data.creator))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm.approval_data.created_at))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm.approval_data.stage))]), _vm._v(" "), _c('td', [_vm._v("\n    " + _vm._s(_vm.approval_data.status) + "\n  ")]), _vm._v(" "), _c('td', [(_vm.approval_data.hidden_comment === '0') ? _c('strong', {
+  }, [_c('td', [_vm._v(_vm._s(_vm.approval_data.approver))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm.approval_data.created_by))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm.approval_data.created_at))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm.approval_data.stage))]), _vm._v(" "), _c('td', [_vm._v("\n    " + _vm._s(_vm.approval_data.status) + "\n  ")]), _vm._v(" "), _c('td', [(_vm.approval_data.hidden_comment === '0') ? _c('strong', {
     domProps: {
       "innerHTML": _vm._s(_vm.approval_data.comment)
     }
@@ -57398,7 +57398,9 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "m-3 mt-10 flex flex-col"
-  }, [(_vm.is_task && _vm.approvals.length) ? _c('div', [_c('h5', [_c('strong', [_vm._v("\n        " + _vm._s(_vm.$root.t('Main Request Approvals')) + "\n      ")])]), _vm._v(" "), _c('table', {
+  }, [(_vm.is_task && _vm.approvals.length) ? _c('div', [_c('h5', {
+    staticClass: "pb-3"
+  }, [_c('strong', [_vm._v("\n        " + _vm._s(_vm.$root.t('Main Request Approvals')) + "\n      ")])]), _vm._v(" "), _c('table', {
     staticClass: "table pt-5 "
   }, [_c('thead', {
     staticClass: "p-3 bg-viola bg-opacity-75 text-white rounded-tl-xl font-bold"
@@ -57410,12 +57412,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v(_vm._s(_vm.$root.t('Actions')))])])]), _vm._v(" "), _c('tbody', _vm._l((_vm.approvals), function(approval_row) {
     return _c('tr', {
       staticClass: "hover:bg-yellow-100 bg-white"
-    }, [_c('td', [_vm._v(_vm._s(approval_row.approver))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(approval_row.approver))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(approval_row.created_at))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(approval_row.stage))]), _vm._v(" "), _c('td', [_vm._v("\n          " + _vm._s(approval_row.status) + "\n        ")]), _vm._v(" "), _c('td', [(approval_row.hidden_comment === '0') ? _c('strong', {
+    }, [_c('td', [_vm._v(_vm._s(approval_row.approver))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(approval_row.created_by))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(approval_row.created_at))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(approval_row.stage))]), _vm._v(" "), _c('td', [_vm._v("\n          " + _vm._s(approval_row.status) + "\n        ")]), _vm._v(" "), _c('td', [(approval_row.hidden_comment === '0') ? _c('strong', {
       domProps: {
         "innerHTML": _vm._s(approval_row.comment)
       }
     }) : _vm._e()]), _vm._v(" "), _c('td', [_vm._v(_vm._s(approval_row.action_date))]), _vm._v(" "), _c('td'), _vm._v(" "), _c('td')])
-  }), 0)])]) : _vm._e(), _vm._v(" "), (_vm.approvals_data.length) ? _c('div', [_c('h5', [(this.is_task) ? _c('strong', [_vm._v("\n        " + _vm._s(_vm.$root.t('Request Approvals')) + "\n      ")]) : _vm._e()]), _vm._v(" "), _c('table', {
+  }), 0)])]) : _vm._e(), _vm._v(" "), (_vm.approvals_data.length) ? _c('div', [_c('h5', {
+    staticClass: "pb-3"
+  }, [(this.is_task) ? _c('strong', [_vm._v("\n        " + _vm._s(_vm.$root.t('Request Approvals')) + "\n      ")]) : _vm._e()]), _vm._v(" "), _c('table', {
     staticClass: "table pt-5 "
   }, [_c('thead', [_c('tr', {
     staticClass: " p-3 bg-viola bg-opacity-75 text-white rounded-tl-xl font-bold"
