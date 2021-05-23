@@ -13,10 +13,12 @@ class TicketComplaint extends Mailable
     use Queueable, SerializesModels;
 
     private $ticket;
+    private $complaint;
 
-    public function __construct(Ticket $ticket)
+    public function __construct(Ticket $ticket , $complaint)
     {
         $this->ticket = $ticket;
+        $this->complaint = $complaint;
     }
 
 
@@ -24,8 +26,9 @@ class TicketComplaint extends Mailable
     {
         $ticket = $this->ticket;
         $subject = 'Complaint on ticket #' . $this->ticket->id;
-        $description = request()->get('complaint')["description"] ?? '';
+        $complaint = $this->complaint;
 
-        return $this->subject($subject)->markdown('emails.ticket.complaint', compact('ticket', 'description'));
+
+        return $this->subject($subject)->markdown('emails.ticket.complaint', compact('ticket', 'complaint'));
     }
 }
