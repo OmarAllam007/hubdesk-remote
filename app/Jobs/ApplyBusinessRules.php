@@ -13,11 +13,16 @@ class ApplyBusinessRules extends MatchCriteria
 {
     public $business_rule;
     public $ccEmails;
+    /**
+     * @var bool
+     */
+    private $applyActions;
 
-    public function __construct(Ticket $ticket)
+    public function __construct(Ticket $ticket, $applyActions = true)
     {
         $this->ticket = $ticket;
         $this->ccEmails = collect();
+        $this->applyActions = $applyActions;
     }
 
     public function handle()
@@ -56,24 +61,14 @@ class ApplyBusinessRules extends MatchCriteria
     private function applyRule($rule)
     {
         foreach ($rule->rules as $action) {
-
             if ($action['field'] == 'cc') {
                 $this->ccEmails->push(User::find($action['value']));
             } else {
-                $this->ticket->setAttribute($action->field, $action->value);
+                if ($this->applyActions) {
+                    $this->ticket->setAttribute($action->field, $action->value);
+                }
             }
         }
-//        if ($cc->count()) {
-//            TicketReply::flushEventListeners();
-//
-//            $reply = $this->ticket->replies()->create([
-//                'user_id' => env('SYSTEM_USER') ?? $this->ticket->requester->id,
-//                'content' => TicketReply::AUTO_REPLY,
-//                'status_id' => $this->ticket->status_id,
-//                'cc' => $cc->toArray()
-//            ]);
-//            \Mail::to($cc)->cc($cc)->send(new TicketReplyMail($reply));
-//        }
 
         \Log::info("Applied business rule [id: $rule->id, name: $rule->name, ticket: {$this->ticket->id}]");
     }
