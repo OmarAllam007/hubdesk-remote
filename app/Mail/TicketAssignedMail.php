@@ -4,6 +4,7 @@ namespace App\Mail;
 
 use App\Jobs\ApplyBusinessRules;
 use App\Ticket;
+use App\TicketReply;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -32,15 +33,14 @@ class TicketAssignedMail extends Mailable
      */
     public function build()
     {
-//        $apply = new ApplyBusinessRules($this->ticket);
-//        $apply->fetchBusinessRule();
-//        $cc = $apply->ccEmails->count() ? $apply->ccEmails : [];
+        $apply = new ApplyBusinessRules($this->ticket, false);
+        $apply->fetchBusinessRule();
+        $cc = $apply->ccEmails->count() ? $apply->ccEmails : [];
 
         $ticket = $this->ticket;
-
         $subject = 'Ticket #' . $ticket->id . ' has been assigned to you';
-        return $this->markdown('emails.ticket.assigned',compact('ticket'))
+        return $this->markdown('emails.ticket.assigned', compact('ticket'))
             ->subject($subject)
-            ->to($ticket->technician->email)->cc([]);
+            ->to($ticket->technician->email)->cc($cc);
     }
 }
