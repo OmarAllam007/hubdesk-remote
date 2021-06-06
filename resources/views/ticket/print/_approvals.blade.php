@@ -20,7 +20,7 @@
                         @if($approval->comment)
                             {{--                            <div class="p-3 flex justify-end">--}}
                             <strong>
-                            <span class="label label-default">Comment: {{$approval->comment}}</span>
+                            <span class="label label-default">Comment: {!! $approval->comment !!}</span>
                             </strong>
                             {{--                            </div>--}}
                         @endif
