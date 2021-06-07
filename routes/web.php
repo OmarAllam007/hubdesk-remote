@@ -69,7 +69,6 @@ Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'admin.'], function (\Illuminate\Routing\Router $r) {
-
     Route::get('question/{survey}', ['uses' => 'QuestionController@index', 'as' => 'question.index']);
     Route::get('question/create/{survey}', ['uses' => 'QuestionController@create', 'as' => 'question.create']);
     Route::get('question/edit/{question}', ['uses' => 'QuestionController@edit', 'as' => 'question.edit']);
@@ -129,11 +128,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
     });
 });
 
-Route::group(['middleware' => ['auth']], function () {
-    Route::get('/get-users', 'Admin\UserController@getusers');
+
+Route::group(['middleware'=>['auth']], function (){
     Route::get('/reset_password', 'UserController@getResetForm')->name('user.reset');
     Route::post('/reset_password', 'UserController@resetForm')->name('user.reset');
+});
+Route::group(['middleware' => ['auth','reset']], function () {
 
+    Route::get('/get-users', 'Admin\UserController@getusers');
     Route::group(['prefix' => 'ticket'], function (\Illuminate\Routing\Router $r) {
         $r->get('create-ticket/business-unit/{business_unit}/category/{category}/subcategory/{subcategory?}/item/{item?}/subItem/{subItem?}', 'TicketController@createTicket')
             ->name('ticket.create-ticket');

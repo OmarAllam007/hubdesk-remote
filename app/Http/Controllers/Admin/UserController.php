@@ -7,6 +7,7 @@ use App\Http\Requests\AdminUserRequest;
 use App\Jobs\LdapImportUsers;
 use App\Jobs\UploadUsersJob;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -51,6 +52,12 @@ class UserController extends Controller
 
         if ($request->get('password') || $request->get('default_password')) {
             $data['password'] = bcrypt($data['password'] ?? env('DEFAULT_PASS'));
+
+            if ($request->get('default_password')) {
+                $data['password_reset'] = true;
+                $data['last_reset_password_date'] = Carbon::now();
+            }
+
         } else {
             unset($data['password'], $data['password_confirmation']);
         }

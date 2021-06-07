@@ -57,7 +57,10 @@ class User extends Authenticatable implements CanResetPassword
     protected $fillable = [
         'name', 'email', 'login', 'password', 'location_id', 'location_id', 'business_unit_id',
         'branch_id', 'department_id', 'manager_id', 'vip', 'is_ad', 'phone', 'mobile1', 'mobile2', 'job',
-        'manager_id', 'group_ids', 'role_ids', 'employee_id', 'extra_fields', 'is_disabled'
+        'manager_id', 'group_ids', 'role_ids', 'employee_id', 'extra_fields', 'is_disabled',
+        'password_reset',
+        'last_login_date',
+        'last_reset_password_date'
     ];
 
     protected $casts = ['extra_fields' => 'array'];
@@ -260,9 +263,9 @@ class User extends Authenticatable implements CanResetPassword
             'email' => $this->email ?? 'Not Assigned',
             'job_title' => $this->job ?? 'Not Assigned',
             'department' => $this->department->name ?? 'Not Assigned',
-            'mobile1'=> $this->mobile1 ?? 'Not Assigned',
-            'mobile2'=> $this->mobile2 ?? 'Not Assigned',
-            'phone'=> $this->phone ?? 'Not Assigned',
+            'mobile1' => $this->mobile1 ?? 'Not Assigned',
+            'mobile2' => $this->mobile2 ?? 'Not Assigned',
+            'phone' => $this->phone ?? 'Not Assigned',
             'manager_name' => $this->manager ? $this->manager->name : 'Not Assigned',
             'manager_email' => $this->manager ? $this->manager->email : 'Not Assigned',
         ];

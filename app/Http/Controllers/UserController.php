@@ -20,6 +20,7 @@ class UserController extends Controller
         if (\Hash::check($request->old_password, \Auth::user()->password)) {
             \Auth::user()->update([
                 'password' => bcrypt($request->password),
+                'password_reset'=> false,
             ]);
 
             flash(t('Reset Password'),t('Password has been Reset'), 'success');
