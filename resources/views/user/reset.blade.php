@@ -14,6 +14,16 @@
 @stop
 
 @section('body')
+
+    @if(\Hash::check(env('DEFAULT_PASS'), auth()->user()->getAuthPassword()))
+        <div class="flex justify-center">
+            <p class="p-4 m-4 bg-red-600 text-white rounded-xl shadow-md">
+                <i class="fa fa-warning"></i>
+                {{t('Kindly change your password from the default password')}}
+            </p>
+        </div>
+    @endif
+
     <div class="form-row">
         {{ Form::open(['route' => 'user.reset', 'class' => 'col-sm-6 auth-form']) }}
 
