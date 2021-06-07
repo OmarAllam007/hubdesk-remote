@@ -131,6 +131,12 @@
                     :class="{tabUIButtonSelected : selectedTab == 6}" @click="changeTab(6)">
               <i class="fa fa-files-o"></i> {{ $root.t('Attachments') }}
             </button>
+
+            <button class="w-1/6 bg-white rounded-xl p-3 m-3 tabUIButton border"
+                    v-if="ticketData.ticket.survey && ticketData.ticket.survey.is_submitted == 1"
+                    :class="{tabUIButtonSelected : selectedTab == 7}" @click="changeTab(7)">
+              <i class="fa fa-files-o"></i> {{ $root.t('Survey') }}
+            </button>
           </div>
         </div>
       </div>
@@ -153,7 +159,7 @@
 
         <ticket-log :ticket_id="ticketData.ticket.id" v-show="selectedTab == 5"></ticket-log>
         <ticket-attachments :files="ticketData.ticket.attachments" v-show="selectedTab == 6"></ticket-attachments>
-
+        <ticket-survey v-if="selectedTab == 7" :survey="ticketData.ticket.survey"></ticket-survey>
 
         <reassign :isReassignOpened="reassignModalOpened"
                   @close-reassign-modal="closeReassignModal()"
@@ -205,6 +211,7 @@ import Duplicate from "../actions/Duplicate";
 import SendToFinance from "../actions/SendToFinance";
 import Complaint from "../actions/Complaint";
 import TicketAttachments from "../attachments/TicketAttachments";
+import TicketSurvey from "../survey/TicketSurvey";
 
 export default {
   name: "TicketShow",
@@ -309,6 +316,7 @@ export default {
     }
   },
   components: {
+    TicketSurvey,
     TicketAttachments,
     Complaint,
     SendToFinance,
