@@ -37,7 +37,7 @@ class TicketResource extends JsonResource
             'request_id' => $this->request_id ?? '',
             'is_duplicated' => $this->isDuplicated(),
             'is_support' => \Auth::user()->isSupport(),
-            'business_unit'=> $this->business_unit->name
+            'business_unit'=> $this->business_unit->name ?? 'Not Assigned'
         ];
 
         $ticket['item'] = $this->item ? t($this->item->name) : 'Not Assigned';
