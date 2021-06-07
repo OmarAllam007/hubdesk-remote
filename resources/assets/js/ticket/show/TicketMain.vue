@@ -52,6 +52,22 @@
           </div>
         </div>
 
+        <div class="mt-10" v-if="ticket.category_id == 95 || ticket.category_id == 96"></div>
+        <div v-if="ticket.category_id == 95 || ticket.category_id == 96">
+          <p class="font-bold text-2xl ">{{ $root.t('Served Business Unit') }}</p>
+          <div class="w-full mt-3 ">
+            <div class="flex flex-col shadow-md">
+              <div>
+                <div class="flex">
+                  <div class="w-1/2 p-3 border-viola border-l-2  bg-gray-300     bg-opacity-75   font-bold">{{ $root.t('Business Unit') }}
+                  </div>
+                  <div class="w-1/2 p-3 bg-white ">{{ ticket.business_unit }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="mt-10"></div>
 
         <div v-if="ticket.fields.length">
