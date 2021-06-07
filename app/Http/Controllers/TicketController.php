@@ -13,6 +13,7 @@ use App\Http\Requests\ReassignRequest;
 use App\Http\Requests\TicketReplyRequest;
 use App\Http\Requests\TicketRequest;
 use App\Http\Requests\TicketResolveRequest;
+use App\Http\Resources\SurveyResource;
 use App\Http\Resources\TicketReplyResource;
 use App\Http\Resources\TicketResource;
 use App\Item;
@@ -131,7 +132,6 @@ class TicketController extends Controller
         if (\Auth::user()->id == $ticket->technician_id) {
             $ticket->update(['is_opened' => 1]);
         }
-
 
         return view('ticket.show', compact('ticket'));
     }
