@@ -136,7 +136,7 @@ class ApprovalController extends Controller
             \Mail::queue(new UpdateApprovalMail($ticketApproval));
         }
 
-        if ($ticketApproval->status != -1 && $ticketApproval->hasNext()) {
+        if ($ticketApproval->status != -1 && !$ticketApproval->hasPendingOnSameStage() && $ticketApproval->hasNext()) {
             $approvals = $ticketApproval->getNextStageApprovals();
             foreach ($approvals as $approval) {
                 \Mail::to($approval->approver->email)->queue(new SendNewApproval($approval));
