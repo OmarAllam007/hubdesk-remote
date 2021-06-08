@@ -123,6 +123,12 @@ class TicketApproval extends KModel
         return $pendingCount == 0;
     }
 
+    public function hasPendingOnSameStage()
+    {
+        return $this->ticket->approvals()->where('stage', $this->stage)
+            ->where('status', self::PENDING_APPROVAL)->count() > 0;
+    }
+
     public function hasNext()
     {
         return $this->ticket->approvals()->where('stage', '>', $this->stage)->count() > 0;
@@ -235,6 +241,6 @@ class TicketApproval extends KModel
     function can_delete()
     {
         return $this->pending && (auth()->id() == $this->creator_id ||
-            ($this->ticket->technician && auth()->id() == $this->ticket->technician->id));
+                ($this->ticket->technician && auth()->id() == $this->ticket->technician->id));
     }
 }
