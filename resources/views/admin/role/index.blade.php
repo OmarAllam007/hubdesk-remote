@@ -18,40 +18,42 @@
     </div>
 @stop
 
-@section('sidebar')
-    @include('admin.partials._sidebar')
-@stop
-
 @section('body')
-    <section class="col-sm-9">
-        @if ($roles->total())
-            <table class="listing-table">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($roles as $role)
+    <div class="flex w-full">
+        <div class="w-1/4">
+            @include('admin.partials._sidebar')
+        </div>
+
+        <section class="w-3/4">
+            @if ($roles->total())
+                <table class="listing-table">
+                    <thead>
                     <tr>
-                        <td class="col-md-5"><a href="{{ route('admin.role.edit', $role) }}">{{ $role->name }}</a>
-                        </td>
-                        <td class="col-md-3">
-                            <form action="{{ route('admin.role.destroy', $role) }}" method="post">
-                                {{csrf_field()}} {{method_field('delete')}}
-                                <a class="btn btn-sm btn-primary" href="{{ route('admin.role.edit', $role) }} "><i
-                                            class="fa fa-edit"></i> Edit</a>
-                                <button class="btn btn-sm btn-warning"><i class="fa fa-trash-o"></i> Delete</button>
-                            </form>
-                        </td>
+                        <th>Name</th>
+                        <th>Actions</th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
-            @include('partials._pagination', ['items' => $roles])
-        @else
-            <div class="alert alert-info"><i class="fa fa-exclamation-circle"></i> <strong>No role found</strong></div>
-        @endif
-    </section>
+                    </thead>
+                    <tbody>
+                    @foreach($roles as $role)
+                        <tr>
+                            <td class="col-md-5"><a href="{{ route('admin.role.edit', $role) }}">{{ $role->name }}</a>
+                            </td>
+                            <td class="col-md-3">
+                                <form action="{{ route('admin.role.destroy', $role) }}" method="post">
+                                    {{csrf_field()}} {{method_field('delete')}}
+                                    <a class="btn btn-sm btn-primary" href="{{ route('admin.role.edit', $role) }} "><i
+                                                class="fa fa-edit"></i> Edit</a>
+                                    <button class="btn btn-sm btn-warning"><i class="fa fa-trash-o"></i> Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                @include('partials._pagination', ['items' => $roles])
+            @else
+                <div class="alert alert-info"><i class="fa fa-exclamation-circle"></i> <strong>No role found</strong>
+                </div>
+            @endif
+        </section>
 @stop 

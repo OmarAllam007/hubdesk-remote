@@ -18,12 +18,15 @@
     </div>
 @stop
 
-@section('sidebar')
-    @include('admin.partials._sidebar')
-@stop
 
 @section('body')
-    <section class="col-sm-9">
+
+    <div class="flex w-full">
+        <div class="w-1/4">
+            @include('admin.partials._sidebar')
+        </div>
+
+        <section class="w-3/4">
         @if ($groups->total())
             <table class="listing-table">
                 <thead>
