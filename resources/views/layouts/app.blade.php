@@ -51,17 +51,18 @@
                 src: url('{{ asset('/fonts/arabic.otf') }}');
 
             }
+
             *:not(i) {
                 font-family: "arabic", Arial !important;
             }
         </style>
     @endif
 </head>
-<body>
+<body style="background-color: #eaeaea">
 
 
 <header>
-    <nav class="navbar navbar-default navbar-static-top navbar-style exto-bold" >
+    <nav class="navbar navbar-default navbar-static-top navbar-style exto-bold">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
@@ -94,7 +95,6 @@
                             <li class="nav-item"><a href="{{url('/reports')}}"><i
                                             class="fa fa-bar-chart"></i> {{t('Report')}}</a></li>
                         @endif
-
 
 
                     </ul>
@@ -155,11 +155,28 @@
                     </div>
                 </div>
             @endif
-            @hasSection('sidebar')
-                @yield('sidebar')
-            @endif
 
-            @yield('body')
+            <div class="flex">
+                @hasSection('sidebar')
+                    <div class="w-1/4">
+                        @yield('sidebar')
+                    </div>
+                @endif
+
+                @hasSection('sidebar')
+                    <div class="w-3/4">
+                @else
+                        <div class="w-full">
+                 @endif
+
+                        @yield('body')
+                        @hasSection('sidebar')
+                    </div>
+                    @else
+                @endif
+
+            </div>
+
             @include('sweetalert::alert')
         </div>
     </main>

@@ -1,38 +1,103 @@
-<div class="col-sm-3">
-<section class="panel panel-primary" id="#admin-sidebar">
-    <div class="panel-heading">
-        <h5 class="panel-title">{{t('Admin Panel')}}</h5>
+ <div class="h-auto bg-white rounded-xl m-5 shadow-md ">
+        <div>
+            <div class="flex bg-gray-300 p-5 ">
+                <h3 class="panel-title"><i class="fa fa-user"></i> {{t('Users')}}</h3>
+            </div>
+            <div class="flex flex-col bg-white p-5 ">
+                <a class="p-5 hover:bg-gray-200 hover:text-black hover:shadow-md rounded-xl hover:text-black"
+                   href="{{route('admin.user.index')}}">{{t('Users')}}</a>
+                <a class="p-5 hover:bg-gray-200 hover:text-black hover:shadow-md rounded-xl "
+                   href="{{route('admin.group.index')}}">{{t('Groups')}}</a>
+                <a class="p-5 hover:bg-gray-200 hover:text-black hover:shadow-md rounded-xl "
+                   href="{{route('admin.group.user_groups')}}">{{t('User Groups')}}</a>
+                <a class="p-5 hover:bg-gray-200 hover:text-black hover:shadow-md rounded-xl "
+                   href="{{route('admin.role.index')}}">{{t('Roles')}}</a>
+            </div>
+        </div>
+
+
+        <div>
+            <div class="flex bg-gray-300 p-5 ">
+                <h3 class="panel-title"><i class="fa fa-cubes"></i> {{t('Categories')}}</h3>
+            </div>
+            <div class="flex flex-col bg-white p-5 ">
+                <a class="p-5 hover:bg-gray-200 hover:text-black hover:shadow-md rounded-xl "
+                   href="{{route('admin.category.index')}}">{{t('Categories')}}</a>
+                <a class="p-5 hover:bg-gray-200 hover:text-black hover:shadow-md rounded-xl "
+                   href="{{route('admin.subcategory.index')}}">{{t('Subcategories')}}</a>
+                <a class="p-5 hover:bg-gray-200 hover:text-black hover:shadow-md rounded-xl "
+                   href="{{route('admin.item.index')}}">{{t('Items')}}</a>
+                <a class="p-5 hover:bg-gray-200 hover:text-black hover:shadow-md rounded-xl "
+                   href="{{route('admin.subItem.index')}}">{{t('SubItems')}}</a>
+            </div>
+        </div>
+
+        <div>
+            <div class="flex bg-gray-300 p-5 ">
+                <h3 class="panel-title"><i class="fa fa-map-marker"></i> {{t('Locations')}}</h3>
+            </div>
+            <div class="flex flex-col bg-white p-5 ">
+                <a class="p-5 hover:bg-gray-200 hover:text-black hover:shadow-md rounded-xl "
+                   href="{{route('admin.region.index')}}">{{t('Regions')}}</a>
+                <a class="p-5 hover:bg-gray-200 hover:text-black hover:shadow-md rounded-xl "
+                   href="{{route('admin.city.index')}}">{{t('Cities')}}</a>
+                <a class="p-5 hover:bg-gray-200 hover:text-black hover:shadow-md rounded-xl "
+                   href="{{route('admin.location.index')}}">{{t('Location')}}</a>
+            </div>
+        </div>
+
+        <div>
+            <div class="flex bg-gray-300 p-5 ">
+                <h3 class="panel-title"><i class="fa fa-building"></i> {{t('Business Units')}}</h3>
+            </div>
+            <div class="flex flex-col bg-white p-5 ">
+                <a class="p-5 hover:bg-gray-200 hover:text-black hover:shadow-md rounded-xl "
+                   href="{{route('admin.division.index')}}">{{t('Divisions')}}</a>
+                <a class="p-5 hover:bg-gray-200 hover:text-black hover:shadow-md rounded-xl "
+                   href="{{route('admin.business-unit.index')}}">{{t('Business Units')}}</a>
+                <a class="p-5 hover:bg-gray-200 hover:text-black hover:shadow-md rounded-xl "
+                   href="{{route('admin.branch.index')}}">{{t('Branches')}}</a>
+                <a class="p-5 hover:bg-gray-200 hover:text-black hover:shadow-md rounded-xl "
+                   href="{{route('admin.department.index')}}">{{t('Departments')}}</a>
+            </div>
+        </div>
+
+        <div>
+            <div class="flex bg-gray-300 p-5 ">
+                <h3 class="panel-title"><i class="fa fa-building"></i> {{t('Configuration')}}</h3>
+            </div>
+            <div class="flex flex-col bg-white p-5 ">
+                <a class="p-5 hover:bg-gray-200 hover:text-black hover:shadow-md rounded-xl "
+                   href="{{route('admin.sla.index')}}">{{t('Service Level Agreement')}}</a>
+                <a class="p-5 hover:bg-gray-200 hover:text-black hover:shadow-md rounded-xl "
+                   href="{{route('admin.business-rule.index')}}">{{t('Business Rules')}}</a>
+                <a class="p-5 hover:bg-gray-200 hover:text-black hover:shadow-md rounded-xl "
+                   href="{{route('admin.priority.index')}}">{{t('Priority')}}</a>
+                <a class="p-5 hover:bg-gray-200 hover:text-black hover:shadow-md rounded-xl "
+                   href="{{route('admin.urgency.index')}}">{{t('Urgency')}}</a>
+                <a class="p-5 hover:bg-gray-200 hover:text-black hover:shadow-md rounded-xl "
+                   href="{{route('admin.impact.index')}}">{{t('Impact')}}</a>
+                <a class="p-5 hover:bg-gray-200 hover:text-black hover:shadow-md rounded-xl "
+                   href="{{route('admin.status.index')}}">{{t('Status')}}</a>
+                <a class="p-5 hover:bg-gray-200 hover:text-black hover:shadow-md rounded-xl "
+                   href="{{route('admin.status.index')}}">{{t('Availability')}}</a>
+            </div>
+        </div>
+
+
+        <div>
+            <div class="flex bg-gray-300 p-5 ">
+                <h3 class="panel-title">{{t('Survey')}}</h3>
+
+            </div>
+            <div class="flex flex-col bg-white p-5 ">
+                <a class="p-5 hover:bg-gray-200 hover:text-black hover:shadow-md rounded-xl "
+                   href="{{route('admin.survey.index')}}">{{t('Surveys')}}</a>
+                <a class="p-5 hover:bg-gray-200 hover:text-black hover:shadow-md rounded-xl "
+                   href="{{route('admin.survey.create')}}">{{t('Define Survey')}}</a>
+                <a class="p-5 hover:bg-gray-200 hover:text-black hover:shadow-md rounded-xl "
+                   href="{{route('admin.sla.index')}}">{{t('Survey Log')}}</a>
+            </div>
+        </div>
+
     </div>
-
-    <nav class="list-group">
-
-        <p class="list-group-item text-center info"><i class="fa fa-fw fa-group"></i> <strong>Users</strong></p>
-        <a href="{{route('admin.user.index')}}" class="user-link list-group-item"><i class="fa fa-fw fa-user"></i> Users</a>
-        <a href="{{route('admin.group.index')}}" class="user-link list-group-item"><i class="fa fa-fw fa-group"></i> Groups</a>
-        <a href="{{route('admin.group.user_groups')}}" class="user-link list-group-item"><i class="fa fa-fw fa-group"></i> User Groups</a>
-        <a href="{{route('admin.role.index')}}" class="user-link list-group-item"><i class="fa fa-fw fa-group"></i> Roles</a>
-
-        <p class="list-group-item text-center info"><strong><i class="fa fa-fw fa-map"></i> {{t('Places')}}</strong></p>
-        <a href="{{route('admin.region.index')}}" class="list-group-item"><i class="fa fa-fw fa-map"></i> {{t('Regions')}}</a>
-        <a href="{{route('admin.city.index')}}" class="list-group-item"><i class="fa fa-fw fa-map-signs"></i> {{t('Cities')}}</a>
-        <a href="{{route('admin.location.index')}}" class="list-group-item"><i class="fa fa-fw fa-map-marker"></i> {{t('Locations')}}</a>
-
-        <p class="list-group-item text-center info"><strong><i class="fa fa-fw fa-university"></i> {{t('Business')}}</strong></p>
-        <a href="{{route('admin.business-unit.index')}}" class="list-group-item"><i class="fa fa-fw fa-building"></i> {{t('Business units')}}</a>
-        <a href="{{route('admin.branch.index')}}" class="list-group-item"><i class="fa fa-fw fa-sitemap"></i> {{t('Branches')}}</a>
-        <a href="{{route('admin.department.index')}}" class="list-group-item"><i class="fa fa-fw fa-leaf"></i> {{t('Departments')}}</a>
-
-        <p class="list-group-item text-center info"><strong><i class="fa fa-fw fa-cogs"></i> Settings</strong></p>
-        <a href="{{route('admin.category.index')}}" class="list-group-item"><i class="fa fa-fw fa-cubes"></i> Categories</a>
-        <a href="{{route('admin.status.index')}}" class="list-group-item"><i class="fa fa-fw fa-info-circle"></i> Status</a>
-        <a href="{{route('admin.status.index')}}" class="list-group-item"><i class="fa fa-fw fa-calendar"></i> Availability</a>
-        <a href="{{route('admin.impact.index')}}" class="list-group-item"><i class="fa fa-fw fa-bullseye"></i> Impact</a>
-        <a href="{{route('admin.priority.index')}}" class="list-group-item"><i class="fa fa-fw fa-star"></i> Priority</a>
-        <a href="{{route('admin.urgency.index')}}" class="list-group-item"><i class="fa fa-fw fa-hourglass-half"></i> Urgency</a>
-        <a href="{{route('admin.business-rule.index')}}" class="list-group-item"><i class="fa fa-fw fa-magic"></i> Business Rules</a>
-        <a href="{{route('admin.sla.index')}}" class="list-group-item"><i class="fa fa-fw fa-clock-o"></i> Service level agreements</a>
-        <a href="{{route('admin.survey.index')}}" class="list-group-item"><i class="fa fa-fw fa-clock-o"></i> Survey</a>
-    </nav>
-
-</section>
-</div> 
