@@ -106,7 +106,9 @@ class TicketController extends Controller
     {
         $request['business_unit_id'] = auth()->user()->business_unit_id;
         $ticket = new Ticket($request->all());
+        $ticket->client_info = ['client' => $request->userAgent(), 'ip_address' => $request->ip() , 'client_ip'=> $request->getClientIp()];
         $ticket->save();
+
 
         foreach ($request->get('cf', []) as $key => $item) {
             if ($item) {
