@@ -6,7 +6,7 @@
     {{--    --}}
     @if(auth()->user()->groups()->whereType(App\Group::KGS_ADMIN)->exists() || auth()->user()->isAdmin())
         <div class="btn-group">
-            <a class="btn btn-outlined  btn-primary" href="{{route('kgs.admin.index')}}"><i
+            <a target="_blank" class="btn btn-outlined  btn-primary" href="{{route('kgs.admin.index')}}"><i
                         class="fa fa-cogs"></i> {{t('Admin Panel')}}</a>
         </div>
     @endif
@@ -18,6 +18,15 @@
 @endsection
 
 @section('body')
+    <div class="flex">
+        <div class="flex">
+            <a href="{{route('kgs.business_document.select_division')}}"
+               class=" text-center pt-2 pb-2 pl-5 pr-5  m-5 bg-gray-400 shadow-md  rounded-2xl text-viola "><i
+                        class="fa fa-arrow-left"></i>
+                {{t('Select Division')}}
+            </a>
+        </div>
+    </div>
     <section class="col-md-12 card-section">
         <div class="tiles-container">
             @foreach($division->kgs_business_units as $business_unit)

@@ -25,6 +25,15 @@
     </style>
 @endsection
 @section('body')
+    <div class="flex">
+        <div class="flex">
+            <a href="{{URL::previous()}}"
+               class=" text-center pt-2 pb-2 pl-5 pr-5  m-5 bg-gray-400 shadow-md  rounded-2xl text-viola "><i
+                        class="fa fa-arrow-left"></i>
+{{--                {{t('Select Subcategory')}}--}}
+            </a>
+        </div>
+    </div>
     <div id="TicketRequirements" class="card-section">
         @php
             $data = [];

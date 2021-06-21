@@ -1,4 +1,4 @@
-<div class="col-sm-3">
+<div class="m-5">
     <section class="panel panel-primary" id="#admin-sidebar">
         <div class="panel-heading">
             <h5 class="panel-title">{{t('Control Panel')}}</h5>
