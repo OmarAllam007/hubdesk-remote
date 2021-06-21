@@ -28,7 +28,7 @@
 
         <div class="flex flex-col w-full  pt-5">
           <label for="resolution_description">{{ $root.t('Description') }} <span class="text-red-600">*</span></label>
-          <editor  v-model="resolution_description" id="resolution_description" name="resolution_description"
+          <editor v-model="resolution_description" id="resolution_description" name="resolution_description"
                   :init="{
           paste_data_images: true,
          height: 300,
@@ -76,6 +76,7 @@ import axios from "axios";
 import {EventBus} from "../../EventBus";
 
 import Editor from '@tinymce/tinymce-vue'
+
 export default {
   name: "Resolution",
   data() {
@@ -126,22 +127,41 @@ export default {
       let ticket = this.$parent.data.ticket;
       this.submit_loading = true;
 
-      axios.post(`/ticket/resolution/${ticket.id}`, {'content': this.resolution_description,})
-          .then((response) => {
-            this.submit_loading = false;
-            this.resolution = response.data.reply;
+      var reply = this.prepareData();
+      console.log(reply);
 
-            EventBus.$emit('send_notification', 'replies',
-                'Ticket Info', `Ticket has been resolved`, 'success');
+      axios.post(`/ticket/resolution/${ticket.id}`, reply, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        },
+      }).then((response) => {
+        this.submit_loading = false;
+        this.resolution = response.data.reply;
 
-            EventBus.$emit('add_to_replies', {'reply': response.data.reply});
-            EventBus.$emit('ticket_updated');
-            EventBus.$emit('status_updated', response.data.reply);
+        EventBus.$emit('send_notification', 'replies',
+            'Ticket Info', `Ticket has been resolved`, 'success');
+        EventBus.$emit('add_to_replies', {'reply': response.data.reply});
+        EventBus.$emit('ticket_updated');
+        EventBus.$emit('status_updated', response.data.reply);
 
-            this.resetForm();
-          }).catch((e) => {
+        this.resetForm();
+      }).catch((e) => {
         this.submit_loading = false;
       })
+    },
+    prepareData() {
+      var reply = new FormData;
+      reply.append('_token', $('meta[name="csrf-token"]').attr('content'));
+
+      let attachments = this.attachments;
+      for (var l = 0; l < attachments.length; l++) {
+        reply.append(`attachments[${l}]`, attachments[l]);
+      }
+
+      reply.append('reply[content]', this.resolution_description)
+
+
+      return reply;
     },
     resetForm() {
       this.resolution_description = '';

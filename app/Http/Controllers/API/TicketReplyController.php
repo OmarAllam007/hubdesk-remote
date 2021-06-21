@@ -78,21 +78,30 @@ class TicketReplyController extends Controller
 
     function resolve(Request $request, Ticket $ticket)
     {
-        $data = [
-            'content' => $request->get('content'),
-            'status_id' => 7,
-            'user_id' => $request->user()->id];
+        $replyAttachments = [];
 
-        if($request->get('update')){
+        $files = $request->allFiles();
+        $attachments = data_get($files, "reply.attachments");
 
-        }else{
-
+        if ($attachments) {
+            foreach ($attachments as $attachment) {
+                array_push($replyAttachments, $attachment);
+            }
         }
+
+        $request->request->set('attachments', $replyAttachments);
+
+        $data = [
+            'content' => $request->get('reply')['content'],
+            'status_id' => 7,
+            'user_id' => $request->user()->id
+        ];
+
         $reply = $ticket->replies()->create($data);
         $this->dispatch(new TicketReplyJob($reply));
 
         return response()->json(['message' => t('Reply has been added'),
-        'reply' => TicketReplyResource::make($reply)], 200);
+            'reply' => TicketReplyResource::make($reply)], 200);
     }
 
 }
