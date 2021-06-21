@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('header')
+
     <div class="display-flex">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -51,6 +52,16 @@
 
 
 @section('body')
+    <div class="flex">
+        <div class="flex">
+            <a href="{{route('ticket.create-wizard')}}"
+                    class=" text-center pt-2 pb-2 pl-5 pr-5  m-5 bg-gray-400 shadow-md  rounded-2xl text-viola "><i
+                        class="fa fa-arrow-left"></i>
+                {{t('Select Company')}}
+            </a>
+        </div>
+    </div>
+
     <div class="col-sm-2"></div>
 
     <div class="col-sm-8">
