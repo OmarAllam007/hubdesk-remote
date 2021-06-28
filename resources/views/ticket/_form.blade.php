@@ -10,10 +10,22 @@ $exceedNoOfTickets = $requester_bu->isExceedNoOfLimitedTickets($category,$subcat
 
 @endphp
 
+
+
+
 @if($sla)
-    <p style="font-size: 14pt;background-color: rgb(24, 79, 126); border-radius: 10px;text-align: center;padding: 10px;color: #fff;box-shadow: 2px 5px 2px lightgray">
-        {{t('Your Request will Delivered within')}} {{$sla->due_days}} {{t('Days')}} {{$sla->due_hours}} {{t('Hours')}} {{$sla->due_minutes}} {{t('Minutes')}} {{t('(from the last approval)')}}
-    </p>
+    <div class="flex justify-center">
+        <div class="w-1/2">
+            <div class="flex rounded-3xl p-5 mb-5 justify-center  shadow-md" style="background-color: rgba(26, 29, 80, 0.9)">
+                <div class="w-25 text-white pt-1  flex-col ">
+                    <i class="fa fa-info-circle fa-lg "></i>
+                </div>
+                <p class=" pl-2 pr-2 text-white text-2xl ">
+                    {{t('Your Request will Delivered within')}} {{$sla->due_days}} {{t('Days')}} {{$sla->due_hours}} {{t('Hours')}} {{$sla->due_minutes}} {{t('Minutes')}} {{t('(from the last approval)')}}
+                </p>
+            </div>
+        </div>
+    </div>
 @endif
 
 @if($exceedNoOfTickets)
@@ -147,24 +159,34 @@ $exceedNoOfTickets = $requester_bu->isExceedNoOfLimitedTickets($category,$subcat
         </div>
     </div>
     <br>
-    @if($category->notes || (isset($subcategory) && $subcategory->notes) || (isset($item) && $item->notes) )
-        <fieldset>
-            <label>{{t('Notes')}}</label>
-            <p>
-                {!! t($category->notes ?? '')  !!}
-            </p>
-            <p>
-                {!! t($subcategory->notes ?? '')  !!}
-            </p>
-            <p>
-                {!! t($item->notes ?? '')  !!}
-            </p>
-        </fieldset>
-        <br>
-    @endif
+    <div class="w-1/2">
+        <div class="flex-col">
+            <div class="flex bg-viola rounded-tl-2xl rounded-tr-2xl ">
+                <p class="text-white p-5"><i class="fa fa-sticky-note"></i>  {{t('Notes')}}</p>
+            </div>
+            <div class="bg-gray-100 shadow-md p-5  rounded-b-2xl mb-5  ">
+                @if($category->notes || (isset($subcategory) && $subcategory->notes) || (isset($item) && $item->notes) )
+                    <fieldset>
+                        <p>
+                            {!! t($category->notes ?? '')  !!}
+                        </p>
+                        <p>
+                            {!! t($subcategory->notes ?? '')  !!}
+                        </p>
+                        <p>
+                            {!! t($item->notes ?? '')  !!}
+                        </p>
+                    </fieldset>
+                    <br>
+                @endif
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-6">
-            <strong>{{t('Attachments')}} <span class="text-gray-600">[ {{t('Max Attachments size is 5MB')}} ]</span> </strong>
+            <strong>{{t('Attachments')}} <span class="text-gray-600">[ {{t('Max Attachments size is 5MB')}} ]</span>
+            </strong>
             <attachments limit="5"></attachments>
         </div>
     </div>
