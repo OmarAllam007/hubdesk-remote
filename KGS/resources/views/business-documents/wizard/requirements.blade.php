@@ -27,13 +27,32 @@
 @section('body')
     <div class="flex">
         <div class="flex">
+
             <a href="{{URL::previous()}}"
                class=" text-center pt-2 pb-2 pl-5 pr-5  m-5 bg-gray-400 shadow-md  rounded-2xl text-viola "><i
                         class="fa fa-arrow-left"></i>
-{{--                {{t('Select Subcategory')}}--}}
+                {{--                {{t('Select Subcategory')}}--}}
             </a>
         </div>
     </div>
+
+    {{--    @if($sla)--}}
+    @if($category->notes)
+        <div class="flex p-5 ">
+            <div class="w-1/2">
+                <div class="flex rounded-3xl p-5 mb-5 justify-start shadow-md"
+                     style="background-color: rgba(26, 29, 80, 0.9)">
+                    <div class="w-25 text-white pt-1  flex-col ">
+                        <i class="fa fa-info-circle fa-lg "></i>
+                    </div>
+                    <div class=" pl-2 pr-2 text-white text-2xl ">
+                        {!! $category->notes  !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+    {{--    @endif--}}
     <div id="TicketRequirements" class="card-section">
         @php
             $data = [];
