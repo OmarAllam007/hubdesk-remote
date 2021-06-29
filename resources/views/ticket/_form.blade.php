@@ -16,7 +16,8 @@ $exceedNoOfTickets = $requester_bu->isExceedNoOfLimitedTickets($category,$subcat
 @if($sla)
     <div class="flex justify-center">
         <div class="w-1/2">
-            <div class="flex rounded-3xl p-5 mb-5 justify-center  shadow-md" style="background-color: rgba(26, 29, 80, 0.9)">
+            <div class="flex rounded-3xl p-5 mb-5 justify-center  shadow-md"
+                 style="background-color: rgba(26, 29, 80, 0.9)">
                 <div class="w-25 text-white pt-1  flex-col ">
                     <i class="fa fa-info-circle fa-lg "></i>
                 </div>
@@ -159,13 +160,14 @@ $exceedNoOfTickets = $requester_bu->isExceedNoOfLimitedTickets($category,$subcat
         </div>
     </div>
     <br>
-    <div class="w-1/2">
-        <div class="flex-col">
-            <div class="flex bg-viola rounded-tl-2xl rounded-tr-2xl ">
-                <p class="text-white p-5"><i class="fa fa-sticky-note"></i>  {{t('Notes')}}</p>
-            </div>
-            <div class="bg-gray-100 shadow-md p-5  rounded-b-2xl mb-5  ">
-                @if($category->notes || (isset($subcategory) && $subcategory->notes) || (isset($item) && $item->notes) )
+    @if($category->notes || (isset($subcategory) && $subcategory->notes) || (isset($item) && $item->notes) )
+
+        <div class="w-1/2">
+            <div class="flex-col">
+                <div class="flex bg-viola rounded-tl-2xl rounded-tr-2xl ">
+                    <p class="text-white p-5"><i class="fa fa-sticky-note"></i> {{t('Notes')}}</p>
+                </div>
+                <div class="bg-gray-100 shadow-md p-5  rounded-b-2xl mb-5  ">
                     <fieldset>
                         <p>
                             {!! t($category->notes ?? '')  !!}
@@ -178,10 +180,11 @@ $exceedNoOfTickets = $requester_bu->isExceedNoOfLimitedTickets($category,$subcat
                         </p>
                     </fieldset>
                     <br>
-                @endif
+                </div>
             </div>
         </div>
-    </div>
+    @endif
+
 
     <div class="row">
         <div class="col-md-6">
