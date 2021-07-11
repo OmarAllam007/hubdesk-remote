@@ -46081,6 +46081,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Approval",
@@ -46163,7 +46172,27 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('p', {
     staticClass: "p-2 m-2 rounded-2xl text-center text-base font-bold w-64",
     class: _vm.getStatusColor
-  }, [_vm._v(_vm._s(_vm.$root.t(_vm.approval.status)))])]), _vm._v(" "), (_vm.approval.questions.length) ? _c('table', {
+  }, [_vm._v(_vm._s(_vm.$root.t(_vm.approval.status)))])]), _vm._v(" "), (_vm.approval.attachments.length) ? _c('div', {
+    staticClass: "flex flex-col"
+  }, [_c('p', {
+    staticClass: "text-black"
+  }, [_c('strong', [_vm._v("Attachments")])]), _vm._v(" "), _vm._l((_vm.approval.attachments), function(attachment) {
+    return _c('a', {
+      staticClass: "hover:bg-white  flex z-50 pt-5 pb-5 pl-1 pr-1  rounded-xl ",
+      attrs: {
+        "href": ("download-attach/" + (attachment.id)),
+        "target": "_blank"
+      },
+      on: {
+        "click": function($event) {
+          $event.stopPropagation();
+          return (function () {}).apply(null, arguments)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-download pl-1 pr-1"
+    }), _vm._v("\n            " + _vm._s(attachment.display_name) + "\n          ")])
+  })], 2) : _vm._e(), _vm._v(" "), (_vm.approval.questions.length) ? _c('table', {
     staticClass: "table p-5 shadow-md "
   }, [_c('thead', [_c('tr', {
     staticClass: "bg-gray-300  shadow-md"
