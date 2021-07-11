@@ -16,9 +16,12 @@
         </div>
 
         <div class="pt-10 ">
-          <reply-form :ticket="ticketData" :approvers="users" :templates="templates" :statuses="statuses"
+          <reply-form :ticket="ticketData" :approvers="users"
+                      :templates="templates" :statuses="statuses"
                       :show_templates="show_templates"
-                      v-show="!loading" v-cloak></reply-form>
+                      :authorizations="$parent.authorizations"
+                      v-show="can_reply" v-cloak>
+          </reply-form>
         </div>
       </div>
     </div>
@@ -65,6 +68,12 @@ export default {
     EventBus.$on('approval_created', (approvals) => {
       this.approvals = approvals;
     });
+  },
+  computed: {
+    can_reply() {
+      return (!this.loading && (this.ticket.status_id == 8 && this.$parent.authorizations.is_support))
+      || (!this.loading && this.ticket.status_id != 8);
+    }
   },
   methods: {
     getTicketConversation(loading = true) {
