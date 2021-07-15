@@ -9,7 +9,12 @@ class LetterGroup extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['name','order'];
+    protected $fillable = ['name', 'order'];
 
+
+    function letters()
+    {
+        return $this->hasMany(Letter::class);
+    }
 
 }

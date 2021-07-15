@@ -87,6 +87,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
 
 
     $r->get('', 'Admin\DashboardController@index');
+    $r->get('/system-admin', 'Admin\DashboardController@systemAdmin')->name('system_admin');
+
     $r->resource('region', 'Admin\RegionController');
     $r->resource('division', 'Admin\DivisionController');
     $r->resource('city', 'Admin\CityController');
@@ -129,11 +131,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
 });
 
 
-Route::group(['middleware'=>['auth']], function (){
+Route::group(['middleware' => ['auth']], function () {
     Route::get('/reset_password', 'UserController@getResetForm')->name('user.reset');
     Route::post('/reset_password', 'UserController@resetForm')->name('user.reset');
 });
-Route::group(['middleware' => ['auth','reset']], function () {
+Route::group(['middleware' => ['auth', 'reset']], function () {
 
     Route::get('/get-users', 'Admin\UserController@getusers');
     Route::group(['prefix' => 'ticket'], function (\Illuminate\Routing\Router $r) {
@@ -256,3 +258,5 @@ Route::get('/subcategory/{subcategory}', 'SubcategoryController@show')->name('su
 
 Route::post('ajax/ticket', 'API\TicketController@index');
 Route::post('ajax/filter-tickets', 'API\TicketController@filterTickets');
+
+require __DIR__ . '/letters.php';
