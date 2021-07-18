@@ -3,8 +3,38 @@
 use Illuminate\Routing\Router;
 
 
-if (env('LOGIN_AS')) {
-    Auth::loginUsingId(env('LOGIN_AS'));
+Route::get('SAP_API', function () {
+//    $url = 'http://alkfeccdev.alkifah.com:8000/sap/bc/srt/wsdl/flv_10002A101AD1/bndg_url/sap/bc/srt/rfc/sap/zhcm_payroll/900/zhcm_payroll/zhcm?sap-client=900';
+    $url = 'http://ALKFECCPRD.ALKIFAH.COM:8000/sap/bc/srt/wsdl/flv_10002A111AD1/bndg_url/sap/bc/srt/rfc/sap/zhcm_payroll/900/zhcm_payroll/zhcm?sap-client=900';
+
+    $client = new Laminas\Soap\Client();
+    $client->setUri($url);
+    $client->setOptions([
+//        'location' => 'http://ALKFECCDEV.ALKIFAH.COM:8000/sap/bc/srt/rfc/sap/zhcm_payroll/900/zhcm_payroll/zhcm',
+//        'style' => SOAP_DOCUMENT,
+        'soap_version' => SOAP_1_2,
+        'wsdl' => $url,
+        'login' => 'HUBDESK_API',
+        'password' => 'Kifah@4200',
+        'compression' => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP
+    ]);
+
+    $result = $client->ZHCM_PAYROLL_TECH(['IM_PERNR' => 90001000]);
+    $file = null;
+
+    foreach ($result->EX_XPDF->item as $item) {
+        $file .= $item->LINE;
+    }
+    $filename = uniqid('/tmp/salary_') . '.pdf';
+    file_put_contents($filename, $file);
+
+    return response()->download($filename, 'salary.pdf', ['Content-Type' => 'application/pdf'], 'inline')->deleteFileAfterSend(true);
+});
+
+
+if ($login = env('LOGIN_AS')) {
+    $user = \App\User::where('employee_id',$login)->first();
+    Auth::login($user);
 }
 
 Route::get('/', 'HomeController@home')->middleware('lang');
@@ -129,7 +159,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
 });
 
 
-Route::group(['middleware'=>['auth']], function (){
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/user-information', 'UserController@getUserInformation')->name('user.information');
+    Route::get('/user-information-pdf', 'UserController@getSalarySlipPdf')->name('user.salarySlipPdf');
+    Route::get('/get-users', 'Admin\UserController@getusers');
+
     Route::get('/reset_password', 'UserController@getResetForm')->name('user.reset');
     Route::post('/reset_password', 'UserController@resetForm')->name('user.reset');
 });
