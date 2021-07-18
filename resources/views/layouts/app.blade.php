@@ -84,8 +84,9 @@
                         {{--@endif--}}
                         <li class="nav-item"><a href="{{route('ticket.index')}}"><i
                                         class="fa fa-ticket"></i> {{t('Tickets')}}</a></li>
-
-                        @if(auth()->user()->employee_id)
+                        
+                        @if(auth()->user()->employee_id &&
+(env('SALARY_SLIP_USERS') && in_array(auth()->id(),explode(',',env('SALARY_SLIP_USERS')))))
                             <li class="nav-item"><a href="{{route('user.information')}}"><i
                                             class="fa fa-user-circle"></i> {{t('My Information')}}</a></li>
                         @endif

@@ -43,7 +43,7 @@ class UserController extends Controller
 
     function getUserInformation()
     {
-        if (!auth()->user()->employee_id) {
+        if (!auth()->user()->employee_id || !(env('SALARY_SLIP_USERS') && in_array(auth()->id(),explode(',',env('SALARY_SLIP_USERS'))))) {
             return redirect('/');
         }
 
