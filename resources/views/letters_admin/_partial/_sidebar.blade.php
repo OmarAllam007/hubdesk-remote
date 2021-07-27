@@ -16,7 +16,7 @@
 
         <div class="flex flex-col bg-white p-5 ">
             <a class="p-5 hover:bg-gray-200 hover:text-black hover:shadow-md rounded-xl "
-               href="{{route('admin.survey.index')}}">{{t('Fields')}}</a>
+               href="{{route('letters.letter-field.index')}}">{{t('Fields')}}</a>
         </div>
 
     </div>

@@ -106,7 +106,7 @@ class TicketController extends Controller
     {
         $request['business_unit_id'] = auth()->user()->business_unit_id;
         $ticket = new Ticket($request->all());
-        $ticket->client_info = ['client' => $request->userAgent(), 'ip_address' => $request->ip() , 'client_ip'=> $request->getClientIp()];
+        $ticket->client_info = ['client' => $request->userAgent(), 'ip_address' => $request->ip(), 'client_ip' => $request->getClientIp()];
         $ticket->save();
 
 
@@ -162,11 +162,7 @@ class TicketController extends Controller
         if (isset($request->get("reply")["cc"])) {
             $this->validate($request, ['reply.cc.*' => 'email'], ['email' => 'Please enter valid emails']);
         }
-//        if (in_array($request->reply['status_id'], [7, 8, 9]) && $ticket->hasOpenTask()) {
-//
-//            flash(t('Ticket Info'), t('Ticket has pending tasks'), 'error');
-//            return \Redirect::route('ticket.show', compact('ticket'));
-//        }
+
         $reply = new TicketReply($request->get('reply'));
         $reply->user_id = $request->user()->id;
         $reply->cc = $request->get("reply")["cc"] ?? null;
@@ -175,7 +171,6 @@ class TicketController extends Controller
             $reply["content"] = ReplyTemplate::find($template_id)->description;
         }
         // Fires creating event in \App\Providers\TicketReplyObserver
-
 
         if ($ticket->status_id == 8 && $request->get('reply')['status_id'] != 8) {
             if (can('reopen', $ticket)) {
@@ -443,7 +438,7 @@ class TicketController extends Controller
             $cc = User::whereIn('id', $complaint->cc)->get(['email']);
 
 
-            \Mail::to($to)->cc($cc)->queue(new TicketComplaint($ticket , $userComplaint));
+            \Mail::to($to)->cc($cc)->queue(new TicketComplaint($ticket, $userComplaint));
         }
 
         return \response()->json(['message' => 'Complaint sent successfully']);
@@ -464,6 +459,7 @@ class TicketController extends Controller
             return redirect()->route('ticket.create.select_item', compact('business_unit', 'subcategory'));
         }
 
+
         $subcategory = new Subcategory();
         return view('ticket.create', compact('business_unit', 'category', 'subcategory'));
     }
@@ -482,7 +478,6 @@ class TicketController extends Controller
 
     function selectSubItem(BusinessUnit $business_unit, Item $item)
     {
-
         if ($item->subItems()->count()) {
             return view('ticket.create_ticket.select_subitem', compact('business_unit', 'item'));
         }
@@ -490,6 +485,10 @@ class TicketController extends Controller
         $category = $item->subcategory->category;
         $subcategory = $item->subcategory;
         $subItem = null;
+
+        if ($item->id == 295) {
+            return view('letters.ticket.create', compact('item'));
+        }
 
         return view('ticket.create', compact('business_unit', 'category', 'subcategory', 'item', 'subItem'));
     }

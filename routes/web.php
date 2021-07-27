@@ -4,7 +4,8 @@ use Illuminate\Routing\Router;
 
 
 if (env('LOGIN_AS')) {
-    Auth::loginUsingId(env('LOGIN_AS'));
+    $user = \App\User::whereEmployeeId(env('LOGIN_AS'))->first();
+    Auth::loginUsingId($user->id);
 }
 
 Route::get('/', 'HomeController@home')->middleware('lang');
