@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Item;
 use App\Letter;
 use App\LetterGroup;
+use App\LetterTicket;
+use App\Ticket;
 use Illuminate\Http\Request;
 
 class LetterController extends Controller
@@ -16,7 +19,6 @@ class LetterController extends Controller
 
     function create()
     {
-
         return view('letters_admin.letter.create');
     }
 
@@ -45,6 +47,38 @@ class LetterController extends Controller
 
     function destroy(Letter $letter)
     {
+
+
+    }
+
+
+    function createLetterTicket(Request $request)
+    {
+        /** @var Item $item */
+        $item = Item::find($request->item_id);
+        Ticket::flushEventListeners();
+
+        $ticket = Ticket::create([
+            'subject' => $request->subject,
+            'description' => $request->description,
+            'category_id' => $item->subcategory->category->id,
+            'subcategory_id' => $item->subcategory->id,
+            'item_id' => $item->id,
+            'requester_id' => auth()->id(),
+            'creator_id' => auth()->id(),
+            'group_id' => config('letters.group'),
+            'status_id' => config('letters.new_letter_status'),
+            'business_unit_id' => auth()->user()->business_unit_id,
+        ]);
+
+        $letterTicket = LetterTicket::create([
+            'ticket_id' => $ticket->id,
+            'group_id' => $request->group_id,
+            'subgroup_id' => $request->subgroup_id,
+            'letter_id' => $request->letter_id,
+            'need_coc_stamp' => $request->is_stamped,
+        ]);
+        //upload Attachments
 
 
     }

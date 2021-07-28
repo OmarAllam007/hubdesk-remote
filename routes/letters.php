@@ -10,8 +10,9 @@ Route::group(['prefix' => 'letters', 'as' => 'letters.'], function (\Illuminate\
     $r->resource('letter', 'LetterController');
     $r->resource('letter-field', 'LetterFieldController');
 
+    $r->post('create-letter-ticket', 'LetterController@createLetterTicket');
 
-    Route::group(['prefix'=> 'list', 'as' => 'list'], function (\Illuminate\Routing\Router $r) {
+    Route::group(['prefix' => 'list', 'as' => 'list'], function (\Illuminate\Routing\Router $r) {
         $r->get('subgroups/{group}', [\App\Http\Controllers\LettersListController::class, 'subgroups']);
         $r->get('letters', [\App\Http\Controllers\LettersListController::class, 'letters']);
     });

@@ -4,28 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Attachment;
 use App\BusinessUnit;
-use App\BusinessUnitRole;
 use App\Category;
 use App\CustomField;
 use App\Helpers\Ticket\TicketViewScope;
-use App\Http\Requests\NoteRequest;
 use App\Http\Requests\ReassignRequest;
 use App\Http\Requests\TicketReplyRequest;
 use App\Http\Requests\TicketRequest;
 use App\Http\Requests\TicketResolveRequest;
-use App\Http\Resources\SurveyResource;
 use App\Http\Resources\TicketReplyResource;
 use App\Http\Resources\TicketResource;
 use App\Item;
-use App\Jobs\ApplyBusinessRules;
 use App\Jobs\ApplySLA;
-use App\Jobs\NewNoteJob;
 use App\Jobs\NewTicketJob;
-use App\Jobs\TicketAssigned;
 use App\Jobs\TicketReplyJob;
+use App\LetterGroup;
 use App\Mail\TicketAssignedMail;
 use App\Mail\TicketComplaint;
 use App\Mail\TicketForwardJob;
+use App\Priority;
 use App\ReplyTemplate;
 use App\Subcategory;
 use App\SubItem;
@@ -37,7 +33,6 @@ use App\TicketNote;
 use App\TicketReply;
 use App\User;
 use App\UserComplaint;
-use http\Env\Response;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
@@ -487,7 +482,7 @@ class TicketController extends Controller
         $subItem = null;
 
         if ($item->id == 295) {
-            return view('letters.ticket.create', compact('item'));
+            return $this->redirectToLetters($item);
         }
 
         return view('ticket.create', compact('business_unit', 'category', 'subcategory', 'item', 'subItem'));
@@ -508,5 +503,24 @@ class TicketController extends Controller
 
         $file = public_path('storage') . $attachment->path;
         return response()->download($file);
+    }
+
+    private function redirectToLetters(Item $item)
+    {
+        $groups = LetterGroup::where('parent_group_id',0)
+            ->orderBy('order')->get(['id','name']);
+
+        $priorities = Priority::all();
+
+        $category = $item->subcategory->category;
+        $subcategory = $item->subcategory;
+
+        $subject = (auth()->user()->employee_id ? auth()->user()->employee_id.' - ' : '').
+            $category->name.(isset($subcategory->name) ? '  -  '.
+                $subcategory->name:'').(isset($item->name) ? '  -  '.
+                $item->name:'').(isset($subItem->name) ? '  -  '.
+                $subItem->name:'');
+
+        return view('letters.ticket.create', compact('item' , 'groups' , 'priorities' ,'subject'));
     }
 }
