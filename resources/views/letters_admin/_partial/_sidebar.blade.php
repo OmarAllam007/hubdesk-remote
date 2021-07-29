@@ -19,6 +19,11 @@
                href="{{route('letters.letter-field.index')}}">{{t('Fields')}}</a>
         </div>
 
+        <div class="flex flex-col bg-white p-5 ">
+            <a class="p-5 hover:bg-gray-200 hover:text-black hover:shadow-md rounded-xl "
+               href="{{route('letters.approval.index')}}">{{t('Approval Matrix')}}</a>
+        </div>
+
     </div>
 
 </div>

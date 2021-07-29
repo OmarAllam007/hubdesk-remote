@@ -22,6 +22,9 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\TicketNotAssignedListener',
             'App\Listeners\CreateUserTicketListener',
         ],
+        'eloquent.created: App\LetterTicket' => [
+            'App\Listeners\Letters\LetterTicketListener',
+        ]
     ];
 
     public function shouldDiscoverEvents()
