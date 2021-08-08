@@ -7,6 +7,9 @@ if (env('LOGIN_AS')) {
     $user = \App\User::whereEmployeeId(env('LOGIN_AS'))->first();
     Auth::loginUsingId($user->id);
 }
+Route::get('letter-view', function () {
+    return view('letters.template.bank.ahly_bank');
+});
 
 Route::get('/', 'HomeController@home')->middleware('lang');
 Route::auth();

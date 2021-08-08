@@ -10,6 +10,6 @@ class Letter extends Model
 
     function group()
     {
-        return $this->belongsTo(LetterGroup::class);
+        return $this->belongsTo(LetterGroup::class,'letter_group_id');
     }
 }

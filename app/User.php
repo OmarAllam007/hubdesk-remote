@@ -112,6 +112,13 @@ class User extends Authenticatable implements CanResetPassword
         return $query->where('is_disabled', 0);
     }
 
+    function scopeApprovers($query)
+    {
+        return $query->whereNotNull('email')
+            ->where('is_disabled', 0)
+            ->where('employee_id', '<>', 0);
+    }
+
     public function isTechnician()
     {
         return $this->groups()->technician()->exists();
