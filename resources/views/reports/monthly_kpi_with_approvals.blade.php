@@ -18,6 +18,7 @@
             <thead class="bg-black">
             <tr>
                 <th class="py-3 px-6 sticky top-0 border-b border border-gray-600 bg-blue-600 text-white">{{ t('Request ID') }}</th>
+                <th class="py-3 px-6 sticky top-0 border-b border border-gray-600 bg-blue-600 text-white">{{ t('Main Ticket ID') }}</th>
                 <th class="py-3 px-6 sticky top-0 border-b border border-gray-600 bg-blue-600 text-white">{{ t('Subject') }}</th>
                 <th class="py-3 px-6 sticky top-0 border-b border border-gray-600 bg-blue-600 text-white">{{ t('Employee Id') }}</th>
                 <th class="py-3 px-6 sticky top-0 border-b border border-gray-600 bg-blue-600 text-white">{{ t('Requester Name') }}</th>
@@ -31,6 +32,7 @@
                 <th class="py-3 px-6 sticky top-0 border-b border border-gray-600 bg-blue-600 text-white">{{ t('Difference') }}</th>
                 <th class="py-3 px-6 sticky top-0 border-b border border-gray-600 bg-blue-600 text-white">{{ t('Due Date') }}</th>
                 <th class="py-3 px-6 sticky top-0 border-b border border-gray-600 bg-blue-600 text-white">{{ t('Resolved Date') }}</th>
+                <th class="py-3 px-6 sticky top-0 border-b border border-gray-600 bg-blue-600 text-white">{{ t('Last working day') }}</th>
                 <th class="py-3 px-6 sticky top-0 border-b border border-gray-600 bg-blue-600 text-white">{{ t('First Approval Sent Date') }}</th>
                 <th class="py-3 px-6 sticky top-0 border-b border border-gray-600 bg-blue-600 text-white">{{ t('Last Approval Action Date') }}</th>
                 <th class="py-3 px-6 sticky top-0 border-b border border-gray-600 bg-blue-600 text-white">{{ t('Business Unit') }}</th>
@@ -47,8 +49,10 @@
             </thead>
             <tbody>
             @foreach ($data as $ticket)
+
                 <tr class="hover:bg-yellow-200">
                     <td class="py-4 px-6  border border-gray-600 ">{{ $ticket->id }}</td>
+                    <td class="py-4 px-6  border border-gray-600 ">{{ $ticket->request_id ?? '' }}</td>
                     <td class="py-4 px-6  border border-gray-600 ">{{ $ticket->subject }}</td>
                     <td class="py-4 px-6  border border-gray-600 ">{{ $ticket->employee_id ?? 'Not Assigned' }}</td>
                     <td class="py-4 px-6  border border-gray-600 ">{{ $ticket->requester ?? 'Not Assigned' }}</td>
@@ -62,6 +66,7 @@
                     <td class="py-4 px-6  border border-gray-600 ">{{ $ticket->difference ?? 'Not Assigned' }}</td>
                     <td class="py-4 px-6  border border-gray-600 ">{{ $ticket->due_date->format('Y/m/d h:m') ?? 'Not Assigned' }}</td>
                     <td class="py-4 px-6  border border-gray-600 ">{{ $ticket->resolve_date ?? 'Not Assigned' }}</td>
+                    <td class="py-4 px-6  border border-gray-600 ">{{ $ticket->last_working_day ?  $ticket->last_working_day : 'Not Assigned' }}</td>
                     <td class="py-4 px-6  border border-gray-600 ">{{ $ticket->approvals->first() ? $ticket->approvals->last()->created_at->format('Y/m/d H:m') : 'Not Assigned' }}</td>
                     <td class="py-4 px-6  border border-gray-600 ">{{ ($ticket->approvals->last() && $ticket->approvals->last()->approval_date) ? $ticket->approvals->last()->approval_date->format('Y/m/d H:m') : 'Not Assigned' }}</td>
                     <td class="py-4 px-6  border border-gray-600 ">{{ $ticket->business_unit ?? 'Not Assigned' }}</td>

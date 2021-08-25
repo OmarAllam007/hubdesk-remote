@@ -57,7 +57,7 @@ class MonthlyKPIWithApprovals extends ReportContract
     protected function fields()
     {
         $this->query->selectRaw('t.id as id, t.subject, t.created_at, t.due_date, t.resolve_date,
-        tech.name as technician, req.name as requester, req.employee_id as employee_id')
+        tech.name as technician, req.name as requester, req.employee_id as employee_id , t.request_id')
             ->selectRaw('t.sla_id, resolve_date, overdue, time_spent')
             ->selectRaw('cat.name as category, subcat.name as subcategory, item.name as item')
             ->selectRaw('st.name as status')
@@ -97,9 +97,9 @@ class MonthlyKPIWithApprovals extends ReportContract
  as performance')
             ->selectRaw("@departure_date := (select `getDepartureDate`(t.id))  'date_of_dept',
           DATEDIFF(@departure_date, DATE_FORMAT(t.created_at, '%Y-%m-%d')) 'difference'")
-            ->selectRaw(" ( select ticket_fields.value tf from  ticket_fields where t.id = ticket_fields.ticket_id and (ticket_fields.name like '%Employee Name%' or ticket_fields.name like '%Vacation Requester%' ) ) employee_name");
-
-
+            ->selectRaw(" ( select ticket_fields.value tf from  ticket_fields where t.id = ticket_fields.ticket_id and (ticket_fields.name like '%Employee Name%' or ticket_fields.name like '%Vacation Requester%' ) ) employee_name")
+            ->selectRaw(" (select ticket_fields.value tf from ticket_fields where t.id = ticket_fields.ticket_id and  ticket_fields.name like '%Last working day%')    last_working_day");
+//            ->selectRaw(' t.request_id as ticket_id ');
     }
 
     function html()
@@ -158,9 +158,9 @@ class MonthlyKPIWithApprovals extends ReportContract
 
 
         $header = [
-            'ID', 'Subject', 'Employee ID', 'Requester', 'Employee/Requester',
+            'ID', 'Main Ticket ID', 'Subject', 'Employee ID', 'Requester', 'Employee/Requester',
             'Technician', 'Category', 'Subcategory', 'Status', 'Created Date', 'Date of Departure', 'Days between departure and create', 'Due Date',
-            'Resolved Date', 'First Approval Sent Date', 'Last Approval Action Date', 'Business Unit', 'Performance'];
+            'Resolved Date','Last working day', 'First Approval Sent Date', 'Last Approval Action Date', 'Business Unit', 'Performance'];
 
         $approvals_header = $approvals_header->flatten()->toArray();
         $sheet->fromArray(array_merge($header, $approvals_header), NULL, 'A1', true);
@@ -189,9 +189,9 @@ class MonthlyKPIWithApprovals extends ReportContract
             $first_approval = $approvals->count() > 0 && $approvals->last()[1] ?
                 $approvals->last()[1]->format('Y-m-d H:m') : 'Not Assigned';
             $rowData = [
-                $ticket->id, $ticket->subject, $ticket->employee_id, $ticket->requester, $ticket->employee_name, $ticket->technician,
+                $ticket->id,$ticket->request_id ?? '' , $ticket->subject, $ticket->employee_id, $ticket->requester, $ticket->employee_name, $ticket->technician,
                 $ticket->category, $ticket->subcategory, $ticket->status, $ticket->created_at, $ticket->date_of_dept, $ticket->difference ?? 'Not Assigned',
-                $ticket->due_date, $ticket->resolve_date, $first_approval, $last_approval, $ticket->business_unit, $ticket->performance
+                $ticket->due_date, $ticket->resolve_date,$ticket->last_working_day ?? '', $first_approval, $last_approval, $ticket->business_unit, $ticket->performance
             ];
             $sheet->fromArray(array_merge($rowData, $approvals->flatten()->toArray()), NULL, 'A' . $row, true);
         }
