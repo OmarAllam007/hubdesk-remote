@@ -57,7 +57,7 @@ class MonthlyKPIWithApprovals extends ReportContract
     protected function fields()
     {
         $this->query->selectRaw('t.id as id, t.subject, t.created_at, t.due_date, t.resolve_date,
-        tech.name as technician, req.name as requester, req.employee_id as employee_id')
+        tech.name as technician, req.name as requester, req.employee_id as employee_id , t.request_id')
             ->selectRaw('t.sla_id, resolve_date, overdue, time_spent')
             ->selectRaw('cat.name as category, subcat.name as subcategory, item.name as item')
             ->selectRaw('st.name as status')
@@ -97,9 +97,9 @@ class MonthlyKPIWithApprovals extends ReportContract
  as performance')
             ->selectRaw("@departure_date := (select `getDepartureDate`(t.id))  'date_of_dept',
           DATEDIFF(@departure_date, DATE_FORMAT(t.created_at, '%Y-%m-%d')) 'difference'")
-            ->selectRaw(" ( select ticket_fields.value tf from  ticket_fields where t.id = ticket_fields.ticket_id and (ticket_fields.name like '%Employee Name%' or ticket_fields.name like '%Vacation Requester%' ) ) employee_name");
-
-
+            ->selectRaw(" ( select ticket_fields.value tf from  ticket_fields where t.id = ticket_fields.ticket_id and (ticket_fields.name like '%Employee Name%' or ticket_fields.name like '%Vacation Requester%' ) ) employee_name")
+            ->selectRaw(" (select ticket_fields.value tf from ticket_fields where t.id = ticket_fields.ticket_id and  ticket_fields.name like '%Last working day%')    last_working_day");
+//            ->selectRaw(' t.request_id as ticket_id ');
     }
 
     function html()
