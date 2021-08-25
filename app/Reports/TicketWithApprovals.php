@@ -11,6 +11,7 @@ namespace App\Reports;
 use App\Helpers\ChromePrint;
 use App\Status;
 use App\Ticket;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -36,11 +37,98 @@ class TicketWithApprovals extends ReportContract
 
     protected $view = 'reports.ticket_with_approvals';
 
+    function onlyHREmails()
+    {
+        $emails =   collect([
+            "hamad.almassad@alkifah.com",
+            'ER-07@kifahprecast.com',
+            'er-02@alkifah.com',
+            'er-02@alkifah.com',
+            'er-02@alkifah.com',
+            'er-04@alkifah.com',
+            'er-04@alkifah.com',
+            'alaa.alsharief@tamweel-aloula.com',
+            'er-16@alkifah.com',
+            'er-16@alkifah.com',
+            'er-10@alkifah.com',
+            'er-16@alkifah.com',
+            'er-03@alkifah.com',
+            'er-10@alkifah.com',
+            'er-01@alkifah.com',
+            'leaders.affairs@alkifah.com',
+            "zainab.khalifah@alkifah.com",
+            "mamoon.farhat@alkifah.com",
+            "tamer.mansor@alkifah.com",
+            "fadel.kattan@alkifah.com",
+            "rahim.pervez@alkifah.com",
+            "ahmad.Shuaib@alkifah.com",
+            "h.abbad@alkifah.com",
+            "zainab.khalifah@alkifah.com",
+            "amr.yassien@alkifah.com",
+            "mamoon.farhat@alkifah.com",
+            "tamer.mansor@alkifah.com",
+            "a.alqwai@alkifah.com",
+            "n.basheer@alkifah.com",
+            "h.alrustom@alkifah.com",
+            "mujtabah.aljabar@alkifah.com",
+            "zainab.khalifah@alkifah.com",
+            "haitham.qadi@alkifah.com",
+            "mamoon.farhat@alkifah.com",
+            "tamer.mansor@alkifah.com",
+            "dam-gov.affairs@alkifah.com",
+            "n.basheer@alkifah.com",
+            "aslam.khan@alkifah.com",
+            "mohammed.alomran@alkifah.com",
+            "zainab.khalifah@alkifah.com",
+            "ramy.mohammed@alkifah.com",
+            "mamoon.farhat@alkifah.com",
+            "tamer.mansor@alkifah.com",
+            "ali.waily@alkifah.com",
+            "imthiyaz.moulana@alkifah.com",
+            "muhammad.rizwan@alkifah.com",
+            "faisal.alshmmeri@alkifah.com",
+            "zainab.khalifah@alkifah.com",
+            "mohammed.megahed@alkifah.com",
+            "mamoon.farhat@alkifah.com",
+            "tamer.mansor@alkifah.com",
+            "faisal.fawaz@alkifah.com",
+            "raheel.alshemmeri@alkifah.com",
+            "m.najeeb@alkifah.com",
+            "a.alshaer@alkifah.com",
+            "zainab.khalifah@alkifah.com",
+            "masood.ali@alkifah.com",
+            "mamoon.farhat@alkifah.com",
+            "tamer.mansor@alkifah.com",
+            "mataib.finde@alkifah.com",
+            "mohammad.salam@alkifah.com",
+            "irfan.manzoo@alkifah.com",
+            "turki.alharbi@alkifah.com",
+            "zainab.khalifah@alkifah.com",
+            "adnan.ghazal@alkifah.com",
+            "mamoon.farhat@alkifah.com",
+            "tamer.mansor@alkifah.com",
+            "adel.aljehani@alkifah.com",
+            "jawad.abdulwaheed@alkifah.com",
+            "ejaz.riaz@alkifah.com",
+            "ali.maher@alkifah.com",
+            "zainab.khalifah@alkifah.com",
+            "adnan.ghazal@alkifah.com",
+            "mamoon.farhat@alkifah.com",
+            "tamer.mansor@alkifah.com",
+            "yasir.alharbi@alkifah.com",
+            "adel.elsayed@alkifah.com",
+            "mohammed.naizer@alkifah.com",
+        ])->unique()->toArray();
+        return User::whereIn('email',$emails)->pluck('id')->toArray();
+    }
+
     function run()
     {
-
         $this->query = Ticket::withoutGlobalScopes()
-            ->with('sla', 'approvals')
+            ->with('sla')
+            ->with(['approvals' => function($q){
+                $q->whereIn('approver_id' , $this->onlyHREmails());
+            }])
             ->from('tickets as t')
             ->join('users as tech', 't.technician_id', '=', 'tech.id')
             ->join('users as req', 't.requester_id', '=', 'req.id')
@@ -58,7 +146,7 @@ class TicketWithApprovals extends ReportContract
     protected function fields()
     {
         $this->query->selectRaw('t.id as id, t.subject, t.created_at, t.due_date, t.resolve_date,
-        tech.name as technician, req.name as requester, req.employee_id as employee_id')
+        tech.name as technician, req.name as requester, req.employee_id as employee_id , t.request_id ')
             ->selectRaw('t.sla_id, resolve_date, overdue, time_spent')
             ->selectRaw('cat.name as category, subcat.name as subcategory, item.name as item')
             ->selectRaw('st.name as status')
@@ -116,6 +204,7 @@ class TicketWithApprovals extends ReportContract
         $max = 0;
 
         $approvals_count = $items->max(function ($item) use ($max) {
+            /** @var Ticket $item */
             if ($item->approvals->count() > $max) {
                 $max = $item->approvals->count();
             }
@@ -160,7 +249,7 @@ class TicketWithApprovals extends ReportContract
         $header = [
             'ID', 'Main Ticket ID', 'Category',
             'Technician', 'Created Date', 'Due Date',
-            'Resolved Date', 'First Approval Sent Date', 'Last Approval Action Date', 'Business Unit', 'Month'
+            'Resolved Date', 'Last working day', 'First Approval Sent Date', 'Last Approval Action Date', 'Business Unit', 'Month'
 
         ];
 
@@ -192,7 +281,7 @@ class TicketWithApprovals extends ReportContract
             $rowData = [
                 $ticket->id, $ticket->request_id ?? '', $ticket->category, $ticket->technician,
                 $ticket->created_at,
-                $ticket->due_date, $ticket->resolve_date, $ticket->last_working_day , $first_approval, $last_approval, $ticket->business_unit, $ticket->month
+                $ticket->due_date, $ticket->resolve_date, $ticket->last_working_day, $first_approval, $last_approval, $ticket->business_unit, $ticket->month
             ];
             $sheet->fromArray(array_merge($rowData, $approvals->flatten()->toArray()), NULL, 'A' . $row, true);
         }
