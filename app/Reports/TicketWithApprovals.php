@@ -64,6 +64,7 @@ class TicketWithApprovals extends ReportContract
             ->selectRaw('st.name as status')
             ->selectRaw('bu.name as business_unit')
             ->selectRaw('MONTHNAME(t.created_at) as month')
+            ->selectRaw(" (select ticket_fields.value tf from ticket_fields where t.id = ticket_fields.ticket_id and  ticket_fields.name like '%Last working day%')    last_working_day")
             ->selectRaw(' @sla := format((sla.due_days) + (sla.due_hours / 8) + (sla.due_minutes / (8 * 60)),
                                1)                                                      \'SLA Delivery time\',
 
@@ -156,12 +157,13 @@ class TicketWithApprovals extends ReportContract
             ]);
         }
 
-
         $header = [
-            'ID', 'Category',
+            'ID', 'Main Ticket ID', 'Category',
             'Technician', 'Created Date', 'Due Date',
             'Resolved Date', 'First Approval Sent Date', 'Last Approval Action Date', 'Business Unit', 'Month'
+
         ];
+
 
         $approvals_header = $approvals_header->flatten()->toArray();
         $sheet->fromArray(array_merge($header, $approvals_header), NULL, 'A1', true);
@@ -188,9 +190,9 @@ class TicketWithApprovals extends ReportContract
             $first_approval = $approvals->count() > 0 && $approvals->last()[1] ?
                 $approvals->last()[1]->format('Y-m-d H:m') : 'Not Assigned';
             $rowData = [
-                $ticket->id, $ticket->category, $ticket->technician,
+                $ticket->id, $ticket->request_id ?? '', $ticket->category, $ticket->technician,
                 $ticket->created_at,
-                $ticket->due_date, $ticket->resolve_date, $first_approval, $last_approval, $ticket->business_unit , $ticket->month
+                $ticket->due_date, $ticket->resolve_date, $ticket->last_working_day , $first_approval, $last_approval, $ticket->business_unit, $ticket->month
             ];
             $sheet->fromArray(array_merge($rowData, $approvals->flatten()->toArray()), NULL, 'A' . $row, true);
         }
