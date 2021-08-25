@@ -125,10 +125,10 @@ class TicketWithApprovals extends ReportContract
     function run()
     {
         $this->query = Ticket::withoutGlobalScopes()
-            ->with('sla')
-            ->with(['approvals' => function($q){
-                $q->whereIn('approver_id' , $this->onlyHREmails());
-            }])
+            ->with('sla','approvals')
+//            ->with(['approvals' => function($q){
+//                $q->whereIn('approver_id' , $this->onlyHREmails());
+//            }])
             ->from('tickets as t')
             ->join('users as tech', 't.technician_id', '=', 'tech.id')
             ->join('users as req', 't.requester_id', '=', 'req.id')
