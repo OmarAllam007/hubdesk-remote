@@ -33,7 +33,7 @@ const {mix} = require('laravel-mix');
 // //     .js('resources/assets/js/app.js', 'public/js')
 // // //       .js('resources/assets/js/Report/index.js', 'public/js/report.js')
 // mix.js('resources/assets/js/ticket-index.js', 'public/js')
-// mix.js('resources/assets/js/ticket/ticket-show.js', 'public/js/ticket')
+mix.js('resources/assets/js/ticket/ticket-show.js', 'public/js/ticket')
 mix.js('resources/assets/js/letters/letters.js', 'public/js/letters')
 // mix.js('resources/assets/js/ticket/ticket-approval-show.js', 'public/js/ticket')
 

@@ -125,7 +125,7 @@ class TicketPolicy
 
     function reopen(User $user, Ticket $ticket)
     {
-        return $user->isAdmin();
+        return $user->isAdmin() || ($ticket->technician_id == $user->id);
     }
 
     public function send_to_finance(User $user, Ticket $ticket)

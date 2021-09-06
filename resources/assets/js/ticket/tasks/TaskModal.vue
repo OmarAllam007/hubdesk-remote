@@ -273,7 +273,6 @@ export default {
       this.template_id = ''
     },
     prepareData() {
-      console.log(this.$parent.ticket)
       var task = new FormData;
       task.append('_token', $('meta[name="csrf-token"]').attr('content'));
 

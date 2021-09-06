@@ -17,5 +17,5 @@
 @endsection
 
 @section('javascript')
-    <script src="{{mix('/js/letters/letters.js')}}"></script>
+    <script src="{{asset('/js/letters/letters.js')}}"></script>
 @endsection

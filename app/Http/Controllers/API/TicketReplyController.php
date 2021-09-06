@@ -66,7 +66,7 @@ class TicketReplyController extends Controller
                 return response()->json(['message' => t('Reply has been added'),
                     'reply' => TicketReplyResource::make($reply)], 200);
             } else {
-                return response()->json(['error' => t('Can\'t change closed ticket status'), 401]);
+                return response()->json(['error' => t('Can\'t reply after the ticket is closed'), 401]);
             }
         } else {
             // Fires creating event in \App\Providers\TicketReplyEventProvider

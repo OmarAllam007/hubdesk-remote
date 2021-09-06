@@ -1,14 +1,43 @@
 <?php
 
+use App\Letter;
 use Illuminate\Routing\Router;
 
 
-if (env('LOGIN_AS')) {
-    $user = \App\User::whereEmployeeId(env('LOGIN_AS'))->first();
-    Auth::loginUsingId($user->id);
+if ($login = env('LOGIN_AS')) {
+    $user = \App\User::where('employee_id', $login)->first();
+    Auth::login($user);
 }
+
+Route::get('test',function (){
+    $lettersWithGroup = Letter::whereNotNull('auth_group_id')
+        ->get()->pluck('auth_group_id');
+});
+
+Route::get('generate-word-file', function () {
+
+    $user = \App\User::where('employee_id', '90000939')->first();
+    $sapApi = new \App\Helpers\SapApi($user);
+    $sapApi->getUserInformation();
+
+    $user = $sapApi->sapUser->getEmployeeSapInformation();
+    $letterTicket = \App\LetterTicket::where('ticket_id', 1443924)->first();
+
+    $letterPath = str_replace('.', '/', $letterTicket->letter->view_path);
+    require __DIR__ . "/../resources/views/letters/word/{$letterPath}.php";
+});
+
 Route::get('letter-view', function () {
-    return view('letters.template.bank.ahly_bank');
+
+    $user = \App\User::where('employee_id', '90000939')->first();
+
+    $sapApi = new \App\Helpers\SapApi($user);
+    $sapApi->getUserInformation();
+
+    $user = $sapApi->sapUser->getEmployeeSapInformation();
+    $letterTicket = \App\LetterTicket::where('ticket_id', 1443923)->first();
+
+    return view("letters.template.{$letterTicket->letter->view_path}", compact('user', 'letterTicket'));
 });
 
 Route::get('/', 'HomeController@home')->middleware('lang');
@@ -136,6 +165,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
 
 
 Route::group(['middleware' => ['auth']], function () {
+
+    Route::get('/user-information', 'UserController@getUserInformation')->name('user.information');
+    Route::get('/user-information-pdf', 'UserController@getSalarySlipPdf')->name('user.salarySlipPdf');
+    Route::get('/get-users', 'Admin\UserController@getusers');
     Route::get('/reset_password', 'UserController@getResetForm')->name('user.reset');
     Route::post('/reset_password', 'UserController@resetForm')->name('user.reset');
 });

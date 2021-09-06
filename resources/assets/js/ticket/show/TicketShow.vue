@@ -4,15 +4,15 @@
 
     <div v-if="!authorizations.display_ticket">
       <div class="flex w-full">
-          <div class="flex  justify-center">
-            <div class="p-5 m-5 rounded-2xl bg-orange-300 shadow-lg   w-1/2 ">
-              <strong class="text-2xl flex justify-center ">
-                <i class="fa fa-lock pl-2  pr-2 pt-1 "></i>
-                {{ $root.t('You are not authorized to display the ticket.') }}
-              </strong>
-            </div>
+        <div class="flex  justify-center">
+          <div class="p-5 m-5 rounded-2xl bg-orange-300 shadow-lg   w-1/2 ">
+            <strong class="text-2xl flex justify-center ">
+              <i class="fa fa-lock pl-2  pr-2 pt-1 "></i>
+              {{ $root.t('You are not authorized to display the ticket.') }}
+            </strong>
           </div>
         </div>
+      </div>
     </div>
 
     <div v-if="authorizations.display_ticket">
@@ -75,6 +75,14 @@
               <strong class="pl-4 pr-4 m-3" v-if="data.ticket.close_date">{{ $root.t('Closed Date') }} :
                 {{ data.ticket.close_date }}</strong>
 
+
+              <a v-if="data.ticket.letter_ticket && data.ticket.is_task"
+                 :href="`/letters/generate-letter-doc/${data.ticket.request_id}`" target="_blank"
+                 class=" bg-gray-600   hover:bg-viola  text-white font-bold py-2 px-4  hover:text-white rounded-xl  mr-2 shadow-md"
+              >
+                <i class="fa fa-download "></i>
+                {{ $root.t('Download Letter') }}
+              </a>
             </div>
           </div>
           <div class="flex" v-if="data.ticket.is_duplicated">
@@ -127,7 +135,7 @@
             </button>
 
             <button class="w-1/6 bg-white rounded-xl p-3 m-3 tabUIButton border"
-                    v-if="ticketData.ticket.attachments.length"
+                    v-if="ticketData.ticket.attachments.length || ticketData.ticket.is_completed_approved_ticket"
                     :class="{tabUIButtonSelected : selectedTab == 6}" @click="changeTab(6)">
               <i class="fa fa-files-o"></i> {{ $root.t('Attachments') }}
             </button>
@@ -158,7 +166,14 @@
         ></approvals>
 
         <ticket-log :ticket_id="ticketData.ticket.id" v-show="selectedTab == 5"></ticket-log>
-        <ticket-attachments :files="ticketData.ticket.attachments" v-show="selectedTab == 6"></ticket-attachments>
+
+        <ticket-attachments
+            :is_approved_letter_ticket="ticketData.ticket.is_approved_letter_ticket"
+            :is_kgs_letter_ticket="ticketData.ticket.is_kgs_letter_ticket"
+            :files="ticketData.ticket.attachments"
+            :ticket_id="ticketData.ticket.id"
+            v-show="selectedTab == 6"></ticket-attachments>
+
         <ticket-survey v-if="selectedTab == 7" :survey="ticketData.ticket.survey"></ticket-survey>
 
         <reassign :isReassignOpened="reassignModalOpened"

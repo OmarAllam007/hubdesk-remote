@@ -18,7 +18,8 @@ class LetterHeader extends Model
         $request = request();
 
         $file = $request->file($requestFileName);
-        $name = $file->getClientOriginalName();
+        $name = 'image.jpg';
+//            $file->getClientOriginalName();
 
         $folder = storage_path("app/public/$folderPath/" . $request->business_unit_id . '/');
 

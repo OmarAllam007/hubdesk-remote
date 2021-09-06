@@ -21,12 +21,14 @@ Route::group(['prefix' => 'letters', 'as' => 'letters.'], function (\Illuminate\
     $r->resource('approval','LetterApprovalsController')
         ->except(['create','edit']);
 
+    $r->get('generate-letter/{ticket}',[\App\Http\Controllers\LetterController::class,'generateLetter']);
+    $r->get('generate-letter-doc/{ticket}',[\App\Http\Controllers\LetterController::class,'generateLetterDoc']);
 
     $r->post('create-letter-ticket', 'LetterController@createLetterTicket');
 
     Route::group(['prefix' => 'list', 'as' => 'list'], function (\Illuminate\Routing\Router $r) {
         $r->get('subgroups/{group}', [\App\Http\Controllers\LettersListController::class, 'subgroups']);
         $r->get('letters', [\App\Http\Controllers\LettersListController::class, 'letters']);
-
+        $r->get('letter_fields/{letter}', [\App\Http\Controllers\LettersListController::class, 'fields']);
     });
 });

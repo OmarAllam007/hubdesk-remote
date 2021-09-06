@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ChromePrint;
 use App\Item;
+use App\Jobs\NewTicketJob;
 use App\Letter;
 use App\LetterGroup;
 use App\LetterTicket;
@@ -72,6 +74,15 @@ class LetterController extends Controller
             'business_unit_id' => auth()->user()->business_unit_id,
         ]);
 
+        if ($request->has('fields') && count($request->fields)) {
+            foreach ($request->fields as $field) {
+                $ticket->fields()->create([
+                    'name' => $field['name'],
+                    'value' => $field['value']
+                ]);
+            }
+        }
+
         $letterTicket = LetterTicket::create([
             'ticket_id' => $ticket->id,
             'group_id' => $request->group_id,
@@ -79,8 +90,45 @@ class LetterController extends Controller
             'letter_id' => $request->letter_id,
             'need_coc_stamp' => $request->is_stamped,
         ]);
-        //upload Attachments
 
+    }
 
+    function generateLetter($ticket)
+    {
+
+        $user = \App\User::where('employee_id', '90001000')->first();
+
+        $sapApi = new \App\Helpers\SapApi($user);
+        $sapApi->getUserInformation();
+        $user = $sapApi->sapUser->getEmployeeSapInformation();
+        $user['allowances_str'] = $sapApi->sapUser->getAllowancesString();
+
+        $letterTicket = LetterTicket::where('ticket_id', $ticket)->first();
+        $view = $letterTicket->letter->view_path;
+
+        /* @TODO to be changes*/
+        $letterTicket['header'] = 8;
+        $letterTicket['stamp'] = '/stamps/8/stamp_test.png';
+        $letterTicket['signature'] = '/stamps/8/signature.png';
+        $content = view("letters.template.${view}", compact('user', 'letterTicket'));
+
+        $filepath = storage_path('app/letter.html');
+        file_put_contents($filepath, $content->render());
+        $print = new ChromePrint($filepath);
+        $file = $print->print();
+
+        return response()->download($file, null, [], 'inline')->deleteFileAfterSend();
+    }
+
+    function generateLetterDoc(Ticket $ticket)
+    {
+        $user = \App\User::where('employee_id', $ticket->requester->employee_id)->first();
+        $sapApi = new \App\Helpers\SapApi($user);
+        $sapApi->getUserInformation();
+        $user = $sapApi->sapUser->getEmployeeSapInformation();
+        $letterTicket = \App\LetterTicket::where('ticket_id', $ticket->id)->first();
+        $letterPath = str_replace('.', '/', $letterTicket->letter->view_path);
+
+        require base_path("resources/views/letters/word/{$letterPath}.php");
     }
 }

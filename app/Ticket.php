@@ -231,12 +231,6 @@ class Ticket extends KModel
         return Ticket::where('id', $this->request_id)->first();
     }
 
-//    public function getHistoryAttribute()
-//    {
-//        return TicketLog::select('*', \DB::raw('DATE(created_at) as date_created'))
-//            ->where('ticket_id', $this->id)->get()->groupBy('date_created');
-//
-//    }
     public function getHistoryAttribute()
     {
         return TicketLog::select('*', \DB::raw('DATE(created_at) as date_created'))
@@ -341,7 +335,7 @@ class Ticket extends KModel
 
             $ticketTasks = Attachment::whereIn('reference', $this->tasks->pluck('id'))
                 ->where('type', Attachment::TASK_TYPE)
-                ->orWhere('type', Attachment::TASK_TYPE)
+//                ->orWhere('type', Attachment::TASK_TYPE)
                 ->where('reference', $this->id)
                 ->get();
 
@@ -626,9 +620,9 @@ class Ticket extends KModel
     function getTaskAuthorizationsAttribute()
     {
         return [
-            'can_edit' => can('task_edit', $this) ? 1 : 0 ,
-            'can_show' => can('task_show', $this) ? 1 : 0 ,
-            'can_delete' => can('task_destroy', $this) ? 1 : 0 ,
+            'can_edit' => can('task_edit', $this) ? 1 : 0,
+            'can_show' => can('task_show', $this) ? 1 : 0,
+            'can_delete' => can('task_destroy', $this) ? 1 : 0,
         ];
     }
 
@@ -650,7 +644,7 @@ class Ticket extends KModel
             'priority' => $this->priority->name ?? 'Not Assigned',
             'is_overdue' => $this->overdue ? 1 : 0,
             'resolution' => $this->resoultion,
-            'has_submitted_survey'=> $this->user_survey && $this->user_survey->is_submitted ? 1 : 0
+            'has_submitted_survey' => $this->user_survey && $this->user_survey->is_submitted ? 1 : 0
         ];
     }
 
@@ -685,5 +679,10 @@ class Ticket extends KModel
         return env('HUBDESK_ISSUES_SLACK');
     }
 
+
+    function getIsLetterTicketAttribute()
+    {
+        return LetterTicket::where('ticket_id', $this->id)->exists();
+    }
 
 }

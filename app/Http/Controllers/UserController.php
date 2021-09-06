@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\SapApi;
 use App\Rules\ResetPassword;
 use App\User;
 use Illuminate\Http\Request;
@@ -23,11 +24,11 @@ class UserController extends Controller
                 'password_reset'=> false,
             ]);
 
-            flash(t('Reset Password'),t('Password has been Reset'), 'success');
+            flash(t('Reset Password'), t('Password has been Reset'), 'success');
             return redirect()->route('ticket.index');
         }
 
-        flash(t('Reset Password'),t('Password has not been Reset'), 'error');
+        flash(t('Reset Password'), t('Password has not been Reset'), 'error');
         return redirect()->back();
     }
 
@@ -39,4 +40,31 @@ class UserController extends Controller
 
         return $requester;
     }
+
+    function getUserInformation()
+    {
+        if (!auth()->user()->employee_id) {
+            return redirect('/');
+        }
+
+        return view('user.employee_information');
+    }
+
+    function getSalarySlipPdf()
+    {
+
+        $userInfoAPI = new SapApi(auth()->user());
+        $salarySlip = $userInfoAPI->getSalarySlip();
+
+        if(!$salarySlip){
+            return;
+        }
+        $path = storage_path("app/public/{$salarySlip}");
+
+        return response()->download($path,
+            'salary.pdf', ['Content-Type' => 'application/pdf'], 'inline')
+            ->deleteFileAfterSend();
+    }
+
+
 }

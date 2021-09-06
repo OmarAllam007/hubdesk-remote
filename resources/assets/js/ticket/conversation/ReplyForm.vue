@@ -45,7 +45,8 @@
         ></editor>
 
       </div>
-      <div class="flex">
+      <div class="pt-5" v-if="ticket.status_id == 8"></div>
+      <div class="flex" v-if="ticket.status_id != 8">
         <div class="flex flex-col w-1/2  pt-5 ">
           <!--        <div class="w-1/2">-->
           <label for="status">{{ $root.t('Change Status from') }} ( {{ $root.t(ticket.status) }} )
@@ -92,7 +93,7 @@ import _ from "lodash";
 
 export default {
   name: "ReplyForm",
-  props: ["ticket", 'statuses', 'approvers', 'templates', 'show_templates'],
+  props: ["ticket", 'statuses', 'approvers', 'templates', 'show_templates','authorizations'],
   mounted() {
 
     setTimeout(() => {

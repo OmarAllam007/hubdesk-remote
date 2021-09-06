@@ -481,7 +481,7 @@ class TicketController extends Controller
         $subcategory = $item->subcategory;
         $subItem = null;
 
-        if ($item->id == 295) {
+        if ($item->id == config('letters.item_id')) {
             return $this->redirectToLetters($item);
         }
 
@@ -507,20 +507,20 @@ class TicketController extends Controller
 
     private function redirectToLetters(Item $item)
     {
-        $groups = LetterGroup::where('parent_group_id',0)
-            ->orderBy('order')->get(['id','name']);
+        $groups = LetterGroup::where('parent_group_id', 0)
+            ->orderBy('order')->get(['id', 'name']);
 
         $priorities = Priority::all();
 
         $category = $item->subcategory->category;
         $subcategory = $item->subcategory;
 
-        $subject = (auth()->user()->employee_id ? auth()->user()->employee_id.' - ' : '').
-            $category->name.(isset($subcategory->name) ? '  -  '.
-                $subcategory->name:'').(isset($item->name) ? '  -  '.
-                $item->name:'').(isset($subItem->name) ? '  -  '.
-                $subItem->name:'');
+        $subject = (auth()->user()->employee_id ? auth()->user()->employee_id . ' - ' : '') .
+            $category->name . (isset($subcategory->name) ? '  -  ' .
+                $subcategory->name : '') . (isset($item->name) ? '  -  ' .
+                $item->name : '') . (isset($subItem->name) ? '  -  ' .
+                $subItem->name : '');
 
-        return view('letters.ticket.create', compact('item' , 'groups' , 'priorities' ,'subject'));
+        return view('letters.ticket.create', compact('item', 'groups', 'priorities', 'subject'));
     }
 }

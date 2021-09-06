@@ -119,59 +119,15 @@ class ApprovalController extends Controller
             ApprovalQuestion::find($answer['question_id'])->update([
                 'answer' => $answer['answer']
             ]);
-
         }
 
         $request['status'] = count($request->get('questions')) ? $ticketApproval->approval_questions_status : $request->get('status');
         $request['hidden_comment'] = $request->hide_the_comment;
 
         $ticketApproval->update($request->all());
-
-        if (!$ticketApproval->ticket->isClosed() && !$ticketApproval->ticket->hasPendingApprovals()) {
-            $ticketApproval->ticket->status_id = 3;
-            $ticketApproval->ticket->save();
-        }
-
-        if ($ticketApproval->ticket->technician_id) {
-            \Mail::queue(new UpdateApprovalMail($ticketApproval));
-        }
-
-        if ($ticketApproval->status != -1 && !$ticketApproval->hasPendingOnSameStage() && $ticketApproval->hasNext()) {
-            $approvals = $ticketApproval->getNextStageApprovals();
-            foreach ($approvals as $approval) {
-                \Mail::to($approval->approver->email)->queue(new SendNewApproval($approval));
-            }
-        }
-
-        if ($ticketApproval->status == 1 && !$ticketApproval->hasNext() && !$ticketApproval->ticket->technician_id) {//KGS
-            dispatch(new ApplyBusinessRules($ticketApproval->ticket));
-            dispatch(new ApplySLA($ticketApproval->ticket));
-
-            if ($ticketApproval->ticket->technician_id) {
-                \Mail::queue(new TicketAssignedMail($ticketApproval->ticket));
-            }
-        }
-
-        TicketLog::approvalLog($ticketApproval, $ticketApproval->status == TicketApproval::APPROVED ?
-            TicketLog::APPROVED : TicketLog::DENIED);
+        //fire listener
 
         return response()->json(['message' => 'Approval has been updated successfully', 'approval_status' => ($ticketApproval->status == TicketApproval::APPROVED ? 'approved' : 'rejected')]);
-    }
-
-    public function destroy(TicketApproval $ticketApproval, Request $request)
-    {
-        if (!can('delete', $ticketApproval) || $ticketApproval->status != TicketApproval::PENDING_APPROVAL) {
-            return;
-        }
-
-        $ticketApproval->delete();
-
-        TicketLog::approvalLog($ticketApproval, TicketLog::DELETE_APPROVAL);
-
-        if (!$ticketApproval->ticket->hasPendingApprovals()) {
-            $ticketApproval->ticket->update(['status_id' => 3]);
-        }
-
     }
 
     /**
@@ -198,5 +154,21 @@ class ApprovalController extends Controller
         }
 
         return true;
+    }
+
+    public function destroy(TicketApproval $ticketApproval, Request $request)
+    {
+        if (!can('delete', $ticketApproval) || $ticketApproval->status != TicketApproval::PENDING_APPROVAL) {
+            return;
+        }
+
+        $ticketApproval->delete();
+
+        TicketLog::approvalLog($ticketApproval, TicketLog::DELETE_APPROVAL);
+
+        if (!$ticketApproval->ticket->hasPendingApprovals()) {
+            $ticketApproval->ticket->update(['status_id' => 3]);
+        }
+
     }
 }

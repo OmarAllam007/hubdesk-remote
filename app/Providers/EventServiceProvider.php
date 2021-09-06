@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Listeners\LetterTicketApprovalListener;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -24,6 +25,15 @@ class EventServiceProvider extends ServiceProvider
         ],
         'eloquent.created: App\LetterTicket' => [
             'App\Listeners\Letters\LetterTicketListener',
+        ],
+
+        'eloquent.updated: App\TicketApproval' => [
+            'App\Listeners\TicketApprovalListener',
+            'App\Listeners\Letters\LetterTicketApprovalListener',
+        ],
+        'eloquent.updating: App\Ticket' => [
+            'App\Listeners\Letters\LetterTaskListener',
+
         ]
     ];
 

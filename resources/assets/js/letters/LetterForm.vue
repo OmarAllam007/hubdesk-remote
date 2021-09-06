@@ -43,6 +43,17 @@
       </div>
     </div>
 
+    <div class="flex pt-10" v-if="fields.length">
+      <div class="w-1/2">
+        <div v-for="(item, key) in fields">
+          <component :is="item.type" :label="item.name"
+                     :name="`cf[${item.id}]`" :id="`cf[${item.id}]`"
+                     class="pt-3" v-model="fields[key]['value']" :options="item.options" >
+          </component>
+        </div>
+      </div>
+    </div>
+
     <div class="flex pt-10">
       <div class="w-1/2">
         <label :class="getStampedStyle" class="p-5  border border-indigo-700 bg-white
@@ -105,11 +116,15 @@ import 'vue-select/dist/vue-select.css';
 import vSelect from "vue-select";
 import Attachments from "../AttachmentModal";
 import Editor from '@tinymce/tinymce-vue'
+import Date from "../ticket/custom_fields/Date";
+import TextField from "../ticket/custom_fields/TextField";
+import SelectField from "../ticket/custom_fields/SelectField";
+import fields from "../Report/fields";
 
 export default {
   name: "LetterForm",
   props: ['item', 'groups', 'priorities', 'subject'],
-  components: {vSelect, Attachments, Editor},
+  components: {vSelect, Attachments, Editor ,Date, TextField, SelectField},
 
   data() {
     return {
@@ -125,6 +140,8 @@ export default {
       subgroups: [],
       letters: [],
       attachments: [],
+      fields: [],
+      custom_fields:[]
     }
   },
   watch: {
@@ -150,6 +167,13 @@ export default {
       } else {
         this.letters = [];
         this.letter = this.subgroup_id = this.letter_id = null;
+      }
+    },
+    letter() {
+      this.fields = [];
+      if (this.letter != null) {
+        this.letter_id = this.letter.id;
+        this.getFields();
       }
     }
   },
@@ -177,6 +201,16 @@ export default {
         this.letters = response.data;
       });
     },
+
+    getFields() {
+      // if (this.letter == '' || this.letter_id == null) {
+      //   return;
+      // }
+      axios.get(`/letters/list/letter_fields/${this.letter.id}`).then((response) => {
+        this.fields = response.data;
+      });
+
+    },
     createLetter() {
       var form = new FormData;
       form.append('_token', $('meta[name="csrf-token"]').attr('content'));
@@ -187,11 +221,22 @@ export default {
         form.append(`attachments[${l}]`, attachments[l]);
       }
 
+      let fields = this.fields;
+
+      for (var f = 0; f < fields.length; f++){
+        form.append(`fields[${f}][id]`, fields[f].id);
+        form.append(`fields[${f}][name]`, fields[f].name);
+        form.append(`fields[${f}][value]`, fields[f].value);
+      }
+
       form.append('description', this.description);
       form.append('subject', this.subject);
       form.append('item_id', this.item.id);
       form.append('group_id', this.group.id);
-      form.append('subgroup_id', this.subgroup.id);
+
+      if (this.subgroup) {
+        form.append('subgroup_id', this.subgroup.id);
+      }
       form.append('letter_id', this.letter.id);
       form.append('is_stamped', this.is_stamped === true ? 1 : 0);
 
@@ -218,7 +263,20 @@ export default {
       }
     },
     canSubmit() {
-      return this.group && this.subgroup && this.letter;
+      let canSubmit = false;
+
+      if (this.group) {
+        canSubmit = true;
+      }
+
+      if (this.subgroups.length && !this.subgroup) {
+        canSubmit = false;
+      }
+
+      if (!this.letter) {
+        canSubmit = false;
+      }
+      return canSubmit;
     },
     submitButtonStyle() {
       if (this.canSubmit) {
