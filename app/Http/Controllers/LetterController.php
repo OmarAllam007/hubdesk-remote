@@ -96,7 +96,8 @@ class LetterController extends Controller
     function generateLetter($ticket)
     {
 
-        $user = \App\User::where('employee_id', '90001000')->first();
+        $ticketRef = Ticket::find($ticket)->first();
+        $user = \App\User::where('employee_id', $ticketRef->requester->employee_id)->first();
 
         $sapApi = new \App\Helpers\SapApi($user);
         $sapApi->getUserInformation();
