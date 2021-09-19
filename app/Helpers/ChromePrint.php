@@ -38,6 +38,10 @@ class ChromePrint
                 ->timeout(300)
 //                ->margins(0.5, 0.5, 0.5, 0.5, 'in')
 //                ->landscape(true)
+                ->addChromiumArguments([
+                    'font-render-hinting' => 'none',
+                ])
+                ->setOption('addStyleTag', json_encode(['content' => 'body{ font-family: Arial, Helvetica, sans-serif;}']))
                 ->format('A4')->savePdf($file);
 
             if ($file && file_exists($file)) {
