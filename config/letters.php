@@ -3,8 +3,8 @@
 return [
     'group' => 21,
     'new_letter_status' => 1,
-    //production: 368
-    'item_id' => 295,
+    'production'=> 368,
+//    'item_id' => 295,
     'system_user' => env('SYSTEM_USER', 188),
     'close_reply_content' => '<p>Ticket Closed</p>' .
         ' <p>You can download the letter from the attachments</p>',
