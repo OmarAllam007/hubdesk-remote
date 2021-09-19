@@ -9,20 +9,20 @@ Route::group(['prefix' => 'letters', 'as' => 'letters.'], function (\Illuminate\
     $r->resource('letter-group', 'LetterGroupController');
     $r->resource('letter', 'LetterController');
     $r->resource('letter-field', 'LetterFieldController');
-    $r->resource('signature','LetterSignatureController');
-    $r->resource('header','LetterHeaderController');
+    $r->resource('signature', 'LetterSignatureController');
+    $r->resource('header', 'LetterHeaderController');
 
-    $r->get('approval/create/{businessUnit}','LetterApprovalsController@create')->name('approval.create');
-    $r->get('approval/edit/{businessUnit}','LetterApprovalsController@edit')->name('approval.edit');
+    $r->get('approval/create/{businessUnit}', 'LetterApprovalsController@create')->name('approval.create');
+    $r->get('approval/edit/{businessUnit}', 'LetterApprovalsController@edit')->name('approval.edit');
 
-    $r->get('approval/business_unit/{businessUnit}','LetterApprovalsController@showApprovals')
+    $r->get('approval/business_unit/{businessUnit}', 'LetterApprovalsController@showApprovals')
         ->name('business-unit.approval.show');
 
-    $r->resource('approval','LetterApprovalsController')
-        ->except(['create','edit']);
+    $r->resource('approval', 'LetterApprovalsController')
+        ->except(['create', 'edit']);
 
-    $r->get('generate-letter/{ticket}',[\App\Http\Controllers\LetterController::class,'generateLetter']);
-    $r->get('generate-letter-doc/{ticket}',[\App\Http\Controllers\LetterController::class,'generateLetterDoc']);
+    $r->get('generate-letter/{ticket}', [\App\Http\Controllers\LetterController::class, 'generateLetter']);
+    $r->get('generate-letter-doc/{ticket}', [\App\Http\Controllers\LetterController::class, 'generateLetterDoc']);
 
     $r->post('create-letter-ticket', 'LetterController@createLetterTicket');
 
@@ -31,4 +31,6 @@ Route::group(['prefix' => 'letters', 'as' => 'letters.'], function (\Illuminate\
         $r->get('letters', [\App\Http\Controllers\LettersListController::class, 'letters']);
         $r->get('letter_fields/{letter}', [\App\Http\Controllers\LettersListController::class, 'fields']);
     });
+
+    Route::get('/get-letter-content/{ticket}', 'LetterController@getLetterContent');
 });

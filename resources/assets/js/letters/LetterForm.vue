@@ -4,7 +4,7 @@
       <div class="w-1/2">
         <div class="form-group form-group-sm">
           <label>
-            Subject
+            {{ t('Subject') }}
           </label>
           <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3
           text-gray-700 leading-tight focus:outline-none focus:shadow-outline" v-model="subject" disabled>
@@ -16,10 +16,11 @@
       <div class="w-1/2">
         <div class="form-group">
           <label for="group">
-            Type<span class="text-red-800">*</span>
+            {{ t('Type') }}
+            <span class="text-red-800">*</span>
           </label>
           <v-select :options="groups" label="name" name="group" id="group"
-                    v-model="group" placeholder="Select Type"
+                    v-model="group" :placeholder="t('Select Type')"
                     class="selection-list bg-white" @change="getSubGroups"></v-select>
         </div>
       </div>
@@ -27,18 +28,18 @@
 
     <div class="flex" v-if="subgroups.length">
       <div class="w-1/2">
-        <label for="subgroup">SubType<span class="text-red-800">*</span></label>
+        <label for="subgroup">{{ t('SubType') }}<span class="text-red-800">*</span></label>
         <v-select id="subgroup" name="subgroups" :options="subgroups" label="name" v-model="subgroup"
-                  placeholder="Letter subtype"
+                  :placeholder="t('Letter subtype')"
                   class="selection-list bg-white"></v-select>
       </div>
     </div>
     <br>
     <div class="flex" v-if="letters.length">
       <div class="w-1/2">
-        <label for="letters">Letter<span class="text-red-800">*</span></label>
+        <label for="letters">{{ t('Letter') }}<span class="text-red-800">*</span></label>
         <v-select id="letters" name="letters" :options="letters" label="name" v-model="letter"
-                  placeholder="Select Letter"
+                  :placeholder="t('Select Letter')"
                   class="selection-list bg-white"></v-select>
       </div>
     </div>
@@ -46,9 +47,9 @@
     <div class="flex pt-10" v-if="fields.length">
       <div class="w-1/2">
         <div v-for="(item, key) in fields">
-          <component :is="item.type" :label="item.name"
+          <component :is="item.type" :label="t(item.name) + '*'"
                      :name="`cf[${item.id}]`" :id="`cf[${item.id}]`"
-                     class="pt-3" v-model="fields[key]['value']" :options="item.options" >
+                     class="pt-3" v-model="fields[key]['value']" :options="item.options">
           </component>
         </div>
       </div>
@@ -60,7 +61,7 @@
          hover:bg-yellow-100 rounded-2xl shadow-sm ">
           <input type="checkbox"
                  @change="is_stamped = !is_stamped">
-          Stamped by the Chamber of Commerce?
+          {{ t('Stamped by the Chamber of Commerce?') }}
         </label>
       </div>
     </div>
@@ -70,7 +71,7 @@
       <div class="w-1/2">
         <div class="form-group">
           <label>
-            Description
+            {{ t('Description') }} <span class="text-red-800">*</span>
           </label>
 
           <editor trigger="#" v-model="description"
@@ -89,12 +90,13 @@
 
           ></editor>
         </div>
+        <p class="text-red-600 font-bold" v-if="descriptionErrorMessage!==''">{{ descriptionErrorMessage }}</p>
 
       </div>
     </div>
 
     <div class="flex flex-col w-1/2  pt-10">
-      <label for="attachments">Attachments</label>
+      <label for="attachments">{{ t('Attachments') }}</label>
       <div class="form-group" id="attachments">
         <input type="file" class="form-control input-xs" name="attachments[]" @change="attachFiles"
                multiple>
@@ -104,7 +106,7 @@
     <div class="flex pt-10">
       <button class="font-bold py-5 px-8 rounded-xl " :class="submitButtonStyle" :disabled="!canSubmit"
               @click.prevent="createLetter">
-        <i class="fa fa-save"></i> Submit
+        <i class="fa fa-save"></i> {{ t('Submit') }}
       </button>
     </div>
     <br>
@@ -120,12 +122,12 @@ import Date from "../ticket/custom_fields/Date";
 import TextField from "../ticket/custom_fields/TextField";
 import SelectField from "../ticket/custom_fields/SelectField";
 import fields from "../Report/fields";
+import _ from "lodash";
 
 export default {
   name: "LetterForm",
-  props: ['item', 'groups', 'priorities', 'subject'],
-  components: {vSelect, Attachments, Editor ,Date, TextField, SelectField},
-
+  props: ['item', 'groups', 'priorities', 'subject', 'translations', 'language'],
+  components: {vSelect, Attachments, Editor, Date, TextField, SelectField},
   data() {
     return {
       group: '',
@@ -141,14 +143,22 @@ export default {
       letters: [],
       attachments: [],
       fields: [],
-      custom_fields:[]
+      custom_fields: [],
+      descriptionErrorMessage: '',
     }
+  },
+  created() {
+    this.groups = this.groups.map((group) => {
+      return {id: group.id, name: this.t(group.name)}
+    });
   },
   watch: {
     group() {
       if (this.group) {
         this.getSubGroups();
         this.group_id = this.group.id;
+        this.letters = [];
+        this.fields = [];
       } else {
         this.subgroups = [];
         this.letters = [];
@@ -156,18 +166,20 @@ export default {
         this.subgroup_id = null;
         this.letter_id = null;
       }
-
+      this.letter = '';
     },
     subgroup() {
       if (this.subgroup) {
         this.getLetters();
         this.subgroup_id = this.subgroup.id;
         this.letters = [];
+        this.fields = [];
 
       } else {
         this.letters = [];
         this.letter = this.subgroup_id = this.letter_id = null;
       }
+      this.letter = '';
     },
     letter() {
       this.fields = [];
@@ -179,16 +191,29 @@ export default {
   },
 
   methods: {
+    t(word) {
+      let translation = _.find(this.translations, {'word': word});
+
+      if (translation) {
+        return translation.translation;
+      }
+
+      return word;
+    },
     getSubGroups() {
       this.subgroup = null;
       this.subgroups = [];
       this.letters = [];
+
 
       axios.get(`/letters/list/subgroups/${this.group.id}`).then((response) => {
         if (!response.data.length) {
           this.getLetters();
         } else {
           this.subgroups = response.data;
+          this.subgroups = this.subgroups.map((subgroup) => {
+            return {id: subgroup.id, name: t(subgroup.name)}
+          });
         }
 
       });
@@ -199,19 +224,25 @@ export default {
 
       axios.get(`/letters/list/letters?group_id=${this.group_id}`).then((response) => {
         this.letters = response.data;
+        this.letters = this.letters.map((letter) => {
+          return {id: letter.id, name: this.t(letter.name)}
+        });
       });
     },
 
     getFields() {
-      // if (this.letter == '' || this.letter_id == null) {
-      //   return;
-      // }
       axios.get(`/letters/list/letter_fields/${this.letter.id}`).then((response) => {
         this.fields = response.data;
       });
 
     },
     createLetter() {
+      this.descriptionErrorMessage = '';
+      if (!this.description) {
+        this.descriptionErrorMessage = this.t("Description is required");
+        return;
+      }
+
       var form = new FormData;
       form.append('_token', $('meta[name="csrf-token"]').attr('content'));
 
@@ -223,7 +254,7 @@ export default {
 
       let fields = this.fields;
 
-      for (var f = 0; f < fields.length; f++){
+      for (var f = 0; f < fields.length; f++) {
         form.append(`fields[${f}][id]`, fields[f].id);
         form.append(`fields[${f}][name]`, fields[f].name);
         form.append(`fields[${f}][value]`, fields[f].value);
@@ -245,7 +276,7 @@ export default {
           'Content-Type': 'multipart/form-data'
         },
       }).then((response) => {
-        console.log(response.data);
+        window.location = `/ticket/${response.data.ticket.id}`
       });
     },
 
@@ -265,6 +296,10 @@ export default {
     canSubmit() {
       let canSubmit = false;
 
+      if (this.description !== "") {
+        canSubmit = true;
+      }
+
       if (this.group) {
         canSubmit = true;
       }
@@ -276,6 +311,14 @@ export default {
       if (!this.letter) {
         canSubmit = false;
       }
+      if (this.fields && this.fields.length) {
+        this.fields.forEach((field) => {
+          if (!field.value) {
+            canSubmit = false;
+          }
+        })
+      }
+
       return canSubmit;
     },
     submitButtonStyle() {

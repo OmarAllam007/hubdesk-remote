@@ -6,9 +6,11 @@ use App\Jobs\CloseLetterTicketJob;
 use App\Jobs\GenerateLetterJob;
 use App\Jobs\TicketReplyJob;
 use App\LetterTicket;
+use App\Mail\LetterRequestForFees;
 use App\Mail\NewTaskMail;
 use App\Mail\ReplyTicketMail;
 use App\Mail\SendSurveyEmail;
+use App\Mail\TicketReplyMail;
 use App\Ticket;
 use App\TicketApproval;
 use App\TicketLog;
@@ -20,22 +22,7 @@ use Illuminate\Queue\InteractsWithQueue;
 
 class LetterTicketApprovalListener
 {
-    /**
-     * Create the event listener.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
 
-    /**
-     * Handle the event.
-     *
-     * @param object $event
-     * @return void
-     */
     public function handle(TicketApproval $event)
     {
         //check if it is letter services
@@ -53,7 +40,11 @@ class LetterTicketApprovalListener
                 $letterTicket = LetterTicket::where('ticket_id', $event->ticket->id)->first();
 
                 if ($letterTicket->need_coc_stamp) {
+
                     $this->createKGSTask($letterTicket);
+
+//                    $this->sendReplyOfRequestForFees($letterTicket);
+                    // @TODO: send email of pay the fees to requester
                 } else {
                     $this->closeLetterTicket($letterTicket);
                 }
@@ -87,7 +78,7 @@ class LetterTicketApprovalListener
     private function createKGSTask($letterTicket)
     {
         Ticket::flushEventListeners();
-
+        TicketReply::flushEventListeners();
         $letterTicket->ticket->update([
             'status_id' => 4
         ]);
@@ -107,7 +98,16 @@ class LetterTicketApprovalListener
             'technician_id' => config('letters.kgs_technician'),
         ]);
 
+        $reply = $letterTicket->ticket->replies()->create([
+            'user_id' => config('letters.system_user'),
+            'status_id' => 4,
+            'content' => config('letters.fees_reply'),
+        ]);
+
         \Mail::send(new NewTaskMail($ticket));
+
+        \Mail::to($letterTicket->ticket->requester->email)
+            ->send(new LetterRequestForFees($letterTicket,$reply));
     }
 
     private function sendEmail($letterTicket, $reply)
@@ -137,6 +137,5 @@ class LetterTicketApprovalListener
         }
         TicketLog::addReminderOnSurvey($letterTicket->ticket);
     }
-
 
 }

@@ -56,7 +56,7 @@
 
             @php
                 $to = $letterTicket->ticket->fields->first() ? $letterTicket->ticket->fields->first()->value : '';
-                $reason = $letterTicket->ticket->fields->first() ? $letterTicket->ticket->fields->first()->value : '';
+                $reason = $letterTicket->ticket->fields->last() ? $letterTicket->ticket->fields->last()->value : '';
             @endphp
 
             <div class="flex pt-20 px-10" dir="rtl">
@@ -98,7 +98,7 @@
                     </span>
                     <span>
                     وقـد أعطــي هـــذا الخطـاب
-                    بنــاءً علــى طلبـه  {{$reason}} دون أدنى مسؤوليـة على الشــركة.
+                    بنــاءً علــى طلبـه  ( {{$reason}} ) دون أدنى مسؤوليـة على الشــركة.
                     </span>
                 </p>
             </div>

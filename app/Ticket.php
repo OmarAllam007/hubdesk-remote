@@ -685,4 +685,13 @@ class Ticket extends KModel
         return LetterTicket::where('ticket_id', $this->id)->exists();
     }
 
+    function getLetterTicketAttribute()
+    {
+        if ($this->isTask() && $this->ticket->letter_ticket) {
+            return LetterTicket::where('ticket_id', $this->ticket->id)->first();
+        }
+
+        return  LetterTicket::where('ticket_id', $this->id)->first();
+    }
+
 }

@@ -37,7 +37,6 @@ class SapUser
     public function __construct($data)
     {
         $this->sapData = $data;
-
         try {
             $this->sapData = $this->convertSapDataToArray();
         } catch (\Exception $e) {
@@ -87,6 +86,7 @@ class SapUser
             'discounts' => 'لاتوجد',
             'phone' => '12344555',
             'fax' => '12121212',
+            'education'=> $this->sapData['ZZEDUCATION'],
         ];
 
         return $this->sapData;

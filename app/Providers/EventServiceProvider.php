@@ -31,9 +31,8 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\TicketApprovalListener',
             'App\Listeners\Letters\LetterTicketApprovalListener',
         ],
-        'eloquent.updating: App\Ticket' => [
+        'eloquent.updated: App\Ticket' => [
             'App\Listeners\Letters\LetterTaskListener',
-
         ]
     ];
 

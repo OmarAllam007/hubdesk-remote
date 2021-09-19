@@ -35,7 +35,7 @@ Route::get('letter-view', function () {
     $sapApi->getUserInformation();
 
     $user = $sapApi->sapUser->getEmployeeSapInformation();
-    $letterTicket = \App\LetterTicket::where('ticket_id', 1443923)->first();
+    $letterTicket = \App\LetterTicket::where('ticket_id', 1443948)->first();
 
     return view("letters.template.{$letterTicket->letter->view_path}", compact('user', 'letterTicket'));
 });

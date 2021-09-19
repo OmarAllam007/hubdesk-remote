@@ -91,13 +91,16 @@ class LetterController extends Controller
             'need_coc_stamp' => $request->is_stamped,
         ]);
 
+        return response()->json(['ticket' => $ticket]);
     }
 
     function generateLetter($ticket)
     {
 
-        $ticketRef = Ticket::find($ticket)->first();
+
+        $ticketRef = Ticket::find($ticket);
         $user = \App\User::where('employee_id', $ticketRef->requester->employee_id)->first();
+
 
         $sapApi = new \App\Helpers\SapApi($user);
         $sapApi->getUserInformation();
@@ -107,7 +110,7 @@ class LetterController extends Controller
         $letterTicket = LetterTicket::where('ticket_id', $ticket)->first();
         $view = $letterTicket->letter->view_path;
 
-        /* @TODO to be changes*/
+        /* @TODO to be changes */
         $letterTicket['header'] = 8;
         $letterTicket['stamp'] = '/stamps/8/stamp_test.png';
         $letterTicket['signature'] = '/stamps/8/signature.png';
@@ -131,5 +134,20 @@ class LetterController extends Controller
         $letterPath = str_replace('.', '/', $letterTicket->letter->view_path);
 
         require base_path("resources/views/letters/word/{$letterPath}.php");
+    }
+
+    function getLetterContent(Ticket $ticket)
+    {
+        $letterTicket = $ticket->ticket->letter_ticket;
+
+        $user = \App\User::where('employee_id', $ticket->ticket->requester->employee_id)->first();
+
+        $sapApi = new \App\Helpers\SapApi($user);
+        $sapApi->getUserInformation();
+        $user = $sapApi->sapUser->getEmployeeSapInformation();
+
+        return view('letters.template.' . $ticket->ticket->letter_ticket->letter->view_path,
+            compact('letterTicket', 'user'))->render();
+
     }
 }

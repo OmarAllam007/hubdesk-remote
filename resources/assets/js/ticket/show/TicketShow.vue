@@ -200,6 +200,12 @@
             v-if="complaintModalOpened"
         ></complaint>
 
+      <letter-modal
+          :is-letter-modal-opened="letterContentModel"
+          @close-letter-modal="closeLetterContentModel"
+          v-if="letterContentModel"
+      >
+      </letter-modal>
 
       </div>
     </div>
@@ -227,6 +233,7 @@ import SendToFinance from "../actions/SendToFinance";
 import Complaint from "../actions/Complaint";
 import TicketAttachments from "../attachments/TicketAttachments";
 import TicketSurvey from "../survey/TicketSurvey";
+import LetterModal from "../actions/LetterContentModal";
 
 export default {
   name: "TicketShow",
@@ -251,6 +258,7 @@ export default {
       duplicateModalOpened: false,
       financeModalOpened: false,
       complaintModalOpened: false,
+      letterContentModel:false,
       users: []
     }
   },
@@ -283,7 +291,6 @@ export default {
     showDuplicateModal() {
       this.duplicateModalOpened = true;
     },
-
     showFinanceModal() {
       this.financeModalOpened = true;
     },
@@ -292,7 +299,6 @@ export default {
       this.forwardModalOpened = true;
       EventBus.$emit('openForwardModal');
     },
-
     showComplaintModal() {
       this.complaintModalOpened = true;
     },
@@ -313,6 +319,13 @@ export default {
     },
     printTicket() {
       window.open(`/ticket/print/${this.ticketData.ticket.id}`, '_blank');
+    },
+    showLetterContentModel(){
+      this.letterContentModel = true;
+      EventBus.$emit('openLetterModal');
+    },
+    closeLetterContentModel(){
+      this.letterContentModel = false;
     }
   },
 
@@ -331,6 +344,7 @@ export default {
     }
   },
   components: {
+    LetterModal,
     TicketSurvey,
     TicketAttachments,
     Complaint,

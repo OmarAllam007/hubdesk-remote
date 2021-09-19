@@ -126,9 +126,9 @@
                 {{--                </div>--}}
 
                 <div class="flex justify-between">
-                    {{--                    <div class="w-1/3 mx-3 ">--}}
-                    {{--                        <img src="{{asset('/stamps/8/signature.png')}}" class="w" alt="">--}}
-                    {{--                    </div>--}}
+                                        <div class="w-1/3 mx-3 ">
+                                            <img src="{{asset('/stamps/8/signature.png')}}" class="w" alt="">
+                                        </div>
                     <div class="w-1/3 mx-2 ">
                         <img src="{{asset('/stamps/8/stamp_test.png')}}" class="w" alt="">
                     </div>

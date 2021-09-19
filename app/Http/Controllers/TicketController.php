@@ -516,9 +516,9 @@ class TicketController extends Controller
         $subcategory = $item->subcategory;
 
         $subject = (auth()->user()->employee_id ? auth()->user()->employee_id . ' - ' : '') .
-            $category->name . (isset($subcategory->name) ? '  -  ' .
-                $subcategory->name : '') . (isset($item->name) ? '  -  ' .
-                $item->name : '') . (isset($subItem->name) ? '  -  ' .
+            t($category->name) . (isset($subcategory->name) ? '  -  ' .
+                t($subcategory->name) : '') . (isset($item->name) ? '  -  ' .
+                t($item->name) : '') . (isset($subItem->name) ? '  -  ' .
                 $subItem->name : '');
 
         return view('letters.ticket.create', compact('item', 'groups', 'priorities', 'subject'));

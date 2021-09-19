@@ -83,13 +83,13 @@
             <div class="flex flex-col pt-10 px-10 ">
                 <p class="text-3xl">
                     <span>
-                        This is to certify that Mr. {{$user['en_name']}} {{$user['en_nationality']}}, Iqama Number {{$user['iqama_number']}}, Passport number {{$user['passport_number']}}. Is an
+                        This is to certify that Mr. {{$user['en_name']}}, {{$user['en_nationality']}}, Iqama Number {{$user['iqama_number']}}, Passport number {{$user['passport_number']}}. Is an
                         employee of {{$user['en_sponsor_company']}}, from {{$user['date_of_join']}} up to the present.
                     </span>
                 </p>
                 <p class=" text-3xl ">
                     <span>
-                        He is currently working as an {{$user['occupation']}}, and receiving a Total salary of ({{$user['total_package']}} SR) Monthly.
+                        He is currently working as an {{$user['en_occupation']}}, and receiving a Total salary of ({{$user['total_package']}} SR) Monthly.
                     </span>
                 </p>
             </div>
@@ -110,7 +110,7 @@
             <div class="flex-col">
                 <div class="flex  pt-5  px-10 ">
                     <p class="text-3xl">
-                        {{$user['sponsor_company']}}
+                        {{$user['en_sponsor_company']}}
                     </p>
                 </div>
 

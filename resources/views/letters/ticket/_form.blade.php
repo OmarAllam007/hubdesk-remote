@@ -1,9 +1,13 @@
 <div id="letters" class="pt-10">
-
+    @php
+        $language =\Session::get('personalized-language' . \Auth::user()->id, \Config::get('app.locale'));
+    @endphp
     <letter-form :item="{{json_encode($item)}}"
                  :groups="{{$groups}}"
                  :priorities="{{$priorities}}"
                  :subject="{{json_encode($subject)}}"
+                 :translations="{{json_encode(\App\Translation::where('language',$language)->get(['word','translation']))}}"
+                 :language="{{json_encode($language)}}"
     ></letter-form>
 
 
