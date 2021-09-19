@@ -12,6 +12,7 @@
                 display: table;
                 table-layout: fixed;
                 height: auto;
+                font-family: Arial, Helvetica, sans-serif;
             }
         }
         page {
