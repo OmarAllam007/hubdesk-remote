@@ -55,7 +55,7 @@
             </div>
 
             <div class="flex justify-center pt-10 ">
-                <p class="underline px-5 text-4xl font-bold ">
+                <p class="underline px-5 text-4xl font-bold " style="font-family: Arial, Helvetica, sans-serif;">
                     خطاب : تعريف بالراتب
                 </p>
             </div>
