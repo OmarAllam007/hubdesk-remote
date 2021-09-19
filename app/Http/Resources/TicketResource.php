@@ -2,8 +2,10 @@
 
 namespace App\Http\Resources;
 
+use App\LetterTicket;
 use App\Ticket;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Collection;
 
 class TicketResource extends JsonResource
 {
@@ -37,9 +39,14 @@ class TicketResource extends JsonResource
             'request_id' => $this->request_id ?? '',
             'is_duplicated' => $this->isDuplicated(),
             'is_support' => \Auth::user()->isSupport(),
-            'business_unit'=> $this->business_unit->name ?? 'Not Assigned',
-            'survey'=> $this->user_survey ? SurveyResource::make($this->user_survey)->toArray(null) : []
+            'business_unit' => $this->business_unit->name ?? 'Not Assigned',
+            'survey' => $this->user_survey ? SurveyResource::make($this->user_survey)->toArray(null) : []
         ];
+
+
+        $this->files = $this->getFilesOfTicket();
+
+        $letterTicket = LetterTicket::where('ticket_id', $this->request_id ? $this->ticket->id : $this->id)->first();
 
         $ticket['item'] = $this->item ? t($this->item->name) : 'Not Assigned';
         $ticket['subItem'] = $this->subItem ? t($this->subItem->name) : 'Not Assigned';
@@ -55,11 +62,30 @@ class TicketResource extends JsonResource
             : TicketApprovalResource::collection($this->approvals()->latest()->get());
         $ticket['task_approvals'] = $this->isTask() ? $this->ticket_approvals : [];
         $ticket['attachments'] = AttachmentsResource::collection($this->files);
+        $ticket['is_completed_approved_ticket'] = LetterTicket::isCompletedTicket($this);
+        $ticket['is_kgs_letter_ticket'] = LetterTicket::isKGSLetterTicket($this);
+        $ticket['is_approved_letter_ticket'] = LetterTicket::isApprovedTicket($this);
+        $ticket['letter_ticket'] = $letterTicket ? LetterTicketResource::make($letterTicket) : null;
 
         return [
             'ticket' => $ticket,
             'requester' => $this->requester->toRequesterJson() ?? 'Not Assigned',
         ];
     }
+
+    function getFilesOfTicket()
+    {
+        $files = $this->files;
+
+        if ($this->is_letter_ticket) {
+            $this->tasks->each(function ($task) use ($files) {
+                $task->files->each(function ($file) use ($files) {
+                    $files->push($file);
+                });
+            });
+        }
+        return $files;
+    }
+
 
 }

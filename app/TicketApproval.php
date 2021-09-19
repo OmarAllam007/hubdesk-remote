@@ -178,7 +178,7 @@ class TicketApproval extends KModel
     function getActionDateAttribute()
     {
         if ($this->status != 0) {
-            return $this->approval_date->format('d/m/Y h:i A');
+            return $this->approval_date ? $this->approval_date->format('d/m/Y h:i A') : 'Not Assigned';
         }
     }
 

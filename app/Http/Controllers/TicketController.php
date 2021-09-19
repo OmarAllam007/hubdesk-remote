@@ -4,28 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Attachment;
 use App\BusinessUnit;
-use App\BusinessUnitRole;
 use App\Category;
 use App\CustomField;
 use App\Helpers\Ticket\TicketViewScope;
-use App\Http\Requests\NoteRequest;
 use App\Http\Requests\ReassignRequest;
 use App\Http\Requests\TicketReplyRequest;
 use App\Http\Requests\TicketRequest;
 use App\Http\Requests\TicketResolveRequest;
-use App\Http\Resources\SurveyResource;
 use App\Http\Resources\TicketReplyResource;
 use App\Http\Resources\TicketResource;
 use App\Item;
-use App\Jobs\ApplyBusinessRules;
 use App\Jobs\ApplySLA;
-use App\Jobs\NewNoteJob;
 use App\Jobs\NewTicketJob;
-use App\Jobs\TicketAssigned;
 use App\Jobs\TicketReplyJob;
+use App\LetterGroup;
 use App\Mail\TicketAssignedMail;
 use App\Mail\TicketComplaint;
 use App\Mail\TicketForwardJob;
+use App\Priority;
 use App\ReplyTemplate;
 use App\Subcategory;
 use App\SubItem;
@@ -37,7 +33,6 @@ use App\TicketNote;
 use App\TicketReply;
 use App\User;
 use App\UserComplaint;
-use http\Env\Response;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
@@ -106,7 +101,7 @@ class TicketController extends Controller
     {
         $request['business_unit_id'] = auth()->user()->business_unit_id;
         $ticket = new Ticket($request->all());
-        $ticket->client_info = ['client' => $request->userAgent(), 'ip_address' => $request->ip() , 'client_ip'=> $request->getClientIp()];
+        $ticket->client_info = ['client' => $request->userAgent(), 'ip_address' => $request->ip(), 'client_ip' => $request->getClientIp()];
         $ticket->save();
 
 
@@ -162,11 +157,7 @@ class TicketController extends Controller
         if (isset($request->get("reply")["cc"])) {
             $this->validate($request, ['reply.cc.*' => 'email'], ['email' => 'Please enter valid emails']);
         }
-//        if (in_array($request->reply['status_id'], [7, 8, 9]) && $ticket->hasOpenTask()) {
-//
-//            flash(t('Ticket Info'), t('Ticket has pending tasks'), 'error');
-//            return \Redirect::route('ticket.show', compact('ticket'));
-//        }
+
         $reply = new TicketReply($request->get('reply'));
         $reply->user_id = $request->user()->id;
         $reply->cc = $request->get("reply")["cc"] ?? null;
@@ -175,7 +166,6 @@ class TicketController extends Controller
             $reply["content"] = ReplyTemplate::find($template_id)->description;
         }
         // Fires creating event in \App\Providers\TicketReplyObserver
-
 
         if ($ticket->status_id == 8 && $request->get('reply')['status_id'] != 8) {
             if (can('reopen', $ticket)) {
@@ -443,7 +433,7 @@ class TicketController extends Controller
             $cc = User::whereIn('id', $complaint->cc)->get(['email']);
 
 
-            \Mail::to($to)->cc($cc)->queue(new TicketComplaint($ticket , $userComplaint));
+            \Mail::to($to)->cc($cc)->queue(new TicketComplaint($ticket, $userComplaint));
         }
 
         return \response()->json(['message' => 'Complaint sent successfully']);
@@ -464,6 +454,7 @@ class TicketController extends Controller
             return redirect()->route('ticket.create.select_item', compact('business_unit', 'subcategory'));
         }
 
+
         $subcategory = new Subcategory();
         return view('ticket.create', compact('business_unit', 'category', 'subcategory'));
     }
@@ -482,7 +473,6 @@ class TicketController extends Controller
 
     function selectSubItem(BusinessUnit $business_unit, Item $item)
     {
-
         if ($item->subItems()->count()) {
             return view('ticket.create_ticket.select_subitem', compact('business_unit', 'item'));
         }
@@ -490,6 +480,10 @@ class TicketController extends Controller
         $category = $item->subcategory->category;
         $subcategory = $item->subcategory;
         $subItem = null;
+
+        if ($item->id == config('letters.item_id')) {
+            return $this->redirectToLetters($item);
+        }
 
         return view('ticket.create', compact('business_unit', 'category', 'subcategory', 'item', 'subItem'));
     }
@@ -509,5 +503,24 @@ class TicketController extends Controller
 
         $file = public_path('storage') . $attachment->path;
         return response()->download($file);
+    }
+
+    private function redirectToLetters(Item $item)
+    {
+        $groups = LetterGroup::where('parent_group_id', 0)
+            ->orderBy('order')->get(['id', 'name']);
+
+        $priorities = Priority::all();
+
+        $category = $item->subcategory->category;
+        $subcategory = $item->subcategory;
+
+        $subject = (auth()->user()->employee_id ? auth()->user()->employee_id . ' - ' : '') .
+            t($category->name) . (isset($subcategory->name) ? '  -  ' .
+                t($subcategory->name) : '') . (isset($item->name) ? '  -  ' .
+                t($item->name) : '') . (isset($subItem->name) ? '  -  ' .
+                $subItem->name : '');
+
+        return view('letters.ticket.create', compact('item', 'groups', 'priorities', 'subject'));
     }
 }

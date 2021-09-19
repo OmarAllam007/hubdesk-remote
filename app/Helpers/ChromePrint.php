@@ -32,11 +32,11 @@ class ChromePrint
 
             Browsershot::url($url)
                 ->waitUntilNetworkIdle()
-                ->setDelay(3000)
+//                ->setDelay(1000)
                 ->showBackground()
                 ->windowSize(1024, 720)
                 ->timeout(300)
-                ->margins(0.5, 0.5, 0.5, 0.5, 'in')
+//                ->margins(0.5, 0.5, 0.5, 0.5, 'in')
 //                ->landscape(true)
                 ->format('A4')->savePdf($file);
 

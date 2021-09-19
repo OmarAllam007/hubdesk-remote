@@ -6,6 +6,7 @@ use App\Jobs\Job;
 use App\Mail\ReplyTicketMail;
 use App\Mail\SendSurveyEmail;
 use App\Mail\TicketAssignedMail;
+use App\Survey;
 use App\TicketLog;
 use App\TicketReply;
 use App\User;
@@ -65,13 +66,13 @@ class TicketReplyJob implements ShouldQueue
                 $this->to[] = $ticket->requester->email;
             }
 
-            if ($ticket->technician->email) {
+            if ($ticket->technician && $ticket->technician->email) {
                 $this->to[] = $ticket->technician->email;
             }
 
             $this->sendEmail();
         } else {
-            if ($ticket->technician->email) {
+            if ($ticket->technician && $ticket->technician->email) {
                 $this->to[] = $ticket->technician->email;
             }
         }
@@ -88,10 +89,10 @@ class TicketReplyJob implements ShouldQueue
 
             \Mail::to($toUsers)->cc($ccUsers)->send(new ReplyTicketMail($this->reply));
         }
-        $this->sendSurvey($this->reply->ticket);
+        $this->sendSurvey($this->reply);
     }
 
-    private function sendSurvey($ticket)
+    private function sendSurvey($reply)
     {
         if (($this->reply->status_id == 8 && $ticket->requester->email) && $ticket->category->survey->first()) {
             $survey = UserSurvey::create([

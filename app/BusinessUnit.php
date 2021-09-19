@@ -62,12 +62,14 @@ class BusinessUnit extends KModel
     }
 
 
-    public function scopeKGS(Builder $query){
+    public function scopeKGS(Builder $query)
+    {
         $kgsIds = KGSBusinessUnit::pluck('business_unit_id')->toArray();
         $query->orderBy('name')->whereIn('id', $kgsIds);
 
         return $query;
     }
+
     public function categories()
     {
         return $this->hasMany(Category::class, 'business_unit_id', 'id');
@@ -127,6 +129,12 @@ class BusinessUnit extends KModel
     function document_notifications()
     {
         return $this->hasMany(DocumentNotification::class);
+    }
+
+
+    function letter_levels()
+    {
+        return $this->hasMany(LetterApproval::class);
     }
 
     function canDisplay()

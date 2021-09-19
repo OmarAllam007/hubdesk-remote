@@ -24,7 +24,12 @@ class AttachmentEventsServiceProvider extends ServiceProvider
                     $filename = uniqid() . '_' . $filename;
                     $path = $folder . $filename;
                 }
+                try {
+
                 $file->move($folder, $filename);
+                }catch (\Exception $e){
+                    throw $e;
+                }
 
                 $attachment->path = '/attachments/'.$attachment->ticket_id.'/'.$filename;
             }

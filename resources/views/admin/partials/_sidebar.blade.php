@@ -100,4 +100,15 @@
             </div>
         </div>
 
+     <div>
+            <div class="flex bg-gray-300 p-5 ">
+                <h3 class="panel-title">{{t('Letters')}}</h3>
+
+            </div>
+            <div class="flex flex-col bg-white p-5 ">
+                <a class="p-5 hover:bg-gray-200 hover:text-black hover:shadow-md rounded-xl "
+                   href="{{route('admin.survey.index')}}">{{t('Letter Group')}}</a>
+            </div>
+        </div>
+
     </div>

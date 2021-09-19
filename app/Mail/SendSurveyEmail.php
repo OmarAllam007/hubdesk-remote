@@ -12,6 +12,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class SendSurveyEmail extends Mailable
 {
     use Queueable, SerializesModels;
+
     private $survey;
 
     public function __construct(UserSurvey $survey)

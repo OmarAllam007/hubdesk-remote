@@ -118,7 +118,7 @@
       <button class="bg-transparent
       font-semibold  py-2 px-4  rounded-2xl"
               :class="approval_style"
-              @click.prevent="submitApproval" :disabled="!can_submit">
+              @click="submitApproval" :disabled="!can_submit">
         <i class="fa fa-pencil"></i>
         Update
       </button>
@@ -187,7 +187,6 @@ export default {
       axios.post(`/approval/${this.approval.id}`, this.approvalForm).then((response) => {
         EventBus.$emit('send_notification', 'approvals',
             'Ticket Approval', `Approval has been submitted successfully 👍`, 'success');
-
         window.location.href = `/ticket/${this.approval.ticket_id}`;
       })
 

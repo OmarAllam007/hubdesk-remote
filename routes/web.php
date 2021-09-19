@@ -1,41 +1,44 @@
 <?php
 
+use App\Letter;
 use Illuminate\Routing\Router;
 
 
-Route::get('SAP_API', function () {
-//    $url = 'http://alkfeccdev.alkifah.com:8000/sap/bc/srt/wsdl/flv_10002A101AD1/bndg_url/sap/bc/srt/rfc/sap/zhcm_payroll/900/zhcm_payroll/zhcm?sap-client=900';
-    $url = 'http://ALKFECCPRD.ALKIFAH.COM:8000/sap/bc/srt/wsdl/flv_10002A111AD1/bndg_url/sap/bc/srt/rfc/sap/zhcm_payroll/900/zhcm_payroll/zhcm?sap-client=900';
-
-    $client = new Laminas\Soap\Client();
-    $client->setUri($url);
-    $client->setOptions([
-//        'location' => 'http://ALKFECCDEV.ALKIFAH.COM:8000/sap/bc/srt/rfc/sap/zhcm_payroll/900/zhcm_payroll/zhcm',
-//        'style' => SOAP_DOCUMENT,
-        'soap_version' => SOAP_1_2,
-        'wsdl' => $url,
-        'login' => 'HUBDESK_API',
-        'password' => 'Kifah@4200',
-        'compression' => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP
-    ]);
-
-    $result = $client->ZHCM_PAYROLL_TECH(['IM_PERNR' => 90001000]);
-    $file = null;
-
-    foreach ($result->EX_XPDF->item as $item) {
-        $file .= $item->LINE;
-    }
-    $filename = uniqid('/tmp/salary_') . '.pdf';
-    file_put_contents($filename, $file);
-
-    return response()->download($filename, 'salary.pdf', ['Content-Type' => 'application/pdf'], 'inline')->deleteFileAfterSend(true);
-});
-
-
 if ($login = env('LOGIN_AS')) {
-    $user = \App\User::where('employee_id',$login)->first();
+    $user = \App\User::where('employee_id', $login)->first();
     Auth::login($user);
 }
+
+Route::get('test',function (){
+    $lettersWithGroup = Letter::whereNotNull('auth_group_id')
+        ->get()->pluck('auth_group_id');
+});
+
+Route::get('generate-word-file', function () {
+
+    $user = \App\User::where('employee_id', '90000939')->first();
+    $sapApi = new \App\Helpers\SapApi($user);
+    $sapApi->getUserInformation();
+
+    $user = $sapApi->sapUser->getEmployeeSapInformation();
+    $letterTicket = \App\LetterTicket::where('ticket_id', 1443924)->first();
+
+    $letterPath = str_replace('.', '/', $letterTicket->letter->view_path);
+    require __DIR__ . "/../resources/views/letters/word/{$letterPath}.php";
+});
+
+Route::get('letter-view', function () {
+
+    $user = \App\User::where('employee_id', '90000939')->first();
+
+    $sapApi = new \App\Helpers\SapApi($user);
+    $sapApi->getUserInformation();
+
+    $user = $sapApi->sapUser->getEmployeeSapInformation();
+    $letterTicket = \App\LetterTicket::where('ticket_id', 1443948)->first();
+
+    return view("letters.template.{$letterTicket->letter->view_path}", compact('user', 'letterTicket'));
+});
 
 Route::get('/', 'HomeController@home')->middleware('lang');
 Route::auth();
@@ -117,6 +120,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
 
 
     $r->get('', 'Admin\DashboardController@index');
+    $r->get('/system-admin', 'Admin\DashboardController@systemAdmin')->name('system_admin');
+
     $r->resource('region', 'Admin\RegionController');
     $r->resource('division', 'Admin\DivisionController');
     $r->resource('city', 'Admin\CityController');
@@ -160,14 +165,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
 
 
 Route::group(['middleware' => ['auth']], function () {
+
     Route::get('/user-information', 'UserController@getUserInformation')->name('user.information');
     Route::get('/user-information-pdf', 'UserController@getSalarySlipPdf')->name('user.salarySlipPdf');
     Route::get('/get-users', 'Admin\UserController@getusers');
-
     Route::get('/reset_password', 'UserController@getResetForm')->name('user.reset');
     Route::post('/reset_password', 'UserController@resetForm')->name('user.reset');
 });
-Route::group(['middleware' => ['auth','reset']], function () {
+Route::group(['middleware' => ['auth', 'reset']], function () {
 
     Route::get('/get-users', 'Admin\UserController@getusers');
     Route::group(['prefix' => 'ticket'], function (\Illuminate\Routing\Router $r) {
@@ -290,3 +295,5 @@ Route::get('/subcategory/{subcategory}', 'SubcategoryController@show')->name('su
 
 Route::post('ajax/ticket', 'API\TicketController@index');
 Route::post('ajax/filter-tickets', 'API\TicketController@filterTickets');
+
+require __DIR__ . '/letters.php';

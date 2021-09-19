@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Listeners\LetterTicketApprovalListener;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -22,6 +23,17 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\TicketNotAssignedListener',
             'App\Listeners\CreateUserTicketListener',
         ],
+        'eloquent.created: App\LetterTicket' => [
+            'App\Listeners\Letters\LetterTicketListener',
+        ],
+
+        'eloquent.updated: App\TicketApproval' => [
+            'App\Listeners\TicketApprovalListener',
+            'App\Listeners\Letters\LetterTicketApprovalListener',
+        ],
+        'eloquent.updated: App\Ticket' => [
+            'App\Listeners\Letters\LetterTaskListener',
+        ]
     ];
 
     public function shouldDiscoverEvents()

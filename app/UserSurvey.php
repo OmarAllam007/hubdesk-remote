@@ -40,15 +40,25 @@ class UserSurvey extends Model
         if (!$this->is_submitted) {
             return 0;
         }
-//        dd($this->id);
-//        $total = 0;
 
         return $this->survey_answers->filter(function ($answer) {
             return $answer->answer;
         })->average('answer.degree');
 
 
-//        return $total / $this->survey_answers->count();
+    }
+
+    static function createSurvey($reply){
+        if (($reply->status_id == 8 && $reply->requester->email) && $reply->category->survey->first()) {
+            $survey = UserSurvey::create([
+                'ticket_id' => $reply->ticket_id,
+                'survey_id' => $reply->ticket->category->survey->first()->id,
+                'comment' => '',
+                'is_submitted' => 0,
+                'notified' => 1
+            ]);
+            return $survey;
+        }
     }
 
 }

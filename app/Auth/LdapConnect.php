@@ -111,7 +111,7 @@ class LdapConnect
 
             ldap_control_paged_result_response($this->link, $results, $cookie);
         } while ($cookie !== null && $cookie != '');
-        
+
         return $entries;
     }
 
