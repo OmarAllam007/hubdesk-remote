@@ -10,7 +10,7 @@
         @media print, screen {
 
             body {
-
+                font-family: Arial, Helvetica, sans-serif;
                 display: table;
                 table-layout: fixed;
                 height: auto;
