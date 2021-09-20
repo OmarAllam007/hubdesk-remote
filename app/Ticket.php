@@ -320,6 +320,12 @@ class Ticket extends KModel
 
     public function getFilesAttribute()
     {
+        if($this->isTask()){
+            return Attachment::where('type', Attachment::TASK_TYPE)
+                ->where('reference', $this->id)
+                ->get();
+        }
+
         if (!$this->attachments) {
             $attachments = Attachment::where('type', Attachment::TICKET_TYPE)
                 ->where('reference', $this->id)
