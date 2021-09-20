@@ -29,6 +29,8 @@ class UserController extends Controller
         $user = new User($request->all());
         $user->password = bcrypt($request->get('password') ?? env('DEFAULT_PASS'));
 
+        $user['signature'] = $user->upload('signature');
+
         $user->save();
 
         flash(t('User Info'), t('User has been saved'), 'success');
@@ -49,6 +51,10 @@ class UserController extends Controller
     public function update(User $user, AdminUserRequest $request)
     {
         $data = $request->all();
+
+        if ($request->hasFile('signature')) {
+            $data['signature'] = $user->upload('signature');
+        }
 
         if ($request->get('password') || $request->get('default_password')) {
             $data['password'] = bcrypt($data['password'] ?? env('DEFAULT_PASS'));

@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ChromePrint;
+use App\Helpers\LetterSponserMap;
 use App\Item;
 use App\Jobs\NewTicketJob;
 use App\Letter;
 use App\LetterGroup;
 use App\LetterTicket;
 use App\Ticket;
+use App\User;
 use Illuminate\Http\Request;
 
 class LetterController extends Controller
@@ -105,15 +107,18 @@ class LetterController extends Controller
         $sapApi = new \App\Helpers\SapApi($user);
         $sapApi->getUserInformation();
         $user = $sapApi->sapUser->getEmployeeSapInformation();
+
         $user['allowances_str'] = $sapApi->sapUser->getAllowancesString();
 
         $letterTicket = LetterTicket::where('ticket_id', $ticket)->first();
         $view = $letterTicket->letter->view_path;
 
+
         /* @TODO to be changes */
-        $letterTicket['header'] = 8;
-        $letterTicket['stamp'] = '/stamps/8/stamp_test.png';
-        $letterTicket['signature'] = '/stamps/8/signature.png';
+        $letterTicket['header'] = LetterSponserMap::$systemBusinessUnits[$user['sponsor_id']];
+        $letterTicket['stamp'] = '/stamps/' . LetterSponserMap::$systemBusinessUnits[$user['sponsor_id']] . '/image.jpg';
+        $letterTicket['signature'] = User::find(1148)->signature;
+
         $content = view("letters.template.${view}", compact('user', 'letterTicket'));
 
         $filepath = storage_path('app/letter.html');
