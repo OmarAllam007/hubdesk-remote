@@ -157,10 +157,10 @@
 
                 <div class="flex justify-between">
                     <div class="w-1/3 mx-3 ">
-                        <img src="{{asset($letterTicket->signature)}}" class="w" alt="">
+                        <img src="{{url($letterTicket->signature)}}" class="w" alt="">
                     </div>
                     <div class="w-1/3 mx-2 ">
-                        <img src="{{asset($letterTicket->stamp)}}" class="w" alt="">
+                        <img src="{{url($letterTicket->stamp)}}" class="w" alt="">
                     </div>
                 </div>
             </div>
