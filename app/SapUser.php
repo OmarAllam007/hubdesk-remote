@@ -46,7 +46,7 @@ class SapUser
 
     function getEmployeeSapInformation()
     {
-        $this->sapData['allowances_str'] =  $this->getAllowancesString();
+        $this->sapData['allowances_str'] = $this->getAllowancesString();
         return $this->sapData;
     }
 
@@ -73,6 +73,7 @@ class SapUser
             'ar_nationality' => $this->sapData['NATIO_A'],
             'iqama_number' => $this->sapData['ICNUM_IQAMA'],
             'passport_number' => $this->sapData['ICNUM_PASS'],
+            'sponsor_id' => $this->sapData['SPONR'],
             'sponsor_company' => LetterSponserMap::$sponsers[$this->sapData['SPONR']],
             'en_sponsor_company' => $this->sapData['SPONN'],
             'allowances' => $this->getAllowances(),

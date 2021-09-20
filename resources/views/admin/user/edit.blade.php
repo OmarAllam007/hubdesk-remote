@@ -15,11 +15,12 @@
 @stop
 
 @section('body')
-    {{ Form::model($user, ['route' => ['admin.user.update', $user], 'class' => 'col-sm-9']) }}
+    <form action="{{route('admin.user.update', $user)}}" method="POST" enctype="multipart/form-data">
+        @csrf
+{{--    {{ Form::model($user, ['route' => ['admin.user.update', $user],'encrypt'=>'multipart/form-data', 'class' => 'col-sm-9']) }}--}}
+    {{ method_field('patch') }}
 
-        {{ method_field('patch') }}
-
-        @include('admin.user._form')
-
-    {{ Form::close() }}
+    @include('admin.user._form')
+    </form>
+{{--    {{ Form::close() }}]--}}
 @stop

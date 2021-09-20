@@ -60,7 +60,7 @@ class User extends Authenticatable implements CanResetPassword
         'manager_id', 'group_ids', 'role_ids', 'employee_id', 'extra_fields', 'is_disabled',
         'password_reset',
         'last_login_date',
-        'last_reset_password_date'
+        'last_reset_password_date', 'signature'
     ];
 
     protected $casts = ['extra_fields' => 'array'];
@@ -276,6 +276,32 @@ class User extends Authenticatable implements CanResetPassword
             'manager_name' => $this->manager ? $this->manager->name : 'Not Assigned',
             'manager_email' => $this->manager ? $this->manager->email : 'Not Assigned',
         ];
+    }
+
+
+     function upload($requestFileName)
+    {
+
+        $request = request();
+
+        $file = $request->file($requestFileName);
+        $name = 'signature.png';
+
+        $folder = storage_path("app/public/signatures/" . $this->id . '/');
+
+        if (!is_dir($folder)) {
+            mkdir($folder, 0775, true);
+        }
+        $path = $folder . $name;
+
+        if (is_file($path)) {
+            $filename = uniqid() . '_' . $name;
+            $path = $folder . $filename;
+        }
+
+        $file->move($folder, $name);
+
+        return "/signatures/" . $this->id . '/' . $name;
     }
 }
   

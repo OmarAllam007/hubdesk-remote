@@ -14,7 +14,6 @@
                 height: auto;
             }
         }
-
         page {
             display: block;
             margin: 0 auto;
@@ -124,13 +123,12 @@
                 {{--                        {{config('letters.signature_name')}}--}}
                 {{--                    </p>--}}
                 {{--                </div>--}}
-
                 <div class="flex justify-between">
                                         <div class="w-1/3 mx-3 ">
-                                            <img src="{{asset('/stamps/8/signature.png')}}" class="w" alt="">
+                                            <img src="{{asset($letterTicket->signature)}}" class="w" alt="">
                                         </div>
                     <div class="w-1/3 mx-2 ">
-                        <img src="{{asset('/stamps/8/stamp_test.png')}}" class="w" alt="">
+                        <img src="{{asset($letterTicket->stamp)}}" class="w" alt="">
                     </div>
                 </div>
             </div>

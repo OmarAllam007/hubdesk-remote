@@ -3,7 +3,8 @@
 @section('header')
     <h4 class="pull-left">Add User</h4>
 
-    <a href="{{ route('admin.user.index') }}" class="btn btn-sm btn-default pull-right"><i class="fa fa-chevron-left"></i></a>
+    <a href="{{ route('admin.user.index') }}" class="btn btn-sm btn-default pull-right"><i
+                class="fa fa-chevron-left"></i></a>
 @stop
 
 @section('sidebar')
@@ -11,9 +12,9 @@
 @stop
 
 @section('body')
-    {{ Form::open(['route' => 'admin.user.store', 'class' => 'col-sm-9']) }}
+    {{ Form::open(['route' => 'admin.user.store', 'class' => 'col-sm-9','encrypt'=>'multipart/form-data']) }}
 
-        @include('admin.user._form')
+    @include('admin.user._form')
 
     {{ Form::close() }}
 @stop
