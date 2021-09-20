@@ -59,7 +59,6 @@ class SapUser
         }
         $this->sapData = $sap_data;
 
-
         $job = LetterJobMap::where('en_name', $this->sapData['VCTXT'])->first();
 
         $this->sapData = [
@@ -71,7 +70,7 @@ class SapUser
             'ar_name' => $this->sapData['SNAME'],
             'en_nationality' => $this->sapData['NATIO_E'],
             'ar_nationality' => $this->sapData['NATIO_A'],
-            'iqama_number' => $this->sapData['ICNUM_IQAMA'],
+            'iqama_number' => $this->sapData['ICNUM_IQAMA'] != '' ? $this->sapData['ICNUM_IQAMA'] :$this->sapData['ICNUM_NATID'],
             'passport_number' => $this->sapData['ICNUM_PASS'],
             'sponsor_id' => $this->sapData['SPONR'],
             'sponsor_company' => LetterSponserMap::$sponsers[$this->sapData['SPONR']],
@@ -89,6 +88,7 @@ class SapUser
             'fax' => '12121212',
             'education'=> $this->sapData['ZZEDUCATION'],
         ];
+//        dd($this->sapData);
 
         return $this->sapData;
     }
