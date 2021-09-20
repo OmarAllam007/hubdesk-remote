@@ -12,8 +12,8 @@
 @stop
 
 @section('body')
-    {{ Form::open(['route' => 'admin.user.store', 'class' => 'col-sm-9','encrypt'=>'multipart/form-data']) }}
-
+    <form action="{{route('admin.user.store')}}" method="POST" enctype="multipart/form-data">
+    @csrf
     @include('admin.user._form')
 
     {{ Form::close() }}
