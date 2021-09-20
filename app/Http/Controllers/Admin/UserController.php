@@ -28,9 +28,9 @@ class UserController extends Controller
     {
         $user = new User($request->all());
         $user->password = bcrypt($request->get('password') ?? env('DEFAULT_PASS'));
-
-        $user['signature'] = $user->upload('signature');
-
+        if ($request->hasFile('signature')) {
+            $user['signature'] = $user->upload('signature');
+        }
         $user->save();
 
         flash(t('User Info'), t('User has been saved'), 'success');
