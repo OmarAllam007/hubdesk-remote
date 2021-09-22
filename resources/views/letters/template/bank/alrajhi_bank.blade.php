@@ -192,12 +192,12 @@
                         {{config('letters.signature_name')}}
                     </p>
                     <div class="w-8/12   mx-3 ">
-                        <img src="{{asset('/stamps/8/signature.png')}}" class="w" alt="">
+                        <img src="{{url('/storage'.$letterTicket->signature)}}" class="w" alt="">
                     </div>
                 </div>
                 <div class="flex w-1/2 justify-end">
                     <div class="w-7/12   mx-2 text-right">
-                        <img src="{{asset('/stamps/8/stamp_test.png')}}" class="w" alt="">
+                        <img src="{{url('/storage'.$letterTicket->stamp)}}" class="w" alt="">
                     </div>
                 </div>
             </div>
