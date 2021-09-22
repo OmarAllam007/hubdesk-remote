@@ -14,14 +14,15 @@
                 height: auto;
             }
         }
+
         page {
             display: block;
             margin: 0 auto;
             background-repeat: no-repeat;
             @if(\App\LetterTicket::isApprovedTicket($letterTicket->ticket))
-                 background-image: url({{url("/storage/headers/{$letterTicket->header}/image.jpg")}}) !important;
+                  background-image: url({{url("/storage/headers/{$letterTicket->header}/image.jpg")}}) !important;
             @endif
-                 background-size: contain !important;
+                  background-size: contain !important;
         }
 
 
@@ -66,8 +67,7 @@
                     @endphp
                     الســادة / {{$letterTicket->letter->ar_name}} {{$to}}
                 </p>
-                <p class="px-64 "></p>
-                <p class="px-10   "></p>
+                <p class="px-48 "></p>
                 <p class="text-4xl">المحترمين</p>
             </div>
 
@@ -124,9 +124,9 @@
                 {{--                    </p>--}}
                 {{--                </div>--}}
                 <div class="flex justify-between">
-                                        <div class="w-1/3 mx-3 ">
-                                            <img src="{{asset($letterTicket->signature)}}" class="w" alt="">
-                                        </div>
+                    <div class="w-1/3 mx-3 ">
+                        <img src="{{asset($letterTicket->signature)}}" class="w" alt="">
+                    </div>
                     <div class="w-1/3 mx-2 ">
                         <img src="{{asset($letterTicket->stamp)}}" class="w" alt="">
                     </div>
