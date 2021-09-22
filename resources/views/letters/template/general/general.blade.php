@@ -122,7 +122,7 @@
 {{--                    <div class="w-1/3 mx-3 ">--}}
 {{--                        <img src="{{asset($letterTicket->signature)}}" class="w" alt="">--}}
 {{--                    </div>--}}
-                    <div class="w-1/3 mx-2 ">
+                    <div class="w-1/3 mx-2 pt-10 ">
                         <img src="{{url('/storage'.$letterTicket->stamp)}}" class="w" alt="">
                     </div>
                 </div>
