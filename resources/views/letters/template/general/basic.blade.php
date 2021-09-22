@@ -124,10 +124,10 @@
 {{--                </div>--}}
 
                 <div class="flex justify-between">
-                    <div class="w-1/3 mx-3 ">
-                        <img src="{{url('/storage'.$letterTicket->signature)}}" class="w" alt="">
+{{--                    <div class="w-1/3 mx-3 ">--}}
+{{--                        <img src="{{url('/storage'.$letterTicket->signature)}}" class="w" alt="">--}}
 
-                    </div>
+{{--                    </div>--}}
                     <div class="w-1/3 mx-2 ">
                         <img src="{{url('/storage'.$letterTicket->stamp)}}" class="w" alt="">
                     </div>
