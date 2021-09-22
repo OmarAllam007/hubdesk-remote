@@ -118,17 +118,12 @@
                     </p>
                 </div>
 
-                {{--                <div class="flex  pt-5   px-10 ">--}}
-                {{--                    <p class="text-4xl" dir="rtl">--}}
-                {{--                        {{config('letters.signature_name')}}--}}
-                {{--                    </p>--}}
-                {{--                </div>--}}
                 <div class="flex justify-between">
-                    <div class="w-1/3 mx-3 ">
-                        <img src="{{asset($letterTicket->signature)}}" class="w" alt="">
-                    </div>
-                    <div class="w-1/3 mx-2 ">
-                        <img src="{{asset($letterTicket->stamp)}}" class="w" alt="">
+{{--                    <div class="w-1/3 mx-3 ">--}}
+{{--                        <img src="{{asset($letterTicket->signature)}}" class="w" alt="">--}}
+{{--                    </div>--}}
+                    <div class="w-1/3 mx-2 pt-10 ">
+                        <img src="{{url('/storage'.$letterTicket->stamp)}}" class="w" alt="">
                     </div>
                 </div>
             </div>
