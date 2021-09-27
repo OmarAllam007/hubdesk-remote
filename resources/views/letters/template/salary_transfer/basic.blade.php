@@ -42,8 +42,7 @@
             <div class="pt-32"></div>
             <div class="pt-10 "></div>
             <div class="flex justify-end pt-20 px-10 ">
-                <p class="pt-32"></p>
-                <p class="text-gray-900 text-xl  pt-10"> التاريخ : {{$letterTicket->last_approval_date}}
+                <p class="text-gray-900 text-xl  pt-64"> التاريخ : {{$letterTicket->last_approval_date}}
                     م</p>
             </div>
             <div class="flex  pt-10 px-10" dir="rtl">
@@ -136,7 +135,7 @@
 
                     </div>
                     <div class="w-1/3 mx-2 ">
-                        <img src="{{url('/storage'.$letterTicket->stamp)}}"  alt="">
+{{--                        <img src="{{url('/storage'.$letterTicket->stamp)}}"  alt="">--}}
                     </div>
                 </div>
             </div>
