@@ -42,7 +42,7 @@
             <div class="pt-32"></div>
             <div class="pt-10 "></div>
             <div class="flex justify-end pt-20 px-10 ">
-
+                <p class="pt-32"></p>
                 <p class="text-gray-900 text-xl  pt-10"> التاريخ : {{$letterTicket->last_approval_date}}
                     م</p>
             </div>
@@ -132,10 +132,11 @@
 
                 <div class="flex justify-between">
                     <div class="w-1/3 mx-3 ">
-                        <img src="{{asset('/stamps/8/signature.png')}}" class="w" alt="">
+                        <img src="{{url('/storage'.$letterTicket->signature)}}" alt="">
+
                     </div>
                     <div class="w-1/3 mx-2 ">
-                        <img src="{{asset('/stamps/8/stamp_test.png')}}" class="w" alt="">
+                        <img src="{{url('/storage'.$letterTicket->stamp)}}"  alt="">
                     </div>
                 </div>
             </div>
