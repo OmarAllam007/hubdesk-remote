@@ -20,9 +20,9 @@
             margin: 0 auto;
             background-repeat: no-repeat;
             @if(\App\LetterTicket::isApprovedTicket($letterTicket->ticket))
-                           background-image: url({{url("/storage/headers/{$letterTicket->header}/image.jpg")}}) !important;
+                            background-image: url({{url("/storage/headers/{$letterTicket->header}/image.jpg")}}) !important;
             @endif
-                           background-size: contain !important;
+                            background-size: contain !important;
         }
 
 
@@ -47,7 +47,7 @@
                     م</p>
             </div>
             <div class="flex  pt-10 px-10" dir="rtl">
-                <p class="text-4xl  ">
+                <p class="text-3xl ">
                     @php
                         $IbanField = $letterTicket->ticket->fields->first() ? $letterTicket->ticket->fields->first()->value : '';
 
@@ -55,20 +55,21 @@
                     الســادة / {{$user['sponsor_company']}}
                 </p>
                 <p class="px-64 "></p>
-                <p class="text-4xl  ">المحترمين</p>
+                <p class="text-3xl ">المحترمين</p>
             </div>
 
             <div class="flex justify-center pt-10 px-10 ">
-                <p class="text-4xl  " dir="rtl">
+                <p class="text-3xl " dir="rtl">
                     السلام عليكم ورحمة الله وبركاته ،،، وبعد ،،،
                 </p>
             </div>
 
             <div class="flex flex-col pt-5  px-10 ">
-                <p dir="rtl" class="text-4xl    leading-9 " style="line-height: 3rem">
+                <p dir="rtl" class="text-3xl   leading-9 " style="line-height: 3rem">
                     أفيد سيادتكم برغبتي الاستفادة من خدمات ({{$letterTicket->letter->ar_name}}) ، ولهذا أرغب بأن يتم صرف
                     راتبي الشهري إلى
-                    ( {{$letterTicket->letter->ar_name}} ) حساب رقم ( {{$user['iban']}} ) كما أرجو في حال انتهاء خدماتي لأي
+                    ( {{$letterTicket->letter->ar_name}} ) حساب رقم ( {{$user['iban']}} ) كما أرجو في حال انتهاء خدماتي
+                    لأي
                     سبب كان بأن
                     يتم تحويل كافة مستحقاتي إلى حسابي المشار أعلاه وأن لا يتم الإجراء إلا بخطاب موجه لكم من البنك
                     المذكور .
@@ -76,20 +77,20 @@
             </div>
 
             <div class="flex justify-end pt-5  px-10 ">
-                <p class="text-4xl  " dir="rtl">
+                <p class="text-3xl " dir="rtl">
                     الاسم:
                 </p>
             </div>
 
             <div class="flex justify-end   px-10 ">
-                <p class="text-4xl  " dir="rtl">
+                <p class="text-3xl " dir="rtl">
                     التوقيع:
                 </p>
             </div>
             <div class="pt-5"></div>
             <hr>
             <div class="flex  pt-10 px-10" dir="rtl">
-                <p class="text-4xl  ">
+                <p class="text-3xl  ">
                     @php
                         $IbanField = $letterTicket->ticket->fields->first() ? $letterTicket->ticket->fields->first()->value : '';
 
@@ -97,15 +98,15 @@
                     الســادة / {{$letterTicket->letter->ar_name }}
                 </p>
                 <p class="px-64 "></p>
-                <p class="text-4xl  ">المحترمين</p>
+                <p class="text-3xl  ">المحترمين</p>
             </div>
             <div class="flex justify-center pt-5  px-10 ">
-                <p class="text-4xl  " dir="rtl">
+                <p class="text-3xl  " dir="rtl">
                     السلام عليكم ورحمة الله وبركاته ،،، وبعد ،،،
                 </p>
             </div>
             <div class="flex flex-col pt-5  px-10 ">
-                <p dir="rtl" class="text-4xl    leading-9 " style="line-height: 3rem">
+                <p dir="rtl" class="text-3xl leading-9 " style="line-height: 3rem">
                     الموضوع رواتب ومستحقات موظفنا السيد : {{$user['ar_name']}} حيث أن المذكور
                     ({{$user['ar_nationality']}}) الجنسية
                     يعمل لدينا قد أخطرنا بأنه يرغب بحصوله على تمويل شخصي منكم ويطيب لنا في ذلك الصدد أن نقوم بتحويل
@@ -117,14 +118,14 @@
 
 
             <div class="flex-col">
-                <div class="flex  pt-5    px-10 ">
-                    <p class="text-4xl" dir="rtl">
+                <div class="flex  pt-5   px-10 ">
+                    <p class="text-3xl" dir="rtl">
                         {{$user['sponsor_company']}}
                     </p>
                 </div>
 
                 <div class="flex  pt-5   px-10 ">
-                    <p class="text-4xl" dir="rtl">
+                    <p class="text-3xl" dir="rtl">
                         {{config('letters.signature_name')}}
                     </p>
                 </div>
@@ -159,25 +160,19 @@
                     م</p>
             </div>
 
-            {{--            <div class="flex justify-center pt-10 ">--}}
-            {{--                <p class="underline px-5 text-4xl  ">--}}
-            {{--                    خطاب : تعريف بالراتب--}}
-            {{--                </p>--}}
-            {{--            </div>--}}
-
             <div class="flex  pt-20 px-10" dir="rtl">
-                <p class="text-4xl">
+                <p class="text-3xl">
                     {{--                    change as per Name --}}
                     الســادة / {{$letterTicket->letter->ar_name}}
                 </p>
                 <p class="px-64 "></p>
                 {{--                <p class="px-10   "></p>--}}
-                <p class="text-4xl">المحترمين</p>
+                <p class="text-3xl">المحترمين</p>
             </div>
 
-            <div class="flex justify-end pt-10 px-10 ">
+            <div class="flex justify-end pt-10 px-10">
 
-                <p class="text-4xl" dir="rtl">
+                <p class="text-3xl" dir="rtl">
                     السلام عليكم ورحمة الله وبركاته ،،، وبعد ،،،
                 </p>
             </div>
@@ -221,23 +216,11 @@
                     @endif
 
                     <span>
+
                     بدل نقل ({{$user['allowances']['transportation_allowance']}} ريال) ،
                     </span>
-
-                    {{--                    --}}
-                    {{--                    @if(isset($user['allowances']['nature_of_work_allowance']))--}}
-                    {{--                        <span>--}}
-                    {{--                            بدل طبيعة عمل ({{$user['allowances']['nature_of_work_allowance']}} ريال) ،--}}
-                    {{--                    </span>--}}
-                    {{--                    @endif--}}
-
-                    {{--                    @if(isset($user['fixed_amount']))--}}
-                    {{--                        <span>--}}
-                    {{--                    بدل ثابت (100ريال)--}}
-                    {{--                    </span>--}}
-                    {{--                    @endif--}}
-
                     <span>
+
                         بإجمالي قدره ({{$user['total_package']}} ريال) ،
                     </span>
                     <span>
@@ -246,8 +229,9 @@
                 </p>
             </div>
 
+
             <div class="flex justify-center pt-20 ">
-                <p class="text-4xl " dir="rtl">
+                <p class="text-3xl" dir="rtl">
                     ولكم جزيل الشكر والتقدير ؛؛؛
                 </p>
             </div>
@@ -255,23 +239,23 @@
 
             <div class="flex-col">
                 <div class="flex  pt-10   px-10 ">
-                    <p class="text-4xl" dir="rtl">
-                        {{$user['sponsor_company']}}
+                    <p class="text-3xl" dir="rtl">
+                    {{$user['sponsor_company']}}
                     </p>
                 </div>
 
                 <div class="flex  pt-5   px-10 ">
-                    <p class="text-4xl" dir="rtl">
-                        {{config('letters.signature_name')}}
+                    <p class="text-3xl" dir=" rtl">
+                    {{config('letters.signature_name')}}
                     </p>
                 </div>
 
                 <div class="flex justify-between">
                     <div class="w-1/3 mx-3 ">
-                        <img src="{{url('/storage'.$letterTicket->signature)}}" class="w" alt="">
+                        <img src="{{url('/storage'.$letterTicket->signature)}}" alt="">
                     </div>
                     <div class="w-1/3 mx-2 ">
-                        <img src="{{url('/storage'.$letterTicket->stamp)}}" class="w" alt="">
+                        <img src="{{url('/storage'.$letterTicket->stamp)}}"  alt="">
                     </div>
                 </div>
             </div>
