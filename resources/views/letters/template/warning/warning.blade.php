@@ -40,8 +40,7 @@
     <div class="">
         <page size="A4" class="">
             <p class="pt-32"></p>
-            <p class="pt-10"></p>
-            <p class="pt-10"></p>
+            <p class="pt-32"></p>
             <p class="text-gray-900 text-xl pt-5 px-5 ">HD: {{$letterTicket->ticket->id}}
             <p class="pt-5"></p>
             <p class="text-gray-900 text-xl px-5 ">SAP ID: {{$letterTicket->ticket->requester->employee_id}}
@@ -86,7 +85,7 @@
                     $pNumberAr = $letterTicket->ticket->fields->count() ? $letterTicket->ticket->fields->where('name','الفقرة رقم')->first()->value : '';
                     $pContent = $letterTicket->ticket->fields->count() ? $letterTicket->ticket->fields->where('name','نص الفقرة')->first()->value : '';
                     $violationsAr = $letterTicket->ticket->fields->count() ? $letterTicket->ticket->fields->where('name','المخالفات')->first()->value : '';
-                    $punishmentsAr = $letterTicket->ticket->fields->count() ? $letterTicket->ticket->fields->where('name','المخالفات')->first()->value : '';
+                    $punishmentsAr = $letterTicket->ticket->fields->count() ? $letterTicket->ticket->fields->where('name','العقوبات')->first()->value : '';
 
                     $EsharEnNo = $letterTicket->ticket->fields->count() ? $letterTicket->ticket->fields->where('name','Notice of punishment No')->first()->value : '';
                     $relatedToEn = $letterTicket->ticket->fields->count() ? $letterTicket->ticket->fields->where('name','Related table of violations and penalties')->first()->value : '';
