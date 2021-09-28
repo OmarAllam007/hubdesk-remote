@@ -129,7 +129,7 @@
 
             <div class="flex justify-center">
                 <p class="text-2xl">
-                    Punishment
+                    Warning or Punishment
                 </p>
             </div>
 
