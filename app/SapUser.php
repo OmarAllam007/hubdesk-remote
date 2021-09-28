@@ -58,8 +58,8 @@ class SapUser
             $sap_data[$key] = $data;
         }
         $this->sapData = $sap_data;
-
         $job = LetterJobMap::where('en_name', $this->sapData['VCTXT'])->first();
+
 
         $this->sapData = [
             'employee_id' => $this->sapData['PERNR'],
@@ -67,7 +67,7 @@ class SapUser
             'occupation' => $job ? $job->ar_name : '',
             'en_occupation' => $this->sapData['VCTXT'],
             'en_name' => $this->sapData['ENAME'],
-            'ar_name' => $this->sapData['SNAME'],
+            'ar_name' => $this->sapData['SNAME'] != '' ? $this->sapData['SNAME'] : $this->sapData['ENAME'],
             'en_nationality' => $this->sapData['NATIO_E'],
             'ar_nationality' => $this->sapData['NATIO_A'],
             'iqama_number' => $this->sapData['ICNUM_IQAMA'] != '' ? $this->sapData['ICNUM_IQAMA'] :$this->sapData['ICNUM_NATID'],
@@ -79,13 +79,13 @@ class SapUser
             'total_package' => $this->sapData['total_package'],
             'date_of_join' => $this->sapData['DAT01'],
             'iban' => $this->sapData['IBAN'],
-            'department' => 'قسم شؤون الموظفين',
-            'eos_amount' => 100000,
-            'job_status' => 'مثبت',
-            'work_contract' => 'غير محدد المدة',
-            'discounts' => 'لاتوجد',
-            'phone' => '12344555',
-            'fax' => '12121212',
+            'department' => '',
+            'eos_amount' => 0,
+            'job_status' => '',
+            'work_contract' => '',
+            'discounts' => '',
+            'phone' => '',
+            'fax' => '',
             'education'=> $this->sapData['ZZEDUCATION'],
         ];
 //        dd($this->sapData);
