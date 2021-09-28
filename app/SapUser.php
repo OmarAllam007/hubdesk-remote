@@ -61,6 +61,7 @@ class SapUser
         $job = LetterJobMap::where('en_name', $this->sapData['VCTXT'])->first();
 
 
+
         $this->sapData = [
             'employee_id' => $this->sapData['PERNR'],
             'system_position' => $this->sapData['POSITION'],
