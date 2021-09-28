@@ -40,7 +40,7 @@
     <div class="">
         <page size="A4" class="">
             <p class="pt-32"></p>
-            <p class="pt-10"></p>
+            <p class="pt-32"></p>
             <p class="pt-10"></p>
             <p class="text-gray-900 text-xl pt-10 px-5 ">SAP ID: {{$letterTicket->ticket->requester->employee_id}}
                 {{--            employee id--}}
@@ -88,7 +88,7 @@
                 <p dir="rtl" class=" text-3xl ">
                     <span>
                     يعمل لدينا من تاريخ: {{$user['date_of_join']}}   ومازال على راس العمل
-                        بمهنة : {{$user['occupation']}}
+                        بمهنة : {{$user['en_occupation']}}
                     </span>
 
                     <span>
@@ -112,26 +112,13 @@
                     </p>
                 </div>
 
-                {{--                <div class="flex  pt-5   px-10 ">--}}
-                {{--                    <p class="text-4xl" dir="rtl">--}}
-                {{--                        {{config('letters.signature_name')}}--}}
-                {{--                    </p>--}}
-                {{--                </div>--}}
-
-                <div class="flex justify-between">
-                    {{--                    <div class="w-1/3 mx-3 ">--}}
-                    {{--                        <img src="{{asset('/stamps/8/signature.png')}}" class="w" alt="">--}}
-                    {{--                    </div>--}}
+                <div class="flex justify-between pt-10">
                     <div class="w-1/3 mx-2 ">
-                        <img src="{{asset('/stamps/8/stamp_test.png')}}" class="w" alt="">
+                        <img src="{{url('/storage'.$letterTicket->stamp)}}" class="w" alt="">
                     </div>
                 </div>
             </div>
 
-
-            <div class="flex justify-center">
-
-            </div>
         </page>
     </div>
 
