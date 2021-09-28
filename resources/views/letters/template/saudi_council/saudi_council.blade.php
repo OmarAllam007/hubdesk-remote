@@ -20,9 +20,9 @@
             margin: 0 auto;
             background-repeat: no-repeat;
             @if(\App\LetterTicket::isApprovedTicket($letterTicket->ticket))
-                   background-image: url({{url("/storage/headers/{$letterTicket->header}/image.jpg")}}) !important;
+                    background-image: url({{url("/storage/headers/{$letterTicket->header}/image.jpg")}}) !important;
             @endif
-                   background-size: contain !important;
+                    background-size: contain !important;
         }
 
 
@@ -85,10 +85,11 @@
                     {{$user['iqama_number']}}،
                     </span>
                 </p>
+
                 <p dir="rtl" class=" text-3xl ">
                     <span>
                     يعمل لدينا من تاريخ: {{$user['date_of_join']}}   ومازال على راس العمل
-                        بمهنة : {{$user['en_occupation']}}
+                        بمهنة : {{$user['occupation'] != '' ? $user['occupation'] :  $user['en_occupation']}}
                     </span>
 
                     <span>
