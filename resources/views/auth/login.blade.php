@@ -1,39 +1,12 @@
 @extends('layouts.app')
 
-@section('header')
-    <h4 class="panel-title">Login</h4>
-@endsection
+{{--@section('header')--}}
+{{--    <h4 class="panel-title">Login</h4>--}}
+{{--@endsection--}}
 @section('body')
-    {{--    <div class="w-full">--}}
-    {{--        <div class="flex justify-center">--}}
-    {{--            <div class="w-1/3  bg-gray-300 border border-gray-300 shadow-lg">--}}
-    {{--                <div class="flex flex-col">--}}
-    {{--                    <div class="flex justify-center">--}}
-    {{--                        <img src="{{asset('images/hubdesk.png')}}" class="w-1/2  object-scale-down">--}}
-    {{--                    </div>--}}
-
-    {{--                    <div class="m-4">--}}
-    {{--                        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">--}}
-    {{--                            {{t('Employee ID ( 90xxxxxx )')}}--}}
-    {{--                        </label>--}}
-    {{--                        <input class="shadow border rounded-2xl w-full py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"--}}
-    {{--                               id="username" type="text" placeholder="{{t('Employee ID')}}">--}}
-    {{--                    </div>--}}
-
-    {{--                    <div class="m-4">--}}
-    {{--                        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">--}}
-    {{--                            {{t('Password')}}--}}
-    {{--                        </label>--}}
-    {{--                        <input class="shadow appearance-none border rounded w-full py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"--}}
-    {{--                               id="username" type="text" placeholder="{{t('Username')}}">--}}
-    {{--                    </div>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-    {{--    </div>--}}
 
     <div style="width: 100%;display: flex;justify-content: center;align-items: center;padding: 1px">
-        <div class="auth-form">
+        <div  class="p-10 rounded-xl  shadow-md  pt-16  mt-16 bg-gradient-to-b   from-gray-300   to-gray-500 ">
             <form style="width: 100%;align-content: center" class="form-horizontal" role="form" method="POST"
                   action="{{ url('/login') }}">
                 {!! csrf_field() !!}
@@ -46,7 +19,7 @@
                 <br>
                 <div class="form-group{{ $errors->has('employee_id') ? ' has-error' : '' }}">
                     <div class="col-sm-12">
-                        <input type="text" class="form-control" name="employee_id" id="employee_id"
+                        <input type="text" class="w-full px-4 py-4   mt-2 mr-4 text-base text-black transition duration-500 ease-in-out transform rounded-lg bg-gray-100 focus:border-blueGray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2" name="employee_id" id="employee_id"
                                value="{{ old('employee_id') }}" placeholder="Employee ID ( 90xxxxxx )"
                         >
                         @if ($errors->has('employee_id'))
@@ -57,7 +30,7 @@
 
                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                     <div class="col-sm-12">
-                        <input type="password" class="form-control" name="password" id="password"
+                        <input type="password" class="w-full px-4 py-4   mt-2 mr-4 text-base text-black transition duration-500 ease-in-out transform rounded-lg focus:border-blueGray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 " name="password" id="password"
                                placeholder="Password">
                         @if ($errors->has('password'))
                             <span class="error-message">{{ $errors->first('password') }}</span>
@@ -68,7 +41,7 @@
 
                 <div class="form-group{{ $errors->has('language') ? ' has-error' : '' }}">
                     <div class="col-sm-12">
-                        <select name="language" id="language" class="form-control">
+                        <select name="language" id="language" class="w-full px-4 py-4   mt-2 mr-4 text-base text-black transition duration-500 ease-in-out transform rounded-lg bg-gray-100 focus:border-blueGray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2">
                             @foreach(App\Language::$LANGUAGES as $key=>$language)
                                 <option value="{{$key}}">{{$language}}</option>
                             @endforeach
@@ -92,19 +65,15 @@
 
                 <div class="w-full">
                     <button type="submit"
-                            class="btn  btn-primary w-full">
+                            class="btn text-white hover:text-white  w-full" style="background-color: #1a1d50; opacity: 0.8  ">
                         <i class="fa fa-btn fa-sign-in"></i> Login
                     </button>
 
-                    {{--                        <a href="/auth/google" class="btn btn-danger">--}}
-                    {{--                        <i class="fa fa-btn fa-google-plus"></i> Login using Google--}}
-                    {{--                        </a>--}}
-
 
                     <div class="w-full flex justify-center pt-4">
-                        <a href="{{route('password.request')}}" class="btn w-full"
+                        <a href="{{route('password.request')}}" class="btn w-full bg-teal-600  text-white hover:text-white "
                            title="Reset password will works only if your email registered on Hubdesk"
-                           style="background-color: rgba(20,162,185,1); color:white;">
+                           >
                             <i class="fa fa-btn fa-unlock"></i> Reset Password
                         </a>
                     </div>
