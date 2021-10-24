@@ -97,20 +97,19 @@
                 </p>
             </div>
 
-            <div class="flex-col">
-                <div class="flex  pt-10   px-10 ">
-                    <p class="text-4xl" dir="rtl">
+            <div class="flex pt-5   px-10">
+                <div class="flex-col  w-1/2">
+                    <p class="text-4xl text-left" dir="rtl">
                         {{$user['sponsor_company']}}
+
                     </p>
-                </div>
-
-                <div class="flex justify-between">
-                    <div class="w-1/3 mx-2 ">
-
-                    </div>
-                    <div class="w-1/3 mx-2 ">
+                    <div class="w-8/12   mx-3 ">
                         <img src="{{url('/storage'.$letterTicket->stamp)}}" class="w" alt="">
-
+                    </div>
+                </div>
+                <div class="flex w-1/2 justify-end">
+                    <div class="w-7/12   mx-2 text-right">
+{{--                        <img src="{{url('/storage'.$letterTicket->stamp)}}" class="w" alt="">--}}
                     </div>
                 </div>
             </div>
