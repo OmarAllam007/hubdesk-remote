@@ -102,69 +102,69 @@
 
                 <table dir="rtl" class="w-full min-w-max table-auto table-header pl-20 pr-20 mx-20 ">
                     <tr>
-                        <td class="p-3 table-header-cell font-bold text-3xl  border-2 border-black">
+                        <td class="p-3 table-header-cell font-bold text-2xl   border-2 border-black">
                             اسم الموظف
                         </td>
-                        <td class="p-3 table-header-cell  font-bold text-3xl  border-2 border-black">
+                        <td class="p-3 table-header-cell  font-bold text-2xl   border-2 border-black">
                             الجنسية
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-3xl border-2 border-black p-3  table-header-cell-value ">{{$user['ar_name']}}</td>
-                        <td class="text-3xl  border-2 border-black p-3 table-header-cell-value ">{{$user['ar_nationality']}}</td>
+                        <td class="text-2xl  border-2 border-black p-3  table-header-cell-value ">{{$user['ar_name']}}</td>
+                        <td class="text-2xl   border-2 border-black p-3 table-header-cell-value ">{{$user['ar_nationality']}}</td>
                     </tr>
 
                     <tr>
-                        <td class="p-3 table-header-cell font-bold text-3xl  border-2 border-black">
+                        <td class="p-3 table-header-cell font-bold text-2xl   border-2 border-black">
                             رقم إثبات الهوية
                         </td>
-                        <td class="p-3 table-header-cell  font-bold text-3xl  border-2 border-black">
+                        <td class="p-3 table-header-cell  font-bold text-2xl   border-2 border-black">
                             الرقم الوظيفي
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-3xl  border-2 border-black p-3 table-header-cell-value ">{{$user['iqama_number']}}</td>
-                        <td class="text-3xl border-2 border-black p-3  table-header-cell-value ">{{$letterTicket->ticket->requester->employee_id}}</td>
+                        <td class="text-2xl   border-2 border-black p-3 table-header-cell-value ">{{$user['iqama_number']}}</td>
+                        <td class="text-2xl  border-2 border-black p-3  table-header-cell-value ">{{$letterTicket->ticket->requester->employee_id}}</td>
                     </tr>
 
                     <tr>
-                        <td class="p-3 table-header-cell font-bold text-3xl  border-2 border-black">
+                        <td class="p-3 table-header-cell font-bold text-2xl   border-2 border-black">
                             الوظيفة
                         </td>
-                        <td class="p-3 table-header-cell  font-bold text-3xl  border-2 border-black">
+                        <td class="p-3 table-header-cell  font-bold text-2xl   border-2 border-black">
                             تاريخ التعيين
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-3xl  border-2 border-black p-3 table-header-cell-value ">{{$user['occupation']}}</td>
-                        <td class="text-3xl border-2 border-black p-3  table-header-cell-value ">{{$user['date_of_join']}}</td>
+                        <td class="text-2xl   border-2 border-black p-3 table-header-cell-value ">{{$user['occupation']}}</td>
+                        <td class="text-2xl  border-2 border-black p-3  table-header-cell-value ">{{$user['date_of_join']}}</td>
                     </tr>
 
 
                     <tr>
-                        <td class="p-3 table-header-cell  font-bold text-3xl  border-2 border-black">إجمالي الراتب</td>
-                        <td class="p-3 table-header-cell  font-bold text-3xl  border-2 border-black">الراتب الأساسي</td>
+                        <td class="p-3 table-header-cell  font-bold text-2xl   border-2 border-black">إجمالي الراتب</td>
+                        <td class="p-3 table-header-cell  font-bold text-2xl   border-2 border-black">الراتب الأساسي</td>
 
                     </tr>
                     <tr>
-                        <td class="text-3xl  border-2 border-black p-3 table-header-cell-value ">{{$user['total_package']}}</td>
-                        <td class="text-3xl border-2 border-black p-3  table-header-cell-value ">{{$user['allowances']['basic_salary']}}</td>
+                        <td class="text-2xl   border-2 border-black p-3 table-header-cell-value ">{{$user['total_package']}}</td>
+                        <td class="text-2xl  border-2 border-black p-3  table-header-cell-value ">{{$user['allowances']['basic_salary']}}</td>
                     </tr>
                     <tr>
-                        <td class="p-3 table-header-cell  font-bold text-3xl  border-2 border-black">
+                        <td class="p-3 table-header-cell  font-bold text-2xl   border-2 border-black">
                             تفاصيل البدلات
                         </td>
 
-                        <td class="p-3 table-header-cell  font-bold text-3xl  border-2 border-black">
+                        <td class="p-3 table-header-cell  font-bold text-2xl   border-2 border-black">
                             رقم حساب الموظف
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-3xl  border-2 border-black p-3 table-header-cell-value ">
+                        <td class="text-2xl   border-2 border-black p-3 table-header-cell-value ">
                             بدل سكن ( {{$user['allowances']['housing_allowance']}} ) ، بدل نقل
                             ( {{$user['allowances']['transportation_allowance']}} )
                         </td>
-                        <td class="text-3xl border-2 border-black p-3  table-header-cell-value ">
+                        <td class="text-2xl  border-2 border-black p-3  table-header-cell-value ">
                             {{$user['iban']}}
                         </td>
                     </tr>
@@ -172,7 +172,7 @@
             </div>
 
             <div class="flex p-5  " dir="rtl">
-                <p dir="rtl" class="text-3xl font-bold">
+                <p dir="rtl" class="text-2xl  font-bold">
                     كما نفيدكم أن الموظف المذكور بياناته أعلاه لازال يعمل لدينا حتى تاريخه، وقد اعطي هذا الخطاب بناء على طلبه دون ادنى مسؤولية على الشركة.
                 </p>
             </div>

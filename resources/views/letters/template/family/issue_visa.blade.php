@@ -50,7 +50,7 @@
                 $to = $letterTicket->ticket->fields->first() ? $letterTicket->ticket->fields->first()->value : '';
                 $IstiqdamTo = $letterTicket->ticket->fields->last() ? $letterTicket->ticket->fields->last()->value : '';
 
-            $regions = ["","Eastern province region" => 'الســادة ادارة شؤون الاستقدام بالمنطقة الشرقية '
+            $regions = ["","Eastern province region" => 'الســادة  / ادارة شؤون الاستقدام بالمنطقة الشرقية '
             ,"Riyadh region" => 'الســادة ادارة شؤون الاستقدام بمنطقة الرياض ' ,"Mecca region"=>'الســادة ادارة شؤون الاستقدام بمنطقة مكة المكرمة'];
             @endphp
 
@@ -97,7 +97,6 @@
                 </p>
             </div>
 
-
             <div class="flex-col">
                 <div class="flex  pt-10   px-10 ">
                     <p class="text-4xl" dir="rtl">
@@ -110,7 +109,8 @@
 
                     </div>
                     <div class="w-1/3 mx-2 ">
-                        <img src="{{asset('/stamps/8/stamp_test.png')}}" class="w" alt="">
+                        <img src="{{url('/storage'.$letterTicket->stamp)}}" class="w" alt="">
+
                     </div>
                 </div>
             </div>
