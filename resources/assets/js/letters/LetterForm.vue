@@ -1,5 +1,23 @@
 <template>
   <div>
+    <div class="flex" v-if="isTechnician == 1">
+      <div class="w-1/2">
+        <div class="form-group form-group-sm">
+          <label for="requester_id">
+            {{ t('Requester') }}
+          </label>
+          <select name="requester_id" id="requester_id" class="form-control select2" v-model="user_id">
+            <option value="">
+              {{t('Create for me')}}
+            </option>
+
+            <option v-for="user in users" :value="user.id"> {{user.employee_id }}
+              - {{user.name}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
     <div class="flex">
       <div class="w-1/2">
         <div class="form-group form-group-sm">
@@ -112,8 +130,8 @@
     <br>
   </div>
 </template>
-
 <script>
+
 import 'vue-select/dist/vue-select.css';
 import vSelect from "vue-select";
 import Attachments from "../AttachmentModal";
@@ -126,7 +144,7 @@ import _ from "lodash";
 
 export default {
   name: "LetterForm",
-  props: ['item', 'groups', 'priorities', 'subject', 'translations', 'language'],
+  props: ['item', 'groups', 'priorities', 'subject', 'translations', 'language','isTechnician'],
   components: {vSelect, Attachments, Editor, Date, TextField, SelectField},
   data() {
     return {
@@ -138,7 +156,9 @@ export default {
       letter_id: null,
       is_stamped: false,
       description: '',
+      user_id:'',
       //
+      users:[],
       subgroups: [],
       letters: [],
       attachments: [],
@@ -150,6 +170,13 @@ export default {
   created() {
     this.groups = this.groups.map((group) => {
       return {id: group.id, name: this.t(group.name)}
+    });
+
+    this.loadUsers();
+  },
+  mounted(){
+    $('.select2').on('select2:selecting', (e)=>{
+      this.user_id = e.params.args.data['id'];
     });
   },
   watch: {
@@ -199,6 +226,11 @@ export default {
       }
 
       return word;
+    },
+    loadUsers(){
+      axios.get(`/list/employees/`).then((response) => {
+        this.users = response.data;
+      });
     },
     getSubGroups() {
       this.subgroup = null;
@@ -264,6 +296,7 @@ export default {
       form.append('subject', this.subject);
       form.append('item_id', this.item.id);
       form.append('group_id', this.group.id);
+      form.append('requester_id', this.user_id);
 
       if (this.subgroup) {
         form.append('subgroup_id', this.subgroup.id);

@@ -69,7 +69,7 @@ class LetterController extends Controller
             'category_id' => $item->subcategory->category->id,
             'subcategory_id' => $item->subcategory->id,
             'item_id' => $item->id,
-            'requester_id' => auth()->id(),
+            'requester_id' => $request->requester_id == '' ? auth()->id() : $request->requester_id,
             'creator_id' => auth()->id(),
             'group_id' => config('letters.group'),
             'status_id' => config('letters.new_letter_status'),

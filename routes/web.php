@@ -9,37 +9,6 @@ if ($login = env('LOGIN_AS')) {
     Auth::login($user);
 }
 
-Route::get('test',function (){
-    $lettersWithGroup = Letter::whereNotNull('auth_group_id')
-        ->get()->pluck('auth_group_id');
-});
-
-Route::get('generate-word-file', function () {
-
-    $user = \App\User::where('employee_id', '90000939')->first();
-    $sapApi = new \App\Helpers\SapApi($user);
-    $sapApi->getUserInformation();
-
-    $user = $sapApi->sapUser->getEmployeeSapInformation();
-    $letterTicket = \App\LetterTicket::where('ticket_id', 1443924)->first();
-
-    $letterPath = str_replace('.', '/', $letterTicket->letter->view_path);
-    require __DIR__ . "/../resources/views/letters/word/{$letterPath}.php";
-});
-
-Route::get('letter-view', function () {
-
-    $user = \App\User::where('employee_id', '90000939')->first();
-
-    $sapApi = new \App\Helpers\SapApi($user);
-    $sapApi->getUserInformation();
-
-    $user = $sapApi->sapUser->getEmployeeSapInformation();
-    $letterTicket = \App\LetterTicket::where('ticket_id', 1443948)->first();
-
-    return view("letters.template.{$letterTicket->letter->view_path}", compact('user', 'letterTicket'));
-});
-
 Route::get('/', 'HomeController@home')->middleware('lang');
 Route::auth();
 Route::get('logout', 'Auth\LoginController@logout');
@@ -79,6 +48,7 @@ Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
     $r->get('/group', 'ListController@supportGroup');
     $r->get('/approvers', 'ListController@approvers');
     $r->get('/templates', 'ListController@templates');
+    $r->get('/employees', 'ListController@employees');
 
     $r->get('/list-statuses/{ticket}', 'ListController@getStatus');
     $r->get('/dashboard-business-unit', 'ListController@dashboardBusinessUnit');
