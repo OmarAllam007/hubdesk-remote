@@ -133,6 +133,13 @@ class ListController extends Controller
         return User::active()->orderBy('name')->get(['name', 'id']);
     }
 
+    function employees()
+    {
+        return User::active()->employees()
+            ->orderBy('name')
+            ->get(['name', 'id', 'employee_id']);
+    }
+
     function status()
     {
         return Status::orderBy('name')->get(['name', 'id']);

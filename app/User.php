@@ -107,6 +107,13 @@ class User extends Authenticatable implements CanResetPassword
         });
     }
 
+    public function scopeEmployees(Builder $query)
+    {
+        return $query->whereNotNull('employee_id')
+            ->where('employee_id', '<>', 0)
+            ->orderBy('name','ASC');
+    }
+
     function scopeActive($query)
     {
         return $query->where('is_disabled', 0);
@@ -279,7 +286,7 @@ class User extends Authenticatable implements CanResetPassword
     }
 
 
-     function upload($requestFileName)
+    function upload($requestFileName)
     {
 
         $request = request();
