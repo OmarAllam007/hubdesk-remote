@@ -30,8 +30,16 @@
 @endsection
 
 @section('body')
-    <section id="TicketList" >
-        <ticket-index :criterions="{{json_encode(session('ticket.filter'))}}"></ticket-index>
+    @php
+        $lastTickets = \Session::get('recent-tickets-' . auth()->id(), []);
+
+    @endphp
+
+    <section id="TicketList">
+        <ticket-index
+                :criterions="{{json_encode(session('ticket.filter'))}}"
+                :last-tickets="{{json_encode($lastTickets)}}"
+        ></ticket-index>
         {{--        @include('ticket._search_form')--}}
         {{--        --}}
         {{--        @include('ticket._search_form')--}}

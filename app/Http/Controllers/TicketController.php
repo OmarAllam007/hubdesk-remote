@@ -35,6 +35,7 @@ use App\User;
 use App\UserComplaint;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class TicketController extends Controller
 {
@@ -124,6 +125,9 @@ class TicketController extends Controller
 
     public function show(Ticket $ticket)
     {
+//        \Session::remove('recent-tickets-' . auth()->id());
+        $this->updateLastTickets($ticket);
+
         Ticket::flushEventListeners();
 
         if (\Auth::user()->id == $ticket->technician_id) {
@@ -522,5 +526,20 @@ class TicketController extends Controller
                 $subItem->name : '');
 
         return view('letters.ticket.create', compact('item', 'groups', 'priorities', 'subject'));
+    }
+
+    private function updateLastTickets($ticket)
+    {
+        $lastTickets = \Session::get('recent-tickets-' . auth()->id(), []);
+
+        if (!in_array($ticket->id, $lastTickets)) {
+            array_unshift($lastTickets, $ticket->id);
+        } else {
+            $index = array_search($ticket->id, $lastTickets);
+            unset($lastTickets[$index]);
+            array_unshift($lastTickets, $ticket->id);
+        }
+
+        session()->put('recent-tickets-' . auth()->id(), array_slice($lastTickets, 0, 10));
     }
 }
