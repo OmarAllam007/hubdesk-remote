@@ -51,6 +51,9 @@
       </div>
     </transition>
 
+    <div class="w-full  p-1  " v-if="!loading">
+      <recent-tickets :tickets="lastTickets"></recent-tickets>
+    </div>
     <!--    sidebar -->
     <div class="w-full  p-3 flex flex-col md:flex-row xl:flex-row lg:flex-row 2xl:flex-row">
       <transition name="slide-fade">
@@ -98,11 +101,14 @@ import Criteria from "../../Criteria.vue";
 import EventBus from "../../Bus";
 import Loader from "../_components/Loader";
 import _ from "lodash";
+import RecentTickets from "./RecentTickets";
 
 export default {
   name: "TicketIndex",
+  props:['last-tickets'],
   data() {
     return {
+
       loading: false,
       advanced_filter: false,
       initLoading: false,
@@ -242,7 +248,7 @@ export default {
     }
   },
 
-  components: {Pagination, Ticket, Filters, Criteria, Loader}
+  components: {RecentTickets, Pagination, Ticket, Filters, Criteria, Loader}
 }
 </script>
 
