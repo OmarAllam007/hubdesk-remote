@@ -20,9 +20,9 @@
             margin: 0 auto;
             background-repeat: no-repeat;
             @if(\App\LetterTicket::isApprovedTicket($letterTicket->ticket))
-               background-image: url({{url("/storage/headers/{$letterTicket->header}/image.jpg")}}) !important;
+                  background-image: url({{url("/storage/headers/{$letterTicket->header}/image.jpg")}}) !important;
             @endif
-               background-size: contain !important;
+                  background-size: contain !important;
         }
 
 
@@ -54,11 +54,11 @@
                     م</p>
             </div>
 
-{{--            <div class="flex justify-center pt-10 ">--}}
-{{--                <p class="underline px-5 text-4xl font-bold ">--}}
-{{--                    خطاب : تعريف بالراتب--}}
-{{--                </p>--}}
-{{--            </div>--}}
+            {{--            <div class="flex justify-center pt-10 ">--}}
+            {{--                <p class="underline px-5 text-4xl font-bold ">--}}
+            {{--                    خطاب : تعريف بالراتب--}}
+            {{--                </p>--}}
+            {{--            </div>--}}
 
             <div class="flex  pt-20 px-10" dir="rtl">
                 <p class="text-4xl">
@@ -66,7 +66,7 @@
                     الســادة / {{$letterTicket->letter->ar_name}}
                 </p>
                 <p class="px-48 "></p>
-{{--                <p class="px-10   "></p>--}}
+                {{--                <p class="px-10   "></p>--}}
                 <p class="text-4xl">المحترمين</p>
             </div>
 
@@ -109,35 +109,7 @@
                 </p>
             </div>
 
-
-            <div class="flex-col">
-                <div class="flex  pt-10   px-10 ">
-                    <p class="text-4xl" dir="rtl">
-                        {{$user['sponsor_company']}}
-                    </p>
-                </div>
-
-{{--                <div class="flex  pt-5   px-10 ">--}}
-{{--                    <p class="text-4xl" dir="rtl">--}}
-{{--                        {{config('letters.signature_name')}}--}}
-{{--                    </p>--}}
-{{--                </div>--}}
-
-                <div class="flex justify-between">
-{{--                    <div class="w-1/3 mx-3 ">--}}
-{{--                        <img src="{{url('/storage'.$letterTicket->signature)}}" class="w" alt="">--}}
-
-{{--                    </div>--}}
-                    <div class="w-1/3 mx-2 ">
-                        <img src="{{url('/storage'.$letterTicket->stamp)}}" class="w" alt="">
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="flex justify-center">
-
-            </div>
+            @include('letters._footer')
         </page>
     </div>
 
