@@ -110,28 +110,7 @@
             </div>
 
 
-            <div class="flex-col">
-                <div class="flex  pt-10   px-10 ">
-                    <p class="text-4xl" dir="rtl">
-                        {{$user['sponsor_company']}}
-                    </p>
-                </div>
-
-                <div class="flex  pt-5   px-10 ">
-                    <p class="text-4xl" dir="rtl">
-                        {{config('letters.signature_name')}}
-                    </p>
-                </div>
-
-                <div class="flex justify-between">
-                    <div class="w-1/3 mx-3 ">
-                        <img src="{{asset('/stamps/8/signature.png')}}" class="w" alt="">
-                    </div>
-                    <div class="w-1/3 mx-2 ">
-                        <img src="{{asset('/stamps/8/stamp_test.png')}}" class="w" alt="">
-                    </div>
-                </div>
-            </div>
+            @include('letters._footer')
         </page>
     </div>
 </div>

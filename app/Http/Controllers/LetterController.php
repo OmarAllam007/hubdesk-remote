@@ -143,15 +143,19 @@ class LetterController extends Controller
 
     function getLetterContent(Ticket $ticket)
     {
-        $letterTicket = $ticket->ticket->letter_ticket;
+        $letterTicket = $ticket->letter_ticket;
 
-        $user = \App\User::where('employee_id', $ticket->ticket->requester->employee_id)->first();
+        $user = \App\User::where('employee_id', $ticket->requester->employee_id)->first();
 
         $sapApi = new \App\Helpers\SapApi($user);
         $sapApi->getUserInformation();
         $user = $sapApi->sapUser->getEmployeeSapInformation();
 
-        return view('letters.template.' . $ticket->ticket->letter_ticket->letter->view_path,
+        $letterTicket['header'] = LetterSponserMap::$systemBusinessUnits[$user['sponsor_id']];
+        $letterTicket['stamp'] = '/stamps/' . LetterSponserMap::$systemBusinessUnits[$user['sponsor_id']] . '/image.jpg';
+        $letterTicket['signature'] = User::find(1148)->signature;
+        
+        return view('letters.template.' . $ticket->letter_ticket->letter->view_path,
             compact('letterTicket', 'user'))->render();
 
     }

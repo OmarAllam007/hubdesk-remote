@@ -237,33 +237,7 @@
             </div>
 
 
-            <div class="flex-col">
-                <div class="flex  pt-10   px-10 ">
-                    <p class="text-3xl" dir="rtl">
-                    {{$user['sponsor_company']}}
-                    </p>
-                </div>
-
-                <div class="flex  pt-5   px-10 ">
-                    <p class="text-3xl" dir=" rtl">
-                    {{config('letters.signature_name')}}
-                    </p>
-                </div>
-
-                <div class="flex justify-between">
-                    <div class="w-1/3 mx-3 ">
-                        <img src="{{url('/storage'.$letterTicket->signature)}}" alt="">
-                    </div>
-                    <div class="w-1/3 mx-2 ">
-                        <img src="{{url('/storage'.$letterTicket->stamp)}}"  alt="">
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="flex justify-center">
-
-            </div>
+            @include('letters._footer')
         </page>
     </div>
 

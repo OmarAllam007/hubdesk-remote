@@ -106,19 +106,7 @@
             </div>
 
 
-            <div class="flex-col">
-                <div class="flex  pt-10   px-10 ">
-                    <p class="text-4xl" dir="rtl">
-                        {{$user['sponsor_company']}}
-                    </p>
-                </div>
-
-                <div class="flex justify-between pt-10">
-                    <div class="w-1/3 mx-2 ">
-                        <img src="{{url('/storage'.$letterTicket->stamp)}}" class="w" alt="">
-                    </div>
-                </div>
-            </div>
+            @include('letters._footer')
 
         </page>
     </div>

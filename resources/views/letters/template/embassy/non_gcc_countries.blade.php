@@ -120,18 +120,14 @@
 
                 <div class="flex justify-between">
                     <div class="w-1/3 mx-3 ">
-                        <img src="{{asset('/stamps/8/signature.png')}}" class="w" alt="">
+                        <img class="w-2/3 " src="{{asset('/storage'.$letterTicket->signature)}}">
                     </div>
                     <div class="w-1/3 mx-2 ">
-                        <img src="{{asset('/stamps/8/stamp_test.png')}}" class="w" alt="">
+                        <img class="w-1/2" src="{{asset('/storage'.$letterTicket->stamp)}}"  alt="">
                     </div>
                 </div>
             </div>
 
-
-            <div class="flex justify-center">
-
-            </div>
         </page>
     </div>
 
