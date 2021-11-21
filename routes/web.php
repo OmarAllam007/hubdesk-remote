@@ -9,6 +9,10 @@ if ($login = env('LOGIN_AS')) {
     Auth::login($user);
 }
 
+Route::get('internship-application','InternshipController@index');
+Route::post('internship-application-post','InternshipController@apply')
+->name('internship.post');
+
 Route::get('/', 'HomeController@home')->middleware('lang');
 Route::auth();
 Route::get('logout', 'Auth\LoginController@logout');
