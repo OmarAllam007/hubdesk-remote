@@ -42,7 +42,7 @@
 
         <div class="form-group {{$errors->has('business_unit_id')? 'has-error' : ''}}">
             {{ Form::label('business_unit_id', 'Business Unit', ['class' => 'control-label']) }}
-            {{ Form::select('business_unit_id', App\BusinessUnit::selection('Select Business Unit'), isset($user) ? $user->business_unit_id : null, ['class' => 'form-control']) }}
+            {{ Form::select('business_unit_id', App\BusinessUnit::selection('Select Business Unit'), isset($user) ? $user->business_unit_id : null, ['class' => 'form-control select2']) }}
             @if ($errors->has('business_unit_id'))
                 <div class="error-message">{{$errors->first('business_unit_id')}}</div>
             @endif
@@ -64,9 +64,14 @@
             @endif
         </div>
 
+        @php
+            $users = App\User::get(['email','name','id'])->map(function ($user){
+                return ['name'=> $user->name .' - '. $user->email , 'id'=> $user->id];
+            });
+        @endphp
         <div class="form-group {{$errors->has('manager_id')? 'has-error' : ''}}">
             {{ Form::label('manager_id', 'Direct Manager', ['class' => 'control-label']) }}
-            {{ Form::select('manager_id', App\User::selection('Select Manager'), isset($user) ? $user->manager_id : null, ['class' => 'form-control']) }}
+            {{ Form::select('manager_id',$users->pluck('name','id') , isset($user) ? $user->manager_id : null, ['class' => 'form-control select2']) }}
             @if ($errors->has('manager_id'))
                 <div class="error-message">{{$errors->first('manager_id')}}</div>
             @endif
