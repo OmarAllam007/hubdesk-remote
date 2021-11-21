@@ -9,9 +9,10 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mada:400,700">
     {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css">--}}
-    <link rel="stylesheet" href="{{asset('/css/app.css')}}?version={{time()}}">
-    <link rel="stylesheet" href="{{asset('/css/style.css')}}?version={{time()}}">
-
+    <link rel="stylesheet" href="{{asset('/css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/style.css')}}">
+{{--    ?version={{time()}}--}}
+{{--    ?version={{time()}}--}}
     <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
