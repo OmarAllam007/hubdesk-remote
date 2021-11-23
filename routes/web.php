@@ -9,7 +9,8 @@ if ($login = env('LOGIN_AS')) {
     Auth::login($user);
 }
 
-Route::get('internship-application','InternshipController@index');
+Route::get('en/internship-application','InternshipController@index')->name('internship.en');
+Route::get('ar/internship-application','InternshipController@ar_index')->name('internship.ar');
 Route::post('internship-application-post','InternshipController@apply')
 ->name('internship.post');
 

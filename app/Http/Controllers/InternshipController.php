@@ -19,11 +19,16 @@ class InternshipController extends Controller
 
     function index()
     {
-        return view('internship.application_form');
+        return view('internship.en.application_form');
+    }
+
+    function ar_index(){
+        return view('internship.ar.application_form');
     }
 
     function apply(InternshipRequest $request)
     {
+
         Ticket::flushEventListeners();
 
         $category = Category::find(config('internship.category_id'));
@@ -39,12 +44,14 @@ class InternshipController extends Controller
         ]);
 
         $this->createTicketFields($ticket,$request);
-        // apply business rules
 
+        // send emails
         \Mail::to(request('email'))->send(new TrainingTicketFormCreated($ticket , $request['full_name']));
         $this->uploadTicketAttachments($ticket, [$request['cv'], $request['letter']]);
-        // send emails
 
+        // apply business rules & SLA
+        dispatch(new ApplyBusinessRules($ticket));
+        dispatch(new ApplySLA($ticket));
 
 //        flash('Ticket Created', 'Ticket Created', 'success');
         return redirect()->back()->with('request_send', true);
