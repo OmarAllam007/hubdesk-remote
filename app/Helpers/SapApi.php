@@ -37,7 +37,9 @@ class SapApi
 
         try {
             $result = $client->ZHCM_PAYROLL_TECH(['IM_PERNR' => $this->user->employee_id]);
+
         } catch (\Throwable $e) {
+            dd($e->getMessage());
             return $e->getMessage();
         }
 

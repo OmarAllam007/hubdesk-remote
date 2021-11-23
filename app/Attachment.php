@@ -55,10 +55,6 @@ class Attachment extends KModel
     public function getDisplayNameAttribute()
     {
         return basename($this->path);
-//        $parts = explode('_', basename($this->path));
-//        array_shift($parts);
-//
-//        return implode('_', $parts);
     }
 
     public function getTicketIdAttribute()
