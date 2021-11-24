@@ -42,6 +42,8 @@
         <div class="flex flex-col  flex-wrap -mx-3 mb-6">
             @include('internship.ar._personal')
             <p class="py-5 "></p>
+            @include('internship.ar._university')
+            <p class="py-5 "></p>
             @include('internship.ar._internship')
             <p class="py-5 "></p>
             @include('internship.ar._files')

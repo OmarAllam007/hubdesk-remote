@@ -66,6 +66,12 @@ class InternshipController extends Controller
         $ticket->fields()->create(['name' => 'Email', 'value' => $request['email']]);
         $ticket->fields()->create(['name' => 'Current Address', 'value' => $request['address']]);
         $ticket->fields()->create(['name' => 'City of Residence', 'value' => $request['city']]);
+
+        $ticket->fields()->create(['name' => 'College / University Name', 'value' => $request['university_name']]);
+        $ticket->fields()->create(['name' => 'Degree Name (Title)', 'value' => $request['degree_name']]);
+        $ticket->fields()->create(['name' => 'Discipline / Major', 'value' => $request['discipline']]);
+        $ticket->fields()->create(['name' => 'Expected Year of Graduation', 'value' => $request['expected_graduation_year']]);
+
         $ticket->fields()->create(['name' => 'Summer or Co-op?', 'value' => implode(",", $request['type'])]);
         $ticket->fields()->create(['name' => 'Duration', 'value' => $request['duration']]);
         $ticket->fields()->create(['name' => 'Internship Start Date', 'value' => $request['start_date']]);
