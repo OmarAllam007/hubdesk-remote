@@ -39,6 +39,10 @@ class InternshipRequest extends FormRequest
             'letter' => 'required',
             'preferred_location' => 'required',
             'previous_training' => 'required',
+            'university_name' => 'required',
+            'degree_name'=> 'required',
+            'discipline'=> 'required',
+            'expected_graduation_year'=> 'required',
 
         ];
     }
@@ -65,6 +69,10 @@ class InternshipRequest extends FormRequest
                 'letter.required' => 'إرفاق خطاب الجامعة مطلوب',
                 'preferred_location.required' => 'حقل المدينة مطلوب ',
                 'previous_training.required' => 'حقل الخبرة السابقة مطلوب',
+                'university_name.required'=>'حقل اسم الجامعة مطلوب',
+                'degree_name.required'=>'حقل الدرجة العلمية مطلوب',
+                'discipline.required'=>'حقل التخصص مطلوب',
+                'expected_graduation_year.required'=>'حقل السنة المتوقعة للتخرج مطلوب',
             ];
         }
 
