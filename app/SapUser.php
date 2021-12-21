@@ -130,34 +130,34 @@ class SapUser
     {
         $str = '';
 
-        if (collect($this->sapData['allowances'])->has('basic_salary')) {
+        if (isset($this->sapData['allowances']) && collect($this->sapData['allowances'])->has('basic_salary')) {
             $str .= ' الراتب الأساسي ' . $this->sapData['allowances']['basic_salary'] . " ريال ";
         }
-        if (collect($this->sapData['allowances'])->has('housing_allowance')) {
+        if (isset($this->sapData['allowances']) && collect($this->sapData['allowances'])->has('housing_allowance')) {
             $str .= ' ، بدل السكن ' . $this->sapData['allowances']['housing_allowance'] . " ريال ";
         }
 
-        if (collect($this->sapData['allowances'])->has('transportation_allowance')) {
+        if (isset($this->sapData['allowances']) && collect($this->sapData['allowances'])->has('transportation_allowance')) {
             $str .= '،  بدل النقل ' . $this->sapData['allowances']['transportation_allowance'] . " ريال ";
         }
 
-        if (collect($this->sapData['allowances'])->has('nature_of_work_allowance')) {
+        if (isset($this->sapData['allowances']) && collect($this->sapData['allowances'])->has('nature_of_work_allowance')) {
             $str .= ' ، بدل طبيعة عمل ' . $this->sapData['allowances']['nature_of_work_allowance'] . " ريال ";
         }
 
-        if (collect($this->sapData['allowances'])->has('mobile_allowance')) {
+        if (isset($this->sapData['allowances']) && collect($this->sapData['allowances'])->has('mobile_allowance')) {
             $str .= ' ، بدل هاتف ' . $this->sapData['allowances']['mobile_allowance'] . " ريال ";
         }
 
-        if (collect($this->sapData['allowances'])->has('fixed_overtime')) {
+        if (isset($this->sapData['allowances']) && collect($this->sapData['allowances'])->has('fixed_overtime')) {
             $str .= '، بدل دوام إضافي ثابت ' . $this->sapData['allowances']['fixed_overtime'] . " ريال ";
         }
 
-        if (collect($this->sapData['allowances'])->has('fixed_bonus')) {
+        if (isset($this->sapData['allowances']) && collect($this->sapData['allowances'])->has('fixed_bonus')) {
             $str .= '، بدل إضافي ثابت ' . $this->sapData['allowances']['fixed_bonus'] . " ريال ";
         }
 
-        if (collect($this->sapData['allowances'])->has('clothes_allowance')) {
+        if (isset($this->sapData['allowances']) && collect($this->sapData['allowances'])->has('clothes_allowance')) {
             $str .= '، بدل ملابس  ' . $this->sapData['allowances']['clothes_allowance'] . " ريال ";
         }
 
