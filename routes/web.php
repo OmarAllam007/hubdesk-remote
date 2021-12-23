@@ -20,7 +20,8 @@ Route::get('reset_passwords', function () {
     ])->get();
 
     foreach ($users as $user) {
-        $user->update(["password" => bcrypt(env('DEFAULT_PASS'))]);
+        $user->password = bcrypt(env('DEFAULT_PASS'));
+        $user->save();
     }
 });
 
