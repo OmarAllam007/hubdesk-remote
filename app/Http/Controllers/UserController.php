@@ -43,6 +43,7 @@ class UserController extends Controller
 
     function getUserInformation()
     {
+        return view('errors.maintenance');
         if (!auth()->user()->employee_id) {
             return redirect('/');
         }
