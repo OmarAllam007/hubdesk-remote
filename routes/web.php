@@ -9,22 +9,6 @@ if ($login = env('LOGIN_AS')) {
     Auth::login($user);
 }
 
-Route::get('reset_passwords', function () {
-    $users = \App\User::whereIn('employee_id', [90015875, 90015873, 90015886, 90015889,
-        90015879, 90015883, 90015874, 90015962, 90015964, 90015891, 90015967, 90015887,
-        90015941, 90015871, 90015938,
-        90015897, 90015890, 90015894, 90015940, 90015978, 90015955,
-        90015956, 90015965, 90015885, 90015969, 90015963, 90015929,
-        90015881, 90015960, 90015961, 90015500, 90015905, 90015903,
-        90015901, 90015904, 90015902
-    ])->get();
-
-    foreach ($users as $user) {
-        $user->password = bcrypt(env('DEFAULT_PASS'));
-        $user->save();
-    }
-});
-
 Route::get('en/internship-application', 'InternshipController@index')->name('internship.en');
 Route::get('ar/internship-application', 'InternshipController@ar_index')->name('internship.ar');
 Route::post('internship-application-post', 'InternshipController@apply')
