@@ -32,12 +32,16 @@
     <div class="w-full ">
         <label class="w-full ">
             {{t('Gender')}}
-            <select type="text" name="gender" class="w-full bg-gray-200 border-2
-        rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-viola">
-                <option value="">Select Gender</option>
-                <option value="1" @if(old('gender') == 1 ) selected @endif >Male</option>
-                <option value="2" @if(old('gender') == 2 ) selected @endif>Female</option>
-            </select>
+            <div class="mt-2">
+                <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="gender" value="1">
+                    <span class="ml-2">Male</span>
+                </label>
+                <label class="inline-flex items-center ml-6">
+                    <input type="radio" class="form-radio" name="gender" value="2">
+                    <span class="ml-2">Female</span>
+                </label>
+            </div>
         </label>
         @error('gender')
         <div class="text-danger">{{ $message }}</div>
@@ -72,19 +76,6 @@
 </div>
 
 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 pt-5 ">
-    <div class="w-full ">
-        <label class="w-full ">
-            {{t('Current Address')}}
-            <input type="text" name="address" value="{{old('address')}}" class="w-full bg-gray-200 appearance-none
-        rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-viola">
-        </label>
-        @error('address')
-        <div class="text-danger">{{ $message }}</div>
-        @enderror
-    </div>
-</div>
-
-<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 pt-5 ">
     <div class="w-full">
         <label class="w-full ">
             {{t('City of Residence')}}
@@ -102,6 +93,46 @@
             </select>
         </label>
         @error('city')
+        <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+</div>
+
+
+<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 pt-5 ">
+    <div class="w-full ">
+        <label class="w-full ">
+            {{t('Current Address')}}
+            <input type="text" name="address" value="{{old('address')}}" class="w-full bg-gray-200 appearance-none
+        rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-viola">
+        </label>
+        @error('address')
+        <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+</div>
+
+<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 pt-5">
+    <div class="w-full ">
+        <label class="w-full ">
+            {{t('Interested In')}}
+            <div class="mt-2">
+                <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="interested_in" value="1">
+                    <span class="ml-2">Internship (with stipend only)</span>
+                </label>
+                <label class="inline-flex items-center ml-6">
+                    <input type="radio" class="form-radio" name="interested_in" value="2">
+                    <span class="ml-2">Internship (without stipend)</span>
+                </label>
+
+                <label class="inline-flex items-center ml-6">
+                    <input type="radio" class="form-radio" name="interested_in" value="3">
+                    <span class="ml-2">No preference</span>
+                </label>
+            </div>
+        </label>
+        @error('interested_in')
         <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
