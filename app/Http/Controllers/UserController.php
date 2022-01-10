@@ -43,6 +43,9 @@ class UserController extends Controller
 
     function getUserInformation()
     {
+        if(!auth()->user()->isAdmin()){
+            return redirect()->to('/');
+        }
 //        return view('errors.maintenance');
         if (!auth()->user()->employee_id) {
             return redirect('/');
