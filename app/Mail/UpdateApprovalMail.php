@@ -35,7 +35,7 @@ class UpdateApprovalMail extends Mailable
     {
         $subject = "The ticket #{$this->ticket->id} has been " . strtolower(TicketApproval::$statuses[$this->ticketApproval->status]) . " by " . $this->ticketApproval->approver->name;
         return $this->markdown('emails.ticket.approval-status', ['ticketApproval' => $this->ticketApproval])
-            ->to([$this->ticket->technician->email])
+            ->to([$this->ticket->technician->email, $this->ticketApproval->created_by->email])
             ->subject($subject);
     }
 }
