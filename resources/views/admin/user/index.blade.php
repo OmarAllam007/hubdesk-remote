@@ -13,6 +13,7 @@
             {{--<a title="Import from active directory" href="#ImportModal" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-download"></i></a>--}}
             <a href="{{ route('admin.user.create') }} " class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></a>
             <a href="{{ route('admin.user.upload') }} " class="btn btn-sm btn-info"><i class="fa fa-upload"></i></a>
+            <a href="{{ route('admin.user.google.sync') }} " class="btn btn-sm btn-danger" title="sync with google sheet"><i class="fa fa-google"></i></a>
         </form>
     </div>
 @stop

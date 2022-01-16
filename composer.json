@@ -13,6 +13,7 @@
         "doctrine/dbal": "^2.5",
         "econea/nusoap": "^0.9.10",
         "facade/ignition": "^2.0",
+        "google/apiclient": "^2.0",
         "jakubkulhan/chrome-devtools-protocol": "^1.0",
         "kylekatarnls/laravel-carbon-2": "^1.0.0",
         "laminas/laminas-soap": "^2.8",
@@ -30,6 +31,7 @@
         "phpoffice/phpword": "^0.18.2",
         "predis/predis": "^1.1",
         "realrashid/sweet-alert": "^3.0",
+        "revolution/laravel-google-sheets": "^5.7",
         "spatie/browsershot": "^3.40",
         "symfony/dom-crawler": "^3.3"
     },

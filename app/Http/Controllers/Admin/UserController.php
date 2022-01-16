@@ -5,10 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminUserRequest;
 use App\Jobs\LdapImportUsers;
+use App\Jobs\SyncUsersWithGoogleSheet;
 use App\Jobs\UploadUsersJob;
 use App\User;
 use Carbon\Carbon;
+use Google\Client;
+use Google\Service\Sheets\ValueRange;
 use Illuminate\Http\Request;
+use Revolution\Google\Sheets\Facades\Sheets;
 
 class UserController extends Controller
 {
@@ -120,5 +124,28 @@ class UserController extends Controller
             $this->dispatch(new UploadUsersJob($request->users));
         }
 //        return redirect()->back();
+    }
+
+    function googleSync(Request $request)
+    {
+//        @Todo: To be refactor
+        $client = new Client();
+        $client->setClientId(env('GOOGLE_CLIENT_ID'));
+        $client->setClientSecret(env('GOOGLE_CLIENT_SECRET'));
+        $service = new \Google_Service_Sheets($client);
+        $client->setDeveloperKey(env('GOOGLE_DEVELOPER_KEY'));
+
+        $spreadsheetId = env('POST_SPREADSHEET_ID');
+        $response = $service->spreadsheets_values->batchGet(
+                $spreadsheetId,[
+            'ranges'=> [env('SHEET_NAME')."!A:Q"]
+        ]);
+
+        $values = $response->getValueRanges()[0]->values;
+        if (empty($values)) {
+            print "No data found.\n";
+        } else {
+            $this->dispatch(new SyncUsersWithGoogleSheet($values));
+        }
     }
 }

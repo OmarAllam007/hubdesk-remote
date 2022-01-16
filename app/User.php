@@ -310,5 +310,18 @@ class User extends Authenticatable implements CanResetPassword
 
         return "/signatures/" . $this->id . '/' . $name;
     }
+
+    static function getDirectManager($id){
+        return User::where('employee_id', trim($id))->first() ? User::where('employee_id', trim($id))->first()->id : null;
+    }
+
+    static function getDepartment($departmentName,$businessUnitId){
+        $department = Department::where('name', $departmentName)->first();
+        if (!$department) {
+            $department = Department::create(['name' => $departmentName, 'business_unit_id' => $businessUnitId]);
+        }
+
+        return $department->id;
+    }
 }
   
