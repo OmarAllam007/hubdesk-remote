@@ -2,29 +2,6 @@
     Internship Details:
 </div>
 
-{{--<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">--}}
-{{--    <div class="w-full ">--}}
-{{--        <label class="w-full ">--}}
-{{--            {{t('Summer or Co-op?')}}--}}
-{{--            <label class="md:w-2/3 block font-bold">--}}
-{{--                <input class="mr-2 leading-tight" type="checkbox" value="Summer"  name="type[]" id="type[]">--}}
-{{--                <span class="text-md ">--}}
-{{--                    Summer--}}
-{{--                </span>--}}
-{{--            </label>--}}
-
-{{--            <label class="md:w-2/3 block font-bold">--}}
-{{--                <input class="mr-2 leading-tight" type="checkbox" value="Co-op" name="type[]" id="type[]">--}}
-{{--                <span class="text-md ">--}}
-{{--                    Co-op--}}
-{{--                </span>--}}
-{{--            </label>--}}
-{{--        </label>--}}
-{{--        @error('type')--}}
-{{--        <div class="text-danger">{{ $message }}</div>--}}
-{{--        @enderror--}}
-{{--    </div>--}}
-{{--</div>--}}
 
 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 pt-5 ">
     <div class="w-full ">
@@ -80,22 +57,41 @@
 </div>
 
 
-{{--<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 pt-5 ">--}}
-{{--    <div class="w-full ">--}}
-{{--        <label class="w-full ">--}}
-{{--            {{t('Training Plan Required by the University?')}}--}}
-{{--            <select type="text" name="training_required" value="{{old('training_required')}}" class="w-full bg-gray-100  border-2--}}
-{{--        rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-viola">--}}
-{{--                <option value="">Select</option>--}}
-{{--                <option value="Yes" @if(old('training_required') == 'Yes' ) selected @endif>Yes</option>--}}
-{{--                <option value="No" @if(old('training_required') == 'No' ) selected @endif>No</option>--}}
-{{--            </select>--}}
-{{--        </label>--}}
-{{--        @error('training_required')--}}
-{{--        <div class="text-danger">{{ $message }}</div>--}}
-{{--        @enderror--}}
-{{--    </div>--}}
-{{--</div>--}}
+<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 pt-5 ">
+    <div class="w-full ">
+        <label class="w-full ">
+            {{t('Any Preference for Location / City to do the internship?')}}
+            <select type="text" name="pref_city[]" value="{{old('pref_city[]')}}" class="w-full bg-gray-100  border-2
+        rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-viola" multiple size="20">
+                <option value="">Select City</option>
+                @foreach(\App\InternshipModel::$en_cities as $key=>$city)
+                    <option value="{{$city}}" @if(old('pref_city') == $city ) selected @endif>{{$city}}</option>
+                @endforeach
+            </select>
+        </label>
+        @error('pref_city')
+        <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+</div>
+
+<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 pt-5 ">
+    <div class="w-full ">
+        <label class="w-full ">
+            {{t('Any Preference for Kifah Group of Companies to do the internship?')}}
+            <select type="text" name="pref_company[]" value="{{old('pref_company[]')}}" class="w-full bg-gray-100  border-2
+        rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-viola" multiple size="20">
+                <option value="">Select Company</option>
+                @foreach(\App\InternshipModel::$businessUnits as $businessUnit)
+                    <option value="{{$businessUnit}}" @if(old('pref_company') == $businessUnit ) selected @endif >{{$businessUnit}}</option>
+                @endforeach
+            </select>
+        </label>
+        @error('pref_city')
+        <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+</div>
 
 {{--<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 pt-5 ">--}}
 {{--    <div class="w-full">--}}

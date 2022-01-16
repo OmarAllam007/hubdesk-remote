@@ -26,4 +26,16 @@
         <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
+
+    <div class="w-full pt-5 ">
+        <label class="w-full ">
+            {{t('Any other supporting Documents')}}
+            <input type="file" name="other_documents"  class="w-full bg-gray-100  border-0
+        rounded  py-2 px-4 text-gray-700
+         focus:outline-none focus:bg-white focus:border-viola rounded-md ">
+        </label>
+        @error('letter')
+        <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
 </div>

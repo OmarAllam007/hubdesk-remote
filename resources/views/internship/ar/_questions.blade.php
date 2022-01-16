@@ -30,16 +30,24 @@
 {{--        @enderror--}}
 {{--    </div>--}}
 
-    <div class="w-full pt-5 ">
-        <label class="w-full ">
-             لماذا تريد القيام بالتدريب  مع شركة الكفاح؟
-            <textarea  name="reason"  class="w-full bg-gray-100  border-0
-        rounded  py-2 px-4 text-gray-700
-         focus:outline-none focus:bg-white focus:border-viola rounded-md " cols="30" rows="10">{{old('reason')}}</textarea>
-        </label>
-        @error('reason')
-        <div class="text-danger">{{ $message }}</div>
-        @enderror
+    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 pt-5 ">
+        <div class="w-full">
+            <label class="w-full ">
+                لماذا تريد الالتحاق بتدريب داخل شركة الكفاح؟
+                <textarea name="reason" id="remarks" cols="30" rows="10" class="w-full bg-gray-100  appearance-none
+        rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-viola">{{old('reason')}}</textarea>
+            </label>
+        </div>
+    </div>
+
+    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 pt-5 ">
+        <div class="w-full">
+            <label class="w-full ">
+                ملاحظات
+                <textarea name="remarks" id="remarks" cols="30" rows="10" class="w-full bg-gray-100  appearance-none
+        rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-viola">{{old('remarks')}}</textarea>
+            </label>
+        </div>
     </div>
 
 </div>

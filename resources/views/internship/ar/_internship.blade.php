@@ -79,33 +79,42 @@
     </div>
 </div>
 
+<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 pt-5 ">
+    <div class="w-full ">
+        <label class="w-full ">
+            {{t('الموقع/المدينة المفضله للتدريب')}}
+            <select type="text" name="pref_city[]" value="{{old('pref_city[]')}}" class="w-full bg-gray-100  border-2
+        rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-viola" multiple size="20">
+                <option value="">اختر المدينة</option>
+                @foreach(\App\InternshipModel::$ar_cities as $city)
+                    <option value="{{$city}}" @if(old('pref_city') == $city ) selected @endif>{{$city}}</option>
+                @endforeach
+            </select>
+        </label>
+        @error('pref_city')
+        <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+</div>
 
-{{--<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 pt-5 ">--}}
-{{--    <div class="w-full ">--}}
-{{--        <label class="w-full ">--}}
-{{--            خطة التدريب مطلوبة للجامعة؟--}}
-{{--            <select type="text" name="training_required" value="{{old('training_required')}}" class="w-full bg-gray-100  border-2--}}
-{{--        rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-viola">--}}
-{{--                <option value="">اختر</option>--}}
-{{--                <option value="Yes" @if(old('training_required') == 'Yes' ) selected @endif>نعم</option>--}}
-{{--                <option value="No" @if(old('training_required') == 'No' ) selected @endif>لا</option>--}}
-{{--            </select>--}}
-{{--        </label>--}}
-{{--        @error('training_required')--}}
-{{--        <div class="text-danger">{{ $message }}</div>--}}
-{{--        @enderror--}}
-{{--    </div>--}}
-{{--</div>--}}
+<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 pt-5 ">
+    <div class="w-full ">
+        <label class="w-full ">
+            {{t('الشركة المرغوبة للتدريب')}}
+            <select type="text" name="pref_company[]" value="{{old('pref_company[]')}}" class="w-full bg-gray-100  border-2
+        rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-viola" multiple size="20">
+                <option value=""> اختر الشركة</option>
+                @foreach(\App\InternshipModel::$businessUnits as $businessUnit)
+                    <option value="{{$businessUnit}}" @if(old('pref_company') == $businessUnit ) selected @endif >{{$businessUnit}}</option>
+                @endforeach
+            </select>
+        </label>
+        @error('pref_city')
+        <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+</div>
 
-{{--<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 pt-5 ">--}}
-{{--    <div class="w-full">--}}
-{{--        <label class="w-full ">--}}
-{{--            ملاحظات--}}
-{{--            <textarea name="remarks" id="remarks" cols="30" rows="10" class="w-full bg-gray-100  appearance-none--}}
-{{--        rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-viola">{{old('remarks')}}</textarea>--}}
-{{--        </label>--}}
-{{--    </div>--}}
-{{--</div>--}}
 
 
 

@@ -28,22 +28,15 @@ class InternshipRequest extends FormRequest
             'email' => 'required|email',
             'address' => 'required',
             'city' => 'required',
-            'type' => 'required',
             'duration' => 'required',
             'start_date' => ['required', new TrainingStartDateRule()],
             'end_date' => ['required', 'after:start_date'],
             'deadline' => ['required', new TrainingApprovalDateRule()],
-            'training_required' => 'required',
-            'reason' => 'required',
             'cv' => 'required',
-            'letter' => 'required',
-            'preferred_location' => 'required',
-            'previous_training' => 'required',
             'university_name' => 'required',
             'degree_name'=> 'required',
             'discipline'=> 'required',
             'expected_graduation_year'=> 'required',
-
         ];
     }
 
@@ -77,7 +70,6 @@ class InternshipRequest extends FormRequest
         }
 
         return [
-
             'type.required' => 'This field is required',
             'cv.required' => 'CV is required',
             'letter.required' => 'University letter is required'

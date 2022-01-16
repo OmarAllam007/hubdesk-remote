@@ -32,12 +32,25 @@
 
     <div class="w-full pt-5 ">
         <label class="w-full ">
-            {{t('Why they want to do Internship training with Al Kifah?')}}
+            {{t('Why you want to do Internship training with Al Kifah?')}}
             <textarea  name="reason"  class="w-full bg-gray-100  border-0
         rounded  py-2 px-4 text-gray-700
          focus:outline-none focus:bg-white focus:border-viola rounded-md " cols="30" rows="10">{{old('reason')}}</textarea>
         </label>
         @error('reason')
+        <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+
+
+    <div class="w-full pt-5 ">
+        <label class="w-full ">
+            {{t('Remarks')}}
+            <textarea  name="remarks"  class="w-full bg-gray-100  border-0
+        rounded  py-2 px-4 text-gray-700
+         focus:outline-none focus:bg-white focus:border-viola rounded-md " cols="30" rows="10">{{old('remarks')}}</textarea>
+        </label>
+        @error('remarks')
         <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
