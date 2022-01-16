@@ -120,6 +120,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
     $r->resource('user', 'Admin\UserController');
     $r->get('users/upload', 'Admin\UserController@showUploadForm')->name('user.upload');
     $r->post('users/upload', 'Admin\UserController@submitUploadForm')->name('user.submit.upload');
+    $r->get('/users/google/sync','Admin\UserController@googleSync')->name('user.google.sync');
+
     Route::resource('survey', 'SurveyController');
 
 

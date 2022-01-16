@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Behaviors\AttachmentsTrait;
 use App\Category;
 use App\Http\Requests\InternshipRequest;
+use App\InternshipModel;
 use App\Jobs\ApplyBusinessRules;
 use App\Jobs\ApplySLA;
 use App\Mail\TrainingTicketCreated;
@@ -22,7 +23,8 @@ class InternshipController extends Controller
         return view('internship.en.application_form');
     }
 
-    function ar_index(){
+    function ar_index()
+    {
         return view('internship.ar.application_form');
     }
 
@@ -43,11 +45,13 @@ class InternshipController extends Controller
             'status_id' => 1,
         ]);
 
-        $this->createTicketFields($ticket,$request);
+        $this->createTicketFields($ticket, $request);
 
         // send emails
-        \Mail::to(request('email'))->send(new TrainingTicketFormCreated($ticket , $request['full_name']));
-        $this->uploadTicketAttachments($ticket, [$request['cv'], $request['letter']]);
+        \Mail::to(request('email'))->send(new TrainingTicketFormCreated($ticket, $request['full_name']));
+
+        $files  = [$request['cv'], $request['letter'],$request['other_documents']];
+        $this->uploadTicketAttachments($ticket, array_filter($files));
 
         // apply business rules & SLA
         dispatch(new ApplyBusinessRules($ticket));
@@ -64,24 +68,24 @@ class InternshipController extends Controller
         $ticket->fields()->create(['name' => 'Gender', 'value' => $request['gender'] == 1 ? 'Male' : 'Female']);
         $ticket->fields()->create(['name' => 'Phone', 'value' => $request['phone']]);
         $ticket->fields()->create(['name' => 'Email', 'value' => $request['email']]);
-        $ticket->fields()->create(['name' => 'Current Address', 'value' => $request['address']]);
         $ticket->fields()->create(['name' => 'City of Residence', 'value' => $request['city']]);
+        $ticket->fields()->create(['name' => 'Current Address', 'value' => $request['address']]);
+        $ticket->fields()->create(['name' => 'Interested In', 'value' => InternshipModel::$interestedIn[$request['interested_in']]]);
 
         $ticket->fields()->create(['name' => 'College / University Name', 'value' => $request['university_name']]);
         $ticket->fields()->create(['name' => 'Degree Name (Title)', 'value' => $request['degree_name']]);
-        $ticket->fields()->create(['name' => 'Discipline / Major', 'value' => $request['discipline']]);
+        $ticket->fields()->create(['name' => 'Academic Major', 'value' => $request['discipline']]);
         $ticket->fields()->create(['name' => 'Expected Year of Graduation', 'value' => $request['expected_graduation_year']]);
 
-        $ticket->fields()->create(['name' => 'Summer or Co-op?', 'value' => implode(",", $request['type'])]);
+//        $ticket->fields()->create(['name' => 'Summer or Co-op?', 'value' => implode(",", $request['type'])]);
         $ticket->fields()->create(['name' => 'Duration', 'value' => $request['duration']]);
         $ticket->fields()->create(['name' => 'Internship Start Date', 'value' => $request['start_date']]);
         $ticket->fields()->create(['name' => 'Internship End Date', 'value' => $request['end_date']]);
         $ticket->fields()->create(['name' => 'University Deadline for Company Approval', 'value' => $request['deadline']]);
-        $ticket->fields()->create(['name' => 'Training Plan Required by the University?', 'value' => $request['training_required']]);
+        $ticket->fields()->create(['name' => 'Preference for Location / City to do the internship', 'value' => implode(",", $request['pref_city'])]);
+        $ticket->fields()->create(['name' => 'Preference for Kifah Group of Companies to do the internship', 'value' => implode(",",$request['pref_company'])]);
+        $ticket->fields()->create(['name' => 'Why you want to do Internship training with Al Kifah? ', 'value' => implode(",",$request['reason'])]);
         $ticket->fields()->create(['name' => 'Remarks', 'value' => $request['remarks']]);
-        $ticket->fields()->create(['name' => 'Any previous Co-op or Summer Internship experience?', 'value' => $request['previous_training']]);
-        $ticket->fields()->create(['name' => 'Location / city preference to do the internship?', 'value' => $request['preferred_location']]);
-        $ticket->fields()->create(['name' => 'Why they want to do Internship training with Al Kifah?', 'value' => $request['preferred_location']]);
 
     }
 }

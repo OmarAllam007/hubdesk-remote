@@ -15,6 +15,27 @@
     </div>
 </div>
 
+<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 pt-5">
+    <div class="w-full ">
+        <label class="w-full ">
+            {{t('Degree Type')}}
+            <div class="mt-2">
+                <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="degree_type" value="1">
+                    <span class="ml-2">Diploma</span>
+                </label>
+                <label class="inline-flex items-center ml-6">
+                    <input type="radio" class="form-radio" name="degree_type" value="2">
+                    <span class="ml-2">Bachelor</span>
+                </label>
+            </div>
+        </label>
+        @error('degree_type')
+        <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+</div>
+
 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 pt-5 ">
     <div class="w-full ">
         <label class="w-full ">
@@ -31,7 +52,7 @@
 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 pt-5 ">
     <div class="w-full ">
         <label class="w-full ">
-            Discipline / Major
+            Academic Major
             <select type="text" name="discipline" value="{{old('discipline')}}" class="w-full bg-gray-100  border-2
         rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-viola">
                 <option value="">Select</option>
@@ -53,7 +74,7 @@
     <div class="w-full ">
         <label class="w-full ">
             Expected Year of Graduation
-            <input type="text" name="expected_graduation_year" value="{{old('expected_graduation_year')}}" class="w-full bg-gray-100  appearance-none
+            <input type="month"  name="expected_graduation_year" value="{{old('expected_graduation_year')}}" class="w-full bg-gray-100  appearance-none
         rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-viola">
         </label>
         @error('expected_graduation_year')
