@@ -60,22 +60,22 @@
         <page size="A4" class="">
             <div>
 {{--                <p class="pt-5 "></p>--}}
-                <p class="text-gray-900 text-xl pt-64  px-5  ">HD: {{$letterTicket->ticket->id}}
+                <p class="text-gray-900 text-xl pt-64  px-10">HD: {{$letterTicket->ticket->id}}
                     {{--                Ticket No--}}
                 </p>
-                <p class="text-gray-900 text-xl pt-5  px-5 ">ID: {{$letterTicket->ticket->requester->employee_id}}
+                <p class="text-gray-900 text-xl pt-5  px-10 ">ID: {{$letterTicket->ticket->requester->employee_id}}
                     {{--            employee id--}}
                 </p>
                 <div class="flex justify-between">
-                    <p class="text-gray-900 text-xl  pt-5  px-5 ">{{$letterTicket->ticket->requester->business_unit->name}}
+                    <p class="text-gray-900 text-xl  pt-5  px-10 ">{{$letterTicket->ticket->requester->business_unit->name}}
                         {{--                 company assigned --}}
                     </p>
-                    <p class="text-gray-900 text-xl  pt-5   px-5 "> الموافق : {{$letterTicket->last_approval_date}}
+                    <p class="text-gray-900 text-xl  pt-5   px-10 "> الموافق : {{$letterTicket->last_approval_date}}
                         م</p>
                 </div>
 
                 <div class="flex justify-center pt-5  ">
-                    <p class="underline px-5 text-4xl font-bold ">
+                    <p class="underline px-10 text-4xl font-bold ">
                         خطاب : تعريف بالراتب
                     </p>
                 </div>
@@ -171,7 +171,7 @@
                 </table>
             </div>
 
-            <div class="flex p-5  " dir="rtl">
+            <div class="flex p-10" dir="rtl">
                 <p dir="rtl" class="text-2xl  font-bold">
                     كما نفيدكم أن الموظف المذكور بياناته أعلاه لازال يعمل لدينا حتى تاريخه، وقد اعطي هذا الخطاب بناء على طلبه دون ادنى مسؤولية على الشركة.
                 </p>
