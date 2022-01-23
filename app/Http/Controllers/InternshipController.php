@@ -84,7 +84,7 @@ class InternshipController extends Controller
         $ticket->fields()->create(['name' => 'University Deadline for Company Approval', 'value' => $request['deadline']]);
         $ticket->fields()->create(['name' => 'Preference for Location / City to do the internship', 'value' => implode(",", $request['pref_city'])]);
         $ticket->fields()->create(['name' => 'Preference for Kifah Group of Companies to do the internship', 'value' => implode(",",$request['pref_company'])]);
-        $ticket->fields()->create(['name' => 'Why you want to do Internship training with Al Kifah? ', 'value' => implode(",",$request['reason'])]);
+        $ticket->fields()->create(['name' => 'Why you want to do Internship training with Al Kifah? ', 'value' => $request['reason']]);
         $ticket->fields()->create(['name' => 'Remarks', 'value' => $request['remarks']]);
 
     }
