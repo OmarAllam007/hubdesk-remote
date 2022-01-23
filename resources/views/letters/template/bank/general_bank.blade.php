@@ -40,22 +40,22 @@
     <div class="">
         <page size="A4" class="">
             <p class="pt-10"></p>
-            <p class="text-gray-900 text-xl pt-64  px-5 ">HD: {{$letterTicket->ticket->id}}
+            <p class="text-gray-900 text-xl pt-64  px-10  ">HD: {{$letterTicket->ticket->id}}
                 {{--                Ticket No--}}
             </p>
-            <p class="text-gray-900 text-xl pt-10 px-5 ">ID: {{$letterTicket->ticket->requester->employee_id}}
+            <p class="text-gray-900 text-xl pt-10 px-10  ">ID: {{$letterTicket->ticket->requester->employee_id}}
                 {{--            employee id--}}
             </p>
             <div class="flex justify-between">
-                <p class="text-gray-900 text-xl  pt-10  px-5 ">{{$letterTicket->ticket->requester->business_unit->name}}
+                <p class="text-gray-900 text-xl  pt-10  px-10  ">{{$letterTicket->ticket->requester->business_unit->name}}
                     {{--                 company assigned --}}
                 </p>
-                <p class="text-gray-900 text-xl  pt-10  px-5 "> الموافق : {{$letterTicket->last_approval_date}}
+                <p class="text-gray-900 text-xl  pt-10  px-10  "> الموافق : {{$letterTicket->last_approval_date}}
                     م</p>
             </div>
 
             <div class="flex justify-center pt-10 ">
-                <p class="underline px-5 text-4xl font-bold " style="font-family: Arial, Helvetica, sans-serif;">
+                <p class="underline px-10  text-4xl font-bold " style="font-family: Arial, Helvetica, sans-serif;">
                     خطاب : تعريف بالراتب
                 </p>
             </div>
