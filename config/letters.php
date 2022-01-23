@@ -11,7 +11,7 @@ return [
 
     'kgs_group' => 68,
     'kgs_technician' => 6761,
-    'signature_name' => 'أ.سعيد الهاجري',
+    'signature_name' => 'أ.محمد عبد الرحمن الكثير',
 
 
     'fees_reply' => '<p style="text-align: center;direction:rtl" >عزيزي مقدم / ـة الطلب</p>

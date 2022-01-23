@@ -117,7 +117,7 @@ class LetterController extends Controller
         /* @TODO to be changes */
         $letterTicket['header'] = LetterSponserMap::$systemBusinessUnits[$user['sponsor_id']];
         $letterTicket['stamp'] = '/stamps/' . LetterSponserMap::$systemBusinessUnits[$user['sponsor_id']] . '/image.jpg';
-        $letterTicket['signature'] = User::find(1148)->signature;
+        $letterTicket['signature'] = User::find(1309)->signature;
 
         $content = view("letters.template.${view}", compact('user', 'letterTicket'));
 

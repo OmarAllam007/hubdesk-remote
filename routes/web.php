@@ -142,7 +142,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
 
 
 Route::group(['middleware' => ['auth']], function () {
-
     Route::get('/user-information', 'UserController@getUserInformation')->name('user.information');
     Route::get('/user-information-pdf', 'UserController@getSalarySlipPdf')->name('user.salarySlipPdf');
     Route::get('/get-users', 'Admin\UserController@getusers');
