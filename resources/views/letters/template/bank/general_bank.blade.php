@@ -110,7 +110,13 @@
 
                     @if(isset($user['allowances']['food_allowance']))
                         <span>
-                    بدل طعام({{$user['allowances']['food_allowance']}}ريال)
+                    بدل طعام({{$user['allowances']['food_allowance']}}ريال) ،
+                    </span>
+                    @endif
+
+                    @if(isset($user['allowances']['fixed_overtime']))
+                        <span>
+                    بدل إضافي ثابت ({{$user['allowances']['fixed_overtime']}}ريال)
                     </span>
                     @endif
                     @if(isset($user['allowances']['nature_of_work_allowance']))
@@ -119,11 +125,11 @@
                     </span>
                     @endif
 
-                    @if(isset($user['fixed_amount']))
-                        <span>
-                    بدل ثابت (100ريال)
-                    </span>
-                    @endif
+{{--                    @if(isset($user['fixed_amount']))--}}
+{{--                        <span>--}}
+{{--                    بدل ثابت (100ريال)--}}
+{{--                    </span>--}}
+{{--                    @endif--}}
 
                     <span>
                         راتــب إجمـالي ({{$user['total_package']}} ريال) ،
