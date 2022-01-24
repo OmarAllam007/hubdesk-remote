@@ -99,7 +99,6 @@ class LetterController extends Controller
     function generateLetter($ticket)
     {
 
-
         $ticketRef = Ticket::find($ticket);
         $user = \App\User::where('employee_id', $ticketRef->requester->employee_id)->first();
 
@@ -114,9 +113,11 @@ class LetterController extends Controller
         $view = $letterTicket->letter->view_path;
 
 
+//        dd($user);
         /* @TODO to be changes */
         $letterTicket['header'] = LetterSponserMap::$systemBusinessUnits[$user['sponsor_id']];
         $letterTicket['stamp'] = '/stamps/' . LetterSponserMap::$systemBusinessUnits[$user['sponsor_id']] . '/image.jpg';
+//        dd($letterTicket);
         $letterTicket['signature'] = User::find(1309)->signature;
 
         $content = view("letters.template.${view}", compact('user', 'letterTicket'));

@@ -1,7 +1,7 @@
-<div class="flex justify-between p-10">
+<div class="flex justify-between  pt-5 px-20  ">
     <div class="w-1/2 flex-col">
         <div class="flex justify-start">
-            <p class="text-4xl" dir="rtl">
+            <p class="text-3xl" dir="rtl">
                 {{config('letters.signature_name')}}
             </p>
         </div>
@@ -12,10 +12,11 @@
 
     <div class="w-1/2  flex-col">
         <div>
-            <p class="text-4xl" dir="rtl">
+            <p class="text-3xl" dir="rtl">
                 {{$user['sponsor_company']}}
             </p>
         </div>
+{{--        @dd($letterTicket->stamp)--}}
         <div class="flex justify-end">
             <img class="w-1/2" src="{{asset('/storage'.$letterTicket->stamp)}}"  alt="">
         </div>

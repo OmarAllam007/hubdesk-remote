@@ -109,10 +109,11 @@ class SapUser
             $total_package += $sap_data_value;
 
             $key = self::salary_codes[$sap_data_key];
+
             $allowances[$key] = number_format($sap_data_value);
         }
         $this->sapData['total_package'] = number_format($total_package);
-        $this->sapData['fixed_amount'] = 100;
+//        $this->sapData['fixed_amount'] = 100;
         return $allowances;
     }
 
@@ -155,6 +156,10 @@ class SapUser
 
         if (isset($this->sapData['allowances']) && collect($this->sapData['allowances'])->has('fixed_bonus')) {
             $str .= '، بدل إضافي ثابت ' . $this->sapData['allowances']['fixed_bonus'] . " ريال ";
+        }
+
+        if (isset($this->sapData['allowances']) && collect($this->sapData['allowances'])->has('food_allowance')) {
+            $str .= '، بدل طعام ثابت ' . $this->sapData['allowances']['food_allowance'] . " ريال ";
         }
 
         if (isset($this->sapData['allowances']) && collect($this->sapData['allowances'])->has('clothes_allowance')) {

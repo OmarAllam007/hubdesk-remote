@@ -38,9 +38,9 @@
             margin: 0 auto;
             background-repeat: no-repeat;
             @if(\App\LetterTicket::isApprovedTicket($letterTicket->ticket))
-                      background-image: url({{url("/storage/headers/{$letterTicket->header}/image.jpg")}}) !important;
+                         background-image: url({{url("/storage/headers/{$letterTicket->header}/image.jpg")}}) !important;
             @endif
-                      background-size: contain !important;
+                         background-size: contain !important;
         }
 
 
@@ -59,38 +59,38 @@
     <div class="">
         <page size="A4" class="">
             <div>
-{{--                <p class="pt-5 "></p>--}}
-                <p class="text-gray-900 text-xl pt-64  px-10">HD: {{$letterTicket->ticket->id}}
+                <p class="pt-10"></p>
+                <p class="text-gray-900 text-xl pt-64  px-20 ">HD: {{$letterTicket->ticket->id}}
                     {{--                Ticket No--}}
                 </p>
-                <p class="text-gray-900 text-xl pt-5  px-10 ">ID: {{$letterTicket->ticket->requester->employee_id}}
+                <p class="text-gray-900 text-xl pt-5  px-20  ">ID: {{$letterTicket->ticket->requester->employee_id}}
                     {{--            employee id--}}
                 </p>
                 <div class="flex justify-between">
-                    <p class="text-gray-900 text-xl  pt-5  px-10 ">{{$letterTicket->ticket->requester->business_unit->name}}
+                    <p class="text-gray-900 text-xl  pt-5  px-20  ">{{$letterTicket->ticket->requester->business_unit->name}}
                         {{--                 company assigned --}}
                     </p>
-                    <p class="text-gray-900 text-xl  pt-5   px-10 "> الموافق : {{$letterTicket->last_approval_date}}
+                    <p class="text-gray-900 text-xl  pt-5   px-20  "> الموافق : {{$letterTicket->last_approval_date}}
                         م</p>
                 </div>
 
                 <div class="flex justify-center pt-5  ">
-                    <p class="underline px-10 text-4xl font-bold ">
+                    <p class="underline px-20  text-4xl font-bold ">
                         خطاب : تعريف بالراتب
                     </p>
                 </div>
 
-                <div class="flex  pt-5  px-10" dir="rtl">
+                <div class="flex  pt-5  px-20" dir="rtl">
                     <p class="text-4xl">
                         {{--                    change as per Name --}}
                         الســادة / {{$letterTicket->letter->ar_name}}
                     </p>
                     <p class="px-64 "></p>
-                    <p class="px-10   "></p>
+                    <p class="px-20    "></p>
                     <p class="text-4xl">المحترمين</p>
                 </div>
 
-                <div class="flex justify-end pt-5 px-10 ">
+                <div class="flex justify-end pt-2  px-20">
 
                     <p class="text-4xl" dir="rtl">
                         السلام عليكم ورحمة الله وبركاته
@@ -98,8 +98,7 @@
                 </div>
             </div>
 
-            <div class="flex justify-center  pt-5  ">
-
+            <div class="flex justify-center  pt-5">
                 <table dir="rtl" class="w-full min-w-max table-auto table-header pl-20 pr-20 mx-20 ">
                     <tr>
                         <td class="p-3 table-header-cell font-bold text-2xl   border-2 border-black">
@@ -143,7 +142,8 @@
 
                     <tr>
                         <td class="p-3 table-header-cell  font-bold text-2xl   border-2 border-black">إجمالي الراتب</td>
-                        <td class="p-3 table-header-cell  font-bold text-2xl   border-2 border-black">الراتب الأساسي</td>
+                        <td class="p-3 table-header-cell  font-bold text-2xl   border-2 border-black">الراتب الأساسي
+                        </td>
 
                     </tr>
                     <tr>
@@ -161,8 +161,25 @@
                     </tr>
                     <tr>
                         <td class="text-2xl   border-2 border-black p-3 table-header-cell-value ">
-                            بدل سكن ( {{$user['allowances']['housing_allowance']}} ) ، بدل نقل
-                            ( {{$user['allowances']['transportation_allowance']}} )
+                            بدل سكن ( {{$user['allowances']['housing_allowance']}} )
+                            @if(isset($user['allowances']['transportation_allowance']))
+                                ، بدل نقل  ( {{$user['allowances']['transportation_allowance']}} )
+                            @endif
+                            @if(isset($user['allowances']['nature_of_work_allowance']))
+                                ، بدل طبيعة عمل  ( {{$user['allowances']['nature_of_work_allowance']}} )
+                            @endif
+
+                            @if(isset($user['allowances']['food_allowance']))
+                                ، بدل طعام  ( {{$user['allowances']['food_allowance']}} )
+                            @endif
+
+                            @if(isset($user['allowances']['fixed_overtime']))
+                                ، بدل طبيعة عمل ثابت  ( {{$user['allowances']['fixed_overtime']}} )
+                            @endif
+
+                            @if(isset($user['allowances']['fixed_bonus']))
+                                ، بدل إضافي ثابت  ( {{$user['allowances']['fixed_bonus']}} )
+                            @endif
                         </td>
                         <td class="text-2xl  border-2 border-black p-3  table-header-cell-value ">
                             {{$user['iban']}}
@@ -171,12 +188,12 @@
                 </table>
             </div>
 
-            <div class="flex p-10" dir="rtl">
+            <div class="flex pt-2  px-20 " dir="rtl">
                 <p dir="rtl" class="text-2xl  font-bold">
-                    كما نفيدكم أن الموظف المذكور بياناته أعلاه لازال يعمل لدينا حتى تاريخه، وقد اعطي هذا الخطاب بناء على طلبه دون ادنى مسؤولية على الشركة.
+                    كما نفيدكم أن الموظف المذكور بياناته أعلاه لازال يعمل لدينا حتى تاريخه، وقد اعطي هذا الخطاب بناء على
+                    طلبه دون ادنى مسؤولية على الشركة.
                 </p>
             </div>
-
 
 
             @include('letters._footer')
