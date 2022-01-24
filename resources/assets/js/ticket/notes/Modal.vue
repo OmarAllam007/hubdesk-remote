@@ -15,6 +15,7 @@
                     <div class="form-group">
                       <editor trigger="#" v-model="note.note" id="note-editor" name="note-editor"
                               :init="{
+                        paste_data_images: true,
          height: 300,
          menubar: false,
          plugins: [
