@@ -174,11 +174,11 @@
                             @endif
 
                             @if(isset($user['allowances']['fixed_overtime']))
-                                ، بدل طبيعة عمل ثابت  ( {{$user['allowances']['fixed_overtime']}} )
+                                ، بدل إضافي ثابت  ( {{$user['allowances']['fixed_overtime']}} )
                             @endif
 
                             @if(isset($user['allowances']['fixed_bonus']))
-                                ، بدل إضافي ثابت  ( {{$user['allowances']['fixed_bonus']}} )
+                                ، بدل  ثابت  ( {{$user['allowances']['fixed_bonus']}} )
                             @endif
                         </td>
                         <td class="text-2xl  border-2 border-black p-3  table-header-cell-value ">

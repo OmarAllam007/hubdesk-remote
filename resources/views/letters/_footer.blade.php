@@ -17,8 +17,8 @@
             </p>
         </div>
 {{--        @dd($letterTicket->stamp)--}}
-        <div class="flex justify-end">
-            <img class="w-1/2" src="{{asset('/storage'.$letterTicket->stamp)}}"  alt="">
+        <div class="flex justify-end pt-8 ">
+            <img class="w-5/12  " src="{{asset('/storage'.$letterTicket->stamp)}}"  alt="">
         </div>
     </div>
 </div>

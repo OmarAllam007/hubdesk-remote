@@ -15,14 +15,15 @@
                 font-family: Arial, Helvetica, sans-serif;
             }
         }
+
         page {
             display: block;
             margin: 0 auto;
             background-repeat: no-repeat;
             @if(\App\LetterTicket::isApprovedTicket($letterTicket->ticket))
-               background-image: url({{url("/storage/headers/{$letterTicket->header}/image.jpg")}}) !important;
+                background-image: url({{url("/storage/headers/{$letterTicket->header}/image.jpg")}}) !important;
             @endif
-               background-size: contain !important;
+                background-size: contain !important;
         }
 
 
@@ -40,43 +41,43 @@
     <div class="">
         <page size="A4" class="">
             <p class="pt-10"></p>
-            <p class="text-gray-900 text-xl pt-64  px-10  ">HD: {{$letterTicket->ticket->id}}
+            <p class="text-gray-900 text-xl pt-64  px-20   ">HD: {{$letterTicket->ticket->id}}
                 {{--                Ticket No--}}
             </p>
-            <p class="text-gray-900 text-xl pt-10 px-10  ">ID: {{$letterTicket->ticket->requester->employee_id}}
+            <p class="text-gray-900 text-xl pt-5 px-20   ">ID: {{$letterTicket->ticket->requester->employee_id}}
                 {{--            employee id--}}
             </p>
             <div class="flex justify-between">
-                <p class="text-gray-900 text-xl  pt-10  px-10  ">{{$letterTicket->ticket->requester->business_unit->name}}
+                <p class="text-gray-900 text-xl  pt-5  px-20   ">{{$letterTicket->ticket->requester->business_unit->name}}
                     {{--                 company assigned --}}
                 </p>
-                <p class="text-gray-900 text-xl  pt-10  px-10  "> الموافق : {{$letterTicket->last_approval_date}}
+                <p class="text-gray-900 text-xl  pt-5   px-20   "> الموافق : {{$letterTicket->last_approval_date}}
                     م</p>
             </div>
 
             <div class="flex justify-center pt-10 ">
-                <p class="underline px-10  text-4xl font-bold " style="font-family: Arial, Helvetica, sans-serif;">
+                <p class="underline px-20   text-4xl font-bold " style="font-family: Arial, Helvetica, sans-serif;">
                     خطاب : تعريف بالراتب
                 </p>
             </div>
 
-            <div class="flex  pt-20 px-10" dir="rtl">
+            <div class="flex  pt-20 px-20 " dir="rtl">
                 <p class="text-4xl">
                     {{--                    change as per Name --}}
                     الســادة / {{$letterTicket->letter->ar_name}}
                 </p>
                 <p class="px-64 "></p>
-{{--                <p class="px-10   "></p>--}}
+                {{--                <p class="px-20    "></p>--}}
                 <p class="text-4xl">المحترمين</p>
             </div>
 
-            <div class="flex justify-end pt-10 px-10 ">
+            <div class="flex justify-end pt-10 px-20  ">
 
                 <p class="text-4xl" dir="rtl">
                     السلام عليكم ورحمة الله وبركاته ،،، وبعد ،،،
                 </p>
             </div>
-            <div class="flex flex-col pt-10 px-10 ">
+            <div class="flex flex-col pt-10 px-20  ">
                 <p dir="rtl" class="text-3xl">
                     {{--                                        change as per SAP --}}
                     <span>
@@ -104,9 +105,11 @@
                     <span>
                     بدل سكن ({{$user['allowances']['housing_allowance']}} ريال ) ،
                     </span>
-                    <span>
+                    @if(isset($user['allowances']['transportation_allowance']))
+                        <span>
                     بدل نقل ({{$user['allowances']['transportation_allowance']}} ريال) ،
                     </span>
+                    @endif
 
                     @if(isset($user['allowances']['food_allowance']))
                         <span>
@@ -124,13 +127,9 @@
                             بدل طبيعة عمل ({{$user['allowances']['nature_of_work_allowance']}} ريال) ،
                     </span>
                     @endif
-
-{{--                    @if(isset($user['fixed_amount']))--}}
-{{--                        <span>--}}
-{{--                    بدل ثابت (100ريال)--}}
-{{--                    </span>--}}
-{{--                    @endif--}}
-
+                    @if(isset($user['allowances']['fixed_bonus']))
+                        ، بدل  ثابت  ( {{$user['allowances']['fixed_bonus']}} ريال) ،
+                    @endif
                     <span>
                         راتــب إجمـالي ({{$user['total_package']}} ريال) ،
                     </span>
