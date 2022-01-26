@@ -1,41 +1,6 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{$letterTicket->ticket->id}}</title>
-    <style>
-        @media print {
-            body {
-                display: table;
-                table-layout: fixed;
-                height: auto;
-                font-family: Arial, Helvetica, sans-serif;
-            }
-        }
-
-        page {
-            display: block;
-            margin: 0 auto;
-            background-repeat: no-repeat;
-            @if(\App\LetterTicket::isApprovedTicket($letterTicket->ticket))
-                background-image: url({{url("/storage/headers/{$letterTicket->header}/image.jpg")}}) !important;
-            @endif
-                background-size: contain !important;
-        }
-
-
-        page[size="A4"] {
-            width: 21cm;
-            height: 29.7cm;
-        }
-
-    </style>
-    <link rel="stylesheet" href="{{asset('/css/app.css')}}?version={{time()}}">
-
-</head>
+@include('letters.layout._header')
 <body>
 <div class="flex">
     <div class="">
@@ -56,29 +21,29 @@
             </div>
 
             <div class="flex justify-center pt-10 ">
-                <p class="underline px-20   text-4xl font-bold " style="font-family: Arial, Helvetica, sans-serif;">
+                <p class="underline px-20   lt_text font-bold " style="font-family: Arial, Helvetica, sans-serif;">
                     خطاب : تعريف بالراتب
                 </p>
             </div>
 
             <div class="flex  pt-20 px-20 " dir="rtl">
-                <p class="text-4xl">
+                <p class="lt_text">
                     {{--                    change as per Name --}}
                     الســادة / {{$letterTicket->letter->ar_name}}
                 </p>
                 <p class="px-64 "></p>
                 {{--                <p class="px-20    "></p>--}}
-                <p class="text-4xl">المحترمين</p>
+                <p class="lt_text">المحترمين</p>
             </div>
 
             <div class="flex justify-end pt-10 px-20  ">
 
-                <p class="text-4xl" dir="rtl">
+                <p class="lt_text" dir="rtl">
                     السلام عليكم ورحمة الله وبركاته ،،، وبعد ،،،
                 </p>
             </div>
             <div class="flex flex-col pt-10 px-20  ">
-                <p dir="rtl" class="text-3xl">
+                <p dir="rtl" class="lt_text">
                     {{--                                        change as per SAP --}}
                     <span>
 {{--                        @dd($user)--}}
@@ -92,8 +57,8 @@
                     هوية رقم/
                     {{$user['iqama_number']}}،
                     </span>
-                </p>
-                <p dir="rtl" class=" text-3xl ">
+                    {{--                </p>--}}
+                    {{--                <p dir="rtl" class=" text-3xl ">--}}
                     <span>
                     يعمل لدينا من تاريخ: {{$user['date_of_join']}} م بوظيفة: {{$user['occupation']}}
                     </span>
@@ -141,7 +106,7 @@
             </div>
 
             <div class="flex justify-center pt-20 ">
-                <p class="text-4xl font-bold" dir="rtl">
+                <p class="lt_text font-bold" dir="rtl">
                     ولكم وافر الشكر والتقدير ،،،
                 </p>
             </div>

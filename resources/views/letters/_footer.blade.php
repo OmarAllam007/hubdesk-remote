@@ -1,7 +1,7 @@
-<div class="flex justify-between  pt-5 px-20  ">
+<div class="flex justify-between  pt-10  px-20  ">
     <div class="w-1/2 flex-col">
         <div class="flex justify-start">
-            <p class="text-3xl" dir="rtl">
+            <p class="lt_text" dir="rtl">
                 {{config('letters.signature_name')}}
             </p>
         </div>
@@ -12,7 +12,7 @@
 
     <div class="w-1/2  flex-col">
         <div>
-            <p class="text-3xl" dir="rtl">
+            <p class="lt_text" dir="rtl">
                 {{$user['sponsor_company']}}
             </p>
         </div>
