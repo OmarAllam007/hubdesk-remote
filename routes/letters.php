@@ -33,4 +33,10 @@ Route::group(['prefix' => 'letters', 'as' => 'letters.'], function (\Illuminate\
     });
 
     Route::get('/get-letter-content/{ticket}', 'LetterController@getLetterContent');
+
+    Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
+        $r->get('letter_group', 'ListController@letter_group');
+    });
+
+    $r->post('/convert-to-letter','LetterController@convertToLetter');
 });

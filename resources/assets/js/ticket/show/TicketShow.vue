@@ -59,6 +59,13 @@
             <i class="fa fa-comments "></i>
             {{ $root.t('Complaint') }}
           </button>
+
+          <button
+              class="flex-grow bg-gray-600    hover:bg-viola  text-white font-bold py-2 px-4  hover:text-white rounded-xl  mr-2 shadow-md"
+              @click="showToLetterModal" v-if="authorizations.can_convert_to_letter">
+            <i class="fa fa-exchange  "></i>
+            {{ $root.t('Convert To Letter') }}
+          </button>
         </div>
       </div>
       <div class="flex justify-between">
@@ -200,12 +207,19 @@
             v-if="complaintModalOpened"
         ></complaint>
 
-      <letter-modal
-          :is-letter-modal-opened="letterContentModel"
-          @close-letter-modal="closeLetterContentModel"
-          v-if="letterContentModel"
-      >
-      </letter-modal>
+        <to-letter-modal
+            :is-to-letter-opened="toLetterModalOpened"
+            @close-to-letter-modal="closeToLetterModal()"
+            v-if="toLetterModalOpened"
+        >
+
+        </to-letter-modal>
+        <letter-modal
+            :is-letter-modal-opened="letterContentModel"
+            @close-letter-modal="closeLetterContentModel"
+            v-if="letterContentModel"
+        >
+        </letter-modal>
 
       </div>
     </div>
@@ -234,6 +248,7 @@ import Complaint from "../actions/Complaint";
 import TicketAttachments from "../attachments/TicketAttachments";
 import TicketSurvey from "../survey/TicketSurvey";
 import LetterModal from "../actions/LetterContentModal";
+import ToLetterModal from "../actions/ToLetterModal";
 
 export default {
   name: "TicketShow",
@@ -258,7 +273,8 @@ export default {
       duplicateModalOpened: false,
       financeModalOpened: false,
       complaintModalOpened: false,
-      letterContentModel:false,
+      toLetterModalOpened: false,
+      letterContentModel: false,
       users: []
     }
   },
@@ -299,6 +315,9 @@ export default {
       this.forwardModalOpened = true;
       EventBus.$emit('openForwardModal');
     },
+    showToLetterModal() {
+      this.toLetterModalOpened = true;
+    },
     showComplaintModal() {
       this.complaintModalOpened = true;
     },
@@ -317,14 +336,17 @@ export default {
     closeComplaintModal() {
       this.complaintModalOpened = false;
     },
+    closeToLetterModal() {
+      this.toLetterModalOpened = false;
+    },
     printTicket() {
       window.open(`/ticket/print/${this.ticketData.ticket.id}`, '_blank');
     },
-    showLetterContentModel(){
+    showLetterContentModel() {
       this.letterContentModel = true;
       EventBus.$emit('openLetterModal');
     },
-    closeLetterContentModel(){
+    closeLetterContentModel() {
       this.letterContentModel = false;
     }
   },
@@ -344,6 +366,7 @@ export default {
     }
   },
   components: {
+    ToLetterModal,
     LetterModal,
     TicketSurvey,
     TicketAttachments,

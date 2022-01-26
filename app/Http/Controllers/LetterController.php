@@ -160,4 +160,31 @@ class LetterController extends Controller
             compact('letterTicket', 'user'))->render();
 
     }
+
+    function convertToLetter(Request $request){
+        $ticket = Ticket::find($request->ticket_id);
+
+        $ticket->update([
+            'category_id'=> 112,
+            'subcategory_id'=>407,
+            'item_id'=> 368
+        ]);
+
+        if ($request->has('fields') && count($request->fields)) {
+            foreach ($request->fields as $field) {
+                $ticket->fields()->create([
+                    'name' => $field['name'],
+                    'value' => $field['value']
+                ]);
+            }
+        }
+
+        $letterTicket = LetterTicket::create([
+            'ticket_id' => $ticket->id,
+            'group_id' => $request->group_id,
+            'subgroup_id' => $request->subgroup_id,
+            'letter_id' => $request->letter_id,
+            'need_coc_stamp' => $request->is_stamped,
+        ]);
+    }
 }

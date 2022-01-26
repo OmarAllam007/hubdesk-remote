@@ -615,7 +615,8 @@ class Ticket extends KModel
             'send_to_finance' => can('send_to_finance', $this) ? 1 : 0,
             'send_complaint' => can('send_complaint', $this) ? 1 : 0,
             'display_ticket' => can('show', $this) ? 1 : 0,
-            'is_support' => \Auth::user()->isSupport()
+            'is_support' => \Auth::user()->isSupport(),
+            'can_convert_to_letter'=> in_array(\Auth::user()->id,[1021,1306,1499302]) && $this->subcategory_id = 407
         ];
     }
 

@@ -8,6 +8,7 @@ use App\Group;
 use App\Http\Requests;
 use App\Impact;
 use App\Item;
+use App\LetterGroup;
 use App\Location;
 use App\Priority;
 use App\ReplyTemplate;
@@ -230,5 +231,13 @@ class ListController extends Controller
     {
         return ReplyTemplate::where('user_id', auth()->id())->get();
     }
+
+
+    // Letters
+    function letter_group()
+    {
+        return LetterGroup::orderBy('order')->get(['id', 'name']);
+    }
+
 
 }
