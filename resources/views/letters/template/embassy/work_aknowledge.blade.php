@@ -82,7 +82,7 @@
                 <p class="text-3xl">
                     <span>
                         This is to certify that Mr. {{$user['en_name']}} {{$user['en_nationality']}}, ID Number {{$user['iqama_number']}}. Is an
-                        employee of {{$user['en_sponsor_company']}}, from {{$user['date_of_join']}} up to the present.
+                        employee of {{\App\Helpers\LetterSponserMap::$en_sponsers[$user['sponsor_id']]}}, from {{$user['date_of_join']}} up to the present.
                     </span>
                 </p>
                 <p class=" text-3xl ">
