@@ -100,23 +100,7 @@
             </div>
 
 
-            <div class="flex-col">
-                <div class="flex  pt-5  px-10 ">
-                    <p class="text-3xl">
-                        {{$user['en_sponsor_company']}}
-                    </p>
-                </div>
-
-
-                <div class="flex justify-between">
-                    <div class="w-1/3 mx-3 ">
-                        <img class="w-2/3 " src="{{asset('/storage'.$letterTicket->signature)}}">
-                    </div>
-                    <div class="w-1/3 mx-2 ">
-                        <img class="w-1/2" src="{{asset('/storage'.$letterTicket->stamp)}}"  alt="">
-                    </div>
-                </div>
-            </div>
+            @include('letters._footer')
 
         </page>
     </div>
