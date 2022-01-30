@@ -98,10 +98,18 @@ class LetterController extends Controller
 
     function generateLetter($ticket)
     {
-
         $ticketRef = Ticket::find($ticket);
-        $user = \App\User::where('employee_id', $ticketRef->requester->employee_id)->first();
+        $employeeID = $ticketRef->requester->employee_id;
 
+        if($ticketRef->is_letter_ticket) {
+            $letterTicketRef = $ticketRef->letter_ticket;
+
+            if($letterTicketRef->to_user_id){
+                $employeeID = $letterTicketRef->user->employee_id;
+            }
+        }
+
+        $user = \App\User::where('employee_id', $employeeID)->first();
 
         $sapApi = new \App\Helpers\SapApi($user);
         $sapApi->getUserInformation();
@@ -113,11 +121,8 @@ class LetterController extends Controller
         $view = $letterTicket->letter->view_path;
 
 
-//        dd($user);
-        /* @TODO to be changes */
         $letterTicket['header'] = LetterSponserMap::$systemBusinessUnits[$user['sponsor_id']];
         $letterTicket['stamp'] = '/stamps/' . LetterSponserMap::$systemBusinessUnits[$user['sponsor_id']] . '/image.jpg';
-//        dd($letterTicket);
         $letterTicket['signature'] = User::find(1309)->signature;
 
         $content = view("letters.template.${view}", compact('user', 'letterTicket'));
@@ -155,19 +160,24 @@ class LetterController extends Controller
         $letterTicket['header'] = LetterSponserMap::$systemBusinessUnits[$user['sponsor_id']];
         $letterTicket['stamp'] = '/stamps/' . LetterSponserMap::$systemBusinessUnits[$user['sponsor_id']] . '/image.jpg';
         $letterTicket['signature'] = User::find(1148)->signature;
-        
+
         return view('letters.template.' . $ticket->letter_ticket->letter->view_path,
             compact('letterTicket', 'user'))->render();
 
     }
 
-    function convertToLetter(Request $request){
+    function convertToLetter(Request $request)
+    {
         $ticket = Ticket::find($request->ticket_id);
 
+        if($ticket->is_letter_ticket){
+            LetterTicket::where('ticket_id',$ticket->id)->delete();
+        }
+
         $ticket->update([
-            'category_id'=> 112,
-            'subcategory_id'=>407,
-            'item_id'=> 368
+            'category_id' => 112,
+            'subcategory_id' => 407,
+            'item_id' => 368
         ]);
 
         if ($request->has('fields') && count($request->fields)) {
@@ -179,12 +189,13 @@ class LetterController extends Controller
             }
         }
 
-        $letterTicket = LetterTicket::create([
+        LetterTicket::create([
             'ticket_id' => $ticket->id,
             'group_id' => $request->group_id,
             'subgroup_id' => $request->subgroup_id,
             'letter_id' => $request->letter_id,
             'need_coc_stamp' => $request->is_stamped,
+            'to_user_id' => $request->requester_id
         ]);
     }
 }
