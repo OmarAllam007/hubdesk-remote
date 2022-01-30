@@ -58,6 +58,7 @@ class SapUser
             $sap_data[$key] = $data;
         }
         $this->sapData = $sap_data;
+        dd($this->sapData);
         $job = LetterJobMap::where('en_name', $this->sapData['VCTXT'])->first();
 
 
