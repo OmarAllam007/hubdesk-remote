@@ -3,10 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class LetterTicket extends Model
 {
-    protected $fillable = ['ticket_id', 'group_id', 'subgroup_id', 'letter_id', 'need_coc_stamp'];
+    use SoftDeletes;
+    protected $fillable = ['ticket_id', 'group_id', 'subgroup_id', 'letter_id', 'need_coc_stamp','to_user_id'];
 
     function ticket()
     {
@@ -27,6 +29,10 @@ class LetterTicket extends Model
     function letter()
     {
         return $this->belongsTo(Letter::class, 'letter_id');
+    }
+
+    function user(){
+        return $this->belongsTo(User::class,'to_user_id');
     }
 
     static function isApprovedTicket($ticket)
