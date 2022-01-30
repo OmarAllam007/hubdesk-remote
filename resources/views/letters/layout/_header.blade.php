@@ -33,6 +33,9 @@
         p.lt_text {
             font-size: 14pt  !important;
         }
+        span.lt_text {
+            font-size: 14pt  !important;
+        }
 
         page {
             display: block;
