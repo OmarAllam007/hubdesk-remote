@@ -61,7 +61,6 @@ class SapUser
         $job = LetterJobMap::where('en_name', $this->sapData['VCTXT'])->first();
 
 
-
         $this->sapData = [
             'employee_id' => $this->sapData['PERNR'],
             'system_position' => $this->sapData['POSITION'],
@@ -71,7 +70,7 @@ class SapUser
             'ar_name' => $this->sapData['SNAME'] != '' ? $this->sapData['SNAME'] : $this->sapData['ENAME'],
             'en_nationality' => $this->sapData['NATIO_E'],
             'ar_nationality' => $this->sapData['NATIO_A'],
-            'iqama_number' => $this->sapData['ICNUM_IQAMA'] != '' ? $this->sapData['ICNUM_IQAMA'] :$this->sapData['ICNUM_NATID'],
+            'iqama_number' => $this->sapData['ICNUM_IQAMA'] != '' ? $this->sapData['ICNUM_IQAMA'] : $this->sapData['ICNUM_NATID'],
             'passport_number' => $this->sapData['ICNUM_PASS'],
             'sponsor_id' => $this->sapData['SPONR'],
             'sponsor_company' => LetterSponserMap::$sponsers[$this->sapData['SPONR']],
@@ -87,9 +86,12 @@ class SapUser
             'discounts' => '',
             'phone' => '',
             'fax' => '',
-            'education'=> $this->sapData['ZZEDUCATION'],
+            'education' => $this->sapData['ZZEDUCATION'],
         ];
-//        dd($this->sapData);
+
+        if (in_array($this->sapData['sponsor_id'], [7013614099, 7014784685, 7015080299])) {
+            $this->sapData['sponsor_company'] =   'شركة الكفاح القابضة';
+        }
 
         return $this->sapData;
     }
