@@ -81,8 +81,7 @@ class LetterTicket extends Model
 
     function getLastApprovalDateAttribute()
     {
-        $approval = $this->ticket->approvals()->where('status', 1)->get()->last();
-
+        $approval = $this->ticket->approvals()->where('status', 1)->orderBy('created_at')->get()->last();
         return $approval->approval_date->format('d/m/Y');
     }
 }
