@@ -100,7 +100,8 @@ class LetterSponserMap
     ];
 
     static $en_sponsers = [
-        "7014442615" => "Al-Kifah Holding Company - Contracting Branch"
+        "7014442615" => "Al-Kifah Holding Company - Contracting Branch",
+        "7012767633" => "AlKifah Precast Concrete Factory"
     ];
 
 //7013614099
