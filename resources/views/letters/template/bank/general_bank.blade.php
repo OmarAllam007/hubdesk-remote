@@ -9,7 +9,7 @@
             <p class="text-gray-900 text-xl pt-64  px-20   ">HD: {{$letterTicket->ticket->id}}
                 {{--                Ticket No--}}
             </p>
-            <p class="text-gray-900 text-xl pt-5 px-20   ">ID: {{$letterTicket->ticket->requester->employee_id}}
+            <p class="text-gray-900 text-xl pt-5 px-20   ">ID: {{$letterTicket->user->employee_id ?? $letterTicket->ticket->requester->employee_id}}
                 {{--            employee id--}}
             </p>
             <div class="flex justify-between">
