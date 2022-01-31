@@ -66,7 +66,7 @@
             <div class="flex  pt-20 px-10">
                 <p class="text-3xl">
                     {{--                    change as per Name --}}
-                    To The {{$letterTicket->ticket->fields()->first()->value}} Embassy
+                    To The {{$letterTicket->ticket->fields()->first()->value}}
                 </p>
                 <p class="px-64 "></p>
                 {{--                <p class="px-10   "></p>--}}
