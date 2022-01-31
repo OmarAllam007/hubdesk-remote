@@ -10,7 +10,7 @@
                 <p class="text-gray-900 text-xl pt-64  px-20 ">HD: {{$letterTicket->ticket->id}}
                     {{--                Ticket No--}}
                 </p>
-                <p class="text-gray-900 text-xl pt-5  px-20  ">ID: {{$letterTicket->ticket->requester->employee_id}}
+                <p class="text-gray-900 text-xl pt-5  px-20  ">ID: {{$letterTicket->user->employee_id ?? $letterTicket->ticket->requester->employee_id}}
                     {{--            employee id--}}
                 </p>
                 <div class="flex justify-between">
@@ -70,7 +70,7 @@
                     </tr>
                     <tr>
                         <td class="lt_text   border-2 border-black p-3 table-header-cell-value ">{{$user['iqama_number']}}</td>
-                        <td class="lt_text  border-2 border-black p-3  table-header-cell-value ">{{$letterTicket->ticket->requester->employee_id}}</td>
+                        <td class="lt_text  border-2 border-black p-3  table-header-cell-value ">{{$letterTicket->user->employee_id ?? $letterTicket->ticket->requester->employee_id}}</td>
                     </tr>
 
                     <tr>
