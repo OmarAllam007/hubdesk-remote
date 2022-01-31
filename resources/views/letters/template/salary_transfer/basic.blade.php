@@ -187,16 +187,32 @@
                     </span>
                     @endif
 
-                    @if(isset($user['allowances']['food_allowance']))
+                    @if(isset($user['allowances']['transportation_allowance']))
                         <span>
-                    بدل طعام({{$user['allowances']['food_allowance']}}ريال)
+                    بدل نقل ({{$user['allowances']['transportation_allowance']}} ريال) ،
                     </span>
                     @endif
 
-                    <span>
-
-                    بدل نقل ({{$user['allowances']['transportation_allowance']}} ريال) ،
+                    @if(isset($user['allowances']['food_allowance']))
+                        <span>
+                    بدل طعام({{$user['allowances']['food_allowance']}}ريال) ،
                     </span>
+                    @endif
+
+                    @if(isset($user['allowances']['fixed_overtime']))
+                        <span>
+                    بدل إضافي ثابت ({{$user['allowances']['fixed_overtime']}}ريال)
+                    </span>
+                    @endif
+                    @if(isset($user['allowances']['nature_of_work_allowance']))
+                        <span>
+                            بدل طبيعة عمل ({{$user['allowances']['nature_of_work_allowance']}} ريال) ،
+                    </span>
+                    @endif
+                    @if(isset($user['allowances']['fixed_bonus']))
+                        ، بدل  ثابت  ( {{$user['allowances']['fixed_bonus']}} ريال) ،
+                    @endif
+
                     <span>
 
                         بإجمالي قدره ({{$user['total_package']}} ريال) ،
