@@ -70,7 +70,7 @@ class InternshipController extends Controller
         $ticket->fields()->create(['name' => 'Email', 'value' => $request['email']]);
         $ticket->fields()->create(['name' => 'City of Residence', 'value' => $request['city']]);
         $ticket->fields()->create(['name' => 'Current Address', 'value' => $request['address']]);
-        $ticket->fields()->create(['name' => 'Interested In', 'value' => InternshipModel::$interestedIn[$request['interested_in']]]);
+        $ticket->fields()->create(['name' => 'Work Preference', 'value' => InternshipModel::$workPreference[$request['work_preference']]]);
 
         $ticket->fields()->create(['name' => 'College / University Name', 'value' => $request['university_name']]);
         $ticket->fields()->create(['name' => 'Degree Name (Title)', 'value' => $request['degree_name']]);

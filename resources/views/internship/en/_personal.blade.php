@@ -112,23 +112,28 @@
     </div>
 </div>
 
-<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 pt-5">
+<div class="w-full px-3 mb-6 md:mb-0 pt-5">
     <div class="w-full ">
         <label class="w-full ">
-            {{t('Interested In')}}
+            {{t('Work Preference')}}
             <div class="mt-2">
                 <label class="inline-flex items-center">
-                    <input type="radio" class="form-radio" name="interested_in" value="1">
-                    <span class="ml-2">Internship (with stipend only)</span>
+                    <input type="radio" class="form-radio" name="work_preference" value="1">
+                    <span class="ml-2">Office-based</span>
                 </label>
                 <label class="inline-flex items-center ml-6">
-                    <input type="radio" class="form-radio" name="interested_in" value="2">
-                    <span class="ml-2">Internship (without stipend)</span>
+                    <input type="radio" class="form-radio" name="work_preference" value="2">
+                    <span class="ml-2">Field-based</span>
                 </label>
 
                 <label class="inline-flex items-center ml-6">
-                    <input type="radio" class="form-radio" name="interested_in" value="3">
-                    <span class="ml-2">No preference</span>
+                    <input type="radio" class="form-radio" name="work_preference" value="3">
+                    <span class="ml-2">Remote Work (work from home)</span>
+                </label>
+
+                <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="work_preference" value="4">
+                    <span class="ml-2">No Preference (will be happy to take whatever is available)</span>
                 </label>
             </div>
         </label>
