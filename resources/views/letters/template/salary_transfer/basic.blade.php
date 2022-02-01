@@ -116,6 +116,7 @@
                 </p></div>
 
             @include('letters._footer')
+            @include('letters.template._footer_query')
 
         </page>
 
@@ -232,6 +233,7 @@
 
 
             @include('letters._footer')
+            @include('letters.template._footer_query')
         </page>
     </div>
 

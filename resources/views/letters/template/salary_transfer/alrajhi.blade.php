@@ -147,6 +147,7 @@
         </page>
 
         @include('letters.template.bank.alrajhi_bank')
+        @include('letters.template._footer_query')
     </div>
 </div>
 
