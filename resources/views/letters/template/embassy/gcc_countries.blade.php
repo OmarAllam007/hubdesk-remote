@@ -111,6 +111,7 @@
 
 
             @include('letters._footer')
+            @include('letters.template._footer_query')
         </page>
     </div>
 </div>
