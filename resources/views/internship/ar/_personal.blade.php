@@ -111,23 +111,28 @@
     </div>
 </div>
 
-<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 pt-5">
+<div class="w-full px-3 mb-6 md:mb-0 pt-5">
     <div class="w-full ">
         <label class="w-full ">
-            {{t('مهتم بـ')}}
+            {{t('الأفضلية في العمل')}}
             <div class="mt-2">
                 <label class="inline-flex items-center">
-                    <input type="radio" class="form-radio" name="interested_in" value="1">
-                    <span class="ml-2">فترة تدريب (مع راتب)</span>
+                    <input type="radio" class="form-radio" name="work_preference" value="1">
+                    <span class="ml-2">من المكتب</span>
                 </label>
                 <label class="inline-flex items-center ml-6">
-                    <input type="radio" class="form-radio" name="interested_in" value="2">
-                    <span class="ml-2">فترة تدريب (بدون راتب)</span>
+                    <input type="radio" class="form-radio" name="work_preference" value="2">
+                    <span class="ml-2">عمل ميداني</span>
                 </label>
 
                 <label class="inline-flex items-center ml-6">
-                    <input type="radio" class="form-radio" name="interested_in" value="3">
-                    <span class="ml-2">لا يوجد تفضيل</span>
+                    <input type="radio" class="form-radio" name="work_preference" value="3">
+                    <span class="ml-2">العمل عن بعد</span>
+                </label>
+
+                <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="work_preference" value="4">
+                    <span class="ml-2">لا يوجد تفضيل معين</span>
                 </label>
             </div>
         </label>

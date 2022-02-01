@@ -36,6 +36,13 @@ class InternshipModel extends Model
         'No preference'
     ];
 
+    static $workPreference = [
+        1 => 'Office-based',
+        'Field-based',
+        'Remote Work (work from home)',
+        'No Preference (will be happy to take whatever is available)'
+    ];
+
     static $degreeType = [
         1 => 'Diploma',
         'Bachelor'
