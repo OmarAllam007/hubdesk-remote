@@ -71,9 +71,9 @@ class UploadUsersJob extends Job
             if ($user) {
                 $this->updateUser($user, $data);
             }
-//            else{
-//                $this->createUser($data);
-//            }
+            else{
+                $this->createUser($data);
+            }
 
         }
     }
@@ -91,13 +91,13 @@ class UploadUsersJob extends Job
 
     private function createUser(array $data)
     {
-        $businessUnitId = $this->businessUnits->get($data[5]);
+        $businessUnitId = $this->businessUnits->get($data[2]);
 
         User::create([
             'name' => $data[1],
             'email' => $data[5] == "" ? null : $data[5],
             'login' => $data[0],
-            'password' => env('DEFAULT_PASS', 'kifah1234'),
+            'password' =>  bcrypt( env('DEFAULT_PASS')),
             'business_unit_id' => $businessUnitId,
             'job' => $data[4],
             'department_id' => $this->getDepartmentId($data[3], $businessUnitId),
@@ -110,10 +110,9 @@ class UploadUsersJob extends Job
     private function updateUser($user, $data)
     {
         $businessUnitId = $this->businessUnits->get($data[2]);
-//        dd($this->extraFields($data));
+
         $userInfo = [
             'name' => $data[1],
-//            'login' => $data[0],
             'business_unit_id' => $businessUnitId,
             'job' => $data[4],
             'department_id' => $this->getDepartmentId($data[3], $businessUnitId),
@@ -136,7 +135,6 @@ class UploadUsersJob extends Job
 
     private function getDepartmentId($departmentName, $businessUnitId)
     {
-
         $department = Department::where('name', $departmentName)->first();
         if (!$department) {
             $department = Department::create(['name' => $departmentName, 'business_unit_id' => $businessUnitId]);
