@@ -15,9 +15,9 @@
         <div class="flex justify-center">
             <div class="logo"><a href="{{url('/')}}"><img src="{{asset('images/holding_logo.png')}}"></a></div>
         </div>
-        <div class="flex justify-center">
+        <div class="flex justify-center" id="letterView">
 
-            <iframe id="letterView"
+            <iframe
                     src="{{route('letters.generate.pdf',$ticketID)}}" scrolling="auto" height="1100"
                     class="w-full  bg-white"></iframe>
         </div>
