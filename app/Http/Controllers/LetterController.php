@@ -198,4 +198,16 @@ class LetterController extends Controller
             'to_user_id' => $request->requester_id
         ]);
     }
+
+    function verifyLetterView($ticketId){
+        $ticketID = (int) \Crypt::decryptString($ticketId);
+
+        $ticketExist = Ticket::find($ticketId);
+
+        if(!$ticketExist){
+
+        }
+
+        return view('letters.verification.index',compact('ticketID'));
+    }
 }
