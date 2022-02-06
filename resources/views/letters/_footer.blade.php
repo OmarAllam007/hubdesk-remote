@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="flex flex-col justify-center items-center pt-16 ">
-        <p class="pt-20"></p>
+{{--        <p class="pt-20"></p>--}}
 
         <div class="visible-print text-center">
             @php $ticketId  =  Crypt::encryptString($letterTicket->ticket_id);@endphp
