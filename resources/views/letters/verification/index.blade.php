@@ -18,8 +18,8 @@
         <div class="flex justify-center" id="letterView">
 
             <iframe
-                    src="{{route('letters.generate.pdf',$ticketID)}}"  height="2100"
-                    class="w-full  bg-white"></iframe>
+                    src="{{route('letters.generate.pdf',$ticketID)}}"  height="1100"
+                    class="w-full  bg-white" style="position:absolute; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"></iframe>
         </div>
     </div>
 
