@@ -18,7 +18,7 @@
         <div class="flex justify-center" id="letterView">
 
             <iframe
-                    src="{{route('letters.generate.pdf',$ticketID)}}" scrolling="auto" height="1100"
+                    src="{{route('letters.generate.pdf',$ticketID)}}"  height="2100"
                     class="w-full  bg-white"></iframe>
         </div>
     </div>
