@@ -2,6 +2,12 @@
 
 @section('header')
     <h4 class="pull-left">{{t('Letter Information')}} - {{$ticketID}}</h4>
+    <style>
+        #letterView{
+            -webkit-overflow-scrolling: touch;
+            overflow-y: scroll;
+        }
+    </style>
 @endsection
 <body>
 @section('body')
@@ -11,9 +17,9 @@
         </div>
         <div class="flex justify-center">
 
-            <iframe id="salarySlip"
+            <iframe id="letterView"
                     src="{{route('letters.generate.pdf',$ticketID)}}" scrolling="auto" height="1100"
-                    class="w-2/3 bg-white"></iframe>
+                    class="w-full  bg-white"></iframe>
         </div>
     </div>
 
