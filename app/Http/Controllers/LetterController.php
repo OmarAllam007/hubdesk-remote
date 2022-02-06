@@ -96,15 +96,15 @@ class LetterController extends Controller
         return response()->json(['ticket' => $ticket]);
     }
 
-    function generateLetter($ticket)
+
+    function buildView($ticket)
     {
         $ticketRef = Ticket::find($ticket);
         $employeeID = $ticketRef->requester->employee_id;
-
-        if($ticketRef->is_letter_ticket) {
+        if ($ticketRef->is_letter_ticket) {
             $letterTicketRef = $ticketRef->letter_ticket;
 
-            if($letterTicketRef->to_user_id){
+            if ($letterTicketRef->to_user_id) {
                 $employeeID = $letterTicketRef->user->employee_id;
             }
         }
@@ -125,8 +125,12 @@ class LetterController extends Controller
         $letterTicket['stamp'] = '/stamps/' . LetterSponserMap::$systemBusinessUnits[$user['sponsor_id']] . '/image.jpg';
         $letterTicket['signature'] = User::find(1309)->signature;
 
-        $content = view("letters.template.${view}", compact('user', 'letterTicket'));
+        return  view("letters.template.${view}", compact('user', 'letterTicket'));
+    }
 
+    function generateLetter($ticket)
+    {
+        $content = $this->buildView($ticket);
         $filepath = storage_path('app/letter.html');
         file_put_contents($filepath, $content->render());
         $print = new ChromePrint($filepath);
@@ -170,8 +174,8 @@ class LetterController extends Controller
     {
         $ticket = Ticket::find($request->ticket_id);
 
-        if($ticket->is_letter_ticket){
-            LetterTicket::where('ticket_id',$ticket->id)->delete();
+        if ($ticket->is_letter_ticket) {
+            LetterTicket::where('ticket_id', $ticket->id)->delete();
         }
 
         $ticket->update([
@@ -199,15 +203,15 @@ class LetterController extends Controller
         ]);
     }
 
-    function verifyLetterView($ticketId){
-        $ticketID = (int) \Crypt::decryptString($ticketId);
+    function verifyLetterView($ticketId)
+    {
+        $ticketDecryptedID = (int)\Crypt::decryptString($ticketId);
+        $ticketExist = Ticket::find($ticketDecryptedID);
 
-        $ticketExist = Ticket::find($ticketId);
-
-        if(!$ticketExist){
-
+        if (!$ticketExist) {
+            return;
         }
-
-        return view('letters.verification.index',compact('ticketID'));
+        $view = $this->buildView($ticketDecryptedID)->render();
+        return view('letters.verification.index', compact('ticketDecryptedID','view'));
     }
 }
