@@ -33,7 +33,12 @@ class LetterTicketListener
     {
         Attachment::uploadFiles(Attachment::TICKET_TYPE, $ticket->ticket_id);
 
-        $business_unit_id = auth()->user()->business_unit_id;
+        $business_unit_id = $ticket->ticket->requester->business_unit_id;
+
+        if(!$business_unit_id){
+            return;
+        }
+
         $appoval_levels = LetterApproval::where('business_unit_id', $business_unit_id)->get();
 
         dispatch(new NewTicketJob($ticket->ticket));
