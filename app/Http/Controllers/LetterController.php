@@ -97,6 +97,8 @@ class LetterController extends Controller
     }
 
 
+    protected $userActive = true;
+
     function buildView($ticket)
     {
         $ticketRef = Ticket::find($ticket);
@@ -114,6 +116,11 @@ class LetterController extends Controller
         $sapApi = new \App\Helpers\SapApi($user);
         $sapApi->getUserInformation();
         $user = $sapApi->sapUser->getEmployeeSapInformation();
+        $this->userActive = $user['is_active'];
+
+        if(!$user['is_active']) {
+            return false;
+        }
 
         $user['allowances_str'] = $sapApi->sapUser->getAllowancesString();
 
@@ -128,9 +135,14 @@ class LetterController extends Controller
         return  view("letters.template.${view}", compact('user', 'letterTicket'));
     }
 
+
     function generateLetter($ticket)
     {
         $content = $this->buildView($ticket);
+
+        if(!$content){
+            return view('letters.contact_hr');
+        }
         $filepath = storage_path('app/letter.html');
         file_put_contents($filepath, $content->render());
         $print = new ChromePrint($filepath);

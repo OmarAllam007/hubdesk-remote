@@ -87,6 +87,7 @@ class SapUser
             'phone' => '',
             'fax' => '',
             'education' => $this->sapData['ZZEDUCATION'],
+            'is_active'=> $this->sapData['BEGDA'] == '0000-00-00'
         ];
 
         if (in_array($this->sapData['sponsor_id'], [7013614099, 7014784685, 7015080299])) {
