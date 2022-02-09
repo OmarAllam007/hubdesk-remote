@@ -7,7 +7,8 @@
                  :groups="{{$groups}}"
                  :priorities="{{$priorities}}"
                  :subject="{{json_encode($subject)}}"
-                 :translations="{{json_encode(\App\Translation::where('language',$language)->get(['word','translation']))}}"
+                 :translations="{{json_encode(\App\Translation::where('language',$language)
+                                   ->where('view',\App\Translation::FOR_LETTER_VIEW)->get(['word','translation']))}}"
                  :language="{{json_encode($language)}}"
 
                 :is-technician="{{json_encode(Auth::user()->isSupport() ? 1 : 0)}}"
