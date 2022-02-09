@@ -587,12 +587,16 @@ class Ticket extends KModel
 
     function getComplaintAttribute()
     {
-        if ($this->category->complaint) {
-            return $this->category->complaint;
-        } elseif ($this->subcategory && $this->subcategory->complaint) {
-            return $this->subcategory->complaint;
-        } elseif ($this->item && $this->item->complaint) {
+        if ($this->item && $this->item->complaint) {
             return $this->item->complaint;
+        }
+        elseif ($this->subcategory && $this->subcategory->complaint) {
+            return $this->subcategory->complaint;
+        }
+        elseif ($this->category->complaint) {
+            return $this->category->complaint;
+        }else {
+            return [];
         }
     }
 
@@ -616,7 +620,7 @@ class Ticket extends KModel
             'send_complaint' => can('send_complaint', $this) ? 1 : 0,
             'display_ticket' => can('show', $this) ? 1 : 0,
             'is_support' => \Auth::user()->isSupport(),
-            'can_convert_to_letter'=> in_array(\Auth::user()->id,[1021,1306,1499302]) && $this->subcategory_id = 407
+            'can_convert_to_letter' => in_array(\Auth::user()->id, [1021, 1306, 1499302]) && $this->subcategory_id = 407
         ];
     }
 
@@ -694,7 +698,7 @@ class Ticket extends KModel
             return LetterTicket::where('ticket_id', $this->ticket->id)->first();
         }
 
-        return  LetterTicket::where('ticket_id', $this->id)->first();
+        return LetterTicket::where('ticket_id', $this->id)->first();
     }
 
 }
