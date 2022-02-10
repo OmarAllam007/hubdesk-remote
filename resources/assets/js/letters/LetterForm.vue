@@ -6,14 +6,11 @@
           <label for="requester_id">
             {{ t('Requester') }}
           </label>
-          <select name="requester_id" id="requester_id" class="form-control select2" v-model="user_id">
-            <option value="">
-              {{t('Create for me')}}
-            </option>
-
-            <option v-for="user in users" :value="user.id"> {{user.employee_id }}
-              - {{user.name}}</option>
-          </select>
+          <v-select
+              :options="users" label="employee_id" v-model="user_id" id="requester_id" name="requester_id"
+              :placeholder="t('Created For Me')"
+              class="selection-list bg-white" @search="searchForUser"></v-select>
+          <p v-if="user_id">{{ user_id.name }}</p>
         </div>
       </div>
     </div>
@@ -37,32 +34,34 @@
             {{ t('Type') }}
             <span class="text-red-800">*</span>
           </label>
-          <v-select :options="groups" label="name" name="group" id="group"
-                    v-model="group" :placeholder="t('Select Type')"
-                    class="selection-list bg-white" @change="getSubGroups"></v-select>
+
+          <select name="group" id="group" @change="getLetters" class="select2 group-select">
+            <option value="">{{ t('Select Type') }}</option>
+            <option v-for="group in groups" :value="group.id">{{ group.name }}</option>
+
+          </select>
+
         </div>
       </div>
     </div>
-
-    <div class="flex" v-if="subgroups.length">
-      <div class="w-1/2">
-        <label for="subgroup">{{ t('SubType') }}<span class="text-red-800">*</span></label>
-        <v-select id="subgroup" name="subgroups" :options="subgroups" label="name" v-model="subgroup"
-                  :placeholder="t('Letter subtype')"
-                  class="selection-list bg-white"></v-select>
-      </div>
-    </div>
     <br>
-    <div class="flex" v-if="letters.length">
+    <div class="flex justify-center " v-if="load_letters">
       <div class="w-1/2">
-        <label for="letters">{{ t('Letter') }}<span class="text-red-800">*</span></label>
-        <v-select id="letters" name="letters" :options="letters" label="name" v-model="letter"
-                  :placeholder="t('Select Letter')"
-                  class="selection-list bg-white"></v-select>
+        <span><i class="fa fa-spinner fa-spin fa-2x "></i></span>
+      </div>
+    </div>
+    <div class="flex" v-show="letters.length && !load_letters">
+      <div class="w-1/2">
+        <label for="letter">{{ t('Letter') }}<span class="text-red-800">*</span></label>
+        <select name="letter" id="letter" class="select2 letter-select">
+          <option value="">{{ t('Select Letter') }}</option>
+          <option v-for="letter in letters" :value="letter.id">{{ letter.name }}</option>
+
+        </select>
       </div>
     </div>
 
-    <div class="flex pt-10" v-if="fields.length">
+    <div class="flex pt-10" v-show="fields.length">
       <div class="w-1/2">
         <div v-for="(item, key) in fields">
           <component :is="item.type" :label="t(item.name) + '*'"
@@ -89,7 +88,7 @@
       <div class="w-1/2">
         <div class="form-group">
           <label>
-            {{ t('Description') }} <span class="text-red-800">*</span>
+            {{ t('Description') }}
           </label>
 
           <editor trigger="#" v-model="description"
@@ -108,8 +107,6 @@
 
           ></editor>
         </div>
-        <p class="text-red-600 font-bold" v-if="descriptionErrorMessage!==''">{{ descriptionErrorMessage }}</p>
-
       </div>
     </div>
 
@@ -139,12 +136,11 @@ import Editor from '@tinymce/tinymce-vue'
 import Date from "../ticket/custom_fields/Date";
 import TextField from "../ticket/custom_fields/TextField";
 import SelectField from "../ticket/custom_fields/SelectField";
-import fields from "../Report/fields";
 import _ from "lodash";
 
 export default {
   name: "LetterForm",
-  props: ['item', 'groups', 'priorities', 'subject', 'translations', 'language','isTechnician'],
+  props: ['item', 'groups', 'priorities', 'subject', 'translations', 'language', 'isTechnician'],
   components: {vSelect, Attachments, Editor, Date, TextField, SelectField},
   data() {
     return {
@@ -156,125 +152,88 @@ export default {
       letter_id: null,
       is_stamped: false,
       description: '',
-      user_id:'',
+      user_id: '',
+      load_letters: false,
       //
-      users:[],
-      subgroups: [],
+      users: [],
       letters: [],
       attachments: [],
       fields: [],
       custom_fields: [],
-      descriptionErrorMessage: '',
     }
   },
   created() {
     this.groups = this.groups.map((group) => {
       return {id: group.id, name: this.t(group.name)}
     });
-
-    this.loadUsers();
+    this.loadUsers()
   },
-  mounted(){
-    $('.select2').on('select2:selecting', (e)=>{
-      this.user_id = e.params.args.data['id'];
-    });
-  },
-  watch: {
-    group() {
-      if (this.group) {
-        this.getSubGroups();
-        this.group_id = this.group.id;
-        this.letters = [];
-        this.fields = [];
-      } else {
-        this.subgroups = [];
-        this.letters = [];
-        this.group_id = null;
-        this.subgroup_id = null;
-        this.letter_id = null;
-      }
-      this.letter = '';
-    },
-    subgroup() {
-      if (this.subgroup) {
-        this.getLetters();
-        this.subgroup_id = this.subgroup.id;
-        this.letters = [];
-        this.fields = [];
-
-      } else {
-        this.letters = [];
-        this.letter = this.subgroup_id = this.letter_id = null;
-      }
-      this.letter = '';
-    },
-    letter() {
-      this.fields = [];
-      if (this.letter != null) {
-        this.letter_id = this.letter.id;
-        this.getFields();
-      }
-    }
+  mounted() {
+    this.prepareDropList()
   },
 
   methods: {
+    searchForUser(text) {
+      if (text.length > 3) {
+        this.loadUsers(text);
+      }
+    },
     t(word) {
       let translation = _.find(this.translations, {'word': word});
 
       if (translation) {
         return translation.translation;
       }
-
       return word;
     },
-    loadUsers(){
-      axios.get(`/list/employees/`).then((response) => {
-        this.users = response.data;
+
+    prepareDropList() {
+      $('.user-select').on('select2:selecting', (e) => {
+        this.user_id = e.params.args.data['id'];
+      });
+      $('.group-select').on('select2:selecting', (e) => {
+        this.fields = []
+
+        this.group = e.params.args.data;
+        this.group_id = this.group.id;
+
+        this.getLetters();
+      });
+
+      $('.letter-select').on('select2:selecting', (e) => {
+        this.letter = e.params.args.data;
+        this.letter_id = e.params.args.data['id'];
+        this.getFields();
       });
     },
-    getSubGroups() {
-      this.subgroup = null;
-      this.subgroups = [];
-      this.letters = [];
 
-
-      axios.get(`/letters/list/subgroups/${this.group.id}`).then((response) => {
-        if (!response.data.length) {
-          this.getLetters();
-        } else {
-          this.subgroups = response.data;
-          this.subgroups = this.subgroups.map((subgroup) => {
-            return {id: subgroup.id, name: t(subgroup.name)}
-          });
-        }
-
+    loadUsers(searchText = '') {
+      axios.get(`/list/employees?search=${searchText}`).then((response) => {
+        this.users = response.data;
       });
     },
 
     getLetters() {
-      this.group_id = this.subgroups.length ? this.subgroup.id : this.group.id;
-
+      this.load_letters = true;
+      this.letters = [];
       axios.get(`/letters/list/letters?group_id=${this.group_id}`).then((response) => {
         this.letters = response.data;
         this.letters = this.letters.map((letter) => {
           return {id: letter.id, name: this.t(letter.name)}
         });
+        this.load_letters = false;
       });
     },
 
     getFields() {
+      this.fields = [];
+
       axios.get(`/letters/list/letter_fields/${this.letter.id}`).then((response) => {
         this.fields = response.data;
       });
 
     },
     createLetter() {
-      this.descriptionErrorMessage = '';
-      if (!this.description) {
-        this.descriptionErrorMessage = this.t("Description is required");
-        return;
-      }
-
       var form = new FormData;
       form.append('_token', $('meta[name="csrf-token"]').attr('content'));
 
@@ -292,11 +251,11 @@ export default {
         form.append(`fields[${f}][value]`, fields[f].value);
       }
 
-      form.append('description', this.description);
+      form.append('description', this.description ? this.description : '' );
       form.append('subject', this.subject);
       form.append('item_id', this.item.id);
       form.append('group_id', this.group.id);
-      form.append('requester_id', this.user_id);
+      form.append('requester_id', this.user_id.id);
 
       if (this.subgroup) {
         form.append('subgroup_id', this.subgroup.id);
@@ -327,24 +286,17 @@ export default {
       }
     },
     canSubmit() {
-      let canSubmit = false;
+      let canSubmit = true;
 
-      if (this.description !== "") {
-        canSubmit = true;
-      }
-
-      if (this.group) {
-        canSubmit = true;
-      }
-
-      if (this.subgroups.length && !this.subgroup) {
+      if (!this.group) {
         canSubmit = false;
       }
 
-      if (!this.letter) {
+      if (!this.letter_id) {
         canSubmit = false;
       }
-      if (this.fields && this.fields.length) {
+
+      if (this.fields.length) {
         this.fields.forEach((field) => {
           if (!field.value) {
             canSubmit = false;
@@ -365,8 +317,5 @@ export default {
 </script>
 
 <style scoped>
-.selection-list {
-  /*width: 550px  !important;*/
-}
 
 </style>

@@ -136,8 +136,18 @@ class ListController extends Controller
 
     function employees()
     {
-        return User::active()->employees()
-            ->orderBy('name')
+        $search = request('search');
+
+        $q = User::query();
+        $q->active()->employees();
+
+        if ($search != '') {
+            $q->where('employee_id', 'like', '%'.$search.'%');
+        }else{
+            $q->take(1000);
+        }
+
+        return $q->orderBy('name')
             ->get(['name', 'id', 'employee_id']);
     }
 
