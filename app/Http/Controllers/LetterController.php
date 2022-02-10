@@ -65,7 +65,7 @@ class LetterController extends Controller
 
         $ticket = Ticket::create([
             'subject' => $request->subject,
-            'description' => $request->description,
+            'description' => $request->description ?? '',
             'category_id' => $item->subcategory->category->id,
             'subcategory_id' => $item->subcategory->id,
             'item_id' => $item->id,
