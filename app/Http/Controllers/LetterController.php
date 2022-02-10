@@ -62,14 +62,13 @@ class LetterController extends Controller
         $item = Item::find($request->item_id);
 
         Ticket::flushEventListeners();
-
         $ticket = Ticket::create([
             'subject' => $request->subject,
             'description' => $request->description ?? '',
             'category_id' => $item->subcategory->category->id,
             'subcategory_id' => $item->subcategory->id,
             'item_id' => $item->id,
-            'requester_id' => $request->requester_id == '' ? auth()->id() : $request->requester_id,
+            'requester_id' => in_array($request->requester_id, ['', 'undefined']) ? auth()->id() : $request->requester_id,
             'creator_id' => auth()->id(),
             'group_id' => config('letters.group'),
             'status_id' => config('letters.new_letter_status'),
@@ -118,7 +117,7 @@ class LetterController extends Controller
         $user = $sapApi->sapUser->getEmployeeSapInformation();
         $this->userActive = $user['is_active'];
 
-        if(!$user['is_active']) {
+        if (!$user['is_active']) {
             return false;
         }
 
@@ -132,7 +131,7 @@ class LetterController extends Controller
         $letterTicket['stamp'] = '/stamps/' . LetterSponserMap::$systemBusinessUnits[$user['sponsor_id']] . '/image.jpg';
         $letterTicket['signature'] = User::find(1309)->signature;
 
-        return  view("letters.template.${view}", compact('user', 'letterTicket'));
+        return view("letters.template.${view}", compact('user', 'letterTicket'));
     }
 
 
@@ -140,7 +139,7 @@ class LetterController extends Controller
     {
         $content = $this->buildView($ticket);
 
-        if(!$content){
+        if (!$content) {
             return view('letters.contact_hr');
         }
         $filepath = storage_path('app/letter.html');
@@ -224,6 +223,6 @@ class LetterController extends Controller
             return;
         }
         $view = $this->buildView($ticketDecryptedID)->render();
-        return view('letters.verification.index', compact('ticketDecryptedID','view'));
+        return view('letters.verification.index', compact('ticketDecryptedID', 'view'));
     }
 }
