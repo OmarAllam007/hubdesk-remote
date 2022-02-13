@@ -24,7 +24,7 @@
                           :options="users" label="employee_id"
                           v-model="user_id" id="employee_id" name="employee_id"
                           placeholder="Select user"
-                          class="selection-list"></v-select>
+                          class="selection-list" @search="searchForUser"></v-select>
                     </div>
                   </div>
                 </div>
@@ -139,11 +139,14 @@ export default {
     closeModal() {
       this.$emit('close-to-letter-modal');
     },
-    loadUsers() {
-      this.loading = true
-      axios.get(`/list/employees/`).then((response) => {
+    searchForUser(text){
+      if (text.length > 3) {
+        this.loadUsers(text);
+      }
+    },
+    loadUsers(searchText = '') {
+      axios.get(`/list/employees?search=${searchText}`).then((response) => {
         this.users = response.data;
-        this.loading = false
       });
     },
 
