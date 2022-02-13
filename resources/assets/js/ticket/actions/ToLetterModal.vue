@@ -17,7 +17,7 @@
                   <div class="w-1/2">
                     <div class="form-group form-group-sm">
                       <label>
-                        Requester
+                        {{ $root.t('Requester') }}
                       </label>
                       <p v-if="user_id != ''"> {{ user_id.name }} </p>
                       <v-select
@@ -32,7 +32,7 @@
                   <div class="w-1/2">
                     <div class="form-group form-group-sm">
                       <label>
-                        Type
+                        {{ $root.t('Type') }}
                       </label>
                       <v-select
                           :options="types" label="name"
@@ -47,7 +47,7 @@
                   <div class="w-1/2">
                     <div class="form-group form-group-sm">
                       <label>
-                        Letters
+                        {{ $root.t('Letters') }}
                       </label>
                       <v-select
                           :options="letters" label="name"
@@ -112,10 +112,11 @@ import 'vue-select/dist/vue-select.css';
 import Date from "../custom_fields/Date";
 import TextField from "../custom_fields/TextField";
 import SelectField from "../custom_fields/SelectField";
+import _ from "lodash";
 
 export default {
   name: "ToLetterModal",
-  props: ["isToLetterOpened"],
+  props: ["isToLetterOpened",'translations'],
   components: {vSelect, Date, TextField, SelectField},
   data() {
     return {
@@ -169,6 +170,14 @@ export default {
         this.fields = response.data;
       });
 
+    },
+    t(word) {
+      let translation = _.find(this.translations, {'word': word});
+
+      if (translation) {
+        return translation.translation;
+      }
+      return word;
     },
     convert() {
       var form = new FormData;
