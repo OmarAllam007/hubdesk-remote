@@ -176,6 +176,7 @@ export default {
     searchForUser(text) {
       if (text.length > 3) {
         this.loadUsers(text);
+
       }
     },
     t(word) {
