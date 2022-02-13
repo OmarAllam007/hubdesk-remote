@@ -8,7 +8,7 @@
 
       <select class="px-4 py-3 rounded-xl  border select2 " @change="$emit('input', $event.target.value)">
         <option v-for="(text, value) in options" :value="text">
-          {{ text }}
+          {{ $parent.t(text) }}
         </option>
       </select>
     </div>
