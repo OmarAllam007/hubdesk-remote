@@ -20,9 +20,9 @@
             margin: 0 auto;
             background-repeat: no-repeat;
             @if(\App\LetterTicket::isApprovedTicket($letterTicket->ticket))
-                                              background-image: url({{url("/storage/headers/{$letterTicket->header}/image.jpg")}}) !important;
+                                               background-image: url({{url("/storage/headers/{$letterTicket->header}/image.jpg")}}) !important;
             @endif
-                                              background-size: contain !important;
+                                               background-size: contain !important;
         }
 
 
@@ -40,8 +40,9 @@
     <div class="">
         <page size="A4" class="">
             <div class="pt-32"></div>
-            <div class="pt-5  "></div>
-            <div class="flex justify-end pt-20 px-10 ">
+            <div class="pt-10   "></div>
+            <div class="pt-10  "></div>
+            <div class="flex justify-end pt-32  px-10 ">
                 <p class="text-gray-900 text-xl  pt-5 "> الموافق : {{$letterTicket->last_approval_date}}
                     م</p>
             </div>
@@ -219,10 +220,10 @@
                     @endif
 
                     @if(isset($user['allowances']['fixed_bonus']))
-                            <div class="w-1/2">
-                                <p class="text-2xl  " dir="rtl">
-                         بدل  ثابت  ( {{$user['allowances']['fixed_bonus']}} )
-                                </p></div>
+                        <div class="w-1/2">
+                            <p class="text-2xl  " dir="rtl">
+                                بدل ثابت ( {{$user['allowances']['fixed_bonus']}} )
+                            </p></div>
                     @endif
 
                 </div>
