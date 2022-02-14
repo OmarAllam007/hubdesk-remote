@@ -40,12 +40,12 @@
     <div class="">
         <page size="A4" class="">
             <div class="pt-32"></div>
-            <div class="pt-10 "></div>
+            <div class="pt-5  "></div>
             <div class="flex justify-end pt-20 px-10 ">
-                <p class="text-gray-900 text-xl  pt-10"> الموافق : {{$letterTicket->last_approval_date}}
+                <p class="text-gray-900 text-xl  pt-5 "> الموافق : {{$letterTicket->last_approval_date}}
                     م</p>
             </div>
-            <div class="flex  pt-10 px-10" dir="rtl">
+            <div class="flex  pt-5  px-10" dir="rtl">
                 <p class="text-2xl  ">
                     @php
                         $IbanField = $letterTicket->ticket->fields->first() ? $letterTicket->ticket->fields->first()->value : '';
@@ -56,7 +56,7 @@
                 <p class="text-2xl    ">المحترمين</p>
             </div>
 
-            <div class="flex justify-end pt-10 px-10 ">
+            <div class="flex justify-end pt-5  px-10 ">
                 <p class="text-2xl  " dir="rtl">
                     تحيه طيبه وبعد ،،،
                 </p>
