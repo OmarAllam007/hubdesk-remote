@@ -1,33 +1,5 @@
 <?php
-
-$phpWord = new \PhpOffice\PhpWord\PhpWord();
-
-
-$section = $phpWord->addSection(['marginTop' => 2400,
-    'marginLeft' => 200, 'marginRight' => 400, 'marginBottom' => 400]);
-$section->addText(
-    'HD: ' . $letterTicket->ticket->id
-);
-$section->addText('', [], []);
-$section->addText(
-    'ID: ' . $letterTicket->ticket->requester->employee_id
-);
-
-$section->addText('', [], []);
-$section->addText(
-    $letterTicket->ticket->requester->business_unit->name
-);
-
-$headerStyle = ['bold' => true, "size" => 18, 'underline' => 'single'];
-$titleStyle = ["size" => 14, 'rtl' => true];
-$rightStyle = ['align' => 'right'];
-
-
-$section->addText("التاريخ : " . $letterTicket->last_approval_date . " م", [], $rightStyle);
-$section->addText('', [], []);
-$section->addText('', [], []);
-
-
+//
 $to = $letterTicket->ticket->fields->first() ? $letterTicket->ticket->fields->first()->value : '';
 $IstiqdamTo = $letterTicket->ticket->fields->last() ? $letterTicket->ticket->fields->last()->value : '';
 
@@ -40,8 +12,36 @@ $region_ar = \App\Translation::where('word','like',$regions[$to])
 $to_ar = \App\Translation::where('word','like',$IstiqdamTo)
     ->where('language','ar')->first();
 
+$phpWord = new \PhpOffice\PhpWord\PhpWord();
+
+
+$titleStyle = ["size" => 14, 'rtl' => true];
+$rightStyle = ['align' => 'right'];
+
+$section = $phpWord->addSection(['marginTop' => 2400,
+    'marginLeft' => 200, 'marginRight' => 400, 'marginBottom' => 400]);
+$section->addText(
+    'HD: ' . $letterTicket->ticket->id
+);
 $section->addText('', [], []);
-$section->addText("شئون الإستقدام بـ / $to                المحترمين", $titleStyle, $rightStyle);
+$section->addText(
+    'ID: ' . $letterTicket->ticket->requester->employee_id
+);
+//
+$section->addText('', [], []);
+$section->addText(
+    str_replace('&', 'and', $letterTicket->ticket->requester->business_unit->name));
+
+//$titleStyle = ["size" => 14, 'rtl' => true];
+//$rightStyle = ['align' => 'right'];
+//
+$section->addText('', [], []);
+$section->addText('', [], []);
+
+
+$section->addText('', [], []);
+$section->addText("شئون الإستقدام بـ / {$to_ar->translation}       المحترمين", [], $rightStyle);
+
 $section->addText('', [], []);
 $section->addText('', [], []);
 $section->addText(' ،،، السلام عليكم ورحمة الله وبركاته ،،، وبعد', ['size' => 14], $rightStyle);
@@ -59,13 +59,20 @@ $section->addText('ولكم جزيل الشكر ،،،', ['bold' => true, 'size'
 $section->addText('', [], ['spacing' => 1000]);
 $section->addText($user['sponsor_company'], [], []);
 $section->addText('', [], ['spacing' => 150]);
-//$section->addText(config('letters.signature_name'), [], []);
+$section->addText(config('letters.signature_name'), [], []);
+///
+\PhpOffice\PhpWord\Settings::setCompatibility(false);
 
 
 $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
 $temp_file = tempnam(sys_get_temp_dir(), 'PHPWord');
-
+ob_clean();
 $objWriter->save($temp_file);
-header("Content-Disposition: attachment; filename=myFile.docx");
+header('Content-Description: File Transfer');
+header('Content-Type: application/octet-stream');
+header("Content-Disposition: attachment; filename=issueVisa{$user['iqama_number']}.docx");
+header('Content-Transfer-Encoding: binary');
+header('Expires: 0');
+header('Content-Length: ' . filesize($temp_file));
 readfile($temp_file); // or echo file_get_contents($temp_file);
 unlink($temp_file);
