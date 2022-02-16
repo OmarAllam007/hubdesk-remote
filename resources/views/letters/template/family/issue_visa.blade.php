@@ -103,23 +103,8 @@
                 </p>
             </div>
 
-            <div class="flex pt-5   px-10">
-                <div class="flex-col  w-1/2">
-                    <p class="text-4xl text-left" dir="rtl">
-                        {{$user['sponsor_company']}}
-
-                    </p>
-                    <div class="w-8/12   mx-3 ">
-                        <img src="{{url('/storage'.$letterTicket->stamp)}}" class="w" alt="">
-                    </div>
-                </div>
-                <div class="flex w-1/2 justify-end">
-                    <div class="w-7/12   mx-2 text-right">
-                        {{--                        <img src="{{url('/storage'.$letterTicket->stamp)}}" class="w" alt="">--}}
-                    </div>
-                </div>
-            </div>
-
+            @include('letters._footer')
+            @include('letters.template._footer_query')
 
             <div class="flex justify-center">
 
