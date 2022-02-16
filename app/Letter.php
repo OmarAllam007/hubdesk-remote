@@ -12,4 +12,8 @@ class Letter extends Model
     {
         return $this->belongsTo(LetterGroup::class,'letter_group_id');
     }
+
+    function fields(){
+        return $this->hasMany(LetterField::class);
+    }
 }

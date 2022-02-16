@@ -20,9 +20,9 @@
             margin: 0 auto;
             background-repeat: no-repeat;
             @if(\App\LetterTicket::isApprovedTicket($letterTicket->ticket))
-                  background-image: url({{url("/storage/headers/{$letterTicket->header}/image.jpg")}}) !important;
+                    background-image: url({{url("/storage/headers/{$letterTicket->header}/image.jpg")}}) !important;
             @endif
-                  background-size: contain !important;
+                    background-size: contain !important;
         }
 
 
@@ -50,14 +50,19 @@
                 $to = $letterTicket->ticket->fields->first() ? $letterTicket->ticket->fields->first()->value : '';
                 $IstiqdamTo = $letterTicket->ticket->fields->last() ? $letterTicket->ticket->fields->last()->value : '';
 
-            $regions = ["","Eastern province region" => 'الســادة  / ادارة شؤون الاستقدام بالمنطقة الشرقية '
-            ,"Riyadh region" => 'الســادة ادارة شؤون الاستقدام بمنطقة الرياض ' ,"Mecca region"=>'الســادة ادارة شؤون الاستقدام بمنطقة مكة المكرمة'];
+            $regions = $letterTicket->letter->fields->where('name','like','Region')->first();
+            $regions = array_combine($regions->options,$regions->options);
+
+            $region_ar = \App\Translation::where('word','like',$regions[$to])
+            ->where('language','ar')->first();
+
+            $to_ar = \App\Translation::where('word','like',$IstiqdamTo)
+            ->where('language','ar')->first();
             @endphp
 
             <div class="flex  pt-20 px-10" dir="rtl">
                 <p class="text-4xl">
-                    {{--                    change as per Name --}}
-                    {{$regions[$to]}}
+                    إدارة شئون الإستقدام بـ{{$region_ar->translation}}
                 </p>
                 <p class="px-48 "></p>
                 {{--                <p class="px-10   "></p>--}}
@@ -83,7 +88,8 @@
                 </p>
 
                 <p dir="rtl" class="text-3xl">
-                    يرغب في استقدام / {{$IstiqdamTo}} وحيث لا مانع لدينا من ذلك حيث ان العلاج والسكن مؤمن للمذكور ،
+                    يرغب في استقدام / {{$to_ar->translation}} وحيث لا مانع لدينا من ذلك حيث ان العلاج والسكن مؤمن
+                    للمذكور ،
                     عليه نأمل الموافقة على طلب موظفنا كما نصادق على صحة المعلومات الموضحة بخطابنا هذا ، وهذا إقرار منا
                     بذلك .
 
@@ -109,7 +115,7 @@
                 </div>
                 <div class="flex w-1/2 justify-end">
                     <div class="w-7/12   mx-2 text-right">
-{{--                        <img src="{{url('/storage'.$letterTicket->stamp)}}" class="w" alt="">--}}
+                        {{--                        <img src="{{url('/storage'.$letterTicket->stamp)}}" class="w" alt="">--}}
                     </div>
                 </div>
             </div>
