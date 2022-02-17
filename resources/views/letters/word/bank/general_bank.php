@@ -58,10 +58,4 @@ $section->addText('', [], ['spacing' => 150]);
 $section->addText(config('letters.signature_name'), [], []);
 
 
-$objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
-$temp_file = tempnam(sys_get_temp_dir(), 'PHPWord');
-
-$objWriter->save($temp_file);
-header("Content-Disposition: attachment; filename=myFile.docx");
-readfile($temp_file); // or echo file_get_contents($temp_file);
-unlink($temp_file);
+require_once  resource_path().'/views/letters/word/_footer.php';
