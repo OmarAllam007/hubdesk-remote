@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class InternshipModel extends Model
 {
     static $en_cities = [
-        'No preference', 'Arar', 'Dubai', 'Dammam', 'Hail', 'Hafer Al-Baten', 'Hofuf',
+        'No preference', 'Arar', 'Dammam', 'Hail', 'Hafer Al-Baten', 'Hofuf',
         'Al Hasa', 'Al-Jubail', 'Jeddah', 'Jazan', 'Al-Khobar',
         'Khamis', 'Al-Madinah', 'Al-Nariyah', 'Al-OYEON', 'Qatif',
         'Al-Riyadh', 'Sakaka', 'Summan'
     ];
 
     static $ar_cities = [
-        'أي مدينة', 'عرعر', 'دبي', 'دبي', 'حائل', 'حفر الباطن', 'الهفوف',
+        'أي مدينة', 'عرعر', 'حائل', 'حفر الباطن', 'الهفوف',
         'الأحساء', 'الجبيل', 'جدة', 'جيزان', 'الخبر',
         'خميس مشيط', 'المدينة المنورة', 'النعيرية', 'العيون', 'القطيف',
         'الرياض', 'سكاكا'

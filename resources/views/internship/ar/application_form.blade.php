@@ -64,5 +64,23 @@
         document.getElementsByName("end_date")[0].setAttribute('min', today);
         document.getElementsByName("start_date")[0].setAttribute('min', today);
         document.getElementsByName("deadline")[0].setAttribute('min', today);
+
+        $('#citySelection').change(function () {
+            if (this.value == 'Other') {
+                $('#other_city').removeClass('hidden');
+            }else{
+                $('#other_city').addClass('hidden');
+
+            }
+        })
+
+        $('#academicMajor').change(function () {
+            if (this.value == 'Other') {
+                $('#other_degree_name').removeClass('hidden');
+            }else{
+                $('#other_degree_name').addClass('hidden');
+
+            }
+        })
     </script>
 @endsection

@@ -14,6 +14,8 @@ class Language extends Model
     const URDU = 'ur';
     const NEPALI = 'nep';
 
+    const AR = 1;
+    const EN = 2;
 
     function translations()
     {

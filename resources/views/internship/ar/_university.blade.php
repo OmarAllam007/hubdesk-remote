@@ -54,7 +54,7 @@
         <label class="w-full ">
             التخصص
             <select type="text" name="discipline" value="{{old('discipline')}}" class="w-full bg-gray-100  border-2
-        rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-viola">
+        rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-viola" id="academicMajor">
                 <option value="">اختر التخصص</option>
                 <option value="Civil" @if(old('discipline') == 'Civil' ) selected @endif>هندسة مدنية</option>
                 <option value="Architecture" @if(old('discipline') == 'Architecture' ) selected @endif>هندسة معمارية</option>
@@ -65,6 +65,19 @@
             </select>
         </label>
         @error('discipline')
+        <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+</div>
+
+<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 pt-5 hidden" id="other_degree_name">
+    <div class="w-full ">
+        <label class="w-full">
+            التخصص
+            <input type="text" name="other_degree_name" value="{{old('other_degree_name')}}" class="w-full bg-gray-100  appearance-none
+        rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-viola">
+        </label>
+        @error('other_degree_name')
         <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
