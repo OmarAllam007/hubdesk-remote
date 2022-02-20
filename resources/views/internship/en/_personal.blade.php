@@ -79,8 +79,8 @@
     <div class="w-full">
         <label class="w-full ">
             {{t('City of Residence')}}
-            <select type="text" name="city"  class="w-full bg-gray-200
-        rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-viola">
+            <select type="text" name="city" id="citySelection"  class="w-full bg-gray-200
+        rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-viola ">
                 <option value="">Select City</option>
                 <option value="Riyadh" @if(old('city') == 'Riyadh' ) selected @endif>Riyadh</option>
                 <option value="Jeddah" @if(old('city') == 'Jeddah' ) selected @endif>Jeddah</option>
@@ -93,6 +93,18 @@
             </select>
         </label>
         @error('city')
+        <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+</div>
+<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 pt-5 hidden" id="other_city">
+    <div class="w-full ">
+        <label class="w-full ">
+            {{t('City Name')}}
+            <input type="text" name="other_city" value="{{old('other_city')}}" class="w-full bg-gray-200 appearance-none
+        rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-viola">
+        </label>
+        @error('other_city')
         <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
@@ -118,6 +130,11 @@
             {{t('Work Preference')}}
             <div class="mt-2">
                 <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="work_preference" value="4" checked>
+                    <span class="ml-2">No Preference (will be happy to take whatever is available)</span>
+                </label>
+
+                <label class="inline-flex items-center">
                     <input type="radio" class="form-radio" name="work_preference" value="1">
                     <span class="ml-2">Office-based</span>
                 </label>
@@ -131,10 +148,7 @@
                     <span class="ml-2">Remote Work (work from home)</span>
                 </label>
 
-                <label class="inline-flex items-center">
-                    <input type="radio" class="form-radio" name="work_preference" value="4">
-                    <span class="ml-2">No Preference (will be happy to take whatever is available)</span>
-                </label>
+
             </div>
         </label>
         @error('interested_in')

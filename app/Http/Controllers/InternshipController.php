@@ -8,11 +8,15 @@ use App\Http\Requests\InternshipRequest;
 use App\InternshipModel;
 use App\Jobs\ApplyBusinessRules;
 use App\Jobs\ApplySLA;
+use App\Language;
 use App\Mail\TrainingTicketCreated;
 use App\Mail\TrainingTicketFormCreated;
 use App\Subcategory;
 use App\Ticket;
+use GuzzleHttp\Cookie\SetCookie;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Cookie;
 
 class InternshipController extends Controller
 {
@@ -26,11 +30,11 @@ class InternshipController extends Controller
     function ar_index()
     {
         return view('internship.ar.application_form');
+
     }
 
     function apply(InternshipRequest $request)
     {
-
         Ticket::flushEventListeners();
 
         $category = Category::find(config('internship.category_id'));
@@ -63,18 +67,21 @@ class InternshipController extends Controller
 
     private function createTicketFields(Ticket $ticket, InternshipRequest $request)
     {
+        $city = $request['city'] == 'Other' ? $request['other_city'] : $request['city'];
+        $discipline = $request['discipline'] == 'Other' ? $request['other_degree_name'] : $request['discipline'];
+
         $ticket->fields()->create(['name' => 'Full Name', 'value' => $request['full_name']]);
         $ticket->fields()->create(['name' => 'Id Number', 'value' => $request['id_number']]);
         $ticket->fields()->create(['name' => 'Gender', 'value' => $request['gender'] == 1 ? 'Male' : 'Female']);
         $ticket->fields()->create(['name' => 'Phone', 'value' => $request['phone']]);
         $ticket->fields()->create(['name' => 'Email', 'value' => $request['email']]);
-        $ticket->fields()->create(['name' => 'City of Residence', 'value' => $request['city']]);
+        $ticket->fields()->create(['name' => 'City of Residence', 'value' => $city]);
         $ticket->fields()->create(['name' => 'Current Address', 'value' => $request['address']]);
         $ticket->fields()->create(['name' => 'Work Preference', 'value' => InternshipModel::$workPreference[$request['work_preference']]]);
 
         $ticket->fields()->create(['name' => 'College / University Name', 'value' => $request['university_name']]);
         $ticket->fields()->create(['name' => 'Degree Name (Title)', 'value' => $request['degree_name']]);
-        $ticket->fields()->create(['name' => 'Academic Major', 'value' => $request['discipline']]);
+        $ticket->fields()->create(['name' => 'Academic Major', 'value' => $discipline]);
         $ticket->fields()->create(['name' => 'Expected Year of Graduation', 'value' => $request['expected_graduation_year']]);
 
 //        $ticket->fields()->create(['name' => 'Summer or Co-op?', 'value' => implode(",", $request['type'])]);

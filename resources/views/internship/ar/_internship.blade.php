@@ -84,7 +84,7 @@
         <label class="w-full ">
             {{t('الموقع/المدينة المفضله للتدريب')}}
             <select type="text" name="pref_city[]" value="{{old('pref_city[]')}}" class="w-full bg-gray-100  border-2
-        rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-viola" multiple size="20">
+        rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-viola" multiple size="5">
                 <option value="">اختر المدينة</option>
                 @foreach(\App\InternshipModel::$ar_cities as $city)
                     <option value="{{$city}}" @if(old('pref_city') == $city ) selected @endif>{{$city}}</option>
@@ -102,7 +102,7 @@
         <label class="w-full ">
             {{t('الشركة المرغوبة للتدريب')}}
             <select type="text" name="pref_company[]" value="{{old('pref_company[]')}}" class="w-full bg-gray-100  border-2
-        rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-viola" multiple size="20">
+        rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-viola" multiple size="5">
                 <option value=""> اختر الشركة</option>
                 @foreach(\App\InternshipModel::$businessUnits as $businessUnit)
                     <option value="{{$businessUnit}}" @if(old('pref_company') == $businessUnit ) selected @endif >{{$businessUnit}}</option>
