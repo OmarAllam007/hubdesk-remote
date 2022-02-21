@@ -105,9 +105,10 @@ class LetterSponserMap
     static $en_sponsers = [
         "7014442615" => "Al-Kifah Holding Company - Contracting Branch",
         "7012767633" => "AlKifah Precast Concrete Factory",
-        "7004297979"=> "Madar Technology for Communications and Information Technology",
-        "7001454094"=> "Al-Kifah Holding",
-        "7004069782"=> "AlQuwa Center"
+        "7004297979" => "Madar Technology for Communications and Information Technology",
+        "7001454094" => "Al-Kifah Holding",
+        "7004069782" => "AlQuwa Center",
+        "7012965427" => "Al-Kifah Holding Company - Agricultural Project"
     ];
 
 //7013614099
