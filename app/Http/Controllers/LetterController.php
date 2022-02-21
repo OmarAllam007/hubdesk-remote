@@ -150,13 +150,17 @@ class LetterController extends Controller
         return response()->download($file, null, [], 'inline')->deleteFileAfterSend();
     }
 
-    function generateLetterDoc(Ticket $ticket)
+    function generateLetterDoc($ticket)
     {
-        $user = \App\User::where('employee_id', $ticket->requester->employee_id)->first();
+        $content = $this->buildView($ticket);
+
+        $ticketObj = Ticket::find($ticket);
+
+        $user = \App\User::where('employee_id', $ticketObj->requester->employee_id)->first();
         $sapApi = new \App\Helpers\SapApi($user);
         $sapApi->getUserInformation();
         $user = $sapApi->sapUser->getEmployeeSapInformation();
-        $letterTicket = \App\LetterTicket::where('ticket_id', $ticket->id)->first();
+        $letterTicket = \App\LetterTicket::where('ticket_id', $ticketObj->id)->first();
         $letterPath = str_replace('.', '/', $letterTicket->letter->view_path);
 
         require base_path("resources/views/letters/word/{$letterPath}.php");
