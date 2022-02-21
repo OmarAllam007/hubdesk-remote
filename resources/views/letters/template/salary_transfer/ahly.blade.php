@@ -6,8 +6,8 @@
     <div class="">
         <page size="A4" class="" style="font-size: 10pt;">
             <div class="pt-32"></div>
-            <div class="pt-10 "></div>
-            <div class="pt-10 "></div>
+            <div class="pt-32 "></div>
+            <div class="pt-10  "></div>
             <div class="pt-20 px-10 "></div>
             <div class="flex px-5 ">
                 <div class="w-1/2 border border-black p-2 ">
