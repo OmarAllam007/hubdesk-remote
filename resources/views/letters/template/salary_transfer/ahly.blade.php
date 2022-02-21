@@ -4,21 +4,58 @@
 <body>
 <div class="flex">
     <div class="">
-        <page size="A4" class="">
+        <page size="A4" class="" style="font-size: 10pt;">
             <div class="pt-32"></div>
             <div class="pt-10 "></div>
             <div class="pt-20 px-10 "></div>
-            <div class="flex px-10 ">
-                <div class="w-1/2 border border-black">
+            <div class="flex px-5 ">
+                <div class="w-1/2 border border-black p-2 ">
                     <div class="flex flex-col">
-                        <p></p>
+                        <p>Date : {{$letterTicket->last_approval_date}}</p>
+                        <p class="pt-2 ">M/S: NCB</p>
+                        <p class="pt-2 ">Subject: Salary Transfer Certificate</p>
+                        <p class="pt-2 ">This is to certify that the below mentioned is our full time employee and based on authorization from him we will transfer his net monthly salary along with all other allowances and commissions (if any) regularly on a monthly basis to: and shall also deposit his final settlement including End of Service Benefits and any other allowances in case of his resignation, retirement or termination due to any reason in to his bank account at: Bank: NCB
+                        </p>
+                        <p class="pt-5 ">A/C No: {{$user['iban']}}</p>
+
+                        <p class="pt-5 ">
+                            IBAN NO: {{$user['iban']}}
+                        </p>
+
+                        <p class="pt-5">Also the company certifies that it will not cancel this undertaking unless a written clearance from
+                            Bank is received, moreover, in case of resignation / retirement/ termination, the company will immediately inform NCB's collections Department at Al- Khaldiya, Jeddah P.O box 19396 Jeddah 21435 or by e-mail CollectionsSkipThacing@alahli.com about the date of deposit of final settlement of this employee. In this regard, the company is not responsible for any legal or financial commitment except what is mentioned above.
+                        </p>
+                        <p class="pt-5">
+                            Employee Name: {{$user['en_name']}}
+                        </p>
+                        <p class="pt-5">
+                            ID NO: {{$user['iqama_number']}}
+                        </p>
+                        <p class="pt-5">
+                            Hire Date: {{$user['date_of_join']}}
+                        </p>
+
+                        <p class="pt-5">
+                            Job description: {{$user['en_occupation']}}
+                        </p>
+
+                        <p class="pt-5">
+                            Net monthly Salary: {{$user['total_package']}} SR
+                        </p>
+                        <p class="pt-5">
+                            Salary Deposit Date: First day of every month.
+                        </p>
+
+                        <p class="text-center pt-5  ">
+                            {{\App\Helpers\LetterSponserMap::$en_sponsers[$user['sponsor_id']]}}
+                        </p>
                     </div>
                 </div>
                 <div class="w-1/2 border border-black p-2 " dir="rtl">
                     <p>التاريخ : {{$letterTicket->last_approval_date}}</p>
-                    <p class="pt-5 ">السادة: بنك الاهلي السعودي</p>
-                    <p class="pt-5 ">الموضوع: شهادة تحويل راتب</p>
-                    <p class="pt-5 ">نشهد بان المذكور ادناه يعمل لديها بنظام التفرغ الكامل وبناء على تفويض منه فسوف يتم تحويل صافي راتبه مع كامل الدبلات والعمولات الشهرية (إن وجدت) وجميع مستحقاته النهائية( شاملة مكافاة نهاية الخدمة واي بدلات بعد الاستقالة) في حالة الاستقالة او الفصل او التقاعد (لأي سبب كانت الاستقالة او الفصل او التقاعد)</p>
+                    <p class="pt-2  ">السادة: بنك الاهلي السعودي</p>
+                    <p class="pt-2  ">الموضوع: شهادة تحويل راتب</p>
+                    <p class="pt-2  ">نشهد بان المذكور ادناه يعمل لديها بنظام التفرغ الكامل وبناء على تفويض منه فسوف يتم تحويل صافي راتبه مع كامل الدبلات والعمولات الشهرية (إن وجدت) وجميع مستحقاته النهائية( شاملة مكافاة نهاية الخدمة واي بدلات بعد الاستقالة) في حالة الاستقالة او الفصل او التقاعد (لأي سبب كانت الاستقالة او الفصل او التقاعد)</p>
                     <p class="pt-5 ">الى حسابه المصرفي لدى:
                         البنك الاهلي التجاري
                     </p>
@@ -34,7 +71,7 @@
                         رقم الحساب الدولي: {{$user['iban']}}
                     </p>
                     <p class="pt-5">
-                        كما تلتزم الشركة بعدم السماح للموظف بالغاء او تعديل التفويض الا بموافقة البنك الخطية، هذا بالاضافة انه في حالة استقالة الموظف او فصله او تقاعده فان الشركة تلتزم باخطار البنك الاهلي السعودي (ادارة التحصيل بحي الخالدية بجدة) او بواسطة البريد الالكتروني
+                         كما تلتزم الشركة بعدم السماح للموظف بالغاء او تعديل التفويض الا بموافقة البنك الخطية، هذا بالاضافة انه في حالة استقالة الموظف او فصله او تقاعده فان الشركة تلتزم باخطار البنك الاهلي السعودي (ادارة التحصيل بحي الخالدية بجدة) او بواسطة البريد الالكتروني CollectionsSkipThacing@alahli.com
                         بتاريخ ايداع مستحقاته النهائية.
                     </p>
 
@@ -57,86 +94,16 @@
                     </p>
 
                     <p class="pt-5">
-                        صافي الراتب الشهري: {{$user['total_package']}}
+                        صافي الراتب الشهري: {{$user['total_package']}} ريال
                     </p>
                     <p class="pt-5">
                         تاريخ ايداعه: في اليوم الاول من كل شهر
                     </p>
+                    <p class="text-center pt-5   ">
+                        {{$user['sponsor_company']}}
+                    </p>
                 </div>
             </div>
-
-
-
-            <div class="flex justify-end pt-20 px-10 ">
-                <p class="text-gray-900 text-xl  pt-48">  التاريخ : {{$letterTicket->last_approval_date}}
-                    م</p>
-            </div>
-            <div class="flex  pt-10 px-10" dir="rtl">
-                <p class="text-3xl ">
-
-                    الســادة / {{$user['sponsor_company']}}
-                </p>
-                <p class="px-64 "></p>
-                <p class="text-3xl ">المحترمين</p>
-            </div>
-
-            <div class="flex justify-center pt-10 px-10 ">
-                <p class="text-3xl " dir="rtl">
-                    السلام عليكم ورحمة الله وبركاته ،،، وبعد ،،،
-                </p>
-            </div>
-
-            <div class="flex flex-col pt-5  px-10 ">
-                <p dir="rtl" class="text-3xl   leading-9 " style="line-height: 3rem">
-                    أفيد سيادتكم برغبتي الاستفادة من خدمات ({{$letterTicket->letter->ar_name}}) ، ولهذا أرغب بأن يتم صرف
-                    راتبي الشهري إلى
-                    ( {{$letterTicket->letter->ar_name}} ) حساب رقم ( {{$user['iban']}} ) كما أرجو في حال انتهاء خدماتي
-                    لأي
-                    سبب كان بأن
-                    يتم تحويل كافة مستحقاتي إلى حسابي المشار أعلاه وأن لا يتم الإجراء إلا بخطاب موجه لكم من البنك
-                    المذكور .
-                </p>
-            </div>
-
-            <div class="flex justify-end pt-5  px-10 ">
-                <p class="text-3xl " dir="rtl">
-                    الاسم:
-                </p>
-            </div>
-
-            <div class="flex justify-end   px-10 ">
-                <p class="text-3xl " dir="rtl">
-                    التوقيع:
-                </p>
-            </div>
-            <div class="pt-5"></div>
-            <hr>
-            <div class="flex  pt-10 px-10" dir="rtl">
-                <p class="text-3xl  ">
-                    @php
-                        $IbanField = $letterTicket->ticket->fields->first() ? $letterTicket->ticket->fields->first()->value : '';
-
-                    @endphp
-                    الســادة / {{$letterTicket->letter->ar_name }}
-                </p>
-                <p class="px-64 "></p>
-                <p class="text-3xl  ">المحترمين</p>
-            </div>
-            <div class="flex justify-center pt-5  px-10 ">
-                <p class="text-3xl  " dir="rtl">
-                    السلام عليكم ورحمة الله وبركاته ،،، وبعد ،،،
-                </p>
-            </div>
-            <div class="flex flex-col pt-5  px-10 ">
-                <p dir="rtl" class="text-3xl leading-9 " style="line-height: 3rem">
-                    الموضوع رواتب ومستحقات موظفنا السيد : {{$user['ar_name']}} حيث أن المذكور
-                    ({{$user['ar_nationality']}}) الجنسية
-                    يعمل لدينا قد أخطرنا بأنه يرغب بحصوله على تمويل شخصي منكم ويطيب لنا في ذلك الصدد أن نقوم بتحويل
-                    رواتبه الشهرية إليكم في تواريخ استحقاقها وأن نقوم كذلك في حال انتهاء خدماته نتعهد بإبلاغكم خطياً ومن
-                    ثم تحويل جميع مستحقاته النظامية إليكم وتستمر تعهداتنا المدرجة هنا نافذة وسارية المفعول لحين انتهاء
-                    خدمة المذكور لدينا واستلامنا أشعار خطي منكم بإعفائنا من التزاماتنا الواردة أعلاه علماً بأنه مازال
-                    يعمل لدينا حتى تاريخه .
-                </p></div>
 
             @include('letters._footer')
             @include('letters.template._footer_query')

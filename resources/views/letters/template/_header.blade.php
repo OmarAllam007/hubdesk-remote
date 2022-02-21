@@ -14,7 +14,7 @@
         }
 
         page {
-            font-size: 12pt;
+
             display: block;
             margin: 0 auto;
             background-repeat: no-repeat;
