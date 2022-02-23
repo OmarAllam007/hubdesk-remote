@@ -64,8 +64,7 @@ $table->addRow()->addCell(100 * 50, ['gridSpan' => 2])
     ->addText('تفاصيل البدلات', [], ['align' => 'right']);
 
 $table->addRow()->addCell(100 * 50, ['gridSpan' => 2])
-    ->addText("بدل سكن {$user['allowances']['housing_allowance']} ريال" .
-        "، بدل نقل  {$user['allowances']['transportation_allowance']} ريال", [], ['align' => 'right', 'bidi' => false]);
+    ->addText("{$user['allowances_str']}" , [], ['align' => 'right', 'bidi' => false]);
 
 $section->addText('', [], []);
 $section->addText('', [], []);

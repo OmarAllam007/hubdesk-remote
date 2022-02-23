@@ -20,9 +20,9 @@
             margin: 0 auto;
             background-repeat: no-repeat;
             @if(\App\LetterTicket::isApprovedTicket($letterTicket->ticket))
-                   background-image: url({{url("/storage/headers/{$letterTicket->header}/image.jpg")}}) !important;
+                    background-image: url({{url("/storage/headers/{$letterTicket->header}/image.jpg")}}) !important;
             @endif
-                   background-size: contain !important;
+                    background-size: contain !important;
         }
 
 
@@ -99,7 +99,7 @@
                     يعمل لدينا من تاريخ: {{$user['date_of_join']}} م بوظيفة: {{$user['occupation']}} ويتقاضى
                     </span>
                     <span>
-                     {{$user['allowances_str']}}
+{{$user['allowances']['basic_salary']}} ريال -  {{$user['allowances_str']}}
                     </span>
 
                     <span>
