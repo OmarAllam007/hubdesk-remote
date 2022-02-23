@@ -60,8 +60,7 @@ class SapUser
         }
         $this->sapData = $sap_data;
 
-
-        if (!preg_match('/[^A-Za-z0-9]/', $this->sapData['VCTXT'])) {
+        if (preg_match('/[^A-Za-z0-9]/', $this->sapData['VCTXT'])) {
             $job = LetterJobMap::where('en_name', $this->sapData['VCTXT'])->first();
         }else{
             $job['ar_name'] = $this->sapData['VCTXT'];
