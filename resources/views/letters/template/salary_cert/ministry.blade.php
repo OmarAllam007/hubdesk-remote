@@ -99,7 +99,7 @@
                     يعمل لدينا من تاريخ: {{$user['date_of_join']}} م بوظيفة: {{$user['occupation']}} ويتقاضى
                     </span>
                     <span>
-                     {{$user['allowances_str']}}
+                     {{$user['allowances']['basic_salary']}} ريال -  {{$user['allowances_str']}}
                     </span>
 
                     <span>

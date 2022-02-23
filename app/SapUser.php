@@ -139,9 +139,9 @@ class SapUser
     {
         $str = '';
 
-        if (isset($this->sapData['allowances']) && collect($this->sapData['allowances'])->has('basic_salary')) {
-            $str .= ' الراتب الأساسي ' . $this->sapData['allowances']['basic_salary'] . " ريال ";
-        }
+//        if (isset($this->sapData['allowances']) && collect($this->sapData['allowances'])->has('basic_salary')) {
+//            $str .= ' الراتب الأساسي ' . $this->sapData['allowances']['basic_salary'] . " ريال ";
+//        }
         if (isset($this->sapData['allowances']) && collect($this->sapData['allowances'])->has('housing_allowance')) {
             $str .= ' ، بدل السكن ' . $this->sapData['allowances']['housing_allowance'] . " ريال ";
         }
