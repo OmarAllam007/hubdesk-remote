@@ -73,7 +73,6 @@ class LetterSponserMap
         "7014166131" => 7,
         "7014698711" => 7,
         "7015017218" => 16,
-
         "7013001503" => 27,
         "7013021725" => 29,
         "7001454094" => 1,
@@ -98,8 +97,6 @@ class LetterSponserMap
         "7016093556" => 50,
         "7012965427" => 1,
         "7018439765" => 1,
-
-
     ];
 
     static $en_sponsers = [
@@ -108,11 +105,8 @@ class LetterSponserMap
         "7004297979" => "Madar Technology for Communications and Information Technology",
         "7001454094" => "Al-Kifah Holding",
         "7004069782" => "AlQuwa Center",
-        "7012965427" => "Al-Kifah Holding Company - Agricultural Project"
-    ];
+        "7012965427" => "Al-Kifah Holding Company - Agricultural Project",
+        "7013614099" => "Al-Kifah Schools"
 
-//7013614099
-//7014784685
-//7012103938
-//7015080299
+    ];
 }
