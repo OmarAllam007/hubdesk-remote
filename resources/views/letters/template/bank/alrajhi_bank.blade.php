@@ -10,7 +10,8 @@
                 <p class="text-gray-900 text-xl pt-64  px-20 ">HD: {{$letterTicket->ticket->id}}
                     {{--                Ticket No--}}
                 </p>
-                <p class="text-gray-900 text-xl pt-5  px-20  ">ID: {{$letterTicket->user->employee_id ?? $letterTicket->ticket->requester->employee_id}}
+                <p class="text-gray-900 text-xl pt-5  px-20  ">
+                    ID: {{$letterTicket->user->employee_id ?? $letterTicket->ticket->requester->employee_id}}
                     {{--            employee id--}}
                 </p>
                 <div class="flex justify-between">
@@ -94,8 +95,8 @@
 
                     </tr>
                     <tr>
-                        <td class="lt_text   border-2 border-black p-3 table-header-cell-value ">{{$user['total_package']}}</td>
-                        <td class="lt_text  border-2 border-black p-3  table-header-cell-value ">{{$user['allowances']['basic_salary']}}</td>
+                        <td class="lt_text   border-2 border-black p-3 table-header-cell-value ">{{$user['total_package']}} ريال</td>
+                        <td class="lt_text  border-2 border-black p-3  table-header-cell-value ">{{$user['allowances']['basic_salary']}} ريال</td>
                     </tr>
                     <tr>
                         <td class="p-3 table-header-cell  font-bold lt_text   border-2 border-black">
@@ -108,25 +109,30 @@
                     </tr>
                     <tr>
                         <td class="lt_text   border-2 border-black p-3 table-header-cell-value ">
-                            بدل سكن ( {{$user['allowances']['housing_allowance']}} )
+                            @if(isset($user['allowances']['housing_allowance']))
+                            بدل سكن ( {{$user['allowances']['housing_allowance']}} ) ريال
+                            @endif
                             @if(isset($user['allowances']['transportation_allowance']))
-                                ، بدل نقل  ( {{$user['allowances']['transportation_allowance']}} )
+                                ، بدل نقل  ( {{$user['allowances']['transportation_allowance']}} ) ريال
                             @endif
                             @if(isset($user['allowances']['nature_of_work_allowance']))
-                                ، بدل طبيعة عمل  ( {{$user['allowances']['nature_of_work_allowance']}} )
+                                ، بدل طبيعة عمل  ( {{$user['allowances']['nature_of_work_allowance']}} ) ريال
                             @endif
 
                             @if(isset($user['allowances']['food_allowance']))
-                                ، بدل طعام  ( {{$user['allowances']['food_allowance']}} )
+                                ، بدل طعام  ( {{$user['allowances']['food_allowance']}} ) ريال
                             @endif
 
                             @if(isset($user['allowances']['fixed_overtime']))
-                                ، بدل إضافي ثابت  ( {{$user['allowances']['fixed_overtime']}} )
+                                ، بدل إضافي ثابت  ( {{$user['allowances']['fixed_overtime']}} ) ريال
                             @endif
 
                             @if(isset($user['allowances']['fixed_bonus']))
-                                ، بدل  ثابت  ( {{$user['allowances']['fixed_bonus']}} )
+                                ، بدل  ثابت  ( {{$user['allowances']['fixed_bonus']}} ) ريال
                             @endif
+{{--                            @if(isset($user['eos_amount']))--}}
+{{--                                ويستحق نهاية خدمة {{$user['eos_amount']}} ريال--}}
+{{--                            @endif--}}
                         </td>
                         <td class="lt_text  border-2 border-black p-3  table-header-cell-value ">
                             {{$user['iban']}}

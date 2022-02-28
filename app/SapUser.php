@@ -85,14 +85,14 @@ class SapUser
             'date_of_join' => $this->sapData['DAT01'],
             'iban' => $this->sapData['IBAN'],
             'department' => '',
-            'eos_amount' => 0,
             'job_status' => '',
             'work_contract' => '',
             'discounts' => '',
             'phone' => '',
             'fax' => '',
             'education' => $this->sapData['ZZEDUCATION'],
-            'is_active' => $this->sapData['BEGDA'] == '0000-00-00'
+            'is_active' => $this->sapData['BEGDA'] == '0000-00-00',
+            'eos_amount'=> $this->sapData['EOS_AMT']
         ];
 
         if (in_array($this->sapData['sponsor_id'], [7013614099, 7014784685, 7015080299])) {
