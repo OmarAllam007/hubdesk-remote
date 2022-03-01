@@ -106,7 +106,10 @@ class LetterSponserMap
         "7001454094" => "Al-Kifah Holding",
         "7004069782" => "AlQuwa Center",
         "7012965427" => "Al-Kifah Holding Company - Agricultural Project",
-        "7013614099" => "Al-Kifah Schools"
+        "7013614099" => "Al-Kifah Schools",
+        "7001573273" => "Kifah Real State",
+        "7012158551" => "Kifah Real State",
+        "7015017218" => "Al Kifah Logistics",
 
     ];
 }
