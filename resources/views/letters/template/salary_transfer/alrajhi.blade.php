@@ -111,6 +111,15 @@
                 </div>
             </div>
 
+            <div class="flex  pt-5 px-10" dir="rtl">
+                <div class="w-1/2">
+                    <p class="text-2xl  " dir="rtl">
+                        <span>مستحقات نهاية الخدمة (حتى تاريخه):</span>
+                        <span>{{$user['eos_amount']}}  ريال</span>
+                    </p>
+                </div>
+            </div>
+
             {{--            <div class="flex  pt-5 px-10 " dir="rtl">--}}
             {{--                <div class="w-1/2">--}}
             {{--                    <p class="text-2xl  " dir="rtl">--}}

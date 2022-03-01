@@ -218,6 +218,11 @@
 
                         بإجمالي قدره ({{$user['total_package']}} ريال) ،
                     </span>
+
+                    @if($letterTicket->group->id == \App\Letter::SALARY_TRANSFER_TYPE)
+                        <span dir="rtl">مستحقات نهاية الخدمة (حتى تاريخه):</span>
+                        <span>{{$user['eos_amount']}}  ريال</span>
+                    @endif
                     <span>
                    وقد أصدر هذا الخطاب بناءً على طلب الموظف لتقديمه إلى إدارتكم دون أدنى مسئولية على الشركة أو منسوبيها.
                     </span>

@@ -90,7 +90,10 @@ $fixed_bonus = isset($user['allowances']['fixed_bonus']) ? "مكافأة ثاب�
 
 $section->addText("يعمل لدينا من تاريخ: {$user['date_of_join']} م بوظيفة: {$user['occupation']} ، ويتقاضى الراتـب اســاسي ({$user['allowances']['basic_salary']} ريال)،", ['size' => 14, 'rtl' => true], ['align' => 'right', 'rtl' => 'true']);
 
-$lastParagraph = "$housing_allowance $transportation_allowance $foodAllowances $typeWorkAllowance $fixedAllowance $fixed_overtime $fixed_bonus "."بإجمالي قدره ( {$user['total_package']} .ريـال) ، وقد أصدر ھذا الخطاب بناء على طلب الموظف لتقدیمه إلى إدارتكم دون أدنى مسئولیة على الشركة أو منسوبیھا";
+$lastParagraph = $letterTicket->allownaces_string ."بإجمالي قدره ( {$user['total_package']} .ريـال) ، ";
+$lastParagraph .= "مستحقات نهاية الخدمة (حتى تاريخه): {$user['eos_amount']} ريال";
+$lastParagraph .= " وقد أصدر ھذا الخطاب بناء على طلب الموظف لتقدیمه إلى إدارتكم دون أدنى مسئولیة على الشركة أو منسوبیھا  ";
+
 $section->addText("$lastParagraph", ['size' => 14, 'rtl' => true], ['align' => 'right', 'rtl' => 'true']);
 
 $section->addText('', [], ['spacing' => 1000]);
