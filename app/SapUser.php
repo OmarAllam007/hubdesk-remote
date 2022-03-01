@@ -37,7 +37,6 @@ class SapUser
     public function __construct($data)
     {
         $this->sapData = $data;
-//        dd($this->sapData);
         try {
             $this->sapData = $this->convertSapDataToArray();
         } catch (\Exception $e) {
@@ -60,17 +59,13 @@ class SapUser
         }
         $this->sapData = $sap_data;
 
-        if (preg_match('/[^A-Za-z0-9]/', $this->sapData['VCTXT'])) {
-            $job = LetterJobMap::where('en_name', $this->sapData['VCTXT'])->first();
-        }else{
-            $job['ar_name'] = $this->sapData['VCTXT'];
-        }
+        list($en_occupation, $ar_occupation) = $this->getOccupationTranslation();
 
         $this->sapData = [
             'employee_id' => $this->sapData['PERNR'],
             'system_position' => $this->sapData['POSITION'],
-            'occupation' => $job ? $job['ar_name'] : '',
-            'en_occupation' => $this->sapData['VCTXT'],
+            'occupation' => $ar_occupation,
+            'en_occupation' => $en_occupation,
             'en_name' => $this->sapData['ENAME'],
             'ar_name' => $this->sapData['SNAME'] != '' ? $this->sapData['SNAME'] : $this->sapData['ENAME'],
             'en_nationality' => $this->sapData['NATIO_E'],
@@ -125,23 +120,35 @@ class SapUser
         return $allowances;
     }
 
-    private function getOccupation($VCTXT)
+    /**
+     * @return array
+     */
+    public function getOccupationTranslation(): array
     {
-        if (!preg_match('/[^A-Za-z0-9]/', substr($VCTXT, 1, 1))) // '/[^a-z\d]/i' should also work.
-        {
-            return \App\Helpers\BusinessUnitMap::$jobs[$VCTXT];
-        }
+        $en_occupation = '';
+        $ar_occupation = '';
 
-        return $VCTXT;
+        if (preg_match('/[A-Za-z0-9]/', $this->sapData['VCTXT'])) {
+            $jobMap = LetterJobMap::where('en_name', $this->sapData['VCTXT'])->first();
+            if ($jobMap) {
+                $en_occupation = $jobMap->en_name;
+                $ar_occupation = $jobMap->ar_name;
+            }
+        } else {
+            $jobMap = LetterJobMap::where('ar_name', $this->sapData['VCTXT'])->first();
+            if ($jobMap) {
+                $en_occupation = $jobMap->en_name;
+                $ar_occupation = $jobMap->ar_name;
+            }
+        }
+        return array($en_occupation, $ar_occupation);
     }
+
 
     function getAllowancesString()
     {
         $str = '';
 
-//        if (isset($this->sapData['allowances']) && collect($this->sapData['allowances'])->has('basic_salary')) {
-//            $str .= ' الراتب الأساسي ' . $this->sapData['allowances']['basic_salary'] . " ريال ";
-//        }
         if (isset($this->sapData['allowances']) && collect($this->sapData['allowances'])->has('housing_allowance')) {
             $str .= ' ، بدل السكن ' . $this->sapData['allowances']['housing_allowance'] . " ريال ";
         }
