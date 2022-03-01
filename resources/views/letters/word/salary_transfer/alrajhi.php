@@ -32,6 +32,8 @@ $section->addText('مسـمى الـوظیـفة: ' . $user['occupation'], [], $
 $section->addText('', [], []);
 $section->addText('تاریخ الالتحاق بالعمل: ' . $user['date_of_join'], [], $rightStyle);
 $section->addText('', [], []);
+$section->addText('مستحقات نهاية الخدمة (حتى تاريخه):' . $user['eos_amount'] . "ريال ", ['rtl' => true], $rightStyle);
+$section->addText('', [], []);
 $longStr = "تقدم موظفنا الموضحة بیاناته أعلاه طالباً تحویل راتبه وبدلاته الشهریة وجمیع مستحقاته الوظیفیة إلى حسابه الجاري رقم";
 $longStr .= '(' . $user['iban'] . ')';
 $longStr .= 'لأجل سداد الدیون التي سوف تترتب علیه لصالح مصرف الراجحي. لذا نود أن نؤكد لكم موافقتنا والتزامنا بهذا 

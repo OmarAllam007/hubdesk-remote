@@ -16,4 +16,6 @@ class Letter extends Model
     function fields(){
         return $this->hasMany(LetterField::class);
     }
+
+    const SALARY_TRANSFER_TYPE = 3;
 }
