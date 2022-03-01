@@ -58,7 +58,7 @@ class SapUser
 
         if($fromCarbonDate){
 
-            $difference = $fromCarbonDate->diffInYears(Carbon::now());
+            $difference = $fromCarbonDate->floatDiffInYears(Carbon::now());
 
             if($difference < 2){
                 return $amount ;
