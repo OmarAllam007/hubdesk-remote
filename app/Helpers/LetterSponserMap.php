@@ -109,6 +109,7 @@ class LetterSponserMap
         "7013614099" => "Al-Kifah Schools",
         "7001573273" => "Kifah Real State",
         "7012158551" => "Kifah Real State",
-        "7015017218" => "Al Kifah Logistics"
+        "7015017218" => "Al Kifah Logistics",
+        "7012283227" => "Kifah Ready Mix & Block",
     ];
 }
