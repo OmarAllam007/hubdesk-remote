@@ -21,7 +21,7 @@ $section->addText(
 
 $section->addText('', [], []);
 $section->addText(
-    $letterTicket->ticket->requester->business_unit->name
+    str_replace("&"," And ",$letterTicket->ticket->requester->business_unit->name)
 );
 $section->addText('', [], []);
 $section->addText("Date : " . $letterTicket->last_approval_date . "", []);
