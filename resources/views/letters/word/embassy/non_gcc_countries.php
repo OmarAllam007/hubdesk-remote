@@ -3,7 +3,7 @@
 
 $phpWord = new \PhpOffice\PhpWord\PhpWord();
 
-$sponsorEnName = \App\Helpers\LetterSponserMap::$en_sponsers[$user['sponsor_id']];
+$sponsorEnName = str_replace("&"," And ",\App\Helpers\LetterSponserMap::$en_sponsers[$user['sponsor_id']]);
 $reason = $letterTicket->ticket->fields->last() ? $letterTicket->ticket->fields->last()->value : '';
 
 $section = $phpWord->addSection(['marginTop' => 2400,
