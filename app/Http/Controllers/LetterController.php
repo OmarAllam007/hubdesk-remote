@@ -110,10 +110,15 @@ class LetterController extends Controller
             }
         }
 
+        if ($ticketRef->isTask()){
+            $employeeID = $ticketRef->ticket->requester->employee_id;
+        }
         $user = \App\User::where('employee_id', $employeeID)->first();
 
         $sapApi = new \App\Helpers\SapApi($user);
         $sapApi->getUserInformation();
+
+
         $user = $sapApi->sapUser->getEmployeeSapInformation();
         $this->userActive = $user['is_active'];
 
@@ -123,7 +128,8 @@ class LetterController extends Controller
 
         $user['allowances_str'] = $sapApi->sapUser->getAllowancesString();
 
-        $letterTicket = LetterTicket::where('ticket_id', $ticket)->first();
+
+        $letterTicket = LetterTicket::where('ticket_id', $ticketRef->isTask() ? $ticketRef->ticket->id : $ticket)->first();
         $view = $letterTicket->letter->view_path;
 
 
@@ -152,15 +158,19 @@ class LetterController extends Controller
 
     function generateLetterDoc($ticket)
     {
-        $content = $this->buildView($ticket);
+//        $content = $this->buildView($ticket);
 
         $ticketObj = Ticket::find($ticket);
 
-        $user = \App\User::where('employee_id', $ticketObj->requester->employee_id)->first();
+        $employeeID = $ticketObj->isTask() ? $ticketObj->ticket->requester->employee_id : $ticketObj->requester->employee_id;
+        $letterTicketObj = $ticketObj->isTask() ? $ticketObj->ticket->id : $ticketObj->id;
+
+        $user = \App\User::where('employee_id', $employeeID)->first();
         $sapApi = new \App\Helpers\SapApi($user);
         $sapApi->getUserInformation();
         $user = $sapApi->sapUser->getEmployeeSapInformation();
-        $letterTicket = \App\LetterTicket::where('ticket_id', $ticketObj->id)->first();
+        $letterTicket = \App\LetterTicket::where('ticket_id', $letterTicketObj)->first();
+
         $letterPath = str_replace('.', '/', $letterTicket->letter->view_path);
 
         require base_path("resources/views/letters/word/{$letterPath}.php");
