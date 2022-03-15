@@ -44,7 +44,9 @@ $foodAllowances = isset($user['allowances']['food_allowance']) ? "بدل طعا�
 $typeWorkAllowance = isset($user['allowances']['nature_of_work_allowance']) ? "بدل طبيعة عمل ({$user['allowances']['nature_of_work_allowance']} ريال)" : '';
 $fixedAllowance = isset($user['fixed_amount']) ? "بدل ثابت ({$user['fixed_amount']} ريال)" : '';
 
-$section->addText("بدل سكن ({$user['allowances']['housing_allowance']} ريال) ، بدل نقل ( {$user['allowances']['transportation_allowance']} ريال)  
+$housing = isset($user['allowances']['housing_allowance']) ? "بدل سكن ({$user['allowances']['housing_allowance']} ريال) ،" : '';
+$transportation = isset($user['allowances']['transportation_allowance']) ? "بدل نقل ( {$user['allowances']['transportation_allowance']} ريال)" : '';
+$section->addText("$housing $transportation
         $foodAllowances
        $typeWorkAllowance
        $fixedAllowance
