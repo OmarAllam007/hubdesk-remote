@@ -118,7 +118,6 @@ class LetterController extends Controller
         $sapApi = new \App\Helpers\SapApi($user);
         $sapApi->getUserInformation();
 
-
         $user = $sapApi->sapUser->getEmployeeSapInformation();
         $this->userActive = $user['is_active'];
 
