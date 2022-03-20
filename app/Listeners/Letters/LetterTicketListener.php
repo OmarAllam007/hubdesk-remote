@@ -12,7 +12,7 @@ use App\TicketApproval;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class LetterTicketListener
+class LetterTicketListener extends LetterTicketParentListener
 {
     /**
      * Create the event listener.
@@ -39,19 +39,30 @@ class LetterTicketListener
             return;
         }
 
-        $appoval_levels = LetterApproval::where('business_unit_id', $business_unit_id)->get();
+        if($ticket->group->need_for_automatic_approval){
 
-        dispatch(new NewTicketJob($ticket->ticket));
+            $appoval_levels = LetterApproval::where('business_unit_id', $business_unit_id)->get();
 
-        $appoval_levels->each(function ($level) use ($ticket) {
-            TicketApproval::create([
-                'ticket_id' => $ticket->ticket_id,
-                'creator_id' => config('letters.system_user'),
-                'approver_id' => $level->user_id,
-                'status' => 0,
-                'stage' => $level->order,
-                'content' => ''
-            ]);
-        });
+            dispatch(new NewTicketJob($ticket->ticket));
+
+            $appoval_levels->each(function ($level) use ($ticket) {
+                TicketApproval::create([
+                    'ticket_id' => $ticket->ticket_id,
+                    'creator_id' => config('letters.system_user'),
+                    'approver_id' => $level->user_id,
+                    'status' => 0,
+                    'stage' => $level->order,
+                    'content' => ''
+                ]);
+            });
+        }else{
+            if ($ticket->need_coc_stamp) {
+                $this->createKGSTask($ticket);
+            } else {
+                $this->closeLetterTicket($ticket);
+            }
+        }
+
+
     }
 }
