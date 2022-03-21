@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -37,6 +38,10 @@ class LetterTicket extends Model
 
     static function isApprovedTicket($ticket)
     {
+        if($ticket->status_id == 8){
+            return true;
+        }
+
         $letterTicket = LetterTicket::where('ticket_id', $ticket->id)->first();
 
         if ($letterTicket) {
@@ -81,6 +86,10 @@ class LetterTicket extends Model
 
     function getLastApprovalDateAttribute()
     {
+        if(!$this->ticket->approvals->count()){
+            return $this->ticket->created_at->format('d/m/Y');
+        }
+
         $approval = $this->ticket->approvals()->where('status', 1)->orderBy('created_at')->get()->last();
         return $approval->approval_date->format('d/m/Y');
     }
