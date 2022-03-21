@@ -38,11 +38,12 @@ class LetterTicket extends Model
 
     static function isApprovedTicket($ticket)
     {
-        if($ticket->status_id == 8){
+        $letterTicket = LetterTicket::where('ticket_id', $ticket->id)->first();
+
+        if($ticket->status_id == 8 || !$letterTicket->ticket->approvals->count()){
             return true;
         }
 
-        $letterTicket = LetterTicket::where('ticket_id', $ticket->id)->first();
 
         if ($letterTicket) {
             $isApproved = $letterTicket->ticket->approvals->whereNotIn('status', [0, -1])->count();
