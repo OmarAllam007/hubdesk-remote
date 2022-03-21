@@ -40,7 +40,7 @@ class LetterTicket extends Model
     {
         $letterTicket = LetterTicket::where('ticket_id', $ticket->id)->first();
 
-        if($ticket->status_id == 8 || !$letterTicket->ticket->approvals->count()){
+        if($ticket->status_id == 8){
             return true;
         }
 
