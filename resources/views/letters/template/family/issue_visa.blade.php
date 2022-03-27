@@ -47,8 +47,10 @@
                     م</p>
             </div>
             @php
-                $to = $letterTicket->ticket->fields->first() ? $letterTicket->ticket->fields->first()->value : '';
-                $IstiqdamTo = $letterTicket->ticket->fields->last() ? $letterTicket->ticket->fields->last()->value : '';
+                $to = $letterTicket->ticket->fields->where('name','Region')->first() ? $letterTicket->ticket->fields->where('name','Region')->first()->value : '';
+                $IstiqdamTo = $letterTicket->ticket->fields->where('name','Request For')->first() ? $letterTicket->ticket->fields->where('name','Request For')->first()->value : '';
+                $education = $letterTicket->ticket->fields->where('name','Academic Qualification')->first();
+                $specialization = $letterTicket->ticket->fields->where('name','Specialization')->first();
 
             $regions = $letterTicket->letter->fields->where('name','like','Region')->first();
             $regions = array_combine($regions->options,$regions->options);
@@ -58,6 +60,7 @@
 
             $to_ar = \App\Translation::where('word','like',$IstiqdamTo)
             ->where('language','ar')->first();
+
             @endphp
 
             <div class="flex  pt-20 px-10" dir="rtl">
@@ -81,10 +84,11 @@
                     ، الجنسية / {{$user['ar_nationality']}} والذي
                     يعمل لدينا بمهنة / {{$user['occupation']}}
                 </p>
+
                 <p dir="rtl" class="text-3xl">
                     حسب المهنة الموضحة بالاقامة رقم/ {{$user['iqama_number']}} ، والذي يتقاضى راتب شهريا
                     ( {{$user['total_package']}} ريال ) ولديه مؤهل
-                    {{$user['education']}} تخصص 00000.
+                    {{$education->value}} تخصص {{$specialization->value}}.
                 </p>
 
                 <p dir="rtl" class="text-3xl">
