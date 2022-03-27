@@ -44,7 +44,7 @@ $section->addText('', [], []);
 $section->addText("Dear Sir,");
 
 
-$section->addText("This is to certify that Mr. {$user['en_name']} {$user['en_nationality']}, ID Number {$user['iqama_number']}. Is an employee of {$sponsorEnName}, from {$user['date_of_join']} up to the present.");
+$section->addText("This is to certify that Mr. {$user['en_name']} {$user['en_nationality']}, ID Number {$user['iqama_number']}, Passport Number {$user['passport_number']}. Is an employee of {$sponsorEnName}, from {$user['date_of_join']} up to the present.");
 
 $section->addText('', [], []);
 
