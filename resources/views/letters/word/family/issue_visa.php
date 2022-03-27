@@ -1,7 +1,7 @@
 <?php
 //
-$to = $letterTicket->ticket->fields->first() ? $letterTicket->ticket->fields->first()->value : '';
-$IstiqdamTo = $letterTicket->ticket->fields->last() ? $letterTicket->ticket->fields->last()->value : '';
+$to = $letterTicket->ticket->fields->where('name','Region')->first() ? $letterTicket->ticket->fields->where('name','Region')->first()->value : '';
+$IstiqdamTo = $letterTicket->ticket->fields->where('name','Request For')->first() ? $letterTicket->ticket->fields->where('name','Request For')->first()->value : '';
 
 $regions = $letterTicket->letter->fields->where('name','like','Region')->first();
 $regions = array_combine($regions->options,$regions->options);
@@ -11,6 +11,9 @@ $region_ar = \App\Translation::where('word','like',$regions[$to])
 
 $to_ar = \App\Translation::where('word','like',$IstiqdamTo)
     ->where('language','ar')->first();
+
+$education = $letterTicket->ticket->fields->where('name','Academic Qualification')->first();
+$specialization = $letterTicket->ticket->fields->where('name','Specialization')->first();
 
 $phpWord = new \PhpOffice\PhpWord\PhpWord();
 
@@ -49,7 +52,7 @@ $section->addText('', [], []);
 $section->addText('', [], []);
 $section->addText("نود إفادة سعادتكم ان موظفنا المدعو / {$user['ar_name']} ، الجنسية / {$user['ar_nationality']} والذي يعمل لدينا بمهنة / {$user['occupation']}", ['size' => 14, 'rtl' => true], $rightStyle);
 $section->addText('', [], []);
-$section->addText(" حسب المهنة الموضحة بالاقامة رقم/ {$user['iqama_number']} ، والذي يتقاضى راتب شهريا ( {$user['total_package']} ريال ) ولديه مؤهل {$user['education']} تخصص .", ['size' => 14, 'rtl' => true], $rightStyle);
+$section->addText(" حسب المهنة الموضحة بالاقامة رقم/ {$user['iqama_number']} ، والذي يتقاضى راتب شهريا ( {$user['total_package']} ريال ) ولديه مؤهل {$education->value}  تخصص {$specialization->value} .", ['size' => 14, 'rtl' => true], $rightStyle);
 
 
 $section->addText("يرغب في استقدام / {$to_ar->translation} وحيث لا مانع لدينا من ذلك حيث ان العلاج والسكن مؤمن للمذكور ، عليه نأمل الموافقة على طلب موظفنا كما نصادق على صحة المعلومات الموضحة بخطابنا هذا ، وهذا إقرار منا بذلك .", ['size' => 14, 'rtl' => true], ['align' => 'right']);
