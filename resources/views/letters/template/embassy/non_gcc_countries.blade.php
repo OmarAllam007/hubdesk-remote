@@ -48,7 +48,7 @@
             <div class="flex flex-col pt-10 px-10 ">
                 <p class="text-3xl">
                     <span>
-                        This is to certify that Mr. {{$user['en_name']}} {{$user['en_nationality']}}, ID Number {{$user['iqama_number']}}. Is an
+                        This is to certify that Mr. {{$user['en_name']}} {{$user['en_nationality']}}, ID Number {{$user['iqama_number']}} Passport Number {{$user['passport_number']}}. Is an
                         employee of {{\App\Helpers\LetterSponserMap::$en_sponsers[$user['sponsor_id']]}}, from {{$user['date_of_join']}} up to the present.
                     </span>
                 </p>
@@ -62,7 +62,7 @@
                 @endphp
 
                 <div class="text-3xl">
-                    We hereby certify that the above-mentioned will be visiting your country to {{$reason}}.
+                    We hereby certify that the above-mentioned will be visiting your country.
                     This certification is issued upon the request of the afore-mentioned party.
                     Without any liability to the company
                 </div>
