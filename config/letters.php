@@ -11,6 +11,7 @@ return [
 
     'kgs_group' => 68,
     'kgs_technician' => 6761,
+    'kcc_technician' => 121,
     'signature_name' => 'أ.محمد عبد الرحمن الكثير',
 
 
