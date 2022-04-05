@@ -40,7 +40,6 @@ class LetterTicketParentListener
     }
 
 
-
     protected function createKGSTask($letterTicket)
     {
         Ticket::flushEventListeners();
@@ -48,6 +47,15 @@ class LetterTicketParentListener
         $letterTicket->ticket->update([
             'status_id' => 4
         ]);
+
+
+        $technician = config('letters.kgs_technician');
+        $content = config('letters.fees_reply');
+
+        if (in_array($letterTicket->ticket->requester->business_unit_id, [4, 39, 41, 42, 46])) {
+            $technician = config('letters.kcc_technician');
+            $content = '<p>On Hold</p>';
+        }
 
         $ticket = Ticket::create([
             'subject' => $letterTicket->ticket->subject,
@@ -61,19 +69,19 @@ class LetterTicketParentListener
             'subcategory_id' => $letterTicket->ticket->subcategory_id,
             'item_id' => $letterTicket->ticket->item_id,
             'group_id' => config('letters.kgs_group'),
-            'technician_id' => config('letters.kgs_technician'),
+            'technician_id' => $technician,
         ]);
 
         $reply = $letterTicket->ticket->replies()->create([
             'user_id' => config('letters.system_user'),
             'status_id' => 4,
-            'content' => config('letters.fees_reply'),
+            'content' => $content,
         ]);
 
         \Mail::send(new NewTaskMail($ticket));
 
         \Mail::to($letterTicket->ticket->requester->email)
-            ->send(new LetterRequestForFees($letterTicket,$reply));
+            ->send(new LetterRequestForFees($letterTicket, $reply));
     }
 
 
