@@ -4,7 +4,7 @@ $phpWord = new \PhpOffice\PhpWord\PhpWord();
 
 
 $section = $phpWord->addSection(['marginTop' => 2400,
-    'marginLeft' => 200, 'marginRight' => 400, 'marginBottom' => 400]);
+    'marginLeft' => 200, 'marginRight' => 400, 'marginBottom' => 400,'rtl' => true,'align' => 'right']);
 $section->addText(
     'HD: ' . $letterTicket->ticket->id
 );
@@ -44,11 +44,11 @@ $foodAllowances = isset($user['allowances']['food_allowance']) ? "بدل طعا�
 $typeWorkAllowance = isset($user['allowances']['nature_of_work_allowance']) ? "بدل طبيعة عمل ({$user['allowances']['nature_of_work_allowance']} ريال)" : '';
 $fixedAllowance = isset($user['fixed_amount']) ? "بدل ثابت ({$user['fixed_amount']} ريال)" : '';
 
-$section->addText("بدل سكن ({$user['allowances']['housing_allowance']} ريال) ، بدل نقل ( {$user['allowances']['transportation_allowance']} ريال)  
-        $foodAllowances
-       $typeWorkAllowance
-       $fixedAllowance
-      ", ['size' => 14, 'rtl' => true], ['align' => 'right', 'rtl' => 'true']);
+
+$housingAllowance = isset($user['allowances']['housing_allowance']) ? " ، بدل سكن {$user['allowances']['housing_allowance']} ريال" : "";
+$transportationAllowance = isset($user['allowances']['transportation_allowance']) ? " ، بدل نقل {$user['allowances']['transportation_allowance']} ريال" : "";
+
+$section->addText(" $housingAllowance $transportationAllowance $foodAllowances $typeWorkAllowance $fixedAllowance", ['size' => 14, 'rtl' => true], ['align' => 'right', 'rtl' => 'true']);
 $section->addText(" راتــب إجمـالي ( {$user['total_package']} ريـال) ، وقـــد أعطــي هـــذا الخطـاب بنــاءً  علــى طلبـه دون أدنى مسؤوليـة على الشــركة.", ['size' => 14, 'rtl' => true], ['align' => 'right']);
 $section->addText('', [], ['spacing' => 1000]);
 $section->addText('ولكم وافر الشكر والتقدير ،،،', ['bold' => true, 'size' => 18, 'rtl' => true], ['align' => 'center']);
