@@ -115,6 +115,7 @@ class LetterSponserMap
         "7012158551" => "Kifah Real State",
         "7015017218" => "Al Kifah Logistics",
         "7012283227" => "Kifah Ready Mix & Block",
+        "7012970179" => "Kifah Ready Mix & Block",
         "7001573638" => "AL-MOTAWEROON",
         "7002613987" => "Green Vision Paper Products",
     ];
