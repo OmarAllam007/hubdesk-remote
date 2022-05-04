@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FPController;
 use App\Letter;
 use Illuminate\Routing\Router;
 
@@ -9,10 +10,13 @@ if ($login = env('LOGIN_AS')) {
     Auth::login($user);
 }
 
-Route::get('en/internship-application', 'InternshipController@index')->name('internship.en');
-Route::get('ar/internship-application', 'InternshipController@ar_index')->name('internship.ar');
-Route::post('internship-application-post', 'InternshipController@apply')
-    ->name('internship.post');
+//Route::get('en/internship-application', 'InternshipController@index')->name('internship.en');
+//Route::get('ar/internship-application', 'InternshipController@ar_index')->name('internship.ar');
+
+
+//Route::post('internship-application-post', 'InternshipController@apply')
+//    ->name('internship.post');
+
 
 Route::get('/', 'HomeController@home')->middleware('lang');
 Route::auth();
@@ -138,6 +142,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
     Route::group(['prefix' => 'user'], function () {
         Route::post('ldap-import', ['as' => 'user.ldap-import', 'uses' => 'Admin\UserController@ldapImport']);
     });
+
+    Route::get('new_fp',[FPController::class,'index']);
+    Route::post('new_fp/post',[FPController::class,'postFP'])->name('fp.post');
 });
 
 

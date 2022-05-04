@@ -30,6 +30,7 @@
         "phpoffice/phpspreadsheet": "^1.9",
         "phpoffice/phpword": "^0.18.2",
         "predis/predis": "^1.1",
+        "rats/zkteco": "^002.0",
         "realrashid/sweet-alert": "^3.0",
         "revolution/laravel-google-sheets": "^5.7",
         "simplesoftwareio/simple-qrcode": "^4.2",
