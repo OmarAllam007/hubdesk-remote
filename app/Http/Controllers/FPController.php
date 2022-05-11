@@ -11,7 +11,8 @@ class FPController extends Controller
 {
     function index()
     {
-        $zk = new ZKTeco('192.168.120.115', 4370);
+        $zk = new ZKTeco('192.168.110.240', 4370);
+//        $zk = new ZKTeco('192.168.120.115', 4370);
         $zk->connect();
         $zk->enableDevice();
 
