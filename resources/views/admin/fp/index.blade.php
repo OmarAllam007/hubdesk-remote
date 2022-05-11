@@ -44,7 +44,7 @@
             </tr>
             </tbody>
             @foreach($attendance as $row)
-                <tr @if($row['id'] == '90000939') class="bg-green-400" @endif>
+                <tr @if($row['id'] == Auth::user()->employee_id) class="bg-green-400" @endif>
                     <td>
                         {{$row['id']}}
                     </td>
