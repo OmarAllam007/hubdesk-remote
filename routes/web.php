@@ -82,6 +82,9 @@ Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
     $r->get('logs/{ticket}', 'API\LogController@index');
 
 
+    $r->get('fields', 'ListController@ticket_fields');
+
+
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'admin.'], function (\Illuminate\Routing\Router $r) {

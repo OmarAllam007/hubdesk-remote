@@ -3,15 +3,13 @@
     <div class="flex flex-col ">
       <label :for="id"
              class="font-semibold">
-        {{ label }}
+        {{ label }} <span v-if="required == '1'" class="text-red-700 font-bold">*</span>
       </label>
       <input
           type="date"
           :id="id"
-          class="px-4 py-2
-        transition duration-300 border border-gray-300 rounded
-        focus:border-transparent focus:outline-none focus:ring-4
-        focus:ring-blue-200"
+          class=" px-4 py-2
+        transition duration-300 border border-gray-400 rounded select2"
           :value="value"
           @input="$emit('input', $event.target.value)"
       />
@@ -23,7 +21,7 @@
 <script>
 export default {
   name: "Date",
-  props: ['id', 'name', 'label', 'value']
+  props: ['id', 'name', 'label', 'value','required']
 }
 </script>
 

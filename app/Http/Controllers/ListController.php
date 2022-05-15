@@ -18,6 +18,7 @@ use App\SubItem;
 use App\Ticket;
 use App\Urgency;
 use App\User;
+use Illuminate\Support\Facades\Request;
 use KGS\BusinessDocumentsFolder;
 
 class ListController extends Controller
@@ -142,13 +143,25 @@ class ListController extends Controller
         $q->active()->employees();
 
         if ($search != '') {
-            $q->where('employee_id', 'like', '%'.$search.'%');
-        }else{
-            $q->take(1000);
+            $q->where('employee_id', 'like', '%' . $search . '%')
+                ->orWhere('name', 'like', '%' . $search . '%');
+        } else {
+            $q->take(500);
         }
 
-        return $q->orderBy('name')
-            ->get(['name', 'id', 'employee_id']);
+        return $q->orderBy('name')->get()->map(function ($user) {
+            return [
+                'id' => $user->id,
+                'name' => $user->name,
+                'employee_id' => $user->employee_id,
+                'department' => $user->department->name ?? 'Not assigned',
+                'email' => $user->email,
+                'job' => $user->job,
+                'business_unit' => $user->business_unit->name ?? 'Not assigned',
+                'label' => $user->employee_id . ' - ' . $user->name,
+                'extra_fields' => $user->extra_fields,
+            ];
+        });
     }
 
     function status()
@@ -247,6 +260,32 @@ class ListController extends Controller
     function letter_group()
     {
         return LetterGroup::orderBy('order')->get(['id', 'name']);
+    }
+
+
+    function ticket_fields()
+    {
+        $fields = collect();
+        if (\request('category_id')) {
+            $category = Category::find(\request('category_id'));
+            if ($category->custom_fields->count()) {
+                $fields->push($category->custom_fields->sortBy('label')->groupBy('label'));
+            }
+        }
+        if (\request('subcategory_id')) {
+            $subcategory = Subcategory::find(\request('subcategory_id'));
+            if ($subcategory->custom_fields->count()) {
+                $fields->push($subcategory->custom_fields->sortBy('label')->groupBy('label'));
+            }
+        }
+        if (\request('item_id')) {
+            $item = Item::find(\request('item_id'));
+            if ($item->custom_fields->count()) {
+                $fields->push($item->custom_fields->sortBy('label')->groupBy('label'));
+            }
+        }
+
+        return $fields;
     }
 
 
