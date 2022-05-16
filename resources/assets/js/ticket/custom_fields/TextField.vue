@@ -11,6 +11,7 @@
         transition duration-300 border border-gray-400 rounded"
           :value="value"
           @input="$emit('input', {id:item_id,value:$event.target.value})"
+          autocomplete="off"
       />
     </div>
 
