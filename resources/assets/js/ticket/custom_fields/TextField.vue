@@ -3,15 +3,14 @@
     <div class="flex flex-col">
       <label :for="id"
              class="font-semibold">
-        {{ label }}
+        {{ $root.t(label) }} <span v-if="required == '1'" class="text-red-700 font-bold">*</span>
       </label>
       <input
           :id="id"
           class="px-4 py-2
-        transition duration-300 border border-gray-300 rounded"
+        transition duration-300 border border-gray-400 rounded"
           :value="value"
-          @input="$emit('input', $event.target.value)"
-
+          @input="$emit('input', {id:item_id,value:$event.target.value})"
       />
     </div>
 
@@ -21,7 +20,7 @@
 <script>
 export default {
   name: "TextField",
-  props: ['id', 'name', 'label', 'value']
+  props: ['id', 'name', 'label', 'value', 'required','item_id']
 
 }
 </script>

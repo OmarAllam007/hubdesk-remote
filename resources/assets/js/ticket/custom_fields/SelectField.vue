@@ -3,14 +3,30 @@
     <div class="flex flex-col ">
       <label :for="id"
              class="font-semibold">
-        {{ label }}
+        {{ $root.t(label) }} <span v-if="required == '1'" class="text-red-700 font-bold">*</span>
       </label>
 
-      <select class="px-4 py-3 rounded-xl  border select2 " @change="$emit('input', $event.target.value)">
-        <option v-for="(text, value) in options" :value="text">
-          {{ $parent.t(text) }}
+      <selectize
+                 class="w-full px-1 "
+                 @input="$emit('input', {id:item_id,value:$event})"
+                v-if="JSON.parse(options).length > 50"
+      >
+        <option value="">{{ $root.t('Select') }} {{$root.t(label)}}</option>
+
+        <option v-for="(text, value) in JSON.parse(options)" :value="text">
+          {{ text }}
         </option>
-      </select>
+      </selectize>
+
+      <selectize
+                 class="w-full px-1 "
+                 @input="$emit('input', {id:item_id,value:$event})" v-else >
+        <option value="">{{ $root.t('Select') }} {{$root.t(label)}}</option>
+
+        <option v-for="(text, value) in JSON.parse(options)" :value="text">
+          {{ $root.t(text) }}
+        </option>
+      </selectize>
     </div>
   </div>
 
@@ -18,14 +34,18 @@
 </template>
 
 <script>
+import Selectize from 'vue2-selectize'
+import "selectize/dist/css/selectize.bootstrap3.css";
+
 export default {
   name: "SelectField",
-  props: ['id', 'name', 'label', 'value','options'],
+  props: ['id', 'name', 'label', 'value','options','required','item_id'],
   data() {
     return {
 
     }
-  }
+  },
+  components:{Selectize}
 }
 </script>
 

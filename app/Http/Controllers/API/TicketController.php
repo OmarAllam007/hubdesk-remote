@@ -4,10 +4,13 @@
 namespace App\Http\Controllers\API;
 
 
+use App\Attachment;
+use App\CustomField;
 use App\Helpers\Ticket\TicketViewScope;
-use App\Http\Requests\Request;
 use App\Ticket;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
 
 class TicketController
@@ -23,8 +26,6 @@ class TicketController
         $scope = $ticketScope['scope'];
         $scopes = $ticketScope['scopes'];
         $criterions = $ticketScope['criterions'];
-
-
 
 
         if ($search = \request('search')) {
@@ -102,5 +103,79 @@ class TicketController
         $scopes = TicketViewScope::getScopes();
 
         return collect(['scope' => $scope, 'query' => $query, 'scopes' => $scopes, 'criterions' => $filters]);
+    }
+
+    function store(Request $request)
+    {
+        /** @var UploadedFile $file */
+
+        $requestedTicket = $request->get('ticket');
+
+        $items = json_decode($request->input('ticket.fields'), true);
+
+        $validation = [];
+
+        if (!empty($items)) {
+            foreach ($items as $key => $item) {
+                $field = CustomField::find($key);
+                if ($field && $field->required && $item == '') {
+                    $validation[$key] = "This field is required";
+                }
+            }
+
+            if (count($validation)) {
+                return response()->json(['errors' => $validation, 'error_code' => 400]);
+            }
+        }
+
+
+        $totalFileSizes = 0.0;
+
+        foreach ($request->files as $files) {
+            foreach ($files as $file) {
+                $totalFileSizes += number_format($file->getSize() / 1048576, 3);
+            }
+        }
+
+        if ($totalFileSizes > 10) {
+            return response()->json(['file_size_error' => ['Attachments size should not exceed 10MB'], 'error_code' => 402]);
+        }
+
+        $validator = \Validator::make($request->all(), ['ticket.subject' => 'required', 'ticket.priority_id' => 'required'],[
+            'ticket.priority_id.required'=> 'Priority field is required.',
+            'ticket.subject.required'=> 'Subject field is required.'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors(), 'error_code' => 400]);
+        }
+
+        $ticket = Ticket::create([
+            'subject' => $requestedTicket['subject'],
+            'description' => $requestedTicket['description'] ?? '',
+            'requester_id' => $requestedTicket['requester_id'],
+            'creator_id' => \Auth::id(),
+            'status_id' => 1,
+            'category_id' => $requestedTicket['category_id'],
+            'subcategory_id' => $requestedTicket['subcategory_id'],
+            'item_id' => $requestedTicket['item_id'],
+            'priority_id' => $requestedTicket['priority_id'],
+
+        ]);
+
+        if ($items && count($items)){
+            foreach ($items as $key => $item) {
+                if ($item) {
+                    $field = CustomField::find($key)->name ?? '';
+
+                    $ticket->fields()->create(['name' => $field, 'value' => $item]);
+                }
+            }
+        }
+
+
+
+        return response($ticket->id);
+//        return $ticket;
     }
 }

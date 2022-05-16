@@ -5,6 +5,7 @@
     <notifications group="approvals" position="top right" width="40%" classes="notification-alert-style"/>
     <notifications group="notes" position="top right" width="40%" classes="notification-alert-style"/>
     <notifications group="ticket" position="top right" width="40%" classes="notification-alert-style"/>
+    <notifications group="create_ticket" position="top right" width="40%" classes="notification-alert-style"/>
   </div>
 </template>
 

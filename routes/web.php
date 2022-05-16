@@ -82,6 +82,9 @@ Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
     $r->get('logs/{ticket}', 'API\LogController@index');
 
 
+    $r->get('fields', 'ListController@ticket_fields');
+
+
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'admin.'], function (\Illuminate\Routing\Router $r) {
@@ -199,10 +202,12 @@ Route::group(['middleware' => ['auth', 'reset']], function () {
         $r->post('resolution/{ticket}',
             ['as' => 'ticket.resolution', 'uses' => 'API\TicketReplyController@resolve']);
 
+        $r->post('post_new_ticket',[\App\Http\Controllers\API\TicketController::class,'store']);
     });
 
 
     Route::resource('ticket', 'TicketController');
+
 
     Route::group(['prefix' => 'approval'], function (\Illuminate\Routing\Router $r) {
         $r->post('approval/{ticket}', ['as' => 'approval.send', 'uses' => 'ApprovalController@send']);
