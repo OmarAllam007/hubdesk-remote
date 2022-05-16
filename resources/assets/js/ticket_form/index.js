@@ -7,12 +7,11 @@ import VueSweetalert2 from 'vue-sweetalert2';
 // If you don't need the styles, do not connect
 import 'sweetalert2/dist/sweetalert2.min.css';
 import axios from 'axios';
-
 Vue.use(VueSweetalert2)
 
-import translation from "../translation";
+// import translation from "../translation";
 import _ from 'lodash';
-import Session from "../helpers/Session";
+// import Session from "../helpers/Session";
 // Vue.prototype.$translate = this.t;
 window.axios = axios;
 
@@ -38,7 +37,8 @@ window.app = new Vue({
     },
     methods: {
         t(word) {
-            let translation = _.find(this.translations, {'word': word});
+            let targetWord = word.toLowerCase().replace("\n","");
+            let translation = _.find(this.translations, {'word': targetWord});
 
             if (translation) {
                 return translation.translation;

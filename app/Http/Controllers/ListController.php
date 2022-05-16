@@ -145,11 +145,12 @@ class ListController extends Controller
         if ($search != '') {
             $q->where('employee_id', 'like', '%' . $search . '%')
                 ->orWhere('name', 'like', '%' . $search . '%');
+
         } else {
-            $q->take(500);
+            $q->take(50);
         }
 
-        return $q->orderBy('name')->get()->map(function ($user) {
+        return $q->orderBy('name')->get()->take(50)->map(function ($user) {
             return [
                 'id' => $user->id,
                 'name' => $user->name,

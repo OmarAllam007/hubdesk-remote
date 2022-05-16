@@ -4,7 +4,7 @@
       <div class="w-full">
         <div class="form-group form-group-sm ">
           <label for="requester_id" class="block tracking-wide text-gray-700 font-bold mb-2">
-            {{ t('Requester') }}
+            {{ $root.t('Requester') }}
           </label>
           <div class="w-1/2">
             <v-select
@@ -17,27 +17,27 @@
           <div v-if="showUserDetails && requester !== '' && requester !== undefined" class="pt-5 px-1">
             <div class="flex space-x-5">
               <div>
-                <span class=" text-gray-700 font-bold">{{ t('Business Unit') }}:</span>
+                <span class=" text-gray-700 font-bold">{{ $root.t('Business Unit') }}:</span>
                 <span>{{ requester.business_unit }}</span>
               </div>
 
               <div>
-                <span class=" text-gray-700 font-bold">{{ t('Department') }}:</span>
+                <span class=" text-gray-700 font-bold">{{ $root.t('Department') }}:</span>
                 <span>{{ requester.department }}</span>
               </div>
 
               <div>
-                <span class=" text-gray-700 font-bold">{{ t('Job') }}:</span>
+                <span class=" text-gray-700 font-bold">{{ $root.t('Job') }}:</span>
                 <span>{{ requester.job }}</span>
               </div>
 
               <div v-if="requester.email">
-                <span class=" text-gray-700 font-bold">{{ t('Email') }}:</span>
+                <span class=" text-gray-700 font-bold">{{ $root.t('Email') }}:</span>
                 <span>{{ requester.email }}</span>
               </div>
 
               <div v-if="showBalanceLbl">
-                <span class="text-gray-700 font-bold mb-2">{{ t('Leave Balance') }}:</span>
+                <span class="text-gray-700 font-bold mb-2">{{ $root.t('Leave Balance') }}:</span>
                 <span>{{ requester.extra_fields.balance_an_lv_ent }}</span>
               </div>
             </div>

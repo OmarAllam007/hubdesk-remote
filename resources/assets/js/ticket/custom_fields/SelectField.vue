@@ -3,15 +3,28 @@
     <div class="flex flex-col ">
       <label :for="id"
              class="font-semibold">
-        {{ label }} <span v-if="required == '1'" class="text-red-700 font-bold">*</span>
+        {{ $root.t(label) }} <span v-if="required == '1'" class="text-red-700 font-bold">*</span>
       </label>
 
       <selectize
                  class="w-full px-1 "
-                 @input="$emit('change-list', {id:item_id,value:$event})" >
-        <option value="">Select {{label}}</option>
+                 @input="$emit('input', {id:item_id,value:$event})"
+                v-if="JSON.parse(options).length > 50"
+      >
+        <option value="">{{ $root.t('Select') }} {{$root.t(label)}}</option>
+
         <option v-for="(text, value) in JSON.parse(options)" :value="text">
-          {{ $parent.t(text) }}
+          {{ text }}
+        </option>
+      </selectize>
+
+      <selectize
+                 class="w-full px-1 "
+                 @input="$emit('input', {id:item_id,value:$event})" v-else >
+        <option value="">{{ $root.t('Select') }} {{$root.t(label)}}</option>
+
+        <option v-for="(text, value) in JSON.parse(options)" :value="text">
+          {{ $root.t(text) }}
         </option>
       </selectize>
     </div>
@@ -31,17 +44,6 @@ export default {
     return {
 
     }
-  },
-  mounted() {
-
-    // $(".select2").selectize(this.options);
-
-    // setTimeout(() => {
-    //   $('.select2').select2({
-    //     width: 'element',
-    //     minimumResultsForSearch: Infinity
-    //   })
-    // }, 2000);
   },
   components:{Selectize}
 }
