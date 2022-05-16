@@ -9,7 +9,7 @@
       <selectize
                  class="w-full px-1 "
                  @input="$emit('input', {id:item_id,value:$event})"
-                v-if="JSON.parse(options).length > 50"
+                v-if="JSON.parse(options).length > 50" autocomplete="off"
       >
         <option value="">{{ $root.t('Select') }} {{$root.t(label)}}</option>
 

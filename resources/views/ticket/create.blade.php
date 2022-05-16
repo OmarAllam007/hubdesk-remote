@@ -25,9 +25,12 @@
                     $notes = $category->notes.' '. $subcategory->notes .' '. $item->notes;
                 }
 
+                $ticketObj = new \App\Ticket();
+                $sla = $ticketObj->getSla($category,$subcategory ?? null ,$item ?? null,$subItem ?? '');
+
                 $ticket_attr = [
                                 'category_id'=> $category->id,'subcategory_id'=> $subcategory->id,
-                                'item_id'=>$item->id ?? 0,'subitem_id' => $subItem->id ?? 0, 'notes'=>$notes
+                                'item_id'=>$item->id ?? 0,'subitem_id' => $subItem->id ?? 0, 'notes'=>$notes,'sla'=> $sla,
                                 ];
                 $subject = $subject = (auth()->user()->employee_id ? auth()->user()->employee_id.' - ' : '').
                      $category->name.(isset($subcategory->name) ? '  -  '.  $subcategory->name:'').(isset($item->name) ? '  -  '.  $item->name:'').(isset($subItem->name) ? '  -  '.  $subItem->name:'');
@@ -47,9 +50,10 @@
 
             @endphp
 
+            {{--            @dd($translations)--}}
             <ticket-form
                     :show_balance="{{$showBalance}}"
-                    :auth_user="{{Auth::user()->employee_id}}"
+                    :auth_user="{{json_encode(Auth::user()->employee_id)}}"
                     :create_for_others="{{$createForOthers}}"
                     :ticket_attr="{{json_encode($ticket_attr)}}"
                     :subject_text="{{json_encode($subject)}}"

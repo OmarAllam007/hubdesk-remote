@@ -5,7 +5,19 @@
       <i class="fa fa-3x fa-spinner fa-spin"></i>
     </div>
     <div v-else>
-
+      <div class="flex justify-center" v-if="ticket_attr.sla">
+        <div class="w-1/2">
+          <div class="flex rounded-3xl p-5 mb-5 justify-center  shadow-md"
+               style="background-color: rgba(26, 29, 80, 0.9)">
+            <div class="w-25 text-white pt-1  flex-col ">
+              <i class="fa fa-info-circle fa-lg "></i>
+            </div>
+            <p class=" pl-2 pr-2 text-white text-2xl ">
+              {{$root.t('Your Request will Delivered within')}} {{ticket_attr.sla.due_days}} {{$root.t('Days')}} {{ticket_attr.sla.due_hours}} {{$root.t('Hours')}} {{ticket_attr.sla.due_minutes}} {{$root.t('Minutes')}} {{$root.t('(from the last approval)')}}
+            </p>
+          </div>
+        </div>
+      </div>
 
       <div class="flex flex-col w-full  p-5 my-5  bg-white rounded-xl shadow-md">
         <users-list :is-technician="1"
@@ -162,7 +174,7 @@ export default {
       type: Number,
     },
     auth_user: {
-      type: Number,
+      type: String,
     },
     create_for_others: {
       type: Number,
