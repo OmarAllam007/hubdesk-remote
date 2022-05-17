@@ -7,6 +7,7 @@ namespace App\Http\Controllers\API;
 use App\Attachment;
 use App\CustomField;
 use App\Helpers\Ticket\TicketViewScope;
+use App\Jobs\NewTicketJob;
 use App\Ticket;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -174,7 +175,7 @@ class TicketController
         }
 
 
-
+        dispatch(new NewTicketJob($ticket));
         return response($ticket->id);
 //        return $ticket;
     }
