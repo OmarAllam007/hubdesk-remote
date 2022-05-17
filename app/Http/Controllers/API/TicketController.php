@@ -142,14 +142,17 @@ class TicketController
             return response()->json(['file_size_error' => ['Attachments size should not exceed 10MB'], 'error_code' => 402]);
         }
 
-        $validator = \Validator::make($request->all(), ['ticket.subject' => 'required', 'ticket.priority_id' => 'required'],[
-            'ticket.priority_id.required'=> 'Priority field is required.',
-            'ticket.subject.required'=> 'Subject field is required.'
+        $validator = \Validator::make($request->all(), ['ticket.subject' => 'required', 'ticket.priority_id' => 'required'], [
+            'ticket.priority_id.required' => 'Priority field is required.',
+            'ticket.subject.required' => 'Subject field is required.'
         ]);
 
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors(), 'error_code' => 400]);
         }
+
+
+        $clientInfo =  ['client' => $request->userAgent(), 'ip_address' => $request->ip(), 'client_ip' => $request->getClientIp()];
 
         $ticket = Ticket::create([
             'subject' => $requestedTicket['subject'],
@@ -161,10 +164,11 @@ class TicketController
             'subcategory_id' => $requestedTicket['subcategory_id'],
             'item_id' => $requestedTicket['item_id'],
             'priority_id' => $requestedTicket['priority_id'],
-
+            'business_unit_id' => \Auth::user()->business_unit_id ?? 34, //not assigned
+            'client_info' => $clientInfo,
         ]);
 
-        if ($items && count($items)){
+        if ($items && count($items)) {
             foreach ($items as $key => $item) {
                 if ($item) {
                     $field = CustomField::find($key)->name ?? '';
