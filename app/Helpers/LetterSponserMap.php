@@ -118,6 +118,7 @@ class LetterSponserMap
         "7012970179" => "Kifah Ready Mix & Block",
         "7001573638" => "AL-MOTAWEROON",
         "7002613987" => "Green Vision Paper Products",
-        "7006355593" => "Al-Kifah Construction Equipments"
+        "7006355593" => "Al-Kifah Construction Equipments",
+        "7005620625"=> "Emdad Company",
     ];
 }
