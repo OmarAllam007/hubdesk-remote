@@ -275,13 +275,13 @@ class ListController extends Controller
         }
         if (\request('subcategory_id')) {
             $subcategory = Subcategory::find(\request('subcategory_id'));
-            if ($subcategory->custom_fields->count()) {
+            if ($subcategory && $subcategory->custom_fields->count()) {
                 $fields->push($subcategory->custom_fields->sortBy('label')->groupBy('label'));
             }
         }
         if (\request('item_id')) {
             $item = Item::find(\request('item_id'));
-            if ($item->custom_fields->count()) {
+            if ($item && $item->custom_fields->count()) {
                 $fields->push($item->custom_fields->sortBy('label')->groupBy('label'));
             }
         }
