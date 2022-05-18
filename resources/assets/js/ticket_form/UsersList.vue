@@ -61,7 +61,7 @@ export default {
       required: true,
     },
     auth_user: {
-      type: Number,
+      type: String,
       required: true,
     },
     showUserDetails: {

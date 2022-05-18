@@ -13,7 +13,9 @@
               <i class="fa fa-info-circle fa-lg "></i>
             </div>
             <p class=" pl-2 pr-2 text-white text-2xl ">
-              {{$root.t('Your Request will Delivered within')}} {{ticket_attr.sla.due_days}} {{$root.t('Days')}} {{ticket_attr.sla.due_hours}} {{$root.t('Hours')}} {{ticket_attr.sla.due_minutes}} {{$root.t('Minutes')}} {{$root.t('(from the last approval)')}}
+              {{ $root.t('Your Request will Delivered within') }} {{ ticket_attr.sla.due_days }} {{ $root.t('Days') }}
+              {{ ticket_attr.sla.due_hours }} {{ $root.t('Hours') }} {{ ticket_attr.sla.due_minutes }}
+              {{ $root.t('Minutes') }} {{ $root.t('(from the last approval)') }}
             </p>
           </div>
         </div>
@@ -27,7 +29,7 @@
                     v-if="create_for_others"
         ></users-list>
 
-<!--                <div class="w-full md:w-1/2 mb-6 md:mb-0">-->
+        <!--                <div class="w-full md:w-1/2 mb-6 md:mb-0">-->
 
         <div class="flex">
           <div class="w-1/2">
@@ -39,13 +41,13 @@
         transition duration-300 border border-gray-400 rounded"
                      id="subject" type="text" v-model="form.subject">
 
-              <p v-if="validations['ticket.subject']" class="text-red-700 pt-1">{{ $root.t(validations['ticket.subject'][0]) }}</p>
+              <p v-if="validations['ticket.subject']" class="text-red-700 pt-1">
+                {{ $root.t(validations['ticket.subject'][0]) }}</p>
             </div>
 
           </div>
         </div>
       </div>
-
 
 
       <div class="flex flex-col w-full  p-5 my-5  bg-white rounded-xl shadow-md" v-for="section in fields">
@@ -54,13 +56,16 @@
         <hr v-if="section.title != ''">
         <div class="flex flex-wrap w-full  mx-2  my-5 rounded-xl">
           <div v-for="item in section.fields" class="w-full md:w-1/2 lg:w-1/2 xl:w-1/2 px-1 ">
-            <component :is="item.type" :label="item.name"
-                       :name="`cf[${item.id}]`" :id="`cf[${item.id}]`" h
-                       class="pt-5 " v-model="form.custom_fields[item.id]"
-                       :options="item.options"
-                       :required="item.required"
-                       :item_id="item.id"
-                       @input="listenForChange"
+            {{ item.type }}
+            <component
+                :is="item.type" :label="item.name"
+                :name="`cf[${item.id}]`" :id="`cf[${item.id}]`"
+                class="pt-5 " v-model="form.custom_fields[item.id]"
+                :options="item.options"
+                :required="item.required"
+                :item_id="item.id"
+                @input="listenForChange"
+                :type="item.type"
             >
             </component>
 
@@ -104,7 +109,8 @@
             </option>
           </selectize>
 
-          <p v-if="validations['ticket.priority_id']" class="text-red-700 pt-1">{{ $root.t(validations['ticket.priority_id'][0]) }}</p>
+          <p v-if="validations['ticket.priority_id']" class="text-red-700 pt-1">
+            {{ $root.t(validations['ticket.priority_id'][0]) }}</p>
 
         </div>
       </div>
@@ -147,6 +153,7 @@
 import UsersList from "./UsersList";
 import _ from "lodash";
 import Editor from '@tinymce/tinymce-vue'
+import TimeDate from "../ticket/custom_fields/TimeDate";
 import Date from "../ticket/custom_fields/Date";
 import TextField from "../ticket/custom_fields/TextField";
 import SelectField from "../ticket/custom_fields/SelectField";
@@ -163,11 +170,12 @@ export default {
     TicketFormAttachments,
     UsersList,
     Editor,
+    TimeDate,
     Date,
     TextField,
     SelectField,
     Selectize,
-    NotificationsComponent
+    NotificationsComponent,
   },
   props: {
     show_balance: {
@@ -197,7 +205,7 @@ export default {
   data() {
     return {
       isLoading: false,
-      isLoadingButton:false,
+      isLoadingButton: false,
       form: {
         requester_id: '',
         description: '',
@@ -217,7 +225,7 @@ export default {
       refs: [],
       validFields: true,
       validations: {},
-      files_validation_error:''
+      files_validation_error: ''
     }
 
   },
@@ -291,14 +299,14 @@ export default {
               return;
             }
 
-            if (response.status == 200){
+            if (response.status == 200) {
               document.location.href = `/ticket/${response.data}`
               this.isLoadingButton = false
               EventBus.$emit('send_notification', 'create_ticket',
                   'Ticket Info', `Ticket created successfully`, 'success');
             }
           }).catch((error) => {
-            this.isLoadingButton = false
+        this.isLoadingButton = false
       });
 
 
