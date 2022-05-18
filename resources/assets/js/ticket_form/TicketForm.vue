@@ -56,7 +56,6 @@
         <hr v-if="section.title != ''">
         <div class="flex flex-wrap w-full  mx-2  my-5 rounded-xl">
           <div v-for="item in section.fields" class="w-full md:w-1/2 lg:w-1/2 xl:w-1/2 px-1 ">
-            {{ item.type }}
             <component
                 :is="item.type" :label="item.name"
                 :name="`cf[${item.id}]`" :id="`cf[${item.id}]`"
