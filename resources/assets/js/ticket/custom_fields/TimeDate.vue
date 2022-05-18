@@ -20,8 +20,8 @@
 
 <script>
 export default {
-  name: "DateTime",
-  props: ['id', 'name', 'label', 'value','required','item_id']
+  name: "TimeDate",
+  props: ['id', 'name', 'label', 'value','required','item_id','type']
 }
 </script>
 

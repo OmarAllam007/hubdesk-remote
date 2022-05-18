@@ -37489,7 +37489,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -37538,23 +37538,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tinymce_tinymce_vue__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ticket_custom_fields_Date__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ticket_custom_fields_Date___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__ticket_custom_fields_Date__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ticket_custom_fields_TextField__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ticket_custom_fields_TextField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__ticket_custom_fields_TextField__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ticket_custom_fields_SelectField__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ticket_custom_fields_SelectField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__ticket_custom_fields_SelectField__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__TicketFormAttachments__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__TicketFormAttachments___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__TicketFormAttachments__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_axios__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_vue2_selectize__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_vue2_selectize___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_vue2_selectize__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_selectize_dist_css_selectize_bootstrap3_css__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_selectize_dist_css_selectize_bootstrap3_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_selectize_dist_css_selectize_bootstrap3_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__EventBus__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ticket_show_NotificationsComponent__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ticket_show_NotificationsComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__ticket_show_NotificationsComponent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ticket_custom_fields_TimeDate__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ticket_custom_fields_TimeDate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__ticket_custom_fields_TimeDate__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ticket_custom_fields_Date__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ticket_custom_fields_Date___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__ticket_custom_fields_Date__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ticket_custom_fields_TextField__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ticket_custom_fields_TextField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__ticket_custom_fields_TextField__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ticket_custom_fields_SelectField__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ticket_custom_fields_SelectField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__ticket_custom_fields_SelectField__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__TicketFormAttachments__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__TicketFormAttachments___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__TicketFormAttachments__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_axios__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_vue2_selectize__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_vue2_selectize___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_vue2_selectize__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_selectize_dist_css_selectize_bootstrap3_css__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_selectize_dist_css_selectize_bootstrap3_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_selectize_dist_css_selectize_bootstrap3_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__EventBus__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ticket_show_NotificationsComponent__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ticket_show_NotificationsComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__ticket_show_NotificationsComponent__);
 //
 //
 //
@@ -37700,6 +37702,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -37717,14 +37726,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "TicketForm",
   components: {
-    TicketFormAttachments: __WEBPACK_IMPORTED_MODULE_6__TicketFormAttachments___default.a,
+    TicketFormAttachments: __WEBPACK_IMPORTED_MODULE_7__TicketFormAttachments___default.a,
     UsersList: __WEBPACK_IMPORTED_MODULE_0__UsersList___default.a,
     Editor: __WEBPACK_IMPORTED_MODULE_2__tinymce_tinymce_vue__["a" /* default */],
-    Date: __WEBPACK_IMPORTED_MODULE_3__ticket_custom_fields_Date___default.a,
-    TextField: __WEBPACK_IMPORTED_MODULE_4__ticket_custom_fields_TextField___default.a,
-    SelectField: __WEBPACK_IMPORTED_MODULE_5__ticket_custom_fields_SelectField___default.a,
-    Selectize: __WEBPACK_IMPORTED_MODULE_8_vue2_selectize___default.a,
-    NotificationsComponent: __WEBPACK_IMPORTED_MODULE_11__ticket_show_NotificationsComponent___default.a
+    TimeDate: __WEBPACK_IMPORTED_MODULE_3__ticket_custom_fields_TimeDate___default.a,
+    Date: __WEBPACK_IMPORTED_MODULE_4__ticket_custom_fields_Date___default.a,
+    TextField: __WEBPACK_IMPORTED_MODULE_5__ticket_custom_fields_TextField___default.a,
+    SelectField: __WEBPACK_IMPORTED_MODULE_6__ticket_custom_fields_SelectField___default.a,
+    Selectize: __WEBPACK_IMPORTED_MODULE_9_vue2_selectize___default.a,
+    NotificationsComponent: __WEBPACK_IMPORTED_MODULE_12__ticket_show_NotificationsComponent___default.a
   },
   props: {
     show_balance: {
@@ -37796,7 +37806,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       this.isLoading = true;
-      __WEBPACK_IMPORTED_MODULE_7_axios___default.a.get("/list/fields?category_id=" + this.form.category_id + "&subcategory_id=" + this.form.subcategory_id + "&item_id=" + this.form.item_id + "&subItem_id=" + this.form.subItem_id).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_8_axios___default.a.get("/list/fields?category_id=" + this.form.category_id + "&subcategory_id=" + this.form.subcategory_id + "&item_id=" + this.form.item_id + "&subItem_id=" + this.form.subItem_id).then(function (response) {
         if (!response.data.length) {
           _this.isLoading = false;
           return;
@@ -37823,7 +37833,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.validations = {};
       this.isLoadingButton = true;
 
-      __WEBPACK_IMPORTED_MODULE_7_axios___default.a.post("/ticket/post_new_ticket", ticket, {
+      __WEBPACK_IMPORTED_MODULE_8_axios___default.a.post("/ticket/post_new_ticket", ticket, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -37831,14 +37841,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (response.data.error_code == 402 && response.data.file_size_error) {
           _this2.files_validation_error = response.data.file_size_error[0];
 
-          __WEBPACK_IMPORTED_MODULE_10__EventBus__["a" /* EventBus */].$emit('send_notification', 'create_ticket', 'Ticket Error', "Kindly check the attachments size", 'error');
+          __WEBPACK_IMPORTED_MODULE_11__EventBus__["a" /* EventBus */].$emit('send_notification', 'create_ticket', 'Ticket Error', "Kindly check the attachments size", 'error');
           _this2.isLoadingButton = false;
           return;
         }
 
         if (response.data.error_code >= 400) {
           _this2.validations = response.data.errors;
-          __WEBPACK_IMPORTED_MODULE_10__EventBus__["a" /* EventBus */].$emit('send_notification', 'create_ticket', 'Ticket Error', "Kindly fill all the required fields", 'error');
+          __WEBPACK_IMPORTED_MODULE_11__EventBus__["a" /* EventBus */].$emit('send_notification', 'create_ticket', 'Ticket Error', "Kindly fill all the required fields", 'error');
           _this2.isLoadingButton = false;
           return;
         }
@@ -37846,7 +37856,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (response.status == 200) {
           document.location.href = "/ticket/" + response.data;
           _this2.isLoadingButton = false;
-          __WEBPACK_IMPORTED_MODULE_10__EventBus__["a" /* EventBus */].$emit('send_notification', 'create_ticket', 'Ticket Info', "Ticket created successfully", 'success');
+          __WEBPACK_IMPORTED_MODULE_11__EventBus__["a" /* EventBus */].$emit('send_notification', 'create_ticket', 'Ticket Info', "Ticket created successfully", 'success');
         }
       }).catch(function (error) {
         _this2.isLoadingButton = false;
@@ -38055,7 +38065,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       required: true
     },
     auth_user: {
-      type: Number,
+      type: String,
       required: true
     },
     showUserDetails: {
@@ -50371,7 +50381,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._m(0), _vm._v(" "), _c('p', {
     staticClass: " pl-2 pr-2 text-white text-2xl "
-  }, [_vm._v("\n              " + _vm._s(_vm.$root.t('Your Request will Delivered within')) + " " + _vm._s(_vm.ticket_attr.sla.due_days) + " " + _vm._s(_vm.$root.t('Days')) + " " + _vm._s(_vm.ticket_attr.sla.due_hours) + " " + _vm._s(_vm.$root.t('Hours')) + " " + _vm._s(_vm.ticket_attr.sla.due_minutes) + " " + _vm._s(_vm.$root.t('Minutes')) + " " + _vm._s(_vm.$root.t('(from the last approval)')) + "\n            ")])])])]) : _vm._e(), _vm._v(" "), _c('div', {
+  }, [_vm._v("\n            " + _vm._s(_vm.$root.t('Your Request will Delivered within')) + " " + _vm._s(_vm.ticket_attr.sla.due_days) + " " + _vm._s(_vm.$root.t('Days')) + "\n            " + _vm._s(_vm.ticket_attr.sla.due_hours) + " " + _vm._s(_vm.$root.t('Hours')) + " " + _vm._s(_vm.ticket_attr.sla.due_minutes) + "\n            " + _vm._s(_vm.$root.t('Minutes')) + " " + _vm._s(_vm.$root.t('(from the last approval)')) + "\n          ")])])])]) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "flex flex-col w-full  p-5 my-5  bg-white rounded-xl shadow-md"
   }, [(_vm.create_for_others) ? _c('users-list', {
     attrs: {
@@ -50393,7 +50403,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "subject"
     }
-  }, [_vm._v("\n                " + _vm._s(_vm.$root.t('Subject')) + " "), _c('span', {
+  }, [_vm._v("\n              " + _vm._s(_vm.$root.t('Subject')) + " "), _c('span', {
     staticClass: "text-red-700 font-bold"
   }, [_vm._v("*")])]), _vm._v(" "), _c('input', {
     directives: [{
@@ -50402,7 +50412,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.form.subject),
       expression: "form.subject"
     }],
-    staticClass: "px-4 py-2 w-full\n        transition duration-300 border border-gray-400 rounded",
+    staticClass: "px-4 py-2 w-full\n      transition duration-300 border border-gray-400 rounded",
     attrs: {
       "id": "subject",
       "type": "text"
@@ -50418,27 +50428,27 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), (_vm.validations['ticket.subject']) ? _c('p', {
     staticClass: "text-red-700 pt-1"
-  }, [_vm._v(_vm._s(_vm.$root.t(_vm.validations['ticket.subject'][0])))]) : _vm._e()])])])], 1), _vm._v(" "), _vm._l((_vm.fields), function(section) {
+  }, [_vm._v("\n              " + _vm._s(_vm.$root.t(_vm.validations['ticket.subject'][0])))]) : _vm._e()])])])], 1), _vm._v(" "), _vm._l((_vm.fields), function(section) {
     return _c('div', {
       staticClass: "flex flex-col w-full  p-5 my-5  bg-white rounded-xl shadow-md"
     }, [(section.title != '') ? _c('p', {
       staticClass: "bg-viola bg-opacity-75  text-white p-5  rounded-xl font-bold "
-    }, [_vm._v("\n          " + _vm._s(_vm.$root.t(section.title)))]) : _vm._e(), _vm._v(" "), (section.title != '') ? _c('hr') : _vm._e(), _vm._v(" "), _c('div', {
+    }, [_vm._v("\n        " + _vm._s(_vm.$root.t(section.title)))]) : _vm._e(), _vm._v(" "), (section.title != '') ? _c('hr') : _vm._e(), _vm._v(" "), _c('div', {
       staticClass: "flex flex-wrap w-full  mx-2  my-5 rounded-xl"
     }, _vm._l((section.fields), function(item) {
       return _c('div', {
         staticClass: "w-full md:w-1/2 lg:w-1/2 xl:w-1/2 px-1 "
-      }, [_c(item.type, {
+      }, [_vm._v("\n          " + _vm._s(item.type) + "\n          "), _c(item.type, {
         tag: "component",
         staticClass: "pt-5 ",
         attrs: {
           "label": item.name,
           "name": ("cf[" + (item.id) + "]"),
           "id": ("cf[" + (item.id) + "]"),
-          "h": "",
           "options": item.options,
           "required": item.required,
-          "item_id": item.id
+          "item_id": item.id,
+          "type": item.type
         },
         on: {
           "input": _vm.listenForChange
@@ -50492,7 +50502,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "priorities"
     }
-  }, [_vm._v("\n            " + _vm._s(_vm.$root.t('Priority')) + " "), _c('span', {
+  }, [_vm._v("\n          " + _vm._s(_vm.$root.t('Priority')) + " "), _c('span', {
     staticClass: "text-red-700 font-bold"
   }, [_vm._v("*")])]), _vm._v(" "), _c('selectize', {
     staticClass: "w-1/2 px-1",
@@ -50512,10 +50522,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       domProps: {
         "value": priority.id
       }
-    }, [_vm._v("\n              " + _vm._s(_vm.$root.t(priority.name)) + "\n            ")])
+    }, [_vm._v("\n            " + _vm._s(_vm.$root.t(priority.name)) + "\n          ")])
   })], 2), _vm._v(" "), (_vm.validations['ticket.priority_id']) ? _c('p', {
     staticClass: "text-red-700 pt-1"
-  }, [_vm._v(_vm._s(_vm.$root.t(_vm.validations['ticket.priority_id'][0])))]) : _vm._e()], 1)], 1), _vm._v(" "), (_vm.ticket_attr.notes != '') ? _c('div', {
+  }, [_vm._v("\n          " + _vm._s(_vm.$root.t(_vm.validations['ticket.priority_id'][0])))]) : _vm._e()], 1)], 1), _vm._v(" "), (_vm.ticket_attr.notes != '') ? _c('div', {
     staticClass: "flex flex-col w-1/2   p-5 my-5  bg-white rounded-xl shadow-md"
   }, [_c('p', {
     staticClass: "bg-viola bg-opacity-75  text-white p-5  rounded-xl font-bold "
@@ -50542,7 +50552,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('i', {
     staticClass: "fa fa-2x fa-spinner fa-spin"
   })]) : _c('button', {
-    staticClass: "w-1/3 bg-transparent  text-white\n          font-semibold hover:text-white py-2 px-4 rounded",
+    staticClass: "w-1/3 bg-transparent  text-white\n        font-semibold hover:text-white py-2 px-4 rounded",
     class: _vm.can_submit_style,
     attrs: {
       "disabled": !_vm.can_submit
@@ -50555,7 +50565,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('i', {
     staticClass: "fa fa-save"
-  }), _vm._v(" " + _vm._s(_vm.$root.t('Create Request')) + "\n        ")])])], 2)], 1)
+  }), _vm._v(" " + _vm._s(_vm.$root.t('Create Request')) + "\n      ")])])], 2)], 1)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "w-25 text-white pt-1  flex-col "
@@ -50568,6 +50578,163 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-38b9eadb", module.exports)
+  }
+}
+
+/***/ }),
+/* 96 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(97)
+}
+var Component = __webpack_require__(3)(
+  /* script */
+  __webpack_require__(99),
+  /* template */
+  __webpack_require__(100),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-a7d59f3a",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/Users/omarkhaled/code/hubdesk/resources/assets/js/ticket/custom_fields/TimeDate.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] TimeDate.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a7d59f3a", Component.options)
+  } else {
+    hotAPI.reload("data-v-a7d59f3a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 97 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(98);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("38235031", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a7d59f3a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TimeDate.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a7d59f3a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TimeDate.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 98 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 99 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "TimeDate",
+  props: ['id', 'name', 'label', 'value', 'required', 'item_id', 'type']
+});
+
+/***/ }),
+/* 100 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('div', {
+    staticClass: "flex flex-col "
+  }, [_c('label', {
+    staticClass: "font-semibold",
+    attrs: {
+      "for": _vm.id
+    }
+  }, [_vm._v("\n      " + _vm._s(_vm.$root.t(_vm.label)) + " "), (_vm.required == '1') ? _c('span', {
+    staticClass: "text-red-700 font-bold"
+  }, [_vm._v("*")]) : _vm._e()]), _vm._v(" "), _c('input', {
+    staticClass: " px-4 py-2\n      transition duration-300 border border-gray-400 rounded select2",
+    attrs: {
+      "type": "datetime-local",
+      "id": _vm.id
+    },
+    domProps: {
+      "value": _vm.value
+    },
+    on: {
+      "input": function($event) {
+        return _vm.$emit('input', {
+          id: _vm.item_id,
+          value: $event.target.value
+        })
+      }
+    }
+  })])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-a7d59f3a", module.exports)
   }
 }
 
