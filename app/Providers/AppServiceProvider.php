@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Observers\TicketReplyObserver;
 use App\TicketReply;
 use Carbon\Carbon;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Queue\Events\JobFailed;
 use Illuminate\Support\ServiceProvider;
 
@@ -19,6 +20,8 @@ class AppServiceProvider extends ServiceProvider
     {
         Carbon::setWeekendDays([Carbon::SATURDAY, Carbon::FRIDAY]);
         TicketReply::observe(TicketReplyObserver::class);
+        Paginator::useBootstrap();
+
     }
 
     /**
