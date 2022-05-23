@@ -10,6 +10,7 @@ use Illuminate\Support\Collection;
 class TicketResource extends JsonResource
 {
 
+    private $fields = [];
     public function toArray($request)
     {
         /** @var Ticket $this */
@@ -48,13 +49,22 @@ class TicketResource extends JsonResource
 
         $letterTicket = LetterTicket::where('ticket_id', $this->request_id ? $this->ticket->id : $this->id)->first();
 
+        $keyedFields = $this->ticket_service_custom_fields->flatten()->keyBy('name');
+
+        $this->custom_fields->map(function ($field,$index) use ($keyedFields){
+            $this->fields[$index]['name'] = $field->name;
+            $this->fields[$index]['value'] = $field->value;
+            $this->fields[$index]['order'] = $keyedFields->get($field['name'])->order;
+        });
+
+        $this->fields = collect($this->fields)->sortBy('order');
         $ticket['item'] = $this->item ? t($this->item->name) : 'Not Assigned';
         $ticket['subItem'] = $this->subItem ? t($this->subItem->name) : 'Not Assigned';
         $ticket['group'] = $this->group->name ?? 'Not Assigned';
         $ticket['sla'] = $this->sla->name ?? t('Not Assigned');
         $ticket['description'] = $this->description;
         $ticket['service_cost'] = $this->total_service_cost ?? 'Not Assigned';
-        $ticket['fields'] = $this->custom_fields;
+        $ticket['fields'] = $this->fields->toArray();
         $ticket['notes'] = TicketNoteResource::collection($this->notes);
         $ticket['authorizations'] = $this->ticket_authorizations;
         $ticket['resolution'] = TicketReplyResource::make($this->resolution);
