@@ -11,6 +11,7 @@ class TicketResource extends JsonResource
 {
 
     private $fields = [];
+
     public function toArray($request)
     {
         /** @var Ticket $this */
@@ -53,11 +54,13 @@ class TicketResource extends JsonResource
 
 //        dd($keyedFields);
 
-        $this->custom_fields->map(function ($field,$index) use ($keyedFields){
+        $this->custom_fields->map(function ($field, $index) use ($keyedFields) {
             $this->fields[$index]['name'] = $field->name;
             $this->fields[$index]['value'] = $field->value;
 
-            $this->fields[$index]['order'] = $keyedFields->get($field['name'])->order;
+            if ($keyedFields->count()) {
+                $this->fields[$index]['order'] = $keyedFields->get($field['name'])->order;
+            }
         });
 
         $this->fields = collect($this->fields)->sortBy('order');
