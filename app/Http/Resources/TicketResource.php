@@ -51,9 +51,12 @@ class TicketResource extends JsonResource
 
         $keyedFields = $this->ticket_service_custom_fields->flatten()->keyBy('name');
 
+//        dd($keyedFields);
+
         $this->custom_fields->map(function ($field,$index) use ($keyedFields){
             $this->fields[$index]['name'] = $field->name;
             $this->fields[$index]['value'] = $field->value;
+
             $this->fields[$index]['order'] = $keyedFields->get($field['name'])->order;
         });
 
