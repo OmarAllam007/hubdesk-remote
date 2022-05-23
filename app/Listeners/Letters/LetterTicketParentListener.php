@@ -90,7 +90,7 @@ class LetterTicketParentListener
         $requester = $letterTicket->ticket->requester->email;
 
         if ($letterTicket->ticket->requester->email) {
-            \Mail::to($requester)->send(new ReplyTicketMail($reply));
+            \Mail::to($requester)->queue(new ReplyTicketMail($reply));
 
             $this->sendSurvey($letterTicket);
         }
@@ -108,7 +108,7 @@ class LetterTicketParentListener
         ]);
 
         if ($survey->ticket->requester->email) {
-            \Mail::send(new SendSurveyEmail($survey));
+            \Mail::queue(new SendSurveyEmail($survey));
         }
         TicketLog::addReminderOnSurvey($letterTicket->ticket);
     }

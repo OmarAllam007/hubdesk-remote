@@ -62,6 +62,7 @@ class LetterController extends Controller
         $item = Item::find($request->item_id);
 
         Ticket::flushEventListeners();
+
         $ticket = Ticket::create([
             'subject' => $request->subject,
             'description' => $request->description ?? '',

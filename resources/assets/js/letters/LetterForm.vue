@@ -119,7 +119,8 @@
     </div>
 
     <div class="flex pt-10">
-      <button class="font-bold py-5 px-8 rounded-xl " :class="submitButtonStyle" :disabled="!canSubmit"
+      <i class="fa fa-2x fa-spin fa-spinner" v-if="loading"></i>
+      <button class="font-bold py-5 px-8 rounded-xl " :class="submitButtonStyle" :disabled="!canSubmit || loading" v-else
               @click.prevent="createLetter">
         <i class="fa fa-save"></i> {{ t('Submit') }}
       </button>
@@ -154,7 +155,8 @@ export default {
       description: '',
       user_id: '',
       load_letters: false,
-      //
+      loading:false,
+
       users: [],
       letters: [],
       attachments: [],
@@ -209,8 +211,10 @@ export default {
     },
 
     loadUsers(searchText = '') {
+      this.loading = true
       axios.get(`/list/employees?search=${searchText}`).then((response) => {
         this.users = response.data;
+        this.loading = false
       });
     },
 
@@ -235,6 +239,8 @@ export default {
 
     },
     createLetter() {
+      this.loading = true
+
       var form = new FormData;
       form.append('_token', $('meta[name="csrf-token"]').attr('content'));
 
@@ -264,12 +270,14 @@ export default {
       form.append('letter_id', this.letter.id);
       form.append('is_stamped', this.is_stamped === true ? 1 : 0);
 
+
       axios.post('/letters/create-letter-ticket', form, {
         headers: {
           'Content-Type': 'multipart/form-data'
         },
       }).then((response) => {
         window.location = `/ticket/${response.data.ticket.id}`
+        // this.loading = false
       });
     },
 
@@ -308,10 +316,12 @@ export default {
       return canSubmit;
     },
     submitButtonStyle() {
-      if (this.canSubmit) {
+      if (this.canSubmit && !this.loading) {
         return 'bg-green-500 hover:bg-green-700 text-white'
+      }else{
+        return 'bg-gray-500 hover:bg-gray-700 text-white opacity-50 cursor-not-allowed'
       }
-      return 'bg-gray-500 hover:bg-gray-700 text-white opacity-50 cursor-not-allowed'
+
     },
   }
 }
