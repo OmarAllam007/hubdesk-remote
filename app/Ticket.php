@@ -727,7 +727,11 @@ class Ticket extends KModel
 
 //        Get Fields if it task
         if(Ticket::TASK_TYPE == $this->type){
+
             $ticket = $this->ticket;
+
+//            $fields = $this->ticket->custom_fields;
+
             $mainCategory = $ticket->category;
 
             $fields->push($mainCategory->custom_fields->sortBy('label')->groupBy('label'));
