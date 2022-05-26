@@ -95,13 +95,42 @@
 
 
             <div class="flex pt-20 px-10 ">
-                <p class="text-3xl">
+                <p class="text-2xl">
                     Signed By:
                 </p>
             </div>
 
 
-            @include('letters._footer')
+            <div class="flex justify-between  pt-5   px-10  ">
+                <div class="w-1/2 flex-col">
+                    <div class="flex justify-start">
+                        <p class="text-2xl " dir="rtl">
+                            Muhammad Abdulrahman Al-Katheer
+                        </p>
+                    </div>
+                    <div class="flex justify-start   pt-8  ">
+                        <img class="w-5/12  " src="{{asset('/storage'.$letterTicket->signature)}}">
+                    </div>
+                </div>
+                <div class="flex flex-col justify-center items-center pt-3  ">
+                    <div class="visible-print text-center">
+                        @php $ticketId  =  Crypt::encryptString($letterTicket->ticket_id);@endphp
+                        {!! QrCode::size(120)->generate(route('letters.verify-letter',[$ticketId])); !!}
+                    </div>
+                </div>
+                <br>
+                <div class="w-1/2  flex-col">
+                    <div>
+                        <p class="text-2xl " dir="rtl">
+                            {{\App\Helpers\LetterSponserMap::$en_sponsers[$user['sponsor_id']]}}
+                        </p>
+                    </div>
+                    {{--        @dd($letterTicket->stamp)--}}
+                    <div class="flex justify-end pt-8 ">
+                        <img class="w-5/12 " src="{{asset('/storage'.$letterTicket->stamp)}}" alt="">
+                    </div>
+                </div>
+            </div>
 
         </page>
     </div>
