@@ -701,4 +701,59 @@ class Ticket extends KModel
         return LetterTicket::where('ticket_id', $this->id)->first();
     }
 
+    function getTicketServiceCustomFieldsAttribute(){
+        $fields = collect();
+
+        if ($this->category_id) {
+            $category = $this->category;
+
+            if ($category->custom_fields->count()) {
+                $fields->push($category->custom_fields->sortBy('label')->groupBy('label'));
+            }
+        }
+        if ($this->subcategory_id) {
+            $subcategory = $this->subcategory;
+
+            if ($subcategory && $subcategory->custom_fields->count()) {
+                $fields->push($subcategory->custom_fields->sortBy('label')->groupBy('label'));
+            }
+        }
+        if ($this->item_id) {
+            $item = $this->item;
+            if ($item && $item->custom_fields->count()) {
+                $fields->push($item->custom_fields->sortBy('label')->groupBy('label'));
+            }
+        }
+
+//        Get Fields if it task
+        if(Ticket::TASK_TYPE == $this->type){
+
+            $ticket = $this->ticket;
+
+//            $fields = $this->ticket->custom_fields;
+
+            $mainCategory = $ticket->category;
+
+            $fields->push($mainCategory->custom_fields->sortBy('label')->groupBy('label'));
+
+            if ($ticket->subcategory_id) {
+                $subcategory = $ticket->subcategory;
+                if ($subcategory && $subcategory->custom_fields->count()) {
+                    $fields->push($subcategory->custom_fields->sortBy('label')->groupBy('label'));
+
+                }
+            }
+
+            if ($ticket->item_id) {
+                $item = $ticket->item;
+
+                if ($item && $item->custom_fields->count()) {
+                    $fields->push($item->custom_fields->sortBy('label')->groupBy('label'));
+                }
+            }
+        }
+
+        return $fields;
+    }
+
 }
