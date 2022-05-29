@@ -26,7 +26,7 @@ class FPController extends Controller
 
             $currentTime = $this->zk->getTime();
             $currentAttendance = $this->zk->getAttendance();
-
+            $this->zk->disconnect();
             return view('admin.fp.index', ['time' => $currentTime, 'attendance' => $currentAttendance]);
         } else {
             return "Not authorized";
@@ -45,6 +45,7 @@ class FPController extends Controller
             }
             $carbonDate = Carbon::parse($date)->format('Y-m-d H:i:s');
             $this->addFP($carbonDate);
+
             return redirect()->back();
         } else {
             return "Not authorized";
@@ -64,7 +65,7 @@ class FPController extends Controller
 
         $currentTime = $this->zk->getTime();
         $currentAttendance = $this->zk->getAttendance();
-
+        $this->zk->disconnect();
         return view('admin.fp.index', ['time' => $currentTime, 'attendance' => $currentAttendance]);
 
     }
