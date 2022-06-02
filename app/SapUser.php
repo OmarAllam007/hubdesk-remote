@@ -61,7 +61,7 @@ class SapUser
             $difference = $fromCarbonDate->floatDiffInYears(Carbon::now());
 
             if($difference < 2){
-                return $amount ;
+                return 0;
             }elseif ($difference >= 2 && $difference <= 5){
                 return $amount / 3;
             }elseif ($difference >= 5 && $difference <= 10){
