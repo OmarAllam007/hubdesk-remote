@@ -21,7 +21,7 @@
 <script>
 export default {
   name: "TextField",
-  props: ['id', 'name', 'label', 'value', 'required','item_id']
+  props: ['id', 'name', 'label', 'value', 'required', 'item_id']
 
 }
 </script>
