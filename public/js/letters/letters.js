@@ -31549,7 +31549,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -31738,6 +31738,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -31771,13 +31784,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       letters: [],
       attachments: [],
       fields: [],
-      custom_fields: []
+      custom_fields: {},
+      list_groups: []
     };
   },
   created: function created() {
     var _this = this;
 
-    this.groups = this.groups.map(function (group) {
+    this.list_groups = this.groups.map(function (group) {
       return { id: group.id, name: _this.t(group.name) };
     });
     this.loadUsers();
@@ -31788,6 +31802,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
   methods: {
+    listenForChange: function listenForChange(value) {
+      this.custom_fields[value.id] = value.value;
+    },
     searchForUser: function searchForUser(text) {
       if (text.length > 3) {
         this.loadUsers(text);
@@ -31852,10 +31869,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.fields = [];
 
       axios.get("/letters/list/letter_fields/" + this.letter.id).then(function (response) {
+        if (!response.data.length) {
+          _this5.isLoading = false;
+          return;
+        }
         _this5.fields = response.data;
+
+        Object.entries(response.data).map(function (item) {
+          _this5.custom_fields[item[1].id] = '';
+          // console.log(item)
+          // item.forEach((value) => {
+          //   this.fields[value.id] = ''
+          // })
+        });
       });
     },
     createLetter: function createLetter() {
+      var _this6 = this;
+
       this.loading = true;
 
       var form = new FormData();
@@ -31867,13 +31898,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         form.append("attachments[" + l + "]", attachments[l]);
       }
 
-      var fields = this.fields;
+      // let fields = this.fields;
 
-      for (var f = 0; f < fields.length; f++) {
-        form.append("fields[" + f + "][id]", fields[f].id);
-        form.append("fields[" + f + "][name]", fields[f].name);
-        form.append("fields[" + f + "][value]", fields[f].value);
+
+      var fields = Object.keys(this.custom_fields).map(function (key) {
+        return { key: key, value: _this6.custom_fields[key] };
+      });
+
+      for (var cf = 0; cf < fields.length; cf++) {
+        form.append("fields", JSON.stringify(this.custom_fields));
       }
+
+      // for (var f = 0; f < fields.length; f++) {
+      //   form.append(`fields[${f}][id]`, fields[f].id);
+      //   form.append(`fields[${f}][name]`, fields[f].name);
+      //   form.append(`fields[${f}][value]`, this.custom_fields[fields[f].id].value);
+      // }
 
       form.append('description', this.description ? this.description : '');
       form.append('subject', this.subject);
@@ -31893,7 +31933,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
       }).then(function (response) {
         window.location = "/ticket/" + response.data.ticket.id;
-        // this.loading = false
       });
     },
     attachFiles: function attachFiles(event) {
@@ -31910,6 +31949,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     },
     canSubmit: function canSubmit() {
+      return true;
       var canSubmit = true;
 
       if (!this.group) {
@@ -43941,7 +43981,9 @@ module.exports = function(module) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [(_vm.isTechnician == 1) ? _c('div', {
+  return _c('div', [_c('div', {
+    staticClass: "flex flex-col w-full  p-5 my-5  bg-white rounded-xl shadow-md"
+  }, [(_vm.isTechnician == 1) ? _c('div', {
     staticClass: "flex"
   }, [_c('div', {
     staticClass: "w-1/2"
@@ -43951,7 +43993,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "requester_id"
     }
-  }, [_vm._v("\n          " + _vm._s(_vm.t('Requester')) + "\n        ")]), _vm._v(" "), _c('v-select', {
+  }, [_vm._v("\n            " + _vm._s(_vm.t('Requester')) + "\n          ")]), _vm._v(" "), _c('v-select', {
     staticClass: "selection-list bg-white",
     attrs: {
       "options": _vm.users,
@@ -43976,7 +44018,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "w-1/2"
   }, [_c('div', {
     staticClass: "form-group form-group-sm"
-  }, [_c('label', [_vm._v("\n          " + _vm._s(_vm.t('Subject')) + "\n        ")]), _vm._v(" "), _c('input', {
+  }, [_c('label', [_vm._v("\n            " + _vm._s(_vm.t('Subject')) + "\n          ")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -43997,7 +44039,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.subject = $event.target.value
       }
     }
-  })])])]), _vm._v(" "), _c('div', {
+  })])])])]), _vm._v(" "), _c('div', {
+    staticClass: "flex flex-col w-full  p-5 my-5  bg-white rounded-xl shadow-md"
+  }, [_c('div', {
     staticClass: "flex"
   }, [_c('div', {
     staticClass: "w-1/2"
@@ -44007,7 +44051,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "group"
     }
-  }, [_vm._v("\n          " + _vm._s(_vm.t('Type')) + "\n          "), _c('span', {
+  }, [_vm._v("\n            " + _vm._s(_vm.t('Type')) + "\n            "), _c('span', {
     staticClass: "text-red-800"
   }, [_vm._v("*")])]), _vm._v(" "), _c('select', {
     staticClass: "select2 group-select",
@@ -44022,7 +44066,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "value": ""
     }
-  }, [_vm._v(_vm._s(_vm.t('Select Type')))]), _vm._v(" "), _vm._l((_vm.groups), function(group) {
+  }, [_vm._v(_vm._s(_vm.t('Select Type')))]), _vm._v(" "), _vm._l((_vm.list_groups), function(group) {
     return _c('option', {
       domProps: {
         "value": group.id
@@ -44075,19 +44119,25 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, _vm._l((_vm.fields), function(item, key) {
     return _c('div', [_c(item.type, {
       tag: "component",
-      staticClass: "pt-3",
+      staticClass: "pt-5 ",
       attrs: {
-        "label": _vm.t(item.name) + '*',
+        "label": _vm.t(item.name),
         "name": ("cf[" + (item.id) + "]"),
         "id": ("cf[" + (item.id) + "]"),
-        "options": item.options
+        "options": item.options,
+        "required": item.required,
+        "item_id": item.id,
+        "type": item.type
+      },
+      on: {
+        "input": _vm.listenForChange
       },
       model: {
-        value: (_vm.fields[key]['value']),
+        value: (_vm.custom_fields[item.id]),
         callback: function($$v) {
-          _vm.$set(_vm.fields[key], 'value', $$v)
+          _vm.$set(_vm.custom_fields, item.id, $$v)
         },
-        expression: "fields[key]['value']"
+        expression: "custom_fields[item.id]"
       }
     })], 1)
   }), 0)]), _vm._v(" "), _c('div', {
@@ -44106,13 +44156,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.is_stamped = !_vm.is_stamped
       }
     }
-  }), _vm._v("\n        " + _vm._s(_vm.t('Stamped by the Chamber of Commerce?')) + "\n      ")])])]), _vm._v(" "), _c('div', {
+  }), _vm._v("\n          " + _vm._s(_vm.t('Stamped by the Chamber of Commerce?')) + "\n        ")])])]), _vm._v(" "), _c('div', {
     staticClass: "flex pt-10"
   }, [_c('div', {
     staticClass: "w-1/2"
   }, [_c('div', {
     staticClass: "form-group"
-  }, [_c('label', [_vm._v("\n          " + _vm._s(_vm.t('Description')) + "\n        ")]), _vm._v(" "), _c('editor', {
+  }, [_c('label', [_vm._v("\n            " + _vm._s(_vm.t('Description')) + "\n          ")]), _vm._v(" "), _c('editor', {
     attrs: {
       "trigger": "#",
       "init": {
@@ -44172,7 +44222,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('i', {
     staticClass: "fa fa-save"
-  }), _vm._v(" " + _vm._s(_vm.t('Submit')) + "\n    ")])]), _vm._v(" "), _c('br')])
+  }), _vm._v(" " + _vm._s(_vm.t('Submit')) + "\n      ")])])]), _vm._v(" "), _c('br')])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "w-1/2"

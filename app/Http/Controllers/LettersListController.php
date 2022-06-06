@@ -46,7 +46,9 @@ class LettersListController extends Controller
                 'letter_id' => $field->letter_id,
                 'name' => $field->name,
                 'type' => LetterField::TYPES[$field->type],
-                'options' => $field->options
+                'options' => $field->options ?? [],
+                'value'=> '',
+                'required'=> true
             ];
         });
     }

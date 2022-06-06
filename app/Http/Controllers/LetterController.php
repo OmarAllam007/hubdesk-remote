@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\CustomField;
 use App\Helpers\ChromePrint;
 use App\Helpers\LetterSponserMap;
 use App\Item;
 use App\Jobs\NewTicketJob;
 use App\Letter;
+use App\LetterField;
 use App\LetterGroup;
 use App\LetterTicket;
 use App\Ticket;
@@ -58,6 +60,7 @@ class LetterController extends Controller
 
     function createLetterTicket(Request $request)
     {
+//        return  ;
         /** @var Item $item */
         $item = Item::find($request->item_id);
 
@@ -76,14 +79,19 @@ class LetterController extends Controller
             'business_unit_id' => auth()->user()->business_unit_id,
         ]);
 
-        if ($request->has('fields') && count($request->fields)) {
-            foreach ($request->fields as $field) {
-                $ticket->fields()->create([
-                    'name' => $field['name'],
-                    'value' => $field['value']
-                ]);
+
+        foreach (json_decode($request->get('fields',[]),true) as $key => $item) {
+
+            if ($item) {
+                $field = LetterField::find($key)->name ?? '';
+
+                if (is_array($item) && count($item) > 0) {
+                    $item = implode(", ", $item);
+                }
+                $ticket->fields()->create(['name' => $field, 'value' => $item]);
             }
         }
+
 
         $letterTicket = LetterTicket::create([
             'ticket_id' => $ticket->id,

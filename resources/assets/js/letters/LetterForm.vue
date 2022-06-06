@@ -1,99 +1,110 @@
 <template>
   <div>
-    <div class="flex" v-if="isTechnician == 1">
-      <div class="w-1/2">
-        <div class="form-group form-group-sm">
-          <label for="requester_id">
-            {{ t('Requester') }}
-          </label>
-          <v-select
-              :options="users" label="employee_id" v-model="user_id" id="requester_id" name="requester_id"
-              :placeholder="t('Created For Me')"
-              class="selection-list bg-white" @search="searchForUser"></v-select>
-          <p v-if="user_id">{{ user_id.name }}</p>
+    <div class="flex flex-col w-full  p-5 my-5  bg-white rounded-xl shadow-md">
+
+      <div class="flex" v-if="isTechnician == 1">
+        <div class="w-1/2">
+          <div class="form-group form-group-sm">
+            <label for="requester_id">
+              {{ t('Requester') }}
+            </label>
+            <v-select
+                :options="users" label="employee_id" v-model="user_id" id="requester_id" name="requester_id"
+                :placeholder="t('Created For Me')"
+                class="selection-list bg-white" @search="searchForUser"></v-select>
+            <p v-if="user_id">{{ user_id.name }}</p>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="flex">
-      <div class="w-1/2">
-        <div class="form-group form-group-sm">
-          <label>
-            {{ t('Subject') }}
-          </label>
-          <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3
+      <div class="flex">
+        <div class="w-1/2">
+          <div class="form-group form-group-sm">
+            <label>
+              {{ t('Subject') }}
+            </label>
+            <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3
           text-gray-700 leading-tight focus:outline-none focus:shadow-outline" v-model="subject" disabled>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="flex">
-      <div class="w-1/2">
-        <div class="form-group">
-          <label for="group">
-            {{ t('Type') }}
-            <span class="text-red-800">*</span>
-          </label>
+    <div class="flex flex-col w-full  p-5 my-5  bg-white rounded-xl shadow-md">
 
-          <select name="group" id="group" @change="getLetters" class="select2 group-select">
-            <option value="">{{ t('Select Type') }}</option>
-            <option v-for="group in groups" :value="group.id">{{ group.name }}</option>
+      <div class="flex">
+        <div class="w-1/2">
+          <div class="form-group">
+            <label for="group">
+              {{ t('Type') }}
+              <span class="text-red-800">*</span>
+            </label>
 
+            <select name="group" id="group" @change="getLetters" class="select2 group-select">
+              <option value="">{{ t('Select Type') }}</option>
+              <option v-for="group in list_groups" :value="group.id">{{ group.name }}</option>
+            </select>
+
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="flex justify-center " v-if="load_letters">
+        <div class="w-1/2">
+          <span><i class="fa fa-spinner fa-spin fa-2x "></i></span>
+        </div>
+      </div>
+      <div class="flex" v-show="letters.length && !load_letters">
+        <div class="w-1/2">
+          <label for="letter">{{ t('Letter') }}<span class="text-red-800">*</span></label>
+          <select name="letter" id="letter" class="select2 letter-select">
+            <option value="">{{ t('Select Letter') }}</option>
+            <option v-for="letter in letters" :value="letter.id">{{ letter.name }}</option>
           </select>
-
         </div>
       </div>
-    </div>
-    <br>
-    <div class="flex justify-center " v-if="load_letters">
-      <div class="w-1/2">
-        <span><i class="fa fa-spinner fa-spin fa-2x "></i></span>
-      </div>
-    </div>
-    <div class="flex" v-show="letters.length && !load_letters">
-      <div class="w-1/2">
-        <label for="letter">{{ t('Letter') }}<span class="text-red-800">*</span></label>
-        <select name="letter" id="letter" class="select2 letter-select">
-          <option value="">{{ t('Select Letter') }}</option>
-          <option v-for="letter in letters" :value="letter.id">{{ letter.name }}</option>
 
-        </select>
-      </div>
-    </div>
-
-    <div class="flex pt-10" v-show="fields.length">
-      <div class="w-1/2">
-        <div v-for="(item, key) in fields">
-          <component :is="item.type" :label="t(item.name) + '*'"
-                     :name="`cf[${item.id}]`" :id="`cf[${item.id}]`"
-                     class="pt-3" v-model="fields[key]['value']" :options="item.options">
-          </component>
+      <div class="flex pt-10" v-show="fields.length">
+        <div class="w-1/2">
+          <div v-for="(item, key) in fields">
+            <component
+                :is="item.type" :label="t(item.name)"
+                :name="`cf[${item.id}]`" :id="`cf[${item.id}]`"
+                class="pt-5 "
+                v-model="custom_fields[item.id]"
+                :options="item.options"
+                :required="item.required"
+                :item_id="item.id"
+                @input="listenForChange"
+                :type="item.type"
+            >
+            </component>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="flex pt-10">
-      <div class="w-1/2">
-        <label :class="getStampedStyle" class="p-5  border border-indigo-700 bg-white
+      <div class="flex pt-10">
+        <div class="w-1/2">
+          <label :class="getStampedStyle" class="p-5  border border-indigo-700 bg-white
          hover:bg-yellow-100 rounded-2xl shadow-sm ">
-          <input type="checkbox"
-                 @change="is_stamped = !is_stamped">
-          {{ t('Stamped by the Chamber of Commerce?') }}
-        </label>
-      </div>
-    </div>
-
-
-    <div class="flex pt-10">
-      <div class="w-1/2">
-        <div class="form-group">
-          <label>
-            {{ t('Description') }}
+            <input type="checkbox"
+                   @change="is_stamped = !is_stamped">
+            {{ t('Stamped by the Chamber of Commerce?') }}
           </label>
+        </div>
+      </div>
 
-          <editor trigger="#" v-model="description"
 
-                  :init="{
+      <div class="flex pt-10">
+        <div class="w-1/2">
+          <div class="form-group">
+            <label>
+              {{ t('Description') }}
+            </label>
+
+            <editor trigger="#" v-model="description"
+
+                    :init="{
           paste_data_images: true,
          height: 200,
          menubar: false,
@@ -105,25 +116,27 @@
            'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent table | link | fontselect fontsizeselect | rtl | forecolor'
        }"
 
-          ></editor>
+            ></editor>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="flex flex-col w-1/2  pt-10">
-      <label for="attachments">{{ t('Attachments') }}</label>
-      <div class="form-group" id="attachments">
-        <input type="file" class="form-control input-xs" name="attachments[]" @change="attachFiles"
-               multiple>
+      <div class="flex flex-col w-1/2  pt-10">
+        <label for="attachments">{{ t('Attachments') }}</label>
+        <div class="form-group" id="attachments">
+          <input type="file" class="form-control input-xs" name="attachments[]" @change="attachFiles"
+                 multiple>
+        </div>
       </div>
-    </div>
 
-    <div class="flex pt-10">
-      <i class="fa fa-2x fa-spin fa-spinner" v-if="loading"></i>
-      <button class="font-bold py-5 px-8 rounded-xl " :class="submitButtonStyle" :disabled="!canSubmit || loading" v-else
-              @click.prevent="createLetter">
-        <i class="fa fa-save"></i> {{ t('Submit') }}
-      </button>
+      <div class="flex pt-10">
+        <i class="fa fa-2x fa-spin fa-spinner" v-if="loading"></i>
+        <button class="font-bold py-5 px-8 rounded-xl " :class="submitButtonStyle" :disabled="!canSubmit || loading"
+                v-else
+                @click.prevent="createLetter">
+          <i class="fa fa-save"></i> {{ t('Submit') }}
+        </button>
+      </div>
     </div>
     <br>
   </div>
@@ -155,17 +168,18 @@ export default {
       description: '',
       user_id: '',
       load_letters: false,
-      loading:false,
+      loading: false,
 
       users: [],
       letters: [],
       attachments: [],
       fields: [],
-      custom_fields: [],
+      custom_fields: {},
+      list_groups: []
     }
   },
   created() {
-    this.groups = this.groups.map((group) => {
+    this.list_groups = this.groups.map((group) => {
       return {id: group.id, name: this.t(group.name)}
     });
     this.loadUsers()
@@ -175,6 +189,9 @@ export default {
   },
 
   methods: {
+    listenForChange(value) {
+      this.custom_fields[value.id] = value.value
+    },
     searchForUser(text) {
       if (text.length > 3) {
         this.loadUsers(text);
@@ -234,7 +251,19 @@ export default {
       this.fields = [];
 
       axios.get(`/letters/list/letter_fields/${this.letter.id}`).then((response) => {
-        this.fields = response.data;
+        if (!response.data.length) {
+          this.isLoading = false
+          return
+        }
+        this.fields = response.data
+
+        Object.entries(response.data).map((item) => {
+          this.custom_fields[item[1].id] = ''
+          // console.log(item)
+          // item.forEach((value) => {
+          //   this.fields[value.id] = ''
+          // })
+        })
       });
 
     },
@@ -250,15 +279,22 @@ export default {
         form.append(`attachments[${l}]`, attachments[l]);
       }
 
-      let fields = this.fields;
+      // let fields = this.fields;
 
-      for (var f = 0; f < fields.length; f++) {
-        form.append(`fields[${f}][id]`, fields[f].id);
-        form.append(`fields[${f}][name]`, fields[f].name);
-        form.append(`fields[${f}][value]`, fields[f].value);
+
+      const fields = Object.keys(this.custom_fields).map(key => ({key, value: this.custom_fields[key]}));
+
+      for (var cf = 0; cf < fields.length; cf++) {
+        form.append(`fields`, JSON.stringify(this.custom_fields));
       }
 
-      form.append('description', this.description ? this.description : '' );
+      // for (var f = 0; f < fields.length; f++) {
+      //   form.append(`fields[${f}][id]`, fields[f].id);
+      //   form.append(`fields[${f}][name]`, fields[f].name);
+      //   form.append(`fields[${f}][value]`, this.custom_fields[fields[f].id].value);
+      // }
+
+      form.append('description', this.description ? this.description : '');
       form.append('subject', this.subject);
       form.append('item_id', this.item.id);
       form.append('group_id', this.group.id);
@@ -277,7 +313,6 @@ export default {
         },
       }).then((response) => {
         window.location = `/ticket/${response.data.ticket.id}`
-        // this.loading = false
       });
     },
 
@@ -295,6 +330,7 @@ export default {
       }
     },
     canSubmit() {
+      return true
       let canSubmit = true;
 
       if (!this.group) {
@@ -318,7 +354,7 @@ export default {
     submitButtonStyle() {
       if (this.canSubmit && !this.loading) {
         return 'bg-green-500 hover:bg-green-700 text-white'
-      }else{
+      } else {
         return 'bg-gray-500 hover:bg-gray-700 text-white opacity-50 cursor-not-allowed'
       }
 
