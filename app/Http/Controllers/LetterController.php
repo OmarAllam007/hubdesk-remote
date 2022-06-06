@@ -82,6 +82,18 @@ class LetterController extends Controller
         ]);
 
 
+
+
+
+
+        $letterTicket = LetterTicket::create([
+            'ticket_id' => $ticket->id,
+            'group_id' => $request->group_id,
+            'subgroup_id' => $request->subgroup_id,
+            'letter_id' => $request->letter_id,
+            'need_coc_stamp' => $request->is_stamped,
+        ]);
+
         if($request->get('fields',[])){
             foreach (json_decode($request->get('fields',[]),true) as $key => $item) {
 
@@ -95,16 +107,6 @@ class LetterController extends Controller
                 }
             }
         }
-
-
-
-        $letterTicket = LetterTicket::create([
-            'ticket_id' => $ticket->id,
-            'group_id' => $request->group_id,
-            'subgroup_id' => $request->subgroup_id,
-            'letter_id' => $request->letter_id,
-            'need_coc_stamp' => $request->is_stamped,
-        ]);
 
         return response()->json(['ticket' => $ticket]);
     }
