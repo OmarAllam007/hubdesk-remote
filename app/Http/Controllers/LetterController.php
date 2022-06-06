@@ -60,6 +60,8 @@ class LetterController extends Controller
 
     function createLetterTicket(Request $request)
     {
+
+//        return $request->has('fields');
 //        return  ;
         /** @var Item $item */
         $item = Item::find($request->item_id);
@@ -80,17 +82,20 @@ class LetterController extends Controller
         ]);
 
 
-        foreach (json_decode($request->get('fields',[]),true) as $key => $item) {
+        if($request->get('fields',[])){
+            foreach (json_decode($request->get('fields',[]),true) as $key => $item) {
 
-            if ($item) {
-                $field = LetterField::find($key)->name ?? '';
+                if ($item) {
+                    $field = LetterField::find($key)->name ?? '';
 
-                if (is_array($item) && count($item) > 0) {
-                    $item = implode(", ", $item);
+                    if (is_array($item) && count($item) > 0) {
+                        $item = implode(", ", $item);
+                    }
+                    $ticket->fields()->create(['name' => $field, 'value' => $item]);
                 }
-                $ticket->fields()->create(['name' => $field, 'value' => $item]);
             }
         }
+
 
 
         $letterTicket = LetterTicket::create([
