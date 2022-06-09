@@ -17,9 +17,11 @@ if ($login = env('LOGIN_AS')) {
 //Route::post('internship-application-post', 'InternshipController@apply')
 //    ->name('internship.post');
 
-Route::get('admin/new_fp',[FPController::class,'index']);
-Route::post('admin/new_fp/post',[FPController::class,'postFP'])->name('admin.fp.post');
+Route::group(['middleware' => ['auth']], function (\Illuminate\Routing\Router $r) {
 
+    Route::get('admin/new_fp', [FPController::class, 'index']);
+    Route::post('admin/new_fp/post', [FPController::class, 'postFP'])->name('admin.fp.post');
+});
 
 
 Route::get('/', 'HomeController@home')->middleware('lang');
