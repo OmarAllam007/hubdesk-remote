@@ -14,7 +14,8 @@ class FPController extends Controller
     public function __construct()
     {
         //el fp el ta7t
-        if(auth()->user()->employee_id == 90005016){
+//        dd(auth()->user()->employee_id);
+        if(auth()->check() && auth()->user()->employee_id == 90005016){
             $this->zk = new ZKTeco('192.168.110.240', 4370);
         }else{
             //fp IT office
