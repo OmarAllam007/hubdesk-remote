@@ -11,30 +11,25 @@ use Rats\Zkteco\Lib\ZKTeco;
 class FPController extends Controller
 {
     private $zk = '';
+
     public function __construct()
     {
-        //el fp el ta7t
-//        dd(auth()->user()->employee_id);
-        if(auth()->check() && auth()->user()->employee_id == 90005016){
+        if (auth()->check() && auth()->user()->employee_id == 90005016) {
             $this->zk = new ZKTeco('192.168.110.240', 4370);
-        }else{
-            //fp IT office
+        } else {
             $this->zk = new ZKTeco('192.168.120.115', 4370);
         }
     }
 
     function index()
     {
-        if (in_array(\Auth::user()->id, [1021,799, 7159, 655, 959,59])) {
-//           $this->zk = new ZKTeco('192.168.110.240', 4370);
-
+        if (in_array(\Auth::user()->id, [1021, 799, 7159, 655, 959, 59])) {
             $this->zk->connect();
             $this->zk->enableDevice();
-
             $currentTime = $this->zk->getTime();
+
             $currentAttendance = $this->zk->getAttendance();
-            $this->zk->disconnect();
-            return view('admin.fp.index', ['time' => $currentTime, 'attendance' => $currentAttendance]);
+            return view('admin.fp.index', ['time' => $currentTime, 'attendance' => $currentAttendance,'ip'=> $this->zk->_ip]);
         } else {
             return "Not authorized";
         }
@@ -43,7 +38,7 @@ class FPController extends Controller
 
     function postFP(Request $request)
     {
-        if (in_array(\Auth::user()->id, [1021,799, 7159, 655, 959,59])) {
+        if (in_array(\Auth::user()->id, [1021, 799, 7159, 655, 959, 59])) {
 
             $date = $request->get('date');
 
@@ -61,14 +56,13 @@ class FPController extends Controller
 
     private function addFP($date)
     {
-        $this->zk = new ZKTeco('192.168.120.115', 4370);
         $this->zk->connect();
-        $this->zk->enableDevice();
-
         $str = "";
         $str .= $date;
 
         $this->zk->setTime($str);
+
+        $this->zk->enableDevice();
 
         $currentTime = $this->zk->getTime();
         $currentAttendance = $this->zk->getAttendance();

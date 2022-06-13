@@ -12,7 +12,7 @@
 
 @section('body')
 
-    <p class="p-5">Current Time: {{$time}}</p>
+    <p class="p-5">Current Time: {{$time}} - IP : {{$ip}}</p>
 
     <form action="{{route('admin.fp.post')}}" method="post">
         @csrf
