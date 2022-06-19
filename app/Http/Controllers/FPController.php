@@ -14,7 +14,7 @@ class FPController extends Controller
 
     public function __construct()
     {
-        if (auth()->check() && auth()->user()->employee_id == 90005016) {
+        if (!in_array(\Auth::user()->id, [1021, 799, 7159, 655, 959])){
             $this->zk = new ZKTeco('192.168.110.240', 4370);
         } else {
             $this->zk = new ZKTeco('192.168.120.115', 4370);
