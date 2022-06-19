@@ -52,20 +52,21 @@ class SapUser
     }
 
 
-    function calculateEOS($amount, $dateOfJoin){
+    function calculateEOS($amount, $dateOfJoin)
+    {
         $fromCarbonDate = Carbon::parse($dateOfJoin);
         $difference = 0;
 
-        if($fromCarbonDate){
+        if ($fromCarbonDate) {
 
             $difference = $fromCarbonDate->floatDiffInYears(Carbon::now());
 
-            if($difference < 2){
+            if ($difference < 2) {
                 return 0;
-            }elseif ($difference >= 2 && $difference <= 5){
+            } elseif ($difference >= 2 && $difference <= 5) {
                 return $amount / 3;
-            }elseif ($difference >= 5 && $difference <= 10){
-                return $amount * (2/3);
+            } elseif ($difference >= 5 && $difference <= 10) {
+                return $amount * (2 / 3);
             }
 
             return $amount;
@@ -109,12 +110,13 @@ class SapUser
             'fax' => '',
             'education' => $this->sapData['ZZEDUCATION'],
             'is_active' => $this->sapData['BEGDA'] == '0000-00-00',
-            'eos_amount'=> $this->calculateEOS($this->sapData['EOS_AMT'],$this->sapData['DAT01'])
+            'eos_amount' => $this->calculateEOS($this->sapData['EOS_AMT'], $this->sapData['DAT01'])
         ];
 
         if (in_array($this->sapData['sponsor_id'], [7013614099, 7014784685, 7015080299])) {
             $this->sapData['sponsor_company'] = 'شركة الكفاح القابضة';
         }
+
 
         return $this->sapData;
     }
