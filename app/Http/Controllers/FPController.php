@@ -15,15 +15,16 @@ class FPController extends Controller
     public function __construct()
     {
 
-        if (!in_array(\Auth::user()->id, [1021, 799, 7159, 655, 959])){
-            $this->zk = new ZKTeco('192.168.110.240', 4370);
-        } else {
-            $this->zk = new ZKTeco('192.168.120.115', 4370);
-        }
     }
 
     function index()
     {
+        if (auth()->check() && auth()->user()->employee_id == 90005016) {
+            $this->zk = new ZKTeco('192.168.110.240', 4370);
+        } else {
+            $this->zk = new ZKTeco('192.168.120.115', 4370);
+        }
+
         if (in_array(\Auth::user()->id, [1021, 799, 7159, 655, 959, 59])) {
             $this->zk->connect();
             $this->zk->enableDevice();
@@ -39,6 +40,12 @@ class FPController extends Controller
 
     function postFP(Request $request)
     {
+        if (auth()->check() && auth()->user()->employee_id == 90005016) {
+            $this->zk = new ZKTeco('192.168.110.240', 4370);
+        } else {
+            $this->zk = new ZKTeco('192.168.120.115', 4370);
+        }
+
         if (in_array(\Auth::user()->id, [1021, 799, 7159, 655, 959, 59])) {
 
             $date = $request->get('date');
