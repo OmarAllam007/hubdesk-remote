@@ -46,9 +46,21 @@ class BusinessCardUser extends Model
     }
 
     function getImageAttribute(){
-        $basename = str_replace('+', ' ', urlencode(basename($this->image_url)));
-        $dirname = dirname($this->image_url);
-        $path = $dirname . '/' . $basename;
-        return url('/storage' . $path);
+        if($this->image_url == '' || $this->image_url == null ){
+            if($this->gender == 1){
+                return asset('images/ecard/team-012.png');
+
+            }else{
+                return asset('images/ecard/team-01.png');
+            }
+        }
+        else{
+
+            $basename = str_replace('+', ' ', urlencode(basename($this->image_url)));
+            $dirname = dirname($this->image_url);
+            $path = $dirname . '/' . $basename;
+            return url('/storage' . $path);
+        }
+
     }
 }

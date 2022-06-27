@@ -35,7 +35,8 @@
 
         <div class="row">
             <div class="col-md-12 wp5">
-                <div class="circular--landscape" ><img src="{{$user->image_url}}" alt="Team Member" ></div>
+                <div class="circular--landscape" >
+                    <img src="{{$user->image}}" alt="{{$user->name}}" ></div>
                 <h2>{{$user->name}}</h2>
                 <p>{{$user->position}}</p>
 
