@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Validation\UnauthorizedException;
+use Rats\Zkteco\Lib\Helper\Util;
 use Rats\Zkteco\Lib\ZKTeco;
 
 class FPController extends Controller
