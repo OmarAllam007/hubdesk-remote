@@ -18,6 +18,7 @@ class CreateBusinessCardUsersTable extends Migration
             $table->string('employee_id');
             $table->string('name');
             $table->string('position')->nullable();
+            $table->string('email')->nullable();
             $table->string('department')->nullable();
             $table->string('business_unit')->nullable();
             $table->string('phone')->nullable();
@@ -27,6 +28,7 @@ class CreateBusinessCardUsersTable extends Migration
             $table->string('twitter_url')->nullable();
             $table->string('linkedin_url')->nullable();
             $table->string('image_url')->nullable();
+            $table->string('url_code')->nullable();
             $table->unsignedTinyInteger('gender')->nullable();
             $table->timestamps();
             $table->softDeletes();

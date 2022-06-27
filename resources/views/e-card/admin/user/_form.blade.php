@@ -54,7 +54,11 @@
 
         <div class="form-group {{$errors->has('gender')? 'has-error' : ''}}">
             <i class="fa fa-venus-mars"></i> {{ Form::label('gender', 'Gender', ['class' => 'control-label']) }}
-            {{ Form::select('business_unit_id', ['Select','Male','Female'], isset($user) ? $user->business_unit_id : null, ['class' => 'form-control select2']) }}
+            <select name="gender" id="gender" class="form-control select2">
+                <option value="">{{t('Select Gender')}}</option>
+                <option value="1" @if(isset($user) && $user->gender == 1) selected @endif>Male</option>
+                <option value="2" @if(isset($user) && $user->gender == 2) selected @endif>Female</option>
+            </select>
             @if ($errors->has('gender'))
                 <div class="error-message">{{$errors->first('gender')}}</div>
             @endif
@@ -110,6 +114,7 @@
         </div>
 
 
+
         <div class="form-group {{$errors->has('image_url')? 'has-error' : ''}}">
             <i class="fa fa-image"></i> {{ Form::label('image_url', 'Image Url', ['class' => 'control-label','autocomplete'=>'off']) }}
             <input type="file" class="form-control" name="image_url" id="image_url">
@@ -119,11 +124,25 @@
         </div>
 
 
+        @if(isset($user))
+            <div class="form-group {{$errors->has('password')? 'has-error' : ''}}">
+                <label for="remove_image">
+                    <input type="checkbox" id="remove_image" name="remove_image"> {{t('Remove Image')}}
+                </label>
+            </div>
+        @endif
+
+
         <div class="form-group">
             <button class="btn btn-success"><i class="fa fa-check-circle"></i> {{t('Submit')}}</button>
         </div>
     </div>
 
-
+    @if(isset($user) && $user->image_url)
+        <div class="pl-5 col-md-3 ">
+            <img src="{{$user->image}}" class="rounded-2xl h-96 w-96 object-fill shadow-md hover:shadow-lg" height="200"
+                 width="200">
+        </div>
+    @endif
 </div>
 

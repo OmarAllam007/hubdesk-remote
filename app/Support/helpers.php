@@ -2,7 +2,7 @@
 
 use App\Translation;
 
-function flash($title = "", $message, $type)
+function flash($message, $type,$title = "")
 {
 
     alert($title, $message, $type);

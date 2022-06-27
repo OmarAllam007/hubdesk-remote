@@ -11,7 +11,14 @@ class IndexController extends Controller
 {
     function index()
     {
-        $users = BusinessCardUser::orderBy('name')->paginate();
-        return view('e-card.admin.user.index',compact('users'));
+        $query = BusinessCardUser::query();
+
+        if ($search = \request('search')) {
+            $query->where('employee_id', 'LIKE', '%' . $search . '%')
+                ->orWhere('name', 'LIKE', '%' . $search . '%');
+        }
+
+        $users = $query->orderBy('name')->paginate();
+        return view('e-card.admin.user.index', compact('users'));
     }
 }

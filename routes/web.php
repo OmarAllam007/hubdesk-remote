@@ -146,12 +146,25 @@ require __DIR__ . '/reports.php';
 require __DIR__ . '/list.php';
 
 Route::group(['prefix' => 'e-card/admin'], function (Router $r) {
-    $r->get('index', [\App\Http\Controllers\ECard\Admin\IndexController::class, 'index']);
+    $r->get('index', [\App\Http\Controllers\ECard\Admin\IndexController::class, 'index'])
+        ->name('e-card.admin.user.index');
     $r->get('create', [\App\Http\Controllers\ECard\Admin\UserController::class, 'create'])
         ->name('e-card.admin.create');
     $r->post('store', [\App\Http\Controllers\ECard\Admin\UserController::class, 'store'])
         ->name('e-card.admin.store');
+    $r->get('edit/{user}', [\App\Http\Controllers\ECard\Admin\UserController::class, 'edit'])
+        ->name('e-card.admin.edit');
+    $r->patch('update/{user}', [\App\Http\Controllers\ECard\Admin\UserController::class, 'update'])
+        ->name('e-card.admin.user.update');
 
+    $r->delete('update/{user}', [\App\Http\Controllers\ECard\Admin\UserController::class, 'destroy'])
+        ->name('e-card.admin.user.destroy');
+
+    $r->get('show/{user}', [\App\Http\Controllers\ECard\Admin\UserController::class, 'show'])
+        ->name('e-card.admin.user.show');
+
+    $r->get('download-card/{user}', [\App\Http\Controllers\ECard\Admin\UserController::class, 'downloadCard'])
+        ->name('e-card.admin.user.download');
 });
 
 

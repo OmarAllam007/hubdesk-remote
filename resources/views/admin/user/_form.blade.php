@@ -8,6 +8,14 @@
             @endif
         </div>
 
+        <div class="form-group {{$errors->has('employee_id')? 'has-error' : ''}}">
+            {{ Form::label('employee_id', 'Employee ID', ['class' => 'control-label']) }}
+            {{ Form::text('employee_id', isset($user) ? $user->employee_id : null, ['class' => 'form-control']) }}
+            @if ($errors->has('employee_id'))
+                <div class="error-message">{{$errors->first('employee_id')}}</div>
+            @endif
+        </div>
+
         <div class="form-group {{$errors->has('email')? 'has-error' : ''}}">
             {{ Form::label('email', 'Email', ['class' => 'control-label']) }}
             {{ Form::email('email', isset($user) ? $user->email : null, ['class' => 'form-control', 'rows' => 3]) }}
@@ -40,6 +48,13 @@
             @endif
         </div>
 
+        <div class="form-group {{$errors->has('department_id')? 'has-error' : ''}}">
+            {{ Form::label('department_id', 'Department', ['class' => 'control-label']) }}
+            {{ Form::select('department_id', App\Department::selection('Select Department'), isset($user) ? $user->department_id : null, ['class' => 'form-control']) }}
+            @if ($errors->has('department_id'))
+                <div class="error-message">{{$errors->first('department_id')}}</div>
+            @endif
+        </div>
 
         <div class="form-group {{$errors->has('location_id')? 'has-error' : ''}}">
             {{ Form::label('location_id', 'Location', ['class' => 'control-label']) }}
@@ -87,9 +102,76 @@
         </div>
 
         <div class="form-group">
+            <div class="checkbox">
+                <label class="control-label" for="vip">
+                    {{Form::hidden('vip', 0)}}
+                    {{Form::checkbox('vip', 1, isset($user) ? $user->vip : null, ['id' => 'vip'])}}
+                    VIP User
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="checkbox">
+                <label for="is_disabled">
+                    <input type="checkbox"
+                           id="is_disabled" name="is_disabled"
+                           @if(isset($user->is_disabled) && $user->is_disabled) checked @endif>
+                    Is disabled ?</label>
+            </div>
+        </div>
+
+        <div class="form-group">
             <button class="btn btn-success"><i class="fa fa-check-circle"></i> Submit</button>
         </div>
     </div>
 
+    <div class="col-md-6">
+        <fieldset>
+            <legend>Password</legend>
+            <div class="form-group {{$errors->has('password')? 'has-error' : ''}}">
+                {{ Form::label('password', 'Password', ['class' => 'control-label']) }}
+                {{ Form::password('password', ['class' => 'form-control']) }}
+                @if ($errors->has('password'))
+                    <div class="error-message">{{$errors->first('password')}}</div>
+                @endif
+            </div>
 
+            <div class="form-group {{$errors->has('password')? 'has-error' : ''}}">
+                {{ Form::label('password_confirmation', 'Confirm Password', ['class' => 'control-label']) }}
+                {{ Form::password('password_confirmation', ['class' => 'form-control']) }}
+                @if ($errors->has('password_confirmation'))
+                    <div class="error-message">{{$errors->first('password_confirmation')}}</div>
+                @endif
+            </div>
+
+            <div class="form-group {{$errors->has('password')? 'has-error' : ''}}">
+                <label for="default_password">
+                    <input type="checkbox" id="default_password" name="default_password"> {{t('Default Password')}}
+                </label>
+                {{--{{ Form::label('default_password', 'Default Password', ['class' => 'control-label']) }}--}}
+                {{--{{ Form::checkbox('default_password',0,null, ['class' => 'form-control']) }}--}}
+                {{--@if ($errors->has('default_password'))--}}
+                {{--<div class="error-message">{{$errors->first('default_password')}}</div>--}}
+                {{--@endif--}}
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Groups</legend>
+            <div class="form-group">
+                {{Form::label('group_ids', 'Groups', ['class' => 'control-label'])}}
+                {{Form::select('group_ids', App\Group::selection(), isset($user) ? $user->groups->pluck('id') : null, ['class' => 'form-control multiple', 'multiple' => true, 'name' => 'group_ids[]'])}}
+            </div>
+        </fieldset>
+
+        <div class="form-group {{$errors->has('signature')? 'has-error' : ''}}">
+            {{ Form::label('signature', 'Signature', ['class' => 'control-label']) }}
+            <input type="file" class="form-control" name="signature" id="signature">
+            {{--            {{ Form::file('signature', ['class' => 'form-control']) }}--}}
+            @if ($errors->has('signature'))
+                <div class="error-message">{{$errors->first('signature')}}</div>
+            @endif
+        </div>
+    </div>
 </div>

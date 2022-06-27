@@ -15,7 +15,7 @@ class CreateBusinessCardUserAdminPermissionsTable extends Migration
     {
         Schema::create('business_card_user_admin_permissions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedTinyInteger('user_id');
+            $table->unsignedInteger('user_id');
             $table->unsignedTinyInteger('show')->nullable()->default(0);
             $table->unsignedTinyInteger('edit')->nullable()->default(0);
             $table->unsignedTinyInteger('delete')->nullable()->default(0);

@@ -4,13 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class BusinessCardUser extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
 
     protected $fillable = [
-        'employee_id', 'name', 'position', 'department', 'business_unit', 'phone', 'mobile', 'website', 'facebook_url', 'twitter_url', 'linkedin_url', 'image_url', 'gender'
+        'employee_id', 'name', 'position', 'department', 'business_unit', 'gender', 'phone',
+        'mobile', 'email', 'website', 'facebook_url',
+        'twitter_url', 'linkedin_url', 'image_url', 'gender','url_code'
     ];
 
     function upload($requestFileName)
@@ -18,7 +21,7 @@ class BusinessCardUser extends Model
         $request = request();
 
         $file = $request->file($requestFileName);
-        $name = str_random(6).'_profile.png';
+        $name = str_random(6) . '_profile.png';
 
         $folder = storage_path("app/public/e_card/profile-images/" . $this->id . '/');
 
@@ -34,6 +37,18 @@ class BusinessCardUser extends Model
 
         $file->move($folder, $name);
 
-        return "/e_card/profile-images/" . $this->id . '/' . $name;
+        return "/e_card/profile-images/" . $this->id .'/'. $name;
+    }
+
+
+    function getGeneratedURLAttribute(){
+
+    }
+
+    function getImageAttribute(){
+        $basename = str_replace('+', ' ', urlencode(basename($this->image_url)));
+        $dirname = dirname($this->image_url);
+        $path = $dirname . '/' . $basename;
+        return url('/storage' . $path);
     }
 }
