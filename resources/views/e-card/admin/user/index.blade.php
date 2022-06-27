@@ -47,10 +47,11 @@
                             <td class="py-5  px-6 text-left whitespace-nowrap">{{ $user->position ?? 'Not Assigned' }}</td>
                             <td class="py-5  px-6 text-left whitespace-nowrap">{{ $user->department ?? 'Not Assigned' }}</td>
                             <td class="py-5  px-6 text-left whitespace-nowrap">
-                                    @if($user->image_url)
+{{--                                    @if($user->image_url)--}}
                                 <img src="{{$user->image}}" width="50" height="50" class="rounded-2xl">
-                                        @endif
+{{--                                        @endif--}}
                             </td>
+
                             <td class="py-5  px-6 text-left whitespace-nowrap">
                                 <a target="_blank" href="{{ route('e-card.admin.user.show', $user->url_code) }}">
                                     {{ env('APP_URL').'/'.$user->url_code ?? 'Not Assigned' }}
