@@ -94,10 +94,10 @@ class TicketReplyJob implements ShouldQueue
 
     private function sendSurvey($reply)
     {
-        if (($this->reply->status_id == 8 && $ticket->requester->email) && $ticket->category->survey->first()) {
+        if (($this->reply->status_id == 8 && $reply->ticket->requester->email) && $reply->ticket->category->survey->first()) {
             $survey = UserSurvey::create([
-                'ticket_id' => $ticket->id,
-                'survey_id' => $ticket->category->survey->first()->id,
+                'ticket_id' => $reply->ticket->id,
+                'survey_id' => $reply->ticket->category->survey->first()->id,
                 'comment' => '',
                 'is_submitted' => 0,
                 'notified' => 1
@@ -106,7 +106,7 @@ class TicketReplyJob implements ShouldQueue
             if ($survey->ticket->requester->email) {
                 \Mail::send(new SendSurveyEmail($survey));
             }
-            TicketLog::addReminderOnSurvey($ticket);
+            TicketLog::addReminderOnSurvey($reply->ticket);
         }
     }
 
