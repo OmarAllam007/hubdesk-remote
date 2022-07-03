@@ -30,7 +30,7 @@ class LetterTaskListener
      */
     public function handle($ticket)
     {
-        if ($ticket->isTask() && $ticket->ticket->is_letter_ticket) {
+        if ($ticket->isTask() && isset($ticket->ticket) && $ticket->ticket->is_letter_ticket) {
             if (in_array($ticket->status_id, [7, 8, 9])) {
                 Ticket::flushEventListeners();
                 TicketReply::flushEventListeners();
