@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AlKifah Holding</title>
     <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
-    <link href="{{asset('css/ecard/bootstrap.min.css')}}" rel="stylesheet">
+{{--    <link href="{{asset('css/ecard/bootstrap.min.css')}}" rel="stylesheet">--}}
     <link href="https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="{{asset('/css/ecard/flexslider.css')}}" rel="stylesheet">
     <link href="{{asset('/css/ecard/styles.css')}}" rel="stylesheet">
     <link href="{{asset('/css/ecard/queries.css')}}" rel="stylesheet">
     <link href="{{asset('/css/ecard/animate.css')}}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@v3.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body id="top">
 <header id="home">
