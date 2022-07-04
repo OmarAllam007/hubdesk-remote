@@ -4,9 +4,11 @@ $to = $letterTicket->ticket->fields->where('name','Region')->first() ? $letterTi
 $IstiqdamTo = $letterTicket->ticket->fields->where('name','Request For')->first() ? $letterTicket->ticket->fields->where('name','Request For')->first()->value : '';
 
 $regions = $letterTicket->letter->fields->where('name','like','Region')->first();
-$regions = array_combine($regions->options,$regions->options);
+$options = $regions['options'];
+$decodeString = json_decode($options);
+$regions_data = array_combine($decodeString, $decodeString);
 
-$region_ar = \App\Translation::where('word','like',$regions[$to])
+$region_ar = \App\Translation::where('word','like',$regions_data[$to])
     ->where('language','ar')->first();
 
 $to_ar = \App\Translation::where('word','like',$IstiqdamTo)
@@ -43,8 +45,9 @@ $section->addText('', [], []);
 
 
 $section->addText('', [], []);
-dd($region_ar);
-$section->addText("شئون الإستقدام بـ / {$region_ar->translation}       المحترمين", ['size' => 14], $rightStyle);
+
+$translation = $region_ar->translation ?? "";
+$section->addText("شئون الإستقدام بـ / {$translation}       المحترمين", ['size' => 14], $rightStyle);
 
 $section->addText('', [], []);
 $section->addText('', [], []);
@@ -55,8 +58,8 @@ $section->addText("نود إفادة سعادتكم ان موظفنا المدع
 $section->addText('', [], []);
 $section->addText(" حسب المهنة الموضحة بالاقامة رقم/ {$user['iqama_number']} ، والذي يتقاضى راتب شهريا ( {$user['total_package']} ريال ) ولديه مؤهل {$education->value}  تخصص {$specialization->value} .", ['size' => 14, 'rtl' => true], $rightStyle);
 
-
-$section->addText("يرغب في استقدام / {$to_ar->translation} وحيث لا مانع لدينا من ذلك حيث ان العلاج والسكن مؤمن للمذكور ، عليه نأمل الموافقة على طلب موظفنا كما نصادق على صحة المعلومات الموضحة بخطابنا هذا ، وهذا إقرار منا بذلك .", ['size' => 14, 'rtl' => true], ['align' => 'right']);
+$istiqdamTranslation = $to_ar->translation ?? "";
+$section->addText("يرغب في استقدام / {$istiqdamTranslation} وحيث لا مانع لدينا من ذلك حيث ان العلاج والسكن مؤمن للمذكور ، عليه نأمل الموافقة على طلب موظفنا كما نصادق على صحة المعلومات الموضحة بخطابنا هذا ، وهذا إقرار منا بذلك .", ['size' => 14, 'rtl' => true], ['align' => 'right']);
 
 $section->addText('', [], ['spacing' => 1000]);
 $section->addText('ولكم جزيل الشكر ،،،', ['bold' => true, 'size' => 14, 'rtl' => true], ['align' => 'center']);
