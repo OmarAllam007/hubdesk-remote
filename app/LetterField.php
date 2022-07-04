@@ -10,5 +10,5 @@ class LetterField extends Model
 
     const TYPES = [1 => 'text-field', 'select-field', 'checkbox', 'date', 'datetime'];
 
-    protected $casts = ['options' => 'array'];
+//    protected $casts = ['options' => 'array'];
 }

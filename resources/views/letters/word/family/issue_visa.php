@@ -43,6 +43,7 @@ $section->addText('', [], []);
 
 
 $section->addText('', [], []);
+dd($region_ar);
 $section->addText("شئون الإستقدام بـ / {$region_ar->translation}       المحترمين", ['size' => 14], $rightStyle);
 
 $section->addText('', [], []);
