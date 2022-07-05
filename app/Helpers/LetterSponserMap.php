@@ -53,6 +53,7 @@ class LetterSponserMap
         "7018439765" => "مكتب اسامه حسن العفالق للاستشارات الهندسيه",
         "7011417081" => "قطاع دعم الأعمال",
         "7002613987" => "شركة الرؤية الخضراء للمنتجات الورقية",
+        "7012303603" => "شركة مصنع الكفاح لمحطات خلط الخرسانة المركزية شركة شخص واحد"
     ];
 
 
@@ -119,6 +120,7 @@ class LetterSponserMap
         "7001573638" => "AL-MOTAWEROON",
         "7002613987" => "Green Vision Paper Products",
         "7006355593" => "Al-Kifah Construction Equipments",
-        "7005620625"=> "Emdad Company",
+        "7005620625" => "Emdad Company",
+        "7012303603" => "Al-Kifah Factory Company for Central Concrete Batching Plants"
     ];
 }
