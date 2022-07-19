@@ -114,31 +114,14 @@ class TicketController
 
         $items = json_decode($request->input('ticket.fields'), true);
 
-        $validation = [];
 
-        if (!empty($items)) {
-            foreach ($items as $key => $item) {
-                $field = CustomField::find($key);
-                if ($field && $field->required && $item == '') {
-                    $validation[$key] = "This field is required";
-                }
-            }
+        $validation = $this->validateFields($items);
 
-            if (count($validation)) {
-                return response()->json(['errors' => $validation, 'error_code' => 400]);
-            }
+        if (count($validation)) {
+            return response()->json(['errors' => $validation, 'error_code' => 400]);
         }
 
-
-        $totalFileSizes = 0.0;
-
-        foreach ($request->files as $files) {
-            foreach ($files as $file) {
-                $totalFileSizes += number_format($file->getSize() / 1048576, 3);
-            }
-        }
-
-        if ($totalFileSizes > 10) {
+        if ($this->validateFiles($request) > 10) {
             return response()->json(['file_size_error' => ['Attachments size should not exceed 10MB'], 'error_code' => 402]);
         }
 
@@ -151,13 +134,48 @@ class TicketController
             return response()->json(['errors' => $validator->errors(), 'error_code' => 400]);
         }
 
+        $ticket = $this->createTicket($request,$requestedTicket,$requestedTicket['requester_id']);
 
+        $this->createFields($items, $ticket);
+
+
+        dispatch(new NewTicketJob($ticket));
+        return response($ticket->id);
+    }
+
+    function validateFields($items){
+        $validation = [];
+
+        if (!empty($items)) {
+            foreach ($items as $key => $item) {
+                $field = CustomField::find($key);
+                if ($field && $field->required && $item == '') {
+                    $validation[$key] = "This field is required";
+                }
+            }
+        }
+
+        return $validation;
+    }
+
+    function validateFiles($request){
+        $totalFileSizes = 0.0;
+
+        foreach ($request->files as $files) {
+            foreach ($files as $file) {
+                $totalFileSizes += number_format($file->getSize() / 1048576, 3);
+            }
+        }
+        return $totalFileSizes;
+    }
+
+    function createTicket($request, $requestedTicket,$requester){
         $clientInfo =  ['client' => $request->userAgent(), 'ip_address' => $request->ip(), 'client_ip' => $request->getClientIp()];
 
         $ticket = Ticket::create([
             'subject' => $requestedTicket['subject'],
             'description' => $requestedTicket['description'] ?? '',
-            'requester_id' => $requestedTicket['requester_id'],
+            'requester_id' => $requester,
             'creator_id' => \Auth::id(),
             'status_id' => 1,
             'category_id' => $requestedTicket['category_id'],
@@ -168,19 +186,23 @@ class TicketController
             'client_info' => $clientInfo,
         ]);
 
+        return $ticket;
+    }
+
+    /**
+     * @param $items
+     * @param $ticket
+     * @return void
+     */
+    public function createFields($items, $ticket): void
+    {
         if ($items && count($items)) {
             foreach ($items as $key => $item) {
                 if ($item) {
                     $field = CustomField::find($key)->name ?? '';
-
                     $ticket->fields()->create(['name' => $field, 'value' => $item]);
                 }
             }
         }
-
-
-        dispatch(new NewTicketJob($ticket));
-        return response($ticket->id);
-//        return $ticket;
     }
 }

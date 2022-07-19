@@ -60,13 +60,12 @@ class LetterController extends Controller
 
     function createLetterTicket(Request $request)
     {
-
-//        return $request->has('fields');
-//        return  ;
         /** @var Item $item */
         $item = Item::find($request->item_id);
 
         Ticket::flushEventListeners();
+
+        $requesterId = in_array($request->requester_id, ['', 'undefined']) ? auth()->id() : $request->requester_id;
 
         $ticket = Ticket::create([
             'subject' => $request->subject,
@@ -74,17 +73,12 @@ class LetterController extends Controller
             'category_id' => $item->subcategory->category->id,
             'subcategory_id' => $item->subcategory->id,
             'item_id' => $item->id,
-            'requester_id' => in_array($request->requester_id, ['', 'undefined']) ? auth()->id() : $request->requester_id,
+            'requester_id' => $requesterId,
             'creator_id' => auth()->id(),
             'group_id' => config('letters.group'),
             'status_id' => config('letters.new_letter_status'),
             'business_unit_id' => auth()->user()->business_unit_id,
         ]);
-
-
-
-
-
 
         $letterTicket = LetterTicket::create([
             'ticket_id' => $ticket->id,
@@ -94,8 +88,8 @@ class LetterController extends Controller
             'need_coc_stamp' => $request->is_stamped,
         ]);
 
-        if($request->get('fields',[])){
-            foreach (json_decode($request->get('fields',[]),true) as $key => $item) {
+        if ($request->get('fields', [])) {
+            foreach (json_decode($request->get('fields', []), true) as $key => $item) {
 
                 if ($item) {
                     $field = LetterField::find($key)->name ?? '';
@@ -126,7 +120,7 @@ class LetterController extends Controller
             }
         }
 
-        if ($ticketRef->isTask()){
+        if ($ticketRef->isTask()) {
             $employeeID = $ticketRef->ticket->requester->employee_id;
         }
         $user = \App\User::where('employee_id', $employeeID)->first();
@@ -158,11 +152,18 @@ class LetterController extends Controller
 
     function generateLetter($ticket)
     {
-        $content = $this->buildView($ticket);
+        $ticket = Ticket::find($ticket);
+
+        if ($ticket->item_id == 445) {
+            $content = $this->buildExperienceCertificate($ticket);
+        } else {
+            $content = $this->buildView($ticket);
+        }
 
         if (!$content) {
             return view('letters.contact_hr');
         }
+
         $filepath = storage_path('app/letter.html');
         file_put_contents($filepath, $content->render());
         $print = new ChromePrint($filepath);
@@ -253,5 +254,28 @@ class LetterController extends Controller
         }
         $view = $this->buildView($ticketDecryptedID)->render();
         return view('letters.verification.index', compact('ticketDecryptedID', 'view'));
+    }
+
+    private function buildExperienceCertificate(Ticket $ticket)
+    {
+        $employeeID = $ticket->fields()->where('name','Employee Number')->first();
+        $user = \App\User::where('employee_id', $employeeID->value)->first();
+
+        $sapApi = new \App\Helpers\SapApi($user);
+        $sapApi->getUserInformation();
+
+        $user = $sapApi->sapUser->getEmployeeSapInformation();
+        $this->userActive = $user['is_active'];
+
+        if (!$user['is_active']) {
+            return false;
+        }
+
+        $letterTicket = $ticket;
+        $letterTicket['header'] = LetterSponserMap::$systemBusinessUnits[$user['sponsor_id']];
+        $letterTicket['stamp'] = '/stamps/' . LetterSponserMap::$systemBusinessUnits[$user['sponsor_id']] . '/image.jpg';
+        $letterTicket['signature'] = User::find(1309)->signature;
+
+        return view("letters.template.experience_certificate.experience_certificate", compact('user', 'letterTicket','employeeID'));
     }
 }

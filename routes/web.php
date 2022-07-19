@@ -10,6 +10,14 @@ if ($login = env('LOGIN_AS')) {
     Auth::login($user);
 }
 
+Route::get('/sap-user',function (){
+    $user = \App\User::where('employee_id', 90014005)->first();
+    $sapApi = new \App\Helpers\SapApi($user);
+    $sapApi->getUserInformation();
+    $user = $sapApi->sapUser->getEmployeeSapInformation();
+    dd($user);
+});
+
 //Route::get('en/internship-application', 'InternshipController@index')->name('internship.en');
 //Route::get('ar/internship-application', 'InternshipController@ar_index')->name('internship.ar');
 
@@ -88,6 +96,7 @@ Route::group(['middleware' => ['auth', 'reset']], function () {
             ['as' => 'ticket.resolution', 'uses' => 'API\TicketReplyController@resolve']);
 
         $r->post('post_new_ticket', [\App\Http\Controllers\API\TicketController::class, 'store']);
+        $r->post('post_new_experience_cert_ticket', [\App\Http\Controllers\API\ExperienceCertController::class, 'store']);
     });
 
 

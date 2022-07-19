@@ -485,6 +485,10 @@ class TicketController extends Controller
         $subcategory = $item->subcategory;
         $subItem = null;
 
+        if ($item->custom_path != '') {
+            return view($item->custom_path, compact('business_unit', 'category', 'subcategory', 'item', 'subItem'));
+        }
+
         if ($item->id == config('letters.item_id')) {
             return $this->redirectToLetters($item);
         }
