@@ -47,25 +47,16 @@
                     م</p>
             </div>
             @php
-                $to = $letterTicket->ticket->fields->where('name','Region')->first() ? $letterTicket->ticket->fields->where('name','Region')->first()->value : '';
-                $IstiqdamTo = $letterTicket->ticket->fields->where('name','Request For')->first() ? $letterTicket->ticket->fields->where('name','Request For')->first()->value : '';
-                $education = $letterTicket->ticket->fields->where('name','Academic Qualification')->first();
-                $specialization = $letterTicket->ticket->fields->where('name','Specialization')->first();
+            $region = $letterTicket->ticket->fields->where('name','Region')->first() ? $letterTicket->ticket->fields->where('name','Region')->first()->value : '';
+            $istiqdamTo = $letterTicket->ticket->fields->where('name','Request For')->first() ? $letterTicket->ticket->fields->where('name','Request For')->first()->value : '';
 
-            $regions = $letterTicket->letter->fields->where('name','like','Region')->first();
-            $regions = array_combine($regions->options,$regions->options);
-
-            $region_ar = \App\Translation::where('word','like',$regions[$to])
-            ->where('language','ar')->first();
-
-            $to_ar = \App\Translation::where('word','like',$IstiqdamTo)
-            ->where('language','ar')->first();
-
+            $education = $letterTicket->ticket->fields->where('name','Academic Qualification')->first() ?? '';
+            $specialization = $letterTicket->ticket->fields->where('name','Specialization')->first() ?? '';
             @endphp
 
             <div class="flex  pt-20 px-10" dir="rtl">
                 <p class="text-4xl">
-                    إدارة شئون الإستقدام بـ{{$region_ar->translation}}
+                    إدارة شئون الإستقدام بـ{{$region ?? ""}}
                 </p>
                 <p class="px-48 "></p>
                 {{--                <p class="px-10   "></p>--}}
@@ -92,7 +83,7 @@
                 </p>
 
                 <p dir="rtl" class="text-3xl">
-                    يرغب في استقدام / {{$to_ar->translation}} وحيث لا مانع لدينا من ذلك حيث ان العلاج والسكن مؤمن
+                    يرغب في استقدام /  {{$istiqdamTo ?? ""}} وحيث لا مانع لدينا من ذلك حيث ان العلاج والسكن مؤمن
                     للمذكور ،
                     عليه نأمل الموافقة على طلب موظفنا كما نصادق على صحة المعلومات الموضحة بخطابنا هذا ، وهذا إقرار منا
                     بذلك .
