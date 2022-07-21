@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminUserRequest;
 use App\Jobs\LdapImportUsers;
 use App\Jobs\SyncUsersWithGoogleSheet;
+use App\Jobs\UploadLabourUsersJob;
 use App\Jobs\UploadUsersJob;
 use App\User;
 use Carbon\Carbon;
@@ -123,8 +124,22 @@ class UserController extends Controller
         if ($request->hasFile('users')) {
             $this->dispatch(new UploadUsersJob($request->users));
         }
-//        return redirect()->back();
     }
+
+    function showLabourOfficeUsersUploadForm()
+    {
+        return view('admin.user.labour');
+    }
+
+    function submitLabourOfficeUpload(Request $request)
+    {
+        if ($request->hasFile('users')) {
+            $this->dispatch(new UploadLabourUsersJob($request->users));
+        }
+    }
+
+
+
 
     function googleSync(Request $request)
     {

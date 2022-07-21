@@ -14,17 +14,13 @@
             $language =\Session::get('personalized-language' . \Auth::user()->id, \Config::get('app.locale'));
         @endphp
 
-        <div id="ticketForm">
+        <div id="customTicketForm">
             @php
                 $showBalance = (env('BALANCE_SERVICES') && in_array($category->id , explode(',',env('BALANCE_SERVICES')))) ? 1 : 0;
                 $createForOthers = !isset($ticket) && Auth::user()->isSupport() && $category->id != 56  &&
                  (isset($item) && !in_array( $item->id,[296,297]));
 
                 $notes = '';
-                if ($category->notes || (isset($subcategory) && $subcategory->notes) || (isset($item) && $item->notes)){
-                    $notes = $category->notes.' '. $subcategory->notes .' '. $item->notes;
-                }
-
                 $ticketObj = new \App\Ticket();
                 $sla = $ticketObj->getSla($category,$subcategory ?? null ,$item ?? null,$subItem ?? '');
 
@@ -45,10 +41,9 @@
                 ->map(function ($item){
                     return ['word'=> strtolower($item->word),'translation'=> $item->translation];
                 });
-
             @endphp
 
-            <ticket-form
+            <experience-cert
                     :show_balance="{{$showBalance}}"
                     :auth_user="{{json_encode(Auth::user()->employee_id)}}"
                     :create_for_others="{{$createForOthers}}"
@@ -58,13 +53,12 @@
                     :priorities="{{json_encode($priorities)}}"
                     :translations="{{json_encode($translations)}}"
             >
-
-            </ticket-form>
+            </experience-cert>
         </div>
     </div>
 
 @endsection
 @section('javascript')
-    <script src="{{asset('/js/ticket_form/index.js')}}"></script>
+    <script src="{{asset('/js/ticket_form/custom/experience_cert/index.js')}}"></script>
 
 @append
