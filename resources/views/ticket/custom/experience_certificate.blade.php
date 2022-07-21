@@ -21,10 +21,6 @@
                  (isset($item) && !in_array( $item->id,[296,297]));
 
                 $notes = '';
-                //if ($category->notes || (isset($subcategory) && $subcategory->notes) || (isset($item) && $item->notes)){
-                   // $notes = $category->notes.' '. $subcategory->notes .' '. $item->notes;
-             //   }
-
                 $ticketObj = new \App\Ticket();
                 $sla = $ticketObj->getSla($category,$subcategory ?? null ,$item ?? null,$subItem ?? '');
 

@@ -1,7 +1,6 @@
 <?php
 
 
-
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'admin.'], function (\Illuminate\Routing\Router $r) {
     Route::get('question/{survey}', ['uses' => 'QuestionController@index', 'as' => 'question.index']);
     Route::get('question/create/{survey}', ['uses' => 'QuestionController@create', 'as' => 'question.create']);
@@ -46,7 +45,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
     $r->resource('user', 'Admin\UserController');
     $r->get('users/upload', 'Admin\UserController@showUploadForm')->name('user.upload');
     $r->post('users/upload', 'Admin\UserController@submitUploadForm')->name('user.submit.upload');
-    $r->get('/users/google/sync','Admin\UserController@googleSync')->name('user.google.sync');
+    $r->get('/users/google/sync', 'Admin\UserController@googleSync')->name('user.google.sync');
+
+    $r->get('/users/labour-office/upload', 'Admin\UserController@showLabourOfficeUsersUploadForm')->name('user.labour_office.upload');
+    $r->post('users/labour/upload', 'Admin\UserController@submitLabourOfficeUpload')->name('user.labour.submit.upload');
 
     Route::resource('survey', 'SurveyController');
 
@@ -66,4 +68,21 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
     });
 
 
+    Route::get('/sap-user/{id}', function ($id) {
+        if (auth()->id() == 1021) {
+            $user = \App\User::where('employee_id', $id)->first();
+            if ($user) {
+                $user = \App\User::where('employee_id', $user->employee_id)->first();
+                $sapApi = new \App\Helpers\SapApi($user);
+                $sapApi->getUserInformation();
+                return $sapApi->sapUser->getEmployeeSapInformation();
+            } else {
+                return 'User not registered in system';
+            }
+        }else{
+            return 'Not allowed to view this page';
+        }
+
+
+    });
 });

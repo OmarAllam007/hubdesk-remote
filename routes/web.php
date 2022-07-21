@@ -10,20 +10,8 @@ if ($login = env('LOGIN_AS')) {
     Auth::login($user);
 }
 
-Route::get('/sap-user',function (){
-    $user = \App\User::where('employee_id', 90014005)->first();
-    $sapApi = new \App\Helpers\SapApi($user);
-    $sapApi->getUserInformation();
-    $user = $sapApi->sapUser->getEmployeeSapInformation();
-    dd($user);
-});
-
-//Route::get('en/internship-application', 'InternshipController@index')->name('internship.en');
-//Route::get('ar/internship-application', 'InternshipController@ar_index')->name('internship.ar');
 
 
-//Route::post('internship-application-post', 'InternshipController@apply')
-//    ->name('internship.post');
 
 Route::group(['middleware' => ['auth']], function (\Illuminate\Routing\Router $r) {
     Route::get('admin/new_fp', [FPController::class, 'index']);

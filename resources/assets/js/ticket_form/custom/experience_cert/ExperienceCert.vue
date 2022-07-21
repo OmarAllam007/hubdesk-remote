@@ -28,9 +28,6 @@
                     :auth_user="auth_user"
                     v-if="create_for_others"
         ></users-list>
-
-        <!--                <div class="w-full md:w-1/2 mb-6 md:mb-0">-->
-
         <div class="flex">
           <div class="w-1/2">
             <div class="flex-col">
@@ -329,7 +326,6 @@ export default {
       ticket.append('ticket[requester_id]', this.form.requester_id)
       ticket.append('ticket[creator_id]', this.form.creator_id)
       ticket.append('ticket[priority_id]', this.form.priority_id)
-
 
       return ticket;
     }

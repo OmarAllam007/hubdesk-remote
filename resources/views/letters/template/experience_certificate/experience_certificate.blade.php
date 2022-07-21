@@ -20,20 +20,25 @@
                 </p>
             </div>
 
+
             @php
+                $labourUser = \App\LabourOfficeUser::where('employee_id',$user['employee_id'])->first();
                 $enSponser = \App\Helpers\LetterSponserMap::$en_sponsers[$user['sponsor_id']];
-                $ar_job = $user['is_saudi'] ? $user['occupation'] :'Get it from Labour office';
-                $en_job = $user['is_saudi'] ? $user['en_occupation'] :'Get it from Labour office';
-                $company = 'From Labour Office';
+                $ar_job = $user['is_saudi'] ? $user['occupation'] : $labourUser->job;
+                $en_job = $user['is_saudi'] ? $user['en_occupation'] :
+                \App\LetterJobMap::where('ar_name',$ar_job)->first()->en_name ?? '';
+                $ar_company = $labourUser->building_name;
+                $en_company = \App\LabourOfficeCompanyMap::where('ar_name','like','%'.$labourUser->building_name.'%')->first()->en_name ?? '';
+                $toDate = $letterTicket->fields()->where('name','Last working day')->first()->value;
             @endphp
 
             <div class="flex flex-col pt-10 px-10 pb-10 " dir="rtl">
                 <p class="text-3xl">
                     <span>
-                    نفيد نحن شركة {{$company}} بأن السيد / {{$user['ar_name']}} ، {{$user['ar_nationality']}} الجنسية ،
+                    نفيد نحن شركة {{$ar_company}} بأن السيد / {{$user['ar_name']}} ، {{$user['ar_nationality']}} الجنسية ،
 
                     يحمل هوية رقم : {{$user['iqama_number']}}، قد عمل لدينا بوظيفة : {{$ar_job}}
-                     من تاريخ :  {{$user['date_of_join']}} وحتى تاريخ : 08/06/2022 م ، وقد تم إخلاء طرفه وإعطائه
+                     من تاريخ :  {{$user['date_of_join']}} م وحتى تاريخ : {{$toDate}} م ، وقد تم إخلاء طرفه وإعطائه
                     هذه الشهادة دون أدنى مسؤولية او إلتزام على الشركة .
                     </span>
                 </p>
@@ -55,8 +60,8 @@
                 <p class="text-3xl">
                     <span>
                             We would like to inform you that Mr. {{$user['en_name']}}, {{$user['en_nationality']}}
-                            Nationality, having national No. {{$user['iqama_number']}}, Served {{$company}}
-                            company as {{$en_job}} from: {{$user['date_of_join']}} to:
+                            Nationality, having national No. {{$user['iqama_number']}}, Served {{$en_company}}
+                            company as {{$en_job}} from: {{$user['date_of_join']}} to: {{$toDate}}
                             , we cleared him and has given him this certificate without any
                             obligation or responsibility to the company.
                     </span>

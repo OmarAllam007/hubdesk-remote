@@ -110,7 +110,8 @@ class LetterController extends Controller
 
     function buildView($ticket)
     {
-        $ticketRef = Ticket::find($ticket);
+        $ticketRef = $ticket;
+
         $employeeID = $ticketRef->requester->employee_id;
         if ($ticketRef->is_letter_ticket) {
             $letterTicketRef = $ticketRef->letter_ticket;
@@ -154,7 +155,7 @@ class LetterController extends Controller
     {
         $ticket = Ticket::find($ticket);
 
-        if ($ticket->item_id == 445) {
+        if ($ticket->item_id == 445) { // to be better than this
             $content = $this->buildExperienceCertificate($ticket);
         } else {
             $content = $this->buildView($ticket);
@@ -174,8 +175,6 @@ class LetterController extends Controller
 
     function generateLetterDoc($ticket)
     {
-//        $content = $this->buildView($ticket);
-
         $ticketObj = Ticket::find($ticket);
 
         $employeeID = $ticketObj->isTask() ? $ticketObj->ticket->requester->employee_id : $ticketObj->requester->employee_id;
@@ -183,10 +182,12 @@ class LetterController extends Controller
 
         $user = \App\User::where('employee_id', $employeeID)->first();
         $sapApi = new \App\Helpers\SapApi($user);
-        $sapApi->getUserInformation();
-        $user = $sapApi->sapUser->getEmployeeSapInformation();
-        $letterTicket = \App\LetterTicket::where('ticket_id', $letterTicketObj)->first();
 
+        $sapApi->getUserInformation();
+
+        $user = $sapApi->sapUser->getEmployeeSapInformation();
+
+        $letterTicket = \App\LetterTicket::where('ticket_id', $letterTicketObj)->first();
         $letterPath = str_replace('.', '/', $letterTicket->letter->view_path);
 
         require base_path("resources/views/letters/word/{$letterPath}.php");
