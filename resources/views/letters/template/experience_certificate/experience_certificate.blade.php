@@ -1,17 +1,24 @@
 <!doctype html>
 <html lang="en">
 @include('letters.layout._custom_header')
+<style>
+    div {
+        text-align: justify;
+        text-justify: inter-word;
+    }
+</style>
 <body>
+
 <div class="flex">
     <div class="">
         <page size="A4" class="">
             <div class="pt-10 px-10">
                 <p class="pt-20 "></p>
-
                 <p class="text-gray-900 text-xl pt-64">ID: {{$employeeID->value}}
                 </p>
                 <p class="text-gray-900 text-xl pt-5">HD: {{$letterTicket->id}}
                 </p>
+                <p class="flex pt-10   px-10 justify-center">Request for Testing Purpose</p>
             </div>
             {{--            Arabic Part --}}
             <div class="flex pt-10   px-10 justify-center">
@@ -73,15 +80,18 @@
             </div>
 
             <div class="flex-col">
-                <div class="flex  pt-5  px-10 ">
+                <div class="  pt-5  px-10 ">
                     <p class="text-3xl">
-                        {{\App\Helpers\LetterSponserMap::$sponsers[$user['sponsor_id']]}}
+                        الموارد البشرية
+                    </p>
+                    <p class="text-3xl">
+                        Human Resources
                     </p>
                 </div>
 
                 <div class="flex justify-between">
                     <div class="w-1/3 mx-3 ">
-                        <img class="w-2/3 " src="{{asset('/storage'.$letterTicket->signature)}}">
+{{--                        <img class="w-2/3 " src="{{asset('/storage'.$letterTicket->signature)}}">--}}
                     </div>
                     <div class="w-1/3 mx-2 ">
                         <img class="w-1/2" src="{{asset('/storage'.$letterTicket->stamp)}}" alt="">
