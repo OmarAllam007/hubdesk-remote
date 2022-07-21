@@ -123,4 +123,8 @@ class LetterSponserMap
         "7005620625" => "Emdad Company",
         "7012303603" => "Al-Kifah Factory Company for Central Concrete Batching Plants"
     ];
+
+    static $to_en_sponsers = [
+
+    ];
 }

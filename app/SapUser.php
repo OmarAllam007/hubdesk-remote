@@ -80,10 +80,10 @@ class SapUser
         foreach ($this->sapData as $key => $data) {
             $sap_data[$key] = $data;
         }
+
         $this->sapData = $sap_data;
 
         list($en_occupation, $ar_occupation) = $this->getOccupationTranslation();
-
         $this->sapData = [
             'employee_id' => $this->sapData['PERNR'],
             'system_position' => $this->sapData['POSITION'],
@@ -110,13 +110,15 @@ class SapUser
             'fax' => '',
             'education' => $this->sapData['ZZEDUCATION'],
             'is_active' => $this->sapData['BEGDA'] == '0000-00-00',
-            'eos_amount' => $this->calculateEOS($this->sapData['EOS_AMT'], $this->sapData['DAT01'])
+            'eos_amount' => $this->calculateEOS($this->sapData['EOS_AMT'], $this->sapData['DAT01']),
+            'actual_eos_amount' => $this->sapData['EOS_AMT'],
+            'is_saudi'=> str_starts_with($this->sapData['ICNUM_NATID'],'10')
         ];
+
 
         if (in_array($this->sapData['sponsor_id'], [7013614099, 7014784685, 7015080299])) {
             $this->sapData['sponsor_company'] = 'شركة الكفاح القابضة';
         }
-
 
         return $this->sapData;
     }
