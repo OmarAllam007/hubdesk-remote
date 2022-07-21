@@ -139,7 +139,7 @@ class LetterController extends Controller
         $user['allowances_str'] = $sapApi->sapUser->getAllowancesString();
 
 
-        $letterTicket = LetterTicket::where('ticket_id', $ticketRef->isTask() ? $ticketRef->ticket->id : $ticket)->first();
+        $letterTicket = LetterTicket::where('ticket_id', $ticketRef->isTask() ? $ticketRef->ticket->id : $ticket->id)->first();
         $view = $letterTicket->letter->view_path;
 
 
