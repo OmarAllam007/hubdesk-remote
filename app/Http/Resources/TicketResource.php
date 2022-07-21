@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\LetterTicket;
 use App\Ticket;
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Collection;
 
@@ -53,8 +54,13 @@ class TicketResource extends JsonResource
         $keyedFields = $this->ticket_service_custom_fields->flatten()->keyBy('name');
 
         $this->custom_fields->map(function ($field, $index) use ($keyedFields) {
+
+            $fieldValue = str_contains(strtolower($field->name),'date') ?
+                Carbon::parse($field->value)->format('Y-m-d h:i a')
+                : $field->value;
+
             $this->fields[$index]['name'] = $field->name;
-            $this->fields[$index]['value'] = $field->value;
+            $this->fields[$index]['value'] = $fieldValue;
 
             if ($keyedFields->count() && $keyedFields->get($field['name']) !== null) {
                 $this->fields[$index]['order'] = $keyedFields->get($field['name'])->order;
