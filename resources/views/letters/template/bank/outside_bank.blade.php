@@ -85,7 +85,7 @@
                 <p class="text-3xl">
                     <span>
                         This is to certify that Mr. {{$user['en_name']}}, {{$user['en_nationality']}}, Iqama Number {{$user['iqama_number']}}, Passport number {{$user['passport_number']}}. Is an
-                        employee of {{$user['en_sponsor_company']}}, from {{$user['date_of_join']}} up to the present.
+                        employee of {{\App\Helpers\LetterSponserMap::$en_sponsers[$user['sponsor_id']]}}, from {{$user['date_of_join']}} up to the present.
                     </span>
                 </p>
                 <p class=" text-3xl ">
@@ -101,37 +101,13 @@
                 </p>
             </div>
 
-            <div class="flex pt-20 px-10 ">
-                <p class="text-3xl">
-                    Signed By:
-                </p>
-            </div>
-
-
-            <div class="flex-col">
-                <div class="flex  pt-5  px-10 ">
-                    <p class="text-3xl">
-                        {{$user['en_sponsor_company']}}
-                    </p>
+            <div class="flex justify-between">
+                <div class="w-1/3 mx-3 ">
+                    <img class="w-2/3 " src="{{asset('/storage'.$letterTicket->signature)}}">
                 </div>
-
-
-                <div class="flex justify-between">
-                    <div class="w-1/3 mx-3 ">
-                        <img class="w-5/12  " src="{{asset('/storage'.$letterTicket->signature)}}">
-
-{{--                        <img src="{{asset('/stamps/8/signature.png')}}" class="w" alt="">--}}
-                    </div>
-                    <div class="w-1/3 mx-2 ">
-                        <img class="w-1/2" src="{{asset('/storage'.$letterTicket->stamp)}}"  alt="">
-                        {{--                        <img src="{{asset('/stamps/8/stamp_test.png')}}" class="w" alt="">--}}
-                    </div>
+                <div class="w-1/3 mx-2 ">
+                    <img class="w-1/2" src="{{asset('/storage'.$letterTicket->stamp)}}"  alt="">
                 </div>
-            </div>
-
-
-            <div class="flex justify-center">
-
             </div>
         </page>
     </div>
