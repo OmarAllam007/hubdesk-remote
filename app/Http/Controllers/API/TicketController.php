@@ -108,8 +108,8 @@ class TicketController
 
     function store(Request $request)
     {
-        /** @var UploadedFile $file */
 
+        /** @var UploadedFile $file */
         $requestedTicket = $request->get('ticket');
 
         $items = json_decode($request->input('ticket.fields'), true);
@@ -134,7 +134,7 @@ class TicketController
             return response()->json(['errors' => $validator->errors(), 'error_code' => 400]);
         }
 
-        $ticket = $this->createTicket($request,$requestedTicket,$requestedTicket['requester_id']);
+        $ticket = $this->createTicket($request, $requestedTicket, $requestedTicket['requester_id']);
 
         $this->createFields($items, $ticket);
 
@@ -143,7 +143,8 @@ class TicketController
         return response($ticket->id);
     }
 
-    function validateFields($items){
+    function validateFields($items)
+    {
         $validation = [];
 
         if (!empty($items)) {
@@ -158,7 +159,8 @@ class TicketController
         return $validation;
     }
 
-    function validateFiles($request){
+    function validateFiles($request)
+    {
         $totalFileSizes = 0.0;
 
         foreach ($request->files as $files) {
@@ -169,8 +171,9 @@ class TicketController
         return $totalFileSizes;
     }
 
-    function createTicket($request, $requestedTicket,$requester){
-        $clientInfo =  ['client' => $request->userAgent(), 'ip_address' => $request->ip(), 'client_ip' => $request->getClientIp()];
+    function createTicket($request, $requestedTicket, $requester)
+    {
+        $clientInfo = ['client' => $request->userAgent(), 'ip_address' => $request->ip(), 'client_ip' => $request->getClientIp()];
 
         $ticket = Ticket::create([
             'subject' => $requestedTicket['subject'],
@@ -199,7 +202,11 @@ class TicketController
         if ($items && count($items)) {
             foreach ($items as $key => $item) {
                 if ($item) {
-                    $field = CustomField::find($key)->name ?? '';
+                    if (is_numeric($key)) {
+                        $field = CustomField::find($key)->name ?? '';
+                    } else {
+                        $field = $key;
+                    }
                     $ticket->fields()->create(['name' => $field, 'value' => $item]);
                 }
             }

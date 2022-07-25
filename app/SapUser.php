@@ -96,7 +96,7 @@ class SapUser
             'iqama_number' => $this->sapData['ICNUM_IQAMA'] != '' ? $this->sapData['ICNUM_IQAMA'] : $this->sapData['ICNUM_NATID'],
             'passport_number' => $this->sapData['ICNUM_PASS'],
             'sponsor_id' => $this->sapData['SPONR'],
-            'sponsor_company' => LetterSponserMap::$sponsers[$this->sapData['SPONR']],
+            'sponsor_company' => $this->sapData['SPONR'] != '' ? LetterSponserMap::$sponsers[$this->sapData['SPONR']] : $this->sapData['SPONR'],
             'en_sponsor_company' => $this->sapData['SPONN'],
             'allowances' => $this->getAllowances(),
             'total_package' => $this->sapData['total_package'],
@@ -112,7 +112,8 @@ class SapUser
             'is_active' => $this->sapData['BEGDA'] == '0000-00-00',
             'eos_amount' => $this->calculateEOS($this->sapData['EOS_AMT'], $this->sapData['DAT01']),
             'actual_eos_amount' => $this->sapData['EOS_AMT'],
-            'is_saudi'=> str_starts_with($this->sapData['ICNUM_NATID'],'10')
+            'is_saudi' => str_starts_with($this->sapData['ICNUM_NATID'], '10'),
+            'end_of_service_date' => $this->sapData['BEGDA']
         ];
 
 

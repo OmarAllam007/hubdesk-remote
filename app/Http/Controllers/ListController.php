@@ -289,5 +289,18 @@ class ListController extends Controller
         return $fields;
     }
 
+    function getSAPUser()
+    {
+        $user = \App\User::where('employee_id', \request('id'))->first();
+
+        if ($user) {
+            $sapApi = new \App\Helpers\SapApi($user);
+            $sapApi->getUserInformation();
+            return $sapApi->sapUser->getEmployeeSapInformation();
+        }
+
+        return response('User Not Found',400);
+    }
+
 
 }
