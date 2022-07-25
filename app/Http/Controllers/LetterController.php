@@ -248,12 +248,13 @@ class LetterController extends Controller
     function verifyLetterView($ticketId)
     {
         $ticketDecryptedID = (int)\Crypt::decryptString($ticketId);
-        $ticketExist = Ticket::find($ticketDecryptedID);
+        $ticketModel = Ticket::find($ticketDecryptedID);
 
-        if (!$ticketExist) {
+        if (!$ticketModel) {
             return;
         }
-        $view = $this->buildView($ticketDecryptedID)->render();
+
+        $view = $this->buildView($ticketModel)->render();
         return view('letters.verification.index', compact('ticketDecryptedID', 'view'));
     }
 
