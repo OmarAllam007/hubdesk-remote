@@ -87,6 +87,7 @@ export default {
   },
   created() {
     this.loadUsers(this.auth_user);
+
   },
   methods: {
     searchForUser(text) {

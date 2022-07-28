@@ -108,11 +108,16 @@ class TicketController extends Controller
 
         foreach ($request->get('cf', []) as $key => $item) {
             if ($item) {
-                $field = CustomField::find($key)->name ?? '';
+                if(is_numeric($key)){
+                    $field = CustomField::find($key)->name ?? '';
 
-                if (is_array($item) && count($item) > 0) {
-                    $item = implode(", ", $item);
+                    if (is_array($item) && count($item) > 0) {
+                        $item = implode(", ", $item);
+                    }
+                }else{
+                    $field = $key;
                 }
+
                 $ticket->fields()->create(['name' => $field, 'value' => $item]);
             }
         }
@@ -485,15 +490,12 @@ class TicketController extends Controller
         $subcategory = $item->subcategory;
         $subItem = null;
 
-        if ($item->custom_path != '') {
-            return view($item->custom_path, compact('business_unit', 'category', 'subcategory', 'item', 'subItem'));
-        }
-
         if ($item->id == config('letters.item_id')) {
             return $this->redirectToLetters($item);
         }
 
-        return view('ticket.create', compact('business_unit', 'category', 'subcategory', 'item', 'subItem'));
+        return view($item->custom_path ?? 'ticket.create',
+            compact('business_unit', 'category', 'subcategory', 'item', 'subItem'));
     }
 
 

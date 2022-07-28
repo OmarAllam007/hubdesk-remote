@@ -85,6 +85,7 @@ Route::group(['middleware' => ['auth', 'reset']], function () {
 
         $r->post('post_new_ticket', [\App\Http\Controllers\API\TicketController::class, 'store']);
         $r->post('post_new_experience_cert_ticket', [\App\Http\Controllers\API\ExperienceCertController::class, 'store']);
+        $r->post('post_recruitment_requisition_ticket', [\App\Http\Controllers\API\RecruitmentRequisitionController::class, 'store']);
     });
 
 
@@ -137,10 +138,10 @@ Route::get('/subcategory/{subcategory}', 'SubcategoryController@show')->name('su
 Route::post('ajax/ticket', 'API\TicketController@index');
 Route::post('ajax/filter-tickets', 'API\TicketController@filterTickets');
 
+require __DIR__ . '/list.php';
 require __DIR__ . '/letters.php';
 require __DIR__ . '/admin.php';
 require __DIR__ . '/reports.php';
-require __DIR__ . '/list.php';
 
 Route::group(['prefix' => 'e-card/admin'], function (Router $r) {
     $r->get('index', [\App\Http\Controllers\ECard\Admin\IndexController::class, 'index'])

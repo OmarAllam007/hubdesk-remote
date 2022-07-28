@@ -5,6 +5,7 @@ namespace App\Http\Resources;
 use App\LetterTicket;
 use App\Ticket;
 use Carbon\Carbon;
+use Carbon\Exceptions\InvalidDateException;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Collection;
 
@@ -55,9 +56,13 @@ class TicketResource extends JsonResource
 
         $this->custom_fields->map(function ($field, $index) use ($keyedFields) {
 
-            $fieldValue = str_contains(strtolower($field->name),'date') ?
-                Carbon::parse($field->value)->format('Y-m-d h:i a')
-                : $field->value;
+            if (str_contains(strtolower($field->name),'date') &&
+                \DateTime::createFromFormat('Y-m-d h:i a', $field->value) !== false) {
+                $fieldValue =  Carbon::parse($field->value)->format('Y-m-d h:i a');
+
+            }else{
+                $fieldValue = $field->value;
+            }
 
             $this->fields[$index]['name'] = $field->name;
             $this->fields[$index]['value'] = $fieldValue;

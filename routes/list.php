@@ -3,6 +3,8 @@
 
 
 Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
+    Route::get('/sap-info','ListController@getSAPUser');
+
     $r->get('/subcategory/{cat_id?}', 'ListController@subcategory');
     $r->get('/item/{subcat_id?}', 'ListController@item');
     $r->get('/subitem/{item_id?}', 'ListController@subitem');
@@ -40,4 +42,5 @@ Route::group(['prefix' => 'list'], function (\Illuminate\Routing\Router $r) {
     $r->get('tasks/{ticket}', 'API\TaskController@index');
     $r->get('logs/{ticket}', 'API\LogController@index');
     $r->get('fields', 'ListController@ticket_fields');
+
 });
