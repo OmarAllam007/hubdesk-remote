@@ -1,5 +1,6 @@
 <template>
   <div>
+    <notifications-component></notifications-component>
     <div class="flex flex-col w-full  p-5 my-5  bg-white rounded-xl shadow-md">
 
       <div class="flex" v-if="isTechnician == 1">
@@ -151,11 +152,15 @@ import Date from "../ticket/custom_fields/Date";
 import TextField from "../ticket/custom_fields/TextField";
 import SelectField from "../ticket/custom_fields/SelectField";
 import _ from "lodash";
+import {EventBus} from "../EventBus";
+import NotificationsComponent from "../ticket/show/NotificationsComponent";
+
+
 
 export default {
   name: "LetterForm",
   props: ['item', 'groups', 'priorities', 'subject', 'translations', 'language', 'isTechnician'],
-  components: {vSelect, Attachments, Editor, Date, TextField, SelectField},
+  components: {vSelect, Attachments, Editor, Date, TextField, SelectField, NotificationsComponent},
   data() {
     return {
       group: '',
@@ -249,6 +254,7 @@ export default {
 
     getFields() {
       this.fields = [];
+      this.custom_fields = {};
 
       axios.get(`/letters/list/letter_fields/${this.letter.id}`).then((response) => {
         if (!response.data.length) {
@@ -259,61 +265,74 @@ export default {
 
         Object.entries(response.data).map((item) => {
           this.custom_fields[item[1].id] = ''
-          // console.log(item)
-          // item.forEach((value) => {
-          //   this.fields[value.id] = ''
-          // })
         })
       });
 
     },
+
+    validateFields(){
+      var isValid = true;
+
+      if(_.size(this.custom_fields) > 0){
+        Object.values(this.custom_fields).forEach((value)=>{
+          if(value == ""){
+            isValid = false;
+          }
+        })
+      }
+      return isValid
+
+    },
+
     createLetter() {
-      this.loading = true
 
-      var form = new FormData;
-      form.append('_token', $('meta[name="csrf-token"]').attr('content'));
+      if(this.validateFields()){
+        this.loading = true
 
-      let attachments = this.attachments;
+        var form = new FormData;
+        form.append('_token', $('meta[name="csrf-token"]').attr('content'));
 
-      for (var l = 0; l < attachments.length; l++) {
-        form.append(`attachments[${l}]`, attachments[l]);
+        let attachments = this.attachments;
+
+        for (var l = 0; l < attachments.length; l++) {
+          form.append(`attachments[${l}]`, attachments[l]);
+        }
+
+        const fields = Object.keys(this.custom_fields).map(key => ({key, value: this.custom_fields[key]}));
+
+        for (var cf = 0; cf < fields.length; cf++) {
+          form.append(`fields`, JSON.stringify(this.custom_fields));
+        }
+
+
+        form.append('description', this.description ? this.description : '');
+        form.append('subject', this.subject);
+        form.append('item_id', this.item.id);
+        form.append('group_id', this.group.id);
+        form.append('requester_id', this.user_id.id);
+
+        if (this.subgroup) {
+          form.append('subgroup_id', this.subgroup.id);
+        }
+        form.append('letter_id', this.letter.id);
+        form.append('is_stamped', this.is_stamped === true ? 1 : 0);
+
+
+        axios.post('/letters/create-letter-ticket', form, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          },
+        }).then((response) => {
+          window.location = `/ticket/${response.data.ticket.id}`
+        });
+      }else{
+        EventBus.$emit('send_notification', 'create_ticket',
+            'Ticket Error', `Kindly fill all the required fields`, 'error');
       }
 
-      // let fields = this.fields;
 
 
-      const fields = Object.keys(this.custom_fields).map(key => ({key, value: this.custom_fields[key]}));
 
-      for (var cf = 0; cf < fields.length; cf++) {
-        form.append(`fields`, JSON.stringify(this.custom_fields));
-      }
-
-      // for (var f = 0; f < fields.length; f++) {
-      //   form.append(`fields[${f}][id]`, fields[f].id);
-      //   form.append(`fields[${f}][name]`, fields[f].name);
-      //   form.append(`fields[${f}][value]`, this.custom_fields[fields[f].id].value);
-      // }
-
-      form.append('description', this.description ? this.description : '');
-      form.append('subject', this.subject);
-      form.append('item_id', this.item.id);
-      form.append('group_id', this.group.id);
-      form.append('requester_id', this.user_id.id);
-
-      if (this.subgroup) {
-        form.append('subgroup_id', this.subgroup.id);
-      }
-      form.append('letter_id', this.letter.id);
-      form.append('is_stamped', this.is_stamped === true ? 1 : 0);
-
-
-      axios.post('/letters/create-letter-ticket', form, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        },
-      }).then((response) => {
-        window.location = `/ticket/${response.data.ticket.id}`
-      });
     },
 
     attachFiles(event) {
@@ -330,26 +349,18 @@ export default {
       }
     },
     canSubmit() {
-      return true
-      let canSubmit = true;
+      console.log(_.size(this.custom_fields))
 
-      if (!this.group) {
-        canSubmit = false;
+      if (!this.group_id) {
+        return false
       }
 
       if (!this.letter_id) {
-        canSubmit = false;
+        return false
       }
 
-      if (this.fields.length) {
-        this.fields.forEach((field) => {
-          if (!field.value) {
-            canSubmit = false;
-          }
-        })
-      }
+      return true;
 
-      return canSubmit;
     },
     submitButtonStyle() {
       if (this.canSubmit && !this.loading) {
