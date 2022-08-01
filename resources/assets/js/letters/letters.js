@@ -2,7 +2,9 @@ import Vue from 'vue';
 import LetterForm from "./LetterForm";
 import Attachments from "../AttachmentModal";
 import _ from "lodash";
+import Notifications from 'vue-notification';
 
+Vue.use(Notifications);
 
 window.axios = require('axios');
 
