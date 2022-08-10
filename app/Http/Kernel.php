@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\CheckLanguage;
+use App\Http\Middleware\ECardAdmin;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -56,6 +57,7 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'lang' => CheckLanguage::class,
-        'reset'=> \App\Http\Middleware\ResetPassword::class
+        'reset' => \App\Http\Middleware\ResetPassword::class,
+        'ecard.admin' => ECardAdmin::class
     ];
 }
