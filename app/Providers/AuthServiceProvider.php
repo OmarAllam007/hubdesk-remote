@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Attachment;
 use App\Auth\KdeskUserProvider;
+use App\BusinessCardUserAdminPermissions;
 use App\BusinessUnit;
 use App\DashboardUser;
 use App\Policies\AttachmentPolicy;
@@ -62,6 +63,12 @@ class AuthServiceProvider extends ServiceProvider
 
         \Gate::define('dashboard', function ($user) {
             return in_array($user->id, DashboardUser::all()->pluck('user_id')->toArray());
+        });
+
+        \Gate::define('e_card_admin', function ($user) {
+            return BusinessCardUserAdminPermissions::where('user_id',$user->id)
+                ->where('show',1)
+                ->first() != null;
         });
 
         $this->registerPolicies();

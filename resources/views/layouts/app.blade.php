@@ -5,14 +5,14 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>HubDesk</title>
-    <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
+    {{--    <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">--}}
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mada:400,700">
     {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css">--}}
     <link rel="stylesheet" href="{{asset('/css/app.css')}}">
     <link rel="stylesheet" href="{{asset('/css/style.css')}}">
-{{--    ?version={{time()}}--}}
-{{--    ?version={{time()}}--}}
+    {{--    ?version={{time()}}--}}
+    {{--    ?version={{time()}}--}}
     <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
@@ -88,7 +88,7 @@
                         {{--@endif--}}
                         <li class="nav-item"><a href="{{route('ticket.index')}}"><i
                                         class="fa fa-ticket"></i> {{t('Tickets')}}</a></li>
-{{--                        --}}
+                        {{--                        --}}
                         @if(auth()->user()->employee_id)
                             <li class="nav-item"><a href="{{route('user.information')}}"><i
                                             class="fa fa-user-circle"></i> {{t('My Information')}}</a></li>
@@ -105,6 +105,10 @@
                                             class="fa fa-bar-chart"></i> {{t('Report')}}</a></li>
                         @endif
 
+                        @can('e_card_admin')
+                            <li class="nav-item"><a href="{{url('/e-card/admin/index')}}"><i
+                                            class="fa fa-qrcode"></i> {{t('E-Card Admin')}}</a></li>
+                        @endcan
 
                     </ul>
 
@@ -174,20 +178,20 @@
 
                 @hasSection('sidebar')
                     <div class="w-3/4">
-                @else
-                        <div class="w-full">
-                 @endif
+                        @else
+                            <div class="w-full">
+                                @endif
 
-                        @yield('body')
-                        @hasSection('sidebar')
+                                @yield('body')
+                                @hasSection('sidebar')
+                            </div>
+                            @else
+                            @endif
+
                     </div>
-                    @else
-                @endif
 
+                    @include('sweetalert::alert')
             </div>
-
-            @include('sweetalert::alert')
-        </div>
     </main>
 
     {{--    <footer>--}}
