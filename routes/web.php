@@ -143,8 +143,9 @@ require __DIR__ . '/letters.php';
 require __DIR__ . '/admin.php';
 require __DIR__ . '/reports.php';
 
-Route::get('show/{user}', [\App\Http\Controllers\ECard\Admin\UserController::class, 'show'])
+Route::get('e-card/admin/show/{user}', [\App\Http\Controllers\ECard\Admin\UserController::class, 'show'])
     ->name('e-card.admin.user.show');
+
 Route::group(['prefix' => 'e-card/admin','middleware'=>'ecard.admin'], function (Router $r) {
     $r->get('index', [\App\Http\Controllers\ECard\Admin\IndexController::class, 'index'])
         ->name('e-card.admin.user.index');
