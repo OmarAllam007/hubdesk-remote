@@ -16,7 +16,10 @@
 
         <div id="ticketForm">
             @php
-                $showBalance = (env('BALANCE_SERVICES') && in_array($category->id , explode(',',env('BALANCE_SERVICES')))) ? 1 : 0;
+                $showBalance = (env('BALANCE_SERVICES')
+                                && in_array($category->id , explode(',',env('BALANCE_SERVICES')))) ? 1 : 0;
+
+                $showTicketBalance = ($subcategory && $subcategory->id == 224) ? 1 : 0;
                 $createForOthers = !isset($ticket) && Auth::user()->isSupport() && $category->id != 56  &&
                  (isset($item) && !in_array( $item->id,[296,297]));
 
@@ -50,6 +53,7 @@
 
             <ticket-form
                     :show_balance="{{$showBalance}}"
+                    :show_ticket_balance="{{$showTicketBalance}}"
                     :auth_user="{{json_encode(Auth::user()->employee_id)}}"
                     :create_for_others="{{$createForOthers}}"
                     :ticket_attr="{{json_encode($ticket_attr)}}"

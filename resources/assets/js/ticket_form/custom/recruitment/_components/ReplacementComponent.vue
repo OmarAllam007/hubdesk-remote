@@ -66,10 +66,6 @@ export default {
     loadUsers(searchText = '') {
       axios.get(`/list/employees?search=${searchText}`).then((response) => {
         this.users = response.data;
-        // console.log(this.users.length)
-        // if (searchText != '') {
-        //   this.requester = response.data[0]
-        // }
       });
     },
 
