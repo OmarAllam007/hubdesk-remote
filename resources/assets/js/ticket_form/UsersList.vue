@@ -138,7 +138,7 @@ export default {
           this.requester = response.data[0]
         }
 
-        if(searchText.length > 6){
+        if(searchText.length == 8){
           this.loadSAPUserInfo(this.users[0].employee_id)
         }
 
