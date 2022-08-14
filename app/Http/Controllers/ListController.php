@@ -296,10 +296,28 @@ class ListController extends Controller
         if ($user) {
             $sapApi = new \App\Helpers\SapApi($user);
             $sapApi->getUserInformation();
-            return $sapApi->sapUser->getEmployeeSapInformation();
+            $userData = $sapApi->sapUser->getEmployeeSapInformation();
+
+            return [
+                'employee_id' => $userData['employee_id'],
+                'ar_name' => $userData['ar_name'],
+                'direct_manager_email' => $userData['direct_manager_email'],
+                'direct_manager_name' => $userData['direct_manager_name'],
+                'en_name' => $userData['en_name'],
+                'en_nationality' => $userData['en_nationality'],
+                'iban' => $userData['iban'],
+                'flight_ticket_balance' => $userData['flight_ticket_balance'],
+                'iqama_number' => $userData['iqama_number'],
+                'leave_balance' => $userData['leave_balance'],
+                'date_of_join' => $userData['date_of_join'],
+                'passport_number' => $userData['passport_number'],
+                'system_position' => $userData['system_position'],
+                'is_saudi' => $userData['is_saudi'],
+                'end_of_service_date' => $userData['end_of_service_date'],
+            ];
         }
 
-        return response('User Not Found',400);
+        return response('User Not Found', 400);
     }
 
 
