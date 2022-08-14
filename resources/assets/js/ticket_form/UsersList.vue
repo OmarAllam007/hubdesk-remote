@@ -104,6 +104,7 @@ export default {
   },
   created() {
     this.loadUsers(this.auth_user)
+    this.loadSAPUserInfo(this.auth_user)
   },
   methods: {
     selectUser() {
@@ -138,9 +139,9 @@ export default {
           this.requester = response.data[0]
         }
 
-        if(searchText.length == 8){
-          this.loadSAPUserInfo(this.users[0].employee_id)
-        }
+        // if(searchText.length == 8){
+        //   this.loadSAPUserInfo(this.users[0].employee_id)
+        // }
 
       });
     },
