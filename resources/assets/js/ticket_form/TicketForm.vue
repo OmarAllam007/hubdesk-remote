@@ -1,8 +1,8 @@
 <template>
   <div>
     <notifications-component></notifications-component>
+    <LoadingModal ref="modal" class="z-50"></LoadingModal>
     <div class="flex w-full justify-center" v-if="isLoading">
-      <i class="fa fa-3x fa-spinner fa-spin"></i>
     </div>
     <div v-else>
       <div class="flex justify-center" v-if="ticket_attr.sla">
@@ -25,6 +25,7 @@
         <users-list :is-technician="1"
                     @requester-changed="changeRequester"
                     :show_balance="show_balance"
+                    :show_ticket_balance="show_ticket_balance"
                     :auth_user="auth_user"
                     v-if="create_for_others"
         ></users-list>
@@ -50,21 +51,24 @@
       </div>
 
 
-      <div class="flex flex-col w-full  p-5 my-5  bg-white rounded-xl shadow-md" v-for="section in fields">
+      <div class="flex flex-col w-full  p-5 my-5  bg-white rounded-xl shadow-md" v-for="section in fields" >
         <p class="bg-viola bg-opacity-75  text-white p-5  rounded-xl font-bold " v-if="section.title != ''">
           {{ $root.t(section.title) }}</p>
         <hr v-if="section.title != ''">
-        <div class="flex flex-wrap w-full  mx-2  my-5 rounded-xl">
+        <div class="flex flex-wrap w-full  mx-2  my-5 rounded-xl" >
           <div v-for="item in section.fields" class="w-full md:w-1/2 lg:w-1/2 xl:w-1/2 px-1 ">
             <component
                 :is="item.type" :label="item.name"
-                :name="`cf[${item.id}]`" :id="`cf[${item.id}]`"
-                class="pt-5 " v-model="form.custom_fields[item.id]"
+                :name="`cf[${item.id}]`"
+                :id="`cf[${item.id}]`"
+                class="pt-5"
+                v-model="form.custom_fields[item.id]"
                 :options="item.options"
                 :required="item.required"
                 :item_id="item.id"
                 @input="listenForChange"
                 :type="item.type"
+                :event_value="item.event_value"
             >
             </component>
 
@@ -162,10 +166,12 @@ import Selectize from 'vue2-selectize'
 import "selectize/dist/css/selectize.bootstrap3.css";
 import {EventBus} from "../EventBus";
 import NotificationsComponent from "../ticket/show/NotificationsComponent";
+import LoadingModal from "./LoadingModal";
 
 export default {
   name: "TicketForm",
   components: {
+    LoadingModal,
     TicketFormAttachments,
     UsersList,
     Editor,
@@ -178,6 +184,9 @@ export default {
   },
   props: {
     show_balance: {
+      type: Number,
+    },
+    show_ticket_balance: {
       type: Number,
     },
     auth_user: {
@@ -205,6 +214,7 @@ export default {
     return {
       isLoading: false,
       isLoadingButton: false,
+      isLoadingSAPFields:false,
       form: {
         requester_id: '',
         description: '',
@@ -232,9 +242,10 @@ export default {
     this.loadFields();
     this.form.subject = this.subject_text
     this.$root.translations = this.translations
-  },
-  mounted() {
 
+  },
+
+  mounted() {
   },
   methods: {
     listenForChange(value) {
@@ -242,10 +253,21 @@ export default {
     },
     changeRequester(user) {
       if (user !== undefined) {
-        this.form.requester_id = user.value.id
+        this.form.requester_id = user.value.id;
       }
     },
 
+    loadFromSAP(sapID) {
+      this.loadingFromSAP = true
+      axios.get(`/list/sap-info?id=${sapID}`).then((response) => {
+        this.loadingFromSAP = false
+        this.sapUser = response.data;
+
+        EventBus.$emit('get_sap_user_information', {user: this.sapUser})
+      }).catch((e) => {
+        this.loadingFromSAP = false
+      });
+    },
     loadFields() {
       this.isLoading = true
       axios.get(`/list/fields?category_id=${this.form.category_id}&subcategory_id=${this.form.subcategory_id}&item_id=${this.form.item_id}&subItem_id=${this.form.subItem_id}`).then((response) => {

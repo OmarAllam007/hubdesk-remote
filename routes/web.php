@@ -143,10 +143,14 @@ require __DIR__ . '/letters.php';
 require __DIR__ . '/admin.php';
 require __DIR__ . '/reports.php';
 
+
 Route::get('e-card/admin/show/{user}', [\App\Http\Controllers\ECard\Admin\UserController::class, 'show'])
     ->name('e-card.admin.user.show');
 Route::get('e-card/admin/download-card/{user}', [\App\Http\Controllers\ECard\Admin\UserController::class, 'downloadCard'])
     ->name('e-card.admin.user.download');
+Route::get('show/{user}', [\App\Http\Controllers\ECard\Admin\UserController::class, 'show'])
+    ->name('e-card.admin.user.show');
+
 Route::group(['prefix' => 'e-card/admin','middleware'=>'ecard.admin'], function (Router $r) {
     $r->get('index', [\App\Http\Controllers\ECard\Admin\IndexController::class, 'index'])
         ->name('e-card.admin.user.index');
@@ -158,13 +162,8 @@ Route::group(['prefix' => 'e-card/admin','middleware'=>'ecard.admin'], function 
         ->name('e-card.admin.edit');
     $r->patch('update/{user}', [\App\Http\Controllers\ECard\Admin\UserController::class, 'update'])
         ->name('e-card.admin.user.update');
-
     $r->delete('update/{user}', [\App\Http\Controllers\ECard\Admin\UserController::class, 'destroy'])
         ->name('e-card.admin.user.destroy');
-
-
-
-
 });
 
 
