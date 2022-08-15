@@ -113,11 +113,11 @@ class SapUser
             'eos_amount' => $this->calculateEOS($this->sapData['EOS_AMT'], $this->sapData['DAT01']),
             'actual_eos_amount' => $this->sapData['EOS_AMT'],
             'is_saudi' => str_starts_with($this->sapData['ICNUM_NATID'], '10'),
-            'end_of_service_date' => $this->sapData['BEGDA'],
-            'direct_manager_name'=> $this->sapData["DIR_MANG_NAME"],
-            'direct_manager_email'=> $this->sapData["DIR_MANG_EMAIL"],
-            'flight_ticket_balance'=> $this->sapData["FLIGHT_TICK_672"],
-            'leave_balance'=> $this->sapData["LEAVE_BAL_630"]
+            'end_of_service_date' => $this->sapData['BEGDA'] ?? '',
+            'direct_manager_name'=> $this->sapData["DIR_MANG_NAME"] ?? '',
+            'direct_manager_email'=> $this->sapData["DIR_MANG_EMAIL"] ?? '',
+            'flight_ticket_balance'=> $this->sapData["FLIGHT_TICK_672"] ?? '',
+            'leave_balance'=> $this->sapData["LEAVE_BAL_630"] ?? ''
         ];
 
 

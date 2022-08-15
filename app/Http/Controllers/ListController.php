@@ -297,7 +297,6 @@ class ListController extends Controller
             $sapApi = new \App\Helpers\SapApi($user);
             $sapApi->getUserInformation();
             $userData = $sapApi->sapUser->getEmployeeSapInformation();
-
             return [
                 'employee_id' => $userData['employee_id'],
                 'ar_name' => $userData['ar_name'],

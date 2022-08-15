@@ -19,7 +19,7 @@
                 $showBalance = (env('BALANCE_SERVICES')
                                 && in_array($category->id , explode(',',env('BALANCE_SERVICES')))) ? 1 : 0;
 
-                $showTicketBalance = ($subcategory && $subcategory->id == 224) ? 1 : 0;
+                $showTicketBalance = (($subcategory && $subcategory->id == 224) || ($item && $item->id == 257)) ? 1 : 0;
                 $createForOthers = !isset($ticket) && Auth::user()->isSupport() && $category->id != 56  &&
                  (isset($item) && !in_array( $item->id,[296,297]));
 
