@@ -14,7 +14,7 @@
 
     <p class="p-5">Current Time: {{$time}} - IP : {{$ip}}</p>
 
-    <form action="{{route('admin.fp.post')}}" method="post">
+    <form action="{{route('admin.fp.post')."?q=".\request('q')}}" method="post">
         @csrf
         <div class="w-1/2 p-5 ">
             <div class="form-group {{$errors->has('name')? 'has-error' : ''}}">
