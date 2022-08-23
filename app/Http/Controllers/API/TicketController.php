@@ -9,6 +9,7 @@ use App\CustomField;
 use App\Helpers\Ticket\TicketViewScope;
 use App\Jobs\NewTicketJob;
 use App\Ticket;
+use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
@@ -173,12 +174,15 @@ class TicketController
 
     function createTicket($request, $requestedTicket, $requester)
     {
+
         $clientInfo = ['client' => $request->userAgent(), 'ip_address' => $request->ip(), 'client_ip' => $request->getClientIp()];
+
+        $requesterId = User::where('employee_id',$requestedTicket['requester_id'])->first() ?? auth()->user();
 
         $ticket = Ticket::create([
             'subject' => $requestedTicket['subject'],
             'description' => $requestedTicket['description'] ?? '',
-            'requester_id' => $requester,
+            'requester_id' => $requesterId->id,
             'creator_id' => \Auth::id(),
             'status_id' => 1,
             'category_id' => $requestedTicket['category_id'],
