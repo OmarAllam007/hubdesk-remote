@@ -109,6 +109,7 @@ export default {
   methods: {
     selectUser() {
       this.loadSAPUserInfo(this.requester.employee_id)
+      EventBus.$emit('requester-changed',this.requester.employee_id);
     },
     searchForUser(text) {
       if (text.length > 3) {
@@ -138,11 +139,6 @@ export default {
         if (searchText != '') {
           this.requester = response.data[0]
         }
-
-        // if(searchText.length == 8){
-        //   this.loadSAPUserInfo(this.users[0].employee_id)
-        // }
-
       });
     },
     t(word) {

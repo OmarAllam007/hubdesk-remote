@@ -242,7 +242,9 @@ export default {
     this.loadFields();
     this.form.subject = this.subject_text
     this.$root.translations = this.translations
-
+    EventBus.$on('requester-changed',(value)=>{
+      this.form.requester_id = value
+    })
   },
 
   mounted() {
