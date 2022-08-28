@@ -4,15 +4,23 @@
 
     <div class="p-5 m-5">
       <div class="flex justify-between ">
-        <h4 class="text-3xl ">
-          #{{ approval.ticket.id }} - {{ approval.ticket.subject }} - Approval
-        </h4>
 
-        <a :href="`/ticket/${approval.ticket.id}`"
-           class="bg-transparent hover:bg-blue-500 text-blue-700
+        <div class="flex-col">
+          <h4 class="text-3xl ">
+            #{{ approval.ticket.id }} - {{ approval.ticket.subject }} - Approval
+          </h4>
+          <p class="pt-5 "><span class="font-bold">Employee ID :</span> {{ requester.employee_id }}
+            | <span class="font-bold">Name:</span> {{requester.name}} | <span class="font-bold">Job Title:</span> {{requester.job_title}}</p>
+        </div>
+
+        <div class="flex-col">
+          <a :href="`/ticket/${approval.ticket.id}`"
+             class="bg-transparent hover:bg-blue-500 text-blue-700
                       font-semibold hover:text-white py-2 px-2 border
                       border-blue-500 hover:border-transparent rounded-md  "
-           title="Back to ticket" target="_blank"><i class="fa fa-ticket"></i> Display Ticket</a>
+             title="Back to ticket" target="_blank"><i class="fa fa-ticket"></i> Display Ticket</a>
+          <div></div>
+        </div>
       </div>
     </div>
     <div class="p-5 m-5">
@@ -70,14 +78,17 @@
     <div class="p-5 m-5 flex-col " v-else>
       <div class="flex pt-5 ">
         <div>
-          <label class="radio-online p-5  bg-green-100  hover:bg-green-200 rounded-2xl ">
+          <label class="radio-online p-5  bg-green-100  hover:bg-green-200 rounded-2xl shadow-md"
+                 :class="approvalForm.status == 1 ? 'bg-green-200' :'bg-green-100'"
+          >
             <input type="radio" name="questions[]" @change="approvalForm.status = 1">
             Approve
             <i class="fa fa-thumbs-o-up"></i>
           </label>
         </div>
         <div class="pl-5">
-          <label class="radio-online p-5 bg-red-100  hover:bg-red-200  rounded-2xl  "
+          <label class="radio-online p-5  hover:bg-red-200  rounded-2xl shadow-md"
+                 :class="approvalForm.status == -1 ? 'bg-red-200' :'bg-red-100'"
                  @change="approvalForm.status = -1">
             <input type="radio" name="questions[]">
             Deny

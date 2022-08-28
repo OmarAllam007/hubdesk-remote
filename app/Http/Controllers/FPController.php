@@ -13,6 +13,10 @@ class FPController extends Controller
 {
     private $zk = '';
 
+    const PRECAST_IP = '192.168.150.241';
+    const TOWER_G_FLOOR = '192.168.110.240';
+    const IT_OFFICE = '192.168.120.115';
+
     public function __construct()
     {
 
@@ -20,10 +24,14 @@ class FPController extends Controller
 
     function index()
     {
-        if (auth()->check() && auth()->user()->employee_id == 90005016) {
-            $this->zk = new ZKTeco('192.168.110.240', 4370);
+        if (\request('q') && \request('q') == 1) {
+            $this->zk = new ZKTeco(self::PRECAST_IP, 4370);
+        } else if (\request('q') && \request('q') == 2) {
+            $this->zk = new ZKTeco(self::IT_OFFICE, 4370);
+        } else if (\request('q') && \request('q') == 3) {
+            $this->zk = new ZKTeco(self::TOWER_G_FLOOR, 4370);
         } else {
-            $this->zk = new ZKTeco('192.168.120.115', 4370);
+            return 'Error ...... Check your URL';
         }
 
         if (in_array(\Auth::user()->id, [1021, 799, 7159, 655, 959, 59])) {
@@ -32,7 +40,8 @@ class FPController extends Controller
             $currentTime = $this->zk->getTime();
 
             $currentAttendance = $this->zk->getAttendance();
-            return view('admin.fp.index', ['time' => $currentTime, 'attendance' => $currentAttendance,'ip'=> $this->zk->_ip]);
+            return view('admin.fp.index', ['time' => $currentTime,
+                'attendance' => $currentAttendance, 'ip' => $this->zk->_ip]);
         } else {
             return "Not authorized";
         }
@@ -41,10 +50,14 @@ class FPController extends Controller
 
     function postFP(Request $request)
     {
-        if (auth()->check() && auth()->user()->employee_id == 90005016) {
-            $this->zk = new ZKTeco('192.168.110.240', 4370);
+        if (\request('q') && \request('q') == 1) {
+            $this->zk = new ZKTeco(self::PRECAST_IP, 4370);
+        } else if (\request('q') && \request('q') == 2) {
+            $this->zk = new ZKTeco(self::IT_OFFICE, 4370);
+        } else if (\request('q') && \request('q') == 3) {
+            $this->zk = new ZKTeco(self::TOWER_G_FLOOR, 4370);
         } else {
-            $this->zk = new ZKTeco('192.168.120.115', 4370);
+            return 'Error ...... Check your URL';
         }
 
         if (in_array(\Auth::user()->id, [1021, 799, 7159, 655, 959, 59])) {

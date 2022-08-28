@@ -48377,7 +48377,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -48686,9 +48686,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
   created: function created() {
+    var _this = this;
+
     this.loadFields();
     this.form.subject = this.subject_text;
     this.$root.translations = this.translations;
+    __WEBPACK_IMPORTED_MODULE_11__EventBus__["a" /* EventBus */].$on('requester-changed', function (value) {
+      _this.form.requester_id = value;
+    });
   },
   mounted: function mounted() {},
 
@@ -48702,43 +48707,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     },
     loadFromSAP: function loadFromSAP(sapID) {
-      var _this = this;
+      var _this2 = this;
 
       this.loadingFromSAP = true;
       __WEBPACK_IMPORTED_MODULE_8_axios___default.a.get("/list/sap-info?id=" + sapID).then(function (response) {
-        _this.loadingFromSAP = false;
-        _this.sapUser = response.data;
+        _this2.loadingFromSAP = false;
+        _this2.sapUser = response.data;
 
-        __WEBPACK_IMPORTED_MODULE_11__EventBus__["a" /* EventBus */].$emit('get_sap_user_information', { user: _this.sapUser });
+        __WEBPACK_IMPORTED_MODULE_11__EventBus__["a" /* EventBus */].$emit('get_sap_user_information', { user: _this2.sapUser });
       }).catch(function (e) {
-        _this.loadingFromSAP = false;
+        _this2.loadingFromSAP = false;
       });
     },
     loadFields: function loadFields() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.isLoading = true;
       __WEBPACK_IMPORTED_MODULE_8_axios___default.a.get("/list/fields?category_id=" + this.form.category_id + "&subcategory_id=" + this.form.subcategory_id + "&item_id=" + this.form.item_id + "&subItem_id=" + this.form.subItem_id).then(function (response) {
         if (!response.data.length) {
-          _this2.isLoading = false;
+          _this3.isLoading = false;
           return;
         }
         Object.entries(response.data[0]).map(function (item) {
-          _this2.fields.push({
+          _this3.fields.push({
             title: item[0],
             fields: item[1]
           });
 
           item[1].forEach(function (value) {
-            _this2.form.custom_fields[value.id] = '';
+            _this3.form.custom_fields[value.id] = '';
           });
         });
 
-        _this2.isLoading = false;
+        _this3.isLoading = false;
       });
     },
     submitTicket: function submitTicket() {
-      var _this3 = this;
+      var _this4 = this;
 
       var ticket = this.prepareData();
       this.files_validation_error = '';
@@ -48751,31 +48756,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
       }).then(function (response) {
         if (response.data.error_code == 402 && response.data.file_size_error) {
-          _this3.files_validation_error = response.data.file_size_error[0];
+          _this4.files_validation_error = response.data.file_size_error[0];
 
           __WEBPACK_IMPORTED_MODULE_11__EventBus__["a" /* EventBus */].$emit('send_notification', 'create_ticket', 'Ticket Error', "Kindly check the attachments size", 'error');
-          _this3.isLoadingButton = false;
+          _this4.isLoadingButton = false;
           return;
         }
 
         if (response.data.error_code >= 400) {
-          _this3.validations = response.data.errors;
+          _this4.validations = response.data.errors;
           __WEBPACK_IMPORTED_MODULE_11__EventBus__["a" /* EventBus */].$emit('send_notification', 'create_ticket', 'Ticket Error', "Kindly fill all the required fields", 'error');
-          _this3.isLoadingButton = false;
+          _this4.isLoadingButton = false;
           return;
         }
 
         if (response.status == 200) {
           document.location.href = "/ticket/" + response.data;
-          _this3.isLoadingButton = false;
+          _this4.isLoadingButton = false;
           __WEBPACK_IMPORTED_MODULE_11__EventBus__["a" /* EventBus */].$emit('send_notification', 'create_ticket', 'Ticket Info', "Ticket created successfully", 'success');
         }
       }).catch(function (error) {
-        _this3.isLoadingButton = false;
+        _this4.isLoadingButton = false;
       });
     },
     prepareData: function prepareData() {
-      var _this4 = this;
+      var _this5 = this;
 
       var ticket = new FormData();
       ticket.append('_token', $('meta[name="csrf-token"]').attr('content'));
@@ -48786,7 +48791,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
 
       var fields = Object.keys(this.form.custom_fields).map(function (key) {
-        return { key: key, value: _this4.form.custom_fields[key] };
+        return { key: key, value: _this5.form.custom_fields[key] };
       });
 
       for (var cf = 0; cf < fields.length; cf++) {
@@ -48897,7 +48902,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -49028,6 +49033,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     selectUser: function selectUser() {
       this.loadSAPUserInfo(this.requester.employee_id);
+      __WEBPACK_IMPORTED_MODULE_4__EventBus__["a" /* EventBus */].$emit('requester-changed', this.requester.employee_id);
     },
     searchForUser: function searchForUser(text) {
       if (text.length > 3) {
@@ -49061,10 +49067,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (searchText != '') {
           _this2.requester = response.data[0];
         }
-
-        // if(searchText.length == 8){
-        //   this.loadSAPUserInfo(this.users[0].employee_id)
-        // }
       });
     },
     t: function t(word) {
