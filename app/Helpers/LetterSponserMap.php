@@ -121,7 +121,8 @@ class LetterSponserMap
         "7002613987" => "Green Vision Paper Products",
         "7006355593" => "Al-Kifah Construction Equipments",
         "7005620625" => "Emdad Company",
-        "7012303603" => "Al-Kifah Factory Company for Central Concrete Batching Plants"
+        "7012303603" => "Al-Kifah Factory Company for Central Concrete Batching Plants",
+        "7001378525" => "Al-Kifah building materials company"
     ];
 
     static $to_en_sponsers = [
