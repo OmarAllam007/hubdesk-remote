@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="flex" v-if="isTechnician === 1">
+    <div class="flex" >
       <div class="w-full">
         <div class="form-group form-group-sm ">
-          <label for="requester_id" class="block tracking-wide text-gray-700 font-bold mb-2">
+          <label for="requester_id" class="block tracking-wide text-gray-700 font-bold mb-2" v-if="createForOthers">
             {{ $root.t('Requester') }}
           </label>
-          <div class="w-1/2">
+          <div class="w-1/2" v-if="createForOthers">
             <v-select
                 :options="users" label="label" v-model="requester" id="requester_id" name="requester_id"
                 :placeholder="t('Created For Me')"
@@ -64,6 +64,7 @@ import {EventBus} from "../EventBus";
 export default {
   name: "UsersList",
   props: {
+    createForOthers:{},
     isTechnician: {
       type: Number,
       required: true,

@@ -48902,7 +48902,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -48987,6 +48987,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "UsersList",
   props: {
+    createForOthers: {},
     isTechnician: {
       type: Number,
       required: true
@@ -56040,18 +56041,18 @@ exports.push([module.i, ".v-select{position:relative;font-family:inherit}.v-sele
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [(_vm.isTechnician === 1) ? _c('div', {
+  return _c('div', [_c('div', {
     staticClass: "flex"
   }, [_c('div', {
     staticClass: "w-full"
   }, [_c('div', {
     staticClass: "form-group form-group-sm "
-  }, [_c('label', {
+  }, [(_vm.createForOthers) ? _c('label', {
     staticClass: "block tracking-wide text-gray-700 font-bold mb-2",
     attrs: {
       "for": "requester_id"
     }
-  }, [_vm._v("\n          " + _vm._s(_vm.$root.t('Requester')) + "\n        ")]), _vm._v(" "), _c('div', {
+  }, [_vm._v("\n          " + _vm._s(_vm.$root.t('Requester')) + "\n        ")]) : _vm._e(), _vm._v(" "), (_vm.createForOthers) ? _c('div', {
     staticClass: "w-1/2"
   }, [_c('v-select', {
     staticClass: "selection-list bg-white ",
@@ -56073,7 +56074,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       expression: "requester"
     }
-  })], 1), _vm._v(" "), (!_vm.loadingFromSAP && _vm.showUserDetails && this.sapUser !== '' && _vm.requester !== undefined) ? _c('div', {
+  })], 1) : _vm._e(), _vm._v(" "), (!_vm.loadingFromSAP && _vm.showUserDetails && this.sapUser !== '' && _vm.requester !== undefined) ? _c('div', {
     staticClass: "pt-5 px-1"
   }, [_c('div', {
     staticClass: "flex space-x-5"
@@ -56089,7 +56090,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "text-gray-700 font-bold mb-2"
   }, [_vm._v(_vm._s(_vm.$root.t('Leave Balance')) + ":")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(_vm.sapUser.leave_balance))])]) : _vm._e(), _vm._v(" "), (_vm.show_ticket_balance) ? _c('div', [_c('span', {
     staticClass: "text-gray-700 font-bold mb-2"
-  }, [_vm._v(_vm._s(_vm.$root.t('Ticket Balance')) + ":")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(_vm.sapUser.flight_ticket_balance))])]) : _vm._e()])]) : _vm._e()])])]) : _vm._e()])
+  }, [_vm._v(_vm._s(_vm.$root.t('Ticket Balance')) + ":")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(_vm.sapUser.flight_ticket_balance))])]) : _vm._e()])]) : _vm._e()])])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -57706,17 +57707,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: " pl-2 pr-2 text-white text-2xl "
   }, [_vm._v("\n            " + _vm._s(_vm.$root.t('Your Request will Delivered within')) + " " + _vm._s(_vm.ticket_attr.sla.due_days) + " " + _vm._s(_vm.$root.t('Days')) + "\n            " + _vm._s(_vm.ticket_attr.sla.due_hours) + " " + _vm._s(_vm.$root.t('Hours')) + " " + _vm._s(_vm.ticket_attr.sla.due_minutes) + "\n            " + _vm._s(_vm.$root.t('Minutes')) + " " + _vm._s(_vm.$root.t('(from the last approval)')) + "\n          ")])])])]) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "flex flex-col w-full  p-5 my-5  bg-white rounded-xl shadow-md"
-  }, [(_vm.create_for_others) ? _c('users-list', {
+  }, [_c('users-list', {
     attrs: {
       "is-technician": 1,
       "show_balance": _vm.show_balance,
       "show_ticket_balance": _vm.show_ticket_balance,
-      "auth_user": _vm.auth_user
+      "auth_user": _vm.auth_user,
+      "createForOthers": _vm.create_for_others
     },
     on: {
       "requester-changed": _vm.changeRequester
     }
-  }) : _vm._e(), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('div', {
     staticClass: "flex"
   }, [_c('div', {
     staticClass: "w-1/2"

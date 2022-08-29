@@ -27,7 +27,7 @@
                     :show_balance="show_balance"
                     :show_ticket_balance="show_ticket_balance"
                     :auth_user="auth_user"
-                    v-if="create_for_others"
+                    :createForOthers="create_for_others"
         ></users-list>
 
         <!--                <div class="w-full md:w-1/2 mb-6 md:mb-0">-->
@@ -51,11 +51,11 @@
       </div>
 
 
-      <div class="flex flex-col w-full  p-5 my-5  bg-white rounded-xl shadow-md" v-for="section in fields" >
+      <div class="flex flex-col w-full  p-5 my-5  bg-white rounded-xl shadow-md" v-for="section in fields">
         <p class="bg-viola bg-opacity-75  text-white p-5  rounded-xl font-bold " v-if="section.title != ''">
           {{ $root.t(section.title) }}</p>
         <hr v-if="section.title != ''">
-        <div class="flex flex-wrap w-full  mx-2  my-5 rounded-xl" >
+        <div class="flex flex-wrap w-full  mx-2  my-5 rounded-xl">
           <div v-for="item in section.fields" class="w-full md:w-1/2 lg:w-1/2 xl:w-1/2 px-1 ">
             <component
                 :is="item.type" :label="item.name"
@@ -214,7 +214,7 @@ export default {
     return {
       isLoading: false,
       isLoadingButton: false,
-      isLoadingSAPFields:false,
+      isLoadingSAPFields: false,
       form: {
         requester_id: '',
         description: '',
@@ -242,7 +242,7 @@ export default {
     this.loadFields();
     this.form.subject = this.subject_text
     this.$root.translations = this.translations
-    EventBus.$on('requester-changed',(value)=>{
+    EventBus.$on('requester-changed', (value) => {
       this.form.requester_id = value
     })
   },
