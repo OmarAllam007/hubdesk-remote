@@ -82,7 +82,7 @@ class SapUser
         }
 
         $this->sapData = $sap_data;
-
+dd($this->sapData);
         list($en_occupation, $ar_occupation) = $this->getOccupationTranslation();
         $this->sapData = [
             'employee_id' => $this->sapData['PERNR'],
@@ -102,7 +102,7 @@ class SapUser
             'total_package' => $this->sapData['total_package'],
             'date_of_join' => $this->sapData['DAT01'],
             'iban' => $this->sapData['IBAN'],
-            'department' => '',
+            'department' => $this->sapData["DEPARTMENT"] ?? "N/A",
             'job_status' => '',
             'work_contract' => '',
             'discounts' => '',
