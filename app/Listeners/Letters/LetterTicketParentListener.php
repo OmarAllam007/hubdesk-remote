@@ -72,16 +72,23 @@ class LetterTicketParentListener
             'technician_id' => $technician,
         ]);
 
-        $reply = $letterTicket->ticket->replies()->create([
-            'user_id' => config('letters.system_user'),
-            'status_id' => 4,
-            'content' => $content,
-        ]);
+//        new update to make it not for contracting companies
 
         \Mail::send(new NewTaskMail($ticket));
 
-        \Mail::to($letterTicket->ticket->requester->email)
-            ->send(new LetterRequestForFees($letterTicket, $reply));
+        if(!in_array($letterTicket->ticket->requester->business_unit_id,[4,39,42,46])){
+            $reply = $letterTicket->ticket->replies()->create([
+                'user_id' => config('letters.system_user'),
+                'status_id' => 4,
+                'content' => $content,
+            ]);
+            \Mail::to($letterTicket->ticket->requester->email)
+                ->send(new LetterRequestForFees($letterTicket, $reply));
+        }
+
+
+
+
     }
 
 
