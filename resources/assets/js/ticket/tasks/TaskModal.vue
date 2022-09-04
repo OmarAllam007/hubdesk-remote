@@ -110,7 +110,13 @@
                     <!--          <text-field :label="item.name" v-if="item.type == 'textfield'"></text-field>-->
                     <component :is="item.type" :label="item.name"
                                :name="`cf[${item.id}]`" :id="`cf[${item.id}]`" h
-                               class="pt-3" v-model="custom_fields[item.id]" :options="item.options">
+                               class="pt-3" v-model="custom_fields[item.id]" :options="item.options"
+                               :required="item.required"
+                               :item_id="item.id"
+                               @input="listenForChange"
+                               :type="item.type"
+                               :event_value="item.event_value"
+                    >
                     </component>
                   </div>
                 </div>
@@ -179,6 +185,9 @@ export default {
     }
   },
   methods: {
+    listenForChange(value) {
+      this.custom_fields[value.id] = value.value
+    },
     openModal() {
       const modal = document.querySelector('.modal');
       modal.classList.remove('hidden')
