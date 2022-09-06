@@ -53,7 +53,9 @@ class LetterSponserMap
         "7018439765" => "مكتب اسامه حسن العفالق للاستشارات الهندسيه",
         "7011417081" => "قطاع دعم الأعمال",
         "7002613987" => "شركة الرؤية الخضراء للمنتجات الورقية",
-        "7012303603" => "شركة مصنع الكفاح لمحطات خلط الخرسانة المركزية شركة شخص واحد"
+        "7012303603" => "شركة مصنع الكفاح لمحطات خلط الخرسانة المركزية شركة شخص واحد",
+        "7006348572" => "مكتب اسامه حسن العفالق للاستشارات الهندسيه",
+        "7023994333" => "شركة مكافحة العدوى الطبية"
     ];
 
 
@@ -102,6 +104,9 @@ class LetterSponserMap
         "7018439765" => 1,
         "7011417081" => 56,
         "7002613987" => 57,
+        "7006348572" => 22,
+        "7023994333"=> 36
+
     ];
 
     static $en_sponsers = [
@@ -123,7 +128,8 @@ class LetterSponserMap
         "7005620625" => "Emdad Company",
         "7012303603" => "Al-Kifah Factory Company for Central Concrete Batching Plants",
         "7001378525" => "Al-Kifah building materials company",
-        "7013775866" => "Al Kifah Ready Mix Concrete Factory"
+        "7013775866" => "Al Kifah Ready Mix Concrete Factory",
+        "7023994333"=> "Medical infection control company"
     ];
 
     static $to_en_sponsers = [
