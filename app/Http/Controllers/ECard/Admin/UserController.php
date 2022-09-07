@@ -49,7 +49,6 @@ class UserController extends Controller
     public function show($user)
     {
         $user = BusinessCardUser::where('url_code', $user)->first();
-//        dd($user);
         return view('e-card.admin.user.show', compact('user'));
     }
 

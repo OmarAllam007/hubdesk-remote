@@ -6,11 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AlKifah Holding</title>
     <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
-    {{--    <link href="{{asset('css/ecard/bootstrap.min.css')}}" rel="stylesheet">--}}
+{{--    <link href="{{asset('css/ecard/bootstrap.min.css')}}" rel="stylesheet">--}}
     <link href="https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="{{asset('/css/ecard/flexslider.css')}}" rel="stylesheet">
-
-    <link href="{{asset('/css/ecard/'.$user->business_unit_view->view_path.'/styles.css')}}" rel="stylesheet">
+    <link href="{{asset('/css/ecard/styles.css')}}" rel="stylesheet">
     <link href="{{asset('/css/ecard/queries.css')}}" rel="stylesheet">
     <link href="{{asset('/css/ecard/animate.css')}}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@v3.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -25,8 +24,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 wp2 delay-1s">
-                <img style="width:120px" src="{{asset('/images/ecard/'.$user->business_unit_view->logo_path)}}"
-                     alt="logo">
+                <img style="width:120px" src="{{asset('/images/ecard/holding_logo.png')}}" alt="logo">
             </div>
         </div>
     </div>
@@ -38,8 +36,8 @@
 
         <div class="row">
             <div class="col-md-12 wp5">
-                <div class="circular--landscape">
-                    <img src="{{$user->image}}" alt="{{$user->name}}"></div>
+                <div class="circular--landscape" >
+                    <img src="{{$user->image}}" alt="{{$user->name}}" ></div>
                 <h2>{{$user->name}}</h2>
                 <p>{{$user->position}}</p>
 
@@ -67,38 +65,24 @@
                         <div class="contact-r"><img style="width:30px" src="{{('/images/ecard/mob.png')}}"></div>
                         <div class="contact-n"><span>{{$user->mobile}}</span></div>
                     </div>
+            </div>
+
+            <div class="col-md-12"><a href="tel:{{$user->phone}}">
+                    <div class="light-box box-hover">
+                        <div class="contact-r"><img style="width:30px" src="{{('/images/ecard/tel.png')}}"></div>
+                        <div class="contact-n"><span>{{$user->phone}}</span></div>
+                    </div>
                 </a>
             </div>
 
-            @if($user->phone)
-                <div class="col-md-12"><a href="tel:{{$user->phone}}">
-                        <div class="light-box box-hover">
-                            <div class="contact-r"><img style="width:30px" src="{{('/images/ecard/tel.png')}}"></div>
-                            <div class="contact-n"><span>{{$user->phone}}</span></div>
-                        </div>
-                    </a>
-                </div>
-            @endif
 
             <div class="col-md-12"><a href="mailto: {{$user->email}}">
                     <div class="light-box box-hover">
                         <div class="contact-r"><img style="width:30px" src="{{('/images/ecard/email.png')}}"></div>
                         <div class="contact-n"><span>{{$user->email}}</span></div>
                     </div>
-                </a>
             </div>
 
-            @if($user->linkedin_url)
-                <div class="col-md-12"><a href="{{$user->linkedin_url}}">
-                        <div class="light-box box-hover">
-                            <div class="contact-r"><img style="width:30px" src="{{('/images/ecard/linked.png')}}"></div>
-                            <div class="contact-n"><span>{{$user->name}}</span></div>
-                        </div>
-                    </a>
-                </div>
-            @endif
-
-            @if($user->website)
             <div class="col-md-12"><a href="//{{$user->website}}" target="_blank">
                     <div class="light-box box-hover">
                         <div class="contact-r"><img style="width:30px" src="{{('/images/ecard/web.png')}}"></div>
@@ -106,7 +90,6 @@
                     </div>
                 </a>
             </div>
-            @endif
 
 
             <div class="row">
@@ -149,7 +132,7 @@
         <div class="row">
 
             <div class="col-md-12 credit">
-                <p>{{\App\BusinessUnit::find($user->business_unit_id)->name ?? "N/A"}}</p>
+                <p>AlKifah Holding</p>
             </div>
         </div>
     </div>

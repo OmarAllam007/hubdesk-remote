@@ -13,8 +13,12 @@ class BusinessCardUser extends Model
     protected $fillable = [
         'employee_id', 'name', 'position', 'department', 'business_unit', 'gender', 'phone',
         'mobile', 'email', 'website', 'facebook_url',
-        'twitter_url', 'linkedin_url', 'image_url', 'gender','url_code'
+        'twitter_url', 'linkedin_url', 'image_url', 'gender','url_code','business_unit_id'
     ];
+
+    function getBusinessUnitViewAttribute(){
+        return BusinessCardBusinessUnitView::where('business_unit_id',$this->business_unit_id)->first();
+    }
 
     function upload($requestFileName)
     {
