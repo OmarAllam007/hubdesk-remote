@@ -37,19 +37,19 @@
         </div>
     </div>
 
-    <div class="col-md-6">
-        @php
-            $users = \App\User::selection();
-        @endphp
-        <div class="form-group {{$errors->has('users')? 'has-error' : ''}}">
-            {{ Form::label('users', 'Users', ['class' => 'control-label']) }}
-            {{ Form::select('users[]', $users ,null, ['class' => 'form-control select2', 'multiple' => true ,'size'=>12]) }}
-        </div>
+{{--    <div class="col-md-6">--}}
+{{--        @php--}}
+{{--            $users = \App\User::selection();--}}
+{{--        @endphp--}}
+{{--        <div class="form-group {{$errors->has('users')? 'has-error' : ''}}">--}}
+{{--            {{ Form::label('users', 'Users', ['class' => 'control-label']) }}--}}
+{{--            {{ Form::select('users[]', $users ,null, ['class' => 'form-control select2', 'multiple' => true ,'size'=>12]) }}--}}
+{{--        </div>--}}
 
-        <div class="form-group {{$errors->has('supervisors')? 'has-error' : ''}}">
-            {{ Form::label('supervisors', 'Supervisors', ['class' => 'control-label']) }}
-            {{ Form::select('supervisors[]', $users ,null, ['class' => 'form-control select2', 'multiple' => true ,'size'=>12]) }}
-        </div>
+{{--        <div class="form-group {{$errors->has('supervisors')? 'has-error' : ''}}">--}}
+{{--            {{ Form::label('supervisors', 'Supervisors', ['class' => 'control-label']) }}--}}
+{{--            {{ Form::select('supervisors[]', $users ,null, ['class' => 'form-control select2', 'multiple' => true ,'size'=>12]) }}--}}
+{{--        </div>--}}
 
-    </div>
+{{--    </div>--}}
 </div>
