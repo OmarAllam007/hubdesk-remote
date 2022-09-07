@@ -129,7 +129,8 @@ class LetterSponserMap
         "7012303603" => "Al-Kifah Factory Company for Central Concrete Batching Plants",
         "7001378525" => "Al-Kifah building materials company",
         "7013775866" => "Al Kifah Ready Mix Concrete Factory",
-        "7023994333"=> "Medical infection control company"
+        "7023994333"=> "Medical infection control company",
+        "7012650300"=> "Al-Kifah Ready Mix Concrete Factory"
     ];
 
     static $to_en_sponsers = [
