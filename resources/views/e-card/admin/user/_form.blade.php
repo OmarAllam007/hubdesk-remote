@@ -34,15 +34,13 @@
             @endif
         </div>
 
-        <div class="form-group {{$errors->has('business_unit')? 'has-error' : ''}}">
-            <i class="fa fa-building"></i> {{ Form::label('business_unit', 'Business Unit', ['class' => 'control-label']) }}
-            {{ Form::text('business_unit', isset($user) ? $user->business_unit : null, ['class' => 'form-control','autocomplete'=>'off']) }}
-
-            @if ($errors->has('business_unit'))
-                <div class="error-message">{{$errors->first('business_unit')}}</div>
+        <div class="form-group {{$errors->has('business_unit_id')? 'has-error' : ''}}">
+            {{ Form::label('business_unit_id', 'Business Unit', ['class' => 'control-label']) }}
+            {{ Form::select('business_unit_id', App\BusinessUnit::selection('Select Business Unit'), isset($user) ? $user->business_unit_id : null, ['class' => 'form-control select2']) }}
+            @if ($errors->has('business_unit_id'))
+                <div class="error-message">{{$errors->first('business_unit_id')}}</div>
             @endif
         </div>
-
 
         <div class="form-group {{$errors->has('department')? 'has-error' : ''}}">
             <i class="fa fa-briefcase"></i> {{ Form::label('department', 'Department', ['class' => 'control-label']) }}
