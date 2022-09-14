@@ -4,10 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\AdditionalFee;
 use App\ApprovalLevels;
+use App\BusinessRule;
 use App\Category;
 use App\Complaint;
+use App\Criteria;
+use App\Criterion;
 use App\ServiceUserGroup;
 use App\Requirement;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -69,7 +73,8 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
-        return view('admin.category.show', compact('category'));
+        $businessRules = $category->business_rules;
+        return view('admin.category.show', compact('category','businessRules'));
     }
 
     public function edit(Category $category)
@@ -101,7 +106,7 @@ class CategoryController extends Controller
         $category->update($data);
 
         if ($request->hasFile('logo')) {
-            $logo_path = Category::uploadAttachment('categories',$category, $request->logo);
+            $logo_path = Category::uploadAttachment('categories', $category, $request->logo);
             $category->update(['logo' => $logo_path]);
         }
 
