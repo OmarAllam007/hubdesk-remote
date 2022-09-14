@@ -61,7 +61,8 @@ class SubcategoryController extends Controller
 
     public function show(Subcategory $subcategory)
     {
-        return view('admin.subcategory.show', compact('subcategory'));
+        $businessRules = $subcategory->business_rules;
+        return view('admin.subcategory.show', compact('subcategory','businessRules'));
     }
 
     public function edit(Subcategory $subcategory)

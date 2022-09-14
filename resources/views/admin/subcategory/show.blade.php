@@ -16,7 +16,8 @@
 @stop
 
 @section('body')
-    <section class="col-sm-9">
+    <div class="flex-col px-5 ">
+        <section class="w-full">
     @if ($subcategory->description)
         <p>{!! nl2br(e($subcategory->description)) !!}</p>
     @endif
@@ -61,4 +62,6 @@
         </div>
     @endif
     </section>
+
+    @include('admin.business-rule._business_rules')
 @endsection
