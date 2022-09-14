@@ -66,7 +66,17 @@ class ListController extends Controller
             $categories->both();
         }
 
-        return $categories->orderBy('order')->get(['id', 'name']);
+
+        return $categories
+            ->orderBy('order')
+            ->get()
+            ->map(function ($category){
+               return [
+                   'id'=> $category->id,
+                   'name'=> ($category->business_unit->name ?? "") .' > '. $category->name
+               ];
+            });
+
     }
 
 
