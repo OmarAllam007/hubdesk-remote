@@ -83,6 +83,10 @@ class SapUser
 
         $this->sapData = $sap_data;
         list($en_occupation, $ar_occupation) = $this->getOccupationTranslation();
+
+        $sponsorCompany = ($this->sapData['SPONR'] != '' && isset( LetterSponserMap::$sponsers[$this->sapData['SPONR']])) ? LetterSponserMap::$sponsers[$this->sapData['SPONR']] : "";
+
+
         $this->sapData = [
             'employee_id' => $this->sapData['PERNR'],
             'system_position' => $this->sapData['POSITION'],
@@ -95,7 +99,7 @@ class SapUser
             'iqama_number' => $this->sapData['ICNUM_IQAMA'] != '' ? $this->sapData['ICNUM_IQAMA'] : $this->sapData['ICNUM_NATID'],
             'passport_number' => $this->sapData['ICNUM_PASS'],
             'sponsor_id' => $this->sapData['SPONR'],
-            'sponsor_company' => $this->sapData['SPONR'] != '' ? LetterSponserMap::$sponsers[$this->sapData['SPONR']] : $this->sapData['SPONR'],
+            'sponsor_company' => $sponsorCompany,
             'en_sponsor_company' => $this->sapData['SPONN'],
             'allowances' => $this->getAllowances(),
             'total_package' => $this->sapData['total_package'],
@@ -110,14 +114,13 @@ class SapUser
             'education' => $this->sapData['ZZEDUCATION'],
             'is_active' => $this->sapData['BEGDA'] == '0000-00-00',
             'eos_amount' => $this->sapData['EOS_AMT'],
-//                $this->calculateEOS($this->sapData['EOS_AMT'], $this->sapData['DAT01']),
             'actual_eos_amount' => $this->sapData['EOS_AMT'],
             'is_saudi' => str_starts_with($this->sapData['ICNUM_NATID'], '10'),
             'end_of_service_date' => $this->sapData['BEGDA'] ?? '',
             'direct_manager_name'=> $this->sapData["DIR_MANG_NAME"] ?? '',
             'direct_manager_email'=> $this->sapData["DIR_MANG_EMAIL"] ?? '',
             'flight_ticket_balance'=> $this->sapData["FLIGHT_TICK_672"] ?? '',
-            'leave_balance'=> $this->sapData["LEAVE_BAL_630"] ?? ''
+            'leave_balance'=> $this->sapData["LEAVE_BAL_630"] ?? '',
         ];
 
 
