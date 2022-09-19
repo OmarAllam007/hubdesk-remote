@@ -52,7 +52,7 @@
             <div class="col-md-8">
                 <div class="main">
                     {{--                    will removed--}}
-                    @if($category->id == 116)
+                    @if(in_array($category->id,[116,160]) )
                         <div class="view view-seventh">
                             <img src="/images/fiori-logo.png">
                             <div class="info"><p>
