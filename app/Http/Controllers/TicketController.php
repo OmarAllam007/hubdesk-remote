@@ -456,7 +456,7 @@ class TicketController extends Controller
 
     function selectSubcategory(BusinessUnit $business_unit, Category $category)
     {
-        if ($category->id == 116 || $category->subcategories()->count() > 1) {
+        if (in_array($category->id,[116,160]) || $category->subcategories()->count() > 1) {
             return view('ticket.create_ticket.select_subcategory', compact('business_unit', 'category'));
         } elseif ($category->subcategories()->count() == 1) {
             $subcategory = $category->subcategories()->first();
