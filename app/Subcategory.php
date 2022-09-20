@@ -35,7 +35,7 @@ class Subcategory extends KModel
     use Listable, ServiceConfiguration, SharedRelations;
 
     protected $fillable = ['category_id', 'name', 'description', 'service_request', 'service_cost',
-        'notes', 'service_type', 'is_disabled', 'business_service_type','logo'];
+        'notes', 'service_type', 'is_disabled', 'business_service_type', 'logo'];
 
     public function items()
     {
@@ -74,14 +74,18 @@ class Subcategory extends KModel
 
     public function scopeCanonicalList(Builder $query)
     {
-        $subcategories = $query->whereHas('category')->with('category')
-            ->orderBy('name')->get()
+        $subcategories = $query->whereHas('category', function ($q) {
+            $q->where('is_disabled', 0)->orderBy('name');
+        })
+            ->get()
             ->map(function ($subcategory) {
-                $subcategory->name = $subcategory->category->name . ' > ' . $subcategory->name;
+                $subcategory->name = ($subcategory->category->business_unit->name ?? "") . ' > ' .
+                    $subcategory->category->name . ' > ' . $subcategory->name;
                 return $subcategory;
             });
 
-        return $subcategories->sortBy('name');
+
+        return $subcategories->sortByDesc('name');
     }
 
     public function getLevelArrowNameAttribute()
