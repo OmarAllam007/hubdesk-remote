@@ -175,12 +175,13 @@ class TicketController
     function createTicket($request, $requestedTicket, $requester)
     {
 
-        $requesterUser = User::where('employee_id',$requester)->first();
+        $ticketRequesterID = $requestedTicket['requester_id'] ?: $requestedTicket['creator_id'];
+        $requesterUser = User::where('employee_id',$ticketRequesterID)->first();
 
         $clientInfo = ['client' => $request->userAgent(), 'ip_address' => $request->ip(), 'client_ip' => $request->getClientIp()];
 
 
-        $ticketRequesterID = $requestedTicket['requester_id'] ?: $requestedTicket['creator_id'];
+
         $requesterId = User::where('employee_id',$ticketRequesterID )->first() ?? auth()->user();
 
         $ticket = Ticket::create([
