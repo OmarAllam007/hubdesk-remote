@@ -179,7 +179,9 @@ class TicketController
 
         $clientInfo = ['client' => $request->userAgent(), 'ip_address' => $request->ip(), 'client_ip' => $request->getClientIp()];
 
-        $requesterId = User::where('employee_id',$requestedTicket['requester_id'])->first() ?? auth()->user();
+
+        $ticketRequesterID = $requestedTicket['requester_id'] ?: $requestedTicket['creator_id'];
+        $requesterId = User::where('employee_id',$ticketRequesterID )->first() ?? auth()->user();
 
         $ticket = Ticket::create([
             'subject' => $requestedTicket['subject'],
