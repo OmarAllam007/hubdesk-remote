@@ -100,8 +100,10 @@ class TicketController extends Controller
 
     public function store(TicketRequest $request)
     {
-        $request['business_unit_id'] = auth()->user()->business_unit_id;
         $ticket = new Ticket($request->all());
+
+        $request['business_unit_id'] = $ticket->requester->business_unit_id;
+
         $ticket->client_info = ['client' => $request->userAgent(), 'ip_address' => $request->ip(), 'client_ip' => $request->getClientIp()];
         $ticket->save();
 

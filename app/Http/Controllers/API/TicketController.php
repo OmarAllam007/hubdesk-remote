@@ -175,6 +175,8 @@ class TicketController
     function createTicket($request, $requestedTicket, $requester)
     {
 
+        $requesterUser = User::where('employee_id',$requester)->first();
+
         $clientInfo = ['client' => $request->userAgent(), 'ip_address' => $request->ip(), 'client_ip' => $request->getClientIp()];
 
         $requesterId = User::where('employee_id',$requestedTicket['requester_id'])->first() ?? auth()->user();
@@ -189,7 +191,7 @@ class TicketController
             'subcategory_id' => $requestedTicket['subcategory_id'],
             'item_id' => $requestedTicket['item_id'],
             'priority_id' => $requestedTicket['priority_id'],
-            'business_unit_id' => \Auth::user()->business_unit_id ?? 34, //not assigned
+            'business_unit_id' => $requesterUser->business_unit_id ?? 34, //not assigned
             'client_info' => $clientInfo,
         ]);
 
