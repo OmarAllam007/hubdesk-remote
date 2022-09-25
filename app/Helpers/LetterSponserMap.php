@@ -62,6 +62,7 @@ class LetterSponserMap
 
     static $systemBusinessUnits = [
         "7001378525" => 7,
+        "7012303603" => 7,
         "7012822115" => 7,
         "7012970179" => 7,
         "7015152288" => 7,
