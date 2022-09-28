@@ -70,13 +70,13 @@
                     </button>
 
 
-                    <div class="w-full flex justify-center pt-4">
-                        <a href="{{route('password.request')}}" class="btn w-full bg-teal-600  text-white hover:text-white "
-                           title="Reset password will works only if your email registered on Hubdesk"
-                           >
-                            <i class="fa fa-btn fa-unlock"></i> Reset Password
-                        </a>
-                    </div>
+{{--                    <div class="w-full flex justify-center pt-4">--}}
+{{--                        <a href="{{route('password.request')}}" class="btn w-full bg-teal-600  text-white hover:text-white "--}}
+{{--                           title="Reset password will works only if your email registered on Hubdesk"--}}
+{{--                           >--}}
+{{--                            <i class="fa fa-btn fa-unlock"></i> Reset Password--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
                 </div>
             </form>
         </div>
