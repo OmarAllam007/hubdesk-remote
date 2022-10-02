@@ -1,4 +1,8 @@
+
 @if ($category )
+    @php
+    $category = \App\Category::find($category['id']);
+    @endphp
     @foreach($category->custom_fields->sortBy('label')->groupBy('label') as $key=>$sFields)
         @if($key != '')
             <div class="col-md-12">

@@ -1,5 +1,5 @@
 {{ csrf_field() }}
-<div id="TicketForm">
+<div id="TicketForm" class="pt-10">
     <div class="form-group form-group-sm {{$errors->has('subject')? 'has-error' : ''}}">
         {{ Form::label('subject', t('Subject'), ['class' => 'control-label']) }}
         {{ Form::text('subject', null, ['class' => 'form-control']) }}
@@ -42,6 +42,7 @@
             $task_categories = $list->category(\App\KModel::TASK_TYPE);
         @endphp
 
+
         <div class="col-md-6">
             <div class="form-group {{$errors->has('category_id')? 'has-error' : ''}}">
                 {{ Form::label('category_id', t('Category'), ['class' => 'control-label']) }}
@@ -49,7 +50,8 @@
                         v-on:change="loadSubcategory">
                     <option value="">{{t('Select Category')}}</option>
                     @foreach($task_categories as $category)
-                        <option value="{{$category->id}}">{{$category->name}}</option>
+
+                        <option value="{{$category['id']}}">{{$category['name']}}</option>
                     @endforeach
                 </select>
                 @if ($errors->has('category_id'))
