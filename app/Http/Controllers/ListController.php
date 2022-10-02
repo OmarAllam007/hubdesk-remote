@@ -324,6 +324,7 @@ class ListController extends Controller
                 'is_saudi' => $userData['is_saudi'],
                 'end_of_service_date' => $userData['end_of_service_date'],
                 'department' => $userData['department'] ?? "",
+                'sponsor_id' => $userData['sponsor_id']
             ];
         }
 
