@@ -1,5 +1,5 @@
 @component('mail::message')
-    # Request to renew the document
+    # New Ticket for renew document
 
 <br>
 <p><strong>Document Name :</strong> {{$document->name}}</p>

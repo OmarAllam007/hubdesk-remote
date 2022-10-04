@@ -2,7 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\DocumentTicket;
 use App\Mail\DocumentReminder;
+use App\Ticket;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -26,41 +28,66 @@ class RenewDocument extends Command
 
     public function handle()
     {
+//        Ticket::flushEventListeners();
         $documents = Document::all();
 
         foreach ($documents as $document) {
-            $bus = DocumentNotification::all()->groupBy('business_unit_id');
-            $levels = $bus->get($document->folder->business_unit->id);
+            if ($document->id == 3) {// to be removed
+                $notificationStartDate = $document->end_date->subDays($document->notify_duration ?? 0);
+                $shouldNotify = $notificationStartDate->lessThanOrEqualTo(Carbon::now());
 
-            if (empty($levels)) {
-                continue;
-            }
+                if ($shouldNotify) {
 
-            foreach ($levels as $key => $level) {
-                if ($document->shouldNotified($level)) {
-                    $this->sendEmailNotification($document, $level);
+                    if (!$this->hasOpenDocumentTicket($document)) {
+                        $this->createTickets($document);
+                    }
 
-                    KGSLog::create([
-                        'document_id' => $document->id,
-                        'level_id' => $level->id,
-                        'type' => KGSLog::NOTIFICATION_TYPE
-                    ]);
                 }
-
             }
+
         }
     }
 
-    function sendEmailNotification($document, $level)
+    private function hasOpenDocumentTicket($document)
     {
-        $users = User::whereIn('id', $level->users)->get();
+        return DocumentTicket::where('document_id', $document->id)
+            ->whereHas('ticket', function ($q) {
+                $q->whereNotIn('status_id', [7, 8, 9]);
+            })->first();
+    }
+
+    function sendEmailNotification($document, $ticket)
+    {
+        $to = [6761, 1499501];//SAEED and EID Mabrok
+
+        if (in_array($document->business_unit_id, [7])) {// special case for KRB abdulmohsen almugren
+            $to[] = 1334;
+        }
+
+        $users = User::whereIn('id', $to)->get();
 
         if (!empty($users)) {
-            foreach ($users->pluck('email') as $email) {
-                if ($email) {
-                    \Mail::to($email)->send(new DocumentReminder($document));
-                }
-            }
+            \Mail::to($users)->send(new DocumentReminder($document, $ticket));
         }
+    }
+
+    private function createTickets($document)
+    {
+        $ticket = Ticket::create([
+            'requester_id' => env('SYSTEM_USER'),
+            'creator_id' => env('SYSTEM_USER'),
+            'category_id' => 161,
+            'status_id' => 1,
+            'subject' => 'Renew Document -' . $document->name,
+            'description' => 'Renew Document -' . $document->name,
+        ]);
+
+//                    @Todo make an observer to send notifications as per map
+        DocumentTicket::create([
+            'ticket_id' => $ticket->id,
+            'document_id' => $document->id,
+        ]);
+
+        $this->sendEmailNotification($document, $ticket);
     }
 }

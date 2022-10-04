@@ -34,6 +34,6 @@ class InitCreatingTicketListener
 //            $ticket->business_unit_id = $ticket->requester->business_unit_id;
         $ticket->status_id = 1;
         $ticket->is_opened = 0;
-        $ticket->creator_id = auth()->id();
+        $ticket->creator_id = $ticket->creator_id ?? auth()->id();
     }
 }
