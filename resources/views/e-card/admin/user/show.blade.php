@@ -95,7 +95,7 @@
             </div>
 
             @if($user->linkedin_url)
-                <div class="col-md-12"><a href="//{{$user->linkedin_url}}">
+                <div class="col-md-12"><a href="{{$user->linkedin_url}}">
                         <div class="light-box box-hover">
                             <div class="contact-r"><img style="width:30px" src="{{('/images/ecard/linked.png')}}"></div>
                             <div class="contact-n"><span>{{$user->name}}</span></div>
