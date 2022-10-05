@@ -95,17 +95,21 @@
             <div class="row">
                 <div class="col-md-12">
                     <ul class="social-buttons">
+                        @php
+                            $businessUnit = \App\BusinessCardBusinessUnit::where('business_unit_id',$user->business_unit_id)->first();
+                            dd($businessUnit);
+                        @endphp
                         <li><a
-                                    @if($user->facebook_url)
-                                        href="//{{$user->facebook_url}}"
+                                    @if($businessUnit->facebook)
+                                        href="{{$businessUnit->facebook}}"
                                     @else
                                         href="#"
                                     @endif
                                     class="social-btn"><i
                                         class="fa fa-facebook"></i></a></li>
                         <li><a
-                                    @if($user->twitter_url)
-                                        href="//{{$user->twitter_url}}"
+                                    @if($businessUnit->twitter)
+                                        href="{{$businessUnit->twitter}}"
                                     @else
                                         href="#"
                                     @endif
@@ -113,8 +117,8 @@
                                 <i class="fa fa-twitter"></i></a>
                         </li>
                         <li><a
-                                    @if($user->linkedin_url)
-                                        href="//{{$user->linkedin_url}}"
+                                    @if($businessUnit->linkedin)
+                                        href="{{$businessUnit->linkedin}}"
                                     @else
                                         href="#"
                                     @endif

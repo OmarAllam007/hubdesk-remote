@@ -10,7 +10,10 @@
     <link href="https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="{{asset('/css/ecard/flexslider.css')}}" rel="stylesheet">
 
-    <link href="{{asset('/css/ecard/'.$user->business_unit_view->view_path.'/styles.css')}}" rel="stylesheet">
+    @php
+    $view = $user->business_unit_view ? $user->business_unit_view->view_path : 'holding';
+    @endphp
+    <link href="{{asset('/css/ecard/'.$view.'/styles.css')}}" rel="stylesheet">
     <link href="{{asset('/css/ecard/queries.css')}}" rel="stylesheet">
     <link href="{{asset('/css/ecard/animate.css')}}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@v3.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -25,7 +28,10 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 wp2 delay-1s">
-                <img style="width:120px" src="{{asset('/images/ecard/'.$user->business_unit_view->logo_path)}}"
+                @php
+                    $logo = $user->business_unit_view ? $user->business_unit_view->logo_path : '';
+                @endphp
+                <img style="width:120px" src="{{asset('/images/ecard/'.$logo)}}"
                      alt="logo">
             </div>
         </div>
@@ -99,30 +105,34 @@
             @endif
 
             @if($user->website)
-            <div class="col-md-12"><a href="//{{$user->website}}" target="_blank">
-                    <div class="light-box box-hover">
-                        <div class="contact-r"><img style="width:30px" src="{{('/images/ecard/web.png')}}"></div>
-                        <div class="contact-n"><span>{{$user->website}}</span></div>
-                    </div>
-                </a>
-            </div>
+                <div class="col-md-12"><a href="//{{$user->website}}" target="_blank">
+                        <div class="light-box box-hover">
+                            <div class="contact-r"><img style="width:30px" src="{{('/images/ecard/web.png')}}"></div>
+                            <div class="contact-n"><span>{{$user->website}}</span></div>
+                        </div>
+                    </a>
+                </div>
             @endif
 
 
             <div class="row">
                 <div class="col-md-12">
                     <ul class="social-buttons">
+                        @php
+                            $businessUnit = \App\BusinessCardBusinessUnit::where('business_unit_id',$user->business_unit_id)->first();
+
+                        @endphp
                         <li><a
-                                    @if($user->facebook_url)
-                                        href="//{{$user->facebook_url}}"
+                                    @if($businessUnit && $businessUnit->facebook)
+                                        href="{{$businessUnit->facebook}}"
                                     @else
                                         href="#"
                                     @endif
                                     class="social-btn"><i
                                         class="fa fa-facebook"></i></a></li>
                         <li><a
-                                    @if($user->twitter_url)
-                                        href="//{{$user->twitter_url}}"
+                                    @if($businessUnit && $businessUnit->twitter)
+                                        href="{{$businessUnit->twitter}}"
                                     @else
                                         href="#"
                                     @endif
@@ -130,8 +140,8 @@
                                 <i class="fa fa-twitter"></i></a>
                         </li>
                         <li><a
-                                    @if($user->linkedin_url)
-                                        href="//{{$user->linkedin_url}}"
+                                    @if($businessUnit && $businessUnit->linkedin)
+                                        href="{{$businessUnit->linkedin}}"
                                     @else
                                         href="#"
                                     @endif

@@ -43,7 +43,7 @@
                             <td class="py-5  px-6 text-left whitespace-nowrap"><a
                                         href="{{ route('e-card.admin.edit', $user) }}">{{ $user->employee_id ?? 'Not Assigned' }}</a>
                             </td>
-                            <td class="py-5  px-6 text-left whitespace-nowrap">{{ $user->business_unit ?? 'Not Assigned' }}</td>
+                            <td class="py-5  px-6 text-left whitespace-nowrap">{{ $user->business_unit->name ?? 'Not Assigned' }}</td>
                             <td class="py-5  px-6 text-left whitespace-nowrap">{{ $user->position ?? 'Not Assigned' }}</td>
                             <td class="py-5  px-6 text-left whitespace-nowrap">{{ $user->department ?? 'Not Assigned' }}</td>
                             <td class="py-5  px-6 text-left whitespace-nowrap">

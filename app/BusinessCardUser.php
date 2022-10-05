@@ -16,6 +16,9 @@ class BusinessCardUser extends Model
         'twitter_url', 'linkedin_url', 'image_url', 'gender','url_code','business_unit_id'
     ];
 
+    function getBusinessUnitAttribute(){
+        return BusinessUnit::find($this->business_unit_id);
+    }
     function getBusinessUnitViewAttribute(){
         return BusinessCardBusinessUnitView::where('business_unit_id',$this->business_unit_id)->first();
     }
