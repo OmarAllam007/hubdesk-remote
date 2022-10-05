@@ -92,7 +92,7 @@ class UserController extends Controller
         $vcard->addName('',$user->name);
 
 // add work data
-        $vcard->addCompany($user->business_unit);
+        $vcard->addCompany($user->business_unit->name ?? "");
         $vcard->addJobtitle($user->position);
         $vcard->addEmail($user->email);
         $vcard->addPhoneNumber($user->mobile,'TYPE=Mobile');
