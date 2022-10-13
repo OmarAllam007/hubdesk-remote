@@ -65,7 +65,7 @@
             <div class="flex  pt-20 px-10" dir="rtl">
                 <p class="text-4xl">
                     {{--                    change as per Name --}}
-                    الســادة / {{$letterTicket->letter->ar_name}}
+                    الســادة / {{$letterTicket->letter->ar_name}} {{$to}}
                 </p>
                 <p class="px-64 "></p>
                 {{--                <p class="px-10   "></p>--}}
