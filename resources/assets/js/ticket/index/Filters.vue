@@ -4,6 +4,11 @@
       Filters</p>
 
     <article class="w-full pt-3">
+      <div class="flex justify-end">
+        <button data-toggle="modal" data-target="#serviceModal" class="p-3 bg-gray-300 rounded-xl mx-2 "><i
+            class="fa fa-filter"></i></button>
+      </div>
+      <!--      <div v-for="service in services">{{service.name}}</div>-->
       <div v-for="scope in scopes" class="p-3">
         <button class="w-full flex p-8 rounded-2xl justify-start
                      hover:bg-gray-200 hover:shadow" @click="changeScope(scope[0])"
@@ -12,6 +17,7 @@
                             <i class="fa fa-chevron-right"></i> {{ scope[1] }}
                         </span>
 
+          <!--          <span class="flex-col">-->
           <span class="flex justify-end rounded">
             <span class="bg-indigo-800 pl-3 pr-3 rounded-2xl font-bold text-white" v-if="isSelectedScope(scope[0])">
               <span v-if="$parent.loading">
@@ -20,6 +26,8 @@
             <span v-else>{{ getTotal(scope[0]) }}</span>
             </span>
           </span>
+
+
         </button>
       </div>
     </article>
@@ -31,7 +39,7 @@
 
 export default {
   name: "Filters",
-  props: ['scopes', 'total'],
+  props: ['scopes', 'total', 'services'],
   data() {
     return {
       filters_visible: true,
