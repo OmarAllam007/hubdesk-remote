@@ -60,7 +60,7 @@
         <div class="w-full md:w-3/12 xl:w-3/12 lg:w-3/12 2xl:w-3/12  h-full" v-show="sidebar_visibility">
           <div class="flex-col rounded-xl  bg-white shadow mr-0 md:mr-3 xl:mr-3 lg:mr-3 2xl:mr-3"
                v-if="scopes.length">
-            <filters :scopes="scopes" :total="tickets.total"></filters>
+            <filters :scopes="scopes" :total="tickets.total" :services="services"></filters>
           </div>
         </div>
       </transition>
@@ -89,6 +89,32 @@
         </div>
       </div>
     </div>
+
+
+    <div class="modal fade" id="serviceModal" tabindex="-1" role="dialog" aria-labelledby="serviceModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="serviceModal">Filter By Service</h4>
+          </div>
+          <div class="modal-body">
+            <select name="technicians" multiple class="form-control" id="technicians" size="25" v-model="selected_services">
+              <option :value="service.id" v-for="service in services"> {{ service.name }}</option>
+            </select>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="p-3" data-dismiss="modal" id="closeTech">Close</button>
+            <button type="button" class="p-3 bg-green-600 rounded text-white hover:bg-green-700"
+                    id="chooseTech" @click="loadTickets"><i class="fa fa-filter"></i> Filter</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -105,7 +131,7 @@ import RecentTickets from "./RecentTickets";
 
 export default {
   name: "TicketIndex",
-  props:['last-tickets'],
+  props: ['last-tickets'],
   data() {
     return {
 
@@ -116,6 +142,7 @@ export default {
       criterions: [],
       scopes: {},
       requirements: [],
+      services: [],
       selected_scope: '',
       selected_scope_str: '',
       sidebar_visibility: false,
@@ -128,6 +155,7 @@ export default {
         current_page: localStorage.getItem('page') ? localStorage.getItem('page') : 1
       },
       offset: 4,
+      selected_services:[]
     }
   },
   created() {
@@ -211,6 +239,7 @@ export default {
         'search': this.search,
         'clear': this.clear,
         'criterions': this.criterions,
+        'selected_services':this.selected_services,
       }).then((response) => {
         if (response.data.ticket) {
           window.location.href = `/ticket/${this.search}`;
@@ -226,7 +255,7 @@ export default {
           this.loading = false;
           this.initLoading = false;
           this.total = response.total;
-
+          this.services = response.data.sortedServices;
           this.getSelectedScope();
         }
       }).catch((e) => {
@@ -239,11 +268,11 @@ export default {
       // setTimeout(() => {
       //   console.log(this.scopes)
 
-        for (let item in this.scopes) {
-          if (this.scopes[item][0] == this.selected_scope) {
-            this.selected_scope_str = this.scopes[item][1];
-          }
+      for (let item in this.scopes) {
+        if (this.scopes[item][0] == this.selected_scope) {
+          this.selected_scope_str = this.scopes[item][1];
         }
+      }
       // }, 1000)
     }
   },
@@ -281,9 +310,10 @@ export default {
   background: rgba(26, 29, 80, 0.9);
 }
 
-.scopeArea{
+.scopeArea {
   color: rgba(26, 29, 80, 0.9);
 }
+
 .collapse-btn {
   color: rgba(26, 29, 80, 0.9);
   border-color: rgba(26, 29, 80, 0.9);

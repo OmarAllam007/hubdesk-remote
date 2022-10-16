@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 
 
 use App\Attachment;
+use App\Category;
 use App\CustomField;
 use App\Helpers\Ticket\TicketViewScope;
 use App\Jobs\NewTicketJob;
@@ -61,13 +62,24 @@ class TicketController
         }
 
 
-        $tickets = $query->latest('id')->paginate();
+        if (\request('selected_services')) {
+            $servicesArr = \request('selected_services');
+            $query->whereIn('category_id', $servicesArr);
+        }
+
+        $sortedServices = Category::with('business_unit')->where('is_disabled', 0)
+            ->get()->map(function ($service) {
+                return ['id' => $service->id, 'name' => $service->business_unit->name . ' > ' . $service->name];
+            })->sortBy('name')->values()->all();
+
+        $tickets = $query->latest('id')
+            ->paginate();
 
         $tickets->getCollection()->transform(function (Ticket $ticket) {
             return $ticket->convertToJson();
         });
 
-        return compact('tickets', 'scope', 'scopes', 'criterions');
+        return compact('tickets', 'scope', 'scopes', 'criterions', 'sortedServices');
     }
 
     function filterTickets()
@@ -176,13 +188,12 @@ class TicketController
     {
 
         $ticketRequesterID = $requestedTicket['requester_id'] ?: $requestedTicket['creator_id'];
-        $requesterUser = User::where('employee_id',$ticketRequesterID)->first();
+        $requesterUser = User::where('employee_id', $ticketRequesterID)->first();
 
         $clientInfo = ['client' => $request->userAgent(), 'ip_address' => $request->ip(), 'client_ip' => $request->getClientIp()];
 
 
-
-        $requesterId = User::where('employee_id',$ticketRequesterID )->first() ?? auth()->user();
+        $requesterId = User::where('employee_id', $ticketRequesterID)->first() ?? auth()->user();
 
         $ticket = Ticket::create([
             'subject' => $requestedTicket['subject'],
