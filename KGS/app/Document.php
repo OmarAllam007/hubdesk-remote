@@ -3,6 +3,7 @@
 namespace KGS;
 
 use App\BusinessUnit;
+use App\DocumentRequirements;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -22,6 +23,11 @@ class Document extends Model
     {
         return $this->belongsTo(BusinessDocumentsFolder::class);
     }
+
+    function requirements(){
+        return $this->hasMany(DocumentRequirements::class);
+    }
+
 
     function business_unit()
     {

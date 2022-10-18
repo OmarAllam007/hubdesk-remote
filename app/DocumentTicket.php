@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use KGS\Document;
 
 class DocumentTicket extends Model
 {
@@ -14,5 +15,9 @@ class DocumentTicket extends Model
     function ticket()
     {
         return $this->belongsTo(Ticket::class);
+    }
+
+    function document(){
+        return $this->belongsTo(Document::class);
     }
 }

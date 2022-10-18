@@ -124,6 +124,11 @@
                     :class="{tabUIButtonSelected : selectedTab == 1}" @click="changeTab(1)"><i
                 class="fa fa-comments-o"></i> {{ $root.t('Conversation') }}
             </button>
+            <button v-if="ticketData.ticket.category_id == 161" class="w-1/6 bg-white rounded-xl p-3 m-3 tabUIButton border"
+                    :class="{tabUIButtonSelected : selectedTab == 8}" @click="changeTab(8)">
+              <i class="fa fa-list"></i> {{ $root.t('Requirements') }}
+            </button>
+
             <button class="w-1/6 bg-white rounded-xl p-3 m-3 tabUIButton border" v-if="authorizations.is_support"
                     :class="{tabUIButtonSelected : selectedTab == 2}" @click="changeTab(2)"><i class="fa fa-tasks"></i>
               {{ $root.t('Tasks') }}
@@ -152,6 +157,8 @@
                     :class="{tabUIButtonSelected : selectedTab == 7}" @click="changeTab(7)">
               <i class="fa fa-files-o"></i> {{ $root.t('Survey') }}
             </button>
+
+
           </div>
         </div>
       </div>
@@ -221,6 +228,8 @@
         >
         </letter-modal>
 
+        <requirements v-if="ticketData.ticket.category_id == 161 && selectedTab == 8" :ticket_id="ticketData.ticket.id"></requirements>
+
       </div>
     </div>
 
@@ -249,7 +258,7 @@ import TicketAttachments from "../attachments/TicketAttachments";
 import TicketSurvey from "../survey/TicketSurvey";
 import LetterModal from "../actions/LetterContentModal";
 import ToLetterModal from "../actions/ToLetterModal";
-
+import Requirements from "../requirements/Requirements";
 export default {
   name: "TicketShow",
   props: ['data', 'translations'],
@@ -375,7 +384,9 @@ export default {
     Duplicate,
     Forward,
     Reassign,
-    Loader, TicketLog, Approvals, Resolution, TicketMain, TicketConversation, Tasks, NotificationsComponent
+    Loader, TicketLog, Approvals,
+    Resolution, TicketMain, TicketConversation, Tasks, NotificationsComponent,
+    Requirements,
   }
 }
 </script>

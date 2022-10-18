@@ -15,6 +15,8 @@ use App\Http\Controllers\ListController;
 use Illuminate\Routing\Router;
 
 Route::group(['middleware' => 'auth'], function (Router $r) {
+    $r->get('document/requirements/{ticket_id}','DocumentController@fetchForTicket');
+
     Route::get('business-document/select_division', 'BusinessDocumentController@selectDivision')
         ->name('business_document.select_division');
 

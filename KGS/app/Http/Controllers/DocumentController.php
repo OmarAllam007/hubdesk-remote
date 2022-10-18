@@ -3,7 +3,10 @@
 namespace KGS\Http\Controllers;
 
 
+use App\DocumentTicket;
 use App\Http\Controllers\Controller;
+use App\Ticket;
+use App\TicketRequirements;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use KGS\BusinessDocumentsFolder;
@@ -129,4 +132,18 @@ class DocumentController extends Controller
         return response()->download($file);
     }
 
+
+    function fetchForTicket($ticket_id)
+    {
+        return TicketRequirements::where('ticket_id', $ticket_id)
+            ->get()
+            ->map(function ($ticketRequirement) {
+                return [
+                    'id' => $ticketRequirement->id,
+                    'name' => $ticketRequirement->requirement->name,
+                    'path'=> $ticketRequirement->path,
+//                    'uploadedBy'=> Us$ticketRequirement->uploaded_by/
+                ];
+            });
+    }
 }

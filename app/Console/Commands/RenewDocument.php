@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\DocumentTicket;
 use App\Mail\DocumentReminder;
 use App\Ticket;
+use App\TicketRequirements;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -82,11 +83,19 @@ class RenewDocument extends Command
             'description' => 'Renew Document -' . $document->name,
         ]);
 
+
 //                    @Todo make an observer to send notifications as per map
         DocumentTicket::create([
             'ticket_id' => $ticket->id,
             'document_id' => $document->id,
         ]);
+
+        foreach ($document->requirements as $requirement) {
+            TicketRequirements::create([
+                'ticket_id' => $ticket->id,
+                'requirement_id' => $requirement->id
+            ]);
+        }
 
         $this->sendEmailNotification($document, $ticket);
     }
