@@ -9,6 +9,7 @@ use App\CustomField;
 use App\Helpers\Ticket\TicketViewScope;
 use App\Jobs\NewTicketJob;
 use App\Ticket;
+use App\TicketRequirements;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -176,13 +177,12 @@ class TicketController
     {
 
         $ticketRequesterID = $requestedTicket['requester_id'] ?: $requestedTicket['creator_id'];
-        $requesterUser = User::where('employee_id',$ticketRequesterID)->first();
+        $requesterUser = User::where('employee_id', $ticketRequesterID)->first();
 
         $clientInfo = ['client' => $request->userAgent(), 'ip_address' => $request->ip(), 'client_ip' => $request->getClientIp()];
 
 
-
-        $requesterId = User::where('employee_id',$ticketRequesterID )->first() ?? auth()->user();
+        $requesterId = User::where('employee_id', $ticketRequesterID)->first() ?? auth()->user();
 
         $ticket = Ticket::create([
             'subject' => $requestedTicket['subject'],
@@ -221,4 +221,48 @@ class TicketController
             }
         }
     }
+
+
+
+//    TODO: THIS IS ONLY FOR KGS SERVICES 🤦🏻🤦🏻🤦🏻‍
+    function uploadRequirements($ticket_id, $requirement_id)
+    {
+
+        $file = \request()->file('attachments')[0];
+        $name = $file->getClientOriginalName();
+        $folder = storage_path("app/public/kgs/ticket/" . $ticket_id . '/' . $requirement_id . '/');
+
+        if (!is_dir($folder)) {
+            mkdir($folder, 0775, true);
+        }
+        $path = $folder . $name;
+
+        if (is_file($path)) {
+            $filename = uniqid() . '_' . $name;
+            $path = $folder . $filename;
+        }
+
+        $file->move($folder, $name);
+
+        $pathName =  "/kgs/ticket/" . $ticket_id . '/' . $requirement_id . '/'. $name;
+
+        $ticketRequirements =  TicketRequirements::where('ticket_id', $ticket_id)
+            ->where('requirement_id', $requirement_id)->first();
+
+        $ticketRequirements->update([
+           'path'=> $pathName,
+        ]);
+
+    }
+
+    function downloadRequirements($ticket_id, $requirement_id)
+    {
+        $path = TicketRequirements::where('ticket_id',$ticket_id)->where('requirement_id',$requirement_id)
+            ->first()->path;
+
+        $file = public_path('storage') . $path;
+        return response()->download($file);
+    }
+
+
 }

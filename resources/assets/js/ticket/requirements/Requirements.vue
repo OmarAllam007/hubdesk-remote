@@ -2,12 +2,8 @@
   <div>
     <div class="m-3 mt-10 ">
       <div class="flex flex-col">
-        <div v-for="requirement in requirements" class="flex justify-between bg-white p-5 m-1 rounded-lg shadow-md ">
-          <p class="w-2/3">{{ requirement.name }}</p>
-          <div class="flex">
-            <input type="file">
-            <button class="mx-2 p-3 bg-green-600 text-white rounded"> <i class="fa fa-upload"></i> Upload</button>
-          </div>
+        <div v-for="requirement in requirements">
+          <requirement-row :requirement="requirement"></requirement-row>
         </div>
       </div>
     </div>
@@ -15,12 +11,15 @@
 </template>
 
 <script>
+import RequirementRow from "./RequirementRow";
 export default {
   name: "Requirements",
+  components: {RequirementRow},
   props: ['ticket_id'],
   data() {
     return {
-      requirements: []
+      requirements: [],
+      attachments:[]
     }
   },
 
