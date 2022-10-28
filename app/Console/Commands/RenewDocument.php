@@ -81,6 +81,7 @@ class RenewDocument extends Command
             'status_id' => 1,
             'subject' => 'Renew Document -' . $document->name,
             'description' => 'Renew Document -' . $document->name,
+            'business_unit_id' => $document->folder->business_unit_id,
         ]);
 
 
