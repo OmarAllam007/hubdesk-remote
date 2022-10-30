@@ -467,7 +467,8 @@ class TicketController extends Controller
 
 
         $subcategory = new Subcategory();
-        return view('ticket.create', compact('business_unit', 'category', 'subcategory'));
+        $item = new Item();
+        return view('ticket.create', compact('business_unit', 'category', 'subcategory','item'));
     }
 
     function selectItem(BusinessUnit $business_unit, Subcategory $subcategory)
