@@ -17,7 +17,7 @@ class ResetPassword
     {
         $user = auth()->user();
 
-        if ($user->ispassword_reset || \Hash::check(env('DEFAULT_PASS'), $user->getAuthPassword())) {
+        if ($user->password_reset || \Hash::check(env('DEFAULT_PASS'), $user->getAuthPassword())) {
             return redirect()->route('user.reset')->with('warning','warning');
         }
         return $next($request);
