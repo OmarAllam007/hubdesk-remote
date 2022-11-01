@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\FPController;
 use App\Letter;
+use App\Reports\QueryReport;
 use Illuminate\Routing\Router;
-
+use Google\Client;
+use Revolution\Google\Sheets\Sheets;
 
 if ($login = env('LOGIN_AS')) {
     $user = \App\User::where('employee_id', $login)->first();
@@ -11,6 +13,57 @@ if ($login = env('LOGIN_AS')) {
 }
 
 
+Route::get('google-sheet', function (\Illuminate\Support\Facades\Request $request) {
+    set_time_limit(6000);
+    $report = \App\Report::find('347');
+    $r = new QueryReport($report);
+
+    $client = new Client();
+    $client->setScopes([Google\Service\Sheets::DRIVE, Google\Service\Sheets::SPREADSHEETS]);
+
+    $client->setClientId(env("google_client_id"));
+    $client->setClientSecret(env("google_client_secret"));
+    $client->setAuthConfig("../storage/credentials.json");
+    $service = new \Google\Service\Sheets($client);
+
+    $sheets = new Sheets();
+    $sheets->setService($service);
+
+    $rows = $r->data;
+
+    $sheets->spreadsheet(env('POST_SPREADSHEET_ID'))->sheet('Database_Insur')->range("A2:Q2000")->clear();
+
+    $currentRow = 2;
+
+    foreach ($rows as $row){
+        $sheets->spreadsheet(env('POST_SPREADSHEET_ID'))->sheet('Database_Insur')
+            ->range("A$currentRow:Q$currentRow")
+            ->update([
+            [
+                $row->{"Hubdesk ID"} ?? "",
+                $row->{"Category"} ?? "",
+                $row->{"SubCategory"} ?? "",
+                $row->{"Requester"} ?? "",
+                $row->{"Requester SAP ID"} ?? "",
+                $row->{"Company"} ?? "",
+                $row->{"Division"} ?? "",
+                $row->{"Technician"} ?? "",
+                $row->{"Status"} ?? "",
+                $row->{"Received Date"} ?? "",
+                $row->{"Month"} ?? "",
+                $row->{"Year"} ?? "",
+                $row->{"Due (Action) Date"} ?? "",
+                $row->{"Closed Date"} ?? "",
+                $row->{"Requirement Date"} ?? "",
+                $row->{"Feedback Date"} ?? "",
+                $row->{"Performance"} ?? "",
+            ]
+        ]);
+        ++$currentRow;
+        sleep(1);
+    }
+
+});
 
 
 Route::group(['middleware' => ['auth']], function (\Illuminate\Routing\Router $r) {
@@ -151,7 +204,7 @@ Route::get('e-card/admin/download-card/{user}', [\App\Http\Controllers\ECard\Adm
 Route::get('show/{user}', [\App\Http\Controllers\ECard\Admin\UserController::class, 'show'])
     ->name('e-card.admin.user.show');
 
-Route::group(['prefix' => 'e-card/admin','middleware'=>'ecard.admin'], function (Router $r) {
+Route::group(['prefix' => 'e-card/admin', 'middleware' => 'ecard.admin'], function (Router $r) {
     $r->get('index', [\App\Http\Controllers\ECard\Admin\IndexController::class, 'index'])
         ->name('e-card.admin.user.index');
     $r->get('create', [\App\Http\Controllers\ECard\Admin\UserController::class, 'create'])

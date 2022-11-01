@@ -18,10 +18,10 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 class QueryReport extends ReportContract
 {
-    protected $columns;
-    protected $row = 1;
+    public $columns;
+    public $row = 1;
     public $errors;
-
+    public $data;
     function run()
     {
         try {

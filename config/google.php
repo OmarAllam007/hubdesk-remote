@@ -17,12 +17,14 @@ return [
     | https://developers.google.com/console
     |
     */
-    'client_id' => env('GOOGLE_CLIENT_ID', ''),
-    'client_secret' => env('GOOGLE_CLIENT_SECRET', ''),
+    'client_id' => "262455140499-fsfcdae9bmnn16hkuoturl96aur7erlt.apps.googleusercontent.com",
+    'client_secret' => "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",
     'redirect_uri' => env('GOOGLE_REDIRECT', ''),
-    'scopes' => [],
+    'scopes' => [\Google\Service\Sheets::DRIVE, \Google\Service\Sheets::SPREADSHEETS],
     'access_type' => 'online',
     'approval_prompt' => 'auto',
+    'file'    => storage_path('credentials.json'),
+    'enable'  => env('GOOGLE_SERVICE_ENABLED', true),
 
     /*
     |----------------------------------------------------------------------------
