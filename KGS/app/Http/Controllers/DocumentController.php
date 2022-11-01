@@ -79,7 +79,8 @@ class DocumentController extends Controller
             'path' => $request['document_path'] ? $request['document_path'] : $document->path,
             'level' => $level ?? null,
             'level_id' => $level_id ?? null,
-            'remarks' => $request->remarks
+            'remarks' => $request->remarks,
+            'notify_duration'=>$request->notify_duration
 //            'last_updated_by' => \Auth::id(),
         ]);
 
