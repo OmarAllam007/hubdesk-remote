@@ -33,6 +33,14 @@
         @endif
     </div>
 
+    <div class="form-group form-group-sm @error('name')? 'has-error' : @enderror ">
+        {{ Form::label('notify_duration', t('Notification Before'), ['class' => 'control-label']) }}
+        {{ Form::text('notify_duration', null, ['class' => 'form-control']) }}
+        @if ($errors->has('notify_duration'))
+            <div class="error-message">{{$errors->first('notify_duration')}}</div>
+        @endif
+    </div>
+
     <div class="form-group form-group-sm @error('document')? 'has-error' : @enderror ">
         {{ Form::label('document', t('Document'), ['class' => 'control-label']) }}
         {{ Form::file('document', null, ['class' => 'form-control']) }}
@@ -48,6 +56,8 @@
             <div class="error-message">{{$errors->first('remarks')}}</div>
         @endif
     </div>
+
+
 
     @php
         $data = [];
