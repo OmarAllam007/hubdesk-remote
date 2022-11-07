@@ -6454,5 +6454,35 @@
     "word": "My Information",
     "language": "ar",
     "translation": "معلوماتي"
+  },
+  {
+    "id": 2834,
+    "word": "Challenges and problem",
+    "language": "ar",
+    "translation": "التحديات والمشكلات"
+  },
+  {
+    "id": 2835,
+    "word": "Requester Name",
+    "language": "ar",
+    "translation": "اسم صاحب الطلب"
+  },
+  {
+    "id": 2836,
+    "word": "Room Number",
+    "language": "ar",
+    "translation": "رقم الغرفة أو القاعة"
+  },
+  {
+    "id": 2837,
+    "word": "School Name",
+    "language": "ar",
+    "translation": "المدرسة"
+  },
+  {
+    "id": 2838,
+    "word": "Stage",
+    "language": "ar",
+    "translation": "المرحلة"
   }
 ]
