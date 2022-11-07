@@ -39,9 +39,9 @@ class TicketReplyController extends Controller
         $reply = new TicketReply($request->get('reply'));
 
 //        TODO: KGS Request FOR KRB
-        if (!$this->checkIfTheReplyOfKRB($ticket,$request,$reply)) {
-            return response()->json(['error' => t('You are not authorize to resolve the ticket'), 401]);
-        }
+//        if (!$this->checkIfTheReplyOfKRB($ticket,$request,$reply)) {
+//            return response()->json(['error' => t('You are not authorize to resolve the ticket'), 401]);
+//        }
 
         $reply->user_id = $request->user()->id;
 
