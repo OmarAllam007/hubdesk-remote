@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Ticket;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -18,9 +19,15 @@ class DocumentReminder extends Mailable
      * @return void
      */
     protected $document;
-    public function __construct(Document $document)
+    /**
+     * @var Ticket
+     */
+    private $ticket;
+
+    public function __construct(Document $document, Ticket $ticket)
     {
         $this->document = $document;
+        $this->ticket = $ticket;
     }
 
     /**
@@ -30,11 +37,10 @@ class DocumentReminder extends Mailable
      */
     public function build()
     {
-//        $name = $this->document->approver->name;
-//        $link = link_to_route('kgs.document.index', null, $this->document);
-//        $content = str_replace(['$approver', '$approvalLink'], [$name, $link], $this->document->content);
-
-        $subject = "Reminder on renew document - {$this->document->name}";
-        return $this->markdown('kgs::emails.renew_document',['document' => $this->document])->subject($subject);
+        $subject = "New Ticket for renew - {$this->document->name}";
+        return $this->markdown('kgs::emails.renew_document', [
+            'document' => $this->document,
+            'ticket' => $this->ticket
+        ])->subject($subject);
     }
 }

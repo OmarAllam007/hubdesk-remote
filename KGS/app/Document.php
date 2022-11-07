@@ -3,6 +3,7 @@
 namespace KGS;
 
 use App\BusinessUnit;
+use App\DocumentRequirements;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -13,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
 class Document extends Model
 {
     protected $fillable = ['folder_id', 'name', 'start_date', 'end_date',
-        'last_updated_by', 'path', 'level', 'level_id','remarks'];
+        'last_updated_by', 'path', 'level', 'level_id','remarks','notify_duration'];
 
     protected $dates = ['start_date', 'end_date'];
 
@@ -22,6 +23,11 @@ class Document extends Model
     {
         return $this->belongsTo(BusinessDocumentsFolder::class);
     }
+
+    function requirements(){
+        return $this->hasMany(DocumentRequirements::class);
+    }
+
 
     function business_unit()
     {

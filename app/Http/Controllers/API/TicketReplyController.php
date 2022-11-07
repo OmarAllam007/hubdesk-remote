@@ -36,8 +36,13 @@ class TicketReplyController extends Controller
 
     function store(Ticket $ticket, TicketReplyRequest $request)
     {
-
         $reply = new TicketReply($request->get('reply'));
+
+//        TODO: KGS Request FOR KRB
+//        if (!$this->checkIfTheReplyOfKRB($ticket,$request,$reply)) {
+//            return response()->json(['error' => t('You are not authorize to resolve the ticket'), 401]);
+//        }
+
         $reply->user_id = $request->user()->id;
 
         $emails = null;
@@ -45,6 +50,7 @@ class TicketReplyController extends Controller
         if (isset($request->get("reply")["cc"])) {
             $emails = User::whereIn('id', $request->get("reply")["cc"])->get()->pluck('email')->toArray();
         }
+
         $reply->cc = $emails;
 
         $replyAttachments = [];
@@ -102,6 +108,13 @@ class TicketReplyController extends Controller
 
         return response()->json(['message' => t('Reply has been added'),
             'reply' => TicketReplyResource::make($reply)], 200);
+    }
+
+    private function checkIfTheReplyOfKRB($ticket, $request, $reply)
+    {
+        return $ticket->category_id = 161 &&
+            in_array($request->user()->id, [6761, 1499501]) //SAEED AND EID
+            && in_array($reply->status_id, [7, 8, 9]);
     }
 
 }

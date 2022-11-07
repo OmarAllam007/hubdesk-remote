@@ -17,36 +17,7 @@ class TicketResource extends JsonResource
     public function toArray($request)
     {
         /** @var Ticket $this */
-        $ticket = [
-            'id' => $this->id ?? '',
-            'subject' => $this->subject ?? '',
-            'requester' => $this->requester->name ?? 'Not Assigned',
-            'employee_id' => $this->requester ? $this->requester->employee_id : 'Not Assigned',
-            'technician' => $this->technician ? $this->technician->name : 'Not Assigned',
-            'status' => t($this->status->name ?? 'Not Assigned'),
-            'status_id' => $this->status_id ?? 'Not Assigned',
-            'category' => t($this->category->name ?? 'Not Assigned'),
-            'subcategory' => $this->subcategory ? t($this->subcategory->name) : 'Not Assigned',
-            'created_at' => $this->created_at ? $this->created_at->format('Y/m/d h:i') : 'Not Assigned',
-            'due_date' => $this->due_date ? $this->due_date->format('Y/m/d h:i') : 'Not Assigned',
-            'close_date' => $this->close_date ? $this->close_date->format('Y/m/d h:i') : '',
-            'type' => $this->ticket_type ?? 'Not Assigned',
-            'priority' => $this->priority->name ?? 'Not Assigned',
-            'is_overdue' => $this->overdue ? 1 : 0,
-            'is_task' => $this->isTask() ? 1 : 0,
-            'category_id' => $this->category_id ?? '',
-            'subcategory_id' => $this->subcategory_id ?? '',
-            'item_id' => $this->item_id ?? '',
-            'subitem_id' => $this->subitem_id ?? '',
-            'technician_id' => $this->technician_id ?? '',
-            'group_id' => $this->group_id ?? '',
-            'request_id' => $this->request_id ?? '',
-            'is_duplicated' => $this->isDuplicated(),
-            'is_support' => \Auth::user()->isSupport(),
-            'business_unit' => $this->business_unit->name ?? 'Not Assigned',
-            'survey' => $this->user_survey ? SurveyResource::make($this->user_survey)->toArray(null) : []
-        ];
-
+        $ticket = $this->getMainTicketDetails();
 
         $this->files = $this->getFilesOfTicket();
 
@@ -55,12 +26,11 @@ class TicketResource extends JsonResource
         $keyedFields = $this->ticket_service_custom_fields->flatten()->keyBy('name');
 
         $this->custom_fields->map(function ($field, $index) use ($keyedFields) {
-
-            if (str_contains(strtolower($field->name),'date') &&
+            if (str_contains(strtolower($field->name), 'date') &&
                 \DateTime::createFromFormat('Y-m-d h:i a', $field->value) !== false) {
-                $fieldValue =  Carbon::parse($field->value)->format('Y-m-d h:i a');
+                $fieldValue = Carbon::parse($field->value)->format('Y-m-d h:i a');
 
-            }else{
+            } else {
                 $fieldValue = $field->value;
             }
 
@@ -112,5 +82,38 @@ class TicketResource extends JsonResource
         return $files;
     }
 
+
+    function getMainTicketDetails()
+    {
+        return [
+            'id' => $this->id ?? '',
+            'subject' => $this->subject ?? '',
+            'requester' => $this->requester->name ?? 'Not Assigned',
+            'employee_id' => $this->requester ? $this->requester->employee_id : 'Not Assigned',
+            'technician' => $this->technician ? $this->technician->name : 'Not Assigned',
+            'status' => t($this->status->name ?? 'Not Assigned'),
+            'status_id' => $this->status_id ?? 'Not Assigned',
+            'category' => t($this->category->name ?? 'Not Assigned'),
+            'subcategory' => $this->subcategory ? t($this->subcategory->name) : 'Not Assigned',
+            'created_at' => $this->created_at ? $this->created_at->format('Y/m/d h:i') : 'Not Assigned',
+            'due_date' => $this->due_date ? $this->due_date->format('Y/m/d h:i') : 'Not Assigned',
+            'close_date' => $this->close_date ? $this->close_date->format('Y/m/d h:i') : '',
+            'type' => $this->ticket_type ?? 'Not Assigned',
+            'priority' => $this->priority->name ?? 'Not Assigned',
+            'is_overdue' => $this->overdue ? 1 : 0,
+            'is_task' => $this->isTask() ? 1 : 0,
+            'category_id' => $this->category_id ?? '',
+            'subcategory_id' => $this->subcategory_id ?? '',
+            'item_id' => $this->item_id ?? '',
+            'subitem_id' => $this->subitem_id ?? '',
+            'technician_id' => $this->technician_id ?? '',
+            'group_id' => $this->group_id ?? '',
+            'request_id' => $this->request_id ?? '',
+            'is_duplicated' => $this->isDuplicated(),
+            'is_support' => \Auth::user()->isSupport(),
+            'business_unit' => $this->business_unit->name ?? 'Not Assigned',
+            'survey' => $this->user_survey ? SurveyResource::make($this->user_survey)->toArray(null) : []
+        ];
+    }
 
 }
