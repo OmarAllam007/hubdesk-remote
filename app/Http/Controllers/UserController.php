@@ -51,19 +51,20 @@ class UserController extends Controller
             return redirect('/');
         }
 
-        return view('user.employee_information');
+        return view('user.employee_information',['index'=>\request('index')]);
     }
 
     function getSalarySlipPdf()
     {
-
         $userInfoAPI = new SapApi(auth()->user());
         $salarySlip = $userInfoAPI->getSalarySlip();
 
         if(!$salarySlip){
             return;
         }
-        $path = storage_path("app/public/{$salarySlip}");
+
+        $index = \request('index');
+        $path = storage_path("app/public/{$salarySlip[$index ?? 0]}");
 
         return response()->download($path,
             'salary.pdf', ['Content-Type' => 'application/pdf'], 'inline')
