@@ -31,13 +31,14 @@ Route::get('google-sheet', function (\Illuminate\Support\Facades\Request $reques
 
     $rows = $r->data;
 
-    $sheets->spreadsheet(env('POST_SPREADSHEET_ID'))->sheet('Database_Insur')->range("A2:Q2000")->clear();
+    $sheets->spreadsheet(env('POST_SPREADSHEET_ID'))->sheet('Database_Insur')->range("A2:R2000")->clear();
 
     $currentRow = 2;
 
     foreach ($rows as $row){
+
         $sheets->spreadsheet(env('POST_SPREADSHEET_ID'))->sheet('Database_Insur')
-            ->range("A$currentRow:Q$currentRow")
+            ->range("A$currentRow:R$currentRow")
             ->update([
             [
                 $row->{"Hubdesk ID"} ?? "",
@@ -57,6 +58,7 @@ Route::get('google-sheet', function (\Illuminate\Support\Facades\Request $reques
                 $row->{"Requirement Date"} ?? "",
                 $row->{"Feedback Date"} ?? "",
                 $row->{"Performance"} ?? "",
+                $row->{"Type"} ?? "",
             ]
         ]);
         ++$currentRow;
