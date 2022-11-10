@@ -9,9 +9,11 @@ use Illuminate\Database\Eloquent\Builder;
 
 class Role extends Model
 {
+    use Listable;
 
-   protected $fillable = ['name'];
+    protected $fillable = ['name'];
 
+    const DIRECT_MANAGER_TYPE = 1;
 
     public function users()
     {
@@ -35,6 +37,5 @@ class Role extends Model
         return $query;
     }
 
-    use Listable;
 
- } 
+}
