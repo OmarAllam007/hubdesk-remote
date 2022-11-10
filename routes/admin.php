@@ -50,6 +50,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
     $r->get('/users/labour-office/upload', 'Admin\UserController@showLabourOfficeUsersUploadForm')->name('user.labour_office.upload');
     $r->post('users/labour/upload', 'Admin\UserController@submitLabourOfficeUpload')->name('user.labour.submit.upload');
 
+    $r->get('/users/daam-office/upload', 'Admin\UserController@showDaamOfficeUsersUploadForm')->name('user.daam_office.upload');
+    $r->post('users/daam/upload', 'Admin\UserController@submitDaamOfficeUpload')->name('user.daam.submit.upload');
+
     Route::resource('survey', 'SurveyController');
 
 

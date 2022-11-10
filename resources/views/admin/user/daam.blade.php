@@ -10,7 +10,7 @@
 @section('body')
     <div class="col-md-12">
 
-        <form action="{{route('admin.user.labour.submit.upload')}}" method="post" enctype="multipart/form-data" id="form">
+        <form action="{{route('admin.user.daam.submit.upload')}}" method="post" enctype="multipart/form-data" id="form">
             {{csrf_field()}} {{method_field('post')}}
             <div class="form-group ">
                 <label for="upload-form">{{t('Select File')}}</label>
@@ -25,11 +25,9 @@
             </div>
 
         </form>
-        <div id="preview" style="display: none">
-            <p>Loading</p>
-        </div>
     </div>
 @endsection
 
 @section('javascript')
+
 @endsection

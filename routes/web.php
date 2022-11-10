@@ -11,8 +11,6 @@ if ($login = env('LOGIN_AS')) {
 }
 
 
-
-
 Route::group(['middleware' => ['auth']], function (\Illuminate\Routing\Router $r) {
     Route::get('admin/new_fp', [FPController::class, 'index']);
     Route::post('admin/new_fp/post', [FPController::class, 'postFP'])->name('admin.fp.post');

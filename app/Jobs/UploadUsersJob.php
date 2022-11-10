@@ -53,7 +53,7 @@ class UploadUsersJob extends Job
         $checkRow = $sheet->getRowIterator(1, 1)->current();
         $dataCells = $checkRow->getCellIterator();
         $data = $this->getDataOfCells($dataCells);
-//        dump($data);
+
 
         if ($data[0] != 'Employee Number' && $data[2] != 'Company Code') {
             return;
