@@ -53,17 +53,24 @@ class SapApi
 
         $filesData = $result->PDF->item;
 
+
         foreach ($filesData as $key => $pdfFile) {
 
             $fileIndex++;
-            foreach ($pdfFile->PDF->item as $item) {
-                if (!isset($files[$pdfFile->MEMORY])) {
-                    $files[$pdfFile->MEMORY] = null;
-                }
-                $files[$pdfFile->MEMORY] .= $item->LINE;
+            $keyName = $pdfFile->MEMORY;
+            if (str_contains($pdfFile->MEMORY, '_')) {
+                $keyName = substr($pdfFile->MEMORY, 0, strpos($pdfFile->MEMORY, "_"));
+                $files[$keyName] = null;
+            }
+            if (!isset($files[$keyName])) {
+                $files[$keyName] = null;
+            }
+
+            foreach ($pdfFile->PDF->item as $keyb=>$item) {
+
+                $files[$keyName] .= $item->LINE;
             }
         }
-
 
         $folder = storage_path('app/public/attachments/salary_slip/');
 
@@ -72,6 +79,7 @@ class SapApi
         }
 
         $fileUrls = [];
+
         foreach ($files as $key=>$file) {
             $filename = $this->user->employee_id . '_salary'. $key. '.pdf';
             $path = $folder . $filename;
@@ -82,7 +90,7 @@ class SapApi
 
 
             file_put_contents($path, $file);
-            $fileUrls[] = '/attachments/salary_slip/' . $filename;
+            $fileUrls[] = 'attachments/salary_slip/' . $filename;
         }
 
         return $fileUrls;

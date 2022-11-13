@@ -9,30 +9,40 @@
 
 @endsection
 @section('body')
-    <div class="flex flex-col">
-        {{--        <div class="flex justify-center">--}}
-        {{--            <div class="w-2/3">--}}
-        {{--                <div class="flex justify-end mb-5">--}}
-        {{--                    <a href="?pdf" target="_blank" class="bg-transparent hover:bg-green-500 text-green-700 font-semibold--}}
-        {{--        hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded">--}}
-        {{--                        <i class="fa fa-download"></i> Download--}}
-        {{--                    </a>--}}
-        {{--                </div>--}}
-        {{--            </div>--}}
-        {{--        </div>--}}
+    <div class="flex">
+        <div class="w-full">
+            <div class="flex-col justify-center items-center">
+{{--                <div class="flex  pb-5 justify-center">--}}
+{{--                    @foreach($months as $key=>$month)--}}
+{{--                        <a class="m-3 w-1/6 text-center py-5  rounded-xl shadow-md  bg-white font-bold--}}
+{{--                  @if(request('index') == $key+1) bg-gray-300 shadow-sm @endif"--}}
+{{--                           href="{{route('user.information')}}?index={{$key+1}}"--}}
 
-
-        <div class="flex-col w-full text-center">
-            <div class="flex bg-white w-3/4 justify-center">
-            <a href="{{route('user.information')}}?index=1">Month1</a>
-                <a href="{{route('user.information')}}?index=2">Month2</a>
-
+{{--                        >--}}
+{{--                            {{$month->format('M')}}</a>--}}
+{{--                    @endforeach--}}
+{{--                </div>--}}
+                <div class="flex justify-center">
+                    <div class="w-10"></div>
+                    <div class="flex flex-col justify-center p-10 ">
+                        @foreach($paths as $path)
+                            <iframe src="{{URL::to($path)}}"  height='800' allowfullscreen="" class="pt-5 "></iframe>
+                            {{--                        <iframe id="salarySlip" class="w-full pt-5 "--}}
+                            {{--                                src="{{route('user.salarySlipPdf')}}?index={{request('index',0)}}" scrolling="auto"--}}
+                            {{--                                height="1100"--}}
+                            {{--                        ></iframe>--}}
+                        @endforeach
+                    </div>
+                    <div class="w-10"></div>
+                </div>
             </div>
-
-            <iframe id="salarySlip"
-                    src="{{route('user.salarySlipPdf')}}?index={{request('index',0)}}" scrolling="auto" height="1100" class="w-2/3"></iframe>
         </div>
     </div>
+    <div class="flex-col text-center w-full">
+
+
+    </div>
+
 
     {{--    <object data="{{url('storage'.$salarySlip)}}" height="100%" width="100%" type="application/pdf">--}}
     {{--        <iframe src="https://docs.google.com/viewer?url={{url('storage'.$salarySlip)}}&embedded=true"></iframe>--}}

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Helpers\SapApi;
 use App\Rules\ResetPassword;
 use App\User;
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -21,7 +23,7 @@ class UserController extends Controller
         if (\Hash::check($request->old_password, \Auth::user()->password)) {
             \Auth::user()->update([
                 'password' => bcrypt($request->password),
-                'password_reset'=> false,
+                'password_reset' => false,
             ]);
 
             flash(t('Reset Password'), t('Password has been Reset'), 'success');
@@ -43,15 +45,19 @@ class UserController extends Controller
 
     function getUserInformation()
     {
-//        if(!auth()->user()->isAdmin()){
-//            return redirect()->to('/');
-//        }
-//        return view('errors.maintenance');
         if (!auth()->user()->employee_id) {
             return redirect('/');
         }
+        $userInfoAPI = new SapApi(auth()->user());
+        $salarySlipPaths = $userInfoAPI->getSalarySlip();
 
-        return view('user.employee_information',['index'=>\request('index')]);
+        if (!$salarySlipPaths) {
+            return;
+        }
+
+        $results = CarbonPeriod::create(Carbon::now()->subMonths(5), '1 months', Carbon::now());
+//        $salarySlipPaths = $salarySlipPaths[\request('index') ?? 0];
+        return view('user.employee_information', ['index' => \request('index'), 'months' => $results,'paths'=>$salarySlipPaths]);
     }
 
     function getSalarySlipPdf()
@@ -59,12 +65,14 @@ class UserController extends Controller
         $userInfoAPI = new SapApi(auth()->user());
         $salarySlip = $userInfoAPI->getSalarySlip();
 
-        if(!$salarySlip){
+        if (!$salarySlip) {
             return;
         }
 
-        $index = \request('index');
+        $index = \request('index') ?? count($salarySlip);
+
         $path = storage_path("app/public/{$salarySlip[$index ?? 0]}");
+
 
         return response()->download($path,
             'salary.pdf', ['Content-Type' => 'application/pdf'], 'inline')
