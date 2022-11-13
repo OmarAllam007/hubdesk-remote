@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\BusinessUnit;
+use App\Role;
 use App\Ticket;
 use App\TicketApproval;
 use Illuminate\Bus\Queueable;
@@ -62,18 +63,33 @@ class ApprovalLevels extends Job
             }
 
 //
-            $roles = $bu->roles()->whereIn('role_id', $this->levels->toArray())->get()->keyBy('role_id');
+            $roles = $bu->roles()
+                ->whereIn('role_id', $this->levels->toArray())
+                ->get()
+                ->keyBy('role_id');
+
+
+            $managerID = $this->ticket->requester->manager->id;
 
             foreach ($this->levels as $key => $level) {
-//                dd($this->levels);
-                $role = $roles->get($level);
+
+                $isDirectManagerRole = Role::where('type', Role::DIRECT_MANAGER_TYPE)
+                    ->where('id', $level)->first();
+
+
+                if ($isDirectManagerRole && $managerID) {
+                    $user = $managerID;
+                } else {
+                    $role = $roles->get($level);
+                    $user = $role->user->id;
+                }
 
                 $this->ticket->approvals()->create([
                     'creator_id' => $this->ticket->creator_id,
-                    'approver_id' => $role->user->id,
+                    'approver_id' => $user,
                     'status' => 0,
                     'stage' => $key + 1,
-                    'content' => ''
+                    'content' => 'For your Approval'
                 ]);
             }
         }
