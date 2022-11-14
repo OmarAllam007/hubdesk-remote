@@ -69,7 +69,7 @@ class ApprovalLevels extends Job
                 ->keyBy('role_id');
 
 
-            $managerID = $this->ticket->requester->manager->id;
+            $managerID = $this->ticket->requester->manager->id ?? null;
 
             foreach ($this->levels as $key => $level) {
 
