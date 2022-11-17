@@ -18,7 +18,7 @@
                     <div class="flex flex-col justify-center p-10 ">
                         @foreach($paths as $path)
 
-                            <iframe src="./{{$path}}"  height='800' allowfullscreen="" class="pt-5 "></iframe>
+                            <iframe src="{{$path}}"  height='800' allowfullscreen="" class="pt-5 "></iframe>
                             {{--                        <iframe id="salarySlip" class="w-full pt-5 "--}}
                             {{--                                src="{{route('user.salarySlipPdf')}}?index={{request('index',0)}}" scrolling="auto"--}}
                             {{--                                height="1100"--}}
