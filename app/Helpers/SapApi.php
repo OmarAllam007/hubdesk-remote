@@ -72,7 +72,7 @@ class SapApi
             }
         }
 
-        $folder = storage_path('app/public/attachments/salary_slip/');
+        $folder = storage_path('app/public/salary_slip/');
 
         if (!is_dir($folder)) {
             mkdir($folder, 0775, true);
@@ -90,7 +90,7 @@ class SapApi
 
 
             file_put_contents($path, $file);
-            $fileUrls[] = 'attachments/salary_slip/' . $filename;
+            $fileUrls[] = 'salary_slip/' . $filename;
         }
 
         return $fileUrls;
