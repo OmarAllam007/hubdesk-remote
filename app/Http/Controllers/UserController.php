@@ -55,23 +55,32 @@ class UserController extends Controller
             return;
         }
 
-        $results = CarbonPeriod::create(Carbon::now()->subMonths(5), '1 months', Carbon::now());
-//        $salarySlipPaths = $salarySlipPaths[\request('index') ?? 0];
-        return view('user.employee_information', ['index' => \request('index'), 'months' => $results,'paths'=>$salarySlipPaths]);
-    }
+        $paths = [];
 
-    function getSalarySlipPdf()
-    {
-        $userInfoAPI = new SapApi(auth()->user());
-        $salarySlip = $userInfoAPI->getSalarySlip();
-
-        if (!$salarySlip) {
-            return;
+        foreach ($salarySlipPaths as $path){
+            $basename = str_replace('+', ' ', urlencode(basename($path)));
+            $dirname = dirname($path);
+            $path = $dirname . '/' . $basename;
+            $paths[] = url('/storage/' . $path);
         }
 
-        $index = \request('index') ?? count($salarySlip);
 
-        $path = storage_path("app/public/{$salarySlip[$index ?? 0]}");
+        return view('user.employee_information', ['index' => \request('index'),'paths'=>$paths]);
+    }
+
+    function getSalarySlipPdf($path)
+    {
+//        dd($path);
+//        $userInfoAPI = new SapApi(auth()->user());
+//        $salarySlip = $userInfoAPI->getSalarySlip();
+//
+//        if (!$salarySlip) {
+//            return;
+//        }
+//
+//        $index = \request('index') ?? count($salarySlip);
+
+        $path = storage_path("app/public/salary_slip/{$path}");
 
 
         return response()->download($path,
