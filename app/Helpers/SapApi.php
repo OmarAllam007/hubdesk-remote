@@ -36,21 +36,40 @@ class SapApi
         ]);
 
         try {
-            $result = $client->ZHCM_PAYROLL_TECH(['IM_PERNR' => $this->user->employee_id]);
-
+//            dd($client->getFunctions());
+            $result = $client->ZHCM_PAYROLL_TECH_V2(['IM_PERNR' => $this->user->employee_id]);
         } catch (\Throwable $e) {
-            dd($e->getMessage());
+//            dd($e->getMessage());
             return $e->getMessage();
         }
 
-        if (!isset($result->EX_XPDF->item)) {
+//        dd('asdasd');
+        if (!isset($result->PDF)) {
             return false;
         }
 
-        $file = null;
+        $files = collect();
+        $fileIndex = 1;
 
-        foreach ($result->EX_XPDF->item as $item) {
-            $file .= $item->LINE;
+        $filesData = $result->PDF->item;
+
+
+        foreach ($filesData as $key => $pdfFile) {
+
+            $fileIndex++;
+            $keyName = $pdfFile->MEMORY;
+            if (str_contains($pdfFile->MEMORY, '_')) {
+                $keyName = substr($pdfFile->MEMORY, 0, strpos($pdfFile->MEMORY, "_"));
+                $files[$keyName] = null;
+            }
+            if (!isset($files[$keyName])) {
+                $files[$keyName] = null;
+            }
+
+            foreach ($pdfFile->PDF->item as $keyb=>$item) {
+
+                $files[$keyName] .= $item->LINE;
+            }
         }
 
         $folder = storage_path('app/public/attachments/salary_slip/');
@@ -59,16 +78,22 @@ class SapApi
             mkdir($folder, 0775, true);
         }
 
-        $filename = $this->user->employee_id . '_salary' . '.pdf';
-        $path = $folder . $filename;
+        $fileUrls = [];
 
-        if (is_file($path)) {
+        foreach ($files as $key=>$file) {
+            $filename = $this->user->employee_id . '_salary'. $key. '.pdf';
             $path = $folder . $filename;
+
+            if (is_file($path)) {
+                $path = $folder . $filename;
+            }
+
+
+            file_put_contents($path, $file);
+            $fileUrls[] = 'attachments/salary_slip/' . $filename;
         }
 
-        file_put_contents($path, $file);
-
-        return '/attachments/salary_slip/' . $filename;
+        return $fileUrls;
     }
 
 
@@ -91,7 +116,6 @@ class SapApi
             'password' => env('SAP_PASS'),
             'compression' => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP
         ]);
-
 
 
         try {
