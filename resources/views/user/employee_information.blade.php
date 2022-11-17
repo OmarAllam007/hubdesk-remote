@@ -16,9 +16,6 @@
                 <div class="flex justify-center">
                     <div class="w-10"></div>
                     <div class="flex flex-col justify-center p-10 ">
-                        @php
-                        $controller = new \App\Http\Controllers\UserController();
-                        @endphp
                         @foreach($paths as $path)
 
                             <iframe src="{{$path}}"  height='800' allowfullscreen="" class="pt-5 "></iframe>
