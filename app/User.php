@@ -267,9 +267,9 @@ class User extends Authenticatable implements CanResetPassword
     }
 
 
-    function toRequesterJson()
+    function toRequesterJson($loadFromSAP = false)
     {
-        return [
+        $systemUserInformation =  [
             'id' => $this->id,
             'name' => $this->name,
             'employee_id' => $this->employee_id ?? 'Not Assigned',
@@ -283,6 +283,17 @@ class User extends Authenticatable implements CanResetPassword
             'manager_name' => $this->manager ? $this->manager->name : 'Not Assigned',
             'manager_email' => $this->manager ? $this->manager->email : 'Not Assigned',
         ];
+        $sapInformation = [];
+
+        if($loadFromSAP && $this->employee_id){
+            $user = \App\User::where('employee_id', $this->employee_id)->first();
+            $sapApi = new \App\Helpers\SapApi($user);
+            $sapApi->getUserInformation();
+            $sapInformation =  $sapApi->sapUser->getEmployeeSapInformation();
+        }
+
+        return array_merge($systemUserInformation, $sapInformation);
+
     }
 
 
