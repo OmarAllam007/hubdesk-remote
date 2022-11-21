@@ -14,7 +14,7 @@
         <div id="TicketApprovalShow">
             <approval-show :approval="{{json_encode($ticketApproval)}}"
                            :questions="{{json_encode($ticketApproval->questions ?? '{}')}}"
-                           :requester="{{json_encode($ticketApproval->ticket->requester->toRequesterJson(false))}}"
+                           :requester="{{json_encode($ticketApproval->ticket->requester->toRequesterJson(true))}}"
                            :fields="{{json_encode($ticketApproval->ticket->custom_fields)}}"
                            :replies="{{json_encode(\App\Http\Resources\TicketReplyResource::collection($ticketApproval->ticket->replies()->latest()->get()))}}"
                            :approvals="{{json_encode(\App\Http\Resources\TicketApprovalResource::collection($ticketApproval->ticket->approvals()->latest()->get()))}}"
