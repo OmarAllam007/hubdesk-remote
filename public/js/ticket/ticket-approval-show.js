@@ -31221,7 +31221,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -31414,6 +31414,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -31424,7 +31431,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ApprovalShow",
-  props: ["approval", 'questions', 'requester', 'fields', 'replies', 'approvals'],
+  props: ["approval", 'questions', 'requester', 'fields', 'replies', 'approvals', 'load_from_sap'],
   data: function data() {
     return {
       approvalForm: {
@@ -33729,7 +33736,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "font-bold"
   }, [_vm._v("Name:")]), _vm._v(" " + _vm._s(_vm.requester.name) + " | "), _c('span', {
     staticClass: "font-bold"
-  }, [_vm._v("Job Title:")]), _vm._v(" " + _vm._s(_vm.requester.job_title))])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Job Title:")]), _vm._v(" " + _vm._s(_vm.requester.job_title) + "\n        "), (_vm.load_from_sap && _vm.requester.leave_balance) ? _c('span', {
+    staticClass: "pt-5 "
+  }, [_c('span', {
+    staticClass: "font-bold"
+  }, [_vm._v(" | Leave Balance:")]), _vm._v(" " + _vm._s(_vm.requester.leave_balance) + "\n          ")]) : _vm._e()])]), _vm._v(" "), _c('div', {
     staticClass: "flex-col"
   }, [_c('a', {
     staticClass: "bg-transparent hover:bg-blue-500 text-blue-700\n                    font-semibold hover:text-white py-2 px-2 border\n                    border-blue-500 hover:border-transparent rounded-md  ",

@@ -10,7 +10,14 @@
             #{{ approval.ticket.id }} - {{ approval.ticket.subject }} - Approval
           </h4>
           <p class="pt-5 "><span class="font-bold">Employee ID :</span> {{ requester.employee_id }}
-            | <span class="font-bold">Name:</span> {{requester.name}} | <span class="font-bold">Job Title:</span> {{requester.job_title}}</p>
+            | <span class="font-bold">Name:</span> {{requester.name}} | <span class="font-bold">Job Title:</span> {{requester.job_title}}
+          <span v-if="load_from_sap && requester.leave_balance" class="pt-5 "> <span class="font-bold"> | Leave Balance:</span> {{requester.leave_balance}}
+            <!--  | <span class="font-bold">Flight Ticket Balance:</span> {{requester.flight_ticket_balance}} -->
+          </span>
+
+          </p>
+
+
         </div>
 
         <div class="flex-col">
@@ -147,7 +154,7 @@ import NotificationsComponent from "../show/NotificationsComponent";
 
 export default {
   name: "ApprovalShow",
-  props: ["approval", 'questions', 'requester', 'fields', 'replies', 'approvals'],
+  props: ["approval", 'questions', 'requester', 'fields', 'replies', 'approvals','load_from_sap'],
   data() {
     return {
       approvalForm: {
