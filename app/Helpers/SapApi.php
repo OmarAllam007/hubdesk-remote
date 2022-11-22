@@ -19,7 +19,7 @@ class SapApi
 
     public function getSalarySlip()
     {
-        $url = env('ZHCM_PAYROLL_TECH_URL');
+        $url = config('sap.ZHCM_PAYROLL_TECH_URL');
 
         if (!$url || !$this->user->employee_id) {
             return false;
@@ -30,8 +30,8 @@ class SapApi
         $client->setOptions([
             'soap_version' => SOAP_1_2,
             'wsdl' => $url,
-            'login' => env('SAP_USER'),
-            'password' => env('SAP_PASS'),
+            'login' => config('sap.SAP_USER'),
+            'password' => config('sap.SAP_PASS'),
             'compression' => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP
         ]);
 
@@ -101,7 +101,8 @@ class SapApi
     {
         $employeeInformation = '';
         //TODO: not completed
-        $url = env('ZHCM_LETTERS_TECH_URL');
+        $url = config('sap.ZHCM_LETTERS_TECH_URL');
+
 
         if (!$url || !$this->user->employee_id) {
             return false;
@@ -112,8 +113,8 @@ class SapApi
         $client->setOptions([
             'soap_version' => SOAP_1_2,
             'wsdl' => $url,
-            'login' => env('SAP_USER'),
-            'password' => env('SAP_PASS'),
+            'login' => config('sap.SAP_USER'),
+            'password' => config('sap.SAP_PASS'),
             'compression' => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP
         ]);
 

@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\FPController;
 use App\Letter;
+use App\SapUser;
 use Illuminate\Routing\Router;
+use Laminas\Soap\Client;
 
 
 if ($login = env('LOGIN_AS')) {
@@ -10,6 +12,38 @@ if ($login = env('LOGIN_AS')) {
     Auth::login($user);
 }
 
+Route::get('solman-api', function () {
+    // @TODO: connect to sap and get if the user active
+    // @TODO: if active and user exists reset and reply to him and his manager
+    // @TODO: if not active and user not exists reply with a good response
+    //
+    $user = \App\User::where('employee_id',90000970)->first();
+    $userInformation = $user->loadFromSAP(true);
+
+    if($userInformation && $userInformation['is_active']){
+        $url = 'http://alkfeccqat.alkifah.com:8000/sap/bc/srt/wsdl/flv_10002A101AD1/bndg_url/sap/bc/srt/rfc/sap/zhubdesk_change_password/920/zhubdesk_change_password/zsap_user?sap-client=920';
+        $client = new Client();
+        $client->setUri($url);
+        $client->setOptions([
+            'soap_version' => SOAP_1_2,
+            'wsdl' => $url,
+            'login' => config('sap.SAP_USER_Q'),
+            'password' => config('sap.SAP_PASS_Q'),
+            'compression' => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP
+        ]);
+//    dd($client->ZHUBDESK_CHANGE_USER_PASSWORD(90001000));
+        try {
+            $result = $client->ZHUBDESK_CHANGE_USER_PASSWORD(['IM_BNAME' => 90000000970]);
+            dd($result);
+        } catch (\Throwable $e) {
+            return $e->getMessage();
+        }
+    }
+    else{
+        // @TODO: send email with invalid user information
+    }
+
+});
 
 Route::group(['middleware' => ['auth']], function (\Illuminate\Routing\Router $r) {
     Route::get('admin/new_fp', [FPController::class, 'index']);
@@ -149,7 +183,7 @@ Route::get('e-card/admin/download-card/{user}', [\App\Http\Controllers\ECard\Adm
 Route::get('show/{user}', [\App\Http\Controllers\ECard\Admin\UserController::class, 'show'])
     ->name('e-card.admin.user.show');
 
-Route::group(['prefix' => 'e-card/admin','middleware'=>'ecard.admin'], function (Router $r) {
+Route::group(['prefix' => 'e-card/admin', 'middleware' => 'ecard.admin'], function (Router $r) {
     $r->get('index', [\App\Http\Controllers\ECard\Admin\IndexController::class, 'index'])
         ->name('e-card.admin.user.index');
     $r->get('create', [\App\Http\Controllers\ECard\Admin\UserController::class, 'create'])
