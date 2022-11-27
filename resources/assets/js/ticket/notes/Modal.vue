@@ -10,6 +10,16 @@
                 <h4 class="modal-title">{{ create_form ? 'Add Note' : 'Edit Note' }} - #{{ note.ticket_id }}</h4>
               </div>
               <div class="modal-body">
+                <div class="flex flex-col w-1/2 pb-5">
+                  <label for="template" v-show="templates.length">{{ $root.t('Reply Template') }}:</label>
+                  <select v-model="selected_template" class="border border-2 bg-white rounded py-5 outline-none "  id="template"
+                          v-show="templates.length"
+                          name="template" @change="updateDescription">
+                    <option value="" class="py-1">{{ $root.t('Select Template') }}</option>
+                    <option :value="template.id" v-for="template in templates" v-html="template.title"
+                            class="py-1"></option>
+                  </select>
+                </div>
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
@@ -63,10 +73,11 @@
 import Editor from '@tinymce/tinymce-vue'
 import axios from "axios";
 import {EventBus} from "../../EventBus";
+import _ from "lodash";
 
 export default {
   name: "Modal",
-  props: ['isOpened', 'selected_note', 'create_form'],
+  props: ['isOpened', 'selected_note', 'create_form','templates'],
   data() {
     return {
       note: {
@@ -75,9 +86,14 @@ export default {
         email_to_technician: false,
       },
       loading: false,
+      selected_template: '',
     }
   },
   methods: {
+    updateDescription() {
+      let template = _.find(this.templates, {'id': this.selected_template});
+      this.note.note = template ? template.description : '';
+    },
     closeModal() {
       this.$emit('close');
     },

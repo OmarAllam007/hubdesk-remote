@@ -209,6 +209,7 @@
         <notes :notes="ticket.notes"
                :can_create_note="ticket.authorizations.can_create_note"
                :ticket_id="ticket.id"
+               :templates="templates"
         ></notes>
 
       </div>
@@ -222,7 +223,7 @@ import Notes from "../notes/Notes";
 
 export default {
   name: "TicketMain",
-  props: ['ticket'],
+  props: ['ticket','templates'],
   components: {Notes}
 }
 </script>
