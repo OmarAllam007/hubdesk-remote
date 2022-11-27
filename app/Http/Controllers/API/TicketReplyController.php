@@ -39,11 +39,12 @@ class TicketReplyController extends Controller
         $reply = new TicketReply($request->get('reply'));
 
 //        TODO: KGS Request FOR KRB
-//        if ($ticket->category_id = 161) {
-//            if(in_array($reply->status_id, [7, 8, 9]) && !in_array($request->user()->id, [6761, 1499501])){
-//                return response()->json(['error' => t('You are not authorize to resolve the ticket'), 401]);
-//            }
-//        }
+
+        if ($ticket->category_id == 161) {
+            if(in_array($reply->status_id, [7, 8, 9]) && !in_array($request->user()->id, [6761, 1499501])){
+                return response()->json(['error' => t('You are not authorize to resolve the ticket'), 401]);
+            }
+        }
 
         $reply->user_id = $request->user()->id;
 
