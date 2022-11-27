@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\FPController;
-use App\Letter;
 use Illuminate\Routing\Router;
 
 

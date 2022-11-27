@@ -2,6 +2,7 @@
     <div>
         <div class="form-group " style="padding-bottom: 20px">
             <div class="requirement-container col-md-12">
+
                 <div class="requirement-check">
                     <input type="checkbox" :id="`requirement-checkbox[${index}]`"
                            :name="`requirements[${index}][checked]`"

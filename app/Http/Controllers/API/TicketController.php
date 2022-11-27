@@ -259,7 +259,7 @@ class TicketController
         $pathName =  "/kgs/ticket/" . $ticket_id . '/' . $requirement_id . '/'. $name;
 
         $ticketRequirements =  TicketRequirements::where('ticket_id', $ticket_id)
-            ->where('requirement_id', $requirement_id)->first();
+            ->where('id', $requirement_id)->first();
 
         $ticketRequirements->update([
            'path'=> $pathName,
@@ -269,7 +269,7 @@ class TicketController
 
     function downloadRequirements($ticket_id, $requirement_id)
     {
-        $path = TicketRequirements::where('ticket_id',$ticket_id)->where('requirement_id',$requirement_id)
+        $path = TicketRequirements::where('ticket_id',$ticket_id)->where('id',$requirement_id)
             ->first()->path;
 
         $file = public_path('storage') . $path;

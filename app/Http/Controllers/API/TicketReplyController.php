@@ -39,9 +39,11 @@ class TicketReplyController extends Controller
         $reply = new TicketReply($request->get('reply'));
 
 //        TODO: KGS Request FOR KRB
-//        if (!$this->checkIfTheReplyOfKRB($ticket,$request,$reply)) {
-//            return response()->json(['error' => t('You are not authorize to resolve the ticket'), 401]);
-//        }
+        if ($ticket->category_id = 161 && in_array($reply->status_id, [7, 8, 9])) {
+            if(!in_array($request->user()->id, [6761, 1499501])){
+                return response()->json(['error' => t('You are not authorize to resolve the ticket'), 401]);
+            }
+        }
 
         $reply->user_id = $request->user()->id;
 
@@ -109,12 +111,12 @@ class TicketReplyController extends Controller
         return response()->json(['message' => t('Reply has been added'),
             'reply' => TicketReplyResource::make($reply)], 200);
     }
-
-    private function checkIfTheReplyOfKRB($ticket, $request, $reply)
-    {
-        return $ticket->category_id = 161 &&
-            in_array($request->user()->id, [6761, 1499501]) //SAEED AND EID
-            && in_array($reply->status_id, [7, 8, 9]);
-    }
+//
+//    private function checkIfTheReplyOfKRB($ticket, $request, $reply)
+//    {
+//        return
+//             //SAEED AND EID
+//            && in_array($reply->status_id, [7, 8, 9]);
+//    }
 
 }

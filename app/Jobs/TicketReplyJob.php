@@ -55,6 +55,12 @@ class TicketReplyJob implements ShouldQueue
 
             $this->to[] = $ticket->requester->email;
 
+//            @Todo KGS request
+            if($ticket->category_id == 161){
+                $this->cc[] = 'saeed.ahmed@alkifah.com';
+                $this->cc[] = 'eid@alkifah.com';
+            }
+
             if (($ticket->created_by->id != $ticket->requester->id) && $ticket->created_by->email) {
                 $this->cc[] = $ticket->created_by->email;
             }
