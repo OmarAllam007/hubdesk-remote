@@ -42,7 +42,9 @@
            @close="closeModal()"
            v-if="modalOpened"
            :create_form="isCreateForm"
-           :selected_note="selected_note"></modal>
+           :selected_note="selected_note"
+           :templates="templates"
+    ></modal>
   </div>
 </template>
 
@@ -54,7 +56,7 @@ import {EventBus} from "../../EventBus";
 
 export default {
   name: "Notes",
-  props: ['notes', 'can_create_note', 'ticket_id'],
+  props: ['notes', 'can_create_note', 'ticket_id','templates'],
   data() {
     return {
       modalOpened: false,

@@ -124,7 +124,8 @@
                     :class="{tabUIButtonSelected : selectedTab == 1}" @click="changeTab(1)"><i
                 class="fa fa-comments-o"></i> {{ $root.t('Conversation') }}
             </button>
-            <button v-if="ticketData.ticket.category_id == 161" class="w-1/6 bg-white rounded-xl p-3 m-3 tabUIButton border"
+            <button v-if="ticketData.ticket.category_id == 161"
+                    class="w-1/6 bg-white rounded-xl p-3 m-3 tabUIButton border"
                     :class="{tabUIButtonSelected : selectedTab == 8}" @click="changeTab(8)">
               <i class="fa fa-list"></i> {{ $root.t('Requirements') }}
             </button>
@@ -166,7 +167,9 @@
       <loader v-if="loading"></loader>
 
       <div class="w-full" v-else>
-        <ticket-main :ticket="ticketData.ticket" v-show="selectedTab == 0"></ticket-main>
+        <ticket-main :ticket="ticketData.ticket" v-show="selectedTab == 0"
+                     :templates="templates"
+        ></ticket-main>
         <ticket-conversation v-show="selectedTab == 1" :ticket="ticketData.ticket"></ticket-conversation>
         <tasks v-show="selectedTab == 2" :ticket="ticketData.ticket"></tasks>
         <resolution v-if="selectedTab == 3" v-cloak></resolution>
@@ -228,7 +231,8 @@
         >
         </letter-modal>
 
-        <requirements v-if="ticketData.ticket.category_id == 161 && selectedTab == 8" :ticket_id="ticketData.ticket.id"></requirements>
+        <requirements v-if="ticketData.ticket.category_id == 161 && selectedTab == 8"
+                      :ticket_id="ticketData.ticket.id"></requirements>
 
       </div>
     </div>
@@ -259,6 +263,7 @@ import TicketSurvey from "../survey/TicketSurvey";
 import LetterModal from "../actions/LetterContentModal";
 import ToLetterModal from "../actions/ToLetterModal";
 import Requirements from "../requirements/Requirements";
+
 export default {
   name: "TicketShow",
   props: ['data', 'translations'],
