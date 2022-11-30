@@ -81,7 +81,7 @@
                                     {{t('Remarks')}}</a>
                             @endif
                         </td>
-                        <td class="col-md-3">
+                        <td class="col-md-4">
                             <form action="{{route('kgs.document.destroy', compact('folder','document'))}}"
                                   method="post">
                                 {{--                        <td>--}}
@@ -89,13 +89,24 @@
                                    href="{{route('kgs.document.create_check', compact('document'))}}"
                                 ><i
                                             class="fa fa-plus"></i> {{t('New Ticket')}}</a>
+
+                                <a class="btn btn-sm btn-success"
+                                   href="{{route('kgs.document.create_check', compact('document'))}}"
+                                ><i
+                                            class="fa fa-refresh"></i> {{t('Renew')}}</a>
+                                <a class="btn btn-sm btn-danger"
+                                   href="{{route('kgs.document.create_check', compact('document'))}}"
+                                ><i
+                                            class="fa fa-close"></i> {{t('Cancel')}}</a>
+
+
                                 {{--                        </td>--}}
                                 <a href="{{route('kgs.business_document.download',['attachment'=>$document])}}"
-                                   class="btn btn-sm btn-success"
+                                   class="btn btn-sm btn-default btn-outlined"
                                    target="_blank"><i class="fa fa-download"></i></a>
                                 {{csrf_field()}} {{method_field('delete')}}
                                 @if(auth()->user()->isAdmin() || auth()->user()->groups()->whereType(App\Group::KGS_ADMIN)->exists())
-                                    <a class="btn btn-sm btn-primary"
+                                    <a class="btn btn-sm btn-primary btn-outlined"
                                        href="{{route('kgs.document.edit', compact('folder','document'))}}"><i
                                                 class="fa fa-edit"></i> </a>
                                     <button data-toggle="modal" data-target="#MoveForm" type="button"
@@ -103,7 +114,7 @@
                                             onclick="changeDocumentId({{$document->id}})">
                                         <i class="fa fa-mail-forward"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-warning"><i class="fa fa-trash-o"></i>
+                                    <button class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i>
                                     </button>
                                 @endif
 
