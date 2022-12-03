@@ -294,22 +294,33 @@ class BusinessDocumentController extends Controller
         ]);
     }
 
-    function postIssue(Document $document,Request $request){
-//        @TODO: create the normal ticket and also document ticket
-//        @TODO: return to show the ticket
-//        @TODO: add type to document requirement
-        $requirements = GrRequirements::where('service_type',GrRequirements::SERVICE_TYPE_ISSUE)
-            ->where('document_type',$document->type)
-            ->get();
-//        dd($requirements);
 
+    function postIssue(Document $document, Request $request)
+    {
+        $ticket = $this->createTickets(GrRequirements::SERVICE_TYPE_ISSUE, $document->type, $document, 170);
+        return redirect()->route('ticket.show', $ticket);
+    }
+
+    function postCancel(Document $document, Request $request)
+    {
+        $ticket = $this->createTickets(GrRequirements::SERVICE_TYPE_CANCELLATION, $document->type, $document, 171);
+        return redirect()->route('ticket.show', $ticket);
+    }
+
+    function createTickets($serviceType, $documentType, $document, $categoryId)
+    {
+        $requirements = GrRequirements::where('service_type', $serviceType)
+            ->where('document_type', $document->type)
+            ->get();
+
+        $typeDescription = $serviceType == GrRequirements::SERVICE_TYPE_ISSUE ? 'Issue' : 'Cancel';
         $ticket = Ticket::create([
             'requester_id' => auth()->id(),
             'creator_id' => auth()->id(),
-            'category_id' => 169,
+            'category_id' => $categoryId,
             'status_id' => 1,
-            'subject' => 'Issue Document -' . $document->name . ' - '.$document->folder->business_unit->name,
-            'description' => 'Issue Document - ' . $document->name . ' - '.$document->folder->business_unit->name,
+            'subject' => "$typeDescription Document -" . $document->name . ' - ' . $document->folder->business_unit->name,
+            'description' => "$typeDescription Document - " . $document->name . ' - ' . $document->folder->business_unit->name,
             'business_unit_id' => $document->folder->business_unit_id,
         ]);
 
@@ -319,14 +330,12 @@ class BusinessDocumentController extends Controller
         ]);
 
 
-
         foreach ($requirements as $requirement) {
             TicketRequirements::create([
                 'ticket_id' => $ticket->id,
                 'requirement_id' => $requirement->id
             ]);
         }
-
-        return redirect()->route('ticket.show',$ticket);
+        return $ticket;
     }
 }

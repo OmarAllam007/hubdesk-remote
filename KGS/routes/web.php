@@ -39,6 +39,8 @@ Route::group(['middleware' => 'auth'], function (Router $r) {
 //    ->name('document.renew');
     Route::post('business-document/{document}/issue','BusinessDocumentController@postIssue')
     ->name('issue.post');
+    Route::post('business-document/{document}/cancel','BusinessDocumentController@postCancel')
+    ->name('issue.cancel');
 
     Route::get('business-document/{business_unit}/category/{category}/select_subcategory/{subcategory}/select_item/{item}/requirements', 'BusinessDocumentController@checkForRequirements')
         ->name('document.check-requirements');

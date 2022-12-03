@@ -96,8 +96,12 @@
                                    data-document-name="{{$document->name}}"
                                 ><i
                                             class="fa fa-refresh"></i> {{t('Issue/New')}}</a>
+
                                 <a class="btn btn-sm btn-danger"
-                                   href="{{route('kgs.document.create_check', compact('document'))}}"
+                                   data-toggle="modal" data-target="#cancelModal"
+                                   data-document-id="{{$document->id}}"
+                                   data-document-name="{{$document->name}}"
+{{--                                   href="{{route('kgs.document.create_check', compact('document'))}}"--}}
                                 ><i
                                             class="fa fa-close"></i> {{t('Cancel')}}</a>
 
@@ -157,6 +161,30 @@
             </div>
         </form>
 
+
+            <form id="cancelForm">
+                @csrf
+                <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelModal"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Cancel Document</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure to create a new ticket to cancel a document?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Create</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
     </section>
     <section id="documentArea">
         @include('kgs::business-documents.documents._modal._move')
@@ -181,15 +209,21 @@
         var folder = '{{Form::getValueAttribute('folder') ?? $folder}}';
 
         $('#issueModal').on('show.bs.modal', function (e) {
-
-            //get data-id attribute of the clicked element
             var documentId = $(e.relatedTarget).data('document-id');
             var documentName = $(e.relatedTarget).data('document-name');
             console.log(documentName)
-            //populate the textbox
             $('.modal-title').text(`Issue new document > ${documentName}`);
             $('#issueForm').attr('action',`/kgs/business-document/${documentId}/issue`)
             $('#issueForm').attr('method','post')
+        });
+
+        $('#cancelModal').on('show.bs.modal', function (e) {
+            var documentId = $(e.relatedTarget).data('document-id');
+            var documentName = $(e.relatedTarget).data('document-name');
+            console.log(documentName)
+            $('.modal-title').text(`Cancel document > ${documentName}`);
+            $('#cancelForm').attr('action', `/kgs/business-document/${documentId}/cancel`)
+            $('#cancelForm').attr('method', 'post')
         });
 
     </script>

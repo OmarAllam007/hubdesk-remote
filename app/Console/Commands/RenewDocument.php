@@ -80,8 +80,8 @@ class RenewDocument extends Command
             'creator_id' => env('SYSTEM_USER'),
             'category_id' => 161,
             'status_id' => 1,
-            'subject' => 'Renew Document -' . $document->name,
-            'description' => 'Renew Document -' . $document->name,
+            'subject' => 'Renew Document -' . $document->name . ' - '.$document->folder->business_unit->name,
+            'description' => 'Renew Document -' . $document->name . ' - '.$document->folder->business_unit->name,
             'business_unit_id' => $document->folder->business_unit_id,
         ]);
 
