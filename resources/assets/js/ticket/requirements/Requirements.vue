@@ -15,27 +15,18 @@ import RequirementRow from "./RequirementRow";
 export default {
   name: "Requirements",
   components: {RequirementRow},
-  props: ['ticket_id'],
+  props: ['ticket_id','requirements'],
   data() {
     return {
-      requirements: [],
       attachments:[]
     }
   },
 
   created() {
-    this.loadRequirements(this.ticket_id)
+
   },
   methods: {
-    loadRequirements(ticket_id) {
-      axios.get(`/kgs/document/requirements/${ticket_id}`)
-          .then((response) => {
-            this.requirements = response.data
-          })
-          .catch((error) => {
-            console.log(error)
-          })
-    }
+
   }
 
 }

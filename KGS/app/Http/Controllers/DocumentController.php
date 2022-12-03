@@ -139,9 +139,6 @@ class DocumentController extends Controller
     function fetchForTicket($ticket_id)
     {
         return TicketRequirements::where('ticket_id', $ticket_id)
-            ->whereHas('requirement', function ($q) {
-                $q->where('type', DocumentRequirements::RENEWAL_TYPE);
-            })
             ->get()
             ->map(function ($ticketRequirement) {
                 return [

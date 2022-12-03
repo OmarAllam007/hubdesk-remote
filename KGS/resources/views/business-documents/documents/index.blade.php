@@ -91,16 +91,16 @@
                                             class="fa fa-plus"></i> {{t('New Ticket')}}</a>
 
                                 <a class="btn btn-sm btn-success"
-                                   href="{{route('kgs.document.create_check', compact('document'))}}"
+                                   data-toggle="modal" data-target="#issueModal"
+                                   data-document-id="{{$document->id}}"
+                                   data-document-name="{{$document->name}}"
                                 ><i
-                                            class="fa fa-refresh"></i> {{t('Renew')}}</a>
+                                            class="fa fa-refresh"></i> {{t('Issue/New')}}</a>
                                 <a class="btn btn-sm btn-danger"
                                    href="{{route('kgs.document.create_check', compact('document'))}}"
                                 ><i
                                             class="fa fa-close"></i> {{t('Cancel')}}</a>
 
-
-                                {{--                        </td>--}}
                                 <a href="{{route('kgs.business_document.download',['attachment'=>$document])}}"
                                    class="btn btn-sm btn-default btn-outlined"
                                    target="_blank"><i class="fa fa-download"></i></a>
@@ -131,6 +131,32 @@
                 <strong>{{t('No Documents found')}}</strong>
             </div>
         @endif
+
+
+        <form id="issueForm">
+            @csrf
+            <div class="modal fade" id="issueModal" tabindex="-1" role="dialog" aria-labelledby="issueModal"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Issue New Ticket</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure to create a new ticket to issue a new document?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
     </section>
     <section id="documentArea">
         @include('kgs::business-documents.documents._modal._move')
@@ -153,6 +179,20 @@
 
         var business_unit = '{{Form::getValueAttribute('business_unit') ?? $folder->business_unit->id}}';
         var folder = '{{Form::getValueAttribute('folder') ?? $folder}}';
+
+        $('#issueModal').on('show.bs.modal', function (e) {
+
+            //get data-id attribute of the clicked element
+            var documentId = $(e.relatedTarget).data('document-id');
+            var documentName = $(e.relatedTarget).data('document-name');
+            console.log(documentName)
+            //populate the textbox
+            $('.modal-title').text(`Issue new document > ${documentName}`);
+            $('#issueForm').attr('action',`/kgs/business-document/${documentId}/issue`)
+            $('#issueForm').attr('method','post')
+        });
+
     </script>
+
     <script src="{{asset('/js/document-form.js')}}"></script>
 @endsection

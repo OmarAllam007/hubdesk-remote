@@ -14,6 +14,9 @@ use App\BusinessUnit;
 use App\Category;
 use App\CustomField;
 use App\Division;
+use App\DocumentRequirements;
+use App\DocumentTicket;
+use App\GrRequirements;
 use App\Http\Controllers\Controller;
 use App\Item;
 use App\Jobs\NewTicketJob;
@@ -21,6 +24,7 @@ use App\Subcategory;
 use App\Task;
 use App\Ticket;
 use App\TicketField;
+use App\TicketRequirements;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -93,7 +97,6 @@ class BusinessDocumentController extends Controller
 
     function checkForRequirements(BusinessUnit $business_unit, Category $category, Subcategory $subcategory, Item $item)
     {
-
         $requirements = $category->requirements->merge($subcategory->requirements);
         $requirements = $requirements->merge($item->requirements)->each(function ($requirement) {
             $requirement['cost'] = $requirement->service_cost;
@@ -116,14 +119,13 @@ class BusinessDocumentController extends Controller
             'requester_id' => \Auth::id(),
             'creator_id' => \Auth::id(),
             'subject' => $label,
-            'description' => \request('description',''),
+            'description' => \request('description', ''),
             'category_id' => $category->id,
             'subcategory_id' => $subcategory->id ?? null,
             'item_id' => $item->id ?? null,
             'status_id' => $this->checkForStatus(),
             'business_unit_id' => $business_unit->id
         ]);
-
 
 
         foreach (\request()->get('cf', []) as $key => $item) {
@@ -290,5 +292,41 @@ class BusinessDocumentController extends Controller
             'request_id' => $ticket->id,
             'type' => Ticket::TASK_TYPE,
         ]);
+    }
+
+    function postIssue(Document $document,Request $request){
+//        @TODO: create the normal ticket and also document ticket
+//        @TODO: return to show the ticket
+//        @TODO: add type to document requirement
+        $requirements = GrRequirements::where('service_type',GrRequirements::SERVICE_TYPE_ISSUE)
+            ->where('document_type',$document->type)
+            ->get();
+//        dd($requirements);
+
+        $ticket = Ticket::create([
+            'requester_id' => auth()->id(),
+            'creator_id' => auth()->id(),
+            'category_id' => 169,
+            'status_id' => 1,
+            'subject' => 'Issue Document -' . $document->name . ' - '.$document->folder->business_unit->name,
+            'description' => 'Issue Document - ' . $document->name . ' - '.$document->folder->business_unit->name,
+            'business_unit_id' => $document->folder->business_unit_id,
+        ]);
+
+        DocumentTicket::create([
+            'ticket_id' => $ticket->id,
+            'document_id' => $document->id,
+        ]);
+
+
+
+        foreach ($requirements as $requirement) {
+            TicketRequirements::create([
+                'ticket_id' => $ticket->id,
+                'requirement_id' => $requirement->id
+            ]);
+        }
+
+        return redirect()->route('ticket.show',$ticket);
     }
 }

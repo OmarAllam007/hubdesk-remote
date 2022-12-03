@@ -124,7 +124,7 @@
                     :class="{tabUIButtonSelected : selectedTab == 1}" @click="changeTab(1)"><i
                 class="fa fa-comments-o"></i> {{ $root.t('Conversation') }}
             </button>
-            <button v-if="ticketData.ticket.category_id == 161"
+            <button v-if="requirements.length"
                     class="w-1/6 bg-white rounded-xl p-3 m-3 tabUIButton border"
                     :class="{tabUIButtonSelected : selectedTab == 8}" @click="changeTab(8)">
               <i class="fa fa-list"></i> {{ $root.t('Requirements') }}
@@ -231,8 +231,10 @@
         >
         </letter-modal>
 
-        <requirements v-if="ticketData.ticket.category_id == 161 && selectedTab == 8"
-                      :ticket_id="ticketData.ticket.id"></requirements>
+        <requirements v-if="requirements.length && selectedTab == 8"
+                      :ticket_id="ticketData.ticket.id"
+                      :requirements="requirements"
+        ></requirements>
 
       </div>
     </div>
@@ -289,7 +291,8 @@ export default {
       complaintModalOpened: false,
       toLetterModalOpened: false,
       letterContentModel: false,
-      users: []
+      users: [],
+      requirements:[],
     }
   },
 
@@ -309,9 +312,20 @@ export default {
       this.loading = false;
     })
 
+    this.loadRequirements(this.data.ticket.id);
 
   },
   methods: {
+    loadRequirements(ticket_id) {
+      axios.get(`/kgs/document/requirements/${ticket_id}`)
+          .then((response) => {
+            this.requirements = response.data
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+    },
+
     changeTab(index) {
       this.selectedTab = index;
     },
