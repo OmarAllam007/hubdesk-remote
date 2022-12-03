@@ -3,6 +3,7 @@
 namespace KGS\Http\Controllers;
 
 
+use App\DocumentRequirements;
 use App\DocumentTicket;
 use App\Http\Controllers\Controller;
 use App\Ticket;
@@ -12,6 +13,7 @@ use Illuminate\Http\UploadedFile;
 use KGS\BusinessDocumentsFolder;
 use KGS\Document;
 use KGS\KGSLog;
+use KGS\Requirement;
 
 class DocumentController extends Controller
 {
@@ -80,7 +82,7 @@ class DocumentController extends Controller
             'level' => $level ?? null,
             'level_id' => $level_id ?? null,
             'remarks' => $request->remarks,
-            'notify_duration'=>$request->notify_duration
+            'notify_duration' => $request->notify_duration
 //            'last_updated_by' => \Auth::id(),
         ]);
 
@@ -142,8 +144,7 @@ class DocumentController extends Controller
                 return [
                     'id' => $ticketRequirement->id,
                     'name' => $ticketRequirement->requirement->name,
-                    'path'=> $ticketRequirement->path,
-//                    'uploadedBy'=> Us$ticketRequirement->uploaded_by/
+                    'path' => $ticketRequirement->path,
                 ];
             });
     }

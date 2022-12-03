@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\DocumentTicket;
+use App\GrRequirements;
 use App\Mail\DocumentReminder;
 use App\Ticket;
 use App\TicketRequirements;
@@ -79,8 +80,8 @@ class RenewDocument extends Command
             'creator_id' => env('SYSTEM_USER'),
             'category_id' => 161,
             'status_id' => 1,
-            'subject' => 'Renew Document -' . $document->name,
-            'description' => 'Renew Document -' . $document->name,
+            'subject' => 'Renew Document -' . $document->name . ' - '.$document->folder->business_unit->name,
+            'description' => 'Renew Document -' . $document->name . ' - '.$document->folder->business_unit->name,
             'business_unit_id' => $document->folder->business_unit_id,
         ]);
 
@@ -91,7 +92,11 @@ class RenewDocument extends Command
             'document_id' => $document->id,
         ]);
 
-        foreach ($document->requirements as $requirement) {
+        $requirements = GrRequirements::where('service_type',GrRequirements::SERVICE_TYPE_RENEW)
+            ->where('document_type',$document->type)
+            ->get();
+
+        foreach ($requirements as $requirement) {
             TicketRequirements::create([
                 'ticket_id' => $ticket->id,
                 'requirement_id' => $requirement->id

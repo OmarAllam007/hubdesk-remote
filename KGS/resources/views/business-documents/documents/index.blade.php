@@ -81,7 +81,7 @@
                                     {{t('Remarks')}}</a>
                             @endif
                         </td>
-                        <td class="col-md-3">
+                        <td class="col-md-4">
                             <form action="{{route('kgs.document.destroy', compact('folder','document'))}}"
                                   method="post">
                                 {{--                        <td>--}}
@@ -89,13 +89,28 @@
                                    href="{{route('kgs.document.create_check', compact('document'))}}"
                                 ><i
                                             class="fa fa-plus"></i> {{t('New Ticket')}}</a>
-                                {{--                        </td>--}}
+
+                                <a class="btn btn-sm btn-success"
+                                   data-toggle="modal" data-target="#issueModal"
+                                   data-document-id="{{$document->id}}"
+                                   data-document-name="{{$document->name}}"
+                                ><i
+                                            class="fa fa-refresh"></i> {{t('Issue/New')}}</a>
+
+                                <a class="btn btn-sm btn-danger"
+                                   data-toggle="modal" data-target="#cancelModal"
+                                   data-document-id="{{$document->id}}"
+                                   data-document-name="{{$document->name}}"
+{{--                                   href="{{route('kgs.document.create_check', compact('document'))}}"--}}
+                                ><i
+                                            class="fa fa-close"></i> {{t('Cancel')}}</a>
+
                                 <a href="{{route('kgs.business_document.download',['attachment'=>$document])}}"
-                                   class="btn btn-sm btn-success"
+                                   class="btn btn-sm btn-default btn-outlined"
                                    target="_blank"><i class="fa fa-download"></i></a>
                                 {{csrf_field()}} {{method_field('delete')}}
                                 @if(auth()->user()->isAdmin() || auth()->user()->groups()->whereType(App\Group::KGS_ADMIN)->exists())
-                                    <a class="btn btn-sm btn-primary"
+                                    <a class="btn btn-sm btn-primary btn-outlined"
                                        href="{{route('kgs.document.edit', compact('folder','document'))}}"><i
                                                 class="fa fa-edit"></i> </a>
                                     <button data-toggle="modal" data-target="#MoveForm" type="button"
@@ -103,7 +118,7 @@
                                             onclick="changeDocumentId({{$document->id}})">
                                         <i class="fa fa-mail-forward"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-warning"><i class="fa fa-trash-o"></i>
+                                    <button class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i>
                                     </button>
                                 @endif
 
@@ -120,6 +135,56 @@
                 <strong>{{t('No Documents found')}}</strong>
             </div>
         @endif
+
+
+        <form id="issueForm">
+            @csrf
+            <div class="modal fade" id="issueModal" tabindex="-1" role="dialog" aria-labelledby="issueModal"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Issue New Ticket</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure to create a new ticket to issue a new document?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+            <form id="cancelForm">
+                @csrf
+                <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelModal"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Cancel Document</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure to create a new ticket to cancel a document?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Create</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
     </section>
     <section id="documentArea">
         @include('kgs::business-documents.documents._modal._move')
@@ -142,6 +207,26 @@
 
         var business_unit = '{{Form::getValueAttribute('business_unit') ?? $folder->business_unit->id}}';
         var folder = '{{Form::getValueAttribute('folder') ?? $folder}}';
+
+        $('#issueModal').on('show.bs.modal', function (e) {
+            var documentId = $(e.relatedTarget).data('document-id');
+            var documentName = $(e.relatedTarget).data('document-name');
+            console.log(documentName)
+            $('.modal-title').text(`Issue new document > ${documentName}`);
+            $('#issueForm').attr('action',`/kgs/business-document/${documentId}/issue`)
+            $('#issueForm').attr('method','post')
+        });
+
+        $('#cancelModal').on('show.bs.modal', function (e) {
+            var documentId = $(e.relatedTarget).data('document-id');
+            var documentName = $(e.relatedTarget).data('document-name');
+            console.log(documentName)
+            $('.modal-title').text(`Cancel document > ${documentName}`);
+            $('#cancelForm').attr('action', `/kgs/business-document/${documentId}/cancel`)
+            $('#cancelForm').attr('method', 'post')
+        });
+
     </script>
+
     <script src="{{asset('/js/document-form.js')}}"></script>
 @endsection

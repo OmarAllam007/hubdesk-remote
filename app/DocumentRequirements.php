@@ -13,6 +13,10 @@ class DocumentRequirements extends Model
 
     protected $fillable = ['document_id', 'name', 'type'];
 
+    const RENEWAL_TYPE = 1;
+    const ISSUING_TYPE = 2;
+    const CANCELLING_TYPE = 3;
+
     function document()
     {
         return $this->belongsTo(Document::class);

@@ -3,7 +3,7 @@
     <loader v-if="loading"></loader>
     <div class="flex flex-col" v-else>
       <div class="flex bg-green-200 p-5 m-5 rounded-lg shadow-md ">
-        <strong v-if="log_data.is_task">
+        <strong v-if="!log_data.is_task">
           {{ $root.t('Ticket created by') }} {{ log_data.created_by }} {{ $root.t('at') }} {{
             log_data.created_at
           }}

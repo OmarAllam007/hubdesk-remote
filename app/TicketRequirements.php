@@ -25,6 +25,6 @@ class TicketRequirements extends Model
     }
 
     function requirement(){
-        return $this->belongsTo(DocumentRequirements::class,'requirement_id');
+        return $this->belongsTo(GrRequirements::class,'requirement_id');
     }
 }
