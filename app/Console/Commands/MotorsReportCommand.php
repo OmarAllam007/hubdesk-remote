@@ -41,7 +41,7 @@ class MotorsReportCommand extends Command
 
         $client->setClientId(env("google_client_id"));
         $client->setClientSecret(env("google_client_secret"));
-        $client->setAuthConfig("../storage/credentials.json");
+        $client->setAuthConfig("storage/credentials.json");
         $service = new \Google\Service\Sheets($client);
 
         $sheets = new Sheets();

@@ -7,6 +7,7 @@ use App\Console\Commands\CheckForNotSubmittedSurveys;
 use App\Console\Commands\EscalateTickets;
 use App\Console\Commands\KGSPendingApprovalsNotifications;
 use App\Console\Commands\LdapImportUser;
+use App\Console\Commands\MotorsReportCommand;
 use App\Console\Commands\RenewDocument;
 use App\Console\Commands\ScheduledReportsCommand;
 use App\Console\Commands\SyncByRequest;
@@ -39,6 +40,7 @@ class Kernel extends ConsoleKernel
         CheckForNotSubmittedSurveys::class,
         CheckForNotOpenedTickets::class,
         ScheduledReportsCommand::class,
+        MotorsReportCommand::class,
 
     ];
 
