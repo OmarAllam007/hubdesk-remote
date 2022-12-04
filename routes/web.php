@@ -1,14 +1,17 @@
 <?php
 
 use App\Http\Controllers\FPController;
-use Illuminate\Routing\Router;
 
+use App\Letter;
+use App\Reports\QueryReport;
+use Illuminate\Routing\Router;
+use Google\Client;
+use Revolution\Google\Sheets\Sheets;
 
 if ($login = env('LOGIN_AS')) {
     $user = \App\User::where('employee_id', $login)->first();
     Auth::login($user);
 }
-
 
 Route::group(['middleware' => ['auth']], function (\Illuminate\Routing\Router $r) {
     Route::get('admin/new_fp', [FPController::class, 'index']);
@@ -148,7 +151,7 @@ Route::get('e-card/admin/download-card/{user}', [\App\Http\Controllers\ECard\Adm
 Route::get('show/{user}', [\App\Http\Controllers\ECard\Admin\UserController::class, 'show'])
     ->name('e-card.admin.user.show');
 
-Route::group(['prefix' => 'e-card/admin','middleware'=>'ecard.admin'], function (Router $r) {
+Route::group(['prefix' => 'e-card/admin', 'middleware' => 'ecard.admin'], function (Router $r) {
     $r->get('index', [\App\Http\Controllers\ECard\Admin\IndexController::class, 'index'])
         ->name('e-card.admin.user.index');
     $r->get('create', [\App\Http\Controllers\ECard\Admin\UserController::class, 'create'])
