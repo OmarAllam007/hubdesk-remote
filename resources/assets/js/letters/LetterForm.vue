@@ -89,9 +89,23 @@
           <label :class="getStampedStyle" class="p-5  border border-indigo-700 bg-white
          hover:bg-yellow-100 rounded-2xl shadow-sm ">
             <input type="checkbox"
-                   @change="is_stamped = !is_stamped">
+                   @change="changeStamp">
             {{ t('Stamped by the Chamber of Commerce?') }}
           </label>
+        </div>
+      </div>
+
+      <div class="flex pt-10" v-if="showTransferMethod">
+        <div class="w-1/2">
+          <label for="paymentType">{{ t('Payment Type') }}<span class="text-red-800">*</span></label>
+
+          <select name="paymentType" id="paymentType" class="form-control" v-model="paymentTypeSelection">
+            <option value="">{{ t('Select Type') }}</option>
+            <option :value="1">{{ t('Transfer to bank') }}</option>
+            <option :value="2">{{ t('Deduction from salary') }}</option>
+          </select>
+
+          <label class="pt-5 " v-if="paymentTypeSelection === 1">Transfer to: {{ iban }}</label>
         </div>
       </div>
 
@@ -156,10 +170,9 @@ import {EventBus} from "../EventBus";
 import NotificationsComponent from "../ticket/show/NotificationsComponent";
 
 
-
 export default {
   name: "LetterForm",
-  props: ['item', 'groups', 'priorities', 'subject', 'translations', 'language', 'isTechnician'],
+  props: ['item', 'groups', 'priorities', 'subject', 'translations', 'language', 'isTechnician', 'iban'],
   components: {vSelect, Attachments, Editor, Date, TextField, SelectField, NotificationsComponent},
   data() {
     return {
@@ -180,7 +193,9 @@ export default {
       attachments: [],
       fields: [],
       custom_fields: {},
-      list_groups: []
+      list_groups: [],
+      showTransferMethod: false,
+      paymentTypeSelection: '',
     }
   },
   created() {
@@ -194,6 +209,10 @@ export default {
   },
 
   methods: {
+    changeStamp() {
+      this.is_stamped = !this.is_stamped
+      this.showTransferMethod = !this.showTransferMethod
+    },
     listenForChange(value) {
       this.custom_fields[value.id] = value.value
     },
@@ -270,12 +289,12 @@ export default {
 
     },
 
-    validateFields(){
+    validateFields() {
       var isValid = true;
 
-      if(_.size(this.custom_fields) > 0){
-        Object.values(this.custom_fields).forEach((value)=>{
-          if(value == ""){
+      if (_.size(this.custom_fields) > 0) {
+        Object.values(this.custom_fields).forEach((value) => {
+          if (value == "") {
             isValid = false;
           }
         })
@@ -286,7 +305,7 @@ export default {
 
     createLetter() {
 
-      if(this.validateFields()){
+      if (this.validateFields()) {
         this.loading = true
 
         var form = new FormData;
@@ -310,6 +329,11 @@ export default {
         form.append('item_id', this.item.id);
         form.append('group_id', this.group.id);
         form.append('requester_id', this.user_id.id);
+        form.append('payment_type', this.paymentTypeSelection);
+
+        if(this.paymentTypeSelection === 1){
+          form.append('iban', this.iban);
+        }
 
         if (this.subgroup) {
           form.append('subgroup_id', this.subgroup.id);
@@ -325,12 +349,10 @@ export default {
         }).then((response) => {
           window.location = `/ticket/${response.data.ticket.id}`
         });
-      }else{
+      } else {
         EventBus.$emit('send_notification', 'create_ticket',
             'Ticket Error', `Kindly fill all the required fields`, 'error');
       }
-
-
 
 
     },
@@ -352,6 +374,10 @@ export default {
       console.log(_.size(this.custom_fields))
 
       if (!this.group_id) {
+        return false
+      }
+
+      if (this.is_stamped && !this.paymentTypeSelection) {
         return false
       }
 

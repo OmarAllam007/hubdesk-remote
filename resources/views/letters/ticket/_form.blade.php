@@ -10,7 +10,7 @@
                  :translations="{{json_encode(\App\Translation::where('language',$language)
                                    ->where('view',\App\Translation::FOR_LETTER_VIEW)->get(['word','translation']))}}"
                  :language="{{json_encode($language)}}"
-
+                 :iban="{{json_encode(auth()->user()->business_unit->iban ?? config('letter.iban'))}}"
                 :is-technician="{{json_encode(Auth::user()->isSupport() ? 1 : 0)}}"
     ></letter-form>
 
