@@ -86,6 +86,7 @@ class LetterController extends Controller
             'subgroup_id' => $request->subgroup_id,
             'letter_id' => $request->letter_id,
             'need_coc_stamp' => $request->is_stamped,
+            'payment_type' => $request->get('payment_type', 1),
         ]);
 
         if ($request->get('fields', [])) {
@@ -101,6 +102,19 @@ class LetterController extends Controller
                 }
             }
         }
+
+        if ($request->get('payment_type')) {
+            $ticket->fields()->create(['name' => "Payment Type",
+                'value' => Letter::PAYMENT_TYPES[$request->get('payment_type')]]);
+        }
+
+
+
+        if ($request->get('iban')) {
+            $ticket->fields()->create(['name' => "IBAN",
+                'value' => $request->get('iban', config('letters.default_iban'))]);
+        }
+
 
         return response()->json(['ticket' => $ticket]);
     }
@@ -260,7 +274,7 @@ class LetterController extends Controller
 
     private function buildExperienceCertificate(Ticket $ticket)
     {
-        $employeeID = $ticket->fields()->where('name','Employee Number')->first();
+        $employeeID = $ticket->fields()->where('name', 'Employee Number')->first();
         $user = \App\User::where('employee_id', $employeeID->value)->first();
 
         $sapApi = new \App\Helpers\SapApi($user);
@@ -278,6 +292,6 @@ class LetterController extends Controller
         $letterTicket['stamp'] = '/stamps/' . LetterSponserMap::$systemBusinessUnits[$user['sponsor_id']] . '/image.jpg';
         $letterTicket['signature'] = User::find(1309)->signature;
 
-        return view("letters.template.experience_certificate.experience_certificate", compact('user', 'letterTicket','employeeID'));
+        return view("letters.template.experience_certificate.experience_certificate", compact('user', 'letterTicket', 'employeeID'));
     }
 }

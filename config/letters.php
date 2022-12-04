@@ -13,8 +13,7 @@ return [
     'kgs_technician' => 6761,
     'kcc_technician' => 121,
     'signature_name' => 'أ.محمد عبد الرحمن الكثير',
-
-
+    'default_iban'=> 'SA30 4500 0000 0480 7025 4013',
     'fees_reply' => '<p style="text-align: center;direction:rtl" >عزيزي مقدم / ـة الطلب</p>
 
 <p style="text-align: center;direction:rtl" >تحية طيبة وبعد ،</p>

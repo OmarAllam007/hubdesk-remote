@@ -34,7 +34,7 @@ class BusinessUnit extends KModel
 {
     use Listable;
 
-    protected $fillable = ['code', 'name', 'location_id', 'logo', 'business_unit_bgd', 'division_id'];
+    protected $fillable = ['code', 'name', 'location_id', 'logo', 'business_unit_bgd', 'division_id','iban','iban2'];
 
     protected $appends = ['bu_roles'];
 
@@ -158,66 +158,66 @@ class BusinessUnit extends KModel
         return $this->hasMany(DocumentNotification::class);
     }
 
-    function isExceedNoOfLimitedTickets(Category $category, Subcategory $subcategory = null, Item $item = null, SubItem $subItem = null)
-    {
-        $is_exceed = false;
-
-        $firstDay = Carbon::create('first day of this month')->format('Y-m-d 00:00:00');
-        $lastDay = Carbon::create('last day of this month')->format('Y-m-d 11:59:59');
-
-
-        $category_limit = $category->limitations()->whereJsonContains('value', ["$this->id"])->first();
-
-        $category_current_month_tickets = Ticket::whereHas('requester', function ($query) {
-            $query->where('business_unit_id', $this->id);
-        })->whereBetween('created_at', [$firstDay, $lastDay])->where('category_id', $category->id)->count();
-
-        if ($category_limit && $category_current_month_tickets >= $category_limit->number_of_tickets) {
-            return $is_exceed = true;
-        }
-
-
-        if ($subcategory) {
-            $subcategory_limit = $subcategory->limitations()->whereJsonContains('value', ["$this->id"])
-                ->first();
-
-            $subcategory_current_month_tickets = Ticket::whereHas('requester', function ($query) {
-                $query->where('business_unit_id', $this->id);
-            })->whereBetween('created_at', [$firstDay, $lastDay])->where('subcategory_id', $subcategory->id)->count();
-
-            if ($subcategory_limit && $subcategory_current_month_tickets >= $subcategory_limit->number_of_tickets) {
-                return $is_exceed = true;
-            }
-        }
-
-
-        if ($item) {
-            $item_limit = $item->limitations()->whereJsonContains('value', ["$this->id"])
-                ->first();
-
-            $item_current_month_tickets = Ticket::whereHas('requester', function ($query) {
-                $query->where('business_unit_id', $this->id);
-            })->whereBetween('created_at', [$firstDay, $lastDay])->where('item_id', $item->id)->count();
-
-            if ($item_limit && $item_current_month_tickets >= $item_limit->number_of_tickets) {
-                return $is_exceed = true;
-            }
-        }
-
-        if ($subItem) {
-            $subItem_limit = $subItem->limitations()->whereJsonContains('value', ["$this->id"])
-                ->first();
-
-            $subItem_current_month_tickets = Ticket::whereHas('requester', function ($query) {
-                $query->where('business_unit_id', $this->id);
-            })->where('subitem_id', $subItem->id)->whereBetween('created_at', [$firstDay, $lastDay])->count();
-
-            if ($subItem_limit && $subItem_current_month_tickets >= $subItem_limit->number_of_tickets) {
-                return $is_exceed = true;
-            }
-        }
-
-
-        return $is_exceed;
-    }
+//    function isExceedNoOfLimitedTickets(Category $category, Subcategory $subcategory = null, Item $item = null, SubItem $subItem = null)
+//    {
+//        $is_exceed = false;
+//
+//        $firstDay = Carbon::create('first day of this month')->format('Y-m-d 00:00:00');
+//        $lastDay = Carbon::create('last day of this month')->format('Y-m-d 11:59:59');
+//
+//
+//        $category_limit = $category->limitations()->whereJsonContains('value', ["$this->id"])->first();
+//
+//        $category_current_month_tickets = Ticket::whereHas('requester', function ($query) {
+//            $query->where('business_unit_id', $this->id);
+//        })->whereBetween('created_at', [$firstDay, $lastDay])->where('category_id', $category->id)->count();
+//
+//        if ($category_limit && $category_current_month_tickets >= $category_limit->number_of_tickets) {
+//            return $is_exceed = true;
+//        }
+//
+//
+//        if ($subcategory) {
+//            $subcategory_limit = $subcategory->limitations()->whereJsonContains('value', ["$this->id"])
+//                ->first();
+//
+//            $subcategory_current_month_tickets = Ticket::whereHas('requester', function ($query) {
+//                $query->where('business_unit_id', $this->id);
+//            })->whereBetween('created_at', [$firstDay, $lastDay])->where('subcategory_id', $subcategory->id)->count();
+//
+//            if ($subcategory_limit && $subcategory_current_month_tickets >= $subcategory_limit->number_of_tickets) {
+//                return $is_exceed = true;
+//            }
+//        }
+//
+//
+//        if ($item) {
+//            $item_limit = $item->limitations()->whereJsonContains('value', ["$this->id"])
+//                ->first();
+//
+//            $item_current_month_tickets = Ticket::whereHas('requester', function ($query) {
+//                $query->where('business_unit_id', $this->id);
+//            })->whereBetween('created_at', [$firstDay, $lastDay])->where('item_id', $item->id)->count();
+//
+//            if ($item_limit && $item_current_month_tickets >= $item_limit->number_of_tickets) {
+//                return $is_exceed = true;
+//            }
+//        }
+//
+//        if ($subItem) {
+//            $subItem_limit = $subItem->limitations()->whereJsonContains('value', ["$this->id"])
+//                ->first();
+//
+//            $subItem_current_month_tickets = Ticket::whereHas('requester', function ($query) {
+//                $query->where('business_unit_id', $this->id);
+//            })->where('subitem_id', $subItem->id)->whereBetween('created_at', [$firstDay, $lastDay])->count();
+//
+//            if ($subItem_limit && $subItem_current_month_tickets >= $subItem_limit->number_of_tickets) {
+//                return $is_exceed = true;
+//            }
+//        }
+//
+//
+//        return $is_exceed;
+//    }
 } 

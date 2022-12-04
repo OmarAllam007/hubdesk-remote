@@ -6,8 +6,9 @@ $sla = $ticketObj->getSla($category,$subcategory ?? null ,$item ?? null,$subItem
 
 /** @var BusinessUnit $requester_bu */
 $requester_bu = auth()->user()->business_unit;
+/**
 $exceedNoOfTickets = $requester_bu->isExceedNoOfLimitedTickets($category,$subcategory ?? null ,$item ?? null ,$subItem ?? null);
-
+*/
 @endphp
 
 
@@ -29,11 +30,11 @@ $exceedNoOfTickets = $requester_bu->isExceedNoOfLimitedTickets($category,$subcat
     </div>
 @endif
 
-@if($exceedNoOfTickets)
-    <p style="font-size: 14pt;background-color: rgb(126,65,59); border-radius: 10px;text-align: center;padding: 10px;color: #fff;box-shadow: 2px 5px 2px lightgray">
-        {{t('The number of allowed requests per month is exceeded')}}
-    </p>
-@endif
+{{--@if($exceedNoOfTickets)--}}
+{{--    <p style="font-size: 14pt;background-color: rgb(126,65,59); border-radius: 10px;text-align: center;padding: 10px;color: #fff;box-shadow: 2px 5px 2px lightgray">--}}
+{{--        {{t('The number of allowed requests per month is exceeded')}}--}}
+{{--    </p>--}}
+{{--@endif--}}
 
 
 

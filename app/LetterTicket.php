@@ -10,7 +10,7 @@ class LetterTicket extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['ticket_id', 'group_id', 'subgroup_id', 'letter_id', 'need_coc_stamp','to_user_id'];
+    protected $fillable = ['ticket_id', 'group_id', 'subgroup_id', 'letter_id', 'need_coc_stamp','to_user_id','payment_type'];
 
     function ticket()
     {
