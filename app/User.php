@@ -289,7 +289,7 @@ class User extends Authenticatable implements CanResetPassword
             $user = \App\User::where('employee_id', $this->employee_id)->first();
             $sapApi = new \App\Helpers\SapApi($user);
             $sapApi->getUserInformation();
-            $sapInformation =  $sapApi->sapUser->getEmployeeSapInformation();
+            $sapInformation =  $sapApi->sapUser ? $sapApi->sapUser->getEmployeeSapInformation() : [];
         }
 
         return array_merge($systemUserInformation, $sapInformation);
