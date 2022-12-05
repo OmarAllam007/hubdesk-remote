@@ -5653,9 +5653,9 @@
   },
   {
     "id": 2701,
-    "word": "Complaints",
+    "word": "Tawasl",
     "language": "ar",
-    "translation": "الشكاوي"
+    "translation": "تواصل"
   },
   {
     "id": 2702,
@@ -6484,5 +6484,11 @@
     "word": "Stage",
     "language": "ar",
     "translation": "المرحلة"
+  },
+  {
+    "id": 2839,
+    "word": "Challenges and problems",
+    "language": "ar",
+    "translation": "التحديات والمشكلات"
   }
 ]
