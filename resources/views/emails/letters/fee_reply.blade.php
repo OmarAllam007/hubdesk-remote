@@ -6,34 +6,8 @@ Ticket ID: #{{link_to_route('ticket.show', $ticket['id'], $ticket['id'])}}<br/>
 By: {{$reply->user->name}}<br/>
 At: {{$reply->created_at->format('d/m/Y H:i')}}<br/>
 Content:<br/><br />
-<div style="text-align: center;direction: rtl">
-<p style="direction: rtl; text-align: center">عزيزي مقدم / ـة الطلب</p>
-<p style="direction: rtl; text-align: center">تحية طيبة وبعد ،</p>
-<p style="direction: rtl; text-align: center">
-يرجى تحويل رسوم تصديق الخطاب بمبلغ : 45 ريال وهي موزعة كالتالي ، رسوم الخدمة : 10 ريال ، رسوم تصديق الغرفة التجارية : 35 ريال ، على رقم الحساب البنكي رقم :
-</p>
-<p>SA30 4500 0000 0480 7025 4013</p>
-<p>، أسم المستفيد / شركة الكفاح القابضة ، بنك ساب ومن ثم تزويدنا بنسخة من إيصال التحويل حتى نتمكن من إكمال إجراءات عملية التصديق .</p>
-
-
-
-<p style="direction: rtl; text-align: center">
-شكراً
-</p>
-
-<p style="text-align: center">
-Dear Requester,
-</p>
-<p style="text-align: center">Greeting,</p>
-
-
-
-<p style="text-align: center">Please transfer the attestation fees : 45 riyals, distributed as follows, service fees: 10 S.R., Chamber of Commerce attestation fees: 35 S.R., to be transferred to the bank account number:</p>
-<p>SA30 4500 0000 0480 7025 4013</p>
-<p>, AlKifah Holding Company, SABB Bank, then provide us with a copy of the transfer receipt, based on that we can complete the attestation process.</p>
-
-
-<p style="text-align: center">Thank you</p>
+<div>
+{!! $content !!}
 </div>
 
 <br><br>

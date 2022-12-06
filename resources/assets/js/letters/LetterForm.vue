@@ -104,8 +104,15 @@
             <option :value="1">{{ t('Transfer to bank') }}</option>
             <option :value="2">{{ t('Deduction from salary') }}</option>
           </select>
+          <p>
+            <label class="pt-5 " v-if="paymentTypeSelection === 1">Bank Name: {{ bank_name }}</label>
+          </p>
 
-          <label class="pt-5 " v-if="paymentTypeSelection === 1">Transfer to: {{ iban }}</label>
+
+          <p>
+            <label class="pt-5 " v-if="paymentTypeSelection === 1">Transfer to IBAN: {{ iban }}</label>
+          </p>
+
         </div>
       </div>
 
@@ -172,7 +179,7 @@ import NotificationsComponent from "../ticket/show/NotificationsComponent";
 
 export default {
   name: "LetterForm",
-  props: ['item', 'groups', 'priorities', 'subject', 'translations', 'language', 'isTechnician', 'iban'],
+  props: ['item', 'groups', 'priorities', 'subject', 'translations', 'language', 'isTechnician', 'iban','bank_name'],
   components: {vSelect, Attachments, Editor, Date, TextField, SelectField, NotificationsComponent},
   data() {
     return {

@@ -15,15 +15,17 @@ class LetterRequestForFees extends Mailable
 
     protected $letterTicket;
     protected $reply;
+    private $content;
 
     /**
      * LetterRequestForFees constructor.
      * @param LetterTicket $letterTicket
      */
-    public function __construct(LetterTicket $letterTicket,TicketReply $reply)
+    public function __construct(LetterTicket $letterTicket, TicketReply $reply, $content)
     {
         $this->letterTicket = $letterTicket;
         $this->reply = $reply;
+        $this->content = $content;
     }
 
     /**
@@ -43,6 +45,10 @@ class LetterRequestForFees extends Mailable
         }
         $subject .= '- ' . $ticket['subject'];
 
-        return $this->markdown('emails.letters.fee_reply', compact('ticket','reply'))->subject($subject);
+        $businessUnit = $ticket->requester->business_unit;
+        $content = $this->content;
+
+        return $this->markdown('emails.letters.fee_reply',
+            compact('ticket', 'reply', 'businessUnit','content'))->subject($subject);
     }
 }

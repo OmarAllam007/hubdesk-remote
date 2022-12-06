@@ -55,8 +55,8 @@ class LetterTicketParentListener
         $assignedTo = LetterTaskAssignment::where('business_unit_id', $requesterBusinessUnit->id)->first();
         $technician = $assignedTo ? $assignedTo->user_id : config('letters.kgs_technician');
 
-        $content = $this->transferReply($letterTicket,$requesterBusinessUnit->name,
-            $requesterBusinessUnit->iban ?? "SA30 4500 0000 0480 7025 4013");
+        $content = $this->transferReply($letterTicket, $requesterBusinessUnit->name,
+            $requesterBusinessUnit->iban ?? "SA30 4500 0000 0480 7025 4013", $requesterBusinessUnit);
 
         if (in_array($letterTicket->ticket->requester->business_unit_id, [4, 39, 41, 42, 46])) {
             $technician = $assignedTo ? $assignedTo->user_id : config('letters.kcc_technician');
@@ -91,9 +91,10 @@ class LetterTicketParentListener
                 'content' => $content,
             ]);
 
-            if($letterTicket->payment_type == Letter::TRANSFER_TO_BANK){
+            if ($letterTicket->payment_type == Letter::TRANSFER_TO_BANK) {
+
                 \Mail::to($letterTicket->ticket->requester->email)
-                    ->queue(new LetterRequestForFees($letterTicket, $reply));
+                    ->queue(new LetterRequestForFees($letterTicket, $reply,$content));
             }
         }
 
@@ -129,23 +130,31 @@ class LetterTicketParentListener
         TicketLog::addReminderOnSurvey($letterTicket->ticket);
     }
 
-    function transferReply($letterTicket,$businessUnit, $IBAN)
+    function transferReply($letterTicket, $businessUnit, $IBAN, $requesterBusinessUnit)
     {
-        if($letterTicket->payment_type == Letter::DEDUCTION_FROM_SALARY){
+        if ($letterTicket->payment_type == Letter::DEDUCTION_FROM_SALARY) {
             return '<p>On Hold</p>';
         }
 
         $arBusinessUnit = t($businessUnit);
+        $enBankName = $requesterBusinessUnit->bank_name1 ?? 'SABB';
+        $arBankName = $requesterBusinessUnit->bank_name1 ?? 'بنك ساب';
 
         $reply = "<p style='text-align: center;direction:rtl'>عزيزي مقدم / ـة الطلب</p>";
         $reply .= "<p style='text-align: center;direction:rtl'>تحية طيبة وبعد ،</p>";
-        $reply .= "<p style='text-align: center;direction:rtl'>يرجى تحويل رسوم تصديق الخطاب بمبلغ : 45 ريال وهي موزعة كالتالي ، رسوم الخدمة : 10 ريال ، رسوم تصديق الغرفة التجارية : 35 ريال ، على رقم الحساب البنكي رقم : $IBAN ، أسم المستفيد / $arBusinessUnit ، ومن ثم تزويدنا بنسخة من إيصال التحويل حتى نتمكن من إكمال إجراءات عملية التصديق .</p>";
+        $reply .= "<p style='text-align: center;direction:rtl'>يرجى تحويل رسوم تصديق الخطاب بمبلغ : 35 ريال على رقم الحساب البنكي رقم : $IBAN </p>";
+        $reply .= "<p style='text-align: center;direction:rtl'>أسم البنك / $arBankName </p>";
+        $reply .= "<p style='text-align: center;direction:rtl'>أسم المستفيد / $arBusinessUnit</p>";
+        $reply .= "<p style='text-align: center;direction:rtl'>ومن ثم تزويدنا بنسخة من إيصال التحويل حتى نتمكن من إكمال إجراءات عملية التصديق.</p>";
         $reply .= "<p style='text-align: center;direction:rtl'>شكراً</p>";
-
+        $reply .="<br>";
         $reply .= "<p style='text-align: center;'>Dear Requester,</p>";
         $reply .= "<p style='text-align: center;'>Greeting,</p>";
-        $reply .= "<p style='text-align: center;'>Please transfer the attestation fees : 45 riyals, distributed as follows, service fees: 10 S.R., Chamber of Commerce attestation fees: 35 S.R., to be transferred to the bank account number: $IBAN, $businessUnit,  then provide us with a copy of the transfer receipt, based on that we can complete the attestation process.</p>";
-        $reply .= "<p style='text-align: center;'>Thank you</p>',";
+        $reply .= "<p style='text-align: center;'>Please transfer the attestation fees : 35 riyals to be transferred to the bank account number: $IBAN</p>";
+        $reply .= "<p style='text-align: center;'>Bank Name / $enBankName</p>";
+        $reply .= "<p style='text-align: center;'>Company / $businessUnit</p>";
+        $reply .= "<p style='text-align: center;'>then provide us with a copy of the transfer receipt, based on that we can complete the attestation process.</p>";
+        $reply .= "<p style='text-align: center;'>Thank you</p>";
 
         return $reply;
     }

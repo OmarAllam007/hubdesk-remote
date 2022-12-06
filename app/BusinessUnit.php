@@ -34,7 +34,13 @@ class BusinessUnit extends KModel
 {
     use Listable;
 
-    protected $fillable = ['code', 'name', 'location_id', 'logo', 'business_unit_bgd', 'division_id','iban','iban2'];
+    protected $fillable = [
+        'code', 'name',
+        'location_id', 'logo',
+        'business_unit_bgd', 'division_id',
+        'iban', 'iban2',
+        'bank_name1', 'bank_name2'
+    ];
 
     protected $appends = ['bu_roles'];
 

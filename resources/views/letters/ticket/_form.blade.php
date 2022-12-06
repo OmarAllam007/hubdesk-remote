@@ -11,6 +11,7 @@
                                    ->where('view',\App\Translation::FOR_LETTER_VIEW)->get(['word','translation']))}}"
                  :language="{{json_encode($language)}}"
                  :iban="{{json_encode(auth()->user()->business_unit->iban ?? config('letter.iban'))}}"
+                 :bank_name="{{json_encode(auth()->user()->business_unit->bank_name1 ?? 'SABB')}}"
                 :is-technician="{{json_encode(Auth::user()->isSupport() ? 1 : 0)}}"
     ></letter-form>
 

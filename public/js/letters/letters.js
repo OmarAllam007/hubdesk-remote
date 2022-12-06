@@ -31565,7 +31565,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -31785,6 +31785,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -31800,7 +31807,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "LetterForm",
-  props: ['item', 'groups', 'priorities', 'subject', 'translations', 'language', 'isTechnician', 'iban'],
+  props: ['item', 'groups', 'priorities', 'subject', 'translations', 'language', 'isTechnician', 'iban', 'bank_name'],
   components: { vSelect: __WEBPACK_IMPORTED_MODULE_1_vue_select___default.a, Attachments: __WEBPACK_IMPORTED_MODULE_2__AttachmentModal___default.a, Editor: __WEBPACK_IMPORTED_MODULE_3__tinymce_tinymce_vue__["a" /* default */], Date: __WEBPACK_IMPORTED_MODULE_4__ticket_custom_fields_Date___default.a, TextField: __WEBPACK_IMPORTED_MODULE_5__ticket_custom_fields_TextField___default.a, SelectField: __WEBPACK_IMPORTED_MODULE_6__ticket_custom_fields_SelectField___default.a, NotificationsComponent: __WEBPACK_IMPORTED_MODULE_9__ticket_show_NotificationsComponent___default.a },
   data: function data() {
     return {
@@ -44467,9 +44474,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     domProps: {
       "value": 2
     }
-  }, [_vm._v(_vm._s(_vm.t('Deduction from salary')))])]), _vm._v(" "), (_vm.paymentTypeSelection === 1) ? _c('label', {
+  }, [_vm._v(_vm._s(_vm.t('Deduction from salary')))])]), _vm._v(" "), _c('p', [(_vm.paymentTypeSelection === 1) ? _c('label', {
     staticClass: "pt-5 "
-  }, [_vm._v("Transfer to: " + _vm._s(_vm.iban))]) : _vm._e()])]) : _vm._e(), _vm._v(" "), _c('div', {
+  }, [_vm._v("Bank Name: " + _vm._s(_vm.bank_name))]) : _vm._e()]), _vm._v(" "), _c('p', [(_vm.paymentTypeSelection === 1) ? _c('label', {
+    staticClass: "pt-5 "
+  }, [_vm._v("Transfer to IBAN: " + _vm._s(_vm.iban))]) : _vm._e()])])]) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "flex pt-10"
   }, [_c('div', {
     staticClass: "w-1/2"
