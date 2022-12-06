@@ -53,13 +53,14 @@ class UserController extends Controller
         $userInfoAPI = new SapApi(auth()->user());
         $salarySlipPaths = $userInfoAPI->getSalarySlip();
 
+
         if (!$salarySlipPaths) {
-            return;
+            return view('errors.contact_hr');
         }
 
         $paths = [];
 
-        foreach ($salarySlipPaths as $path){
+        foreach ($salarySlipPaths as $path) {
             $basename = str_replace('+', ' ', urlencode(basename($path)));
             $dirname = dirname($path);
             $path = $dirname . '/' . $basename;
@@ -67,7 +68,7 @@ class UserController extends Controller
         }
 
 
-        return view('user.employee_information', ['index' => \request('index'),'paths'=>$paths]);
+        return view('user.employee_information', ['index' => \request('index'), 'paths' => $paths]);
     }
 
     function getSalarySlipPdf($path)

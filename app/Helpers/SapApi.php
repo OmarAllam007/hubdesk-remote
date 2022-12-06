@@ -36,15 +36,17 @@ class SapApi
         ]);
 
         try {
-//            dd($client->getFunctions());
             $result = $client->ZHCM_PAYROLL_TECH_V2(['IM_PERNR' => $this->user->employee_id]);
         } catch (\Throwable $e) {
-//            dd($e->getMessage());
             return $e->getMessage();
         }
 
-//        dd('asdasd');
+
         if (!isset($result->PDF)) {
+            return false;
+        }
+
+        if(!isset($result->PDF->item)){
             return false;
         }
 
@@ -66,7 +68,7 @@ class SapApi
                 $files[$keyName] = null;
             }
 
-            foreach ($pdfFile->PDF->item as $keyb=>$item) {
+            foreach ($pdfFile->PDF->item as $keyb => $item) {
 
                 $files[$keyName] .= $item->LINE;
             }
@@ -80,8 +82,8 @@ class SapApi
 
         $fileUrls = [];
 
-        foreach ($files as $key=>$file) {
-            $filename = $this->user->employee_id . '_salary'. $key. '.pdf';
+        foreach ($files as $key => $file) {
+            $filename = $this->user->employee_id . '_salary' . $key . '.pdf';
             $path = $folder . $filename;
 
             if (is_file($path)) {
