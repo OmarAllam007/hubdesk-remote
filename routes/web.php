@@ -17,31 +17,8 @@ Route::get('solman-api', function () {
     // @TODO: if active and user exists reset and reply to him and his manager
     // @TODO: if not active and user not exists reply with a good response
     //
-    $user = \App\User::where('employee_id',90000970)->first();
-    $userInformation = $user->loadFromSAP(true);
 
-    if($userInformation && $userInformation['is_active']){
-        $url = 'http://alkfeccqat.alkifah.com:8000/sap/bc/srt/wsdl/flv_10002A101AD1/bndg_url/sap/bc/srt/rfc/sap/zhubdesk_change_password/920/zhubdesk_change_password/zsap_user?sap-client=920';
-        $client = new Client();
-        $client->setUri($url);
-        $client->setOptions([
-            'soap_version' => SOAP_1_2,
-            'wsdl' => $url,
-            'login' => config('sap.SAP_USER_Q'),
-            'password' => config('sap.SAP_PASS_Q'),
-            'compression' => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP
-        ]);
-//    dd($client->ZHUBDESK_CHANGE_USER_PASSWORD(90001000));
-        try {
-            $result = $client->ZHUBDESK_CHANGE_USER_PASSWORD(['IM_BNAME' => 90000000970]);
-            dd($result);
-        } catch (\Throwable $e) {
-            return $e->getMessage();
-        }
-    }
-    else{
-        // @TODO: send email with invalid user information
-    }
+
 
 });
 
