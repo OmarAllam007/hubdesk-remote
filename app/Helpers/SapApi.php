@@ -37,6 +37,7 @@ class SapApi
 
         try {
             $result = $client->ZHCM_PAYROLL_TECH_V2(['IM_PERNR' => $this->user->employee_id]);
+
         } catch (\Throwable $e) {
             return $e->getMessage();
         }
@@ -46,13 +47,13 @@ class SapApi
             return false;
         }
 
+
         if(!isset($result->PDF->item)){
             return false;
         }
 
         $files = collect();
         $fileIndex = 1;
-
         $filesData = $result->PDF->item;
 
 
@@ -61,8 +62,9 @@ class SapApi
             $fileIndex++;
             $keyName = $pdfFile->MEMORY;
             if (str_contains($pdfFile->MEMORY, '_')) {
-                $keyName = substr($pdfFile->MEMORY, 0, strpos($pdfFile->MEMORY, "_"));
-                $files[$keyName] = null;
+//                $keyName = substr($pdfFile->MEMORY, 0, strpos($pdfFile->MEMORY, "_"));
+//                $files[$keyName] = null;
+                continue;
             }
             if (!isset($files[$keyName])) {
                 $files[$keyName] = null;
