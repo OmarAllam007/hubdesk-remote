@@ -70,9 +70,20 @@ class SolManTicketListener
             'status_id' => 7,
         ]);
 
+
         if($this->user->email){
+
+            $cc = [];
+
+            if($isValidUser){
+                $directManagerEmail = $this->user->manager ? ($this->user->manager->email ?? null ) : null;
+                $cc[] = $directManagerEmail;
+            }
+
             \Mail::to($this->user->email)
-                ->queue(new ReplyTicketMail($reply));
+                ->cc($cc)
+                ->later(2,new ReplyTicketMail($reply));
+            ;
         }
 
         $ticket->update([

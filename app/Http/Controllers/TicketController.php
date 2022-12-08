@@ -124,7 +124,6 @@ class TicketController extends Controller
             }
         }
 
-        $this->dispatch(new NewTicketJob($ticket));
 
         flash(t('Ticket Info'), t('Ticket has been saved'), 'success');
         return \Redirect::route('ticket.show', $ticket);
@@ -458,12 +457,13 @@ class TicketController extends Controller
 
     function selectSubcategory(BusinessUnit $business_unit, Category $category)
     {
-        if (in_array($category->id,[116,160]) || $category->subcategories()->count() > 1) {
+        if (in_array($category->id,[116,160]) || $category->subcategories()->count() >= 1) {
             return view('ticket.create_ticket.select_subcategory', compact('business_unit', 'category'));
-        } elseif ($category->subcategories()->count() == 1) {
-            $subcategory = $category->subcategories()->first();
-            return redirect()->route('ticket.create.select_item', compact('business_unit', 'subcategory'));
         }
+//        elseif ($category->subcategories()->count() == 1) {
+//            $subcategory = $category->subcategories()->first();
+//            return redirect()->route('ticket.create.select_item', compact('business_unit', 'subcategory'));
+//        }
 
 
         $subcategory = new Subcategory();
