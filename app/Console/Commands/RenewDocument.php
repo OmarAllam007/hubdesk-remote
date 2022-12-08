@@ -34,7 +34,7 @@ class RenewDocument extends Command
         $documents = Document::all();
 
         foreach ($documents as $document) {
-            if ($document->id == 3) {// to be removed
+            if (in_array($document->id, [76,54,222])) {// to be removed
                 $notificationStartDate = $document->end_date->subDays($document->notify_duration ?? 0);
                 $shouldNotify = $notificationStartDate->lessThanOrEqualTo(Carbon::now());
 
