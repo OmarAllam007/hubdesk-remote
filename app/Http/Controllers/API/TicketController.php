@@ -153,7 +153,7 @@ class TicketController
         $this->createFields($items, $ticket);
 
 
-        dispatch(new NewTicketJob($ticket));
+//        dispatch(new NewTicketJob($ticket));
         return response($ticket->id);
     }
 

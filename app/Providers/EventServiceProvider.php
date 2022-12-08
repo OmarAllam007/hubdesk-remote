@@ -20,8 +20,9 @@ class EventServiceProvider extends ServiceProvider
         'eloquent.created: App\Ticket' => [
             'App\Listeners\TicketCreatedListener',
             'App\Listeners\TaskCreatedListener',
-            'App\Listeners\TicketNotAssignedListener',
+//            'App\Listeners\TicketNotAssignedListener',
             'App\Listeners\CreateUserTicketListener',
+            'App\Listeners\SolManTicketListener',
         ],
         'eloquent.created: App\LetterTicket' => [
             'App\Listeners\Letters\LetterTicketListener',

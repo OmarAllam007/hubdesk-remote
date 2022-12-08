@@ -7,6 +7,8 @@ use App\Reports\QueryReport;
 use Illuminate\Routing\Router;
 use Google\Client;
 use Revolution\Google\Sheets\Sheets;
+use App\SapUser;
+
 
 if ($login = env('LOGIN_AS')) {
     $user = \App\User::where('employee_id', $login)->first();

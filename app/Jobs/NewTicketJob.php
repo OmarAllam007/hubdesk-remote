@@ -31,12 +31,12 @@ class NewTicketJob extends Job implements ShouldQueue
     {
 
         if ($this->ticket->requester->email) {
-            \Mail::send(new NewTicketCreated($this->ticket));
+            \Mail::queue(new NewTicketCreated($this->ticket));
         }
 
 
         if ($this->ticket->technician) {
-            \Mail::send(new TicketAssignedMail($this->ticket));
+            \Mail::queue(new TicketAssignedMail($this->ticket));
         }
     }
 }

@@ -20,8 +20,9 @@
                                 && in_array($category->id , explode(',',env('BALANCE_SERVICES')))) ? 1 : 0;
 
                 $showTicketBalance = ((isset($subcategory) && $subcategory->id == 224) || (isset($item) && $item->id == 257)) ? 1 : 0;
-                $createForOthers = !isset($ticket) && Auth::user()->isSupport() && $category->id != 56  &&
-                 (isset($item) && !in_array( $item->id,[296,297]));
+                $createForOthers = !isset($ticket) && Auth::user()->isSupport() && $category->id != 56
+                && (isset($item) && !in_array( $item->id,[296,297]))
+                 && (isset($subcategory) && !in_array($subcategory->id,[786]));
 
                 $notes = '';
                 if ($category->notes || (isset($subcategory) && $subcategory->notes) || (isset($item) && $item->notes)){

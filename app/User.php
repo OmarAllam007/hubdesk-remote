@@ -286,16 +286,22 @@ class User extends Authenticatable implements CanResetPassword
         $sapInformation = [];
 
         if($loadFromSAP && $this->employee_id){
-            $user = \App\User::where('employee_id', $this->employee_id)->first();
-            $sapApi = new \App\Helpers\SapApi($user);
-            $sapApi->getUserInformation();
-            $sapInformation =  $sapApi->sapUser ? $sapApi->sapUser->getEmployeeSapInformation() : [];
+            $sapInformation = $this->loadFromSAP();
         }
 
         return array_merge($systemUserInformation, $sapInformation);
 
     }
 
+    function loadFromSAP(){
+        $user = \App\User::where('employee_id', $this->employee_id)->first();
+        $sapApi = new \App\Helpers\SapApi($user);
+        $sapApi->getUserInformation();
+        if ($sapApi->sapUser){
+            return $sapApi->sapUser->getEmployeeSapInformation();
+        }
+        return [];
+    }
 
     function upload($requestFileName)
     {
