@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\AutomateInsuranceReportCommand;
 use App\Console\Commands\CheckForNotOpenedTickets;
 use App\Console\Commands\CheckForNotSubmittedSurveys;
 use App\Console\Commands\EscalateTickets;
@@ -41,7 +42,7 @@ class Kernel extends ConsoleKernel
         CheckForNotOpenedTickets::class,
         ScheduledReportsCommand::class,
         MotorsReportCommand::class,
-
+        AutomateInsuranceReportCommand::class
     ];
 
     /**
