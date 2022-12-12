@@ -314,10 +314,12 @@ class BusinessDocumentController extends Controller
             ->get();
 
         $typeDescription = $serviceType == GrRequirements::SERVICE_TYPE_ISSUE ? 'Issue' : 'Cancel';
+
         $ticket = Ticket::create([
             'requester_id' => auth()->id(),
             'creator_id' => auth()->id(),
             'category_id' => $categoryId,
+            'subcategory_id'=> Document::TYPE_SUBCATEGORY[$document->type] ?? null,
             'status_id' => 1,
             'subject' => "$typeDescription Document -" . $document->name . ' - ' . $document->folder->business_unit->name,
             'description' => "$typeDescription Document - " . $document->name . ' - ' . $document->folder->business_unit->name,

@@ -20,6 +20,8 @@ class Document extends Model
 
 
     const TYPE_SUBCATEGORY = [1 => 787, 2 => 788, 3 => 789, 4 => 790, 5 => 791];
+    const ISSUE_TYPE_SUBCATEGORY = [1 => 792, 2 => 793, 3 => 794, 4 => 795, 5 => 796];
+    const CANCEL_TYPE_SUBCATEGORY = [1 => 797, 2 => 798, 3 => 799, 4 => 800, 5 => 801];
 
     function folder()
     {
