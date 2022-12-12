@@ -14,17 +14,20 @@ use Illuminate\Database\Eloquent\Model;
 class Document extends Model
 {
     protected $fillable = ['folder_id', 'name', 'start_date', 'end_date',
-        'last_updated_by', 'path', 'level', 'level_id','remarks','notify_duration'];
+        'last_updated_by', 'path', 'level', 'level_id', 'remarks', 'notify_duration'];
 
     protected $dates = ['start_date', 'end_date'];
 
+
+    const TYPE_SUBCATEGORY = [1 => 787, 2 => 788, 3 => 789, 4 => 790, 5 => 791];
 
     function folder()
     {
         return $this->belongsTo(BusinessDocumentsFolder::class);
     }
 
-    function requirements(){
+    function requirements()
+    {
         return $this->hasMany(DocumentRequirements::class);
     }
 
@@ -74,7 +77,7 @@ class Document extends Model
     function markAsShouldRenew()
     {
         $level = DocumentNotification::where('business_unit_id', $this->folder->business_unit->id)->first();
-        if(!$level){
+        if (!$level) {
             return false;
         }
 
@@ -123,7 +126,7 @@ class Document extends Model
 
     function getLevelIdStrAttribute()
     {
-        if(!$this->level){
+        if (!$this->level) {
             return;
         }
         return mb_strtolower(substr($this->level, strrpos($this->level, '\\') + 1)) . '_id';
@@ -131,7 +134,7 @@ class Document extends Model
 
     function getLevelNameStrAttribute()
     {
-        if(!$this->level){
+        if (!$this->level) {
             return;
         }
         $level = app($this->level)->where('id', $this->level_id)->first();
