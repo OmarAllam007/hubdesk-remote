@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\DocumentTicket;
 use App\GrRequirements;
+use App\Jobs\ApplySLA;
 use App\Mail\DocumentReminder;
 use App\Ticket;
 use App\TicketRequirements;
@@ -15,6 +16,7 @@ use Illuminate\Mail\Message;
 use KGS\DocumentNotification;
 use KGS\KGSBusinessUnit;
 use KGS\KGSLog;
+use PhpParser\Comment\Doc;
 
 class RenewDocument extends Command
 {
@@ -69,16 +71,18 @@ class RenewDocument extends Command
         $users = User::whereIn('id', $to)->get();
 
         if (!empty($users)) {
-            \Mail::to($users)->send(new DocumentReminder($document, $ticket));
+            \Mail::to($users)->queue(new DocumentReminder($document, $ticket));
         }
     }
 
     private function createTickets($document)
     {
+
         $ticket = Ticket::create([
             'requester_id' => env('SYSTEM_USER'),
             'creator_id' => env('SYSTEM_USER'),
             'category_id' => 161,
+            'subcategory_id'=> Document::TYPE_SUBCATEGORY[$document->type] ?? null,
             'status_id' => 1,
             'subject' => 'Renew Document -' . $document->name . ' - '.$document->folder->business_unit->name,
             'description' => 'Renew Document -' . $document->name . ' - '.$document->folder->business_unit->name,
