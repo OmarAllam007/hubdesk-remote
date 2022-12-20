@@ -9,36 +9,54 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Laminas\Soap\Client;
 
-class SolManTicketListener
+class ResetSAPTicketListener
 {
     const SUCCESS_MESSAGE = "User Changed & Password Updated";
 
     private $user;
 
+    public static $SELECTION_MAP_URLS;
+
     public function __construct()
     {
         $this->user = auth()->user();
+
+        self::$SELECTION_MAP_URLS = ['ECC QAS 400' => config('sap.ecc.qas400'),
+            'ECC QAS 500' => config('sap.ecc.qas500'),
+            'ECC QAS 920' => config('sap.ecc.qas920'),
+            'ECC PRD 900' => config('sap.ecc.prd'),
+            'S4Hana QAS 220' => config('sap.s4hana.qas'),
+            'S4Hana PRD 300' => config('sap.s4hana.prd'),
+            'SolMan' => config('sap.solman'),
+        ];
     }
 
 
     public function handle($ticket)
     {
         if ($ticket->subcategory_id == 786) {
-            $user = \App\User::where('employee_id', $this->user->employee_id)->first();
+            $user = \App\User::where('employee_id', 90001000)->first();
             $userInformation = $user->loadFromSAP(true);
 
             if ($userInformation && $userInformation['is_active']) {
+                $server = $ticket->fields->first();
 
-                $url = env('SOLMAN_RESET_PASSWORD_SERVICE');
+                if (!isset(self::$SELECTION_MAP_URLS[$server->value])) {
+                    return;
+                }
 
-                if (!$url) return;
+                $serverObject = self::$SELECTION_MAP_URLS[$server->value];
+
+
+                if (!$serverObject['url']) return;
+
                 $client = new Client();
-                $client->setUri($url);
+                $client->setUri($serverObject['url']);
                 $client->setOptions([
                     'soap_version' => SOAP_1_2,
-                    'wsdl' => $url,
-                    'login' => config('sap.SAP_USER_Q'),
-                    'password' => config('sap.SAP_PASS_Q'),
+                    'wsdl' => $serverObject['url'],
+                    'login' => $serverObject['user'],
+                    'password' => $serverObject['password'],
                     'compression' => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP
                 ]);
 
@@ -52,6 +70,7 @@ class SolManTicketListener
                         $this->createReply($ticket, $result, false);
                     }
                 } catch (\Throwable $e) {
+                    dd($e);
                     return $e->getMessage();
                 }
             } else {
@@ -71,19 +90,18 @@ class SolManTicketListener
         ]);
 
 
-        if($this->user->email){
+        if ($this->user->email) {
 
             $cc = [];
 
-            if($isValidUser){
-                $directManagerEmail = $this->user->manager ? ($this->user->manager->email ?? null ) : null;
+            if ($isValidUser) {
+                $directManagerEmail = $this->user->manager ? ($this->user->manager->email ?? null) : null;
                 $cc[] = $directManagerEmail;
             }
 
             \Mail::to($this->user->email)
                 ->cc($cc)
-                ->later(2,new ReplyTicketMail($reply));
-            ;
+                ->later(2, new ReplyTicketMail($reply));;
         }
 
         $ticket->update([
