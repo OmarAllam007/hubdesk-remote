@@ -167,7 +167,7 @@ import "selectize/dist/css/selectize.bootstrap3.css";
 import {EventBus} from "../EventBus";
 import NotificationsComponent from "../ticket/show/NotificationsComponent";
 import LoadingModal from "./LoadingModal";
-
+import NumberTextField from '../ticket/custom_fields/NumberTextField'
 export default {
   name: "TicketForm",
   components: {
@@ -179,6 +179,7 @@ export default {
     Date,
     TextField,
     SelectField,
+    NumberTextField,
     Selectize,
     NotificationsComponent,
   },
