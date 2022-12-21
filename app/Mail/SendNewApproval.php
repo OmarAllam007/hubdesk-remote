@@ -12,6 +12,7 @@ class SendNewApproval extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $cc;
     /**
      * Create a new message instance.
      *
@@ -21,6 +22,7 @@ class SendNewApproval extends Mailable
     public function __construct(TicketApproval $approval)
     {
         $this->approval = $approval;
+        $this->cc = [];
     }
 
     /**
@@ -31,6 +33,7 @@ class SendNewApproval extends Mailable
     public function build()
     {
         $name = $this->approval->approver->name;
+
         $link = link_to_route('approval.show', null, $this->approval);
         $content = str_replace(['$approver', '$approvalLink'], [$name, $link], $this->approval->content);
         if(!$this->approval->ticket->sdp_id){
@@ -39,6 +42,9 @@ class SendNewApproval extends Mailable
         else{
             $subject = "Approval required for [Request ##{$this->approval->ticket->sdp_id}##]";
         }
-        return $this->markdown('emails.ticket.request-for-approval',['approval' => $this->approval, 'content' => $content])->subject($subject);
+
+        return $this->markdown('emails.ticket.request-for-approval',
+            ['approval' => $this->approval, 'content' => $content])
+            ->subject($subject);
     }
 }
