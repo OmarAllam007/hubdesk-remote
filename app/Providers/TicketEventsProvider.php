@@ -22,6 +22,7 @@ use Illuminate\Support\ServiceProvider;
 
 class TicketEventsProvider extends ServiceProvider
 {
+    public $cc;
 
     public function boot()
     {
@@ -73,8 +74,18 @@ class TicketEventsProvider extends ServiceProvider
 
             $approval->ticket->save();
 
+            // KGS Request FOR KRB 🤦🏻 🤦🏻 🤦🏻‍️
+            $this->cc = [];
+
+            if (in_array($approval->ticket->category_id, [161, 170, 171])) {
+                $this->cc[] = 'saeed.ahmed@alkifah.com';
+                $this->cc[] = 'eid@alkifah.com';
+            }
+
             if ($approval->shouldSend()) {
-                \Mail::to($approval->approver->email)->queue(new SendNewApproval($approval));
+                \Mail::to($approval->approver->email)
+                    ->cc($this->cc)
+                    ->queue(new SendNewApproval($approval));
             }
 
 //            Attachment::uploadFiles(Attachment::TICKET_APPROVAL_TYPE, $approval->id);

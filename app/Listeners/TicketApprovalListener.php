@@ -19,9 +19,12 @@ class TicketApprovalListener
      *
      * @return void
      */
+
+    public $cc = [];
+
     public function __construct()
     {
-        //
+        $this->cc = [];
     }
 
     /**
@@ -36,7 +39,13 @@ class TicketApprovalListener
             return;
         }
 
+
         $ticketApproval = $event;
+
+        if (in_array($ticketApproval->ticket->category_id, [161, 170, 171])) {
+            $this->cc[] = 'saeed.ahmed@alkifah.com';
+            $this->cc[] = 'eid@alkifah.com';
+        }
 
         if (!$ticketApproval->ticket->isClosed() && !$ticketApproval->ticket->hasPendingApprovals()) {
             $ticketApproval->ticket->status_id = 3;
@@ -44,13 +53,18 @@ class TicketApprovalListener
         }
 
         if ($ticketApproval->ticket->technician_id) {
-            \Mail::queue(new UpdateApprovalMail($ticketApproval));
+            // KGS Request FOR KRB 🤦🏻 🤦🏻 🤦🏻‍
+            \Mail::to([$ticketApproval->ticket->technician->email, $ticketApproval->ticket->created_by->email])
+                ->cc($this->cc)
+                ->queue(new UpdateApprovalMail($ticketApproval));
         }
 
         if ($ticketApproval->status != -1 && !$ticketApproval->hasPendingOnSameStage() && $ticketApproval->hasNext()) {
             $approvals = $ticketApproval->getNextStageApprovals();
             foreach ($approvals as $approval) {
-                \Mail::to($approval->approver->email)->queue(new SendNewApproval($approval));
+                \Mail::to($approval->approver->email)
+//                    ->cc($this->cc)
+                    ->queue(new SendNewApproval($approval));
             }
         }
 
