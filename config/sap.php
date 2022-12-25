@@ -21,8 +21,8 @@ return [
         ],
         'qas920' => [//not correct
             'url' => 'http://alkfeccqat.alkifah.com:8000/sap/bc/srt/wsdl/flv_10002A101AD1/bndg_url/sap/bc/srt/rfc/sap/zhubdesk_change_password/920/zhubdesk_change_password/zsap_user?sap-client=920',
-            'user' => 'HUBDESK_API',
-            'password' => 'Kifah@2021',
+            'user' => 'HUBDESK_API2',
+            'password' => 'Aa1234567',
         ],
         'prd' => [
             'url' => 'http://ALKFECCPRD.ALKIFAH.COM:8000/sap/bc/srt/wsdl/flv_10002A101AD1/bndg_url/sap/bc/srt/rfc/sap/zhubdesk_change_password/900/zhubdesk_change_password/zsap_user_prd?sap-client=900',
