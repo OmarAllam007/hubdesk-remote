@@ -51,16 +51,6 @@
       </div>
     </transition>
 
-    <div class="w-full  p-1  " v-if="!loading">
-      <div class="flex justify-end">
-
-
-        <!--        <div class="flex ">-->
-
-        <!--        </div>-->
-      </div>
-
-    </div>
     <!--    sidebar -->
     <div class="w-full  p-3 flex flex-col md:flex-row xl:flex-row lg:flex-row 2xl:flex-row">
       <transition name="slide-fade">
@@ -77,7 +67,8 @@
         <div v-if="!loading && !initLoading" class="flex py-5 justify-between items-end">
           <div>
             <button class="h-12 px-16 bg-gray-500 rounded-2xl text-white mr-2 shadow-lg"
-                    :class="{'searchbtn':selectedTicketType == 0}" @click="changeTicketType(0)"> All
+                    :class="{'searchbtn':selectedTicketType == 0}"
+                    @click="changeTicketType(0)"> All
             </button>
             <button class="h-12 px-16 bg-gray-500 rounded-2xl text-white mr-2 shadow-lg"
                     :class="{'searchbtn':selectedTicketType == 1}" @click="changeTicketType(1)"> Ticket
@@ -101,7 +92,6 @@
           </div>
 
           <div v-for="ticket in tickets.data" v-else>
-
             <ticket :ticket="ticket"></ticket>
           </div>
           <div class="flex justify-center">
@@ -232,7 +222,7 @@ export default {
     changeTicketType(type) {
       this.selectedTicketType = type;
       localStorage.setItem('ticket_type', this.selectedTicketType);
-      this.loadTickets(false)
+      this.loadTickets(true)
     },
     clearFilter() {
       this.$refs.criteria.$data.requirements = [];
