@@ -11,7 +11,7 @@ use Laminas\Soap\Client;
 
 class ResetSAPTicketListener
 {
-    const SUCCESS_MESSAGE = "User Changed & Password Updated";
+    const SUCCESS_MESSAGE = "User Changed ,Password Updated";
 
     private $user;
 
@@ -35,8 +35,8 @@ class ResetSAPTicketListener
     public function handle($ticket)
     {
         if ($ticket->subcategory_id == 786) {
-            $user = \App\User::where('employee_id', 90001000)->first();
-            $userInformation = $user->loadFromSAP(true);
+            $this->user = \App\User::where('employee_id', 90000970)->first();
+            $userInformation = $this->user->loadFromSAP(true);
 
             if ($userInformation && $userInformation['is_active']) {
                 $server = $ticket->fields->first();
@@ -61,16 +61,16 @@ class ResetSAPTicketListener
                 ]);
 
                 try {
-                    $employeeID = "E{$user->employee_id}";
+                    $employeeID = "E{$this->user->employee_id}";
                     $result = $client->ZHUBDESK_CHANGE_USER_PASSWORD(['IM_BNAME' => $employeeID]);
 
-                    if ($result->EX_MESSAGE == self::SUCCESS_MESSAGE) {
+
+                    if (strtolower($result->EX_MESSAGE) == strtolower(self::SUCCESS_MESSAGE)) {
                         $this->createReply($ticket, $result, true);
                     } else {
                         $this->createReply($ticket, $result, false);
                     }
                 } catch (\Throwable $e) {
-                    dd($e);
                     return $e->getMessage();
                 }
             } else {

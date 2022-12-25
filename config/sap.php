@@ -12,14 +12,14 @@ return [
         'qas400' => [
             'url' => 'http://ALKFECCQAT.ALKIFAH.COM:8000/sap/bc/srt/wsdl/flv_10002A101AD1/bndg_url/sap/bc/srt/rfc/sap/zhubdesk_change_password/400/zhubdesk_change_password/zsap_user?sap-client=400',
             'user' => 'HUBDESK_API',
-            'password' => 'Kifah@2021',
+            'password' => 'J{FCV2V@',
         ],
         'qas500' => [
             'url' => 'http://ALKFECCQAT.ALKIFAH.COM:8000/sap/bc/srt/wsdl/flv_10002A101AD1/bndg_url/sap/bc/srt/rfc/sap/zhubdesk_change_password/500/zhubdesk_change_password/zsap_user?sap-client=500',
             'user' => 'HUBDESK_API',
-            'password' => 'Kifah@2021',
+            'password' => 'Z&W4CAR}',
         ],
-        'qas920' => [
+        'qas920' => [//not correct
             'url' => 'http://alkfeccqat.alkifah.com:8000/sap/bc/srt/wsdl/flv_10002A101AD1/bndg_url/sap/bc/srt/rfc/sap/zhubdesk_change_password/920/zhubdesk_change_password/zsap_user?sap-client=920',
             'user' => 'HUBDESK_API',
             'password' => 'Kifah@2021',
