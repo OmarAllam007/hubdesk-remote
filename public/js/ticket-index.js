@@ -14907,16 +14907,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -14947,6 +14937,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       sidebar_visibility: false,
       search: '',
       selectedTicketType: 0,
+      selectedTicketTypeLoader: false,
       tickets: {
         total: 0,
         per_page: 2,
@@ -14997,9 +14988,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     changeTicketType: function changeTicketType(type) {
+      this.selectedTicketTypeLoader = true;
       this.selectedTicketType = type;
       localStorage.setItem('ticket_type', this.selectedTicketType);
-      this.loadTickets(false);
+      this.loadTickets(true);
     },
     clearFilter: function clearFilter() {
       this.$refs.criteria.$data.requirements = [];
@@ -15066,10 +15058,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           _this2.total = response.total;
           _this2.services = response.data.sortedServices;
           _this2.getSelectedScope();
+          _this2.selectedTicketTypeLoader = false;
         }
       }).catch(function (e) {
         console.log(e);
         _this2.loading = false;
+        _this2.selectedTicketTypeLoader = false;
       });
     },
     getSelectedScope: function getSelectedScope() {
@@ -34318,11 +34312,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('i', {
     staticClass: "fa fa-times"
-  }), _vm._v(" Clear\n        ")])])], 1)]), _vm._v(" "), (!_vm.loading) ? _c('div', {
-    staticClass: "w-full  p-1  "
-  }, [_c('div', {
-    staticClass: "flex justify-end"
-  })]) : _vm._e(), _vm._v(" "), _c('div', {
+  }), _vm._v(" Clear\n        ")])])], 1)]), _vm._v(" "), _c('div', {
     staticClass: "w-full  p-3 flex flex-col md:flex-row xl:flex-row lg:flex-row 2xl:flex-row"
   }, [_c('transition', {
     attrs: {
