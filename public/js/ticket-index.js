@@ -14888,6 +14888,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -14917,6 +14946,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       selected_scope_str: '',
       sidebar_visibility: false,
       search: '',
+      selectedTicketType: 0,
       tickets: {
         total: 0,
         per_page: 2,
@@ -14929,9 +14959,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
   created: function created() {
+    console.log(sessionStorage.getItem('ticket_type'));
     this.initLoading = true;
     this.selected_scope = sessionStorage.getItem('scope') ? sessionStorage.getItem('scope') : '';
-
+    this.selectedTicketType = localStorage.getItem('ticket_type') ? localStorage.getItem('ticket_type') : 0;
     this.loadTickets();
     // this.getSelectedScope();
   },
@@ -14965,6 +14996,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
+    changeTicketType: function changeTicketType(type) {
+      this.selectedTicketType = type;
+      localStorage.setItem('ticket_type', this.selectedTicketType);
+      this.loadTickets(false);
+    },
     clearFilter: function clearFilter() {
       this.$refs.criteria.$data.requirements = [];
       this.clear = true;
@@ -15009,7 +15045,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         'search': this.search,
         'clear': this.clear,
         'criterions': this.criterions,
-        'selected_services': this.selected_services
+        'selected_services': this.selected_services,
+        'ticket_type': this.selectedTicketType
       }).then(function (response) {
         if (response.data.ticket) {
           window.location.href = '/ticket/' + _this2.search;
@@ -34099,9 +34136,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('div', {
-    staticClass: "flex justify-end"
-  }, [_c('button', {
+  return _c('div', [_c('div', [_c('button', {
     staticClass: "h-16 px-6  searchbtn rounded-2xl  text-white mr-2 shadow-lg",
     on: {
       "click": _vm.showRecentModal
@@ -34285,11 +34320,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "fa fa-times"
   }), _vm._v(" Clear\n        ")])])], 1)]), _vm._v(" "), (!_vm.loading) ? _c('div', {
     staticClass: "w-full  p-1  "
-  }, [_c('recent-tickets', {
-    attrs: {
-      "tickets": _vm.lastTickets
-    }
-  })], 1) : _vm._e(), _vm._v(" "), _c('div', {
+  }, [_c('div', {
+    staticClass: "flex justify-end"
+  })]) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "w-full  p-3 flex flex-col md:flex-row xl:flex-row lg:flex-row 2xl:flex-row"
   }, [_c('transition', {
     attrs: {
@@ -34314,7 +34347,43 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   })], 1) : _vm._e()])]), _vm._v(" "), _c('div', {
     staticClass: "relative",
     class: _vm.ticketsWidth
-  }, [(_vm.loading && !_vm.initLoading) ? _c('loader') : _c('div', {
+  }, [(!_vm.loading && !_vm.initLoading) ? _c('div', {
+    staticClass: "flex py-5 justify-between items-end"
+  }, [_c('div', [_c('button', {
+    staticClass: "h-12 px-16 bg-gray-500 rounded-2xl text-white mr-2 shadow-lg",
+    class: {
+      'searchbtn': _vm.selectedTicketType == 0
+    },
+    on: {
+      "click": function($event) {
+        return _vm.changeTicketType(0)
+      }
+    }
+  }, [_vm._v(" All\n          ")]), _vm._v(" "), _c('button', {
+    staticClass: "h-12 px-16 bg-gray-500 rounded-2xl text-white mr-2 shadow-lg",
+    class: {
+      'searchbtn': _vm.selectedTicketType == 1
+    },
+    on: {
+      "click": function($event) {
+        return _vm.changeTicketType(1)
+      }
+    }
+  }, [_vm._v(" Ticket\n          ")]), _vm._v(" "), _c('button', {
+    staticClass: "h-12  px-16 bg-gray-500 rounded-2xl  text-white mr-2 shadow-lg",
+    class: {
+      'searchbtn': _vm.selectedTicketType == 2
+    },
+    on: {
+      "click": function($event) {
+        return _vm.changeTicketType(2)
+      }
+    }
+  }, [_vm._v(" Task\n          ")])]), _vm._v(" "), _c('div', [_c('recent-tickets', {
+    attrs: {
+      "tickets": _vm.lastTickets
+    }
+  })], 1)]) : _vm._e(), _vm._v(" "), (_vm.loading && !_vm.initLoading) ? _c('loader') : _c('div', {
     staticClass: "transition flex flex-col ease-in-out mt-3 md:mt-0 xl:mt-0 lg:mt-0 2xl:mt-0"
   }, [(!_vm.loading && !_vm.tickets.data.length) ? _c('div', {
     staticClass: "flex justify-center pt-10"
@@ -34405,7 +34474,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('i', {
     staticClass: "fa fa-filter"
-  }), _vm._v(" Filter")])])])])])], 1)
+  }), _vm._v(" Filter\n          ")])])])])])], 1)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "modal-header"
