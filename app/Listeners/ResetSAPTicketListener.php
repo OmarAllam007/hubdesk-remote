@@ -35,7 +35,6 @@ class ResetSAPTicketListener
     public function handle($ticket)
     {
         if ($ticket->subcategory_id == 786) {
-            $this->user = \App\User::where('employee_id', 90000970)->first();
             $userInformation = $this->user->loadFromSAP(true);
 
             if ($userInformation && $userInformation['is_active']) {
@@ -46,7 +45,6 @@ class ResetSAPTicketListener
                 }
 
                 $serverObject = self::$SELECTION_MAP_URLS[$server->value];
-
 
                 if (!$serverObject['url']) return;
 
