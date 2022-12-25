@@ -19,10 +19,10 @@ class EventServiceProvider extends ServiceProvider
         ],
         'eloquent.created: App\Ticket' => [
             'App\Listeners\TicketCreatedListener',
+            'App\Listeners\TicketFieldsListener',
             'App\Listeners\TaskCreatedListener',
-//            'App\Listeners\TicketNotAssignedListener',
             'App\Listeners\CreateUserTicketListener',
-            'App\Listeners\SolManTicketListener',
+            'App\Listeners\ResetSAPTicketListener',
         ],
         'eloquent.created: App\LetterTicket' => [
             'App\Listeners\Letters\LetterTicketListener',

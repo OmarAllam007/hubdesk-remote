@@ -85,7 +85,6 @@ class TicketController
 
     function filterTickets()
     {
-//        \request('criterions')
         if (\request('criterions')) {
             \Session::put('ticket.filter', \request('criterions'));
         }
@@ -127,8 +126,6 @@ class TicketController
         $requestedTicket = $request->get('ticket');
 
         $items = json_decode($request->input('ticket.fields'), true);
-
-
         $validation = $this->validateFields($items);
 
         if (count($validation)) {
@@ -150,7 +147,7 @@ class TicketController
 
         $ticket = $this->createTicket($request, $requestedTicket, $requestedTicket['requester_id']);
 
-        $this->createFields($items, $ticket);
+
 
 
 //        dispatch(new NewTicketJob($ticket));
@@ -218,22 +215,6 @@ class TicketController
      * @param $ticket
      * @return void
      */
-    public function createFields($items, $ticket): void
-    {
-        if ($items && count($items)) {
-            foreach ($items as $key => $item) {
-                if ($item) {
-                    if (is_numeric($key)) {
-                        $field = CustomField::find($key)->name ?? '';
-                    } else {
-                        $field = $key;
-                    }
-                    $ticket->fields()->create(['name' => $field, 'value' => $item]);
-                }
-            }
-        }
-    }
-
 
 
 //    TODO: THIS IS ONLY FOR KGS SERVICES 🤦🏻🤦🏻🤦🏻‍
