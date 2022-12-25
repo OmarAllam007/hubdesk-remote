@@ -52,7 +52,14 @@
     </transition>
 
     <div class="w-full  p-1  " v-if="!loading">
-      <recent-tickets :tickets="lastTickets"></recent-tickets>
+      <div class="flex justify-end">
+
+
+        <!--        <div class="flex ">-->
+
+        <!--        </div>-->
+      </div>
+
     </div>
     <!--    sidebar -->
     <div class="w-full  p-3 flex flex-col md:flex-row xl:flex-row lg:flex-row 2xl:flex-row">
@@ -67,6 +74,24 @@
 
 
       <div class="relative" :class="ticketsWidth">
+        <div v-if="!loading && !initLoading" class="flex py-5 justify-between items-end">
+          <div>
+            <button class="h-12 px-16 bg-gray-500 rounded-2xl text-white mr-2 shadow-lg"
+                    :class="{'searchbtn':selectedTicketType == 0}" @click="changeTicketType(0)"> All
+            </button>
+            <button class="h-12 px-16 bg-gray-500 rounded-2xl text-white mr-2 shadow-lg"
+                    :class="{'searchbtn':selectedTicketType == 1}" @click="changeTicketType(1)"> Ticket
+            </button>
+            <button class="h-12  px-16 bg-gray-500 rounded-2xl  text-white mr-2 shadow-lg"
+                    :class="{'searchbtn':selectedTicketType == 2}" @click="changeTicketType(2)"> Task
+            </button>
+
+          </div>
+
+          <div>
+            <recent-tickets :tickets="lastTickets"></recent-tickets>
+          </div>
+        </div>
         <loader v-if="loading && !initLoading"></loader>
         <div class="transition flex flex-col ease-in-out mt-3 md:mt-0 xl:mt-0 lg:mt-0 2xl:mt-0" v-else>
           <div v-if="!loading && !tickets.data.length" class="flex justify-center pt-10">
@@ -74,7 +99,9 @@
               <p>No Tickets Found!</p>
             </div>
           </div>
+
           <div v-for="ticket in tickets.data" v-else>
+
             <ticket :ticket="ticket"></ticket>
           </div>
           <div class="flex justify-center">
@@ -101,7 +128,8 @@
             <h4 class="modal-title" id="serviceModal">Filter By Service</h4>
           </div>
           <div class="modal-body">
-            <select name="technicians" multiple class="form-control" id="technicians" size="25" v-model="selected_services">
+            <select name="technicians" multiple class="form-control" id="technicians" size="25"
+                    v-model="selected_services">
               <option :value="service.id" v-for="service in services"> {{ service.name }}</option>
             </select>
 
@@ -109,7 +137,8 @@
           <div class="modal-footer">
             <button type="button" class="p-3" data-dismiss="modal" id="closeTech">Close</button>
             <button type="button" class="p-3 bg-green-600 rounded text-white hover:bg-green-700"
-                    id="chooseTech" @click="loadTickets"><i class="fa fa-filter"></i> Filter</button>
+                    id="chooseTech" @click="loadTickets"><i class="fa fa-filter"></i> Filter
+            </button>
           </div>
         </div>
       </div>
@@ -147,6 +176,7 @@ export default {
       selected_scope_str: '',
       sidebar_visibility: false,
       search: '',
+      selectedTicketType: 0,
       tickets: {
         total: 0,
         per_page: 2,
@@ -155,13 +185,14 @@ export default {
         current_page: localStorage.getItem('page') ? localStorage.getItem('page') : 1
       },
       offset: 4,
-      selected_services:[]
+      selected_services: []
     }
   },
   created() {
+    console.log(sessionStorage.getItem('ticket_type'))
     this.initLoading = true;
     this.selected_scope = sessionStorage.getItem('scope') ? sessionStorage.getItem('scope') : '';
-
+    this.selectedTicketType = localStorage.getItem('ticket_type') ? localStorage.getItem('ticket_type') : 0;
     this.loadTickets();
     // this.getSelectedScope();
   },
@@ -198,7 +229,11 @@ export default {
   },
 
   methods: {
-
+    changeTicketType(type) {
+      this.selectedTicketType = type;
+      localStorage.setItem('ticket_type', this.selectedTicketType);
+      this.loadTickets(false)
+    },
     clearFilter() {
       this.$refs.criteria.$data.requirements = [];
       this.clear = true;
@@ -239,7 +274,8 @@ export default {
         'search': this.search,
         'clear': this.clear,
         'criterions': this.criterions,
-        'selected_services':this.selected_services,
+        'selected_services': this.selected_services,
+        'ticket_type':this.selectedTicketType,
       }).then((response) => {
         if (response.data.ticket) {
           window.location.href = `/ticket/${this.search}`;

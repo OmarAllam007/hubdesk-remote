@@ -68,6 +68,16 @@ class TicketController
             $query->whereIn('category_id', $servicesArr);
         }
 
+        if(\request('ticket_type') && \request('ticket_type') != 0){
+            $type = \request('ticket_type');
+
+            if($type == Ticket::TASK_TYPE){
+                $query->whereNotNull('request_id');
+            }else{
+                $query->whereNull('request_id');
+            }
+        }
+
         $sortedServices = Category::with('business_unit')->where('is_disabled', 0)
             ->get()->map(function ($service) {
                 return ['id' => $service->id, 'name' => $service->business_unit->name . ' > ' . $service->name];

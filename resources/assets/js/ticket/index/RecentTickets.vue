@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex justify-end">
+    <div>
       <button class="h-16 px-6  searchbtn rounded-2xl  text-white mr-2 shadow-lg" @click="showRecentModal"><i
           class="fa fa-history" ></i>
       </button>
