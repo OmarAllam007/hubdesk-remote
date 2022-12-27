@@ -21,12 +21,13 @@ class ResetSAPTicketListener
     {
         $this->user = auth()->user();
 
-        self::$SELECTION_MAP_URLS = ['ECC QAS 400' => config('sap.ecc.qas400'),
-            'ECC QAS 500' => config('sap.ecc.qas500'),
-            'ECC QAS 920' => config('sap.ecc.qas920'),
-            'ECC PRD 900' => config('sap.ecc.prd'),
-            'S4Hana QAS 220' => config('sap.s4hana.qas'),
-            'S4Hana PRD 300' => config('sap.s4hana.prd'),
+        self::$SELECTION_MAP_URLS = [
+            'SAP ECC Quality 400 (ECC QAS 400)' => config('sap.ecc.qas400'),
+            'SAP ECC Quality 500 (ECC QAS 500)' => config('sap.ecc.qas500'),
+            'SAP ECC Quality 920 (ECC QAS 920)' => config('sap.ecc.qas920'),
+            'SAP ECC Production 900 (ECC PRD 900)' => config('sap.ecc.prd'),
+            'SAP S4Hana Quality 900 (S4Hana QAS 220)' => config('sap.s4hana.qas'),
+            'SAP S4Hana Production 300 (S4Hana PRD 300)' => config('sap.s4hana.prd'),
             'SolMan' => config('sap.solman'),
         ];
     }
