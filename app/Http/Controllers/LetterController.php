@@ -138,16 +138,21 @@ class LetterController extends Controller
         if ($ticketRef->isTask()) {
             $employeeID = $ticketRef->ticket->requester->employee_id;
         }
+
         $user = \App\User::where('employee_id', $employeeID)->first();
 
         $sapApi = new \App\Helpers\SapApi($user);
         $sapApi->getUserInformation();
 
+        if($user['sponsor_id'] == ""){
+            return "sponsor_id";
+        }
+
         $user = $sapApi->sapUser->getEmployeeSapInformation();
         $this->userActive = $user['is_active'];
 
         if (!$user['is_active']) {
-            return false;
+            return "is_active";
         }
 
         $user['allowances_str'] = $sapApi->sapUser->getAllowancesString();
@@ -167,6 +172,7 @@ class LetterController extends Controller
 
     function generateLetter($ticket)
     {
+
         $ticket = Ticket::find($ticket);
 
         if ($ticket->item_id == 445) { // to be better than this
@@ -175,7 +181,11 @@ class LetterController extends Controller
             $content = $this->buildView($ticket);
         }
 
-        if (!$content) {
+        if ($content == "sponsor_id") {
+            return view('errors.letter_contact_hr');
+        }
+
+        if ($content == "is_active") {
             return view('letters.contact_hr');
         }
 
