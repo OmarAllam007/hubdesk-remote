@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use App\Jobs\TicketReplyJob;
 use App\Mail\ReplyTicketMail;
+use App\Mail\SAPResetPasswordEmail;
 use App\TicketReply;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -100,7 +101,7 @@ class ResetSAPTicketListener
 
             \Mail::to($this->user->email)
                 ->cc($cc)
-                ->later(2, new ReplyTicketMail($reply));;
+                ->later(2, new SAPResetPasswordEmail($reply));
         }
 
         $ticket->update([
