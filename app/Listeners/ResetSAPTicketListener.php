@@ -23,7 +23,7 @@ class ResetSAPTicketListener
 
     public function __construct()
     {
-        $this->user = User::where('employee_id', 90000970)->first();
+        $this->user = auth()->user();
 
         self::$SELECTION_MAP_URLS = [
             'SAP ECC Quality 400 (ECC QAS 400)' => config('sap.ecc.qas400'),
