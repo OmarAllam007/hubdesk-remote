@@ -9,10 +9,12 @@ use App\TicketReply;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Laminas\Soap\Client;
+use phpDocumentor\Reflection\Types\Self_;
 
 class ResetSAPTicketListener
 {
     const SUCCESS_MESSAGE = "User Changed ,Password Updated";
+    const NOT_EXIST = "User does not exist";
 
     private $user;
 
@@ -57,13 +59,22 @@ class ResetSAPTicketListener
                     'wsdl' => $serverObject['url'],
                     'login' => $serverObject['user'],
                     'password' => $serverObject['password'],
-                    'compression' => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP
+                    'compression' => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP,
+                    'streamcontext'=> stream_context_create([
+                        'ssl' => [
+                            'verify_peer' => false,
+                            'verify_peer_name' => false,
+                            'allow_self_signed' => true
+                        ],
+                        'http' => array(
+                            "timeout" => 60,
+                        ),
+                    ])
                 ]);
 
                 try {
                     $employeeID = "E{$this->user->employee_id}";
                     $result = $client->ZHUBDESK_CHANGE_USER_PASSWORD(['IM_BNAME' => $employeeID]);
-
 
                     if (strtolower($result->EX_MESSAGE) == strtolower(self::SUCCESS_MESSAGE)) {
                         $this->createReply($ticket, $result, true);
@@ -71,6 +82,7 @@ class ResetSAPTicketListener
                         $this->createReply($ticket, $result, false);
                     }
                 } catch (\Throwable $e) {
+                    $this->createReply($ticket, null, false);
                     return $e->getMessage();
                 }
             } else {
@@ -91,9 +103,7 @@ class ResetSAPTicketListener
 
 
         if ($this->user->email) {
-
             $cc = [];
-
             if ($isValidUser) {
                 $directManagerEmail = $this->user->manager ? ($this->user->manager->email ?? null) : null;
                 $cc[] = $directManagerEmail;
@@ -112,12 +122,11 @@ class ResetSAPTicketListener
     private function makeContent($isValidUser, $result)
     {
         $resultStr = "";
-
-        if ($isValidUser) {
+        if ($isValidUser && $result["EX_MESSAGE"] == self::SUCCESS_MESSAGE) {
             $resultStr .= "<p>Username: e{$this->user->employee_id}</p>";
             $resultStr .= "<p>Password: {$result->EX_PASSWORD}</p>";
         } else {
-            $resultStr .= "User not exist on SolMan";
+            $resultStr .= "User does not exist on the selected server";
         }
 
         return $resultStr;
