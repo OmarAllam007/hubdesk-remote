@@ -38,6 +38,7 @@ Route::group(['prefix' => 'dashboard'], function (Router $r) {
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/user-information', 'UserController@getUserInformation')->name('user.information');
+    Route::get('/get-payslip', 'UserController@getPayslip')->name('user.payslip');
     Route::get('/user-information-pdf', 'UserController@getSalarySlipPdf')->name('user.salarySlipPdf');
     Route::get('/get-users', 'Admin\UserController@getusers');
     Route::get('/reset_password', 'UserController@getResetForm')->name('user.reset');

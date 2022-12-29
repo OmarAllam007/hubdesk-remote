@@ -43,9 +43,10 @@ class UserController extends Controller
         return $requester;
     }
 
-    function getUserInformation()
+
+    function getPayslip()
     {
-//        return view('errors.maintenance');
+        $paths = [];
 
         if (!auth()->user()->employee_id) {
             return redirect('/');
@@ -58,7 +59,7 @@ class UserController extends Controller
             return view('errors.contact_hr');
         }
 
-        $paths = [];
+
 
         foreach ($salarySlipPaths as $path) {
             $basename = str_replace('+', ' ', urlencode(basename($path)));
@@ -66,9 +67,12 @@ class UserController extends Controller
             $path = $dirname . '/' . $basename;
             $paths[] = url('/storage/' . $path);
         }
+        return $paths;
+    }
 
-
-        return view('user.employee_information', ['index' => \request('index'), 'paths' => $paths]);
+    function getUserInformation()
+    {
+        return view('user.employee_information');
     }
 
     function getSalarySlipPdf($path)
