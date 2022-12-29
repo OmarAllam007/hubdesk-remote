@@ -97,7 +97,7 @@
 
         ></editor>
 
-        <div class="flex flex-col pt-5 ">
+        <div class="flex flex-col pt-5 " v-if="!priority_not_required">
           <label for="priorities"
                  class="font-semibold">
             {{ $root.t('Priority') }} <span class="text-red-700 font-bold">*</span>
@@ -184,6 +184,9 @@ export default {
     NotificationsComponent,
   },
   props: {
+    priority_not_required:{
+      type:Boolean
+    },
     show_balance: {
       type: Number,
     },
@@ -227,7 +230,7 @@ export default {
         subject: '',
         files: [],
         creator_id: this.auth_user,
-        priority_id: ''
+        priority_id: 3
       },
 
       fields: [],

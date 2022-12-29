@@ -25,6 +25,7 @@
                  && (isset($subcategory) && !in_array($subcategory->id,[786]));
 
                 $notes = '';
+
                 if ($category->notes || (isset($subcategory) && $subcategory->notes) || (isset($item) && $item->notes)){
                     $notes = $category->notes.' '. $subcategory->notes .' '. $item->notes;
                 }
@@ -40,6 +41,7 @@
                      $category->name.(isset($subcategory->name) ? '  -  '.  $subcategory->name:'').(isset($item->name) ? '  -  '.  $item->name:'').(isset($subItem->name) ? '  -  '.  $subItem->name:'');
 
                 $createForOthers = $createForOthers ? 1 : 0;
+
                 $priorities = \App\Priority::all();
 
 
@@ -50,6 +52,7 @@
                     return ['word'=> strtolower($item->word),'translation'=> $item->translation];
                 });
 
+                $priorityNotRequired = isset($subcategory) && in_array($subcategory->id,[786]);
             @endphp
 
             <ticket-form
@@ -62,6 +65,7 @@
                     :notes="{{json_encode($notes)}}"
                     :priorities="{{json_encode($priorities)}}"
                     :translations="{{json_encode($translations)}}"
+                    :priority_not_required="{{json_encode($priorityNotRequired)}}"
             >
 
             </ticket-form>

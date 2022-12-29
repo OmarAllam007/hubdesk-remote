@@ -68,12 +68,12 @@ class TicketController
             $query->whereIn('category_id', $servicesArr);
         }
 
-        if(\request('ticket_type') && \request('ticket_type') != 0){
+        if (\request('ticket_type') && \request('ticket_type') != 0) {
             $type = \request('ticket_type');
 
-            if($type == Ticket::TASK_TYPE){
+            if ($type == Ticket::TASK_TYPE) {
                 $query->whereNotNull('request_id');
-            }else{
+            } else {
                 $query->whereNull('request_id');
             }
         }
@@ -146,8 +146,8 @@ class TicketController
             return response()->json(['file_size_error' => ['Attachments size should not exceed 10MB'], 'error_code' => 402]);
         }
 
-        $validator = \Validator::make($request->all(), ['ticket.subject' => 'required', 'ticket.priority_id' => 'required'], [
-            'ticket.priority_id.required' => 'Priority field is required.',
+        $validator = \Validator::make($request->all(), ['ticket.subject' => 'required'], [
+//            'ticket.priority_id.required' => 'Priority field is required.',
             'ticket.subject.required' => 'Subject field is required.'
         ]);
 
@@ -157,10 +157,6 @@ class TicketController
 
         $ticket = $this->createTicket($request, $requestedTicket, $requestedTicket['requester_id']);
 
-
-
-
-//        dispatch(new NewTicketJob($ticket));
         return response($ticket->id);
     }
 
@@ -212,7 +208,7 @@ class TicketController
             'category_id' => $requestedTicket['category_id'],
             'subcategory_id' => $requestedTicket['subcategory_id'],
             'item_id' => $requestedTicket['item_id'],
-            'priority_id' => $requestedTicket['priority_id'],
+            'priority_id' => $requestedTicket['priority_id'] ?? 3,
             'business_unit_id' => $requesterUser->business_unit_id ?? 34, //not assigned
             'client_info' => $clientInfo,
         ]);
@@ -247,20 +243,20 @@ class TicketController
 
         $file->move($folder, $name);
 
-        $pathName =  "/kgs/ticket/" . $ticket_id . '/' . $requirement_id . '/'. $name;
+        $pathName = "/kgs/ticket/" . $ticket_id . '/' . $requirement_id . '/' . $name;
 
-        $ticketRequirements =  TicketRequirements::where('ticket_id', $ticket_id)
+        $ticketRequirements = TicketRequirements::where('ticket_id', $ticket_id)
             ->where('id', $requirement_id)->first();
 
         $ticketRequirements->update([
-           'path'=> $pathName,
+            'path' => $pathName,
         ]);
 
     }
 
     function downloadRequirements($ticket_id, $requirement_id)
     {
-        $path = TicketRequirements::where('ticket_id',$ticket_id)->where('id',$requirement_id)
+        $path = TicketRequirements::where('ticket_id', $ticket_id)->where('id', $requirement_id)
             ->first()->path;
 
         $file = public_path('storage') . $path;
