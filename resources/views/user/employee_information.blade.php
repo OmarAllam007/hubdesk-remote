@@ -9,39 +9,13 @@
 
 @endsection
 @section('body')
-    <div class="flex">
-        <div class="w-full">
-            <div class="flex-col justify-center items-center">
-
-                <div class="flex justify-center">
-                    <div class="w-10"></div>
-                    <div class="flex flex-col justify-center p-10 ">
-                        @foreach($paths as $path)
-
-                            <iframe src="{{$path}}"  height='800' allowfullscreen="" class="pt-5 "></iframe>
-                            {{--                        <iframe id="salarySlip" class="w-full pt-5 "--}}
-                            {{--                                src="{{route('user.salarySlipPdf')}}?index={{request('index',0)}}" scrolling="auto"--}}
-                            {{--                                height="1100"--}}
-                            {{--                        ></iframe>--}}
-                        @endforeach
-                    </div>
-                    <div class="w-10"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="flex-col text-center w-full">
-
-
+    <div class="flex" id="salarySlip">
+        <salary-slip class="w-full"></salary-slip>
     </div>
 
 
-    {{--    <object data="{{url('storage'.$salarySlip)}}" height="100%" width="100%" type="application/pdf">--}}
-    {{--        <iframe src="https://docs.google.com/viewer?url={{url('storage'.$salarySlip)}}&embedded=true"></iframe>--}}
-    {{--    </object>--}}
+@endsection
 
-
-    {{--    <iframe src="https://docs.google.com/viewerng/viewer?url={{url('storage'.$salarySlip)}}&embedded=true" frameborder="0" height="100%" width="100%">--}}
-    {{--    </iframe>--}}
-
+@section('javascript')
+    <script src="{{asset('/js/salary_slip/index.js')}}"></script>
 @endsection
