@@ -5,19 +5,25 @@ namespace App\Helpers;
 
 
 use App\SapUser;
+use App\User;
+use App\UserProcess;
+use Carbon\Carbon;
 use Laminas\Soap\Client;
+use Laminas\Validator\Date;
 
 class SapApi
 {
     protected $user;
     public $sapUser;
+    private $result;
 
     public function __construct($user)
     {
         $this->user = $user;
     }
 
-    public function getSalarySlip()
+
+    private function connectToSAP()
     {
         $url = config('sap.ZHCM_PAYROLL_TECH_URL');
 
@@ -36,36 +42,35 @@ class SapApi
         ]);
 
         try {
-            $result = $client->ZHCM_PAYROLL_TECH_V2(['IM_PERNR' => $this->user->employee_id]);
+            $this->result = $client->ZHCM_PAYROLL_TECH_V2(['IM_PERNR' => $this->user->employee_id]);
 
         } catch (\Throwable $e) {
             return $e->getMessage();
         }
+    }
 
 
-        if (!isset($result->PDF)) {
+    private function processFiles()
+    {
+        if (!isset($this->result->PDF)) {
             return false;
         }
 
 
-        if(!isset($result->PDF->item)){
+        if (!isset($this->result->PDF->item)) {
             return false;
         }
 
         $files = collect();
         $fileIndex = 1;
-        $filesData = $result->PDF->item;
+        $filesData = $this->result->PDF->item;
 
 
         foreach ($filesData as $key => $pdfFile) {
 
             $fileIndex++;
             $keyName = $pdfFile->MEMORY;
-            if (str_contains($pdfFile->MEMORY, '_')) {
-//                $keyName = substr($pdfFile->MEMORY, 0, strpos($pdfFile->MEMORY, "_"));
-//                $files[$keyName] = null;
-                continue;
-            }
+
             if (!isset($files[$keyName])) {
                 $files[$keyName] = null;
             }
@@ -76,6 +81,28 @@ class SapApi
             }
         }
 
+        return $files;
+    }
+
+
+    public function getSalarySlip()
+    {
+        $condition = $this->checkIfAlreadyGeneratedToday();
+        if ($condition) {
+            for ($i = 1; $i <= 6; $i++) {
+                $filename = $this->user->employee_id . '_salaryPDF0' . $i . '.pdf';
+                $fileUrls[] = 'salary_slip/' . $filename;
+            }
+            return $fileUrls;
+        } else {
+            $this->connectToSAP();
+            $files = $this->processFiles();
+            return $this->getFilesUrls($files);
+        }
+    }
+
+    public function getFilesUrls(\Illuminate\Support\Collection $files): array
+    {
         $folder = storage_path('app/public/salary_slip/');
 
         if (!is_dir($folder)) {
@@ -97,16 +124,50 @@ class SapApi
             $fileUrls[] = 'salary_slip/' . $filename;
         }
 
+        $this->updateLAstGeneratedDate();
+
         return $fileUrls;
     }
+
+    private function checkIfAlreadyGeneratedToday()
+    {
+        $lastGenerate = auth()->user()->last_generated_payslip;
+
+        if ($lastGenerate) {
+            $isLastToday = Carbon::today()->diffInDays($lastGenerate->last_payslip_generation) == 0;
+
+            if ($isLastToday) {
+                return true;
+            }
+
+            return false;
+        }
+    }
+
+    private function updateLAstGeneratedDate()
+    {
+        $userGenerate = UserProcess::where('employee_id', auth()->user()->employee_id)->first();
+
+        if (!$userGenerate) {
+            UserProcess::create([
+                'employee_id' => auth()->user()->employee_id,
+                'last_payslip_generation' => Carbon::now(),
+            ]);
+        } else {
+            $userGenerate->update([
+                'employee_id' => auth()->user()->employee_id,
+                'last_payslip_generation' => Carbon::now(),
+            ]);
+        }
+    }
+
 
 
     public function getUserInformation()
     {
         $employeeInformation = '';
-        //TODO: not completed
-        $url = config('sap.ZHCM_LETTERS_TECH_URL');
 
+        $url = config('sap.ZHCM_LETTERS_TECH_URL');
 
         if (!$url || !$this->user->employee_id) {
             return false;

@@ -111,7 +111,7 @@ class User extends Authenticatable implements CanResetPassword
     {
         return $query->whereNotNull('employee_id')
             ->where('employee_id', '<>', 0)
-            ->orderBy('name','ASC');
+            ->orderBy('name', 'ASC');
     }
 
     function scopeActive($query)
@@ -269,7 +269,7 @@ class User extends Authenticatable implements CanResetPassword
 
     function toRequesterJson($loadFromSAP = false)
     {
-        $systemUserInformation =  [
+        $systemUserInformation = [
             'id' => $this->id,
             'name' => $this->name,
             'employee_id' => $this->employee_id ?? 'Not Assigned',
@@ -285,7 +285,7 @@ class User extends Authenticatable implements CanResetPassword
         ];
         $sapInformation = [];
 
-        if($loadFromSAP && $this->employee_id){
+        if ($loadFromSAP && $this->employee_id) {
             $sapInformation = $this->loadFromSAP();
         }
 
@@ -293,11 +293,12 @@ class User extends Authenticatable implements CanResetPassword
 
     }
 
-    function loadFromSAP(){
+    function loadFromSAP()
+    {
         $user = \App\User::where('employee_id', $this->employee_id)->first();
         $sapApi = new \App\Helpers\SapApi($user);
         $sapApi->getUserInformation();
-        if ($sapApi->sapUser){
+        if ($sapApi->sapUser) {
             return $sapApi->sapUser->getEmployeeSapInformation();
         }
         return [];
@@ -328,17 +329,24 @@ class User extends Authenticatable implements CanResetPassword
         return "/signatures/" . $this->id . '/' . $name;
     }
 
-    static function getDirectManager($id){
+    static function getDirectManager($id)
+    {
         return User::where('employee_id', trim($id))->first() ? User::where('employee_id', trim($id))->first()->id : null;
     }
 
-    static function getDepartment($departmentName,$businessUnitId){
+    static function getDepartment($departmentName, $businessUnitId)
+    {
         $department = Department::where('name', $departmentName)->first();
         if (!$department) {
             $department = Department::create(['name' => $departmentName, 'business_unit_id' => $businessUnitId]);
         }
 
         return $department->id;
+    }
+
+    function getLastGeneratedPayslipAttribute()
+    {
+        return UserProcess::where('employee_id', auth()->user()->employee_id)->first();
     }
 }
   
