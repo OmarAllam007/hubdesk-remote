@@ -134,7 +134,7 @@ class SapApi
         $lastGenerate = auth()->user()->last_generated_payslip;
 
         if ($lastGenerate) {
-            $isLastToday = Carbon::today()->diffInDays($lastGenerate->last_payslip_generation) == 0;
+            $isLastToday = Carbon::today()->diffInDays(Carbon::parse($lastGenerate->last_payslip_generation)->startOfDay()) == 0;
 
             if ($isLastToday) {
                 return true;
