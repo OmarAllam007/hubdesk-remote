@@ -2,7 +2,8 @@
 
 namespace App\Providers;
 
-use App\Listeners\LetterTicketApprovalListener;
+use App\Listeners\DaamTicketCreatedListener;
+
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -13,6 +14,7 @@ class EventServiceProvider extends ServiceProvider
      *
      * @var array
      */
+
     protected $listen = [
         'eloquent.creating: App\Ticket' => [
             'App\Listeners\InitCreatingTicketListener',
@@ -23,6 +25,7 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\TaskCreatedListener',
             'App\Listeners\CreateUserTicketListener',
             'App\Listeners\ResetSAPTicketListener',
+            'App\Listeners\DaamTicketCreatedListener'
         ],
         'eloquent.created: App\LetterTicket' => [
             'App\Listeners\Letters\LetterTicketListener',
@@ -39,6 +42,7 @@ class EventServiceProvider extends ServiceProvider
 
     public function shouldDiscoverEvents()
     {
+
         return true;
     }
 
