@@ -168,6 +168,9 @@ import {EventBus} from "../EventBus";
 import NotificationsComponent from "../ticket/show/NotificationsComponent";
 import LoadingModal from "./LoadingModal";
 import NumberTextField from '../ticket/custom_fields/NumberTextField'
+import TextArea from "../ticket/custom_fields/TextArea";
+
+
 export default {
   name: "TicketForm",
   components: {
@@ -182,6 +185,7 @@ export default {
     NumberTextField,
     Selectize,
     NotificationsComponent,
+    TextArea
   },
   props: {
     priority_not_required:{

@@ -37,6 +37,9 @@
                 $ar_company = $labourUser->building_name;
                 $en_company = \App\LabourOfficeCompanyMap::where('ar_name','like','%'.$labourUser->building_name.'%')->first()->en_name ?? '';
                 $toDate = $letterTicket->fields()->where('name','Last working day')->first()->value;
+                $arabicJobDescription = $letterTicket->fields()->where('name','Arabic Job Description')->first()->value;
+                $englishJobDescription = $letterTicket->fields()->where('name','English Job Description')->first()->value;
+
             @endphp
 
             <div class="flex flex-col pt-10 px-10 pb-10 " dir="rtl">
@@ -46,9 +49,10 @@
 
                     يحمل هوية رقم : {{$user['iqama_number']}}، قد عمل لدينا بوظيفة : {{$ar_job}}
                      من تاريخ :  {{$user['date_of_join']}} م وحتى تاريخ : {{$toDate}} م ، وقد تم إخلاء طرفه وإعطائه
-                    هذه الشهادة دون أدنى مسؤولية او إلتزام على الشركة .
+                     وقد عمل الموظف لدينا بالمهام التالية : {{$arabicJobDescription}} .
                     </span>
                 </p>
+                <p class="text-3xl" dir="rtl">هذه الشهادة دون أدنى مسؤولية او إلتزام على الشركة .</p>
 
                 <p class="text-3xl text-center pt-10">
                     تمنياتنا له بدوام التوفيق ،،،
@@ -69,9 +73,13 @@
                             We would like to inform you that Mr. {{$user['en_name']}}, {{$user['en_nationality']}}
                             Nationality, having national No. {{$user['iqama_number']}}, Served {{$en_company}}
                             company as {{$en_job}} from: {{$user['date_of_join']}} to: {{$toDate}}
-                            , we cleared him and has given him this certificate without any
-                            obligation or responsibility to the company.
+                            and he is doing the following tasks: {{$englishJobDescription}} .
+
                     </span>
+                </p>
+                <p class="text-3xl">
+                    we cleared him and has given him this certificate without any
+                    obligation or responsibility to the company.
                 </p>
 
                 <p class="text-3xl text-center pt-10">

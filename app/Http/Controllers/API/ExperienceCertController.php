@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\CustomField;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class ExperienceCertController extends Controller
         /** @var UploadedFile $file */
 
         $requestedTicket = $request->get('ticket');
-//        return response()->json(['errors' => $requestedTicket, 'error_code' => 400]);
+
         $user = User::find($requestedTicket['requester_id']);
         $items = json_decode($request->input('ticket.fields'), true);
 
@@ -29,8 +30,7 @@ class ExperienceCertController extends Controller
             return response()->json(['file_size_error' => ['Attachments size should not exceed 10MB'], 'error_code' => 402]);
         }
 
-        $validator = \Validator::make($request->all(), ['ticket.subject' => 'required', 'ticket.priority_id' => 'required'], [
-            'ticket.priority_id.required' => 'Priority field is required.',
+        $validator = \Validator::make($request->all(), ['ticket.subject' => 'required'], [
             'ticket.subject.required' => 'Subject field is required.'
         ]);
 
@@ -39,10 +39,12 @@ class ExperienceCertController extends Controller
         }
 
         $ticket = $controller->createTicket($request, $requestedTicket, \Auth::id());
+//        $controller->createFields($items, $ticket);
 
-        $controller->createFields($items, $ticket);
-        if ($ticket->item_id == 455) {
-            $controller->createFields([9 => $user->employee_id ?? ""], $ticket);
+        if ($ticket->item_id == 445) {
+            $ticket->fields()->create([
+                'name' => CustomField::find(9)->name, 'value' => auth()->user()->employee_id
+            ]);
         }
 
         return response($ticket->id);
