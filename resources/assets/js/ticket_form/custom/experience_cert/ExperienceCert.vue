@@ -154,6 +154,7 @@ import Selectize from 'vue2-selectize'
 import "selectize/dist/css/selectize.bootstrap3.css";
 import {EventBus} from "../../../EventBus";
 import NotificationsComponent from "../../../ticket/show/NotificationsComponent";
+import TextArea from "../../../ticket/custom_fields/TextArea";
 
 export default {
   name: "ExperienceCert",
@@ -167,6 +168,7 @@ export default {
     SelectField,
     Selectize,
     NotificationsComponent,
+    TextArea
   },
   props: {
     show_balance: {
