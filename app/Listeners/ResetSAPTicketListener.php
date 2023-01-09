@@ -30,7 +30,7 @@ class ResetSAPTicketListener
             'SAP ECC Quality 500 (ECC QAS 500)' => config('sap.ecc.qas500'),
             'SAP ECC Quality 920 (ECC QAS 920)' => config('sap.ecc.qas920'),
             'SAP ECC Production 900 (ECC PRD 900)' => config('sap.ecc.prd'),
-            'SAP S4Hana Dev 100 (S4Hana Dev 220)' => config('sap.s4hana.dev'),
+            'SAP S4Hana Dev 100 (S4Hana Dev 100)' => config('sap.s4hana.dev'),
             'SAP S4Hana Quality 220 (S4Hana QAS 220)' => config('sap.s4hana.qas'),
             'SAP S4Hana Production 300 (S4Hana PRD 300)' => config('sap.s4hana.prd'),
             'SolMan' => config('sap.solman'),
