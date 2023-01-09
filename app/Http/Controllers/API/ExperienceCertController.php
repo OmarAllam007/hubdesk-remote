@@ -16,7 +16,7 @@ class ExperienceCertController extends Controller
 
         $requestedTicket = $request->get('ticket');
 
-        $user = User::find($requestedTicket['requester_id']);
+//        $user = User::find($requestedTicket['requester_id']);
         $items = json_decode($request->input('ticket.fields'), true);
 
         $controller = new TicketController();
@@ -40,12 +40,12 @@ class ExperienceCertController extends Controller
 
         $ticket = $controller->createTicket($request, $requestedTicket, \Auth::id());
 //        $controller->createFields($items, $ticket);
-
-        if ($ticket->item_id == 445) {
-            $ticket->fields()->create([
-                'name' => CustomField::find(9)->name, 'value' => auth()->user()->employee_id
-            ]);
-        }
+//
+//        if ($ticket->item_id == 445) {
+//            $ticket->fields()->create([
+//                'name' => CustomField::find(9)->name, 'value' => auth()->user()->employee_id
+//            ]);
+//        }
 
         return response($ticket->id);
     }

@@ -37,8 +37,12 @@
                 $ar_company = $labourUser->building_name;
                 $en_company = \App\LabourOfficeCompanyMap::where('ar_name','like','%'.$labourUser->building_name.'%')->first()->en_name ?? '';
                 $toDate = $letterTicket->fields()->where('name','Last working day')->first()->value;
-                $arabicJobDescription = $letterTicket->fields()->where('name','Arabic Job Description')->first()->value;
-                $englishJobDescription = $letterTicket->fields()->where('name','English Job Description')->first()->value;
+
+                $arDescription = $letterTicket->fields()->where('name','Arabic Job Description')->first();
+                $enDescription = $letterTicket->fields()->where('name','English Job Description')->first();
+
+                $arabicJobDescription = $arDescription ? $arDescription->value :  '';
+                $englishJobDescription =  $enDescription? $enDescription->value : '';
 
             @endphp
 
@@ -49,7 +53,9 @@
 
                     يحمل هوية رقم : {{$user['iqama_number']}}، قد عمل لدينا بوظيفة : {{$ar_job}}
                      من تاريخ :  {{$user['date_of_join']}} م وحتى تاريخ : {{$toDate}} م ، وقد تم إخلاء طرفه وإعطائه
-                     وقد عمل الموظف لدينا بالمهام التالية : {{$arabicJobDescription}} .
+                        @if($arabicJobDescription != '')
+                            وقد عمل الموظف لدينا بالمهام التالية : {{$arabicJobDescription}} .
+                        @endif
                     </span>
                 </p>
                 <p class="text-3xl" dir="rtl">هذه الشهادة دون أدنى مسؤولية او إلتزام على الشركة .</p>
@@ -73,8 +79,9 @@
                             We would like to inform you that Mr. {{$user['en_name']}}, {{$user['en_nationality']}}
                             Nationality, having national No. {{$user['iqama_number']}}, Served {{$en_company}}
                             company as {{$en_job}} from: {{$user['date_of_join']}} to: {{$toDate}}
+                        @if($englishJobDescription != '')
                             and he is doing the following tasks: {{$englishJobDescription}} .
-
+                        @endif
                     </span>
                 </p>
                 <p class="text-3xl">
@@ -99,7 +106,7 @@
 
                 <div class="flex justify-between">
                     <div class="w-1/3 mx-3 ">
-{{--                        <img class="w-2/3 " src="{{asset('/storage'.$letterTicket->signature)}}">--}}
+                        {{--                        <img class="w-2/3 " src="{{asset('/storage'.$letterTicket->signature)}}">--}}
                     </div>
                     <div class="w-1/3 mx-2 ">
                         <img class="w-1/2" src="{{asset('/storage'.$letterTicket->stamp)}}" alt="">
