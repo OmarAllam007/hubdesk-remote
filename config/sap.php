@@ -31,6 +31,11 @@ return [
         ]
     ],
     's4hana' => [
+        'dev' => [
+            'url' => 'http://ALKFS4DEV.ALKIFAH.COM:8000/sap/bc/srt/wsdl/flv_10002A111AD1/bndg_url/sap/bc/srt/rfc/sap/zhubdesk_change_password/100/zhubdesk_change_password/zsap_s4_dev?sap-client=100',
+            'user' => 'HUBDESK_API',
+            'password' => ']DDNF$G~'
+        ],
         'qas' => [
             'url' => 'http://ALKFS4QAS.ALKIFAH.COM:8000/sap/bc/srt/wsdl/flv_10002A101AD1/bndg_url/sap/bc/srt/rfc/sap/zhubdesk_change_password/220/zhubdesk_change_password/zsap_user_s4_qas?sap-client=220',
             'user' => 'HUBDESK_API',
