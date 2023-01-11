@@ -28,11 +28,16 @@ return [
             'url' => 'http://ALKFECCPRD.ALKIFAH.COM:8000/sap/bc/srt/wsdl/flv_10002A101AD1/bndg_url/sap/bc/srt/rfc/sap/zhubdesk_change_password/900/zhubdesk_change_password/zsap_user_prd?sap-client=900',
             'user' => 'HUBDESK_API',
             'password' => 'Kifah@2021',
-        ]
+        ],
+        'dev' => [
+            'url' => 'http://ALKFECCDEV.ALKIFAH.COM:8000/sap/bc/srt/wsdl/flv_10002A101AD1/bndg_url/sap/bc/srt/rfc/sap/zhubdesk_change_password/100/zhubdesk_change_password/zsap_user_ecc_dev?sap-client=100',
+            'user' => 'HUBDESK_API',
+            'password' => "{GGVHYH\/",
+        ],
     ],
     's4hana' => [
         'dev' => [
-            'url' => 'http://ALKFS4DEV.ALKIFAH.COM:8000/sap/bc/srt/wsdl/flv_10002A111AD1/bndg_url/sap/bc/srt/rfc/sap/zhubdesk_change_password/100/zhubdesk_change_password/zsap_s4_dev?sap-client=100',
+            'url' => 'http://ALKFS4DEV.ALKIFAH.COM:8000/sap/bc/srt/wsdl/flv_10002A101AD1/bndg_url/sap/bc/srt/rfc/sap/zhubdesk_change_password/100/zhubdesk_change_password/zsap_s4_dev?sap-client=100',
             'user' => 'HUBDESK_API',
             'password' => ']DDNF$G~'
         ],
@@ -42,7 +47,7 @@ return [
             'password' => 'V8#QXG$A'
         ],
         'prd' => [
-            'url' => 'https://alkfs4prd.alkifah.com:44322/sap/bc/srt/wsdl/flv_10002A101AD1/bndg_url/sap/bc/srt/rfc/sap/zhubdesk_change_password/300/zhubdesk_change_password/zsap_user_s4_prd?sap-client=300',
+            'url' => 'http://alkfs4prd.alkifah.com:8022/sap/bc/srt/wsdl/flv_10002A101AD1/bndg_url/sap/bc/srt/rfc/sap/zhubdesk_change_password/300/zhubdesk_change_password/zsap_user_s4_prd?sap-client=300',
             'user' => 'HUBDESK_API',
             'password' => 'VP/8KX@2'
         ]
