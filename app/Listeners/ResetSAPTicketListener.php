@@ -65,6 +65,7 @@ class ResetSAPTicketListener
     private function tryResetPassword($ticket)
     {
         try{
+
             $employeeID = "E{$this->user->employee_id}";
             $result = $this->client->ZHUBDESK_CHANGE_USER_PASSWORD(['IM_BNAME' => $employeeID]);
 
@@ -74,6 +75,7 @@ class ResetSAPTicketListener
                 $this->createReply($ticket, $result, false);
             }
         }catch (\Throwable $e) {
+            dd($e);
             if($e->getMessage() == "Could not connect to host"){
                 $this->tryResetPassword($ticket);
             }

@@ -32,7 +32,7 @@ return [
         'dev' => [
             'url' => 'http://ALKFECCDEV.ALKIFAH.COM:8000/sap/bc/srt/wsdl/flv_10002A101AD1/bndg_url/sap/bc/srt/rfc/sap/zhubdesk_change_password/100/zhubdesk_change_password/zsap_user_ecc_dev?sap-client=100',
             'user' => 'HUBDESK_API',
-            'password' => "{GGVHYH\/",
+            'password' => '{GGVHYH\\',
         ],
     ],
     's4hana' => [
