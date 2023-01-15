@@ -100,6 +100,7 @@ class TicketController extends Controller
 
     public function store(TicketRequest $request)
     {
+        dd($request->all());
         $ticket = new Ticket($request->all());
 
         $request['business_unit_id'] = $ticket->requester->business_unit_id;

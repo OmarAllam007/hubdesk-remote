@@ -259,7 +259,7 @@ export default {
   },
   methods: {
     listenForChange(value) {
-      this.form.custom_fields[value.id] = value.value
+      this.form.custom_fields[value.id] = value.value ? value.value : ''
     },
     changeRequester(user) {
       if (user !== undefined) {
@@ -323,9 +323,20 @@ export default {
             }
 
             if (response.data.error_code >= 400) {
-              this.validations = response.data.errors
-              EventBus.$emit('send_notification', 'create_ticket',
-                  'Ticket Error', `Kindly fill all the required fields`, 'error');
+              if(response.data.leave_request_error){
+                EventBus.$emit('send_notification', 'create_ticket',
+                    'Ticket Error', `You have already business trip request conflicts with your vacation start and end date`, 'error');
+              }
+              else if(response.data.business_trip_error){
+                EventBus.$emit('send_notification', 'create_ticket',
+                    'Ticket Error', `You have already vacation request conflicts with your business trip start and end date`, 'error');
+              }
+              else{
+                this.validations = response.data.errors
+                EventBus.$emit('send_notification', 'create_ticket',
+                    'Ticket Error', `Kindly fill all the required fields`, 'error');
+
+              }
               this.isLoadingButton = false
               return;
             }
