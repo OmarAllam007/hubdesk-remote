@@ -5,13 +5,17 @@ namespace App\Http\Controllers\API;
 
 
 use App\Attachment;
+use App\BusinessTripTicket;
 use App\Category;
 use App\CustomField;
 use App\Helpers\Ticket\TicketViewScope;
+use App\Item;
 use App\Jobs\NewTicketJob;
 use App\Ticket;
 use App\TicketRequirements;
 use App\User;
+use App\VacationTicket;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
@@ -147,12 +151,27 @@ class TicketController
         }
 
         $validator = \Validator::make($request->all(), ['ticket.subject' => 'required'], [
-//            'ticket.priority_id.required' => 'Priority field is required.',
             'ticket.subject.required' => 'Subject field is required.'
         ]);
 
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors(), 'error_code' => 400]);
+        }
+
+        if ($request->get('ticket')['category_id'] == 104) { //vacation
+            $isNotValidRequest = VacationTicket::validateLeaveRequestIsConflictWithBusinessTripDates($request);
+
+            if ($isNotValidRequest) {
+                return response()->json(['leave_request_error' => ['You have already an business trip request'], 'error_code' => 411]);
+            }
+        }
+
+        if ($request->get('ticket')['subcategory_id'] == 409) { //business trip
+            $isNotValidRequest = BusinessTripTicket::validateBusinessTripConflictsWithLeaveTicket($request);
+
+            if ($isNotValidRequest) {
+                return response()->json(['business_trip_error' => ['You have already an business trip request'], 'error_code' => 411]);
+            }
         }
 
         $ticket = $this->createTicket($request, $requestedTicket, $requestedTicket['requester_id']);
@@ -262,6 +281,5 @@ class TicketController
         $file = public_path('storage') . $path;
         return response()->download($file);
     }
-
 
 }

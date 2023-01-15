@@ -28,7 +28,6 @@ class TicketRequest extends Request
         $this->customRules();
         $validation = [];
 
-//        dd(request()->allFiles());
         $rules = collect([
             'subject' => 'required',
             'description' => 'required',
@@ -41,6 +40,7 @@ class TicketRequest extends Request
         CustomField::whereIn('id', $fields->keys())->where('required', true)->get()->reduce(function ($rules, $customField) {
             return $rules->put('cf.' . $customField->id, 'required');
         }, $rules);
+
 
         return $rules->toArray();
     }
