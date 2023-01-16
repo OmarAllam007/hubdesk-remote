@@ -293,9 +293,9 @@ class LetterController extends Controller
         $user = $sapApi->sapUser->getEmployeeSapInformation();
         $this->userActive = $user['is_active'];
 
-        if (!$user['is_active']) {
-            return false;
-        }
+//        if (!$user['is_active']) {
+//            return false;
+//        }
 
         $letterTicket = $ticket;
         $letterTicket['header'] = LetterSponserMap::$systemBusinessUnits[$user['sponsor_id']];

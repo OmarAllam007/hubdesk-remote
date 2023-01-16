@@ -16,9 +16,6 @@
                 <p class="pt-20 "></p>
                 <p class="text-gray-900 text-xl pt-64">ID: {{$employeeID->value}}
                 </p>
-                <p class="text-gray-900 text-xl pt-5">HD: {{$letterTicket->id}}
-                </p>
-                <p class="flex pt-10   px-10 justify-center">Request for Testing Purpose</p>
             </div>
             {{--            Arabic Part --}}
             <div class="flex pt-10   px-10 justify-center">
