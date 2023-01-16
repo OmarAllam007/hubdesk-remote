@@ -10,7 +10,7 @@ class UserNotification
     /**
      * @var DatabaseNotification
      */
-    private $notification;
+    public $notification;
     public $string;
     public $url;
 
@@ -51,7 +51,7 @@ class UserNotification
 
     private function getNewTicketString()
     {
-        $this->string = 'New Ticket has been assigned to you ticket #' . $this->notification->data['ticket_id'];
+        $this->string = "New Ticket #". $this->notification->data['ticket_id'] ." has been assigned to you";
     }
 
     private function getNewApprovalAssignedString()

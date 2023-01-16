@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FPController;
 
+use App\Http\Controllers\NotificationController;
 use App\Letter;
 use App\Reports\QueryReport;
 use Illuminate\Routing\Router;
@@ -45,7 +46,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/reset_password', 'UserController@resetForm')->name('user.reset');
 });
 
-Route::group(['middleware' => ['auth', 'reset']], function () {
+Route::group(['middleware' => ['auth', 'reset']], function (\Illuminate\Routing\Router $r) {
     Route::get('/get-users', 'Admin\UserController@getusers');
 
     Route::group(['prefix' => 'ticket'], function (\Illuminate\Routing\Router $r) {
@@ -123,6 +124,10 @@ Route::group(['middleware' => ['auth', 'reset']], function () {
         $r->resource('reply_template', 'ReplyTemplateController');
     });
 
+
+    $r->get('notifications',[NotificationController::class,'index']);
+    $r->get('notifications-mark-all-as-read',[NotificationController::class,'markAllAsRead']);
+    $r->get('read-notification/{notification}',[NotificationController::class,'markAsRead']);
 
 });
 
