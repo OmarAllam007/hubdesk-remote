@@ -11,6 +11,7 @@ use App\CustomField;
 use App\Helpers\Ticket\TicketViewScope;
 use App\Item;
 use App\Jobs\NewTicketJob;
+use App\Notifications\TicketAssigned;
 use App\Ticket;
 use App\TicketRequirements;
 use App\User;
@@ -175,6 +176,7 @@ class TicketController
         }
 
         $ticket = $this->createTicket($request, $requestedTicket, $requestedTicket['requester_id']);
+        $ticket->technician->notify(new TicketAssigned($ticket));
 
         return response($ticket->id);
     }

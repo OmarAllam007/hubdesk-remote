@@ -15,6 +15,7 @@ use App\Jobs\UpdateApprovalJob;
 use App\Mail\SendNewApproval;
 use App\Mail\TicketAssignedMail;
 use App\Mail\UpdateApprovalMail;
+use App\Notifications\ApprovalUpdatedNotification;
 use App\ReplyTemplate;
 use App\Ticket;
 use App\TicketApproval;
@@ -126,7 +127,9 @@ class ApprovalController extends Controller
 
         $ticketApproval->update($request->all());
         //fire listener
-
+        if ($ticketApproval->ticket->technician) {
+            $ticketApproval->ticket->technician->notify(new ApprovalUpdatedNotification($ticketApproval));
+        }
         return response()->json(['message' => 'Approval has been updated successfully', 'approval_status' => ($ticketApproval->status == TicketApproval::APPROVED ? 'approved' : 'rejected')]);
     }
 

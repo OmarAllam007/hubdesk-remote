@@ -127,6 +127,7 @@
                         </li>
                     </ul>
 
+
                     <ul class="nav navbar-nav
                     @if(\Session::get('personlized-language-ar' . \Auth::user()->id, \Config::get('app.locale'))=="ar")
                             navbar-left @else navbar-right
@@ -148,6 +149,46 @@
                                                     class="fa fa-cogs"></i> {{t('Configurations')}}</a></li>
                                 @endif
                                 <li><a href="{{url('/logout')}}"><i class="fa fa-sign-out"></i> {{t('Logout')}}</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right" style="border: none;">
+                        <li class="dropdown nav-item">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-bell"></i><span
+                                        class="px-2  bg-red-700 rounded-full">{{auth()->user()->unreadNotifications->count()}}</span>
+                            </a>
+
+                            <ul class="dropdown-menu rounded " style="padding: 0 !important;">
+                                @if(auth()->user()->unreadNotifications->count())
+                                    @foreach(auth()->user()->unreadNotifications->take(5) as $notification)
+                                        @php
+                                            $userNotification = new \App\Helpers\UserNotification($notification);
+                                        @endphp
+                                        <li class="hover:bg-gray-200" style="padding: 0 !important;">
+                                            <a href="{{$userNotification->url}}" class="p-0 "
+                                               style="padding: 0 !important;">
+                                                <p class="px-2 py-3 text-gray-700 normal-case">{{$userNotification->string}}</p>
+                                            </a>
+                                        </li>
+                                    @endforeach
+
+                                        <li class="hover:bg-gray-100" style="padding: 0 !important;">
+                                            <a href="#" class="p-0 " style="padding: 0 !important;">
+                                                <p class="px-2 py-3 text-gray-700 text-md text-center"
+                                                   style="padding: 0"> {{t('View all notifications')}}</p>
+                                            </a>
+                                        </li>
+                                @else
+                                    <li class="hover:bg-gray-100" style="padding: 0 !important;">
+                                        <a href="#" class="p-0 " style="padding: 0 !important;">
+                                            <p class="px-2 py-3 text-gray-700 text-md text-center"
+                                               style="padding: 0"> {{t('No notifications found!')}}</p>
+                                        </a>
+                                    </li>
+                                @endif
+
                             </ul>
                         </li>
                     </ul>
