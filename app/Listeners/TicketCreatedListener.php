@@ -7,6 +7,7 @@ use App\Jobs\ApplySLA;
 use App\Jobs\ApprovalLevels;
 use App\Jobs\NewTicketJob;
 use App\Mail\NewTaskMail;
+use App\Notifications\TicketAssigned;
 use App\Notifications\TicketNotAssignedNotification;
 use App\Ticket;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -41,8 +42,5 @@ class TicketCreatedListener
         dispatch(new NewTicketJob($ticket));
         dispatch(new ApprovalLevels($ticket));
 
-//        if ($ticket->category->business_service_type != 2 && (!$ticket->technician_id || !$ticket->group_id)) {
-//            $ticket->notify((new TicketNotAssignedNotification($ticket)));
-//        }
     }
 }

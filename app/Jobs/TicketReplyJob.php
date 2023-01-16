@@ -6,6 +6,8 @@ use App\Jobs\Job;
 use App\Mail\ReplyTicketMail;
 use App\Mail\SendSurveyEmail;
 use App\Mail\TicketAssignedMail;
+use App\Notifications\NewReplyCreatedNotification;
+use App\Notifications\TicketAssigned;
 use App\Survey;
 use App\TicketLog;
 use App\TicketReply;
@@ -46,6 +48,8 @@ class TicketReplyJob implements ShouldQueue
                 return false;
             }
             $this->to = [$ticket->technician->email];
+            $ticket->technician->notify(new NewReplyCreatedNotification($this->reply));
+
             $this->sendEmail();
 
         } elseif ($this->reply->user_id == $this->reply->ticket->technician_id) {
@@ -53,6 +57,7 @@ class TicketReplyJob implements ShouldQueue
                 return false;
             }
 
+            $ticket->requester->notify(new NewReplyCreatedNotification($this->reply));
             $this->to[] = $ticket->requester->email;
 
             // KGS Request FOR KRB 🤦🏻 🤦🏻 🤦🏻‍️

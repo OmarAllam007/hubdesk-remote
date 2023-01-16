@@ -13,6 +13,8 @@ use App\Jobs\NewTaskJob;
 use App\Jobs\SendApproval;
 use App\Mail\NewTaskMail;
 use App\Mail\SendNewApproval;
+use App\Notifications\NewApprovalAssignedNotification;
+use App\Notifications\NewReplyCreatedNotification;
 use App\Notifications\TicketNotAssignedNotification;
 use App\Ticket;
 use App\TicketApproval;
@@ -83,6 +85,7 @@ class TicketEventsProvider extends ServiceProvider
             }
 
             if ($approval->shouldSend()) {
+                $approval->approver->notify(new NewApprovalAssignedNotification($approval));
                 \Mail::to($approval->approver->email)
                     ->cc($this->cc)
                     ->queue(new SendNewApproval($approval));

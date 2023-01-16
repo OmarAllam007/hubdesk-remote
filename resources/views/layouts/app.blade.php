@@ -127,6 +127,7 @@
                         </li>
                     </ul>
 
+
                     <ul class="nav navbar-nav
                     @if(\Session::get('personlized-language-ar' . \Auth::user()->id, \Config::get('app.locale'))=="ar")
                             navbar-left @else navbar-right
@@ -148,6 +149,49 @@
                                                     class="fa fa-cogs"></i> {{t('Configurations')}}</a></li>
                                 @endif
                                 <li><a href="{{url('/logout')}}"><i class="fa fa-sign-out"></i> {{t('Logout')}}</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right" style="border: none;">
+                        <li class="dropdown nav-item">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-bell"></i><span
+                                        class="px-2  bg-red-700 rounded-full">{{auth()->user()->unreadNotifications->count()}}</span>
+                            </a>
+
+                            <ul class="dropdown-menu rounded " style="padding: 0 !important;">
+                                @if(auth()->user()->unreadNotifications->count())
+                                    @foreach(auth()->user()->unreadNotifications->take(5) as $notification)
+                                        @php
+                                            $userNotification = new \App\Helpers\UserNotification($notification);
+                                        @endphp
+                                        <li class="hover:bg-gray-200" style="padding: 0 !important;">
+                                            <a href="/read-notification/{{$userNotification->notification->id}}" class="p-0 flex p-5"
+                                               style="padding: 0 !important;">
+                                                <span class="w-1/2 px-2 pt-3 text-gray-700 normal-case">{{$userNotification->string}}</span>
+                                                <span class="w-1/2 text-base p-2 text-left">{{$userNotification->notification->created_at->diffForHumans()}}</span>
+                                            </a>
+                                        </li>
+                                    @endforeach
+
+
+                                @else
+                                    <li class="hover:bg-gray-100 " style="padding: 0 !important;">
+                                        <a href="#" class="p-0 " style="padding: 0 !important;">
+                                            <p class="px-5 py-3 text-gray-700 text-xl text-center normal-case"
+                                               style="padding: 0"> <span class="p-3">
+                                                    {{t('No unread notifications found!')}}
+                                                </span></p>
+                                        </a>
+                                    </li>
+                                @endif
+                                    <li class="hover:bg-gray-100" style="padding: 0 !important;">
+                                        <a href="/notifications" class="p-0 " style="padding: 0 !important;">
+                                            <p class="px-2 py-3 text-gray-700 text-xl text-center"
+                                               style="padding: 0"> {{t('View all notifications')}}</p>
+                                        </a>
+                                    </li>
                             </ul>
                         </li>
                     </ul>
