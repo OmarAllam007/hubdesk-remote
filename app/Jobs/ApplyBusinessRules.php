@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\BusinessRule;
 use App\Criteria;
 use App\Mail\TicketReplyMail;
+use App\Notifications\TicketAssigned;
 use App\Ticket;
 use App\TicketReply;
 use App\User;
@@ -44,6 +45,10 @@ class ApplyBusinessRules extends MatchCriteria
 
         $this->ticket->stopLog(true)->setApplyRules(false);
         $this->ticket->save();
+
+        if ($this->ticket->technician) {
+            $this->ticket->technician->notify(new TicketAssigned($this->ticket));
+        }
     }
 
     public function fetchBusinessRule()

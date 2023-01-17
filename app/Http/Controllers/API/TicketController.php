@@ -176,7 +176,7 @@ class TicketController
         }
 
         $ticket = $this->createTicket($request, $requestedTicket, $requestedTicket['requester_id']);
-        $ticket->technician->notify(new TicketAssigned($ticket));
+
 
         return response($ticket->id);
     }
