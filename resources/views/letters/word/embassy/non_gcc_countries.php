@@ -1,5 +1,5 @@
 <?php
-
+dd('asda');
 
 $phpWord = new \PhpOffice\PhpWord\PhpWord();
 
@@ -38,7 +38,7 @@ $section->addText('', [], []);
 $section->addText("The Consul General");
 $section->addText('', [], []);
 
-$section->addText("To The ".$letterTicket->ticket->fields()->first()->value." Embassy");
+$section->addText("To The ". str_replace("&"," And ",$letterTicket->ticket->fields()->first()->value)." Embassy");
 $section->addText('', [], []);
 $section->addText('', [], []);
 $section->addText("Dear Sir,");

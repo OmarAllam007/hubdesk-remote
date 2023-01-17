@@ -37,7 +37,7 @@ $section->addText('', [], []);
 $section->addText("The Consul General");
 $section->addText('', [], []);
 
-$section->addText("To The " . $letterTicket->ticket->fields()->first()->value );
+$section->addText("To The " . str_replace("&"," And ",$letterTicket->ticket->fields()->first()->value) );
 $section->addText('', [], []);
 $section->addText('', [], []);
 $section->addText("Dear Sir,");
