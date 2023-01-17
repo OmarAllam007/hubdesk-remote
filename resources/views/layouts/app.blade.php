@@ -166,15 +166,18 @@
                                         @php
                                             $userNotification = new \App\Helpers\UserNotification($notification);
                                         @endphp
-                                        <li class="hover:bg-gray-200" style="padding: 0 !important;">
-                                            <a href="/read-notification/{{$userNotification->notification->id}}" class="p-0 flex p-5"
+                                        <li class="flex hover:bg-gray-200" style="padding: 0 !important;">
+                                            <a href="/read-notification/{{$userNotification->notification->id}}"
+                                               class="w-full p-0  justify-between p-5"
                                                style="padding: 0 !important;">
-                                                <span class="w-1/2 px-2 pt-3 text-gray-700 normal-case">{{$userNotification->string}}</span>
-                                                <span class="w-1/2 text-base p-2 text-left">{{$userNotification->notification->created_at->diffForHumans()}}</span>
+                                                <div class="flex w-full justify-between">
+                                                    <span class="px-2 pt-3 text-gray-700 normal-case overflow-hidden">{{$userNotification->string}}</span>
+                                                    <span class="text-base p-2 text-left justify-end">{{$userNotification->notification->created_at->diffForHumans()}}</span>
+
+                                                </div>
                                             </a>
                                         </li>
                                     @endforeach
-
 
                                 @else
                                     <li class="hover:bg-gray-100 " style="padding: 0 !important;">
@@ -186,12 +189,12 @@
                                         </a>
                                     </li>
                                 @endif
-                                    <li class="hover:bg-gray-100" style="padding: 0 !important;">
-                                        <a href="/notifications" class="p-0 " style="padding: 0 !important;">
-                                            <p class="px-2 py-3 text-gray-700 text-xl text-center"
-                                               style="padding: 0"> {{t('View all notifications')}}</p>
-                                        </a>
-                                    </li>
+                                <li class="hover:bg-gray-100" style="padding: 0 !important;">
+                                    <a href="/notifications" class="p-0 " style="padding: 0 !important;">
+                                        <p class="px-2 py-3 text-gray-700 text-xl text-center"
+                                           style="padding: 0"> {{t('View all notifications')}}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
