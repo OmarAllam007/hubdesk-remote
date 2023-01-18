@@ -9,7 +9,15 @@ class VacationTicket
 {
     static function validateLeaveRequestIsConflictWithBusinessTripDates(Request $request)
     {
-        $lastBusinessTripTicket = Ticket::where('subcategory_id', 409)->orderBy('created_at', 'DESC')->first();
+        $ticket = $request->ticket;
+        $requestFields = collect(json_decode($ticket['fields']));
+
+        $requesterID = $request->requester_id ? $request->requester_id : $requestFields[1151];
+
+        $lastBusinessTripTicket = Ticket::where('subcategory_id', 409)
+            ->where('requester_id',$requesterID)
+            ->orderBy('created_at', 'DESC')->first();
+
         if ($lastBusinessTripTicket) {
             //get start and endDate of Business Trip
             $startDateBusinessTrip = $lastBusinessTripTicket->fields()
@@ -25,10 +33,8 @@ class VacationTicket
 
 
             // get start date of vacation
-            $ticket = $request->ticket;
             $item = Item::find($ticket['item_id'])->custom_fields()->where('name', 'Vacation Start Date')->first();
 
-            $requestFields = collect(json_decode($ticket['fields']));
             $startDate = $requestFields->get($item->id);
 
             // check if it is between
